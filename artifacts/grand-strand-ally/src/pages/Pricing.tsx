@@ -9,35 +9,29 @@ import { CheckCircle2 } from "lucide-react";
 export default function Pricing() {
   return (
     <div className="flex flex-col">
-      {/* Hero */}
-      <section className="bg-[#0E2F54] text-white pt-24 pb-16 md:pt-32 md:pb-20">
-        <div className="container mx-auto px-4 md:px-6 text-center max-w-3xl">
+      <section className="bg-[#0E2F54] text-white pt-28 pb-16 md:pt-36 md:pb-20 relative overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-[0.04]"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
+            backgroundSize: "56px 56px",
+          }}
+        />
+        <div className="container mx-auto px-4 md:px-6 text-center max-w-3xl relative z-10">
           <div className="inline-flex items-center gap-2 border border-white/15 rounded-full px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-white/60 mb-7 bg-white/5">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#1F5E95] inline-block" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#60B8F0] inline-block" />
             Pricing
           </div>
-          <h1 className="text-4xl md:text-5xl font-heading font-extrabold mb-4 leading-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-heading font-extrabold italic mb-5 leading-[1.05]">
             Clear, predictable pricing.
           </h1>
-          <p className="text-lg text-white/65 leading-relaxed max-w-xl mx-auto">
+          <p className="text-lg text-white/70 leading-relaxed max-w-xl mx-auto">
             Month-to-month agreements. No vendor lock-in. We quote clear scopes before any work starts — so you never get a surprise bill.
           </p>
         </div>
       </section>
 
-      {/* How pricing works */}
-      <section className="py-16 md:py-20 bg-[#F7F5F1] border-b border-[#D7E1EA]">
-        <div className="container mx-auto px-4 md:px-6 text-center max-w-2xl">
-          <SectionHeading
-            label="How it works"
-            title="Pricing that makes sense."
-            description="Straightforward monthly support plans and scoped project pricing based on your team size, devices, locations, and service needs. No mystery charges, no bloated bundles."
-            centered
-          />
-        </div>
-      </section>
-
-      {/* Support Models */}
       <section className="py-20 md:py-28 bg-white">
         <div className="container mx-auto px-4 md:px-6">
           <SectionHeading
@@ -49,17 +43,38 @@ export default function Pricing() {
             {content.pricingModels.map((model, i) => (
               <div
                 key={i}
-                className="bg-[#F7F5F1] rounded-2xl p-7 border border-[#D7E1EA] flex flex-col"
+                className={`rounded-2xl p-7 border flex flex-col ${
+                  i === 1
+                    ? "bg-[#0E2F54] border-[#0E2F54] text-white"
+                    : "bg-[#F7F5F1] border-[#D7E1EA]"
+                }`}
                 data-testid={`pricing-model-${i}`}
               >
-                <h3 className="text-lg font-heading font-bold text-[#0E2F54] mb-3">{model.name}</h3>
-                <p className="text-sm text-[#4B5B6B] mb-6 flex-grow leading-relaxed">{model.description}</p>
-                <div className="bg-white rounded-xl border border-[#D7E1EA] px-4 py-3 text-xs font-medium text-[#4B5B6B] text-center mb-5">
-                  Pricing varies by team size & needs — contact us for a quote.
+                {i === 1 && (
+                  <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#60B8F0] mb-4">
+                    Most popular
+                  </div>
+                )}
+                <h3 className={`text-lg font-heading font-bold mb-3 ${i === 1 ? "text-white" : "text-[#0E2F54]"}`}>
+                  {model.name}
+                </h3>
+                <p className={`text-sm mb-6 flex-grow leading-relaxed ${i === 1 ? "text-white/70" : "text-[#4B5B6B]"}`}>
+                  {model.description}
+                </p>
+                <div className={`rounded-xl border px-4 py-3 text-xs font-medium text-center mb-5 ${
+                  i === 1
+                    ? "bg-white/10 border-white/15 text-white/60"
+                    : "bg-white border-[#D7E1EA] text-[#4B5B6B]"
+                }`}>
+                  Custom quote based on team size & needs
                 </div>
                 <Button
                   asChild
-                  className="w-full bg-[#0E2F54] hover:bg-[#0A2440] text-white text-sm h-10 rounded-md font-semibold"
+                  className={`w-full h-10 text-sm rounded-lg font-semibold ${
+                    i === 1
+                      ? "bg-[#1F5E95] hover:bg-[#1a5080] text-white border-0"
+                      : "bg-[#0E2F54] hover:bg-[#0A2440] text-white border-0"
+                  }`}
                   data-testid={`pricing-cta-${i}`}
                 >
                   <Link href="/contact">Request a Quote</Link>
@@ -70,8 +85,7 @@ export default function Pricing() {
         </div>
       </section>
 
-      {/* What affects pricing + What's included */}
-      <section className="py-20 md:py-28 bg-[#DCEAF7]">
+      <section className="py-20 md:py-28 bg-[#F7F5F1]">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
             <div>
@@ -97,26 +111,35 @@ export default function Pricing() {
             </div>
             <div className="bg-white p-8 rounded-2xl border border-[#D7E1EA] shadow-sm">
               <h3 className="text-lg font-heading font-bold text-[#0E2F54] mb-2">What's always included</h3>
-              <p className="text-sm text-[#4B5B6B] mb-6 leading-relaxed">Every monthly support plan includes the core tools to keep your business safe and productive.</p>
+              <p className="text-sm text-[#4B5B6B] mb-6 leading-relaxed">
+                Every monthly support plan includes the core tools to keep your business safe and productive.
+              </p>
               <ul className="space-y-3">
                 {[
                   "Proactive monitoring & updates",
                   "Endpoint security (antivirus / EDR)",
                   "Remote help desk support",
                   "Monthly check-ins & reporting",
+                  "Microsoft 365 management",
+                  "Documentation of your environment",
                 ].map((item, i) => (
                   <li key={i} className="flex items-center gap-3 text-sm text-[#4B5B6B]">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#1F5E95] flex-shrink-0" />
+                    <CheckCircle2 size={15} className="text-[#1F5E95] flex-shrink-0" />
                     {item}
                   </li>
                 ))}
               </ul>
+              <Button
+                asChild
+                className="mt-8 w-full bg-[#0E2F54] hover:bg-[#0A2440] text-white h-11 text-sm font-semibold rounded-lg"
+              >
+                <Link href="/contact">Book a Free IT Review →</Link>
+              </Button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* FAQ */}
       <section className="py-20 md:py-28 bg-white">
         <div className="container mx-auto px-4 md:px-6">
           <SectionHeading
@@ -132,6 +155,7 @@ export default function Pricing() {
 
       <CTABand
         title="Ready to get a clear number for your business?"
+        subtitle="Contact us and we'll put together a straightforward quote — no obligation."
         buttons={[
           { label: "Contact Us for Pricing", href: "/contact", primary: true },
           { label: "See Services", href: "/services", primary: false },

@@ -1,0 +1,340 @@
+You are a senior web designer, front-end engineer, CRO specialist, and production UX reviewer.
+
+I need you to update and polish the current **Grand Strand Ally** website so it is production-ready and tightly aligned with the layout/style of **grandstrandautomation.com**, while keeping Grand Strand Ally’s own business focus and content.
+
+## Core change in positioning
+Shift the site positioning so Grand Strand Ally is not only about automation.
+
+The site should now focus on 3 core value pillars:
+
+1. **Cost clarity**
+   - help businesses understand what they are currently paying for
+   - uncover overlapping tools, duplicate subscriptions, and bloated IT stacks
+   - identify cost-saving opportunities
+   - make IT spending simpler and easier to understand
+
+2. **Practical IT support**
+   - managed IT support
+   - Microsoft 365 support
+   - network/Wi-Fi support
+   - onboarding/offboarding
+   - backup and recovery
+   - small-business-friendly IT guidance
+
+3. **Compliance and risk reduction**
+   - compliance should be mentioned throughout the site, not just once
+   - reinforce secure configurations, documentation, access controls, user lifecycle controls, and policy alignment
+   - include practical compliance language for regulated or compliance-conscious businesses
+   - avoid sounding like a law firm or auditor
+   - speak in practical business language
+
+## Required CTA update
+Replace the primary CTA everywhere the current site says:
+- “Book a Free IT Review”
+
+Change it to:
+- **“Book a Free Cost Analysis”**
+
+Use that exact phrase consistently in:
+- header CTA
+- hero CTA
+- final CTA
+- pricing section CTA where appropriate
+- contact page CTA language
+- mobile nav CTA
+
+Secondary CTA options can include:
+- See Services
+- Request Pricing
+- Talk Through Your Current Stack
+
+## Important messaging shift
+The site must clearly communicate that Grand Strand Ally helps businesses:
+
+- understand what they are currently spending on IT
+- identify overlapping tools and unnecessary subscriptions
+- simplify vendors and tool sprawl
+- reduce waste
+- improve support and compliance at the same time
+- standardize systems where it makes sense
+- automate repetitive work where it creates real value
+
+Do not make the company sound like it only sells automation.
+Automation should be presented as one part of a broader IT, cost optimization, and compliance strategy.
+
+## Compliance requirement
+Make sure compliance is called out throughout the site.
+
+Include compliance-aware language naturally in:
+- hero support copy
+- services section
+- Microsoft 365 section
+- cybersecurity section
+- onboarding/offboarding section
+- pricing philosophy section
+- FAQ
+- final CTA
+- contact page
+
+Examples of acceptable themes:
+- support for compliance-conscious businesses
+- better documentation and access control
+- cleaner user lifecycle management
+- stronger Microsoft 365 configuration standards
+- helping reduce risk and support compliance obligations
+- practical guardrails for security and compliance
+
+Do NOT overclaim:
+- do not say “guaranteed compliance”
+- do not imply legal or regulatory certification unless explicitly stated
+- do not turn the site into a compliance consulting website
+
+## Visual requirement
+Keep the current instruction to match **grandstrandautomation.com** almost 1:1 in layout/style.
+
+That means:
+- same color family
+- same visual rhythm
+- same header/footer feel
+- same hero structure
+- same trust strip feel
+- same premium dark-to-light section flow
+- same button weight
+- same card styling direction
+- same logo treatment and placement style
+
+But all copy must be specific to Grand Strand Ally.
+
+## Homepage updates required
+
+### Header
+Primary CTA:
+- Book a Free Cost Analysis
+
+### Hero
+Update hero headline and supporting copy to reflect:
+- cost analysis
+- current IT spend visibility
+- overlapping tool reduction
+- practical support
+- compliance-minded systems
+
+Hero should communicate:
+Grand Strand Ally helps businesses understand what they are paying for, reduce unnecessary IT spend, improve support, and build cleaner, more compliant systems.
+
+Hero CTA buttons:
+- Book a Free Cost Analysis
+- See Services
+
+Trust strip should now emphasize:
+- Local to the Grand Strand
+- Clear monthly pricing
+- Compliance-minded IT support
+
+### Pain points section
+Update the 3 problem cards to focus on:
+1. unclear pricing and surprise invoices
+2. overlapping tools and too many vendors
+3. weak processes, poor visibility, and compliance gaps
+
+### Core services section
+Keep 6 services, but revise copy to reflect both support and cost/compliance value.
+
+Suggested service cards:
+- Managed IT Support
+- Microsoft 365 Setup & Support
+- Network & Wi-Fi Management
+- Cybersecurity & Compliance Support
+- Backup & Recovery
+- Workflow Automation & User On/Offboarding
+
+### Who we help
+Add language for:
+- small and medium businesses
+- professional offices
+- businesses with growing compliance needs
+- companies that suspect they are overspending on IT tools
+- teams that want simpler support and better control
+
+### How we work
+Update steps to include cost review and tool assessment.
+
+Use something like:
+1. Review your current tools, vendors, and IT spend
+2. Identify overlap, risk, and the biggest friction points
+3. Simplify support, security, and compliance controls
+4. Automate repetitive admin work where it saves time and money
+
+### Why Grand Strand Ally
+Revise value cards to:
+- Clear costs
+- Fewer overlapping tools
+- Compliance-minded support
+- No long-term contracts
+
+### Pricing philosophy section
+This section is now one of the most important sections.
+
+It should explain:
+- Grand Strand Ally helps clients understand current IT spend before recommending changes
+- recommendations are based on actual needs, not bloated bundles
+- pricing stays clear and scoped
+- cost savings can come from eliminating overlap, simplifying vendors, and right-sizing tools
+- compliance and support needs are factored in from the beginning
+
+CTA:
+- Book a Free Cost Analysis
+- Request Pricing
+
+### FAQ
+Update/add FAQs such as:
+- What happens in a free cost analysis?
+- Can you review what we’re already paying for?
+- Can you help reduce overlapping tools?
+- Do you support compliance-conscious businesses?
+- Do you require long-term contracts?
+- Can you work with our existing Microsoft 365 setup?
+
+### Final CTA
+Update to reinforce cost clarity and simplification.
+
+Example direction:
+“Get clearer IT costs, cleaner systems, and support that’s easier to trust.”
+
+Buttons:
+- Book a Free Cost Analysis
+- Request Pricing
+
+## Services page updates
+Revise the Services page so every service description reflects one or more of these:
+- cost clarity
+- reduced overlap
+- support simplicity
+- compliance awareness
+- practical standardization
+- better operational control
+
+### Service page revisions
+Update all service descriptions to include cost/control/compliance where relevant.
+
+#### Managed IT Support
+Add:
+- clearer ownership
+- less vendor sprawl
+- more predictable support
+- support aligned to business needs and compliance expectations
+
+#### Microsoft 365 Setup & Support
+Add:
+- better license alignment
+- cleanup of unnecessary tools
+- stronger admin controls
+- onboarding/offboarding consistency
+- better compliance posture through cleaner user management and configuration
+
+#### Network & Wi-Fi Management
+Add:
+- simplify unsupported or messy network setups
+- reduce operational headaches
+- improve reliability and security baseline
+
+#### Cybersecurity & Compliance Support
+Rename from “Cybersecurity for SMB” to:
+- **Cybersecurity & Compliance Support**
+
+This page should emphasize:
+- MFA
+- access control
+- secure setup standards
+- endpoint protection
+- user lifecycle controls
+- documentation and policy alignment
+- practical support for compliance-conscious businesses
+
+#### Backup & Recovery
+Add:
+- backup validation
+- recovery planning
+- support for documentation and business continuity expectations
+
+#### Workflow Automation & User On/Offboarding
+Add:
+- reduce repetitive admin work
+- standardize processes
+- support access control and compliance needs
+- improve mailbox forwarding, account disable workflows, role-based setup, and user-change documentation
+
+## Pricing page updates
+Refocus the Pricing page around:
+- understanding what the client already has
+- right-sizing the stack
+- identifying duplication and waste
+- building a simpler monthly support model
+- compliance-aware support planning
+
+Add a section like:
+### What a cost analysis looks at
+- current vendors
+- current tools and subscriptions
+- Microsoft 365 licensing
+- overlapping security tools
+- support model gaps
+- onboarding/offboarding gaps
+- compliance-related weaknesses
+- opportunities to simplify or consolidate
+
+CTA throughout:
+- Book a Free Cost Analysis
+
+## Contact page updates
+Update the contact page to match the new positioning.
+
+Headline direction:
+- Understand what you’re paying for and where your IT can be simplified.
+
+Support text should mention:
+- current tool review
+- overlapping systems
+- compliance-minded support
+- no-obligation conversation
+
+Form intro should mention:
+- current IT stack review
+- support needs
+- cost concerns
+- Microsoft 365 and compliance questions
+
+Button text:
+- Book a Free Cost Analysis
+
+## Mobile optimization requirements
+Make sure all these changes are polished on mobile:
+- CTA text does not wrap awkwardly
+- hero stays balanced
+- trust strip stacks cleanly
+- cards remain tight and readable
+- pricing and cost-analysis messaging scans clearly
+- footer remains compact and professional
+- spacing stays premium, not loose
+
+## Production readiness
+Also fix and confirm:
+- metadata updated to reflect cost analysis and Grand Strand Ally positioning
+- Open Graph text updated
+- all instances of old CTA language removed
+- headings and descriptions tightened
+- no placeholder Replit meta text remains
+- build is production-ready
+
+## Final instructions
+Do the work directly in code.
+Do not just describe what should change.
+Implement the revised messaging and design updates.
+
+After you finish:
+1. summarize the positioning changes
+2. list all files edited
+3. confirm every CTA now says “Book a Free Cost Analysis” where appropriate
+4. confirm compliance is called throughout the site
+5. confirm mobile polish is complete
+6. confirm the site is ready for production deployment

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Manrope:wght@600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:ital,wght@0,500;0,600;0,700;0,800;1,700;1,800&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
@@ -121,59 +121,6 @@
   --chart-5: 42 33% 96%;
 
   --radius: 0.5rem;
-}
-
-.dark {
-  --button-outline: rgba(255,255,255, .10);
-  --badge-outline: rgba(255,255,255, .05);
-  --opaque-button-border-intensity: 9;
-  --elevate-1: rgba(255,255,255, .04);
-  --elevate-2: rgba(255,255,255, .09);
-
-  --background: 214 70% 19%;
-  --foreground: 42 33% 96%;
-  --border: 207 17% 36%;
-  
-  --card: 214 70% 15%;
-  --card-foreground: 42 33% 96%;
-  --card-border: 207 17% 36%;
-  
-  --popover: 214 70% 15%;
-  --popover-foreground: 42 33% 96%;
-  --popover-border: 207 17% 36%;
-  
-  --sidebar: 214 70% 15%;
-  --sidebar-foreground: 42 33% 96%;
-  --sidebar-border: 207 17% 36%;
-  --sidebar-primary: 42 33% 96%;
-  --sidebar-primary-foreground: 214 70% 19%;
-  --sidebar-accent: 214 70% 25%;
-  --sidebar-accent-foreground: 42 33% 96%;
-  --sidebar-ring: 211 66% 36%;
-  
-  --primary: 42 33% 96%;
-  --primary-foreground: 214 70% 19%;
-  
-  --secondary: 214 70% 25%;
-  --secondary-foreground: 42 33% 96%;
-  
-  --muted: 214 70% 25%;
-  --muted-foreground: 207 40% 95%;
-  
-  --accent: 211 66% 36%;
-  --accent-foreground: 0 0% 100%;
-  
-  --destructive: 0 84% 60%;
-  --destructive-foreground: 0 0% 100%;
-  
-  --input: 207 17% 36%;
-  --ring: 211 66% 36%;
-  
-  --chart-1: 211 66% 36%;
-  --chart-2: 42 33% 96%;
-  --chart-3: 207 40% 95%;
-  --chart-4: 207 17% 36%;
-  --chart-5: 214 70% 19%;
 }
 
 @layer base {

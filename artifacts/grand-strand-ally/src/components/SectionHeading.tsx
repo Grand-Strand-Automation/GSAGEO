@@ -28,16 +28,19 @@ export function SectionHeading({
     >
       {label && (
         <span className={cn(
-          "text-xs font-bold uppercase tracking-[0.2em] flex items-center gap-1.5",
+          "text-[11px] font-bold uppercase tracking-[0.2em] flex items-center gap-1.5",
           centered && "justify-center",
-          light ? "text-white/50" : "text-[#1F5E95]"
+          light ? "text-white/55" : "text-[#1F5E95]"
         )}>
-          <span className={cn(light ? "text-white/40" : "text-[#1F5E95]")}>●</span>
+          <span className={cn(
+            "w-1.5 h-1.5 rounded-full inline-block flex-shrink-0",
+            light ? "bg-white/40" : "bg-[#1F5E95]"
+          )} />
           {label}
         </span>
       )}
       <h2 className={cn(
-        "text-3xl md:text-4xl font-heading font-bold max-w-3xl leading-tight",
+        "text-3xl md:text-4xl font-heading font-bold max-w-3xl leading-[1.15]",
         light ? "text-white" : "text-[#0E2F54]"
       )}>
         {title}
@@ -45,7 +48,7 @@ export function SectionHeading({
       {description && (
         <p className={cn(
           "text-base md:text-lg max-w-2xl leading-relaxed",
-          light ? "text-white/70" : "text-[#4B5B6B]"
+          light ? "text-white/65" : "text-[#4B5B6B]"
         )}>
           {description}
         </p>

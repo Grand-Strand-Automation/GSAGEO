@@ -11,14 +11,12 @@ const iconMap: Record<string, LucideIcon> = {
 };
 
 export function ServiceCard({
-  id,
   name,
   description,
   icon,
   href,
   ...rest
 }: {
-  id?: string;
   name: string;
   description: string;
   icon: string;
@@ -28,20 +26,20 @@ export function ServiceCard({
   const Icon = iconMap[icon] || Zap;
   return (
     <div
-      className="bg-white border border-[#D7E1EA] rounded-xl p-6 flex flex-col hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
+      className="bg-white border border-[#D7E1EA] rounded-xl p-6 flex flex-col hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 group"
       {...rest}
     >
-      <div className="w-10 h-10 bg-[#DCEAF7] rounded-lg flex items-center justify-center mb-5 text-[#1F5E95] flex-shrink-0">
-        <Icon size={20} />
+      <div className="w-11 h-11 bg-[#DCEAF7] rounded-xl flex items-center justify-center mb-5 text-[#1F5E95] flex-shrink-0">
+        <Icon size={21} />
       </div>
-      <h3 className="text-base font-heading font-bold text-[#0E2F54] mb-2">{name}</h3>
-      <p className="text-sm text-[#4B5B6B] leading-relaxed flex-grow line-clamp-3">{description}</p>
+      <h3 className="text-[15px] font-heading font-bold text-[#0E2F54] mb-2 leading-snug">{name}</h3>
+      <p className="text-sm text-[#4B5B6B] leading-relaxed flex-grow">{description}</p>
       {href && (
         <Link
           href={href}
-          className="text-[#1F5E95] text-sm font-semibold inline-flex items-center gap-1.5 mt-5 hover:gap-2.5 transition-all group"
+          className="text-[#1F5E95] text-sm font-semibold inline-flex items-center gap-1.5 mt-5 hover:gap-2.5 transition-all"
         >
-          Learn more <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
+          Learn more <ArrowRight size={14} />
         </Link>
       )}
     </div>
