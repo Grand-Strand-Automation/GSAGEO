@@ -1,0 +1,115 @@
+SERVICES PAGE COPY
+
+PAGE HERO
+Headline:
+IT services built to reduce waste, simplify support, and improve control.
+
+Subheadline:
+Grand Strand Ally helps businesses understand what they already have, reduce overlapping tools and vendor sprawl, strengthen compliance-minded operations, and build a cleaner, easier-to-manage technology environment.
+
+Primary CTA:
+Book a Free Cost Analysis
+
+Secondary CTA:
+Request Pricing
+
+INTRO SECTION
+Heading:
+Support that starts with clarity
+
+Copy:
+We do not start by pushing a new stack just to sell more software. We start by understanding your current environment, your current costs, your support gaps, and the areas where better structure, cleaner tools, and stronger controls can make the biggest difference.
+
+SERVICE 1
+Title:
+Managed IT Support
+
+Copy:
+Get a single accountable support partner instead of a patchwork of vendors, unclear responsibilities, and reactive fixes. We help simplify day-to-day support, reduce unnecessary complexity, and make monthly service easier to understand.
+
+Outcomes:
+- clearer ownership of support issues
+- more predictable monthly service
+- less vendor sprawl
+
+SERVICE 2
+Title:
+Microsoft 365 Setup & Support
+
+Copy:
+We help businesses clean up licensing, tighten administration, improve onboarding and offboarding, and make Microsoft 365 easier to manage with cost control, user consistency, and compliance-minded administration in mind.
+
+Outcomes:
+- better license alignment
+- stronger admin controls
+- cleaner user lifecycle management
+
+SERVICE 3
+Title:
+Network & Wi-Fi Management
+
+Copy:
+We review messy or aging network setups, reduce unnecessary complexity, and help create a more reliable office environment that is easier to support, secure, and maintain.
+
+Outcomes:
+- better reliability
+- simpler network ownership
+- stronger baseline security
+
+SERVICE 4
+Title:
+Cybersecurity & Compliance Support
+
+Copy:
+We strengthen practical security controls like MFA, endpoint protection, access management, and user lifecycle controls while supporting cleaner documentation, stronger standards, and better alignment for compliance-conscious businesses.
+
+Outcomes:
+- better access control
+- stronger security baseline
+- improved compliance-minded operations
+
+SERVICE 5
+Title:
+Backup & Recovery
+
+Copy:
+We help make sure backup tools are actually aligned to your environment, recovery expectations are realistic, and restore planning supports both business continuity and compliance expectations.
+
+Outcomes:
+- more confidence in recovery
+- clearer backup ownership
+- better continuity planning
+
+SERVICE 6
+Title:
+Workflow Automation & User On/Offboarding
+
+Copy:
+We automate repetitive administrative work where it makes sense while improving consistency, access control, mailbox handling, role-based setup, offboarding, and user-change documentation.
+
+Outcomes:
+- less repetitive admin work
+- cleaner onboarding/offboarding
+- stronger control and documentation
+
+OUTCOMES SECTION
+Heading:
+What clients gain
+
+Bullets:
+- clearer understanding of current IT spend
+- fewer overlapping tools and subscriptions
+- simpler support model
+- cleaner Microsoft 365 administration
+- stronger onboarding and offboarding controls
+- better support for compliance-conscious operations
+
+CTA BAND
+Headline:
+Not sure which service comes first?
+
+Copy:
+Start with a free cost analysis. We’ll review your current stack, identify overlap and friction, and help prioritize the next step.
+
+Button:
+Book a Free Cost Analysis
