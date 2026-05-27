@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Grand Strand Ally"
+version = "1.0.0"
+id = "artifacts/grand-strand-ally"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 24963
+
+[services.development]
+run = "pnpm --filter @workspace/grand-strand-ally run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/grand-strand-ally", "run", "build" ]
+publicDir = "artifacts/grand-strand-ally/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "24963"
+BASE_PATH = "/"

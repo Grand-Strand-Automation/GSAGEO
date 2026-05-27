@@ -1,0 +1,431 @@
+You are a senior web designer and full-stack front-end developer.
+
+Build a production-ready website for a company called **Grand Strand Ally**.
+
+## Primary objective
+Create a polished, responsive business website for Grand Strand Ally that uses the **same visual branding system, color scheme, header/footer style, layout rhythm, overall page structure, and logo treatment** as **grandstrandautomation.com**, while using entirely different content focused on IT services for small and medium businesses.
+
+This is a separate company.
+- Keep the branding style visually matched to grandstrandautomation.com
+- Keep the same color palette and logo feel
+- Keep the same overall site structure and UI style
+- DO NOT reuse the original site’s written copy
+- DO NOT reuse the hospitality industry messaging
+- DO NOT mention hotels, resorts, vacation rentals, bookings, guests, or operators
+- Write all new content for Grand Strand Ally
+
+## Brand direction for Grand Strand Ally
+Grand Strand Ally is an IT services company serving small and medium businesses in the Grand Strand.
+
+Core messaging:
+- simple support
+- clear costs
+- no long-term contracts
+- practical IT help
+- local and responsive
+- automation where possible
+- Microsoft 365 support
+- onboarding/offboarding support
+- small-business-friendly IT without enterprise complexity
+
+Tone:
+- clear
+- practical
+- confident
+- professional
+- local
+- no jargon-heavy fluff
+- no overhyped startup language
+
+## Use the reference brand style from grandstrandautomation.com
+
+### Match these items closely
+- overall page structure
+- section spacing
+- hero layout
+- card styling
+- CTAs
+- typography feel
+- navy / off-white color balance
+- visual rhythm
+- footer design
+- header design
+- simple premium look
+
+### Use this exact color system from the reference brand style
+- primary navy: #0E2F54
+- dark navy: #0A2440
+- accent blue: #1F5E95
+- pale blue: #DCEAF7
+- warm off-white: #F7F5F1
+- white: #FFFFFF
+- muted text: #4B5B6B
+- border: #D7E1EA
+
+### Typography
+- headings: Manrope or closest equivalent
+- body: Inter
+
+### Logo / branding requirement
+Use the same overall logo style and placement as the reference site.
+
+If possible:
+- use a logo asset from /public/brand/logo-icon.png
+- if that file does not exist, create a visually matching logo lockup for **Grand Strand Ally**
+- the logo should visually feel like it belongs in the same brand family as grandstrandautomation.com
+- keep the logo simple, icon + wordmark
+- use the same color treatment and sizing logic as the reference site
+
+If needed, use this public reference asset as a style reference for the logo treatment:
+https://grandstrandautomation.com/assets/logo-icon.png
+
+Do not reuse any copyrighted written content from the reference site.
+Only mirror the visual branding/style.
+
+## Tech stack
+Build this in:
+- Next.js 15 with App Router
+- TypeScript
+- Tailwind CSS
+- Lucide React icons
+- responsive design
+- SEO metadata
+- Replit-ready
+- GitHub-friendly
+- deployable on Replit without extra infrastructure
+
+Do not use a database.
+Do not use a CMS.
+Store content in code for now.
+
+## Project goals
+The website should be:
+- clean
+- local-business trustworthy
+- premium but approachable
+- easy to edit
+- easy to deploy on Replit
+- optimized for conversions
+- optimized for mobile
+- not overloaded with unnecessary animation
+
+## Site pages
+Create these pages:
+
+1. Homepage
+2. Services page
+3. Pricing page
+4. Contact page
+5. Thank-you page
+6. Privacy page
+7. Terms page
+8. 404 page
+
+## Navigation
+Header links:
+- Services
+- Pricing
+- Contact
+
+Primary CTA:
+- Book a Free IT Review
+
+Secondary CTA:
+- Request Pricing
+
+## Homepage structure
+Match the overall structure and section rhythm of grandstrandautomation.com, but use original content for Grand Strand Ally.
+
+### Homepage sections
+1. Sticky header
+2. Hero section
+3. Problems / pain points section
+4. Core services section
+5. Who we help section
+6. How we work section
+7. Why Grand Strand Ally section
+8. Pricing philosophy section
+9. FAQ section
+10. Final CTA section
+11. Footer
+
+## Homepage copy direction
+
+### Hero
+Headline should communicate:
+simple, reliable IT services for Grand Strand businesses
+
+Subtext should mention:
+- clear monthly support
+- no long-term contracts
+- practical Microsoft 365 help
+- automation where it saves time
+- local support for small and medium businesses
+
+Use 2 CTA buttons:
+- Book a Free IT Review
+- See Services
+
+Include 3 trust bullets:
+- Local to the Grand Strand
+- Clear monthly pricing
+- No long-term contracts
+
+### Problems section
+Create 3 cards for common IT frustrations:
+- unclear pricing and surprise invoices
+- too many vendors and no single owner
+- manual admin work slowing down teams
+
+### Core services section
+Include 6 service cards:
+- Managed IT Support
+- Microsoft 365 Setup & Support
+- Network & Wi-Fi Management
+- Cybersecurity for SMB
+- Backup & Recovery
+- Workflow Automation & User On/Offboarding
+
+Each service card should include:
+- icon
+- short original description
+- link to services page
+
+### Who we help
+Focus on:
+- small businesses
+- professional offices
+- growing teams
+- businesses without in-house IT leadership
+- companies that want a single accountable support partner
+
+### How we work
+Create 4 clear steps:
+1. Review your current setup
+2. Fix the biggest source of friction first
+3. Standardize support and security
+4. Automate repetitive admin work
+
+Add note:
+- no forced platform replacement
+- no unnecessary complexity
+- no long-term lock-in
+
+### Why Grand Strand Ally
+4 cards:
+- Clear costs
+- No long-term contracts
+- Local and responsive
+- Automation where it makes sense
+
+### Pricing philosophy section
+This section should be visually strong.
+
+Explain:
+- monthly managed support
+- project pricing when needed
+- no mystery charges
+- no bloated bundles
+- no lock-in contracts
+
+Do not invent hard pricing unless clearly labeled as example ranges.
+Use this style of language:
+“Straightforward monthly support plans and scoped project pricing based on your team size, devices, locations, and service needs.”
+
+CTA:
+- Request Pricing
+
+### FAQ
+Include at least 6 questions:
+- Do you require long-term contracts?
+- Can you work with our current setup?
+- Do you support Microsoft 365?
+- Do you support remote and onsite needs?
+- Can you automate onboarding and offboarding?
+- How do we get started?
+
+### Final CTA
+Headline:
+Get IT support that’s easier to understand and easier to trust.
+
+Buttons:
+- Book a Free IT Review
+- Request Pricing
+
+## Services page
+Create a dedicated Services page with:
+- page hero
+- intro section
+- detailed service cards
+- outcomes/benefits
+- CTA band
+
+Include these service descriptions with original copy:
+1. Managed IT Support
+2. Microsoft 365 Setup & Support
+3. Network & Wi-Fi Management
+4. Cybersecurity for SMB
+5. Backup & Recovery
+6. Workflow Automation & User On/Offboarding
+
+Keep content concise, credible, and business-friendly.
+
+## Pricing page
+Create a trust-building pricing page.
+
+Sections:
+- Pricing hero
+- How pricing works
+- Sample support models
+- What affects pricing
+- What’s included
+- FAQ
+- CTA
+
+Use example pricing model labels only:
+- Essential Support
+- Growth Support
+- Custom Support
+
+Do not present final fixed prices as real published pricing.
+Use placeholder structure if needed.
+
+Explain that pricing varies based on:
+- user count
+- device count
+- locations
+- Microsoft 365 needs
+- security requirements
+- ongoing support vs project work
+
+Emphasize:
+- month-to-month billing
+- no long-term contracts
+- clear scope before work starts
+
+## Contact page
+Create a conversion-friendly contact page with:
+- simple hero
+- intro text
+- contact form
+- service area note
+- response expectations
+- mini FAQ or reassurance section
+
+Contact form fields:
+- Name
+- Company
+- Email
+- Phone
+- Team size
+- What do you need help with?
+- Message
+
+Form behavior:
+- use a simple Replit-friendly form approach
+- no database required
+- either create a placeholder API route or a simple form handler stub
+- on success redirect to /thank-you
+
+## Footer
+Include:
+- logo
+- short positioning line
+- nav links
+- contact placeholders
+- copyright
+- service area: Grand Strand / Myrtle Beach area
+
+## Design requirements
+- responsive from mobile to desktop
+- smooth scrolling
+- sticky nav
+- clean hover states
+- accessible focus states
+- modern cards with subtle shadow/border
+- consistent spacing
+- no heavy animation libraries
+- lightweight transitions only
+- premium but restrained design
+
+## File structure
+Create a clean, editable file structure like:
+
+/app
+  /layout.tsx
+  /page.tsx
+  /services/page.tsx
+  /pricing/page.tsx
+  /contact/page.tsx
+  /thank-you/page.tsx
+  /privacy/page.tsx
+  /terms/page.tsx
+  /not-found.tsx
+  /globals.css
+
+/components
+  /logo.tsx
+  /site-header.tsx
+  /site-footer.tsx
+  /hero.tsx
+  /section-heading.tsx
+  /service-card.tsx
+  /faq.tsx
+  /cta-band.tsx
+  /contact-form.tsx
+
+/lib
+  /content.ts
+  /site.ts
+  /utils.ts
+
+/public
+  /brand
+    /logo-icon.png
+
+## Content management
+Put editable copy in /lib/content.ts where practical.
+Make it easy to swap headings, blurbs, and CTAs later.
+
+## SEO
+Add:
+- metadata in layout.tsx
+- page-specific titles/descriptions
+- Open Graph basics
+- sitemap.ts
+- robots.ts
+
+Use natural SEO language around:
+- IT services Grand Strand
+- managed IT Grand Strand
+- Microsoft 365 support Myrtle Beach
+- small business IT support
+- IT support Grand Strand businesses
+
+## Replit readiness
+This must run in Replit with:
+- npm install
+- npm run dev
+- npm run build
+
+Add a README with:
+- project overview
+- local/Replit run steps
+- where to edit copy
+- where to replace branding assets
+- deployment notes for Replit
+
+## Important creative rule
+The final result should feel like:
+“Grand Strand Automation’s visual design system and layout, but rewritten and repositioned entirely for Grand Strand Ally’s IT services business.”
+
+Do not copy text from the reference site.
+Reuse only the visual style, branding system, colors, logo feel, and site structure.
+
+## Deliverables
+Generate the full codebase, not just a summary.
+After code generation, also provide:
+1. the full file tree
+2. the first files to edit for content
+3. exact run steps for Replit
+4. any assets I should upload manually, especially logo files
