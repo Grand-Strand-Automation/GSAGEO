@@ -1,0 +1,170 @@
+HOMEPAGE COPY
+
+HERO
+Headline:
+Stop overpaying for IT tools you don’t need.
+
+Subheadline:
+Grand Strand Ally helps small and medium businesses understand what they’re currently spending on IT, uncover overlapping tools and services, and build a simpler, more compliant support model that actually fits the business.
+
+Supporting copy:
+Too many companies are paying for duplicate security tools, unused Microsoft 365 licenses, overlapping vendors, and support they can’t clearly explain. We help you sort out what you have, what you need, what can be consolidated, and where better support, automation, and compliance controls can reduce waste.
+
+Primary CTA:
+Book a Free Cost Analysis
+
+Secondary CTA:
+See Services
+
+Trust strip:
+- Local to the Grand Strand
+- Clear monthly pricing
+- Compliance-minded IT support
+
+PROBLEM SECTION
+Heading:
+Why businesses lose money on IT without realizing it
+
+Intro:
+Most companies do not overspend on IT because of one big mistake. They overspend because tools pile up over time, vendors overlap, licenses go unmanaged, and nobody is reviewing the full picture with cost, support, and compliance in mind.
+
+Card 1 title:
+Unclear pricing and surprise invoices
+
+Card 1 copy:
+Many businesses are paying monthly for support, security, software, and subscriptions without a clean understanding of what each line item actually does.
+
+Card 2 title:
+Overlapping tools and too many vendors
+
+Card 2 copy:
+It is common to find multiple tools doing the same job — backup platforms, email security layers, endpoint protection, user management tools, or support services that overlap without adding real value.
+
+Card 3 title:
+Weak processes create risk and compliance gaps
+
+Card 3 copy:
+When onboarding, offboarding, access control, documentation, and system ownership are inconsistent, companies do not just lose efficiency — they increase operational risk and create avoidable compliance problems.
+
+SERVICES PREVIEW INTRO
+Heading:
+Practical IT services built around cost clarity and control
+
+Copy:
+Grand Strand Ally helps businesses simplify IT, reduce waste, improve support, and strengthen compliance-minded operations.
+
+WHO WE HELP
+Heading:
+Built for businesses that want simpler IT and better visibility
+
+Copy:
+Grand Strand Ally works best for small and medium businesses that know they need support, but also suspect they are paying for more tools, vendors, or services than they actually need.
+
+Bullets:
+- Small and medium businesses with growing technology needs
+- Professional offices that need cleaner Microsoft 365 administration
+- Teams with limited internal IT leadership
+- Businesses concerned about support quality, tool overlap, or compliance risk
+- Companies that want a clear monthly model without long-term lock-in
+
+HOW WE WORK
+Heading:
+How we simplify your environment
+
+Step 1:
+Review your current tools, vendors, and IT spend
+
+Step 2:
+Identify overlap, risk, and the biggest friction points
+
+Step 3:
+Simplify support, security, and compliance controls
+
+Step 4:
+Automate repetitive admin work where it saves time and money
+
+WHY GRAND STRAND ALLY
+Heading:
+Why businesses choose Grand Strand Ally
+
+Card 1:
+Clear costs
+
+Card 1 copy:
+We help clients understand what they are paying for, where the overlap is, and how to move toward a simpler and more predictable support model.
+
+Card 2:
+Fewer overlapping tools
+
+Card 2 copy:
+We look for duplicate subscriptions, redundant security layers, unnecessary add-ons, and vendor overlap that creates cost without improving outcomes.
+
+Card 3:
+Compliance-minded support
+
+Card 3 copy:
+We build support, access control, onboarding, offboarding, and documentation with compliance in mind so systems are not just functional, but also cleaner and easier to defend.
+
+Card 4:
+No long-term contracts
+
+Card 4 copy:
+Our model is built around monthly service, clear scope, and ongoing accountability — not locking clients into a long contract before value is proven.
+
+PRICING PHILOSOPHY
+Heading:
+Start with clarity before you pay for more
+
+Copy:
+Many businesses do not need more tools. They need a better understanding of what they already have, what is overlapping, what is unmanaged, and what should be simplified.
+
+Supporting copy:
+Our approach starts with a cost analysis of your current environment. That includes your support model, Microsoft 365 licensing, security stack, onboarding and offboarding process, vendor overlap, and compliance-related gaps that may be increasing cost or risk.
+
+CTA 1:
+Book a Free Cost Analysis
+
+CTA 2:
+Request Pricing
+
+FAQ
+Q1:
+What happens in a free cost analysis?
+A1:
+We review your current IT tools, support model, Microsoft 365 setup, security layers, and vendor structure to identify overlapping spend, weak ownership, and opportunities to simplify.
+
+Q2:
+Can you review what we are already paying for?
+A2:
+Yes. One of the main goals is to help businesses understand their current IT spend, where tools overlap, and where cost savings may be possible without weakening support or compliance posture.
+
+Q3:
+Can you help reduce overlapping tools?
+A3:
+Yes. We specifically look for duplication across support platforms, Microsoft 365 licensing, security products, backup tools, and user management processes.
+
+Q4:
+Do you support compliance-conscious businesses?
+A4:
+Yes. We help businesses improve practical controls around access, documentation, onboarding, offboarding, Microsoft 365 administration, and baseline security in a way that supports stronger compliance readiness.
+
+Q5:
+Do you require long-term contracts?
+A5:
+No. Grand Strand Ally is built around a monthly service model with clear scope and clear expectations, not long-term lock-in.
+
+Q6:
+Can you work with our current Microsoft 365 setup?
+A6:
+Yes. In many cases, the best starting point is reviewing and improving what is already in place rather than forcing a full replacement.
+
+FINAL CTA
+Headline:
+Get clearer IT costs, cleaner systems, and support that’s easier to trust.
+
+Copy:
+If you are not fully sure what you are paying for today, whether your tools overlap, or whether your support and compliance controls are as clean as they should be, we can help you sort it out.
+
+Buttons:
+- Book a Free Cost Analysis
+- Request Pricing

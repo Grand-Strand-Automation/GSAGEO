@@ -28,11 +28,14 @@ export default function Home() {
             Grand Strand Ally
           </div>
 
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-heading font-extrabold italic max-w-4xl leading-[1.05] mb-6 tracking-tight">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl font-heading font-extrabold italic max-w-4xl leading-[1.05] mb-5 tracking-tight">
             {content.hero.headline}
           </h1>
-          <p className="text-lg md:text-xl text-white/70 max-w-xl mb-10 leading-relaxed">
-            {content.hero.subtext}
+          <p className="text-lg md:text-xl text-white/80 max-w-2xl mb-4 leading-relaxed">
+            {content.hero.subheadline}
+          </p>
+          <p className="text-base text-white/55 max-w-2xl mb-10 leading-relaxed">
+            {content.hero.supportingCopy}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center w-full sm:w-auto">
@@ -52,10 +55,6 @@ export default function Home() {
               <Link href="/services">{content.hero.secondaryButton}</Link>
             </Button>
           </div>
-
-          <p className="text-xs text-white/40 mt-6 tracking-wide">
-            IT cost clarity · Practical support · Compliance-minded systems
-          </p>
         </div>
 
         {/* Trust strip */}
@@ -85,21 +84,25 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
             <div className="lg:sticky lg:top-24">
-              <SectionHeading
-                label="Why businesses call us"
-                title="IT shouldn't be this hard to understand."
-                description="Most Grand Strand businesses aren't struggling because of one big failure. They're losing time and money to small IT problems that compounded — and no one flagged them."
-                light
-              />
+              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/40 flex items-center gap-1.5 mb-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-white/30 inline-block" />
+                Why businesses call us
+              </span>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold italic text-white mb-5 leading-tight">
+                {content.problems.heading}
+              </h2>
+              <p className="text-[15px] text-white/60 leading-relaxed mb-7">
+                {content.problems.intro}
+              </p>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-white/75 hover:text-white border border-white/20 hover:border-white/35 rounded-lg px-4 py-2.5 transition-all mt-2"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-white/75 hover:text-white border border-white/20 hover:border-white/35 rounded-lg px-4 py-2.5 transition-all"
               >
                 Book a free cost analysis <ArrowRight size={14} />
               </Link>
             </div>
             <div className="space-y-3">
-              {content.problems.map((prob, i) => (
+              {content.problems.cards.map((prob, i) => (
                 <div
                   key={i}
                   className="bg-white/5 border border-white/10 rounded-xl p-5 flex gap-4 hover:bg-white/8 transition-colors duration-200"
@@ -124,7 +127,8 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6">
           <SectionHeading
             label="What we do"
-            title="Support, cost clarity, and compliance — built together."
+            title={content.servicesIntro.heading}
+            description={content.servicesIntro.copy}
             centered
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
@@ -157,18 +161,11 @@ export default function Home() {
             <div>
               <SectionHeading
                 label="Who we help"
-                title="Built for businesses that want simpler IT and better control."
-                description="We work with professional offices, legal and financial services firms, and growing teams across the Grand Strand who want reliable support, cleaner systems, and IT they can actually understand."
+                title={content.whoWeHelp.heading}
+                description={content.whoWeHelp.copy}
               />
               <ul className="space-y-3 mt-2">
-                {[
-                  "Small to medium businesses (5–100 employees)",
-                  "Professional offices with compliance & security needs",
-                  "Teams that suspect they're overspending on IT tools",
-                  "Businesses with too many vendors and no clear owner",
-                  "Growing companies that need compliant, documented systems",
-                  "Teams tired of reactive IT and surprise invoices",
-                ].map((item, i) => (
+                {content.whoWeHelp.bullets.map((item, i) => (
                   <li key={i} className="flex items-start gap-3 text-sm">
                     <CheckCircle2 className="text-[#1F5E95] shrink-0 mt-0.5" size={17} />
                     <span className="text-[#0E2F54] font-medium">{item}</span>
@@ -199,33 +196,12 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6">
           <SectionHeading
             label="Our process"
-            title="How we work together."
+            title={content.howWeWork.heading}
             centered
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-12 max-w-5xl mx-auto relative">
             <div className="hidden md:block absolute top-7 left-[calc(12.5%+2rem)] right-[calc(12.5%+2rem)] h-px bg-[#D7E1EA]" />
-            {[
-              {
-                step: "01",
-                title: "Review",
-                desc: "We map your current tools, vendors, IT spend, and support model — and look for overlap, risk, and friction.",
-              },
-              {
-                step: "02",
-                title: "Identify",
-                desc: "We surface the biggest gaps: unnecessary costs, compliance weaknesses, and support model problems.",
-              },
-              {
-                step: "03",
-                title: "Simplify",
-                desc: "We consolidate vendors, standardize security controls, and build cleaner support and compliance foundations.",
-              },
-              {
-                step: "04",
-                title: "Automate",
-                desc: "We automate repetitive admin work — like user on/offboarding — where it saves time, reduces error, and supports compliance.",
-              },
-            ].map((item) => (
+            {content.howWeWork.steps.map((item) => (
               <div key={item.step} className="text-center relative">
                 <div className="w-14 h-14 bg-white border border-[#D7E1EA] text-[#1F5E95] font-heading font-bold text-base rounded-full flex items-center justify-center mx-auto mb-5 shadow-sm relative z-10">
                   {item.step}
@@ -252,11 +228,11 @@ export default function Home() {
               Why choose us
             </span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold italic text-white">
-              A different kind of IT partner.
+              {content.whyUs.heading}
             </h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
-            {content.whyUs.map((reason, i) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+            {content.whyUs.cards.map((reason, i) => (
               <div
                 key={i}
                 className="bg-white/5 border border-white/8 rounded-xl p-6 hover:bg-white/8 transition-colors duration-200"
@@ -277,9 +253,12 @@ export default function Home() {
             <div>
               <SectionHeading
                 label="Pricing"
-                title="Understand what you're paying for first."
-                description="Before we recommend anything, we help you see what you're already spending. We identify overlap, unnecessary subscriptions, and support gaps — then build a plan based on your actual needs, not a bloated bundle."
+                title={content.pricingPhilosophy.heading}
+                description={content.pricingPhilosophy.copy}
               />
+              <p className="text-sm text-[#4B5B6B] leading-relaxed mb-7 -mt-2">
+                {content.pricingPhilosophy.supportingCopy}
+              </p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Button
                   asChild
@@ -348,8 +327,8 @@ export default function Home() {
 
       {/* ── Final CTA ─────────────────────────────────────────────── */}
       <CTABand
-        title="Get clearer IT costs, cleaner systems, and support that's easier to trust."
-        subtitle="No contracts. No pressure. We start by understanding what you already have."
+        title={content.finalCta.headline}
+        subtitle={content.finalCta.copy}
         buttons={[
           { label: "Book a Free Cost Analysis", href: "/contact", primary: true },
           { label: "Request Pricing", href: "/pricing", primary: false },

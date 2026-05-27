@@ -1,27 +1,108 @@
 export const content = {
   hero: {
-    headline: "Clearer IT costs, simpler systems, and support you can trust.",
-    subtext: "We help Grand Strand businesses understand what they're paying for, cut unnecessary tool overlap, improve day-to-day support, and build more compliant, secure systems.",
+    headline: "Stop overpaying for IT tools you don't need.",
+    subheadline: "Grand Strand Ally helps small and medium businesses understand what they're currently spending on IT, uncover overlapping tools and services, and build a simpler, more compliant support model that actually fits the business.",
+    supportingCopy: "Too many companies are paying for duplicate security tools, unused Microsoft 365 licenses, overlapping vendors, and support they can't clearly explain. We help you sort out what you have, what you need, what can be consolidated, and where better support, automation, and compliance controls can reduce waste.",
     primaryButton: "Book a Free Cost Analysis",
     secondaryButton: "See Services",
     bullets: ["Local to the Grand Strand", "Clear monthly pricing", "Compliance-minded IT support"]
   },
-  problems: [
+  problems: {
+    heading: "Why businesses lose money on IT without realizing it",
+    intro: "Most companies do not overspend on IT because of one big mistake. They overspend because tools pile up over time, vendors overlap, licenses go unmanaged, and nobody is reviewing the full picture with cost, support, and compliance in mind.",
+    cards: [
+      {
+        title: "Unclear pricing and surprise invoices",
+        description: "Many businesses are paying monthly for support, security, software, and subscriptions without a clean understanding of what each line item actually does."
+      },
+      {
+        title: "Overlapping tools and too many vendors",
+        description: "It is common to find multiple tools doing the same job — backup platforms, email security layers, endpoint protection, user management tools, or support services that overlap without adding real value."
+      },
+      {
+        title: "Weak processes create risk and compliance gaps",
+        description: "When onboarding, offboarding, access control, documentation, and system ownership are inconsistent, companies do not just lose efficiency — they increase operational risk and create avoidable compliance problems."
+      }
+    ]
+  },
+  servicesIntro: {
+    heading: "Practical IT services built around cost clarity and control",
+    copy: "Grand Strand Ally helps businesses simplify IT, reduce waste, improve support, and strengthen compliance-minded operations."
+  },
+  whoWeHelp: {
+    heading: "Built for businesses that want simpler IT and better visibility",
+    copy: "Grand Strand Ally works best for small and medium businesses that know they need support, but also suspect they are paying for more tools, vendors, or services than they actually need.",
+    bullets: [
+      "Small and medium businesses with growing technology needs",
+      "Professional offices that need cleaner Microsoft 365 administration",
+      "Teams with limited internal IT leadership",
+      "Businesses concerned about support quality, tool overlap, or compliance risk",
+      "Companies that want a clear monthly model without long-term lock-in"
+    ]
+  },
+  howWeWork: {
+    heading: "How we simplify your environment",
+    steps: [
+      { step: "01", title: "Review", desc: "Review your current tools, vendors, and IT spend" },
+      { step: "02", title: "Identify", desc: "Identify overlap, risk, and the biggest friction points" },
+      { step: "03", title: "Simplify", desc: "Simplify support, security, and compliance controls" },
+      { step: "04", title: "Automate", desc: "Automate repetitive admin work where it saves time and money" }
+    ]
+  },
+  whyUs: {
+    heading: "Why businesses choose Grand Strand Ally",
+    cards: [
+      {
+        title: "Clear costs",
+        description: "We help clients understand what they are paying for, where the overlap is, and how to move toward a simpler and more predictable support model."
+      },
+      {
+        title: "Fewer overlapping tools",
+        description: "We look for duplicate subscriptions, redundant security layers, unnecessary add-ons, and vendor overlap that creates cost without improving outcomes."
+      },
+      {
+        title: "Compliance-minded support",
+        description: "We build support, access control, onboarding, offboarding, and documentation with compliance in mind so systems are not just functional, but also cleaner and easier to defend."
+      },
+      {
+        title: "No long-term contracts",
+        description: "Our model is built around monthly service, clear scope, and ongoing accountability — not locking clients into a long contract before value is proven."
+      }
+    ]
+  },
+  pricingPhilosophy: {
+    heading: "Start with clarity before you pay for more",
+    copy: "Many businesses do not need more tools. They need a better understanding of what they already have, what is overlapping, what is unmanaged, and what should be simplified.",
+    supportingCopy: "Our approach starts with a cost analysis of your current environment. That includes your support model, Microsoft 365 licensing, security stack, onboarding and offboarding process, vendor overlap, and compliance-related gaps that may be increasing cost or risk."
+  },
+  finalCta: {
+    headline: "Get clearer IT costs, cleaner systems, and support that's easier to trust.",
+    copy: "If you are not fully sure what you are paying for today, whether your tools overlap, or whether your support and compliance controls are as clean as they should be, we can help you sort it out."
+  },
+  faq: [
     {
-      title: "Unclear pricing & surprise invoices",
-      description: "You don't know what IT is costing you month to month — and no one can clearly explain the bill."
+      question: "What happens in a free cost analysis?",
+      answer: "We review your current IT tools, support model, Microsoft 365 setup, security layers, and vendor structure to identify overlapping spend, weak ownership, and opportunities to simplify."
     },
     {
-      title: "Too many vendors, overlapping tools",
-      description: "Multiple subscriptions, duplicate security products, and no single person accountable when something breaks."
+      question: "Can you review what we are already paying for?",
+      answer: "Yes. One of the main goals is to help businesses understand their current IT spend, where tools overlap, and where cost savings may be possible without weakening support or compliance posture."
     },
     {
-      title: "Weak processes and compliance gaps",
-      description: "Poor onboarding, inconsistent offboarding, undocumented configs, and no audit trail when something goes wrong."
+      question: "Can you help reduce overlapping tools?",
+      answer: "Yes. We specifically look for duplication across support platforms, Microsoft 365 licensing, security products, backup tools, and user management processes."
     },
     {
-      title: "Slow or unresponsive IT support",
-      description: "Tickets go unanswered, problems get patched instead of fixed, and your team works around broken tools."
+      question: "Do you support compliance-conscious businesses?",
+      answer: "Yes. We help businesses improve practical controls around access, documentation, onboarding, offboarding, Microsoft 365 administration, and baseline security in a way that supports stronger compliance readiness."
+    },
+    {
+      question: "Do you require long-term contracts?",
+      answer: "No. Grand Strand Ally is built around a monthly service model with clear scope and clear expectations, not long-term lock-in."
+    },
+    {
+      question: "Can you work with our current Microsoft 365 setup?",
+      answer: "Yes. In many cases, the best starting point is reviewing and improving what is already in place rather than forcing a full replacement."
     }
   ],
   services: [
@@ -66,62 +147,6 @@ export const content = {
       shortDescription: "Standardized user lifecycle workflows that save time and reduce compliance risk.",
       fullDescription: "New hire setup, departure cleanup, role-based access provisioning, and mailbox forwarding — automated and documented. Consistent on/offboarding reduces repetitive admin work, strengthens access controls, and creates a cleaner audit trail for compliance-conscious teams.",
       icon: "zap"
-    }
-  ],
-  whyUs: [
-    {
-      title: "Clear IT costs",
-      description: "We help you understand what you're currently paying for before recommending anything new. No upsells without a reason."
-    },
-    {
-      title: "Fewer overlapping tools",
-      description: "We identify duplicate subscriptions and unnecessary vendor sprawl so you stop paying for things you don't need."
-    },
-    {
-      title: "Compliance-minded support",
-      description: "Access controls, user lifecycle management, and documentation standards built into how we work — not bolted on later."
-    },
-    {
-      title: "No long-term contracts",
-      description: "Month-to-month agreements. We earn your business every month — no multi-year lock-in, no cancellation penalties."
-    },
-    {
-      title: "One accountable partner",
-      description: "No vendor runaround. One number to call, one team responsible for your entire IT environment."
-    },
-    {
-      title: "Local and responsive",
-      description: "Right here in the Grand Strand. Same-day response for urgent issues — not a call center in another time zone."
-    }
-  ],
-  faq: [
-    {
-      question: "What happens in a free cost analysis?",
-      answer: "We review your current IT vendors, tools, subscriptions, and support model. We identify overlap, gaps, and opportunities to simplify — and give you a clear picture of what you're actually spending and what you're getting for it. No obligation, no sales pressure."
-    },
-    {
-      question: "Can you review what we're already paying for?",
-      answer: "Yes — that's often the first thing we do. Many businesses are paying for duplicate tools, unused licenses, or overlapping security products. We help you see the full picture before making any recommendations."
-    },
-    {
-      question: "Can you help reduce overlapping tools or subscriptions?",
-      answer: "Absolutely. We'll map your current stack, find the overlap, and recommend what to keep, what to cut, and what to consolidate — without disrupting your team or their workflows."
-    },
-    {
-      question: "Do you support compliance-conscious businesses?",
-      answer: "Yes. We work with businesses that need better documentation, stronger access controls, consistent user lifecycle management, and cleaner security configurations. We speak in practical business terms, not audit language — and we won't overclaim certifications we don't hold."
-    },
-    {
-      question: "Do you require long-term contracts?",
-      answer: "No. All agreements are month-to-month. We believe in earning your business every month — if the service isn't working, you're not stuck."
-    },
-    {
-      question: "Can you work with our existing Microsoft 365 setup?",
-      answer: "Yes. We'll assess your current Microsoft 365 configuration, licensing, and admin setup — then improve what's worth improving. We don't force unnecessary migrations or replacements."
-    },
-    {
-      question: "How quickly do you respond to issues?",
-      answer: "Most requests are acknowledged within the hour during business hours. Urgent issues — outages, security events — are escalated immediately and handled as a priority."
     }
   ],
   pricingModels: [
