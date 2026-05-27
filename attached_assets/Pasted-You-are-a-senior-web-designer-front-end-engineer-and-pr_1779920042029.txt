@@ -1,0 +1,267 @@
+You are a senior web designer, front-end engineer, and production UX specialist.
+
+I already have a website deployed at gsally.com for **Grand Strand Ally**.
+
+Your job is to **review the current implementation and refactor it into a production-ready site** that matches the **layout, visual system, color scheme, logo treatment, header/footer structure, card styling, section rhythm, and polish** of **grandstrandautomation.com** as closely as possible.
+
+## Priority
+This is not a light cleanup.
+I want a serious production polish pass.
+
+The goal is:
+- clone the visual layout almost 1:1
+- keep Grand Strand Ally content and positioning
+- make the site feel like it belongs to the exact same design family as grandstrandautomation.com
+- optimize heavily for mobile
+- tighten spacing, hierarchy, and polish
+- fix metadata and production readiness issues
+- make the site ready to ship
+
+## Important creative rule
+Keep the **Grand Strand Ally** business content focused on:
+- managed IT support
+- Microsoft 365 support
+- clear pricing
+- no long-term contracts
+- automation where it makes sense
+- SMB-friendly IT services in the Grand Strand
+
+Do NOT use the hospitality copy from grandstrandautomation.com.
+Do NOT mention hotels, resorts, vacation rentals, guests, bookings, or operators.
+Use original Grand Strand Ally messaging only.
+
+## Reference style to match closely
+Use grandstrandautomation.com as the visual reference for:
+- exact page rhythm
+- hero structure
+- trust-strip treatment
+- section spacing
+- section contrast
+- typography hierarchy
+- CTA styling
+- card system
+- header spacing
+- footer treatment
+- button weight
+- overall premium local-service feel
+
+I want the result to feel like:
+“Grand Strand Automation’s site design system, but rewritten for Grand Strand Ally’s IT services business.”
+
+## Branding instructions
+Match the color scheme and logo treatment of the reference site as closely as possible.
+
+Use this palette:
+- primary navy: #0E2F54
+- dark navy: #0A2440
+- accent blue: #1F5E95
+- pale blue: #DCEAF7
+- warm off-white: #F7F5F1
+- white: #FFFFFF
+- muted text: #4B5B6B
+- soft border: #D7E1EA
+
+Typography:
+- Headings: Manrope or closest match
+- Body: Inter
+
+Logo:
+- Keep the current Grand Strand Ally branding, but make the logo treatment, placement, scale, and overall feel visually match grandstrandautomation.com
+- If there is a logo file in /public/brand/logo-icon.png, use it
+- Otherwise create a polished logo lockup that visually feels like the reference brand system
+
+## First task: audit the current site
+Review the existing project and identify:
+- weak spacing
+- weak typography hierarchy
+- basic or inconsistent card styling
+- weak mobile responsiveness
+- footer issues
+- header issues
+- button inconsistencies
+- section transition problems
+- SEO/metadata issues
+- any placeholder content
+- anything that makes the site feel unfinished
+
+Then implement the fixes directly.
+
+## Required structural outcome
+The homepage should closely mirror this structure:
+
+1. Sticky header
+2. Hero section
+3. Trust strip
+4. Pain points section
+5. Core services section
+6. Who we help section
+7. How we work section
+8. Why Grand Strand Ally section
+9. Pricing philosophy section
+10. FAQ section
+11. Final CTA section
+12. Footer
+
+## Homepage refinement requirements
+
+### Header
+- tighten nav spacing
+- improve logo scale and alignment
+- match header feel to the reference site
+- make mobile nav polished and production-ready
+- use a strong primary CTA in header
+
+### Hero
+- keep the Grand Strand Ally message
+- center and balance the hero like the reference
+- strengthen headline sizing and line breaks
+- tighten supporting paragraph width
+- improve CTA spacing and hierarchy
+- add a subtle top label / eyebrow like the reference if appropriate
+- make the hero feel more premium and intentional
+- match background tone and density more closely to the reference
+- improve any visual card stack or right-side support graphic if present
+
+### Trust strip
+- make this match the reference more closely
+- use a segmented or pill-like layout
+- ensure it looks strong on mobile and desktop
+- keep the three trust points:
+  - Local to the Grand Strand
+  - Clear monthly pricing
+  - No long-term contracts
+
+### Pain points section
+- improve layout and hierarchy
+- make the issue cards feel more premium
+- use stronger spacing and card consistency
+- ensure mobile stack is clean and not cramped
+
+### Core services section
+- use a layout visually close to the reference
+- improve service card styling
+- standardize icon treatment
+- make descriptions concise and polished
+- improve learn-more link treatment
+- ensure cards feel tight and refined
+
+### Who we help section
+- make this more visually interesting and balanced
+- improve text hierarchy and spacing
+- ensure mobile layout feels intentional
+
+### How we work section
+- strengthen the process presentation
+- improve scanability
+- match the design sophistication of the reference site
+- keep the content specific to Grand Strand Ally
+
+### Why Grand Strand Ally section
+- make the value cards more elegant and less generic
+- improve layout consistency
+- use stronger contrast and spacing
+
+### Pricing philosophy section
+- make this one of the strongest sections on the page
+- visually highlight transparency and no lock-in
+- improve hierarchy and CTA placement
+- make it look trustworthy and premium
+
+### FAQ section
+- improve accordion styling
+- make spacing and alignment more refined
+- ensure keyboard accessibility
+
+### Final CTA
+- make this section stronger and more conversion-focused
+- match the premium feel of the reference
+- improve button hierarchy and visual impact
+
+### Footer
+- make the footer feel complete, premium, and clearly branded
+- improve spacing, nav structure, and responsiveness
+- include service area and contact placeholders
+- match the visual weight of the reference footer
+
+## Mobile-first refinement requirements
+This site must be tightly optimized for mobile.
+
+Fix:
+- mobile nav usability
+- excessive vertical whitespace
+- oversized or undersized text on phones
+- awkward wrapping in headings
+- poor CTA stacking
+- card paddings on small screens
+- trust-strip stacking
+- footer layout on mobile
+- inconsistent section spacing between mobile and desktop
+- button tap targets
+- visual density so it feels polished rather than sparse
+
+The site should feel excellent on:
+- 390px width
+- 430px width
+- tablet widths
+- desktop
+
+## Production readiness requirements
+Fix and ensure:
+- proper metadata in layout
+- no placeholder meta descriptions
+- Open Graph tags
+- robots.ts
+- sitemap.ts
+- clean 404 page
+- semantic headings
+- accessible focus states
+- no broken links
+- no inconsistent hover states
+- no obvious unfinished content
+- clean code organization
+- stable production build
+
+## Technical stack
+Keep or migrate the project to:
+- Next.js 15
+- TypeScript
+- Tailwind CSS
+- App Router
+- Lucide React icons
+
+If the current project differs slightly but is already close, improve it without unnecessary churn.
+Do not rebuild from scratch unless the current structure is too messy to fix cleanly.
+
+## File organization
+Keep the project organized with reusable components.
+Move editable content into a structured content file if that improves maintainability.
+
+Suggested structure:
+- app/
+- components/
+- lib/
+- public/
+
+## SEO copy direction
+Use page copy and metadata that naturally supports:
+- IT services Grand Strand
+- managed IT Grand Strand
+- Microsoft 365 support Myrtle Beach
+- small business IT support
+- Grand Strand IT services
+
+Do not keyword stuff.
+
+## Final deliverables
+After you finish the refactor:
+1. summarize everything you changed
+2. list the files you edited
+3. explain the biggest visual improvements
+4. confirm the mobile improvements
+5. confirm the metadata / SEO fixes
+6. confirm the site is ready for production deployment on Replit
+
+## Important
+Do the work directly in code.
+Do not just describe a plan.
+Implement the improvements.
