@@ -44,7 +44,7 @@ export function ContactForm() {
     }
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(_values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
     setTimeout(() => {
       setIsSubmitting(false);
@@ -54,16 +54,16 @@ export function ContactForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 max-w-2xl mx-auto bg-white p-8 md:p-10 rounded-2xl shadow-sm border border-border">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <FormField
             control={form.control}
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Name *</FormLabel>
+                <FormLabel className="text-sm font-semibold text-[#0E2F54]">Name *</FormLabel>
                 <FormControl>
-                  <Input placeholder="Jane Doe" {...field} />
+                  <Input placeholder="Jane Doe" className="h-11" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -74,24 +74,24 @@ export function ContactForm() {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email *</FormLabel>
+                <FormLabel className="text-sm font-semibold text-[#0E2F54]">Email *</FormLabel>
                 <FormControl>
-                  <Input placeholder="jane@company.com" {...field} />
+                  <Input placeholder="jane@company.com" className="h-11" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <FormField
             control={form.control}
             name="company"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Company</FormLabel>
+                <FormLabel className="text-sm font-semibold text-[#0E2F54]">Company</FormLabel>
                 <FormControl>
-                  <Input placeholder="Company Name" {...field} />
+                  <Input placeholder="Company Name" className="h-11" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -102,33 +102,33 @@ export function ContactForm() {
             name="phone"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Phone</FormLabel>
+                <FormLabel className="text-sm font-semibold text-[#0E2F54]">Phone</FormLabel>
                 <FormControl>
-                  <Input placeholder="843-555-0199" {...field} />
+                  <Input placeholder="843-555-0199" className="h-11" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <FormField
             control={form.control}
             name="teamSize"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Team Size</FormLabel>
+                <FormLabel className="text-sm font-semibold text-[#0E2F54]">Team Size</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
-                    <SelectTrigger>
+                    <SelectTrigger className="h-11">
                       <SelectValue placeholder="Select team size" />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="1-5">1-5</SelectItem>
-                    <SelectItem value="6-15">6-15</SelectItem>
-                    <SelectItem value="16-50">16-50</SelectItem>
-                    <SelectItem value="50+">50+</SelectItem>
+                    <SelectItem value="1-5">1–5 employees</SelectItem>
+                    <SelectItem value="6-15">6–15 employees</SelectItem>
+                    <SelectItem value="16-50">16–50 employees</SelectItem>
+                    <SelectItem value="50+">50+ employees</SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />
@@ -140,20 +140,21 @@ export function ContactForm() {
             name="helpWith"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>What do you need help with?</FormLabel>
+                <FormLabel className="text-sm font-semibold text-[#0E2F54]">What can we help with?</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select an option" />
+                    <SelectTrigger className="h-11">
+                      <SelectValue placeholder="Select a topic" />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="IT Support">IT Support</SelectItem>
+                    <SelectItem value="Cost Analysis">Free Cost Analysis</SelectItem>
+                    <SelectItem value="IT Support">Managed IT Support</SelectItem>
                     <SelectItem value="Microsoft 365">Microsoft 365</SelectItem>
-                    <SelectItem value="Network/Wi-Fi">Network/Wi-Fi</SelectItem>
-                    <SelectItem value="Cybersecurity">Cybersecurity</SelectItem>
+                    <SelectItem value="Cybersecurity & Compliance">Cybersecurity & Compliance</SelectItem>
+                    <SelectItem value="Network/Wi-Fi">Network & Wi-Fi</SelectItem>
                     <SelectItem value="Backup & Recovery">Backup & Recovery</SelectItem>
-                    <SelectItem value="Automation">Automation</SelectItem>
+                    <SelectItem value="Automation & Onboarding">Automation & On/Offboarding</SelectItem>
                     <SelectItem value="Something Else">Something Else</SelectItem>
                   </SelectContent>
                 </Select>
@@ -167,16 +168,24 @@ export function ContactForm() {
           name="message"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Message</FormLabel>
+              <FormLabel className="text-sm font-semibold text-[#0E2F54]">Tell us about your current situation</FormLabel>
               <FormControl>
-                <Textarea placeholder="How can we help?" className="min-h-[120px] resize-y" {...field} />
+                <Textarea
+                  placeholder="What tools or vendors are you currently using? Any concerns about IT costs, support quality, or compliance?"
+                  className="min-h-[120px] resize-y"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full bg-accent hover:bg-accent/90 text-white h-12 text-base font-semibold mt-4" disabled={isSubmitting}>
-          {isSubmitting ? <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> Sending...</> : "Send Message"}
+        <Button
+          type="submit"
+          className="w-full bg-[#1F5E95] hover:bg-[#1a5080] text-white h-12 text-base font-semibold rounded-lg mt-2"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> Sending...</> : "Book a Free Cost Analysis →"}
         </Button>
       </form>
     </Form>

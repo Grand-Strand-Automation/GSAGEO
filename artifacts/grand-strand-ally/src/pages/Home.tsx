@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { CheckCircle2, MapPin, DollarSign, CalendarOff, AlertCircle, ArrowRight } from "lucide-react";
+import { CheckCircle2, MapPin, DollarSign, ShieldCheck, AlertCircle, ArrowRight } from "lucide-react";
 import { content } from "@/lib/content";
 import { SectionHeading } from "@/components/SectionHeading";
 import { ServiceCard } from "@/components/ServiceCard";
@@ -31,7 +31,7 @@ export default function Home() {
           <h1 className="text-5xl sm:text-6xl md:text-7xl font-heading font-extrabold italic max-w-4xl leading-[1.05] mb-6 tracking-tight">
             {content.hero.headline}
           </h1>
-          <p className="text-lg md:text-xl text-white/70 max-w-lg mb-10 leading-relaxed">
+          <p className="text-lg md:text-xl text-white/70 max-w-xl mb-10 leading-relaxed">
             {content.hero.subtext}
           </p>
 
@@ -54,7 +54,7 @@ export default function Home() {
           </div>
 
           <p className="text-xs text-white/40 mt-6 tracking-wide">
-            Built for Grand Strand businesses. Clear pricing. Local support.
+            IT cost clarity · Practical support · Compliance-minded systems
           </p>
         </div>
 
@@ -65,7 +65,7 @@ export default function Home() {
               {[
                 { icon: MapPin, label: "Local to the Grand Strand" },
                 { icon: DollarSign, label: "Clear monthly pricing" },
-                { icon: CalendarOff, label: "No long-term contracts" },
+                { icon: ShieldCheck, label: "Compliance-minded IT support" },
               ].map(({ icon: Icon, label }) => (
                 <div
                   key={label}
@@ -87,15 +87,15 @@ export default function Home() {
             <div className="lg:sticky lg:top-24">
               <SectionHeading
                 label="Why businesses call us"
-                title="IT shouldn't be this complicated."
-                description="Most small businesses in the Grand Strand aren't struggling because of bad luck — they're held back by tech problems that should have been fixed a long time ago."
+                title="IT shouldn't be this hard to understand."
+                description="Most Grand Strand businesses aren't struggling because of one big failure. They're losing time and money to small IT problems that compounded — and no one flagged them."
                 light
               />
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2 text-sm font-semibold text-white/75 hover:text-white border border-white/20 hover:border-white/35 rounded-lg px-4 py-2.5 transition-all mt-2"
               >
-                Book a free review <ArrowRight size={14} />
+                Book a free cost analysis <ArrowRight size={14} />
               </Link>
             </div>
             <div className="space-y-3">
@@ -124,7 +124,7 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6">
           <SectionHeading
             label="What we do"
-            title="Everything your business needs to run reliably."
+            title="Support, cost clarity, and compliance — built together."
             centered
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
@@ -157,16 +157,17 @@ export default function Home() {
             <div>
               <SectionHeading
                 label="Who we help"
-                title="Built for businesses that want to focus on their work, not their tech."
-                description="We partner with professional offices, legal and financial services firms, and growing teams across the Grand Strand who want reliable, secure IT without the enterprise overhead."
+                title="Built for businesses that want simpler IT and better control."
+                description="We work with professional offices, legal and financial services firms, and growing teams across the Grand Strand who want reliable support, cleaner systems, and IT they can actually understand."
               />
               <ul className="space-y-3 mt-2">
                 {[
                   "Small to medium businesses (5–100 employees)",
-                  "Professional offices needing compliance & security",
-                  "Growing teams without a dedicated IT person",
-                  "Companies tired of unresponsive IT vendors",
-                  "Businesses that want a single point of accountability",
+                  "Professional offices with compliance & security needs",
+                  "Teams that suspect they're overspending on IT tools",
+                  "Businesses with too many vendors and no clear owner",
+                  "Growing companies that need compliant, documented systems",
+                  "Teams tired of reactive IT and surprise invoices",
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3 text-sm">
                     <CheckCircle2 className="text-[#1F5E95] shrink-0 mt-0.5" size={17} />
@@ -178,7 +179,7 @@ export default function Home() {
                 asChild
                 className="mt-8 bg-[#0E2F54] hover:bg-[#0A2440] text-white h-12 px-6 text-sm font-semibold rounded-lg"
               >
-                <Link href="/contact">Book a free review →</Link>
+                <Link href="/contact">Book a free cost analysis →</Link>
               </Button>
             </div>
             <div className="rounded-2xl overflow-hidden shadow-lg border border-[#D7E1EA] aspect-[4/3]">
@@ -204,10 +205,26 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-12 max-w-5xl mx-auto relative">
             <div className="hidden md:block absolute top-7 left-[calc(12.5%+2rem)] right-[calc(12.5%+2rem)] h-px bg-[#D7E1EA]" />
             {[
-              { step: "01", title: "Review", desc: "We audit your current setup — devices, accounts, network, and security — to find risks and friction." },
-              { step: "02", title: "Fix", desc: "We resolve the most urgent issues first, so you see meaningful improvement quickly." },
-              { step: "03", title: "Standardize", desc: "We build reliable, secure foundations using tools your team already uses where possible." },
-              { step: "04", title: "Automate", desc: "We automate repetitive admin work — like user onboarding — so your team isn't doing it manually." },
+              {
+                step: "01",
+                title: "Review",
+                desc: "We map your current tools, vendors, IT spend, and support model — and look for overlap, risk, and friction.",
+              },
+              {
+                step: "02",
+                title: "Identify",
+                desc: "We surface the biggest gaps: unnecessary costs, compliance weaknesses, and support model problems.",
+              },
+              {
+                step: "03",
+                title: "Simplify",
+                desc: "We consolidate vendors, standardize security controls, and build cleaner support and compliance foundations.",
+              },
+              {
+                step: "04",
+                title: "Automate",
+                desc: "We automate repetitive admin work — like user on/offboarding — where it saves time, reduces error, and supports compliance.",
+              },
             ].map((item) => (
               <div key={item.step} className="text-center relative">
                 <div className="w-14 h-14 bg-white border border-[#D7E1EA] text-[#1F5E95] font-heading font-bold text-base rounded-full flex items-center justify-center mx-auto mb-5 shadow-sm relative z-10">
@@ -220,7 +237,7 @@ export default function Home() {
           </div>
           <div className="text-center mt-12 max-w-xl mx-auto">
             <p className="text-sm text-[#4B5B6B] border border-[#D7E1EA] rounded-xl py-4 px-6 bg-white">
-              No forced platform replacements &nbsp;·&nbsp; No unnecessary complexity &nbsp;·&nbsp; No long-term lock-in
+              No forced replacements &nbsp;·&nbsp; No unnecessary complexity &nbsp;·&nbsp; No long-term lock-in
             </p>
           </div>
         </div>
@@ -253,15 +270,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Pricing ───────────────────────────────────────────────── */}
+      {/* ── Pricing Philosophy ────────────────────────────────────── */}
       <section className="py-20 md:py-28 bg-[#F7F5F1]">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div>
               <SectionHeading
                 label="Pricing"
-                title="Straightforward pricing. No surprises."
-                description="Monthly support plans and scoped project pricing based on your team size, devices, locations, and needs. No mystery charges, no bloated bundles, no lock-in."
+                title="Understand what you're paying for first."
+                description="Before we recommend anything, we help you see what you're already spending. We identify overlap, unnecessary subscriptions, and support gaps — then build a plan based on your actual needs, not a bloated bundle."
               />
               <div className="flex flex-col sm:flex-row gap-3">
                 <Button
@@ -269,34 +286,34 @@ export default function Home() {
                   className="bg-[#0E2F54] hover:bg-[#0A2440] text-white font-semibold h-12 px-6 text-sm rounded-lg"
                   data-testid="pricing-cta-button"
                 >
-                  <Link href="/pricing">View Pricing →</Link>
+                  <Link href="/contact">Book a Free Cost Analysis →</Link>
                 </Button>
                 <Button
                   asChild
                   variant="outline"
                   className="border-[#D7E1EA] text-[#0E2F54] hover:bg-[#DCEAF7] h-12 px-6 text-sm rounded-lg font-semibold"
                 >
-                  <Link href="/contact">Get a Quote</Link>
+                  <Link href="/pricing">Request Pricing</Link>
                 </Button>
               </div>
             </div>
             <div className="space-y-3">
               {[
                 {
-                  label: "Month-to-month agreements",
-                  desc: "No annual contracts. Cancel any time — we earn your business every month.",
+                  label: "Cost analysis before any commitment",
+                  desc: "We review your current stack and spending before recommending a single change.",
                 },
                 {
-                  label: "Scoped projects, clear quotes",
-                  desc: "You'll always know what you're paying for before any work starts.",
+                  label: "Eliminate what you don't need",
+                  desc: "Duplicate tools, unused licenses, and overlapping vendors add up. We find them.",
                 },
                 {
-                  label: "Right-sized for your team",
-                  desc: "Pricing based on your actual user count, device count, and service needs.",
+                  label: "Flat monthly support pricing",
+                  desc: "No mystery charges. What we scope is what you pay — month to month.",
                 },
                 {
-                  label: "No surprise invoices",
-                  desc: "Flat monthly billing. What we quote is what you pay.",
+                  label: "Compliance factored in from day one",
+                  desc: "Access controls, documentation, and user lifecycle management are built into our standard process.",
                 },
               ].map((item, i) => (
                 <div
@@ -331,10 +348,10 @@ export default function Home() {
 
       {/* ── Final CTA ─────────────────────────────────────────────── */}
       <CTABand
-        title="Get IT support that's easier to understand and easier to trust."
-        subtitle="No contracts. No surprises. Local support you can count on."
+        title="Get clearer IT costs, cleaner systems, and support that's easier to trust."
+        subtitle="No contracts. No pressure. We start by understanding what you already have."
         buttons={[
-          { label: "Book a Free IT Review", href: "/contact", primary: true },
+          { label: "Book a Free Cost Analysis", href: "/contact", primary: true },
           { label: "Request Pricing", href: "/pricing", primary: false },
         ]}
       />

@@ -13,12 +13,42 @@ const iconMap: Record<string, LucideIcon> = {
 };
 
 const serviceBenefits: Record<string, string[]> = {
-  "managed-it": ["Proactive monitoring & alerting", "Fast help desk response", "Regular maintenance & updates", "Security built-in by default"],
-  "microsoft-365": ["License procurement & setup", "Email, Teams & SharePoint config", "User training & adoption support", "Ongoing license management"],
-  "network-wifi": ["Wired & wireless design", "Secure remote access (VPN)", "Network performance monitoring", "Vendor coordination"],
-  cybersecurity: ["Endpoint detection & response", "Multi-factor authentication", "Email security & filtering", "Staff security awareness"],
-  "backup-recovery": ["Automated daily backups", "Tested recovery procedures", "Cloud & local redundancy", "Business continuity planning"],
-  "workflow-automation": ["New hire account setup", "Departure cleanup & offboarding", "Microsoft 365 workflow automation", "Repetitive task reduction"],
+  "managed-it": [
+    "Single accountable IT partner",
+    "Proactive monitoring & issue resolution",
+    "Fewer vendors, less runaround",
+    "Support aligned to your compliance needs",
+  ],
+  "microsoft-365": [
+    "Right-sized license review & cleanup",
+    "Stronger admin controls & security defaults",
+    "Consistent on/offboarding workflows",
+    "Improved compliance posture via user management",
+  ],
+  "network-wifi": [
+    "Wired, wireless & remote access design",
+    "Simplified & documented network setup",
+    "Improved security baseline",
+    "Reduced downtime and operational headaches",
+  ],
+  cybersecurity: [
+    "MFA & access control implementation",
+    "Endpoint detection & response",
+    "Email security & phishing protection",
+    "Documented configurations & policy alignment",
+  ],
+  "backup-recovery": [
+    "Automated daily backup coverage",
+    "Tested, validated recovery procedures",
+    "Business continuity documentation",
+    "Supports data protection compliance expectations",
+  ],
+  "workflow-automation": [
+    "Automated new hire account setup",
+    "Secure offboarding & access removal",
+    "Role-based access provisioning",
+    "Audit trail & user change documentation",
+  ],
 };
 
 export default function Services() {
@@ -39,10 +69,10 @@ export default function Services() {
             What we offer
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-heading font-extrabold italic mb-5 leading-[1.05]">
-            Services built for business.
+            Support, compliance, and cost clarity — built in.
           </h1>
           <p className="text-lg text-white/70 leading-relaxed max-w-xl mx-auto">
-            Practical, reliable IT that keeps your team working. No unnecessary complexity, no jargon — just support that works.
+            Every service we offer is designed around three goals: practical day-to-day support, cleaner and more compliant systems, and a clear understanding of what you're paying for.
           </p>
         </div>
       </section>
@@ -87,9 +117,18 @@ export default function Services() {
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center max-w-4xl mx-auto">
             {[
-              { stat: "1 Partner", desc: "One accountable IT contact for all your needs — no more vendor runaround." },
-              { stat: "Same Day", desc: "Most support requests addressed the same business day they come in." },
-              { stat: "No Lock-in", desc: "Month-to-month agreements. Stay because the service is good, not because you're stuck." },
+              {
+                stat: "1 Partner",
+                desc: "One accountable IT contact for support, compliance, and cost questions — no more vendor runaround.",
+              },
+              {
+                stat: "Same Day",
+                desc: "Most support requests addressed the same business day. Urgent issues handled immediately.",
+              },
+              {
+                stat: "No Lock-in",
+                desc: "Month-to-month agreements. Stay because the service is good — not because you're stuck.",
+              },
             ].map((item, i) => (
               <div key={i} className="p-6">
                 <div className="text-2xl font-heading font-bold text-white mb-2">{item.stat}</div>
@@ -101,10 +140,10 @@ export default function Services() {
       </section>
 
       <CTABand
-        title="Ready for IT support that actually supports you?"
-        subtitle="Book a free review and we'll assess your setup, no strings attached."
+        title="Ready for IT that's easier to manage, understand, and trust?"
+        subtitle="We start with a free cost analysis — no commitment, no pressure."
         buttons={[
-          { label: "Book a Free IT Review", href: "/contact", primary: true },
+          { label: "Book a Free Cost Analysis", href: "/contact", primary: true },
           { label: "See Pricing", href: "/pricing", primary: false },
         ]}
       />

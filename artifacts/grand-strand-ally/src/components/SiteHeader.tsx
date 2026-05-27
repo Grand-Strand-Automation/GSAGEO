@@ -43,7 +43,7 @@ export function SiteHeader() {
             className="bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold text-sm px-5 h-9 rounded-lg border-0"
           >
             <Link href={siteConfig.links.contact} data-testid="nav-cta-button">
-              Book a Free IT Review
+              Book a Free Cost Analysis
             </Link>
           </Button>
         </nav>
@@ -72,7 +72,7 @@ export function SiteHeader() {
           ))}
           <div className="pt-3 border-t border-white/10 mt-2">
             <Button asChild className="w-full bg-[#1F5E95] hover:bg-[#1a5080] text-white text-sm h-11 rounded-lg font-semibold">
-              <Link href={siteConfig.links.contact}>Book a Free IT Review</Link>
+              <Link href={siteConfig.links.contact}>Book a Free Cost Analysis</Link>
             </Button>
           </div>
         </div>
