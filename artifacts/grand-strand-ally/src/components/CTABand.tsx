@@ -1,22 +1,31 @@
 import { Link } from "wouter";
 import { Button } from "./ui/button";
 
-export function CTABand({ title, buttons }: { title: string, buttons?: {label: string, href: string, primary?: boolean}[] }) {
+export function CTABand({
+  title,
+  buttons,
+}: {
+  title: string;
+  buttons?: { label: string; href: string; primary?: boolean }[];
+}) {
   return (
-    <section className="py-20 md:py-32 bg-primary text-white text-center">
+    <section className="py-20 md:py-28 bg-[#0E2F54] text-white text-center">
       <div className="container mx-auto px-4 md:px-6">
-        <h2 className="text-3xl md:text-5xl font-heading font-bold max-w-3xl mx-auto mb-10 leading-tight">
+        <h2 className="text-3xl md:text-4xl font-heading font-bold max-w-2xl mx-auto mb-8 leading-tight">
           {title}
         </h2>
         {buttons && buttons.length > 0 && (
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             {buttons.map((btn, i) => (
-              <Button 
-                key={i} 
-                asChild 
-                size="lg" 
-                variant={btn.primary ? "default" : "outline"}
-                className={btn.primary ? "bg-accent text-white hover:bg-accent/90 border-transparent h-14 px-8 text-lg" : "border-white text-primary hover:bg-white hover:text-primary bg-white h-14 px-8 text-lg"}
+              <Button
+                key={i}
+                asChild
+                className={
+                  btn.primary
+                    ? "bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-11 px-6 text-sm rounded-md border-0"
+                    : "bg-transparent border border-white/25 text-white hover:bg-white/8 font-semibold h-11 px-6 text-sm rounded-md"
+                }
+                data-testid={`cta-button-${i}`}
               >
                 <Link href={btn.href}>{btn.label}</Link>
               </Button>
