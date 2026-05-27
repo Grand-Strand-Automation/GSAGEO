@@ -1,0 +1,112 @@
+PRICING PAGE COPY
+
+PAGE HERO
+Headline:
+Start with a clearer view of what you’re already paying for.
+
+Subheadline:
+Grand Strand Ally helps businesses simplify their IT spend before recommending new services. We review the current environment, identify duplication and waste, and build a support model based on actual needs.
+
+Primary CTA:
+Book a Free Cost Analysis
+
+PRICING PHILOSOPHY
+Heading:
+Clear pricing starts with clear visibility
+
+Copy:
+Many businesses are paying for support, security, subscriptions, and Microsoft 365 licensing without a full picture of where costs overlap or where vendors are duplicating work. Our process starts by understanding what is already in place so recommendations are based on reality, not generic packages.
+
+SECTION
+Heading:
+What a cost analysis looks at
+
+Bullets:
+- current IT vendors
+- current software and subscriptions
+- Microsoft 365 licensing
+- overlapping security tools
+- support model gaps
+- onboarding and offboarding gaps
+- backup and recovery coverage
+- compliance-related weaknesses
+- opportunities to simplify or consolidate
+
+SECTION
+Heading:
+How pricing works
+
+Copy:
+Our pricing is built around straightforward monthly support, scoped project work when needed, and a clear understanding of what is included. We do not believe in mystery invoice culture, bloated bundles, or long-term lock-in before value is proven.
+
+SAMPLE SUPPORT MODELS
+Card 1 title:
+Essential Support
+
+Card 1 copy:
+A fit for smaller teams that need dependable support, Microsoft 365 help, and cleaner day-to-day issue ownership without unnecessary complexity.
+
+Card 2 title:
+Growth Support
+
+Card 2 copy:
+A fit for growing businesses that need broader support coverage, stronger security controls, better onboarding and offboarding processes, and more operational consistency.
+
+Card 3 title:
+Custom Support
+
+Card 3 copy:
+A fit for businesses with multiple locations, more complex environments, stronger compliance expectations, or a need to combine support, cleanup, and process improvement.
+
+WHAT AFFECTS PRICING
+Heading:
+What affects monthly cost
+
+Bullets:
+- number of users
+- number of devices
+- number of locations
+- Microsoft 365 scope
+- security and compliance needs
+- onboarding/offboarding requirements
+- backup and recovery expectations
+- ongoing support versus project work
+
+SECTION
+Heading:
+What’s included in the conversation
+
+Copy:
+If we move forward after a cost analysis, we define scope clearly, explain what is included, identify what is optional, and show where simplification or consolidation can create savings.
+
+FAQ
+Q1:
+Do you publish fixed pricing?
+A1:
+We use structured pricing models, but final pricing depends on team size, devices, locations, Microsoft 365 needs, support expectations, and compliance-related requirements.
+
+Q2:
+Do you require long-term contracts?
+A2:
+No. We focus on monthly service and clear scope rather than long-term lock-in.
+
+Q3:
+Can cost savings come from removing tools?
+A3:
+Yes. In many cases, savings come from reducing duplicate software, simplifying vendors, improving licensing, and standardizing how support is delivered.
+
+Q4:
+Will you recommend replacing everything?
+A4:
+No. We usually start by reviewing what already exists and improving what makes sense before recommending major changes.
+
+FINAL CTA
+Headline:
+Before you buy more tools, understand what you already have.
+
+Copy:
+A free cost analysis helps uncover overlap, clarify support needs, and identify where better structure can reduce waste and improve compliance-minded operations.
+
+Buttons:
+- Book a Free Cost Analysis
+- Request Pricing
