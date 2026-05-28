@@ -30,14 +30,28 @@ export default function Contact() {
         </div>
       </section>
 
+      {/* Trust bar */}
+      <div className="bg-white border-b border-[#D7E1EA]">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="flex flex-col sm:flex-row items-stretch justify-center divide-y sm:divide-y-0 sm:divide-x divide-[#D7E1EA]">
+            {[
+              "No commitment required",
+              "Response within 1 business day",
+              "No pressure, no hard sell",
+            ].map((label) => (
+              <div key={label} className="flex items-center justify-center gap-2.5 py-4 sm:px-8 text-sm text-[#4B5B6B] font-medium">
+                <CheckCircle2 size={14} className="text-[#1F5E95] flex-shrink-0" />
+                {label}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
       {/* Intro */}
-      <section className="py-14 bg-white border-b border-[#D7E1EA]">
+      <section className="py-12 md:py-14 bg-[#F7F5F1] border-b border-[#D7E1EA]">
         <div className="container mx-auto px-4 md:px-6 max-w-3xl text-center">
-          <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#4B5B6B] flex items-center justify-center gap-1.5 mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#1F5E95] inline-block" />
-            No pressure
-          </span>
-          <h2 className="text-2xl font-heading font-bold text-[#0E2F54] mb-3">
+          <h2 className="text-xl md:text-2xl font-heading font-bold text-[#0E2F54] mb-3">
             A no-pressure review of your current stack
           </h2>
           <p className="text-[#4B5B6B] leading-relaxed text-[15px]">
@@ -47,15 +61,15 @@ export default function Contact() {
       </section>
 
       {/* Form + Sidebar */}
-      <section className="py-20 md:py-28 bg-[#F7F5F1]">
+      <section className="py-16 md:py-24 bg-[#F7F5F1]">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
 
             {/* Sidebar */}
-            <div className="space-y-7">
+            <div className="space-y-5">
 
               {/* Contact info */}
-              <div className="space-y-4">
+              <div className="bg-white rounded-xl border border-[#D7E1EA] p-5 space-y-4 shadow-sm">
                 {[
                   { Icon: Mail, label: "Email", value: siteConfig.email, href: `mailto:${siteConfig.email}` },
                   { Icon: Phone, label: "Phone", value: siteConfig.phone, href: `tel:${siteConfig.phone.replace(/-/g, "")}` },
@@ -63,15 +77,13 @@ export default function Contact() {
                   { Icon: Clock, label: "Response Time", value: "Within 1 business day", href: null },
                 ].map(({ Icon, label, value, href }) => (
                   <div key={label} className="flex items-start gap-3">
-                    <div className="w-9 h-9 rounded-lg bg-[#DCEAF7] flex items-center justify-center text-[#1F5E95] flex-shrink-0">
-                      <Icon size={16} />
+                    <div className="w-8 h-8 rounded-lg bg-[#DCEAF7] flex items-center justify-center text-[#1F5E95] flex-shrink-0">
+                      <Icon size={15} />
                     </div>
                     <div>
-                      <p className="text-xs font-bold uppercase tracking-wider text-[#4B5B6B] mb-0.5">{label}</p>
+                      <p className="text-[10px] font-bold uppercase tracking-wider text-[#4B5B6B] mb-0.5">{label}</p>
                       {href ? (
-                        <a href={href} className="text-sm text-[#0E2F54] font-medium hover:text-[#1F5E95] transition-colors">
-                          {value}
-                        </a>
+                        <a href={href} className="text-sm text-[#0E2F54] font-medium hover:text-[#1F5E95] transition-colors">{value}</a>
                       ) : (
                         <p className="text-sm text-[#0E2F54] font-medium">{value}</p>
                       )}
@@ -81,7 +93,7 @@ export default function Contact() {
               </div>
 
               {/* What to expect */}
-              <div className="bg-white rounded-xl border border-[#D7E1EA] p-5">
+              <div className="bg-white rounded-xl border border-[#D7E1EA] p-5 shadow-sm">
                 <p className="text-sm font-bold text-[#0E2F54] mb-3">What to expect</p>
                 <ul className="space-y-2.5">
                   {[
@@ -92,7 +104,7 @@ export default function Contact() {
                     "Follow-up focused on fit, scope, and next steps",
                   ].map((item, i) => (
                     <li key={i} className="flex items-start gap-2.5 text-sm text-[#4B5B6B]">
-                      <CheckCircle2 size={14} className="text-[#1F5E95] flex-shrink-0 mt-0.5" />
+                      <CheckCircle2 size={13} className="text-[#1F5E95] flex-shrink-0 mt-0.5" />
                       {item}
                     </li>
                   ))}
@@ -100,29 +112,28 @@ export default function Contact() {
               </div>
 
               {/* Reassurance */}
-              <div className="bg-white rounded-xl border border-[#D7E1EA] p-5">
+              <div className="bg-white rounded-xl border border-[#D7E1EA] p-5 shadow-sm">
                 <p className="text-sm font-bold text-[#0E2F54] mb-2">
-                  You do not need to have everything figured out first.
+                  You don't need to have everything figured out first.
                 </p>
                 <p className="text-sm text-[#4B5B6B] leading-relaxed">
-                  Many businesses reach out because they know something feels messy, expensive, or harder to manage than it should be. That is enough to start. We can help you review the current environment, identify what matters, and talk through the best next step.
+                  Many businesses reach out because something feels messy, expensive, or harder to manage than it should be. That is enough to start.
                 </p>
               </div>
 
-              {/* Service area note */}
-              <p className="text-xs text-[#4B5B6B] leading-relaxed">
+              <p className="text-xs text-[#4B5B6B] leading-relaxed px-1">
                 Grand Strand Ally works with small and medium businesses across the Grand Strand and Myrtle Beach area.
               </p>
 
             </div>
 
             {/* Form */}
-            <div className="lg:col-span-2 bg-white rounded-2xl border border-[#D7E1EA] p-8 shadow-sm">
+            <div className="lg:col-span-2 bg-white rounded-2xl border border-[#D7E1EA] p-7 md:p-8 shadow-sm">
               <h2 className="text-xl font-heading font-bold text-[#0E2F54] mb-1">
                 Tell us what you want us to review
               </h2>
               <p className="text-sm text-[#4B5B6B] mb-7 leading-relaxed">
-                Fill out the form below and we'll follow up within one business day.
+                Share what you're working with — tools, team size, concerns. We'll follow up within one business day.
               </p>
               <ContactForm />
             </div>
@@ -132,16 +143,16 @@ export default function Contact() {
       </section>
 
       {/* Final mini CTA */}
-      <section className="py-16 bg-[#0A2440] text-white text-center">
+      <section className="py-14 md:py-16 bg-[#0A2440] text-white text-center">
         <div className="container mx-auto px-4 md:px-6 max-w-xl">
           <h2 className="text-2xl md:text-3xl font-heading font-bold italic text-white mb-3">
             Start with clarity.
           </h2>
-          <p className="text-white/65 text-[15px] leading-relaxed mb-7">
+          <p className="text-white/60 text-[15px] leading-relaxed mb-7">
             Book a free cost analysis and get a better view of your current IT spend, support model, and opportunities to simplify.
           </p>
           <a
-            href="mailto:hello@gsally.com"
+            href={`mailto:${siteConfig.email}`}
             className="inline-flex items-center justify-center gap-2 bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-7 text-[15px] rounded-lg transition-colors"
           >
             Book a Free Cost Analysis →

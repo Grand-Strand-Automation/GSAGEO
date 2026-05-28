@@ -2,7 +2,7 @@ import { content } from "@/lib/content";
 import { CTABand } from "@/components/CTABand";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { CheckCircle2, Search } from "lucide-react";
+import { CheckCircle2, Search, ArrowRight } from "lucide-react";
 
 export default function Pricing() {
   return (
@@ -29,21 +29,36 @@ export default function Pricing() {
           <p className="text-lg text-white/70 leading-relaxed max-w-2xl mx-auto mb-8">
             Grand Strand Ally helps businesses simplify their IT spend before recommending new services. We review the current environment, identify duplication and waste, and build a support model based on actual needs.
           </p>
-          <Button
-            asChild
-            className="bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-7 text-[15px] rounded-lg border-0"
-          >
+          <Button asChild className="bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-7 text-[15px] rounded-lg border-0">
             <Link href="/contact">Book a Free Cost Analysis →</Link>
           </Button>
         </div>
       </section>
 
-      {/* Pricing philosophy + What a cost analysis looks at */}
-      <section className="py-20 md:py-28 bg-[#F7F5F1]">
+      {/* Trust strip */}
+      <div className="bg-white border-b border-[#D7E1EA]">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="flex flex-col sm:flex-row items-stretch justify-center divide-y sm:divide-y-0 sm:divide-x divide-[#D7E1EA]">
+            {[
+              "No long-term contracts",
+              "Scope defined before work starts",
+              "No surprise invoices",
+              "Month-to-month agreements",
+            ].map((label) => (
+              <div key={label} className="flex items-center justify-center gap-2.5 py-4 sm:px-8 text-sm text-[#4B5B6B] font-medium">
+                <CheckCircle2 size={14} className="text-[#1F5E95] flex-shrink-0" />
+                {label}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Philosophy + Cost analysis items */}
+      <section className="py-16 md:py-24 bg-[#F7F5F1]">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
 
-            {/* Philosophy */}
             <div>
               <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#4B5B6B] flex items-center gap-1.5 mb-4">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#1F5E95] inline-block" />
@@ -52,20 +67,16 @@ export default function Pricing() {
               <h2 className="text-2xl md:text-3xl font-heading font-bold text-[#0E2F54] mb-4 leading-snug">
                 Clear pricing starts with clear visibility
               </h2>
-              <p className="text-[#4B5B6B] leading-relaxed text-[15px] mb-8">
+              <p className="text-[#4B5B6B] leading-relaxed text-[15px] mb-7">
                 Many businesses are paying for support, security, subscriptions, and Microsoft 365 licensing without a full picture of where costs overlap or where vendors are duplicating work. Our process starts by understanding what is already in place so recommendations are based on reality, not generic packages.
               </p>
 
-              <h3 className="text-base font-heading font-bold text-[#0E2F54] mb-4">
-                How pricing works
-              </h3>
-              <p className="text-[#4B5B6B] leading-relaxed text-[15px] mb-8">
+              <h3 className="text-[15px] font-heading font-bold text-[#0E2F54] mb-3">How pricing works</h3>
+              <p className="text-[#4B5B6B] leading-relaxed text-[15px] mb-7">
                 Our pricing is built around straightforward monthly support, scoped project work when needed, and a clear understanding of what is included. We do not believe in mystery invoice culture, bloated bundles, or long-term lock-in before value is proven.
               </p>
 
-              <h3 className="text-base font-heading font-bold text-[#0E2F54] mb-3">
-                What affects monthly cost
-              </h3>
+              <h3 className="text-[15px] font-heading font-bold text-[#0E2F54] mb-3">What affects monthly cost</h3>
               <ul className="space-y-2">
                 {[
                   "Number of users",
@@ -85,7 +96,6 @@ export default function Pricing() {
               </ul>
             </div>
 
-            {/* What a cost analysis looks at */}
             <div>
               <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#4B5B6B] flex items-center gap-1.5 mb-4">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#1F5E95] inline-block" />
@@ -94,7 +104,7 @@ export default function Pricing() {
               <h2 className="text-2xl md:text-3xl font-heading font-bold text-[#0E2F54] mb-6 leading-snug">
                 What a cost analysis looks at
               </h2>
-              <div className="grid grid-cols-1 gap-2.5">
+              <div className="grid grid-cols-1 gap-2">
                 {[
                   "Current IT vendors",
                   "Current software and subscriptions",
@@ -106,30 +116,25 @@ export default function Pricing() {
                   "Compliance-related weaknesses",
                   "Opportunities to simplify or consolidate",
                 ].map((item, i) => (
-                  <div
-                    key={i}
-                    className="bg-white border border-[#D7E1EA] rounded-xl px-4 py-3.5 flex items-center gap-3"
-                  >
+                  <div key={i} className="bg-white border border-[#D7E1EA] rounded-xl px-4 py-3.5 flex items-center gap-3 shadow-sm">
                     <Search size={14} className="text-[#1F5E95] flex-shrink-0" />
                     <span className="text-sm text-[#0E2F54] font-medium">{item}</span>
                   </div>
                 ))}
               </div>
-              <Button
-                asChild
-                className="mt-6 w-full bg-[#0E2F54] hover:bg-[#0A2440] text-white font-semibold h-12 text-sm rounded-lg"
-              >
+              <Button asChild className="mt-5 w-full bg-[#0E2F54] hover:bg-[#0A2440] text-white font-semibold h-12 text-sm rounded-lg">
                 <Link href="/contact">Book a Free Cost Analysis →</Link>
               </Button>
             </div>
+
           </div>
         </div>
       </section>
 
       {/* Support models */}
-      <section className="py-20 md:py-28 bg-white">
+      <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center mb-12">
+          <div className="text-center mb-10">
             <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#4B5B6B] flex items-center justify-center gap-1.5 mb-3">
               <span className="w-1.5 h-1.5 rounded-full bg-[#1F5E95] inline-block" />
               Support models
@@ -137,8 +142,11 @@ export default function Pricing() {
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#0E2F54]">
               Sample support models
             </h2>
+            <p className="text-[#4B5B6B] text-[15px] mt-3 max-w-lg mx-auto leading-relaxed">
+              Custom quoted based on your environment. We don't publish flat-rate pricing because every business is different — and we won't pad a quote to cover what you don't need.
+            </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
             {[
               {
                 name: "Essential Support",
@@ -160,7 +168,7 @@ export default function Pricing() {
                 key={i}
                 className={`rounded-2xl p-7 border flex flex-col ${
                   model.highlight
-                    ? "bg-[#0E2F54] border-[#0E2F54] text-white"
+                    ? "bg-[#0E2F54] border-[#0E2F54] text-white shadow-lg"
                     : "bg-[#F7F5F1] border-[#D7E1EA]"
                 }`}
                 data-testid={`pricing-model-${i}`}
@@ -170,37 +178,20 @@ export default function Pricing() {
                     Most popular
                   </div>
                 )}
-                <h3
-                  className={`text-lg font-heading font-bold mb-3 ${
-                    model.highlight ? "text-white" : "text-[#0E2F54]"
-                  }`}
-                >
+                <h3 className={`text-lg font-heading font-bold mb-3 ${model.highlight ? "text-white" : "text-[#0E2F54]"}`}>
                   {model.name}
                 </h3>
-                <p
-                  className={`text-sm leading-relaxed flex-grow mb-6 ${
-                    model.highlight ? "text-white/70" : "text-[#4B5B6B]"
-                  }`}
-                >
+                <p className={`text-sm leading-relaxed flex-grow mb-6 ${model.highlight ? "text-white/70" : "text-[#4B5B6B]"}`}>
                   {model.copy}
                 </p>
-                <div
-                  className={`rounded-xl border px-4 py-3 text-xs font-medium text-center mb-5 ${
-                    model.highlight
-                      ? "bg-white/10 border-white/15 text-white/60"
-                      : "bg-white border-[#D7E1EA] text-[#4B5B6B]"
-                  }`}
-                >
+                <div className={`rounded-xl border px-4 py-2.5 text-xs font-medium text-center mb-5 ${
+                  model.highlight ? "bg-white/10 border-white/15 text-white/55" : "bg-white border-[#D7E1EA] text-[#4B5B6B]"
+                }`}>
                   Custom quote — based on your environment
                 </div>
-                <Button
-                  asChild
-                  className={`w-full h-10 text-sm rounded-lg font-semibold border-0 ${
-                    model.highlight
-                      ? "bg-[#1F5E95] hover:bg-[#1a5080] text-white"
-                      : "bg-[#0E2F54] hover:bg-[#0A2440] text-white"
-                  }`}
-                >
+                <Button asChild className={`w-full h-10 text-sm rounded-lg font-semibold border-0 ${
+                  model.highlight ? "bg-[#1F5E95] hover:bg-[#1a5080] text-white" : "bg-[#0E2F54] hover:bg-[#0A2440] text-white"
+                }`}>
                   <Link href="/contact">Request a Quote</Link>
                 </Button>
               </div>
@@ -209,31 +200,61 @@ export default function Pricing() {
         </div>
       </section>
 
-      {/* What's included in the conversation */}
-      <section className="py-16 bg-[#F7F5F1] border-t border-[#D7E1EA]">
-        <div className="container mx-auto px-4 md:px-6 max-w-3xl text-center">
-          <h2 className="text-xl font-heading font-bold text-[#0E2F54] mb-3">
-            What's included in the conversation
-          </h2>
-          <p className="text-[#4B5B6B] leading-relaxed text-[15px]">
-            If we move forward after a cost analysis, we define scope clearly, explain what is included, identify what is optional, and show where simplification or consolidation can create savings.
-          </p>
+      {/* What to expect after analysis */}
+      <section className="py-16 md:py-20 bg-[#F7F5F1]">
+        <div className="container mx-auto px-4 md:px-6 max-w-5xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+            <div>
+              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#4B5B6B] flex items-center gap-1.5 mb-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#1F5E95] inline-block" />
+                After the analysis
+              </span>
+              <h2 className="text-2xl font-heading font-bold text-[#0E2F54] mb-4 leading-snug">
+                What's included in the conversation
+              </h2>
+              <p className="text-[#4B5B6B] leading-relaxed text-[15px] mb-5">
+                If we move forward after a cost analysis, we define scope clearly, explain what is included, identify what is optional, and show where simplification or consolidation can create savings.
+              </p>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-[#1F5E95] hover:text-[#0E2F54] transition-colors"
+              >
+                Start the conversation <ArrowRight size={14} />
+              </Link>
+            </div>
+            <div className="space-y-2.5">
+              {[
+                { step: "01", label: "Review your current environment", desc: "We map your tools, vendors, subscriptions, and support model." },
+                { step: "02", label: "Identify overlap and gaps", desc: "We surface where costs overlap, where compliance controls are weak, and where support is unclear." },
+                { step: "03", label: "Present findings clearly", desc: "You get a plain-language summary of what we found and what we'd recommend." },
+                { step: "04", label: "Scope a plan if it makes sense", desc: "If there's a fit, we propose a clear monthly plan with defined scope — no pressure, no lock-in." },
+              ].map((item) => (
+                <div key={item.step} className="bg-white border border-[#D7E1EA] rounded-xl p-4 flex items-start gap-4 shadow-sm">
+                  <div className="w-8 h-8 rounded-full bg-[#DCEAF7] text-[#1F5E95] text-xs font-bold flex items-center justify-center flex-shrink-0">
+                    {item.step}
+                  </div>
+                  <div>
+                    <div className="text-sm font-heading font-bold text-[#0E2F54] mb-0.5">{item.label}</div>
+                    <div className="text-sm text-[#4B5B6B] leading-relaxed">{item.desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
       {/* FAQ */}
-      <section className="py-20 md:py-28 bg-white">
+      <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-3xl">
           <div className="text-center mb-10">
             <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#4B5B6B] flex items-center justify-center gap-1.5 mb-3">
               <span className="w-1.5 h-1.5 rounded-full bg-[#1F5E95] inline-block" />
               FAQ
             </span>
-            <h2 className="text-3xl font-heading font-bold text-[#0E2F54]">
-              Pricing questions.
-            </h2>
+            <h2 className="text-3xl font-heading font-bold text-[#0E2F54]">Pricing questions.</h2>
           </div>
-          <div className="divide-y divide-[#D7E1EA] border border-[#D7E1EA] rounded-2xl overflow-hidden">
+          <div className="divide-y divide-[#D7E1EA] border border-[#D7E1EA] rounded-2xl overflow-hidden shadow-sm">
             {[
               {
                 q: "Do you publish fixed pricing?",
@@ -252,7 +273,7 @@ export default function Pricing() {
                 a: "No. We usually start by reviewing what already exists and improving what makes sense before recommending major changes.",
               },
             ].map((item, i) => (
-              <div key={i} className="px-6 py-5 bg-white">
+              <div key={i} className="px-6 py-5 bg-white hover:bg-[#FAFAFA] transition-colors">
                 <p className="text-[15px] font-heading font-bold text-[#0E2F54] mb-1.5">{item.q}</p>
                 <p className="text-sm text-[#4B5B6B] leading-relaxed">{item.a}</p>
               </div>
@@ -266,7 +287,7 @@ export default function Pricing() {
         subtitle="A free cost analysis helps uncover overlap, clarify support needs, and identify where better structure can reduce waste and improve compliance-minded operations."
         buttons={[
           { label: "Book a Free Cost Analysis", href: "/contact", primary: true },
-          { label: "Request Pricing", href: "/pricing", primary: false },
+          { label: "See Services", href: "/services", primary: false },
         ]}
       />
     </div>
