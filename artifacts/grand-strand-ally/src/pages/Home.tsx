@@ -299,36 +299,67 @@ export default function Home() {
       </section>
 
       {/* ── 8. Calculator teaser ────────────────────────────────── */}
-      <section className="py-14 md:py-16 bg-[#0E2F54]">
+      <section className="py-16 md:py-20 bg-[#F7F5F1]">
         <div className="container mx-auto px-4 md:px-6 max-w-4xl">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="md:max-w-xl">
-              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/40 flex items-center gap-1.5 mb-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#60B8F0] inline-block" />
-                Free Tool
-              </span>
-              <h2 className="text-2xl md:text-3xl font-heading font-bold text-white mb-3 leading-tight">
-                Find out what your information technology stack may really be costing you.
-              </h2>
-              <p className="text-white/55 text-[15px] leading-relaxed">
-                Answer a few questions about your tools, vendors, and processes. We will estimate your current spend, identify likely areas of overlap, and flag any compliance or control gaps worth reviewing.
-              </p>
-            </div>
-            <div className="shrink-0 flex flex-col items-start md:items-end gap-3">
-              <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-white/40 mb-1">
-                {["No login required", "Takes about 5 minutes", "No obligation"].map((p) => (
-                  <span key={p} className="flex items-center gap-1">
-                    <span className="w-1 h-1 rounded-full bg-[#60B8F0] inline-block" />
-                    {p}
-                  </span>
+          <div className="bg-[#0E2F54] rounded-2xl px-8 py-10 md:px-12 md:py-12">
+            <div className="flex flex-col md:flex-row md:items-start gap-10">
+              {/* Left: copy */}
+              <div className="flex-1">
+                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/40 flex items-center gap-1.5 mb-4">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#60B8F0] inline-block" />
+                  Free Tool
+                </span>
+                <h2 className="text-2xl md:text-3xl font-heading font-bold text-white mb-4 leading-tight">
+                  See what your information technology stack may really be costing you.
+                </h2>
+                <p className="text-white/55 text-[15px] leading-relaxed mb-6">
+                  Many businesses are paying for overlapping tools, unclear support coverage, duplicate subscriptions, and inconsistent processes — without a clean picture of total monthly spend. This free tool helps you find out where you stand.
+                </p>
+                <ul className="space-y-2.5 mb-8">
+                  {[
+                    "Estimate current monthly information technology costs",
+                    "Spot overlapping tools and vendor sprawl",
+                    "See likely savings and compliance review areas",
+                  ].map((point) => (
+                    <li key={point} className="flex items-start gap-2.5">
+                      <span className="w-4 h-4 rounded-full bg-[#1F5E95] flex items-center justify-center shrink-0 mt-0.5">
+                        <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
+                          <path d="M1.5 4l2 2 3-3" stroke="white" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </span>
+                      <span className="text-sm text-white/70">{point}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="flex flex-col sm:flex-row items-start gap-3">
+                  <Link
+                    href="/cost-analysis"
+                    className="inline-flex items-center gap-2 bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-11 px-6 text-sm rounded-lg transition-colors whitespace-nowrap"
+                  >
+                    Start Free Cost Analysis →
+                  </Link>
+                  <Link
+                    href="/cost-analysis#how-it-works"
+                    className="inline-flex items-center gap-2 text-white/55 hover:text-white text-sm font-medium h-11 px-2 transition-colors"
+                  >
+                    Learn How It Works
+                  </Link>
+                </div>
+              </div>
+
+              {/* Right: stats */}
+              <div className="md:w-52 shrink-0 flex flex-row md:flex-col gap-4 md:gap-5">
+                {[
+                  { value: "~5 min", label: "Takes about 5 minutes" },
+                  { value: "Free", label: "No login or account required" },
+                  { value: "0", label: "Obligation or commitment" },
+                ].map(({ value, label }) => (
+                  <div key={label} className="flex-1 md:flex-none bg-white/5 border border-white/10 rounded-xl p-4 text-center">
+                    <p className="text-xl font-bold text-white mb-0.5">{value}</p>
+                    <p className="text-xs text-white/45 leading-snug">{label}</p>
+                  </div>
                 ))}
               </div>
-              <Link
-                href="/cost-analysis"
-                className="inline-flex items-center gap-2 bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-7 text-[15px] rounded-lg transition-colors whitespace-nowrap"
-              >
-                Start Free Cost Analysis →
-              </Link>
             </div>
           </div>
         </div>

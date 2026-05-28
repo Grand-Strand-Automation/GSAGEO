@@ -41,6 +41,7 @@ const INITIAL_SPEND: SpendValues = {
   networkFirewall: 0,
   cloudSoftware: 0,
   adminTimeMonthly: 0,
+  adminHourlyRate: 45,
 };
 
 const INITIAL_OVERLAP: OverlapValues = {
