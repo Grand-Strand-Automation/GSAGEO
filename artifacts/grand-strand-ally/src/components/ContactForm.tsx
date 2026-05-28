@@ -149,12 +149,12 @@ export function ContactForm() {
                   </FormControl>
                   <SelectContent>
                     <SelectItem value="Cost Analysis">Free Cost Analysis</SelectItem>
-                    <SelectItem value="IT Support">Managed IT Support</SelectItem>
-                    <SelectItem value="Microsoft 365">Microsoft 365</SelectItem>
-                    <SelectItem value="Cybersecurity & Compliance">Cybersecurity & Compliance</SelectItem>
-                    <SelectItem value="Network/Wi-Fi">Network & Wi-Fi</SelectItem>
-                    <SelectItem value="Backup & Recovery">Backup & Recovery</SelectItem>
-                    <SelectItem value="Automation & Onboarding">Automation & On/Offboarding</SelectItem>
+                    <SelectItem value="IT Support">Managed Information Technology Support</SelectItem>
+                    <SelectItem value="Microsoft 365">Microsoft 365 Setup and Support</SelectItem>
+                    <SelectItem value="Cybersecurity">Cybersecurity and Compliance Support</SelectItem>
+                    <SelectItem value="Network">Network and Wi-Fi Management</SelectItem>
+                    <SelectItem value="Backup">Backup and Recovery</SelectItem>
+                    <SelectItem value="Automation">Workflow Automation and User Onboarding and Offboarding</SelectItem>
                     <SelectItem value="Something Else">Something Else</SelectItem>
                   </SelectContent>
                 </Select>
@@ -171,7 +171,7 @@ export function ContactForm() {
               <FormLabel className="text-sm font-semibold text-[#0E2F54]">Tell us about your current situation</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="What tools or vendors are you currently using? Any concerns about IT costs, support quality, or compliance?"
+                  placeholder="What tools or vendors are you currently using? Any concerns about costs, support quality, or compliance?"
                   className="min-h-[120px] resize-y"
                   {...field}
                 />
@@ -184,6 +184,7 @@ export function ContactForm() {
           type="submit"
           className="w-full bg-[#1F5E95] hover:bg-[#1a5080] text-white h-12 text-base font-semibold rounded-lg mt-2"
           disabled={isSubmitting}
+          data-testid="contact-form-submit"
         >
           {isSubmitting ? <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> Sending...</> : "Book a Free Cost Analysis →"}
         </Button>

@@ -142,21 +142,22 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Final mini CTA */}
-      <section className="py-14 md:py-16 bg-[#0A2440] text-white text-center">
+      {/* Service area note */}
+      <section className="py-10 bg-[#0A2440] text-white text-center">
         <div className="container mx-auto px-4 md:px-6 max-w-xl">
-          <h2 className="text-2xl md:text-3xl font-heading font-bold text-white mb-3">
-            Start with clarity.
-          </h2>
-          <p className="text-white/60 text-[15px] leading-relaxed mb-7">
-            Book a free cost analysis and get a better view of your current IT spend, support model, and opportunities to simplify.
+          <p className="text-white/55 text-sm leading-relaxed mb-2">
+            Grand Strand Ally serves small and medium businesses across the Grand Strand and Myrtle Beach area.
           </p>
-          <a
-            href={`mailto:${siteConfig.email}`}
-            className="inline-flex items-center justify-center gap-2 bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-7 text-[15px] rounded-lg transition-colors"
-          >
-            Book a Free Cost Analysis →
-          </a>
+          <p className="text-white/45 text-[13px]">
+            Have a quick question before filling out the form?{" "}
+            <a href={`mailto:${siteConfig.email}`} className="text-[#60B8F0] hover:text-white transition-colors font-medium">
+              Email us directly
+            </a>
+            {" "}or call{" "}
+            <a href={`tel:${siteConfig.phone.replace(/-/g, "")}`} className="text-[#60B8F0] hover:text-white transition-colors font-medium">
+              {siteConfig.phone}
+            </a>
+          </p>
         </div>
       </section>
 

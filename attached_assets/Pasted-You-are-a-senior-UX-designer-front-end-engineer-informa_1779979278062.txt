@@ -1,0 +1,183 @@
+You are a senior UX designer, front-end engineer, information architecture reviewer, and quality assurance specialist.
+
+I need you to do a full-site integration and navigation audit for the current **Grand Strand Ally** website and fix all routing, link behavior, and navigation consistency issues so the site is ready for production launch.
+
+## Core objective
+Make the site feel fully integrated, intentional, and reliable.
+
+Specifically:
+- audit every navigation item
+- audit every button
+- audit every text link
+- audit every card link
+- audit every call to action
+- audit any homepage section links or anchor behavior
+- make sure every link goes to the correct page or section
+- make sure the Services and Pricing links go to the correct dedicated pages
+- make sure all internal routing is consistent across desktop and mobile
+- make sure there are no broken, confusing, duplicate, or mismatched destinations
+
+## Important UX goal
+The site should feel like one cohesive system, not a set of separate pages with inconsistent links.
+
+I want:
+- clean global navigation
+- clear page-to-page routing
+- predictable call-to-action behavior
+- no dead ends
+- no confusing mixed patterns
+- no links that appear to go to a page but only jump to the wrong area
+- no buttons that route inconsistently from one page to another
+
+## Routing and navigation rules
+
+### Global navigation
+Header navigation should be consistent across all pages and should use proper page routes:
+- Home → /
+- Services → /services
+- Pricing → /pricing
+- Contact → /contact
+
+Requirements:
+- Services must always go to the full Services page
+- Pricing must always go to the full Pricing page
+- Contact must always go to the Contact page
+- the logo should always return to the homepage
+- mobile navigation must use the same destinations as desktop navigation
+- active nav states should be handled correctly where appropriate
+
+### Homepage CTA behavior
+Audit all homepage buttons and links.
+
+Rules:
+- “Book a Free Cost Analysis” should consistently go to /contact unless there is a clearly intentional on-page form
+- “See Services” should go to /services, not to a broken anchor or wrong page
+- “Request Pricing” should go to /pricing or /contact depending on context, but this logic must be consistent and intentional
+- if there are any “Learn more” service links, they should go to /services or the correct service section if sections exist
+- if homepage uses section anchors, they must work correctly and scroll to the correct section IDs
+
+### Page-level CTA behavior
+On all internal pages:
+- Services page CTA should lead to /contact or /pricing intentionally
+- Pricing page CTA should lead to /contact for cost analysis
+- Contact page should not end in a confusing circular CTA
+- if the Contact page has a button currently linking to mailto, decide whether the primary action should be:
+  1. submit the form
+  2. stay on contact
+  3. email directly as a secondary action
+- the primary CTA on Contact should not feel redundant or broken
+
+### Footer links
+Audit all footer links and ensure they route correctly:
+- Home
+- Services
+- Pricing
+- Contact
+- Privacy
+- Terms
+
+### Thank-you flow
+If the contact form exists:
+- successful form submission should redirect to /thank-you
+- /thank-you should include a clear next-step message
+- if form submission is stubbed, the logic should still be production-safe and easy to wire later
+
+## Link behavior cleanup
+Find and fix:
+- incorrect href values
+- section links pointing to missing IDs
+- buttons pointing to the wrong page
+- inconsistent use of anchors versus routes
+- duplicated CTA patterns with different destinations
+- mailto links being used as primary conversion flow where a page/form CTA is better
+- any places where Services or Pricing go to the homepage or wrong section instead of their actual pages
+- any mobile menu links that differ from desktop links
+- any cards that look clickable but are not
+- any clickable areas without clear affordance
+
+## UX architecture requirements
+Make the site navigation feel simpler and more intentional.
+
+Use these rules:
+- primary navigation = page routes
+- section anchors only when clearly useful on the homepage
+- service cards should have one predictable destination pattern
+- primary CTA should be consistent sitewide
+- avoid sending users in circles
+- remove unnecessary duplicate pathways if they create confusion
+
+## Technical implementation requirements
+- use Next.js Link for internal routes
+- use normal anchor tags only for external URLs, mailto, or true section anchors
+- centralize route constants if useful
+- make sure every href is valid
+- clean up any route mismatches between desktop header, mobile menu, footer, hero buttons, card links, and CTA bands
+- ensure keyboard accessibility and focus states for all links and buttons
+- confirm the site builds cleanly after changes
+
+## Content and CTA consistency
+Keep the primary CTA wording:
+- Book a Free Cost Analysis
+
+Make sure it routes consistently in the right places.
+
+Recommended behavior:
+- sitewide primary CTA → /contact
+- services page CTA → /contact
+- pricing page CTA → /contact
+- homepage “See Services” → /services
+- pricing navigation → /pricing
+- services navigation → /services
+
+If there is a secondary email link, label it clearly as:
+- Email Us Directly
+and keep it secondary, not the main path
+
+## Pages to audit fully
+Audit and fix all links on:
+- homepage
+- services page
+- pricing page
+- contact page
+- thank-you page
+- privacy page
+- terms page
+- header
+- mobile menu
+- footer
+- all CTA bands
+- all service cards
+- all FAQ or inline text links
+
+## Additional UX improvements while fixing routing
+While doing the link audit:
+- make sure buttons that look primary behave as primary
+- make sure card click behavior is obvious
+- remove friction from conversion paths
+- make sure users never have to guess whether something is an anchor jump or a page route
+- tighten the user journey from homepage → services/pricing → contact → thank-you
+
+## QA checklist
+Before finishing, verify:
+- every nav link works
+- every CTA works
+- every footer link works
+- every service card link works
+- no broken anchors
+- no incorrect internal links
+- no accidental links to the wrong page
+- no incorrect relative paths
+- no circular or redundant CTA flow on contact page
+- all routes work on desktop and mobile
+- build passes cleanly
+
+## Deliverables
+Make the fixes directly in code.
+
+After finishing:
+1. list every file changed
+2. list every routing/link issue found
+3. explain how Services and Pricing navigation was corrected
+4. confirm homepage, header, footer, mobile nav, and CTA links were all audited
+5. confirm the contact conversion path is now clean and intentional
+6. confirm the site is ready for production launch
