@@ -1,0 +1,433 @@
+You are a senior product designer, UX designer, front-end engineer, and growth-focused website builder.
+
+I need you to build an MVP calculator into the existing **Grand Strand Ally** website.
+
+## Core objective
+Build a **Free Information Technology Cost Analysis** tool that helps website visitors estimate:
+1. current monthly information technology spend
+2. likely overlap or duplicate-tool risk
+3. likely compliance and control gaps
+4. estimated savings opportunity range
+5. recommended next steps
+
+This tool must feel credible, practical, and business-friendly.
+It should NOT feel like a gimmicky return-on-investment widget.
+
+The calculator should reinforce Grand Strand Ally’s positioning:
+- understand current information technology costs
+- identify overlapping tools and vendors
+- simplify support
+- improve Microsoft 365 administration
+- strengthen compliance-minded operations
+- automate repetitive administrative work where it makes sense
+- reduce waste without long-term contracts
+
+## Critical language rules
+Use fully spelled-out terms in all visible copy.
+
+Do NOT use:
+- M365
+- SMB
+- unexplained acronyms
+
+Use:
+- Microsoft 365
+- small and medium businesses
+- multi-factor authentication
+- information technology
+- onboarding and offboarding
+
+## Product requirement
+This is an MVP, not a final enterprise calculator.
+It should be:
+- clean
+- fast
+- easy to use
+- mobile-friendly
+- simple enough to launch soon
+- realistic enough to be credible
+- integrated into the existing Grand Strand Ally website design
+
+## Best place in the site
+Create a dedicated page:
+- `/cost-analysis`
+
+Also add a homepage section or call-to-action teaser that links to `/cost-analysis`.
+
+## Primary call to action
+Use:
+- **Book a Free Cost Analysis**
+
+On the calculator page itself, use:
+- **See My Results**
+- **Get My Full Report**
+- **Book a Free Cost Analysis**
+
+## Design requirement
+The calculator must visually match the Grand Strand Ally site and the broader visual feel of grandstrandautomation.com:
+- same header and footer
+- same color palette
+- same spacing and rhythm
+- same typography approach
+- simple, premium, calm
+- no dashboard gimmicks
+- no flashy gradients
+- no clutter
+- strong mobile usability
+
+Use:
+- primary navy: #0E2F54
+- dark navy: #0A2440
+- accent blue: #1F5E95
+- pale blue: #DCEAF7
+- warm off-white: #F7F5F1
+- white: #FFFFFF
+- muted slate text: #4B5B6B
+- border: #D7E1EA
+
+Typography:
+- headings: Manrope, non-italic
+- body: Inter, non-italic
+
+## Technical stack
+Use the existing site stack.
+Assume the site is already built in Next.js with App Router, TypeScript, and Tailwind CSS.
+
+Use:
+- Next.js App Router
+- TypeScript
+- Tailwind CSS
+- React Hook Form or simple controlled form state
+- Zod validation if helpful
+- no database required for MVP unless easy to wire
+- keep the implementation lightweight and production-friendly
+
+## MVP architecture
+Build a multi-step calculator with:
+- client-side state for the user flow
+- structured scoring logic
+- clear assumptions
+- a results page or results panel
+- lead capture form to unlock or submit the full report
+- simple server route or action to email or store results if possible
+
+For MVP storage:
+Choose the simplest production-safe option:
+- either save to a lightweight endpoint stub
+- or create a reusable server action / route handler
+- or structure it cleanly so it can later connect to Formspree, Resend, Supabase, Airtable, or Google Sheets
+
+Do NOT over-engineer this.
+The main goal is a polished on-site calculator experience.
+
+## Page structure for /cost-analysis
+
+### 1. Hero
+Headline:
+**Find out what your information technology stack may really be costing you.**
+
+Short supporting text:
+Explain that Grand Strand Ally helps businesses estimate current information technology costs, identify overlapping tools and vendor sprawl, and uncover opportunities to simplify support and improve compliance-minded operations.
+
+Primary button:
+- Start Free Cost Analysis
+
+Secondary trust points:
+- No obligation
+- No long-term contracts
+- Built for small and medium businesses
+- Compliance-minded review
+
+### 2. How it works
+Use a short three-step section:
+1. Enter your current tools and monthly costs
+2. See likely overlap, risk, and savings opportunities
+3. Get a full review and book a free cost analysis
+
+### 3. Multi-step calculator
+Create a polished multi-step form with a progress bar.
+
+Use these steps:
+
+#### Step 1 — Company basics
+Fields:
+- Company name
+- Work email
+- Number of users
+- Number of devices
+- Number of locations
+- Industry
+- Does your business handle sensitive or regulated information?
+  - Yes
+  - No
+  - Not sure
+- Do you use Microsoft 365?
+  - Yes
+  - No
+  - Not sure
+
+#### Step 2 — Current monthly spend
+Ask for estimated monthly amounts in dollars.
+
+Fields:
+- Current managed support cost
+- Current Microsoft 365 cost
+- Current email security cost
+- Current endpoint security cost
+- Current backup and recovery cost
+- Current network / firewall support cost
+- Current cloud software or other recurring information technology tools
+- Estimated monthly internal administrative time spent on information technology tasks
+
+Include helper text that these can be estimates.
+
+#### Step 3 — Overlap and process questions
+Use yes/no or simple select fields:
+
+- Do you have more than one security tool?
+- Do you have more than one backup tool?
+- Do different vendors handle different parts of support?
+- Are you unsure whether all paid software is still actively used?
+- Are former employees ever left assigned to paid licenses longer than expected?
+- Is onboarding handled manually?
+- Is offboarding handled manually?
+- Do you know exactly which Microsoft 365 licenses each user needs?
+- Are shared mailbox handoffs and forwarding handled manually?
+
+#### Step 4 — Compliance and control questions
+Use yes/no/not sure:
+- Is multi-factor authentication required for all users?
+- Is onboarding documented?
+- Is offboarding documented?
+- Are Microsoft 365 administrative roles limited and reviewed?
+- Do you know who owns backup checks?
+- Do you test restores?
+- Are access changes tracked consistently?
+- Do you need support for a compliance-conscious environment?
+
+#### Step 5 — Results
+Show a polished results screen with:
+- Estimated current monthly information technology spend
+- Estimated annual information technology spend
+- Overlap risk score
+- Compliance and control score
+- Estimated savings opportunity range
+- Top 3 to 5 likely areas for review
+- Clear disclaimer that this is an estimate, not a final audit
+
+Buttons:
+- Get My Full Report
+- Book a Free Cost Analysis
+
+## Calculator scoring logic
+Implement simple, credible scoring logic.
+Do NOT use fake precision.
+
+### A. Current spend
+Calculate:
+- currentMonthlySpend = sum of all monthly cost fields
+- currentAnnualSpend = currentMonthlySpend * 12
+
+### B. Overlap score
+Create a weighted overlap score based on answers such as:
+- duplicate security tools
+- duplicate backup tools
+- multiple vendors
+- uncertainty about tool usage
+- unused licenses
+- manual onboarding and offboarding
+
+Return a label:
+- Low
+- Moderate
+- High
+
+### C. Compliance and control score
+Create a weighted risk score based on:
+- no multi-factor authentication
+- undocumented onboarding
+- undocumented offboarding
+- unclear backup ownership
+- no restore testing
+- weak access review controls
+- Microsoft 365 administration uncertainty
+
+Return a label:
+- Strong baseline
+- Needs review
+- Priority gap
+
+### D. Savings range
+Use a realistic range, not a fake exact number.
+
+Example logic:
+- base likely savings opportunity starts at 8 percent of monthly spend for low-overlap environments
+- moderate overlap environments can show 12 to 20 percent
+- high-overlap environments can show 18 to 30 percent
+- add modest range adjustments if licensing confusion, duplicate tools, or manual administrative processes are present
+
+Display as:
+- Estimated potential monthly savings: $X to $Y
+- Estimated potential annual savings: $A to $B
+
+Do not overpromise.
+Use clear language like:
+- estimated savings opportunity
+- likely areas of overlap
+- areas worth reviewing
+
+## Results content requirements
+The results screen must include:
+1. Spend summary
+2. Overlap summary
+3. Compliance / control summary
+4. Savings opportunity
+5. Recommended next steps
+
+Example recommendation categories:
+- Review Microsoft 365 licensing
+- Review overlapping security tools
+- Standardize onboarding and offboarding
+- Clarify vendor ownership
+- Review backup responsibility and restore testing
+
+## Trust and credibility features
+Add:
+- a small “How we estimate this” expandable section
+- a note that results are directional and based on provided inputs
+- plain-English explanation of what the savings range means
+- no exaggerated claims
+- no “guaranteed savings” language
+
+## Lead capture behavior
+The user should be able to complete the calculator and see a useful summary on screen.
+Then offer a stronger conversion step:
+- Get My Full Report
+- Book a Free Cost Analysis
+
+When the user submits:
+- capture name, email, company, and calculator inputs
+- structure the code cleanly for future integration with email or a customer relationship management system
+- if possible, create a placeholder server action or route handler to log the payload and make it easy to integrate later
+- if email sending is not fully implemented, still structure the app cleanly and include comments for where to connect Resend or another email service
+
+## Recommended route and integration behavior
+Add:
+- `/cost-analysis` page
+- homepage teaser section that links to `/cost-analysis`
+- header or footer optional link if it fits the current design
+- all “Book a Free Cost Analysis” buttons should still route to `/contact`
+- within the calculator, “Book a Free Cost Analysis” should route to `/contact`
+- “Get My Full Report” can trigger form submission or results capture flow
+
+## UX requirements
+- multi-step progress indicator
+- back/next controls
+- strong mobile layout
+- clean card-based grouping
+- currency formatting
+- inline validation
+- accessible labels
+- visible focus states
+- keyboard-friendly form flow
+- no long walls of text
+- simple and credible layout
+
+## Copy requirements
+Use plain English.
+Keep copy concise.
+Make the calculator feel practical, not salesy.
+
+Use phrases like:
+- current information technology spend
+- overlapping tools and vendors
+- Microsoft 365 licensing
+- compliance-minded operations
+- onboarding and offboarding controls
+- backup and recovery coverage
+- practical next steps
+
+Avoid:
+- inflated marketing language
+- vague promises
+- jargon-heavy text
+- unexplained abbreviations
+
+## Suggested components
+Create reusable components such as:
+- Cost analysis hero
+- Step progress bar
+- Calculator step card
+- Currency input row
+- Yes/no question row
+- Results summary card
+- Score badge
+- Recommendation list
+- Assumptions accordion
+- Lead capture form
+
+## File structure
+Use a clean structure such as:
+
+/app
+  /cost-analysis/page.tsx
+  /cost-analysis/actions.ts (if needed)
+  /thank-you/page.tsx
+
+/components
+  /cost-analysis
+    /calculator-shell.tsx
+    /progress-steps.tsx
+    /company-step.tsx
+    /spend-step.tsx
+    /overlap-step.tsx
+    /compliance-step.tsx
+    /results-step.tsx
+    /score-badge.tsx
+    /assumptions-accordion.tsx
+
+/lib
+  /cost-analysis.ts
+  /cost-analysis-types.ts
+  /cost-analysis-content.ts
+
+## Logic organization
+Put scoring logic in a clean reusable utility file.
+Keep formulas readable and well-commented.
+
+Create types for:
+- form values
+- score output
+- recommendations
+- results object
+
+## Production-readiness requirements
+Before finishing:
+- make sure the calculator page matches the site visually
+- make sure the build passes cleanly
+- make sure the mobile experience is polished
+- make sure all routes work
+- make sure no placeholder text is broken
+- make sure the code is organized enough for future expansion
+- make sure the results feel useful even in MVP form
+
+## README update
+Update the README to include:
+- what the calculator does
+- where the scoring logic lives
+- where the questions are stored
+- how to change formulas
+- how to wire up email capture later
+- how to run locally and in Replit
+
+## Final output requirements
+Build the feature directly in code.
+Do not just describe it.
+
+After finishing:
+1. summarize how the MVP works
+2. list all files created or changed
+3. explain how the scoring model works
+4. explain where to edit the questions and formulas
+5. confirm the calculator is mobile-friendly
+6. confirm it is ready for MVP launch

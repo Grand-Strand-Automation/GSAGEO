@@ -9,6 +9,7 @@ export const siteConfig = {
     services: "/services",
     pricing: "/pricing",
     contact: "/contact",
+    costAnalysis: "/cost-analysis",
     privacy: "/privacy",
     terms: "/terms",
   }

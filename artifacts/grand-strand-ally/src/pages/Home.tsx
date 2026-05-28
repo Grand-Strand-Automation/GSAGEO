@@ -298,7 +298,43 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── 8. FAQ ──────────────────────────────────────────────── */}
+      {/* ── 8. Calculator teaser ────────────────────────────────── */}
+      <section className="py-14 md:py-16 bg-[#0E2F54]">
+        <div className="container mx-auto px-4 md:px-6 max-w-4xl">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="md:max-w-xl">
+              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/40 flex items-center gap-1.5 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#60B8F0] inline-block" />
+                Free Tool
+              </span>
+              <h2 className="text-2xl md:text-3xl font-heading font-bold text-white mb-3 leading-tight">
+                Find out what your information technology stack may really be costing you.
+              </h2>
+              <p className="text-white/55 text-[15px] leading-relaxed">
+                Answer a few questions about your tools, vendors, and processes. We will estimate your current spend, identify likely areas of overlap, and flag any compliance or control gaps worth reviewing.
+              </p>
+            </div>
+            <div className="shrink-0 flex flex-col items-start md:items-end gap-3">
+              <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-white/40 mb-1">
+                {["No login required", "Takes about 5 minutes", "No obligation"].map((p) => (
+                  <span key={p} className="flex items-center gap-1">
+                    <span className="w-1 h-1 rounded-full bg-[#60B8F0] inline-block" />
+                    {p}
+                  </span>
+                ))}
+              </div>
+              <Link
+                href="/cost-analysis"
+                className="inline-flex items-center gap-2 bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-7 text-[15px] rounded-lg transition-colors whitespace-nowrap"
+              >
+                Start Free Cost Analysis →
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 9. FAQ ──────────────────────────────────────────────── */}
       <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-2xl">
           <div className="text-center mb-10">
