@@ -8,10 +8,18 @@ interface Props {
 }
 
 interface CostField {
-  key: keyof SpendValues;
+  key: keyof Pick<
+    SpendValues,
+    | "managedSupport"
+    | "microsoft365"
+    | "emailSecurity"
+    | "endpointSecurity"
+    | "backupRecovery"
+    | "networkFirewall"
+    | "cloudSoftware"
+  >;
   label: string;
   hint: string;
-  isHours?: boolean;
 }
 
 const FIELDS: CostField[] = [
@@ -81,6 +89,9 @@ export function SpendStep({ values, onChange, onNext, onBack }: Props) {
   const set = <K extends keyof SpendValues>(k: K, v: SpendValues[K]) =>
     onChange({ ...values, [k]: v });
 
+  const rate = values.adminHourlyRate > 0 ? values.adminHourlyRate : 45;
+  const adminCost = (values.adminTimeMonthly || 0) * rate;
+
   const total =
     (values.managedSupport || 0) +
     (values.microsoft365 || 0) +
@@ -89,7 +100,7 @@ export function SpendStep({ values, onChange, onNext, onBack }: Props) {
     (values.backupRecovery || 0) +
     (values.networkFirewall || 0) +
     (values.cloudSoftware || 0) +
-    (values.adminTimeMonthly || 0) * 45;
+    adminCost;
 
   return (
     <div className="space-y-6">
@@ -98,10 +109,11 @@ export function SpendStep({ values, onChange, onNext, onBack }: Props) {
           Estimate your current monthly spend
         </h3>
         <p className="text-sm text-[#4B5B6B]">
-          Enter your best estimates. Round numbers are fine — this analysis is directional, not exact.
+          These can be estimates if you do not have exact numbers. Round numbers are fine — this analysis is directional, not exact.
         </p>
       </div>
 
+      {/* Tool cost rows */}
       <div className="divide-y divide-[#D7E1EA] border border-[#D7E1EA] rounded-xl overflow-hidden">
         {FIELDS.map(({ key, label, hint }) => (
           <div
@@ -118,15 +130,23 @@ export function SpendStep({ values, onChange, onNext, onBack }: Props) {
             />
           </div>
         ))}
+      </div>
 
-        {/* Admin time row */}
-        <div className="flex items-center justify-between gap-4 px-5 py-4 bg-[#DCEAF7]/30 hover:bg-[#DCEAF7]/50 transition-colors">
+      {/* Internal admin time section */}
+      <div className="border border-[#D7E1EA] rounded-xl overflow-hidden">
+        <div className="bg-[#DCEAF7]/40 px-5 py-3 border-b border-[#D7E1EA]">
+          <p className="text-xs font-semibold uppercase tracking-wider text-[#4B5B6B]">
+            Internal administrative time
+          </p>
+        </div>
+
+        <div className="flex items-center justify-between gap-4 px-5 py-4 bg-white hover:bg-[#F7F5F1] transition-colors border-b border-[#D7E1EA]">
           <div className="flex-1 min-w-0">
             <p className="text-sm font-semibold text-[#0E2F54]">
-              Internal time spent on information technology tasks
+              Hours per month spent on information technology tasks
             </p>
             <p className="text-xs text-[#4B5B6B] mt-0.5">
-              Estimated hours per month your staff spends on support, troubleshooting, or administration. Valued at $45/hr.
+              Troubleshooting, software setup, vendor calls, user management, and similar tasks
             </p>
           </div>
           <div className="relative w-36">
@@ -146,13 +166,41 @@ export function SpendStep({ values, onChange, onNext, onBack }: Props) {
             </span>
           </div>
         </div>
+
+        <div className="flex items-center justify-between gap-4 px-5 py-4 bg-white hover:bg-[#F7F5F1] transition-colors">
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-semibold text-[#0E2F54]">
+              Internal hourly rate for that time
+            </p>
+            <p className="text-xs text-[#4B5B6B] mt-0.5">
+              Use the fully-loaded hourly cost of the person handling these tasks. Default is $45/hr.
+            </p>
+          </div>
+          <CurrencyInput
+            value={values.adminHourlyRate}
+            onChange={(v) => set("adminHourlyRate", v || 45)}
+          />
+        </div>
       </div>
+
+      {/* Admin cost note */}
+      {values.adminTimeMonthly > 0 && (
+        <div className="text-xs text-[#4B5B6B] text-right -mt-3">
+          Internal admin cost: {values.adminTimeMonthly} hrs × ${rate}/hr ={" "}
+          <strong className="text-[#0E2F54]">
+            ${adminCost.toLocaleString("en-US", { maximumFractionDigits: 0 })}/mo
+          </strong>
+        </div>
+      )}
 
       {/* Running total */}
       {total > 0 && (
         <div className="bg-[#0E2F54] rounded-xl px-5 py-4 flex items-center justify-between">
-          <span className="text-white/70 text-sm">Estimated monthly total</span>
-          <span className="text-white font-bold text-lg">
+          <div>
+            <span className="text-white/60 text-xs block">Estimated monthly total</span>
+            <span className="text-white/50 text-[11px]">Tool costs + internal admin overhead</span>
+          </div>
+          <span className="text-white font-bold text-xl">
             ${total.toLocaleString("en-US", { maximumFractionDigits: 0 })}/mo
           </span>
         </div>

@@ -23,7 +23,8 @@ export interface SpendValues {
   backupRecovery: number;
   networkFirewall: number;
   cloudSoftware: number;
-  adminTimeMonthly: number; // hours/month — converted to cost at $45/hr
+  adminTimeMonthly: number;   // hours/month spent on internal IT tasks
+  adminHourlyRate: number;    // internal hourly rate for that time (default $45)
 }
 
 // ─── Step 3: Overlap & process ──────────────────────────────────────────────

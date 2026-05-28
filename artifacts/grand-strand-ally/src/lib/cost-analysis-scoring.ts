@@ -5,9 +5,9 @@
  *
  * TO EDIT QUESTIONS: See the step components in src/components/cost-analysis/
  * TO EDIT FORMULAS: Adjust weights in calcOverlapScore / calcComplianceScore below.
- * TO EDIT SAVINGS RANGE: Adjust percentages in calcSavingsRange below.
- * TO WIRE EMAIL: In ResultsStep.tsx, the handleSubmit function has a TODO comment
- *   for connecting Resend, Formspree, or another email/CRM service.
+ * TO EDIT SAVINGS RANGE: Adjust base percentages and modifiers in calcSavingsRange below.
+ * TO WIRE EMAIL: In ResultsStep.tsx, the handleGetReport function has a TODO comment
+ *   showing exactly where to connect Resend, Formspree, Supabase, Airtable, etc.
  */
 
 import type {
@@ -25,9 +25,8 @@ import type {
 } from "./cost-analysis-types";
 
 // ─── Spend calculation ──────────────────────────────────────────────────────
-// Admin time is converted using a $45/hr internal cost estimate.
-// Adjust ADMIN_HOURLY_RATE to change this assumption.
-const ADMIN_HOURLY_RATE = 45;
+// Admin time cost = monthlyAdminHours × adminHourlyRate (user-provided, default $45/hr).
+// All tool costs are summed from user-entered monthly amounts.
 
 export function calcSpend(spend: SpendValues): SpendSummary {
   const toolCosts =
@@ -39,7 +38,8 @@ export function calcSpend(spend: SpendValues): SpendSummary {
     (spend.networkFirewall || 0) +
     (spend.cloudSoftware || 0);
 
-  const adminCost = (spend.adminTimeMonthly || 0) * ADMIN_HOURLY_RATE;
+  const rate = spend.adminHourlyRate > 0 ? spend.adminHourlyRate : 45;
+  const adminCost = (spend.adminTimeMonthly || 0) * rate;
   const monthly = toolCosts + adminCost;
 
   return {
@@ -50,16 +50,28 @@ export function calcSpend(spend: SpendValues): SpendSummary {
 
 // ─── Overlap scoring ────────────────────────────────────────────────────────
 // Higher score = greater risk of tool overlap, licensing waste, or process gaps.
-// Max score = 17.
+//
+// Weights per question:
+//   multiple security tools    = yes +2, not-sure +1
+//   multiple backup tools      = yes +2, not-sure +1
+//   split vendor support       = yes +2, not-sure +1
+//   unsure about active tools  = yes +2, not-sure +1
+//   former employees on plans  = yes +2, not-sure +1
+//   manual onboarding          = yes +1
+//   manual offboarding         = yes +1
+//   M365 licensing unclear     = no  +2, not-sure +1  (reversed question)
+//   shared mailbox manual      = yes +1
+//
+// Max score = 15
 //
 // Thresholds:
-//   Low      = 0–4
-//   Moderate = 5–10
-//   High     = 11+
+//   Low      = 0–3
+//   Moderate = 4–8
+//   High     = 9+
 //
-// TO ADJUST: Change the weight values passed to overlapRisk() / overlapRiskReversed().
+// TO ADJUST: Change the weight values passed to triRisk() / triRiskReversed().
 
-export const OVERLAP_MAX = 17;
+export const OVERLAP_MAX = 15;
 
 function triRisk(val: TriState, yesWeight: number, notSureWeight: number): number {
   if (val === "yes") return yesWeight;
@@ -81,20 +93,31 @@ export function calcOverlapScore(o: OverlapValues): { score: number; level: Over
     triRisk(o.splitVendors, 2, 1) +
     triRisk(o.unusedSoftware, 2, 1) +
     triRisk(o.formerEmployeeLingers, 2, 1) +
-    triRisk(o.manualOnboarding, 2, 0) +
-    triRisk(o.manualOffboarding, 2, 0) +
+    triRisk(o.manualOnboarding, 1, 0) +     // +1 only (process gap, not tool cost)
+    triRisk(o.manualOffboarding, 1, 0) +    // +1 only
     triRiskReversed(o.microsoft365LicensingClear, 2, 1) +
     triRisk(o.sharedMailboxManual, 1, 0);
 
   const level: OverlapLevel =
-    score <= 4 ? "Low" : score <= 10 ? "Moderate" : "High";
+    score <= 3 ? "Low" : score <= 8 ? "Moderate" : "High";
 
   return { score, level };
 }
 
 // ─── Compliance scoring ─────────────────────────────────────────────────────
 // Higher score = more compliance/control gaps present.
-// Max score = 16.
+//
+// Weights per question:
+//   no multi-factor auth            = no +3, not-sure +2  (highest risk)
+//   onboarding not documented       = no +2, not-sure +1
+//   offboarding not documented      = no +2, not-sure +1
+//   admin roles not reviewed        = no +2, not-sure +1
+//   backup ownership unclear        = no +2, not-sure +1
+//   restore testing absent          = no +2, not-sure +1
+//   access changes not tracked      = no +2, not-sure +1
+//   compliance-conscious needs      = yes +2, not-sure +1
+//
+// Max score = 17
 //
 // Thresholds:
 //   Strong baseline = 0–3
@@ -103,7 +126,7 @@ export function calcOverlapScore(o: OverlapValues): { score: number; level: Over
 //
 // TO ADJUST: Change weights passed to complianceRisk() below.
 
-export const COMPLIANCE_MAX = 16;
+export const COMPLIANCE_MAX = 17;
 
 function complianceRisk(val: TriState, noWeight: number, notSureWeight: number): number {
   if (val === "no") return noWeight;
@@ -113,14 +136,15 @@ function complianceRisk(val: TriState, noWeight: number, notSureWeight: number):
 
 export function calcComplianceScore(c: ComplianceValues): { score: number; level: ComplianceLevel } {
   const score =
-    complianceRisk(c.mfaForAll, 3, 2) +            // Multi-factor auth: highest weight
+    complianceRisk(c.mfaForAll, 3, 2) +
     complianceRisk(c.onboardingDocumented, 2, 1) +
     complianceRisk(c.offboardingDocumented, 2, 1) +
     complianceRisk(c.adminRolesReviewed, 2, 1) +
     complianceRisk(c.backupOwnershipClear, 2, 1) +
     complianceRisk(c.testRestores, 2, 1) +
     complianceRisk(c.accessChangesTracked, 2, 1) +
-    (c.needsComplianceSupport !== "no" ? 1 : 0);   // Minor flag for explicit compliance need
+    // Explicit compliance-conscious environment flag
+    (c.needsComplianceSupport === "yes" ? 2 : c.needsComplianceSupport === "not-sure" ? 1 : 0);
 
   const level: ComplianceLevel =
     score <= 3 ? "Strong baseline" : score <= 8 ? "Needs review" : "Priority gap";
@@ -129,21 +153,60 @@ export function calcComplianceScore(c: ComplianceValues): { score: number; level
 }
 
 // ─── Savings range ──────────────────────────────────────────────────────────
-// Returns a directional savings range based on monthly spend and overlap level.
-// These are estimates — not guaranteed savings.
+// Base savings are a percentage of monthly spend, driven by the overlap level.
+// Additional risk factors modestly widen the range.
+// These are directional estimates only — not guaranteed savings.
 //
-// TO ADJUST: Change the low/high percentages in each overlap case below.
+// Base ranges:
+//   Low overlap:      8–12% of monthly spend
+//   Moderate overlap: 12–20% of monthly spend
+//   High overlap:     18–30% of monthly spend
+//
+// Modifiers (each adds to the high end, some to the low end):
+//   Unclear M365 licensing          → high +2%
+//   Former employees on paid plans  → low +1%, high +2%
+//   Both onboarding AND offboarding manual → low +1%, high +2%
+//   Multiple support vendors         → high +1%
+//   Duplicate backup OR security tools → high +2%
+//
+// TO ADJUST: Change base percentages or modifier increments below.
 
-export function calcSavingsRange(monthly: number, overlapLevel: OverlapLevel): SavingsRange {
+export function calcSavingsRange(
+  monthly: number,
+  overlapLevel: OverlapLevel,
+  overlap: OverlapValues
+): SavingsRange {
   let low: number, high: number;
 
   if (overlapLevel === "Low") {
-    low = 0.06; high = 0.12;
+    low = 0.08; high = 0.12;
   } else if (overlapLevel === "Moderate") {
     low = 0.12; high = 0.20;
   } else {
-    low = 0.18; high = 0.28;
+    low = 0.18; high = 0.30;
   }
+
+  // Apply modifiers for specific additional risk factors
+  if (overlap.microsoft365LicensingClear !== "yes") {
+    high += 0.02;
+  }
+  if (overlap.formerEmployeeLingers === "yes") {
+    low += 0.01;
+    high += 0.02;
+  }
+  if (overlap.manualOnboarding === "yes" && overlap.manualOffboarding === "yes") {
+    low += 0.01;
+    high += 0.02;
+  }
+  if (overlap.splitVendors === "yes") {
+    high += 0.01;
+  }
+  if (overlap.multipleBackupTools === "yes" || overlap.multipleSecurityTools === "yes") {
+    high += 0.02;
+  }
+
+  // Cap to sensible upper limit
+  high = Math.min(high, 0.40);
 
   // Round to nearest $25 to avoid false precision
   const round = (n: number) => Math.max(25, Math.round((monthly * n) / 25) * 25);
@@ -235,7 +298,7 @@ export function buildRecommendations(
     });
   }
 
-  // Unused licenses / high compliance gap
+  // Unused licenses / high overlap
   if (
     overlapLevel === "High" ||
     values.overlap.unusedSoftware === "yes" ||
@@ -258,7 +321,8 @@ export function calculateResults(values: CalculatorValues): ResultsOutput {
   const spend = calcSpend(values.spend);
   const { score: overlapScore, level: overlapLevel } = calcOverlapScore(values.overlap);
   const { score: complianceScore, level: complianceLevel } = calcComplianceScore(values.compliance);
-  const savingsRange = calcSavingsRange(spend.monthly, overlapLevel);
+  // Pass overlap values so savings range can apply per-factor modifiers
+  const savingsRange = calcSavingsRange(spend.monthly, overlapLevel, values.overlap);
   const recommendations = buildRecommendations(values, overlapLevel, complianceLevel);
 
   return {
