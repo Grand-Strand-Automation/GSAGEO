@@ -1,0 +1,619 @@
+You are a senior product designer, UX designer, front-end engineer, and conversion-focused website builder.
+
+I need you to build a **fully working Information Technology Cost Analysis calculator** into the existing **Grand Strand Ally** website, plus a **homepage teaser section** that drives users into the calculator.
+
+## Core objective
+Create a real, working, polished calculator that helps visitors estimate:
+1. current monthly information technology spend
+2. current annual information technology spend
+3. overlap risk from duplicate tools and vendors
+4. compliance and control risk
+5. estimated savings opportunity range
+6. recommended next steps
+
+This must feel credible, practical, and business-friendly.
+It should NOT feel gimmicky, fake, or like a generic return-on-investment widget.
+
+The calculator should reinforce Grand Strand Ally’s positioning:
+- help businesses understand what they are currently paying for
+- identify overlapping tools and duplicate services
+- reduce unnecessary spend
+- simplify support
+- improve Microsoft 365 administration
+- strengthen compliance-minded operations
+- improve onboarding and offboarding
+- automate repetitive administrative work where it makes sense
+- provide month-to-month support without long-term contracts
+
+## Critical language rules
+All visible copy must use fully spelled-out terms.
+
+Do NOT use:
+- M365
+- SMB
+- unexplained acronyms
+
+Use:
+- Microsoft 365
+- small and medium businesses
+- multi-factor authentication
+- information technology
+- onboarding and offboarding
+
+## Deliverables
+Build:
+1. a dedicated calculator page at **/cost-analysis**
+2. a homepage teaser section that promotes the calculator and links to **/cost-analysis**
+3. a working multi-step calculator with real formulas
+4. a results experience with meaningful outputs
+5. lead capture for “Get My Full Report”
+6. clean integration with the current Grand Strand Ally website
+7. production-ready user experience on desktop and mobile
+
+## Design and brand integration
+The calculator and homepage teaser must visually match the existing site and the broader design feel of grandstrandautomation.com:
+- same header and footer
+- same color system
+- same typography feel
+- same spacing rhythm
+- same premium, restrained style
+- same clean card structure
+- no flashy dashboard gimmicks
+- no bright gradients
+- no over-designed charts unless very subtle and useful
+
+Use:
+- primary navy: #0E2F54
+- dark navy: #0A2440
+- accent blue: #1F5E95
+- pale blue: #DCEAF7
+- warm off-white: #F7F5F1
+- white: #FFFFFF
+- muted slate text: #4B5B6B
+- soft border: #D7E1EA
+
+Typography:
+- headings: Manrope, non-italic
+- body: Inter, non-italic
+
+## Tech stack
+Use the existing site stack.
+Assume:
+- Next.js with App Router
+- TypeScript
+- Tailwind CSS
+
+Use:
+- React
+- TypeScript
+- Tailwind
+- optional React Hook Form
+- optional Zod validation
+- lightweight server action or route handler if needed
+- no heavy dependencies unless truly necessary
+
+## Architecture goal
+This must be a real working MVP.
+
+Use:
+- client-side multi-step calculator flow
+- reusable scoring utilities
+- strongly typed input and output models
+- results calculation on the client
+- lead capture submission path for the full report
+- clean code structure for future upgrades
+
+Do NOT over-engineer.
+This is an MVP, but it should feel launchable.
+
+---
+
+## PAGE 1: Homepage teaser section
+
+Add a new homepage section that promotes the calculator.
+
+### Homepage teaser placement
+Place it somewhere below the hero and before the final call to action, ideally after or near the section that discusses cost analysis.
+
+### Homepage teaser content
+Headline:
+**See what your information technology stack may really be costing you.**
+
+Supporting copy:
+Use one short paragraph explaining that many businesses are paying for overlapping tools, unclear support, duplicate subscriptions, and inconsistent processes without a clean picture of total monthly spend.
+
+Include 3 short bullet/value points:
+- Estimate current monthly information technology costs
+- Spot overlapping tools and vendor sprawl
+- See likely savings and compliance review areas
+
+Primary button:
+- Start Free Cost Analysis
+
+Secondary link:
+- Learn How It Works
+
+The primary button must route to:
+- /cost-analysis
+
+The teaser should visually feel like a strong promotional panel or section card, not just a text block.
+It should match the site’s premium layout and use the existing design system.
+
+---
+
+## PAGE 2: Dedicated calculator page at /cost-analysis
+
+Create a full page at:
+- /cost-analysis
+
+### Page structure
+1. Hero
+2. How it works
+3. Calculator shell
+4. Results / lead capture
+5. FAQ or assumptions section
+6. Final call to action
+
+### Hero
+Headline:
+**Find out what your information technology stack may really be costing you.**
+
+Supporting paragraph:
+Grand Strand Ally helps businesses estimate current information technology costs, identify overlapping tools and vendors, and uncover opportunities to simplify support and improve compliance-minded operations.
+
+Trust strip or bullet row:
+- No obligation
+- No long-term contracts
+- Built for small and medium businesses
+- Compliance-minded review
+
+Primary button:
+- Start Free Cost Analysis
+
+### How it works
+Create a short 3-step explainer:
+1. Enter your current tools and monthly costs
+2. See likely overlap, risk, and savings opportunities
+3. Get your results and book a free cost analysis
+
+Keep this section concise and highly scannable.
+
+---
+
+## Calculator UX requirements
+
+### Overall structure
+Build a multi-step form with:
+- progress bar
+- step labels
+- next/back controls
+- visible validation
+- mobile-friendly layout
+- ability to review results without losing progress
+
+### Steps
+Build these 5 steps:
+
+#### Step 1 — Company basics
+Fields:
+- Company name
+- Work email
+- Number of users
+- Number of devices
+- Number of locations
+- Industry
+- Does your business handle sensitive or regulated information?
+  - Yes
+  - No
+  - Not sure
+- Do you use Microsoft 365?
+  - Yes
+  - No
+  - Not sure
+
+#### Step 2 — Current monthly spend
+Use currency inputs.
+Allow empty values, but treat blank as zero.
+
+Fields:
+- Current managed support cost
+- Current Microsoft 365 cost
+- Current email security cost
+- Current endpoint security cost
+- Current backup and recovery cost
+- Current network or firewall support cost
+- Current cloud software or other recurring information technology tools
+- Estimated monthly internal administrative time spent on information technology tasks
+- Internal hourly administrative rate
+
+For administrative time and rate:
+- monthlyAdminHours
+- adminHourlyRate
+
+Use these to calculate internal administrative overhead.
+
+Add helper text:
+“These can be estimates if you do not have exact numbers.”
+
+#### Step 3 — Overlap and process questions
+Use yes/no/not sure or select inputs.
+
+Questions:
+- Do you have more than one security tool?
+- Do you have more than one backup tool?
+- Do different vendors handle different parts of support?
+- Are you unsure whether all paid software is still actively used?
+- Are former employees ever left assigned to paid licenses longer than expected?
+- Is onboarding handled manually?
+- Is offboarding handled manually?
+- Do you know exactly which Microsoft 365 licenses each user needs?
+- Are shared mailbox handoffs and forwarding handled manually?
+
+#### Step 4 — Compliance and control questions
+Use yes/no/not sure.
+
+Questions:
+- Is multi-factor authentication required for all users?
+- Is onboarding documented?
+- Is offboarding documented?
+- Are Microsoft 365 administrative roles limited and reviewed?
+- Do you know who owns backup checks?
+- Do you test restores?
+- Are access changes tracked consistently?
+- Do you need support for a compliance-conscious environment?
+
+#### Step 5 — Results
+Show a polished results experience with:
+- Estimated current monthly information technology spend
+- Estimated annual information technology spend
+- Overlap risk score
+- Compliance and control score
+- Estimated savings opportunity range
+- Top likely areas for review
+- Recommended next steps
+- Small disclaimer that this is an estimate based on user-provided inputs
+
+Buttons:
+- Get My Full Report
+- Book a Free Cost Analysis
+
+“Book a Free Cost Analysis” should route to:
+- /contact
+
+“Get My Full Report” should trigger:
+- lead capture submission or results save flow
+
+---
+
+## Calculator formulas and scoring logic
+
+Implement real working formulas in reusable utility files.
+
+### A. Current monthly spend
+Calculate:
+- managed support
+- Microsoft 365
+- email security
+- endpoint security
+- backup and recovery
+- network or firewall support
+- other recurring information technology tools
+- internal admin overhead
+
+Formula:
+currentMonthlySpend =
+managedSupport +
+microsoft365 +
+emailSecurity +
+endpointSecurity +
+backupRecovery +
+networkSupport +
+otherTools +
+(monthlyAdminHours * adminHourlyRate)
+
+currentAnnualSpend =
+currentMonthlySpend * 12
+
+### B. Overlap risk score
+Create a weighted point model.
+
+Suggested weights:
+- more than one security tool = +2
+- more than one backup tool = +2
+- multiple support vendors = +2
+- unsure whether all software is actively used = +2
+- former employees left on paid licenses = +2
+- manual onboarding = +1
+- manual offboarding = +1
+- unclear Microsoft 365 licensing = +2
+- manual shared mailbox forwarding / handoff = +1
+
+Return:
+- Low overlap
+- Moderate overlap
+- High overlap
+
+Suggested thresholds:
+- 0 to 3 = Low overlap
+- 4 to 8 = Moderate overlap
+- 9+ = High overlap
+
+### C. Compliance and control score
+Create a weighted point model.
+
+Suggested weights:
+- no multi-factor authentication = +3
+- onboarding not documented = +2
+- offboarding not documented = +2
+- Microsoft 365 administrative roles not limited / reviewed = +2
+- unknown backup ownership = +2
+- no restore testing = +2
+- access changes not tracked consistently = +2
+- compliance-conscious environment with weak controls = +2
+
+Return:
+- Strong baseline
+- Needs review
+- Priority gap
+
+Suggested thresholds:
+- 0 to 3 = Strong baseline
+- 4 to 8 = Needs review
+- 9+ = Priority gap
+
+### D. Estimated savings opportunity
+Use a realistic range, not fake exact precision.
+
+Base savings guidance:
+- Low overlap: 8% to 12% of currentMonthlySpend
+- Moderate overlap: 12% to 20% of currentMonthlySpend
+- High overlap: 18% to 30% of currentMonthlySpend
+
+Then increase the range modestly if:
+- Microsoft 365 licensing is unclear
+- former employees remain on licenses
+- manual onboarding and offboarding are present
+- multiple vendors handle overlapping support
+- duplicate backup or security tools are present
+
+Show:
+- Estimated potential monthly savings: $X to $Y
+- Estimated potential annual savings: $A to $B
+
+### E. Recommended next steps
+Generate 3 to 5 recommendation items based on inputs.
+
+Possible outputs:
+- Review Microsoft 365 licensing
+- Review overlapping security tools
+- Standardize onboarding and offboarding
+- Clarify vendor ownership
+- Review backup responsibility and restore testing
+- Review access control and administrative role practices
+- Consolidate overlapping support tools
+
+---
+
+## Results screen requirements
+
+The results screen must be polished and visually strong.
+Use cards, score badges, and grouped sections.
+
+### Results layout
+Section 1:
+- Your current estimated spend
+
+Section 2:
+- Overlap risk
+- Compliance and control score
+
+Section 3:
+- Estimated savings opportunity
+
+Section 4:
+- Recommended next steps
+
+Section 5:
+- Get your full report
+
+### Tone
+Keep results credible and plain-English.
+Avoid fake certainty.
+
+Use wording like:
+- estimated current spend
+- likely overlap risk
+- possible savings opportunity
+- areas worth reviewing
+- based on the information provided
+
+Do NOT say:
+- guaranteed savings
+- exact audit
+- final quote
+- compliance certification
+
+---
+
+## Lead capture and submission behavior
+
+### MVP behavior
+After results are shown, allow user to submit their information for a full report.
+
+Required fields already available:
+- company name
+- work email
+
+Optional confirmation step:
+- confirm they want the report emailed or reviewed manually
+
+### Submission implementation
+Implement one of these:
+- a server action
+- a Next.js route handler
+- a lightweight internal endpoint
+
+For MVP, create a clean submission flow that:
+- captures all calculator inputs
+- captures all result outputs
+- logs them in a structured format
+- is easy to connect later to Resend, Formspree, Supabase, Airtable, or a spreadsheet
+
+If external email integration is not implemented, do this:
+- create a placeholder submission endpoint
+- store payload in console / structured stub
+- show a polished success state
+- comment clearly where future email sending should be wired in
+
+### Success state
+After “Get My Full Report”:
+- show success confirmation
+- optionally route to /thank-you or show inline success
+- include button:
+  - Book a Free Cost Analysis
+- include note:
+  - We will follow up with the information you provided
+
+---
+
+## FAQ / assumptions section
+Add an expandable or accordion section near the bottom of the calculator page.
+
+Include:
+### How we estimate this
+Explain that the calculator uses the user’s submitted monthly costs, tool overlap indicators, process controls, and user lifecycle questions to estimate spend and identify areas that may be worth reviewing.
+
+### Is this a final audit
+No. This is a directional estimate based on the information provided.
+
+### What happens next
+Grand Strand Ally can review the results with the user and help validate where overlap, cost savings, support gaps, and compliance-minded improvements may exist.
+
+Keep answers short and practical.
+
+---
+
+## Components
+Create reusable components such as:
+- CalculatorHero
+- ProgressSteps
+- CalculatorShell
+- CompanyBasicsStep
+- SpendStep
+- OverlapStep
+- ComplianceStep
+- ResultsStep
+- ScoreBadge
+- RecommendationList
+- AssumptionsAccordion
+- HomepageCostAnalysisTeaser
+
+Use clear component boundaries.
+
+---
+
+## File structure
+Create or update files like:
+
+/app
+  /cost-analysis/page.tsx
+  /thank-you/page.tsx
+
+/components
+  /cost-analysis
+    /calculator-shell.tsx
+    /progress-steps.tsx
+    /company-basics-step.tsx
+    /spend-step.tsx
+    /overlap-step.tsx
+    /compliance-step.tsx
+    /results-step.tsx
+    /score-badge.tsx
+    /recommendation-list.tsx
+    /assumptions-accordion.tsx
+    /homepage-cost-analysis-teaser.tsx
+
+/lib
+  /cost-analysis.ts
+  /cost-analysis-types.ts
+  /cost-analysis-content.ts
+
+If the site already has shared components, reuse them cleanly.
+
+---
+
+## Homepage integration requirements
+Add the teaser section to the homepage.
+Make sure it:
+- matches the homepage visual style
+- does not feel bolted on
+- links to /cost-analysis
+- is concise and conversion-friendly
+- supports the broader positioning around cost savings, overlap, and compliance-minded support
+
+Keep teaser copy short and scannable.
+
+---
+
+## Navigation and routing requirements
+Make sure:
+- /cost-analysis is linked correctly from the teaser
+- all new links use Next.js internal routing
+- Book a Free Cost Analysis still routes to /contact
+- homepage teaser primary CTA routes to /cost-analysis
+- header and footer remain functional
+- no broken routes
+- no conflicting CTA behavior
+
+---
+
+## Accessibility and mobile requirements
+- accessible labels
+- keyboard-friendly controls
+- visible focus states
+- proper field grouping
+- mobile-first layout
+- step cards should stack cleanly on mobile
+- progress bar should remain usable on smaller screens
+- currency inputs should be easy to use on touch devices
+- buttons should not wrap awkwardly
+
+---
+
+## Production-readiness requirements
+Before finishing:
+- ensure calculator works end-to-end
+- ensure results update correctly from user inputs
+- ensure formulas are real and readable
+- ensure all CTA routes work
+- ensure build passes cleanly
+- ensure styling matches the main site
+- ensure copy is concise and fully spelled out
+- ensure no placeholder junk remains
+- ensure the feature is launchable as an MVP
+
+---
+
+## README update
+Update the README to include:
+- what the cost analysis calculator does
+- where the question content lives
+- where the scoring formulas live
+- how to adjust the scoring model
+- how to wire up email or database storage later
+- how to run locally and in Replit
+
+---
+
+## Final output requirements
+Build the feature directly in code.
+Do not just describe it.
+
+After finishing:
+1. summarize how the calculator works
+2. list all files created or changed
+3. explain the scoring logic
+4. explain where to edit the questions and formulas
+5. confirm the homepage teaser was added
+6. confirm the calculator is mobile-friendly
+7. confirm the site is ready for MVP launch

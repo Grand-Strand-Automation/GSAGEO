@@ -16,6 +16,7 @@ export function SiteHeader() {
   const navLinks = [
     { label: "Services", href: siteConfig.links.services },
     { label: "Pricing", href: siteConfig.links.pricing },
+    { label: "Cost Analysis", href: siteConfig.links.costAnalysis },
     { label: "Contact", href: siteConfig.links.contact },
   ];
 
