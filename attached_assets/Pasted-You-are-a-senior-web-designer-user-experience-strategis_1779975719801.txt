@@ -1,0 +1,345 @@
+You are a senior web designer, user experience strategist, front-end engineer, and launch-readiness reviewer.
+
+I need you to do a full production-ready redesign pass on the current **Grand Strand Ally** site.
+
+## Core objective
+Make the site match the **layout, flow, section rhythm, scanability, visual weight, spacing strategy, and overall feel of grandstrandautomation.com as closely as possible**, while keeping all content specific to **Grand Strand Ally**.
+
+This is not a full brand change.
+Keep:
+- Grand Strand Ally name
+- cost-analysis positioning
+- cost savings and overlapping tools angle
+- compliance-minded information technology support angle
+- month-to-month and no long-term contracts positioning
+
+But:
+- make the layout and page flow much closer to grandstrandautomation.com
+- make the homepage significantly less wordy
+- improve readability and scannability across the entire site
+- polish the site until it is ready for production launch
+
+## Critical writing rule: spell everything out
+All visible website copy must use fully spelled-out terms.
+
+Requirements:
+- do not use shorthand like “M365”
+- always write **Microsoft 365**
+- do not use “SMB” in visible site copy
+- always write **small and medium businesses**
+- do not use “MFA” in visible site copy unless it first says **multi-factor authentication**
+- do not use abbreviations or industry shorthand unless the full phrase appears first
+- prefer plain-English, fully spelled-out terminology throughout the site
+- this rule applies to:
+  - homepage
+  - services page
+  - pricing page
+  - contact page
+  - navigation
+  - buttons
+  - cards
+  - frequently asked questions
+  - footer copy
+  - metadata descriptions if applicable
+
+Examples:
+- use **Microsoft 365 Setup and Support**, not “M365 Setup and Support”
+- use **small and medium businesses**, not “SMBs”
+- use **Cybersecurity and Compliance Support**, not “Cybersecurity and Compliance Support for SMB”
+- use **multi-factor authentication** instead of only “MFA”
+- use **information technology support** where needed instead of unclear shorthand
+
+## High-priority problems to fix
+1. Homepage is too wordy and repetitive
+2. The site does not yet match the section rhythm and scanability of grandstrandautomation.com closely enough
+3. Services and pricing pages still rely on too much paragraph copy
+4. Typography needs to be clean, simple, non-italic
+5. Site needs final launch polish across desktop and mobile
+
+## Visual and brand direction
+Use grandstrandautomation.com as the design reference for:
+- header structure
+- hero layout
+- section spacing
+- content rhythm
+- call-to-action hierarchy
+- footer style
+- color usage
+- card structure
+- overall visual pacing
+
+Keep the same brand family feeling:
+- primary navy: #0E2F54
+- dark navy: #0A2440
+- accent blue: #1F5E95
+- pale blue: #DCEAF7
+- warm off-white: #F7F5F1
+- white: #FFFFFF
+- muted slate text: #4B5B6B
+- border: #D7E1EA
+
+Typography:
+- headings: Manrope, non-italic
+- body: Inter, non-italic
+- remove italic font imports and any italic styling across the site
+- use font-style: normal everywhere unless absolutely necessary, which it should not be
+
+## Global rules
+- keep the site conversion-focused
+- reduce copy volume significantly
+- preserve the key business message:
+  - Grand Strand Ally helps businesses understand their current information technology spend
+  - identify overlapping tools and unnecessary vendors
+  - reduce waste
+  - improve support
+  - strengthen compliance-minded systems
+  - automate repetitive administrative work where it makes sense
+- do not turn the site into a wall of text
+- use more bullets, short intros, tighter cards, and stronger section hierarchy
+- the site should feel calm, premium, readable, and easy to trust
+
+## Call-to-action rule
+Use **Book a Free Cost Analysis** as the primary call to action throughout the site where appropriate.
+
+## Required homepage restructure
+Rebuild the homepage to follow this structure as closely as possible:
+
+1. Sticky header
+2. Hero
+3. Why businesses call us
+4. Three pain-point cards
+5. Core systems or core offers
+6. Who we help
+7. How we work
+8. Why choose us
+9. Is this right for you?
+10. What we review or what we measure in a cost analysis
+11. Frequently asked questions
+12. Final call to action
+13. Footer
+
+## Homepage content direction
+The homepage should no longer use long explanatory paragraphs in every section.
+
+### Hero
+Keep concise:
+- one strong headline
+- one short supporting paragraph
+- trust strip
+- two call-to-action buttons
+
+The hero should say:
+Grand Strand Ally helps businesses understand what they are paying for, uncover overlapping tools and vendors, simplify support, and improve compliance-minded operations.
+
+### Why businesses call us
+Use a short setup paragraph only.
+Then three compact cards:
+- unclear pricing and surprise invoices
+- overlapping tools and too many vendors
+- weak processes and compliance gaps
+
+### Core systems
+Do NOT show all six detailed service cards on the homepage.
+Instead, reduce the homepage to three broader systems or ways we help, similar to the reference site’s three core systems.
+
+Use these three homepage systems:
+1. Cost and Vendor Analysis
+2. Information Technology Support and Microsoft 365
+3. Compliance, Security, and User Lifecycle Management
+
+Each should have:
+- short problem statement
+- short solution statement
+- very concise copy
+
+### Who we help
+Use concise fit-based bullets.
+Keep it easy to scan.
+
+### How we work
+Use this four-step process:
+1. Review your current tools, vendors, and information technology spend
+2. Identify overlap, risk, and the biggest friction points
+3. Simplify support, security, and compliance controls
+4. Automate repetitive administrative work where it saves time and money
+
+Make this feel visually close to the reference site.
+
+### Why choose us
+Use four concise cards:
+- Clear costs
+- Fewer overlapping tools
+- Compliance-minded support
+- No long-term contracts
+
+### Is this right for you?
+Add a self-assessment section similar in spirit to the reference site’s fit section.
+
+Use:
+- Good fit
+- Probably not yet
+
+Good fit examples:
+- businesses with multiple information technology vendors
+- businesses unsure what they are paying for
+- businesses with Microsoft 365 environments
+- businesses with inconsistent onboarding and offboarding
+- compliance-conscious teams
+
+Probably not yet examples:
+- very small environments with almost no recurring information technology stack
+- businesses only looking for one-off do-it-yourself software
+- teams not ready to review current spend or systems
+
+### What we review in a cost analysis
+Create a section that works like the reference site’s measurement and reporting section, but for Grand Strand Ally.
+
+Use a clean checklist or grid for:
+- current vendors
+- current subscriptions
+- Microsoft 365 licensing
+- overlapping security tools
+- backup coverage
+- onboarding and offboarding controls
+- access management
+- documentation gaps
+- compliance-related weaknesses
+
+Keep this visual, not paragraph-heavy.
+
+### Frequently asked questions
+Keep answers short and practical.
+
+### Final call to action
+Keep concise.
+Emphasize:
+clearer information technology costs, cleaner systems, easier-to-trust support.
+
+## Services page requirements
+Refactor the services page to be shorter and easier to scan.
+
+Keep these services:
+- Managed Information Technology Support
+- Microsoft 365 Setup and Support
+- Network and Wi-Fi Management
+- Cybersecurity and Compliance Support
+- Backup and Recovery
+- Workflow Automation and User Onboarding and Offboarding
+
+But restructure the page to:
+1. Hero
+2. Short intro
+3. Service cards or service sections with short copy
+4. Outcomes section
+5. Call-to-action band
+
+For each service:
+- one short summary sentence
+- three bullets
+- no long paragraph blocks unless absolutely necessary
+
+The services page should feel lighter and more structured than it does now.
+
+## Pricing page requirements
+Refactor the pricing page to be clearer and less text-heavy.
+
+Use this structure:
+1. Hero
+2. How pricing works
+3. What a cost analysis looks at
+4. Support model cards
+5. What affects cost
+6. Frequently asked questions
+7. Call to action
+
+Make the pricing page strongly trust-building.
+Emphasize:
+- month-to-month billing
+- no long-term contracts
+- clear scope
+- no surprise invoices
+- recommendations based on actual need
+- cost savings through simplification and overlap reduction
+
+Use support model cards:
+- Essential Support
+- Growth Support
+- Custom Support
+
+Keep them concise.
+
+## Contact page requirements
+Tighten the contact page and make it more conversion-focused.
+
+Use this structure:
+1. Hero
+2. Trust row
+3. Form section
+4. What to expect
+5. Reassurance section
+6. Final call to action or service-area note
+
+Reduce extra copy.
+Make the form visually stronger.
+Keep the button:
+- Book a Free Cost Analysis
+
+## Header and footer
+Make sure the header and footer visually match the reference site more closely.
+
+Requirements:
+- balanced logo area
+- no brand-name truncation
+- tighter navigation spacing if needed
+- strong mobile behavior
+- premium but simple styling
+
+## Typography cleanup
+Required:
+- remove italic font imports
+- remove all italic styles
+- simple sans-serif only
+- clean headings and body text
+- stronger hierarchy through size and spacing, not decorative styling
+
+## Mobile polish
+Review every page on mobile and fix:
+- long call-to-action wrapping
+- oversized copy blocks
+- awkward spacing
+- inconsistent card padding
+- crowded navigation
+- weak section hierarchy
+
+## Performance and launch readiness
+Before finishing:
+- ensure build passes cleanly
+- ensure metadata is correct on all pages
+- ensure no placeholder text remains
+- ensure all calls to action route correctly
+- ensure footer and header are consistent sitewide
+- ensure visual polish is production-ready
+
+## Naming consistency requirements
+Use these exact spelled-out names in visible content:
+- Microsoft 365
+- small and medium businesses
+- Cybersecurity and Compliance Support
+- Managed Information Technology Support
+- Workflow Automation and User Onboarding and Offboarding
+
+Avoid visible abbreviations unless they are explicitly spelled out first.
+
+## File expectations
+Update code directly.
+Do not just describe changes.
+
+After finishing:
+1. summarize the structural improvements made
+2. list all files edited
+3. confirm homepage copy was reduced significantly
+4. confirm the homepage flow now mirrors grandstrandautomation.com much more closely
+5. confirm all italics were removed
+6. confirm mobile polish
+7. confirm production readiness
+8. confirm all visible shorthand terms were replaced with fully spelled-out wording

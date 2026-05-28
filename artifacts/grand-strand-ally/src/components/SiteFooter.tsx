@@ -11,7 +11,7 @@ export function SiteFooter() {
           <div className="col-span-2 md:col-span-1 space-y-4">
             <Logo />
             <p className="text-sm text-white/55 max-w-xs leading-relaxed pt-1">
-              IT cost clarity, practical support, and compliance-minded systems for Grand Strand businesses.
+              Information technology cost clarity, practical support, and compliance-minded systems for small and medium businesses.
             </p>
             <div className="space-y-2 pt-2 text-sm">
               <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/35 mb-3">
@@ -30,11 +30,11 @@ export function SiteFooter() {
             <h3 className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/35 mb-5">Services</h3>
             <ul className="space-y-3">
               {[
-                "Managed IT Support",
-                "Microsoft 365",
-                "Network & Wi-Fi",
-                "Cybersecurity & Compliance",
-                "Backup & Recovery",
+                "Managed Information Technology Support",
+                "Microsoft 365 Setup and Support",
+                "Network and Wi-Fi Management",
+                "Cybersecurity and Compliance Support",
+                "Backup and Recovery",
                 "Workflow Automation",
               ].map((svc) => (
                 <li key={svc}>
@@ -95,7 +95,7 @@ export function SiteFooter() {
           <p className="text-sm text-white/35">
             © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
           </p>
-          <p className="text-sm text-white/35">IT support · Cost clarity · Compliance-minded systems</p>
+          <p className="text-sm text-white/35">Cost clarity · Practical support · Compliance-minded systems</p>
         </div>
       </div>
     </footer>
