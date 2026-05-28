@@ -1,0 +1,82 @@
+Update the current Grand Strand Ally website with the following design fixes and polish them across desktop and mobile.
+
+## Goal
+Fix the navigation branding so the company name is never awkwardly truncated, and update the typography on the main pages so it feels simple, clean, modern, and never italic.
+
+## Required fixes
+
+### 1. Fix truncated company name in navigation
+The company name in the navigation bar is being cut off or truncated.
+Update the header/logo area so **Grand Strand Ally** displays cleanly and fully.
+
+Requirements:
+- do not truncate the brand name on desktop
+- avoid clipping, ellipsis, or overflow on standard laptop widths
+- keep the logo + wordmark aligned cleanly
+- preserve the same visual style and placement as the current site
+- if needed, reduce nav link spacing slightly before shrinking the logo area
+- if needed, allow the wordmark to scale slightly smaller on tablet widths
+- on mobile, keep the branding readable and balanced
+- if the full wordmark cannot fit cleanly on very small screens, use a mobile-safe version that still looks intentional
+- make sure the header remains premium and not crowded
+
+Implementation ideas:
+- increase the available width for the logo/brand container
+- remove unnecessary max-width constraints
+- use `whitespace-nowrap` where appropriate
+- review `flex` settings so nav links do not squeeze the logo area
+- improve responsive breakpoints for the header layout
+- make sure CTA button and nav links do not force the logo to collapse
+
+### 2. Remove italic-looking typography
+I want the main pages to use a simple, clean font style and not feel italic.
+
+Requirements:
+- remove any italic styling from headings, subheadings, body copy, buttons, and section labels
+- use a clean sans-serif style throughout
+- keep the typography modern, readable, and professional
+- no serif italic feel
+- no decorative slanted headings
+- keep visual hierarchy strong using size, weight, spacing, and color instead of italics
+
+Preferred typography direction:
+- headings: Manrope or Inter, non-italic
+- body: Inter, non-italic
+- buttons/nav labels: clean sans-serif, medium weight
+- section eyebrow text should also be non-italic
+
+Implementation:
+- remove any `italic` utility classes
+- remove any custom CSS causing slanted or italic text
+- normalize font-style to `normal` across the site
+- make sure hero headline, section headings, pricing headings, and CTA headings are all upright and clean
+
+## Pages to review
+Apply these fixes across:
+- homepage
+- services page
+- pricing page
+- contact page
+- header and footer components
+- mobile menu
+- CTA sections
+
+## Design quality requirements
+While making the fixes:
+- keep the site visually aligned with grandstrandautomation.com
+- preserve the current color palette and overall layout style
+- keep the design premium, clean, and local-business friendly
+- improve spacing if needed so the header looks balanced after the brand fix
+- make sure mobile layout remains polished
+- ensure no awkward wrapping in the header
+- confirm the site still builds cleanly
+
+## Final output requirements
+Make the changes directly in code.
+
+After finishing:
+1. list the files changed
+2. explain exactly how the nav truncation was fixed
+3. confirm all italic text styles were removed
+4. confirm desktop and mobile header behavior is clean
+5. confirm the site is ready to deploy on Replit

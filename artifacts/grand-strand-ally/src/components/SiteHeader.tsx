@@ -21,26 +21,29 @@ export function SiteHeader() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#0E2F54] border-b border-white/10">
-      <div className="container mx-auto px-4 md:px-6 flex items-center justify-between h-16">
-        <Logo />
+      <div className="container mx-auto px-4 md:px-6 flex items-center h-16 gap-4">
 
-        <nav className="hidden md:flex items-center gap-7">
-          <div className="flex items-center gap-6">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-sm font-medium text-white/70 hover:text-white transition-colors"
-                data-testid={`nav-link-${link.label.toLowerCase()}`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
+        {/* Logo — never shrinks */}
+        <div className="flex-none">
+          <Logo />
+        </div>
+
+        {/* Desktop nav — pushed to the right */}
+        <nav className="hidden md:flex items-center gap-5 ml-auto flex-none">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-sm font-medium text-white/70 hover:text-white transition-colors whitespace-nowrap"
+              data-testid={`nav-link-${link.label.toLowerCase()}`}
+            >
+              {link.label}
+            </Link>
+          ))}
           <Button
             asChild
             size="sm"
-            className="bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold text-sm px-5 h-9 rounded-lg border-0"
+            className="bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold text-sm px-5 h-9 rounded-lg border-0 whitespace-nowrap ml-1"
           >
             <Link href={siteConfig.links.contact} data-testid="nav-cta-button">
               Book a Free Cost Analysis
@@ -48,8 +51,9 @@ export function SiteHeader() {
           </Button>
         </nav>
 
+        {/* Mobile hamburger */}
         <button
-          className="md:hidden p-2 -mr-1 text-white/80 hover:text-white rounded-md transition-colors"
+          className="md:hidden p-2 -mr-1 text-white/80 hover:text-white rounded-md transition-colors ml-auto"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle menu"
           aria-expanded={mobileMenuOpen}
@@ -59,6 +63,7 @@ export function SiteHeader() {
         </button>
       </div>
 
+      {/* Mobile menu */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-[#0A2440] border-t border-white/10 px-4 pt-3 pb-4 flex flex-col gap-1">
           {navLinks.map((link) => (

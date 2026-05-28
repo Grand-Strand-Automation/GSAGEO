@@ -28,7 +28,7 @@ export default function Home() {
             Grand Strand Ally
           </div>
 
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-heading font-extrabold italic max-w-4xl leading-[1.05] mb-5 tracking-tight">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl font-heading font-extrabold max-w-4xl leading-[1.05] mb-5 tracking-tight">
             {content.hero.headline}
           </h1>
           <p className="text-lg md:text-xl text-white/80 max-w-2xl mb-4 leading-relaxed">
@@ -101,7 +101,7 @@ export default function Home() {
                 <span className="w-1.5 h-1.5 rounded-full bg-white/30 inline-block" />
                 Why businesses call us
               </span>
-              <h2 className="text-3xl md:text-4xl font-heading font-bold italic text-white mb-5 leading-tight">
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-5 leading-tight">
                 {content.problems.heading}
               </h2>
               <p className="text-[15px] text-white/60 leading-relaxed mb-7">
@@ -240,7 +240,7 @@ export default function Home() {
               <span className="w-1.5 h-1.5 rounded-full bg-white/25 inline-block" />
               Why choose us
             </span>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold italic text-white">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-white">
               {content.whyUs.heading}
             </h2>
           </div>

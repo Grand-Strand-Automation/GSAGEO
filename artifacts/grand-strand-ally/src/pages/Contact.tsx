@@ -21,7 +21,7 @@ export default function Contact() {
             <span className="w-1.5 h-1.5 rounded-full bg-[#60B8F0] inline-block" />
             Get in touch
           </div>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-heading font-extrabold italic mb-5 leading-[1.05]">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-heading font-extrabold mb-5 leading-[1.05]">
             Understand what you're paying for and where your IT can be simplified.
           </h1>
           <p className="text-lg text-white/70 leading-relaxed max-w-2xl mx-auto">
@@ -145,7 +145,7 @@ export default function Contact() {
       {/* Final mini CTA */}
       <section className="py-14 md:py-16 bg-[#0A2440] text-white text-center">
         <div className="container mx-auto px-4 md:px-6 max-w-xl">
-          <h2 className="text-2xl md:text-3xl font-heading font-bold italic text-white mb-3">
+          <h2 className="text-2xl md:text-3xl font-heading font-bold text-white mb-3">
             Start with clarity.
           </h2>
           <p className="text-white/60 text-[15px] leading-relaxed mb-7">

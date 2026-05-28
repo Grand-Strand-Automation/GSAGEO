@@ -21,7 +21,7 @@ export function CTABand({
         }}
       />
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-extrabold italic max-w-3xl mx-auto mb-4 leading-tight">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-extrabold max-w-3xl mx-auto mb-4 leading-tight">
           {title}
         </h2>
         {subtitle && (

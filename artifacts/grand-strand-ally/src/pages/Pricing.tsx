@@ -23,7 +23,7 @@ export default function Pricing() {
             <span className="w-1.5 h-1.5 rounded-full bg-[#60B8F0] inline-block" />
             Pricing
           </div>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-heading font-extrabold italic mb-5 leading-[1.05]">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-heading font-extrabold mb-5 leading-[1.05]">
             Start with a clearer view of what you're already paying for.
           </h1>
           <p className="text-lg text-white/70 leading-relaxed max-w-2xl mx-auto mb-8">
