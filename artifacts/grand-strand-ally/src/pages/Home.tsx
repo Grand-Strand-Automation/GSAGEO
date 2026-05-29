@@ -333,7 +333,7 @@ export default function Home() {
                 </ul>
                 <div className="flex flex-col sm:flex-row items-start gap-3">
                   <Link
-                    href="/cost-analysis"
+                    href="/cost-analysis#calculator"
                     className="inline-flex items-center gap-2 bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-11 px-6 text-sm rounded-lg transition-colors whitespace-nowrap"
                   >
                     Start Free Cost Analysis →

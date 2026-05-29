@@ -100,7 +100,6 @@ export function CalculatorShell() {
   return (
     <div
       ref={shellRef}
-      id="calculator"
       className="bg-white rounded-2xl border border-[#D7E1EA] shadow-md overflow-hidden"
     >
       {/* Thin top accent */}
