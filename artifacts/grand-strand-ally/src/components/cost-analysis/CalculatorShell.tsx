@@ -84,7 +84,6 @@ export function CalculatorShell() {
   }
 
   function goNext() {
-    // Calculate results when moving from step 4 → 5
     if (step === 4) {
       const r = calculateResults({ company, spend, overlap, compliance });
       setResults(r);
@@ -99,29 +98,43 @@ export function CalculatorShell() {
   }
 
   return (
-    <div ref={shellRef} id="calculator" className="bg-white rounded-2xl border border-[#D7E1EA] shadow-sm p-6 md:p-8">
-      <ProgressBar currentStep={step} totalSteps={TOTAL_STEPS} labels={STEP_LABELS} />
+    <div
+      ref={shellRef}
+      id="calculator"
+      className="bg-white rounded-2xl border border-[#D7E1EA] shadow-md overflow-hidden"
+    >
+      {/* Thin top accent */}
+      <div className="h-1 bg-[#1F5E95]" />
 
-      {step === 1 && (
-        <CompanyStep values={company} onChange={setCompany} onNext={goNext} />
-      )}
-      {step === 2 && (
-        <SpendStep values={spend} onChange={setSpend} onNext={goNext} onBack={goBack} />
-      )}
-      {step === 3 && (
-        <OverlapStep values={overlap} onChange={setOverlap} onNext={goNext} onBack={goBack} />
-      )}
-      {step === 4 && (
-        <ComplianceStep
-          values={compliance}
-          onChange={setCompliance}
-          onNext={goNext}
-          onBack={goBack}
-        />
-      )}
-      {step === 5 && results && (
-        <ResultsStep results={results} company={company} onBack={goBack} />
-      )}
+      <div className="p-6 md:p-8">
+        <ProgressBar currentStep={step} totalSteps={TOTAL_STEPS} labels={STEP_LABELS} />
+
+        {step === 1 && (
+          <CompanyStep values={company} onChange={setCompany} onNext={goNext} />
+        )}
+        {step === 2 && (
+          <SpendStep values={spend} onChange={setSpend} onNext={goNext} onBack={goBack} />
+        )}
+        {step === 3 && (
+          <OverlapStep values={overlap} onChange={setOverlap} onNext={goNext} onBack={goBack} />
+        )}
+        {step === 4 && (
+          <ComplianceStep
+            values={compliance}
+            onChange={setCompliance}
+            onNext={goNext}
+            onBack={goBack}
+          />
+        )}
+        {step === 5 && results && (
+          <ResultsStep
+            results={results}
+            company={company}
+            adminHourlyRate={spend.adminHourlyRate || 45}
+            onBack={goBack}
+          />
+        )}
+      </div>
     </div>
   );
 }

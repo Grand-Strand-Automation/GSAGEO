@@ -27,11 +27,11 @@ const dots: Record<string, string> = {
 export function ScoreBadge({ label }: ScoreBadgeProps) {
   return (
     <span
-      className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold border ${
+      className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold border whitespace-nowrap ${
         styles[label] ?? "bg-gray-100 text-gray-700 border-gray-200"
       }`}
     >
-      <span className={`w-1.5 h-1.5 rounded-full ${dots[label] ?? "bg-gray-500"}`} />
+      <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${dots[label] ?? "bg-gray-500"}`} />
       {label}
     </span>
   );
