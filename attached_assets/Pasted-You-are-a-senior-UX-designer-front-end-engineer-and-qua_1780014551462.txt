@@ -1,0 +1,198 @@
+You are a senior UX designer, front-end engineer, and quality assurance reviewer.
+
+I need you to fix the **Free Cost Analysis tool link behavior** on the Grand Strand Ally website so users are taken to the correct spot on the page.
+
+## Core problem
+The site has a dedicated calculator page at:
+- /cost-analysis
+
+But the actual calculator starts lower on the page at the section:
+- “Start your free cost analysis.”
+
+Right now, the tool-related links are not taking users directly to the calculator start area in the most user-friendly way.
+
+## Goal
+Make sure any CTA that is intended to start the tool takes the user directly to the **calculator form section**, not just the top of the page.
+
+At the same time:
+- keep consultation-related CTAs separate
+- preserve good UX on desktop and mobile
+- make the routing and scrolling behavior feel intentional and polished
+- ensure the site is ready for production
+
+---
+
+## Required UX behavior
+
+### 1. Create a proper calculator anchor target
+Add a stable anchor ID to the actual calculator start section on the /cost-analysis page.
+
+Use an ID such as:
+- id="calculator"
+or
+- id="start-cost-analysis"
+
+Use one clear final choice and apply it consistently.
+
+This anchor should be attached to the actual calculator form container or the section heading immediately above the first step of the form.
+
+The anchor target should be the section that begins the tool, not the page hero.
+
+### 2. Update homepage tool teaser links
+Any homepage teaser section or button that is meant to start the tool must link to:
+- /cost-analysis#calculator
+
+or the exact final anchor ID you choose.
+
+Examples of buttons that should go there:
+- Start Free Cost Analysis
+- Try the Free Tool
+- See what your information technology stack may really be costing you
+- any homepage teaser CTA specifically promoting the tool
+
+### 3. Keep consultation CTAs separate
+Do NOT send every cost-analysis-related CTA to the calculator.
+
+Use this rule:
+- tool-start CTAs → /cost-analysis#calculator
+- consultation/book-call CTAs → /contact
+
+Examples:
+- “Start Free Cost Analysis” should go to the calculator section
+- “Book a Free Cost Analysis” should go to /contact
+- “Get My Full Report” may stay within calculator flow or trigger submission logic
+- “Request Pricing” should continue using its intended route
+
+### 4. Add smooth scrolling and proper offset behavior
+Make the anchor scroll behavior polished.
+
+Requirements:
+- smooth scroll when navigating to the calculator anchor if feasible
+- ensure the section is not hidden behind a sticky header
+- add appropriate scroll margin top to the calculator section if needed
+- make sure arriving at /cost-analysis#calculator lands the user in a clean visual position with the section heading and first fields visible
+
+If the site uses a sticky header, account for it with CSS such as:
+- scroll-margin-top
+or similar solution
+
+### 5. Add on-page “start tool” button behavior
+On the /cost-analysis page itself, any button near the top like:
+- Start Free Cost Analysis
+
+should scroll or jump directly to the calculator anchor section instead of doing nothing or behaving redundantly.
+
+If the user is already on /cost-analysis, the button should:
+- scroll to the calculator section
+- not hard refresh the page unnecessarily
+
+### 6. Audit all tool-related links sitewide
+Search the site for all links/buttons related to the cost analysis tool and make sure they go to the correct destination.
+
+Audit:
+- homepage teaser
+- homepage CTA bands
+- header if applicable
+- footer if applicable
+- cost-analysis page hero buttons
+- any inline text links referencing the tool
+- mobile navigation if applicable
+
+Correct destination rules:
+- start/use tool → /cost-analysis#calculator
+- book consultation → /contact
+
+### 7. Preserve contact conversion path
+On the calculator page, the section:
+- “Ready to talk through your results?”
+may continue linking to:
+- /contact
+
+That is correct because it is a consultation CTA, not the start-tool CTA.
+
+Do not merge those two behaviors.
+
+---
+
+## Technical requirements
+
+### Routing
+Use proper internal routing for anchor links.
+If using Next.js:
+- use Link where appropriate
+- handle hash links cleanly
+- ensure no broken routing behavior
+
+### CSS / layout
+Add the appropriate scroll offset handling so the calculator section is fully visible after navigation.
+
+Use:
+- scroll-margin-top
+or an equivalent method
+
+### Accessibility
+Make the anchor target accessible and user-friendly.
+
+Optional but recommended:
+- focus the calculator heading or first form field when arriving at the anchor
+- preserve keyboard usability
+- ensure the first interactive form field is easy to access after landing
+
+### Mobile
+Make sure this works well on mobile:
+- landing position is correct
+- sticky header does not cover the section
+- first fields are visible
+- no awkward jump behavior
+
+---
+
+## Also fix this production issue
+The /cost-analysis page metadata appears to still reference the homepage canonical/URL behavior.
+
+Audit and fix metadata for /cost-analysis so:
+- canonical URL = /cost-analysis
+- page-specific metadata is correct
+- Open Graph URL matches /cost-analysis
+
+Do not leave it pointing to the homepage.
+
+---
+
+## Files likely needing updates
+Audit and update any relevant files such as:
+- app/cost-analysis/page.tsx
+- app/page.tsx
+- components/homepage-cost-analysis-teaser.tsx
+- components/hero.tsx
+- components/cta-band.tsx
+- app/layout.tsx
+- metadata-related files if present
+- shared route/constants files if present
+
+---
+
+## Final QA checklist
+Before finishing, verify:
+- homepage teaser button goes to /cost-analysis#calculator
+- tool start buttons go to the calculator section
+- consultation buttons still go to /contact
+- sticky header does not hide the target section
+- smooth scroll or correct jump works on desktop and mobile
+- no broken anchors
+- no conflicting CTA behavior
+- /cost-analysis metadata is correct
+- build passes cleanly
+
+---
+
+## Final output requirement
+Make the changes directly in code.
+
+After finishing:
+1. list all files changed
+2. explain exactly which buttons now go to /cost-analysis#calculator
+3. explain which buttons still go to /contact and why
+4. confirm the anchor target and scroll offset were implemented
+5. confirm the /cost-analysis metadata was fixed
+6. confirm the site is ready for production
