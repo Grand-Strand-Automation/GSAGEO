@@ -92,22 +92,20 @@ export function ResultsStep({ results, company, adminHourlyRate = 45, onBack }: 
   const [reportRequested, setReportRequested] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
-  function handleGetReport() {
+  async function handleGetReport() {
     setSubmitting(true);
-
-    // TODO: Connect to email/CRM service here.
-    // Example: await fetch('/api/cost-analysis-report', {
-    //   method: 'POST',
-    //   body: JSON.stringify({ company, results }),
-    // });
-    // Compatible with Resend, Formspree, Airtable, or any REST endpoint.
-
-    console.log("[Cost Analysis] Report requested:", { company, results });
-
-    setTimeout(() => {
+    try {
+      await fetch("/api/cost-analysis-report", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ company, results, adminHourlyRate }),
+      });
+    } catch (err) {
+      console.error("[Cost Analysis] Failed to send report:", err);
+    } finally {
       setSubmitting(false);
       setReportRequested(true);
-    }, 800);
+    }
   }
 
   const hasSpend = results.spend.monthly > 0;

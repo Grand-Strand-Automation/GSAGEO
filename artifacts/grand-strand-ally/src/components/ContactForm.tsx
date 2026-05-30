@@ -44,12 +44,20 @@ export function ContactForm() {
     }
   });
 
-  function onSubmit(_values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
-    setTimeout(() => {
+    try {
+      await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+    } catch (err) {
+      console.error("[ContactForm] Failed to send:", err);
+    } finally {
       setIsSubmitting(false);
       setLocation("/thank-you");
-    }, 1000);
+    }
   }
 
   return (
