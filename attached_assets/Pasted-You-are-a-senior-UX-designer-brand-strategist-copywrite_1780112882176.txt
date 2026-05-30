@@ -1,0 +1,325 @@
+You are a senior UX designer, brand strategist, copywriter, and front-end engineer.
+
+I need you to update the **Grand Strand Ally** homepage so it feels:
+- less aggressive
+- more corporate
+- more calm and trustworthy
+- more advisory and professional
+- more likely to inspire a business owner or office manager to call
+
+## Core objective
+Keep the site visually aligned with grandstrandautomation.com and keep Grand Strand Ally’s positioning around:
+- cost clarity
+- overlapping tools
+- Microsoft 365 support
+- compliance-minded information technology support
+- month-to-month service
+- practical process improvement
+
+But soften the homepage tone so it feels more like:
+- a trusted advisor
+- a business consultant
+- a reliable local technology partner
+- a company that helps bring clarity and structure
+
+It should feel less like:
+- a hard-hitting cost-savings pitch
+- a fear-based sales page
+- an aggressive audit page
+- a page that assumes the visitor has done something wrong
+
+## Tone shift requirements
+Rewrite the homepage copy to sound:
+- more measured
+- more polished
+- more executive-friendly
+- more reassuring
+- more corporate but still approachable
+- more confidence-building
+- less confrontational
+- less urgent in a pushy way
+
+### Important tone rules
+Avoid overly aggressive phrases such as:
+- stop overpaying
+- wasting money
+- duplicate tools you do not need
+- surprise invoices
+- weak processes
+- gaps everywhere
+- messy environments
+- too many vendors and nobody owns anything
+- strong “problem first” language unless softened
+
+Prefer calmer, corporate language such as:
+- improve visibility into current information technology spend
+- identify opportunities to simplify and consolidate
+- gain a clearer view of vendor and tool usage
+- support better operational and compliance outcomes
+- create a cleaner and more manageable environment
+- strengthen controls and reduce unnecessary complexity
+- improve consistency across support and user lifecycle processes
+
+## Homepage rewrite goals
+The homepage should:
+- still convert
+- still mention cost analysis
+- still highlight potential cost savings
+- still talk about overlapping tools
+- still include compliance throughout
+- still support calls and form submissions
+
+But it should do so with a more professional, boardroom-safe tone.
+
+## Visual and UX goals
+Do NOT radically redesign the site.
+Keep the existing layout style and visual family aligned with grandstrandautomation.com:
+- same header style
+- same section rhythm
+- same clean card structure
+- same navy / off-white palette
+- same restrained premium feel
+
+But improve the homepage by:
+- reducing visual and verbal intensity
+- increasing white space where helpful
+- making section intros shorter and more composed
+- making the hero feel more elevated and less salesy
+- making the page easier to scan
+- improving trust and readability
+
+## Critical writing rules
+All visible site copy must use fully spelled-out terms.
+
+Use:
+- Microsoft 365
+- small and medium businesses
+- information technology
+- multi-factor authentication
+- onboarding and offboarding
+
+Do NOT use:
+- M365
+- SMB
+- unexplained acronyms
+
+## Primary messaging strategy
+Shift the homepage from:
+“you are overspending and have problems”
+
+Toward:
+“we help businesses gain clarity, simplify support, improve oversight, and identify practical opportunities to reduce cost and strengthen compliance-minded operations.”
+
+## Homepage structure to keep
+Keep the homepage structure roughly like this:
+1. Sticky header
+2. Hero
+3. Intro / why businesses reach out
+4. 3 calm issue/opportunity cards
+5. 3 core systems or service pillars
+6. Who we help
+7. How we work
+8. Why Grand Strand Ally
+9. Cost analysis / what we review
+10. Frequently asked questions
+11. Final call to action
+12. Footer
+
+## Hero section rewrite requirements
+The hero is the most important tone change.
+
+### Hero should feel:
+- composed
+- confident
+- clear
+- advisory
+- professional
+
+### Hero should NOT feel:
+- alarming
+- accusatory
+- overly aggressive
+- too focused on “you are wasting money”
+
+### Hero message direction
+The hero should communicate that Grand Strand Ally helps businesses:
+- understand their current information technology environment
+- improve visibility into current costs and vendor overlap
+- simplify support and Microsoft 365 administration
+- strengthen compliance-minded processes
+- identify sensible next steps without unnecessary complexity
+
+### Hero copy guidelines
+Use:
+- one strong but calm headline
+- one short, polished supporting paragraph
+- a trust row
+- one or two call-to-action buttons
+
+### CTA tone guidance
+I still want to support conversion, but the homepage should feel more corporate and call-friendly.
+
+Use these call-to-action options:
+Primary:
+- Book a Free Cost Analysis
+or
+- Schedule a Free Cost Analysis
+
+Secondary:
+- See Services
+or
+- Talk With Us
+
+If needed, slightly soften the primary button label sitewide from “Book” to “Schedule” if it improves tone consistency.
+
+## Rewrite the “problem” section into a more professional framing
+Do not frame this section like a hard sales attack.
+
+Instead of a harsh “problems” section, make it feel like:
+- common areas where businesses seek clarity
+- common areas where better oversight helps
+- common areas where support, spend, and compliance can be improved
+
+Use 3 cards with calmer headings, such as:
+1. Limited visibility into current information technology costs
+2. Overlapping tools and fragmented vendor ownership
+3. Inconsistent processes and compliance-minded controls
+
+Each card should be concise and professional.
+
+## Rewrite the “how we help” section
+Keep the 3 broader systems, but make the tone more professional and strategic.
+
+Use these 3 systems:
+1. Cost and Vendor Analysis
+2. Information Technology Support and Microsoft 365
+3. Compliance, Security, and User Lifecycle Management
+
+Each should feel like:
+- a strategic support pillar
+- clear and easy to understand
+- short and well-structured
+- not overly promotional
+
+## Rewrite “Who we help”
+Make this section feel more like fit guidance than sales qualification.
+
+Target:
+- small and medium businesses
+- professional offices
+- growing teams
+- organizations that need clearer information technology oversight
+- businesses that want simpler support and stronger operational consistency
+- compliance-conscious teams
+
+Avoid language that sounds dismissive or overly negative.
+
+## Rewrite “How we work”
+This section should feel more consultative.
+
+Use a tone like:
+1. Review your current environment
+2. Identify opportunities to simplify and improve
+3. Strengthen support, controls, and consistency
+4. Implement practical improvements over time
+
+The wording can still mention cost, overlap, and compliance, but do so in a calm, structured way.
+
+## Rewrite “Why Grand Strand Ally”
+Use concise, trust-building cards such as:
+- Clearer visibility into costs
+- Practical recommendations
+- Compliance-minded support
+- Month-to-month flexibility
+
+These should feel corporate and reassuring, not overly sales-driven.
+
+## Cost analysis section
+This section should remain on the homepage, but it should feel like a structured advisory review, not a scare tactic.
+
+Frame it as:
+- what the review covers
+- how businesses gain clarity
+- how opportunities to simplify may be identified
+- how support and compliance considerations are reviewed together
+
+Use bullet-style checklist presentation.
+
+## Frequently asked questions
+Make the answers shorter, calmer, and more polished.
+
+The frequently asked questions should reinforce:
+- no pressure
+- practical review
+- no long-term contract requirement
+- ability to work with existing Microsoft 365 environments
+- support for compliance-conscious businesses
+- cost analysis as a first step, not a forced sales motion
+
+## Final call to action
+The final homepage call to action should feel more confidence-building and less aggressive.
+
+Use a headline style like:
+- Gain clearer visibility into your information technology environment.
+or
+- Start with a clearer view of your current costs, tools, and support model.
+or
+- Bring more clarity to your information technology costs and support structure.
+
+The supporting copy should feel calm and professional.
+
+## Design refinements while updating copy
+While adjusting the tone:
+- improve spacing and readability
+- shorten large copy blocks
+- make headings cleaner and more corporate
+- tighten card copy
+- improve section breathing room
+- keep the page easy to scan
+- make sure mobile still feels polished
+- keep the site aligned with grandstrandautomation.com in visual rhythm
+
+## Do not change these core business themes
+Keep:
+- cost analysis
+- cost clarity
+- overlapping tools
+- Microsoft 365 support
+- compliance-minded support
+- onboarding and offboarding improvement
+- month-to-month service
+- practical automation where it makes sense
+
+Just present them in a more polished, advisory, and corporate tone.
+
+## File areas likely to update
+Review and update any relevant files such as:
+- app/page.tsx
+- components/hero.tsx
+- components/cta-band.tsx
+- components/service-card.tsx
+- components/faq.tsx
+- lib/content.ts
+- shared homepage section components
+- any reusable button/CTA text constants if needed
+
+## Final QA requirements
+Before finishing:
+- confirm the homepage tone is noticeably softer and more corporate
+- confirm the site still converts well
+- confirm the copy is more readable and less aggressive
+- confirm compliance is still referenced throughout
+- confirm Microsoft 365 and all other terms are fully spelled out
+- confirm mobile layout is still strong
+- confirm the page is ready for production launch
+
+## Final output requirement
+Make the changes directly in code.
+
+After finishing:
+1. summarize the homepage tone changes
+2. list all files edited
+3. explain how the hero was softened
+4. explain how the page still supports conversion
+5. confirm the homepage feels more corporate and less aggressive
+6. confirm the site is production-ready

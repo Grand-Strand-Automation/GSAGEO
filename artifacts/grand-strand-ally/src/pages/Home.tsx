@@ -1,18 +1,22 @@
 import { Link } from "wouter";
 import {
   CheckCircle2,
-  AlertCircle,
   ArrowRight,
   MapPin,
   DollarSign,
   ShieldCheck,
-  XCircle,
   Search,
+  BarChart2,
+  Layers,
+  ClipboardList,
+  Minus,
 } from "lucide-react";
 import { content } from "@/lib/content";
 import { FAQ } from "@/components/FAQ";
 import { CTABand } from "@/components/CTABand";
 import { Button } from "@/components/ui/button";
+
+const clarityIcons = [BarChart2, Layers, ClipboardList];
 
 export default function Home() {
   return (
@@ -33,10 +37,10 @@ export default function Home() {
             <span className="w-1.5 h-1.5 rounded-full bg-[#60B8F0] inline-block" />
             Grand Strand · Myrtle Beach, SC
           </div>
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-heading font-extrabold max-w-4xl leading-[1.05] mb-6 tracking-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-heading font-extrabold max-w-4xl leading-[1.08] mb-6 tracking-tight">
             {content.hero.headline}
           </h1>
-          <p className="text-lg md:text-xl text-white/70 max-w-2xl mb-10 leading-relaxed">
+          <p className="text-lg md:text-xl text-white/65 max-w-2xl mb-10 leading-relaxed">
             {content.hero.subheadline}
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center w-full sm:w-auto">
@@ -45,7 +49,7 @@ export default function Home() {
               className="bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-7 text-[15px] rounded-lg border-0"
               data-testid="hero-primary-cta"
             >
-              <Link href="/contact">Book a Free Cost Analysis →</Link>
+              <Link href="/contact">Schedule a Free Cost Analysis →</Link>
             </Button>
             <Button
               asChild
@@ -77,32 +81,35 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── 2. Why businesses call us ───────────────────────────── */}
+      {/* ── 2. Common areas ─────────────────────────────────────── */}
       <section className="py-16 md:py-24 bg-[#F7F5F1]">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-10">
             <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#4B5B6B] flex items-center justify-center gap-1.5 mb-3">
               <span className="w-1.5 h-1.5 rounded-full bg-[#1F5E95] inline-block" />
-              Why businesses call us
+              Where we help
             </span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#0E2F54] max-w-2xl mx-auto leading-tight">
               {content.problems.heading}
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
-            {content.problems.cards.map((card, i) => (
-              <div
-                key={i}
-                className="bg-white border border-[#D7E1EA] rounded-xl p-6 shadow-sm"
-                data-testid={`problem-card-${i}`}
-              >
-                <div className="w-9 h-9 bg-red-50 rounded-lg flex items-center justify-center mb-4">
-                  <AlertCircle size={16} className="text-red-400" />
+            {content.problems.cards.map((card, i) => {
+              const Icon = clarityIcons[i];
+              return (
+                <div
+                  key={i}
+                  className="bg-white border border-[#D7E1EA] rounded-xl p-6 shadow-sm"
+                  data-testid={`problem-card-${i}`}
+                >
+                  <div className="w-9 h-9 bg-[#DCEAF7] rounded-lg flex items-center justify-center mb-4">
+                    <Icon size={16} className="text-[#1F5E95]" />
+                  </div>
+                  <h3 className="text-[15px] font-heading font-bold text-[#0E2F54] mb-2">{card.title}</h3>
+                  <p className="text-sm text-[#4B5B6B] leading-relaxed">{card.description}</p>
                 </div>
-                <h3 className="text-[15px] font-heading font-bold text-[#0E2F54] mb-2">{card.title}</h3>
-                <p className="text-sm text-[#4B5B6B] leading-relaxed">{card.description}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -116,7 +123,7 @@ export default function Home() {
               How we help
             </span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#0E2F54] leading-tight">
-              Three core systems.
+              Three core service areas.
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
@@ -132,11 +139,11 @@ export default function Home() {
                 <h3 className="text-[15px] font-heading font-bold text-[#0E2F54] mb-4 leading-snug">{sys.name}</h3>
                 <div className="space-y-3 text-sm">
                   <div>
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-[#4B5B6B] mb-1">Problem</p>
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-[#4B5B6B] mb-1">Context</p>
                     <p className="text-[#4B5B6B] leading-snug">{sys.problem}</p>
                   </div>
                   <div className="border-t border-[#D7E1EA] pt-3">
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-[#1F5E95] mb-1">Solution</p>
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-[#1F5E95] mb-1">Our approach</p>
                     <p className="text-[#0E2F54] leading-snug font-medium">{sys.solution}</p>
                   </div>
                 </div>
@@ -170,32 +177,32 @@ export default function Home() {
             {/* Good fit */}
             <div className="bg-white rounded-xl border border-[#D7E1EA] p-6 shadow-sm">
               <div className="flex items-center gap-2.5 mb-5">
-                <div className="w-7 h-7 rounded-full bg-green-50 flex items-center justify-center">
-                  <CheckCircle2 size={14} className="text-green-600" />
+                <div className="w-7 h-7 rounded-full bg-[#DCEAF7] flex items-center justify-center">
+                  <CheckCircle2 size={14} className="text-[#1F5E95]" />
                 </div>
-                <span className="text-sm font-bold text-[#0E2F54]">Good fit</span>
+                <span className="text-sm font-bold text-[#0E2F54]">Likely a good fit</span>
               </div>
               <ul className="space-y-3">
                 {content.whoWeHelp.goodFit.map((item, i) => (
                   <li key={i} className="flex items-start gap-2.5 text-sm text-[#4B5B6B]">
-                    <CheckCircle2 size={13} className="text-green-500 flex-shrink-0 mt-0.5" />
+                    <CheckCircle2 size={13} className="text-[#1F5E95] flex-shrink-0 mt-0.5" />
                     {item}
                   </li>
                 ))}
               </ul>
             </div>
-            {/* Probably not yet */}
+            {/* May not be the right fit */}
             <div className="bg-white rounded-xl border border-[#D7E1EA] p-6 shadow-sm">
               <div className="flex items-center gap-2.5 mb-5">
-                <div className="w-7 h-7 rounded-full bg-[#F7F5F1] flex items-center justify-center">
-                  <XCircle size={14} className="text-[#4B5B6B]" />
+                <div className="w-7 h-7 rounded-full bg-[#F7F5F1] border border-[#D7E1EA] flex items-center justify-center">
+                  <Minus size={14} className="text-[#4B5B6B]" />
                 </div>
-                <span className="text-sm font-bold text-[#0E2F54]">Probably not yet</span>
+                <span className="text-sm font-bold text-[#0E2F54]">May not be the right fit</span>
               </div>
               <ul className="space-y-3">
                 {content.whoWeHelp.probablyNot.map((item, i) => (
                   <li key={i} className="flex items-start gap-2.5 text-sm text-[#4B5B6B]">
-                    <XCircle size={13} className="text-[#4B5B6B] flex-shrink-0 mt-0.5" />
+                    <Minus size={13} className="text-[#4B5B6B] flex-shrink-0 mt-0.5" />
                     {item}
                   </li>
                 ))}
@@ -243,7 +250,7 @@ export default function Home() {
           <div className="text-center mb-10">
             <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/40 flex items-center justify-center gap-1.5 mb-3">
               <span className="w-1.5 h-1.5 rounded-full bg-white/25 inline-block" />
-              Why us
+              Why Grand Strand Ally
             </span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-white leading-tight">
               {content.whyUs.heading}
@@ -276,7 +283,7 @@ export default function Home() {
               What a cost analysis covers.
             </h2>
             <p className="text-[#4B5B6B] text-[15px] mt-3 max-w-lg mx-auto">
-              Every review is a structured look at your current environment — not a sales pitch.
+              A structured look at your current environment — not a sales pitch, not a commitment.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 max-w-4xl mx-auto">
@@ -292,7 +299,7 @@ export default function Home() {
           </div>
           <div className="text-center mt-8">
             <Button asChild className="bg-[#0E2F54] hover:bg-[#0A2440] text-white font-semibold h-12 px-7 text-[15px] rounded-lg">
-              <Link href="/contact">Book a Free Cost Analysis →</Link>
+              <Link href="/contact">Schedule a Free Cost Analysis →</Link>
             </Button>
           </div>
         </div>
@@ -310,16 +317,16 @@ export default function Home() {
                   Free Tool
                 </span>
                 <h2 className="text-2xl md:text-3xl font-heading font-bold text-white mb-4 leading-tight">
-                  See what your information technology stack may really be costing you.
+                  Get a clearer picture of your current information technology spend.
                 </h2>
                 <p className="text-white/55 text-[15px] leading-relaxed mb-6">
-                  Many businesses are paying for overlapping tools, unclear support coverage, duplicate subscriptions, and inconsistent processes — without a clean picture of total monthly spend. This free tool helps you find out where you stand.
+                  This free tool helps you estimate your current information technology costs, identify areas of potential overlap, and see where your environment may benefit from simplification and review.
                 </p>
                 <ul className="space-y-2.5 mb-8">
                   {[
                     "Estimate current monthly information technology costs",
-                    "Spot overlapping tools and vendor sprawl",
-                    "See likely savings and compliance review areas",
+                    "Identify potential tool overlap and vendor consolidation opportunities",
+                    "Review compliance and control considerations",
                   ].map((point) => (
                     <li key={point} className="flex items-start gap-2.5">
                       <span className="w-4 h-4 rounded-full bg-[#1F5E95] flex items-center justify-center shrink-0 mt-0.5">
@@ -371,22 +378,22 @@ export default function Home() {
           <div className="text-center mb-10">
             <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#4B5B6B] flex items-center justify-center gap-1.5 mb-3">
               <span className="w-1.5 h-1.5 rounded-full bg-[#1F5E95] inline-block" />
-              FAQ
+              Common questions
             </span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#0E2F54] leading-tight">
-              Common questions.
+              Frequently asked questions.
             </h2>
           </div>
           <FAQ />
         </div>
       </section>
 
-      {/* ── 9. Final CTA ────────────────────────────────────────── */}
+      {/* ── 10. Final CTA ───────────────────────────────────────── */}
       <CTABand
         title={content.finalCta.headline}
         subtitle={content.finalCta.copy}
         buttons={[
-          { label: "Book a Free Cost Analysis", href: "/contact", primary: true },
+          { label: "Schedule a Free Cost Analysis", href: "/contact", primary: true },
           { label: "View Pricing", href: "/pricing", primary: false },
         ]}
       />
