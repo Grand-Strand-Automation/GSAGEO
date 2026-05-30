@@ -1,0 +1,470 @@
+You are a senior UX designer, front-end engineer, local SEO strategist, and production launch reviewer.
+
+I need you to do a final full-site UX, conversion, and local SEO polish pass on the current **Grand Strand Ally** website.
+
+## Core objective
+Make the entire site feel:
+- more polished
+- more corporate
+- more readable
+- more locally credible
+- more internally consistent
+- more production-ready
+
+The final result should stay visually aligned with **grandstrandautomation.com**, but be fully positioned for **Grand Strand Ally** as a local information technology services company for small and medium businesses.
+
+## Important findings to address
+The current site already has strong positioning, but it still has these problems:
+1. the homepage feels too wordy
+2. the homepage needs a stronger above-the-fold brand moment
+3. the site needs a larger logo and clearer tagline in the landing section
+4. the page rhythm still needs to more closely match grandstrandautomation.com
+5. links, page hierarchy, and call-to-action pathways need a final consistency pass
+6. local SEO signals and trust signals need to be stronger
+7. the site should feel more likely to inspire someone to call
+
+---
+
+## Brand and tone direction
+Keep Grand Strand Ally’s current positioning around:
+- cost clarity
+- overlapping tools
+- Microsoft 365 support
+- compliance-minded information technology support
+- onboarding and offboarding improvement
+- month-to-month support
+- practical automation where it makes sense
+
+But make the tone:
+- more professional
+- more advisory
+- more calm
+- more trustworthy
+- more executive-friendly
+- less aggressive
+- less repetitive
+- less “sales page” feeling
+
+It should feel like:
+- a strong local advisory firm
+- a practical technology partner
+- a business-focused consultant
+- a company that brings clarity and structure
+
+---
+
+## Critical copy rules
+All visible website copy must use fully spelled-out wording.
+
+Use:
+- Microsoft 365
+- small and medium businesses
+- information technology
+- multi-factor authentication
+- onboarding and offboarding
+
+Do NOT use:
+- M365
+- SMB
+- unexplained acronyms
+
+---
+
+## Visual design requirements
+Keep the overall design closely aligned with grandstrandautomation.com:
+- same premium dark navy / off-white visual family
+- same restrained style
+- same section rhythm
+- same card-driven layout approach
+- same clean header/footer treatment
+- same readable visual pacing
+
+Use:
+- primary navy: #0E2F54
+- dark navy: #0A2440
+- accent blue: #1F5E95
+- pale blue: #DCEAF7
+- warm off-white: #F7F5F1
+- white: #FFFFFF
+- muted slate text: #4B5B6B
+- border: #D7E1EA
+
+Typography:
+- headings: Manrope, non-italic
+- body: Inter, non-italic
+- remove all italic styling and italic font imports
+- use font-style: normal sitewide
+
+---
+
+## Homepage redesign requirements
+
+### 1. Reduce homepage copy significantly
+The homepage must be rewritten to be shorter and easier to scan.
+
+Requirements:
+- reduce copy volume by at least 25 to 35 percent
+- remove repeated explanations of cost savings, overlap, and compliance
+- shorten section intros
+- use bullets and cards instead of long paragraphs
+- make each section do one clear job
+
+### 2. Create a stronger landing section
+The homepage hero must feel more established and more corporate.
+
+Requirements:
+- make the Grand Strand Ally logo / brand lockup larger
+- add a clearer, stronger tagline directly in the landing section
+- make the above-the-fold experience feel more premium
+- improve spacing around the brand, hero headline, and supporting copy
+- make the page feel more likely to inspire a call
+
+### 3. Suggested hero structure
+Use:
+- larger logo / brand mark
+- small location line
+- strong headline
+- one short support paragraph
+- 3 trust items
+- primary and secondary call-to-action buttons
+
+Add a short tagline near the brand or hero such as:
+- Clearer Information Technology Costs. Simpler Support. Compliance-Minded Systems.
+or
+- Practical Information Technology Support for Grand Strand Businesses.
+or
+- Cost Clarity, Microsoft 365 Support, and Compliance-Minded Information Technology Services.
+
+Choose the option that fits best visually and tonally.
+
+### 4. Homepage structure
+Refactor the homepage to follow this structure as closely as possible:
+
+1. Sticky header
+2. Hero with larger logo and tagline
+3. Why businesses reach out
+4. Three calm issue/opportunity cards
+5. Three core systems
+6. Who we help
+7. How we work
+8. Why Grand Strand Ally
+9. What a cost analysis covers
+10. Homepage teaser for the free tool
+11. Frequently asked questions
+12. Final call to action
+13. Footer
+
+This should closely mirror the readability and pacing of grandstrandautomation.com.
+
+### 5. Three issue/opportunity cards
+Use calmer business framing instead of harsh problem language.
+
+Examples:
+- Limited visibility into current information technology costs
+- Overlapping tools and fragmented vendor ownership
+- Inconsistent processes and compliance-minded controls
+
+Keep them short and polished.
+
+### 6. Three core systems
+The homepage should use these 3 broader systems:
+1. Cost and Vendor Analysis
+2. Information Technology Support and Microsoft 365
+3. Compliance, Security, and User Lifecycle Management
+
+Keep each system concise and strategic.
+
+### 7. Who we help
+Make this section feel like fit guidance, not hard qualification.
+
+Good audiences:
+- small and medium businesses
+- professional offices
+- growing teams
+- organizations needing clearer information technology oversight
+- Microsoft 365 environments needing cleanup or stronger administration
+- compliance-conscious businesses
+
+### 8. How we work
+Make the process more consultative:
+1. Review your current environment
+2. Identify opportunities to simplify and improve
+3. Strengthen support, controls, and consistency
+4. Implement practical improvements over time
+
+### 9. Why Grand Strand Ally
+Use 4 trust-building cards:
+- Clearer visibility into costs
+- Practical recommendations
+- Compliance-minded support
+- Month-to-month flexibility
+
+### 10. Cost analysis section
+Keep this on the homepage, but make it feel like a structured advisory review, not a scare tactic.
+
+Use a checklist/grid for:
+- current vendors and subscriptions
+- Microsoft 365 licensing
+- overlapping security tools
+- onboarding and offboarding controls
+- backup and recovery coverage
+- access management
+- documentation gaps
+- compliance-related weaknesses
+
+### 11. Homepage free tool teaser
+Keep or improve the teaser for the calculator:
+- make it visually strong
+- keep it concise
+- route correctly to the actual calculator section
+- make it feel integrated, not bolted on
+
+---
+
+## Services page improvements
+Review and improve the Services page so it feels shorter, cleaner, and more usable.
+
+Requirements:
+- shorter intro
+- cleaner service cards or compact sections
+- stronger scannability
+- stronger internal links to Contact and Pricing
+- reinforce cost clarity, Microsoft 365, compliance-minded support, and onboarding/offboarding
+- make the page easier to skim on mobile
+
+Keep these services:
+- Managed Information Technology Support
+- Microsoft 365 Setup and Support
+- Network and Wi-Fi Management
+- Cybersecurity and Compliance Support
+- Backup and Recovery
+- Workflow Automation and User Onboarding and Offboarding
+
+---
+
+## Pricing page improvements
+Review and improve the Pricing page.
+
+Requirements:
+- tighten copy
+- reduce repeated explanations
+- make support models easier to compare
+- make “what a cost analysis looks at” more visual
+- reinforce month-to-month, no long-term contracts, and clear scope
+- improve call-to-action consistency
+- make it feel more trust-building and professional
+
+---
+
+## Contact page improvements
+Review and improve the Contact page.
+
+Requirements:
+- stronger local trust feel
+- clearer service-area language
+- shorter intro
+- stronger form emphasis
+- keep phone/email as helpful secondary contact methods
+- make the page feel like a natural next step after homepage, services, pricing, or calculator
+
+---
+
+## Cost analysis tool improvements
+Review and improve the /cost-analysis page.
+
+Requirements:
+- ensure teaser links and start-tool buttons go to the correct calculator section
+- maintain clear distinction between:
+  - starting the tool
+  - booking a consultation
+- improve metadata for the calculator page if needed
+- ensure the calculator page visually fits the rest of the site
+- keep the calculator section easy to reach and easy to use
+
+---
+
+## Navigation and site integration requirements
+Do a full UX audit across the entire site.
+
+Check and fix:
+- header links
+- footer links
+- homepage buttons
+- services links
+- pricing links
+- contact links
+- calculator teaser links
+- consultation call-to-action links
+- thank-you flow if present
+- desktop and mobile navigation parity
+
+Routing rules:
+- Home → /
+- Services → /services
+- Pricing → /pricing
+- Contact → /contact
+- Free tool start → /cost-analysis or /cost-analysis anchor
+- Book a Free Cost Analysis → /contact unless intentionally starting the tool
+- no broken or inconsistent internal links
+
+---
+
+## Local SEO improvements to implement
+Apply local SEO best practices relevant to a local information technology services firm.
+
+### Required local SEO improvements
+1. Strengthen local business language across the site:
+   - Grand Strand
+   - Myrtle Beach
+   - local businesses
+   - service area coverage
+
+2. Make sure the site architecture supports local service SEO:
+   - homepage for overall brand and core positioning
+   - distinct services page for service intent
+   - pricing page for commercial intent
+   - contact page for local conversion intent
+   - cost-analysis page for lead-generation intent
+
+3. Improve metadata and page specificity:
+   - unique page titles
+   - unique meta descriptions
+   - correct canonicals
+   - proper Open Graph titles/descriptions
+
+4. Add or improve local trust signals:
+   - service area references
+   - phone number visibility
+   - response time
+   - local positioning
+   - compliance-minded credibility
+   - review/testimonial placeholder structure if useful
+
+5. Add schema where appropriate:
+   - LocalBusiness or ProfessionalService schema
+   - Organization schema
+   - FAQ schema if the site already includes frequently asked questions
+
+6. Improve internal linking:
+   - homepage to services
+   - homepage to pricing
+   - homepage to contact
+   - homepage to cost-analysis
+   - services to contact
+   - pricing to contact
+   - calculator to contact
+
+7. Make sure service pages help target service-related search intent instead of relying on the homepage to do everything
+
+### SEO inspiration to reflect
+Use recommendations inspired by established local SEO guidance:
+- separate pages for distinct services
+- clear service-area signals
+- local content relevance
+- review and reputation support
+- local business data consistency
+- better internal linking and page targeting
+
+---
+
+## Local IT service website inspiration to reflect
+Improve the site using trust-building patterns commonly seen on stronger regional information technology sites, such as:
+- clearer onboarding expectations
+- trust markers and credibility
+- metrics or proof points if appropriate
+- compliance credibility
+- modular service presentation
+- more business-friendly structure
+
+Do this in a tasteful way.
+Do not turn the site into a cluttered enterprise website.
+
+---
+
+## Header and footer improvements
+Review and improve:
+- logo sizing
+- header balance
+- logo readability
+- navigation spacing
+- footer link clarity
+- footer local business information
+- consistency sitewide
+
+The homepage specifically should have a stronger brand moment with a larger logo and clearer tagline.
+
+---
+
+## Mobile optimization requirements
+Review every major page on mobile:
+- homepage
+- services
+- pricing
+- contact
+- cost-analysis
+
+Fix:
+- oversized text blocks
+- weak hierarchy
+- crowded cards
+- awkward call-to-action wrapping
+- weak spacing around the larger logo/brand lockup
+- unclear touch targets
+- poor scanability
+
+---
+
+## Files likely to update
+Review and update relevant files such as:
+- app/page.tsx
+- app/services/page.tsx
+- app/pricing/page.tsx
+- app/contact/page.tsx
+- app/cost-analysis/page.tsx
+- app/layout.tsx
+- app/globals.css
+- app/robots.ts
+- app/sitemap.ts
+- components/site-header.tsx
+- components/site-footer.tsx
+- components/hero.tsx
+- components/cta-band.tsx
+- components/service-card.tsx
+- components/contact-form.tsx
+- components/homepage-cost-analysis-teaser.tsx
+- components/faq.tsx
+- lib/content.ts
+- lib/site.ts
+- route/constants files if present
+
+---
+
+## Final QA checklist
+Before finishing, verify:
+- homepage is noticeably less wordy
+- homepage feels more corporate and more likely to inspire a call
+- logo is larger and more prominent on the landing section
+- tagline is clearer on the landing section
+- site still visually matches grandstrandautomation.com closely
+- all visible copy uses fully spelled-out wording
+- all italic styling is removed
+- all links work correctly
+- local SEO signals are stronger
+- service-area and local credibility are clearer
+- mobile experience is polished
+- metadata is page-specific and production-ready
+- site is ready for production launch
+
+---
+
+## Final output requirements
+Make the changes directly in code.
+
+After finishing:
+1. summarize the UX and tone improvements made
+2. list all files edited
+3. explain how the homepage was made less wordy
+4. explain how the landing section brand presence was improved
+5. explain what local SEO improvements were implemented
+6. confirm all internal links and calls to action work correctly
+7. confirm the site is ready for production launch

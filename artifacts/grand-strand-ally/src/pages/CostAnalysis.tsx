@@ -4,9 +4,6 @@ import { Helmet } from "react-helmet-async";
 import { DollarSign, Search, ShieldCheck } from "lucide-react";
 import { CalculatorShell } from "@/components/cost-analysis/CalculatorShell";
 
-// ─── Constants ───────────────────────────────────────────────────────────────
-// The sticky header is 64 px (h-16). We add 24 px of breathing room above
-// the target section so it lands cleanly after the header.
 const HEADER_OFFSET = 88;
 
 const HOW_IT_WORKS = [
@@ -22,18 +19,17 @@ const HOW_IT_WORKS = [
     icon: Search,
     title: "See likely overlap, risk, and savings opportunities",
     description:
-      "We score your environment for duplicate tools, process gaps, and control weaknesses that commonly lead to waste.",
+      "We score your environment for duplicate tools, process gaps, and control inconsistencies that commonly lead to unnecessary spend.",
   },
   {
     step: "3",
     icon: ShieldCheck,
-    title: "Get a full review and book a free cost analysis",
+    title: "Get a full review and schedule a free consultation",
     description:
-      "Review your results and book a no-obligation conversation with a Grand Strand Ally consultant for a real look at your environment.",
+      "Review your results and schedule a no-obligation conversation with a Grand Strand Ally consultant for a real look at your environment.",
   },
 ];
 
-// ─── Smooth-scroll helper ─────────────────────────────────────────────────────
 function scrollToId(id: string) {
   const el = document.getElementById(id);
   if (el) {
@@ -43,13 +39,9 @@ function scrollToId(id: string) {
 }
 
 export default function CostAnalysis() {
-  // Handle hash navigation from other pages.
-  // Wouter SPA navigation doesn't auto-scroll to hash anchors; we do it
-  // after the page has rendered and painted.
   useEffect(() => {
-    const hash = window.location.hash?.slice(1); // strip leading "#"
+    const hash = window.location.hash?.slice(1);
     if (!hash) return;
-    // rAF ensures the DOM is fully painted before we measure positions
     const raf = requestAnimationFrame(() => {
       scrollToId(hash);
     });
@@ -59,16 +51,16 @@ export default function CostAnalysis() {
   return (
     <>
       <Helmet>
-        <title>Free IT Cost Analysis Tool | Grand Strand Ally</title>
+        <title>Free Information Technology Cost Analysis Tool | Grand Strand Ally — Myrtle Beach</title>
         <meta
           name="description"
-          content="Estimate your current IT spend, identify overlapping tools and vendor sprawl, and find compliance gaps — in about 5 minutes. Free tool from Grand Strand Ally for Myrtle Beach businesses."
+          content="Estimate your current information technology spend, identify overlapping tools and vendor redundancy, and review compliance considerations — in about 5 minutes. Free tool from Grand Strand Ally for Grand Strand businesses."
         />
         <link rel="canonical" href="https://gsally.com/cost-analysis" />
-        <meta property="og:title" content="Free IT Cost Analysis Tool | Grand Strand Ally" />
+        <meta property="og:title" content="Free Information Technology Cost Analysis Tool | Grand Strand Ally" />
         <meta
           property="og:description"
-          content="Estimate your current IT spend and find savings opportunities. Free tool from Grand Strand Ally for Myrtle Beach and Grand Strand businesses."
+          content="Estimate your current information technology spend and identify simplification opportunities. Free tool from Grand Strand Ally for Myrtle Beach and Grand Strand businesses."
         />
         <meta property="og:url" content="https://gsally.com/cost-analysis" />
         <meta property="og:type" content="website" />
@@ -83,15 +75,14 @@ export default function CostAnalysis() {
               Free Tool
             </span>
             <h1 className="text-4xl md:text-5xl font-heading font-extrabold leading-tight mb-5">
-              Find out what your information technology stack may really be costing you.
+              Get a clearer picture of your current information technology spend.
             </h1>
             <p className="text-white/55 text-base leading-relaxed max-w-2xl mx-auto mb-8">
               Grand Strand Ally helps businesses estimate current information technology costs,
-              identify overlapping tools and vendor sprawl, and uncover opportunities to simplify
-              support and improve compliance-minded operations.
+              identify overlapping tools and vendor redundancy, and surface opportunities to simplify
+              support and strengthen compliance-minded operations.
             </p>
 
-            {/* Trust strip */}
             <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm text-white/45 mb-10">
               {[
                 "No obligation",
@@ -106,7 +97,6 @@ export default function CostAnalysis() {
               ))}
             </div>
 
-            {/* Hero CTA — smooth-scrolls to the calculator section */}
             <button
               type="button"
               onClick={() => scrollToId("calculator")}
@@ -118,11 +108,6 @@ export default function CostAnalysis() {
         </section>
 
         {/* ── How it works ── */}
-        {/*
-          id="how-it-works" — anchor target for the homepage teaser
-          "Learn How It Works" link. scroll-margin-top accounts for the
-          sticky header (88 px) so the section lands cleanly.
-        */}
         <section
           id="how-it-works"
           className="py-14 md:py-16 bg-[#F7F5F1]"
@@ -166,11 +151,6 @@ export default function CostAnalysis() {
         </section>
 
         {/* ── Calculator ── */}
-        {/*
-          id="calculator" — primary anchor target.
-          scroll-margin-top ensures the section title is fully visible below
-          the sticky header when arriving from /cost-analysis#calculator.
-        */}
         <section
           id="calculator"
           className="py-14 md:py-20 bg-white"
@@ -187,21 +167,21 @@ export default function CostAnalysis() {
           </div>
         </section>
 
-        {/* ── Bottom CTA — consultation, not tool ── */}
+        {/* ── Bottom CTA ── */}
         <section className="py-14 md:py-16 bg-[#0A2440] text-white">
           <div className="container mx-auto px-4 md:px-6 max-w-xl text-center">
             <h2 className="text-2xl md:text-3xl font-heading font-bold text-white mb-3">
               Prefer to talk it through directly?
             </h2>
             <p className="text-white/50 text-sm leading-relaxed mb-7 max-w-sm mx-auto">
-              Skip the calculator and book a free, no-obligation conversation. A Grand Strand Ally
+              Skip the calculator and schedule a free, no-obligation conversation. A Grand Strand Ally
               consultant will review your environment and walk you through practical next steps.
             </p>
             <Link
               href="/contact"
               className="inline-flex items-center gap-2 bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-11 px-8 text-sm rounded-lg transition-colors"
             >
-              Book a Free Cost Analysis →
+              Schedule a Free Cost Analysis →
             </Link>
             <p className="text-white/30 text-xs mt-4">No long-term contracts. No obligation.</p>
           </div>

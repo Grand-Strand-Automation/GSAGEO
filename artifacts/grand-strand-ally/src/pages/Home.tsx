@@ -33,14 +33,34 @@ export default function Home() {
           }}
         />
         <div className="container mx-auto px-4 md:px-6 relative z-10 text-center flex flex-col items-center pb-16 md:pb-24">
-          <div className="inline-flex items-center gap-2 border border-white/15 rounded-full px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-white/60 mb-8 bg-white/5">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#60B8F0] inline-block" />
-            Grand Strand · Myrtle Beach, SC
+
+          {/* Brand lockup */}
+          <div className="flex flex-col items-center mb-9">
+            <img
+              src="/brand/logo-icon.png"
+              alt="Grand Strand Ally"
+              width={56}
+              height={56}
+              className="object-contain mb-3.5"
+            />
+            <p className="font-heading font-extrabold text-[17px] tracking-[0.08em] uppercase text-white mb-1.5 leading-none">
+              Grand Strand Ally
+            </p>
+            <p className="text-[10.5px] font-semibold tracking-[0.2em] uppercase text-white/40 leading-none">
+              Cost Clarity · Practical Support · Compliance-Minded Systems
+            </p>
           </div>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-heading font-extrabold max-w-4xl leading-[1.08] mb-6 tracking-tight">
+
+          {/* Location badge */}
+          <div className="inline-flex items-center gap-2 border border-white/15 rounded-full px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-white/55 mb-8 bg-white/5">
+            <MapPin size={11} className="text-[#60B8F0]" />
+            Myrtle Beach, SC · Grand Strand
+          </div>
+
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-heading font-extrabold max-w-4xl leading-[1.08] mb-5 tracking-tight">
             {content.hero.headline}
           </h1>
-          <p className="text-lg md:text-xl text-white/65 max-w-2xl mb-10 leading-relaxed">
+          <p className="text-lg text-white/65 max-w-xl mb-9 leading-relaxed">
             {content.hero.subheadline}
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center w-full sm:w-auto">
@@ -81,7 +101,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── 2. Common areas ─────────────────────────────────────── */}
+      {/* ── 2. Where we help ────────────────────────────────────── */}
       <section className="py-16 md:py-24 bg-[#F7F5F1]">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-10">
@@ -114,7 +134,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── 3. Three core systems ───────────────────────────────── */}
+      {/* ── 3. Three core service areas ─────────────────────────── */}
       <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-10">
@@ -174,7 +194,6 @@ export default function Home() {
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {/* Good fit */}
             <div className="bg-white rounded-xl border border-[#D7E1EA] p-6 shadow-sm">
               <div className="flex items-center gap-2.5 mb-5">
                 <div className="w-7 h-7 rounded-full bg-[#DCEAF7] flex items-center justify-center">
@@ -191,7 +210,6 @@ export default function Home() {
                 ))}
               </ul>
             </div>
-            {/* May not be the right fit */}
             <div className="bg-white rounded-xl border border-[#D7E1EA] p-6 shadow-sm">
               <div className="flex items-center gap-2.5 mb-5">
                 <div className="w-7 h-7 rounded-full bg-[#F7F5F1] border border-[#D7E1EA] flex items-center justify-center">
@@ -244,7 +262,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── 6. Why choose us ────────────────────────────────────── */}
+      {/* ── 6. Why Grand Strand Ally ────────────────────────────── */}
       <section className="py-16 md:py-24 bg-[#0A2440] text-white">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-10">
@@ -271,7 +289,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── 7. What we review ───────────────────────────────────── */}
+      {/* ── 7. What a cost analysis covers ──────────────────────── */}
       <section className="py-16 md:py-24 bg-[#F7F5F1]">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-10">
@@ -305,26 +323,25 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── 8. Calculator teaser ────────────────────────────────── */}
+      {/* ── 8. Free tool teaser ─────────────────────────────────── */}
       <section className="py-16 md:py-20 bg-[#F7F5F1]">
         <div className="container mx-auto px-4 md:px-6 max-w-4xl">
           <div className="bg-[#0E2F54] rounded-2xl px-8 py-10 md:px-12 md:py-12">
             <div className="flex flex-col md:flex-row md:items-start gap-10">
-              {/* Left: copy */}
               <div className="flex-1">
                 <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/40 flex items-center gap-1.5 mb-4">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#60B8F0] inline-block" />
                   Free Tool
                 </span>
-                <h2 className="text-2xl md:text-3xl font-heading font-bold text-white mb-4 leading-tight">
+                <h2 className="text-2xl md:text-3xl font-heading font-bold text-white mb-3 leading-tight">
                   Get a clearer picture of your current information technology spend.
                 </h2>
-                <p className="text-white/55 text-[15px] leading-relaxed mb-6">
-                  This free tool helps you estimate your current information technology costs, identify areas of potential overlap, and see where your environment may benefit from simplification and review.
+                <p className="text-white/55 text-sm leading-relaxed mb-6">
+                  Estimate your costs, spot potential tool overlap, and identify where simplification may help — in about 5 minutes.
                 </p>
-                <ul className="space-y-2.5 mb-8">
+                <ul className="space-y-2 mb-7">
                   {[
-                    "Estimate current monthly information technology costs",
+                    "Estimate monthly information technology costs",
                     "Identify potential tool overlap and vendor consolidation opportunities",
                     "Review compliance and control considerations",
                   ].map((point) => (
@@ -347,18 +364,17 @@ export default function Home() {
                   </Link>
                   <Link
                     href="/cost-analysis#how-it-works"
-                    className="inline-flex items-center gap-2 text-white/55 hover:text-white text-sm font-medium h-11 px-2 transition-colors"
+                    className="inline-flex items-center gap-2 text-white/50 hover:text-white text-sm font-medium h-11 px-2 transition-colors"
                   >
                     Learn How It Works
                   </Link>
                 </div>
               </div>
 
-              {/* Right: stats */}
-              <div className="md:w-52 shrink-0 flex flex-row md:flex-col gap-4 md:gap-5">
+              <div className="md:w-48 shrink-0 flex flex-row md:flex-col gap-4 md:gap-5">
                 {[
                   { value: "~5 min", label: "Takes about 5 minutes" },
-                  { value: "Free", label: "No login or account required" },
+                  { value: "Free", label: "No login required" },
                   { value: "0", label: "Obligation or commitment" },
                 ].map(({ value, label }) => (
                   <div key={label} className="flex-1 md:flex-none bg-white/5 border border-white/10 rounded-xl p-4 text-center">

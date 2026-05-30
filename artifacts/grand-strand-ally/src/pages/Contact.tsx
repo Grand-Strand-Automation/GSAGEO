@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { ContactForm } from "@/components/ContactForm";
 import { siteConfig } from "@/lib/site";
 import { Mail, Phone, MapPin, Clock, CheckCircle2 } from "lucide-react";
@@ -5,6 +6,17 @@ import { Mail, Phone, MapPin, Clock, CheckCircle2 } from "lucide-react";
 export default function Contact() {
   return (
     <div className="flex flex-col">
+      <Helmet>
+        <title>Contact Grand Strand Ally | Free Cost Analysis — Myrtle Beach, SC</title>
+        <meta
+          name="description"
+          content="Schedule a free, no-obligation information technology cost analysis with Grand Strand Ally. Serving small and medium businesses across the Grand Strand and Myrtle Beach area. Response within one business day."
+        />
+        <link rel="canonical" href="https://gsally.com/contact" />
+        <meta property="og:title" content="Contact Grand Strand Ally | Free Cost Analysis for Myrtle Beach Businesses" />
+        <meta property="og:description" content="Reach out to Grand Strand Ally to schedule a free information technology cost analysis. No obligation, no pressure — just a clear review of your current environment." />
+        <meta property="og:url" content="https://gsally.com/contact" />
+      </Helmet>
 
       {/* Hero */}
       <section className="bg-[#0E2F54] text-white pt-28 pb-16 md:pt-36 md:pb-20 relative overflow-hidden">
@@ -22,10 +34,10 @@ export default function Contact() {
             Get in touch
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-heading font-extrabold mb-5 leading-[1.05]">
-            Understand what you're paying for and where your IT can be simplified.
+            Gain a clearer view of your information technology environment.
           </h1>
-          <p className="text-lg text-white/70 leading-relaxed max-w-2xl mx-auto">
-            If you are unsure whether your current tools overlap, whether your support model makes sense, or whether your compliance-related controls are as clean as they should be, we can help you sort it out.
+          <p className="text-lg text-white/65 leading-relaxed max-w-2xl mx-auto">
+            Whether you have questions about current tools, support coverage, Microsoft 365 setup, or compliance-related controls, we are here to help you think it through.
           </p>
         </div>
       </section>
@@ -48,18 +60,6 @@ export default function Contact() {
         </div>
       </div>
 
-      {/* Intro */}
-      <section className="py-12 md:py-14 bg-[#F7F5F1] border-b border-[#D7E1EA]">
-        <div className="container mx-auto px-4 md:px-6 max-w-3xl text-center">
-          <h2 className="text-xl md:text-2xl font-heading font-bold text-[#0E2F54] mb-3">
-            A no-pressure review of your current stack
-          </h2>
-          <p className="text-[#4B5B6B] leading-relaxed text-[15px]">
-            The first conversation is meant to give you clarity. We can talk through your current support setup, Microsoft 365 environment, overlapping vendors or tools, onboarding and offboarding process, cost concerns, and compliance-minded priorities.
-          </p>
-        </div>
-      </section>
-
       {/* Form + Sidebar */}
       <section className="py-16 md:py-24 bg-[#F7F5F1]">
         <div className="container mx-auto px-4 md:px-6">
@@ -68,11 +68,10 @@ export default function Contact() {
             {/* Sidebar */}
             <div className="space-y-5">
 
-              {/* Contact info */}
               <div className="bg-white rounded-xl border border-[#D7E1EA] p-5 space-y-4 shadow-sm">
                 {[
-                  { Icon: Mail, label: "Email", value: siteConfig.email, href: `mailto:${siteConfig.email}` },
                   { Icon: Phone, label: "Phone", value: siteConfig.phone, href: `tel:${siteConfig.phone.replace(/-/g, "")}` },
+                  { Icon: Mail, label: "Email", value: siteConfig.email, href: `mailto:${siteConfig.email}` },
                   { Icon: MapPin, label: "Service Area", value: siteConfig.serviceArea, href: null },
                   { Icon: Clock, label: "Response Time", value: "Within 1 business day", href: null },
                 ].map(({ Icon, label, value, href }) => (
@@ -92,7 +91,6 @@ export default function Contact() {
                 ))}
               </div>
 
-              {/* What to expect */}
               <div className="bg-white rounded-xl border border-[#D7E1EA] p-5 shadow-sm">
                 <p className="text-sm font-bold text-[#0E2F54] mb-3">What to expect</p>
                 <ul className="space-y-2.5">
@@ -111,18 +109,17 @@ export default function Contact() {
                 </ul>
               </div>
 
-              {/* Reassurance */}
               <div className="bg-white rounded-xl border border-[#D7E1EA] p-5 shadow-sm">
                 <p className="text-sm font-bold text-[#0E2F54] mb-2">
-                  You don't need to have everything figured out first.
+                  You do not need to have everything figured out first.
                 </p>
                 <p className="text-sm text-[#4B5B6B] leading-relaxed">
-                  Many businesses reach out because something feels messy, expensive, or harder to manage than it should be. That is enough to start.
+                  Many businesses reach out because something feels more complex, more expensive, or harder to manage than it should be. That is enough to start.
                 </p>
               </div>
 
               <p className="text-xs text-[#4B5B6B] leading-relaxed px-1">
-                Grand Strand Ally works with small and medium businesses across the Grand Strand and Myrtle Beach area.
+                Grand Strand Ally serves small and medium businesses across the Grand Strand and Myrtle Beach area.
               </p>
 
             </div>
@@ -133,7 +130,7 @@ export default function Contact() {
                 Tell us what you want us to review
               </h2>
               <p className="text-sm text-[#4B5B6B] mb-7 leading-relaxed">
-                Share what you're working with — tools, team size, concerns. We'll follow up within one business day.
+                Share what you are working with — tools, team size, concerns. We will follow up within one business day.
               </p>
               <ContactForm />
             </div>
@@ -142,20 +139,20 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Service area note */}
+      {/* Service area */}
       <section className="py-10 bg-[#0A2440] text-white text-center">
         <div className="container mx-auto px-4 md:px-6 max-w-xl">
           <p className="text-white/55 text-sm leading-relaxed mb-2">
             Grand Strand Ally serves small and medium businesses across the Grand Strand and Myrtle Beach area.
           </p>
-          <p className="text-white/45 text-[13px]">
-            Have a quick question before filling out the form?{" "}
-            <a href={`mailto:${siteConfig.email}`} className="text-[#60B8F0] hover:text-white transition-colors font-medium">
-              Email us directly
-            </a>
-            {" "}or call{" "}
+          <p className="text-white/40 text-[13px]">
+            Have a quick question?{" "}
             <a href={`tel:${siteConfig.phone.replace(/-/g, "")}`} className="text-[#60B8F0] hover:text-white transition-colors font-medium">
               {siteConfig.phone}
+            </a>
+            {" "}or{" "}
+            <a href={`mailto:${siteConfig.email}`} className="text-[#60B8F0] hover:text-white transition-colors font-medium">
+              email us directly
             </a>
           </p>
         </div>

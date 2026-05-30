@@ -19,7 +19,7 @@ export function Logo({ className = "" }: { className?: string }) {
           Grand Strand Ally
         </span>
         <span className="font-heading font-semibold text-[9px] tracking-[0.22em] uppercase text-white/50 group-hover:text-white/40 transition-colors whitespace-nowrap">
-          IT Services · Myrtle Beach
+          Myrtle Beach, SC
         </span>
       </div>
     </Link>

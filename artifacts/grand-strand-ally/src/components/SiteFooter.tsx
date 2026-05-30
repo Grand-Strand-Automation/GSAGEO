@@ -11,17 +11,17 @@ export function SiteFooter() {
           <div className="col-span-2 md:col-span-1 space-y-4">
             <Logo />
             <p className="text-sm text-white/55 max-w-xs leading-relaxed pt-1">
-              Information technology cost clarity, practical support, and compliance-minded systems for small and medium businesses.
+              Practical information technology support, cost clarity, and compliance-minded systems for small and medium businesses across the Grand Strand.
             </p>
             <div className="space-y-2 pt-2 text-sm">
               <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/35 mb-3">
                 {siteConfig.serviceArea}
               </p>
+              <a href={`tel:${siteConfig.phone.replace(/-/g, "")}`} className="block text-white/60 hover:text-white transition-colors font-medium">
+                {siteConfig.phone}
+              </a>
               <a href={`mailto:${siteConfig.email}`} className="block text-white/55 hover:text-white transition-colors">
                 {siteConfig.email}
-              </a>
-              <a href={`tel:${siteConfig.phone.replace(/-/g, "")}`} className="block text-white/55 hover:text-white transition-colors">
-                {siteConfig.phone}
               </a>
             </div>
           </div>
@@ -33,7 +33,7 @@ export function SiteFooter() {
                 "Managed Information Technology Support",
                 "Microsoft 365 Setup and Support",
                 "Network and Wi-Fi Management",
-                "Cybersecurity and Compliance Support",
+                "Cybersecurity and Compliance",
                 "Backup and Recovery",
                 "Workflow Automation",
               ].map((svc) => (
@@ -53,6 +53,7 @@ export function SiteFooter() {
                 { label: "Home", href: siteConfig.links.home },
                 { label: "Services", href: siteConfig.links.services },
                 { label: "Pricing", href: siteConfig.links.pricing },
+                { label: "Cost Analysis", href: siteConfig.links.costAnalysis },
                 { label: "Contact", href: siteConfig.links.contact },
               ].map(({ label, href }) => (
                 <li key={label}>
@@ -84,7 +85,7 @@ export function SiteFooter() {
                 href={siteConfig.links.contact}
                 className="inline-block text-sm font-semibold text-[#60B8F0] hover:text-white transition-colors"
               >
-                Book a Free Cost Analysis →
+                Schedule a Free Cost Analysis →
               </Link>
             </div>
           </div>
@@ -95,7 +96,7 @@ export function SiteFooter() {
           <p className="text-sm text-white/35">
             © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
           </p>
-          <p className="text-sm text-white/35">Cost clarity · Practical support · Compliance-minded systems</p>
+          <p className="text-sm text-white/30">Cost clarity · Practical support · Compliance-minded systems</p>
         </div>
       </div>
     </footer>

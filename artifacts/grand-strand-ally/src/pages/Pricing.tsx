@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { content } from "@/lib/content";
 import { CTABand } from "@/components/CTABand";
 import { Button } from "@/components/ui/button";
@@ -7,6 +8,17 @@ import { CheckCircle2, Search, ArrowRight } from "lucide-react";
 export default function Pricing() {
   return (
     <div className="flex flex-col">
+      <Helmet>
+        <title>Pricing and Support Models | Grand Strand Ally — Myrtle Beach</title>
+        <meta
+          name="description"
+          content="Month-to-month information technology support with clear scope and no long-term contracts. Start with a free cost analysis to understand your current environment before committing to anything."
+        />
+        <link rel="canonical" href="https://gsally.com/pricing" />
+        <meta property="og:title" content="Pricing and Support Models | Grand Strand Ally" />
+        <meta property="og:description" content="Clear, month-to-month information technology pricing for small and medium businesses in the Grand Strand. No long-term contracts. Scope defined before work starts." />
+        <meta property="og:url" content="https://gsally.com/pricing" />
+      </Helmet>
 
       {/* Hero */}
       <section className="bg-[#0E2F54] text-white pt-28 pb-16 md:pt-36 md:pb-20 relative overflow-hidden">
@@ -24,13 +36,13 @@ export default function Pricing() {
             Pricing
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-heading font-extrabold mb-5 leading-[1.05]">
-            Start with a clearer view of what you're already paying for.
+            Start with a clearer view of your current environment.
           </h1>
-          <p className="text-lg text-white/70 leading-relaxed max-w-2xl mx-auto mb-8">
-            Grand Strand Ally helps businesses simplify their IT spend before recommending new services. We review the current environment, identify duplication and waste, and build a support model based on actual needs.
+          <p className="text-lg text-white/65 leading-relaxed max-w-2xl mx-auto mb-8">
+            Grand Strand Ally helps businesses gain visibility into their information technology spend before recommending new services. We review the current environment, identify redundancy, and build a support model based on actual needs.
           </p>
           <Button asChild className="bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-7 text-[15px] rounded-lg border-0">
-            <Link href="/contact">Book a Free Cost Analysis →</Link>
+            <Link href="/contact">Schedule a Free Cost Analysis →</Link>
           </Button>
         </div>
       </section>
@@ -42,7 +54,7 @@ export default function Pricing() {
             {[
               "No long-term contracts",
               "Scope defined before work starts",
-              "No surprise invoices",
+              "Clear, predictable pricing",
               "Month-to-month agreements",
             ].map((label) => (
               <div key={label} className="flex items-center justify-center gap-2.5 py-4 sm:px-8 text-sm text-[#4B5B6B] font-medium">
@@ -68,23 +80,22 @@ export default function Pricing() {
                 Clear pricing starts with clear visibility
               </h2>
               <p className="text-[#4B5B6B] leading-relaxed text-[15px] mb-7">
-                Many businesses are paying for support, security, subscriptions, and Microsoft 365 licensing without a full picture of where costs overlap or where vendors are duplicating work. Our process starts by understanding what is already in place so recommendations are based on reality, not generic packages.
+                Many businesses are paying for support, security, subscriptions, and Microsoft 365 licensing without a full picture of where costs overlap or where vendors are duplicating work. Our process starts by understanding what is already in place.
               </p>
 
               <h3 className="text-[15px] font-heading font-bold text-[#0E2F54] mb-3">How pricing works</h3>
               <p className="text-[#4B5B6B] leading-relaxed text-[15px] mb-7">
-                Our pricing is built around straightforward monthly support, scoped project work when needed, and a clear understanding of what is included. We do not believe in mystery invoice culture, bloated bundles, or long-term lock-in before value is proven.
+                Our pricing is built around straightforward monthly support, scoped project work when needed, and a clear understanding of what is included — no mystery invoices, no bloated bundles, no long-term lock-in before value is proven.
               </p>
 
               <h3 className="text-[15px] font-heading font-bold text-[#0E2F54] mb-3">What affects monthly cost</h3>
               <ul className="space-y-2">
                 {[
-                  "Number of users",
-                  "Number of devices",
+                  "Number of users and devices",
                   "Number of locations",
                   "Microsoft 365 scope",
-                  "Security and compliance needs",
-                  "Onboarding/offboarding requirements",
+                  "Security and compliance requirements",
+                  "Onboarding and offboarding needs",
                   "Backup and recovery expectations",
                   "Ongoing support versus project work",
                 ].map((item, i) => (
@@ -106,14 +117,14 @@ export default function Pricing() {
               </h2>
               <div className="grid grid-cols-1 gap-2">
                 {[
-                  "Current IT vendors",
-                  "Current software and subscriptions",
+                  "Current vendors and subscriptions",
+                  "Software and licensing",
                   "Microsoft 365 licensing",
                   "Overlapping security tools",
-                  "Support model gaps",
-                  "Onboarding and offboarding gaps",
+                  "Support coverage and ownership",
+                  "Onboarding and offboarding controls",
                   "Backup and recovery coverage",
-                  "Compliance-related weaknesses",
+                  "Compliance-related considerations",
                   "Opportunities to simplify or consolidate",
                 ].map((item, i) => (
                   <div key={i} className="bg-white border border-[#D7E1EA] rounded-xl px-4 py-3.5 flex items-center gap-3 shadow-sm">
@@ -123,7 +134,7 @@ export default function Pricing() {
                 ))}
               </div>
               <Button asChild className="mt-5 w-full bg-[#0E2F54] hover:bg-[#0A2440] text-white font-semibold h-12 text-sm rounded-lg">
-                <Link href="/contact">Book a Free Cost Analysis →</Link>
+                <Link href="/contact">Schedule a Free Cost Analysis →</Link>
               </Button>
             </div>
 
@@ -143,7 +154,7 @@ export default function Pricing() {
               Sample support models
             </h2>
             <p className="text-[#4B5B6B] text-[15px] mt-3 max-w-lg mx-auto leading-relaxed">
-              Custom quoted based on your environment. We don't publish flat-rate pricing because every business is different — and we won't pad a quote to cover what you don't need.
+              Custom quoted based on your environment. We do not publish flat-rate pricing because every business is different — and we will not pad a quote to cover what you do not need.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
@@ -200,7 +211,7 @@ export default function Pricing() {
         </div>
       </section>
 
-      {/* What to expect after analysis */}
+      {/* What to expect */}
       <section className="py-16 md:py-20 bg-[#F7F5F1]">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
@@ -210,10 +221,10 @@ export default function Pricing() {
                 After the analysis
               </span>
               <h2 className="text-2xl font-heading font-bold text-[#0E2F54] mb-4 leading-snug">
-                What's included in the conversation
+                What the conversation includes
               </h2>
               <p className="text-[#4B5B6B] leading-relaxed text-[15px] mb-5">
-                If we move forward after a cost analysis, we define scope clearly, explain what is included, identify what is optional, and show where simplification or consolidation can create savings.
+                If we move forward after a cost analysis, we define scope clearly, explain what is included, identify what is optional, and show where simplification or consolidation can create meaningful improvements.
               </p>
               <Link
                 href="/contact"
@@ -225,9 +236,9 @@ export default function Pricing() {
             <div className="space-y-2.5">
               {[
                 { step: "01", label: "Review your current environment", desc: "We map your tools, vendors, subscriptions, and support model." },
-                { step: "02", label: "Identify overlap and gaps", desc: "We surface where costs overlap, where compliance controls are weak, and where support is unclear." },
-                { step: "03", label: "Present findings clearly", desc: "You get a plain-language summary of what we found and what we'd recommend." },
-                { step: "04", label: "Scope a plan if it makes sense", desc: "If there's a fit, we propose a clear monthly plan with defined scope — no pressure, no lock-in." },
+                { step: "02", label: "Identify overlap and gaps", desc: "We surface where costs overlap, where compliance controls are inconsistent, and where support ownership is unclear." },
+                { step: "03", label: "Present findings clearly", desc: "You receive a plain-language summary of what we found and what we would recommend." },
+                { step: "04", label: "Scope a plan if it makes sense", desc: "If there is a fit, we propose a clear monthly plan with defined scope — no pressure, no lock-in." },
               ].map((item) => (
                 <div key={item.step} className="bg-white border border-[#D7E1EA] rounded-xl p-4 flex items-start gap-4 shadow-sm">
                   <div className="w-8 h-8 rounded-full bg-[#DCEAF7] text-[#1F5E95] text-xs font-bold flex items-center justify-center flex-shrink-0">
@@ -250,7 +261,7 @@ export default function Pricing() {
           <div className="text-center mb-10">
             <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#4B5B6B] flex items-center justify-center gap-1.5 mb-3">
               <span className="w-1.5 h-1.5 rounded-full bg-[#1F5E95] inline-block" />
-              FAQ
+              Common questions
             </span>
             <h2 className="text-3xl font-heading font-bold text-[#0E2F54]">Pricing questions.</h2>
           </div>
@@ -258,7 +269,7 @@ export default function Pricing() {
             {[
               {
                 q: "Do you publish fixed pricing?",
-                a: "We use structured pricing models, but final pricing depends on team size, devices, locations, Microsoft 365 needs, support expectations, and compliance-related requirements.",
+                a: "We use structured pricing models, but final pricing depends on team size, devices, locations, Microsoft 365 scope, support expectations, and compliance-related requirements.",
               },
               {
                 q: "Do you require long-term contracts?",
@@ -283,10 +294,10 @@ export default function Pricing() {
       </section>
 
       <CTABand
-        title="Before you buy more tools, understand what you already have."
-        subtitle="A free cost analysis helps uncover overlap, clarify support needs, and identify where better structure can reduce waste and improve compliance-minded operations."
+        title="Before adding more tools, understand what you already have."
+        subtitle="A free cost analysis helps identify overlap, clarify support needs, and surface practical opportunities to simplify and improve."
         buttons={[
-          { label: "Book a Free Cost Analysis", href: "/contact", primary: true },
+          { label: "Schedule a Free Cost Analysis", href: "/contact", primary: true },
           { label: "See Services", href: "/services", primary: false },
         ]}
       />

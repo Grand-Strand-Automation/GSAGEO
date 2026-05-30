@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { content } from "@/lib/content";
 import { CTABand } from "@/components/CTABand";
 import { Button } from "@/components/ui/button";
@@ -16,6 +17,17 @@ const iconMap: Record<string, LucideIcon> = {
 export default function Services() {
   return (
     <div className="flex flex-col">
+      <Helmet>
+        <title>Information Technology Services | Grand Strand Ally — Myrtle Beach, SC</title>
+        <meta
+          name="description"
+          content="Managed support, Microsoft 365 administration, cybersecurity, backup, and compliance-minded services for small and medium businesses in the Grand Strand area. Month-to-month, no long-term contracts."
+        />
+        <link rel="canonical" href="https://gsally.com/services" />
+        <meta property="og:title" content="Information Technology Services | Grand Strand Ally" />
+        <meta property="og:description" content="Practical information technology services for small and medium businesses across the Grand Strand. Managed support, Microsoft 365, cybersecurity, and compliance-minded operations." />
+        <meta property="og:url" content="https://gsally.com/services" />
+      </Helmet>
 
       {/* Hero */}
       <section className="bg-[#0E2F54] text-white pt-28 pb-16 md:pt-36 md:pb-20 relative overflow-hidden">
@@ -33,35 +45,35 @@ export default function Services() {
             What we offer
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-heading font-extrabold mb-5 leading-[1.05]">
-            Information technology services built to reduce waste and improve control.
+            Information technology services built to reduce complexity and improve control.
           </h1>
-          <p className="text-lg text-white/70 leading-relaxed max-w-2xl mx-auto mb-8">
-            We start by understanding what you already have, then simplify support, reduce overlapping tools, and strengthen compliance-minded operations.
+          <p className="text-lg text-white/65 leading-relaxed max-w-2xl mx-auto mb-8">
+            We start by understanding your current environment, then simplify support, consolidate tools, and strengthen compliance-minded operations.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Button asChild className="bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-7 text-[15px] rounded-lg border-0">
-              <Link href="/contact">Book a Free Cost Analysis →</Link>
+              <Link href="/contact">Schedule a Free Cost Analysis →</Link>
             </Button>
             <Button asChild variant="outline" className="border-white/25 text-white hover:bg-white/8 hover:text-white h-12 px-7 text-[15px] bg-transparent rounded-lg">
-              <Link href="/pricing">Request Pricing</Link>
+              <Link href="/pricing">View Pricing</Link>
             </Button>
           </div>
         </div>
       </section>
 
       {/* Short intro */}
-      <section className="py-12 md:py-16 bg-white border-b border-[#D7E1EA]">
+      <section className="py-10 md:py-14 bg-white border-b border-[#D7E1EA]">
         <div className="container mx-auto px-4 md:px-6 max-w-3xl text-center">
           <h2 className="text-xl md:text-2xl font-heading font-bold text-[#0E2F54] mb-3">
             Support that starts with clarity, not a new sales pitch.
           </h2>
           <p className="text-[#4B5B6B] leading-relaxed text-[15px]">
-            We review your current environment, costs, and support gaps first. Then we help simplify what makes sense, strengthen what is weak, and automate what is repetitive.
+            We review your current environment first — tools, costs, vendors, and gaps. Then we simplify what makes sense, strengthen what is weak, and automate what is repetitive.
           </p>
         </div>
       </section>
 
-      {/* Service cards — 2-column grid */}
+      {/* Service cards */}
       <section className="py-16 md:py-24 bg-[#F7F5F1]">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-5xl mx-auto">
@@ -134,9 +146,9 @@ export default function Services() {
 
       <CTABand
         title="Not sure which service comes first?"
-        subtitle="Start with a free cost analysis. We review your current stack, identify overlap and friction, and help prioritize next steps."
+        subtitle="Start with a free cost analysis. We review your current environment, identify overlap and friction, and help prioritize practical next steps."
         buttons={[
-          { label: "Book a Free Cost Analysis", href: "/contact", primary: true },
+          { label: "Schedule a Free Cost Analysis", href: "/contact", primary: true },
         ]}
       />
     </div>
