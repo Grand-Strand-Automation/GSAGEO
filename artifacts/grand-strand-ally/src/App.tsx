@@ -20,6 +20,12 @@ import Privacy from "@/pages/Privacy";
 import Terms from "@/pages/Terms";
 import NotFound from "@/pages/NotFound";
 
+// Educational / SEO pages
+import HowMuchItSupport from "@/pages/edu/HowMuchItSupport";
+import OverlappingTools from "@/pages/edu/OverlappingTools";
+import OffboardingChecklist from "@/pages/edu/OffboardingChecklist";
+import CostAnalysisGuide from "@/pages/edu/CostAnalysisGuide";
+
 const queryClient = new QueryClient();
 
 function Router() {
@@ -39,6 +45,13 @@ function Router() {
           <Route path="/thank-you" component={ThankYou} />
           <Route path="/privacy" component={Privacy} />
           <Route path="/terms" component={Terms} />
+
+          {/* Educational pages */}
+          <Route path="/how-much-should-a-small-business-spend-on-it-support" component={HowMuchItSupport} />
+          <Route path="/how-to-find-overlapping-it-tools-and-vendors" component={OverlappingTools} />
+          <Route path="/small-business-offboarding-checklist" component={OffboardingChecklist} />
+          <Route path="/what-an-it-cost-analysis-should-include" component={CostAnalysisGuide} />
+
           <Route component={NotFound} />
         </Switch>
       </main>

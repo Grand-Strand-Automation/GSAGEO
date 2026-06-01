@@ -44,7 +44,7 @@
     <priority>0.9</priority>
   </url>
 
-  <!-- Tool / educational -->
+  <!-- Tool / educational marketing -->
   <url>
     <loc>https://gsally.com/cost-analysis</loc>
     <lastmod>2026-06-01</lastmod>
@@ -54,6 +54,35 @@
 
   <url>
     <loc>https://gsally.com/faq</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Educational / search intent pages -->
+  <url>
+    <loc>https://gsally.com/how-much-should-a-small-business-spend-on-it-support</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://gsally.com/how-to-find-overlapping-it-tools-and-vendors</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://gsally.com/small-business-offboarding-checklist</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://gsally.com/what-an-it-cost-analysis-should-include</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
