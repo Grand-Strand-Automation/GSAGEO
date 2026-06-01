@@ -102,7 +102,6 @@ export function CalculatorShell() {
       ref={shellRef}
       className="bg-white rounded-2xl border border-[#D7E1EA] shadow-md overflow-hidden"
     >
-      {/* Thin top accent */}
       <div className="h-1 bg-[#1F5E95]" />
 
       <div className="p-6 md:p-8">
@@ -129,6 +128,9 @@ export function CalculatorShell() {
           <ResultsStep
             results={results}
             company={company}
+            spend={spend}
+            overlap={overlap}
+            compliance={compliance}
             adminHourlyRate={spend.adminHourlyRate || 45}
             onBack={goBack}
           />

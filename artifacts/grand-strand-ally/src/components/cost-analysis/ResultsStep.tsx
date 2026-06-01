@@ -1,12 +1,21 @@
 import { useState } from "react";
 import { Link } from "wouter";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import type { ResultsOutput, CompanyValues } from "@/lib/cost-analysis-types";
+import type {
+  ResultsOutput,
+  CompanyValues,
+  SpendValues,
+  OverlapValues,
+  ComplianceValues,
+} from "@/lib/cost-analysis-types";
 import { ScoreBadge } from "./ScoreBadge";
 
 interface Props {
   results: ResultsOutput;
   company: CompanyValues;
+  spend: SpendValues;
+  overlap: OverlapValues;
+  compliance: ComplianceValues;
   adminHourlyRate?: number;
   onBack: () => void;
 }
@@ -15,7 +24,6 @@ function fmt(n: number): string {
   return n.toLocaleString("en-US", { maximumFractionDigits: 0 });
 }
 
-// Maps overlap/compliance level to a left-border accent color class
 const levelBorderClass: Record<string, string> = {
   Low: "border-l-emerald-400",
   Moderate: "border-l-amber-400",
@@ -88,7 +96,15 @@ function AssumptionsAccordion({ adminHourlyRate }: { adminHourlyRate: number }) 
   );
 }
 
-export function ResultsStep({ results, company, adminHourlyRate = 45, onBack }: Props) {
+export function ResultsStep({
+  results,
+  company,
+  spend,
+  overlap,
+  compliance,
+  adminHourlyRate = 45,
+  onBack,
+}: Props) {
   const [reportRequested, setReportRequested] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
@@ -98,7 +114,7 @@ export function ResultsStep({ results, company, adminHourlyRate = 45, onBack }: 
       await fetch("/api/cost-analysis-report", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ company, results, adminHourlyRate }),
+        body: JSON.stringify({ company, spend, overlap, compliance, results, adminHourlyRate }),
       });
     } catch (err) {
       console.error("[Cost Analysis] Failed to send report:", err);
@@ -260,7 +276,6 @@ export function ResultsStep({ results, company, adminHourlyRate = 45, onBack }: 
       {/* ── What's next / CTA ── */}
       <div className="rounded-xl border border-[#D7E1EA] overflow-hidden">
         {reportRequested ? (
-          /* Success state */
           <div className="bg-[#F7F5F1] px-6 py-8 text-center">
             <div className="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -278,12 +293,11 @@ export function ResultsStep({ results, company, adminHourlyRate = 45, onBack }: 
               href="/contact"
               className="inline-flex items-center gap-2 bg-[#0E2F54] hover:bg-[#0A2440] text-white font-semibold text-sm h-11 px-7 rounded-lg transition-colors"
             >
-              Book a Free Cost Analysis →
+              Schedule a Free Cost Analysis →
             </Link>
           </div>
         ) : (
           <>
-            {/* Header stripe */}
             <div className="bg-[#0E2F54] px-6 py-4">
               <p className="text-xs font-bold uppercase tracking-[0.15em] text-white/50 mb-0.5">
                 Next step
@@ -293,7 +307,6 @@ export function ResultsStep({ results, company, adminHourlyRate = 45, onBack }: 
               </p>
             </div>
 
-            {/* Body */}
             <div className="bg-[#F7F5F1] px-6 py-5">
               <p className="text-sm text-[#4B5B6B] leading-relaxed mb-5">
                 A Grand Strand Ally consultant will review your actual tools, contracts, and setup —
@@ -306,7 +319,7 @@ export function ResultsStep({ results, company, adminHourlyRate = 45, onBack }: 
                   href="/contact"
                   className="inline-flex items-center justify-center gap-2 bg-[#0E2F54] hover:bg-[#0A2440] text-white font-semibold text-sm h-11 px-6 rounded-lg transition-colors sm:flex-1"
                 >
-                  Book a Free Cost Analysis →
+                  Schedule a Free Cost Analysis →
                 </Link>
                 <button
                   type="button"
