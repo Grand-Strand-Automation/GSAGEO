@@ -19,14 +19,35 @@ export default function Services() {
     <div className="flex flex-col">
       <Helmet>
         <title>Information Technology Services | Grand Strand Ally — Myrtle Beach, SC</title>
-        <meta
-          name="description"
-          content="Managed support, Microsoft 365 administration, cybersecurity, backup, and compliance-minded services for small and medium businesses in the Grand Strand area. Month-to-month, no long-term contracts."
-        />
+        <meta name="description" content="Managed support, Microsoft 365 administration, cybersecurity, backup, and compliance-minded services for small and medium businesses in the Grand Strand area. Month-to-month, no long-term contracts." />
         <link rel="canonical" href="https://gsally.com/services" />
-        <meta property="og:title" content="Information Technology Services | Grand Strand Ally" />
+        <meta property="og:title" content="Information Technology Services | Grand Strand Ally — Myrtle Beach, SC" />
         <meta property="og:description" content="Practical information technology services for small and medium businesses across the Grand Strand. Managed support, Microsoft 365, cybersecurity, and compliance-minded operations." />
+        <meta property="og:type" content="website" />
         <meta property="og:url" content="https://gsally.com/services" />
+        <meta property="og:site_name" content="Grand Strand Ally" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Information Technology Services | Grand Strand Ally — Myrtle Beach, SC" />
+        <meta name="twitter:description" content="Managed support, Microsoft 365, cybersecurity, backup, and compliance-minded services for small and medium businesses in the Grand Strand. Month-to-month, no contracts." />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gsally.com" },
+                { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://gsally.com/services" }
+              ]
+            },
+            {
+              "@type": "WebPage",
+              "url": "https://gsally.com/services",
+              "name": "Information Technology Services — Grand Strand Ally",
+              "isPartOf": { "@id": "https://gsally.com/#website" },
+              "provider": { "@id": "https://gsally.com/#organization" }
+            }
+          ]
+        })}</script>
       </Helmet>
 
       {/* Hero */}

@@ -79,15 +79,35 @@ export default function OffboardingChecklist() {
         <link rel="canonical" href={CANONICAL} />
         <meta property="og:title" content={TITLE} />
         <meta property="og:description" content={DESC} />
+        <meta property="og:type" content="article" />
         <meta property="og:url" content={CANONICAL} />
+        <meta property="og:site_name" content="Grand Strand Ally" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={TITLE} />
+        <meta name="twitter:description" content={DESC} />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "Article",
-          "headline": TITLE,
-          "description": DESC,
-          "author": { "@type": "Organization", "name": "Grand Strand Ally", "url": "https://gsally.com" },
-          "publisher": { "@type": "Organization", "name": "Grand Strand Ally", "url": "https://gsally.com" },
-          "mainEntityOfPage": { "@type": "WebPage", "@id": CANONICAL },
+          "@graph": [
+            {
+              "@type": "Article",
+              "headline": TITLE,
+              "description": DESC,
+              "datePublished": "2026-06-01",
+              "dateModified": "2026-06-01",
+              "author": { "@id": "https://gsally.com/#organization" },
+              "publisher": { "@id": "https://gsally.com/#organization" },
+              "mainEntityOfPage": { "@type": "WebPage", "@id": CANONICAL },
+              "isPartOf": { "@id": "https://gsally.com/#website" }
+            },
+            {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gsally.com" },
+                { "@type": "ListItem", "position": 2, "name": "Resources", "item": "https://gsally.com" },
+                { "@type": "ListItem", "position": 3, "name": TITLE, "item": CANONICAL }
+              ]
+            }
+          ]
         })}</script>
       </Helmet>
 

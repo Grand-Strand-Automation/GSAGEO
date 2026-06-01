@@ -51,19 +51,39 @@ export default function CostAnalysis() {
   return (
     <>
       <Helmet>
-        <title>Free Information Technology Cost Analysis Tool | Grand Strand Ally — Myrtle Beach</title>
-        <meta
-          name="description"
-          content="Estimate your current information technology spend, identify overlapping tools and vendor redundancy, and review compliance considerations — in about 5 minutes. Free tool from Grand Strand Ally for Grand Strand businesses."
-        />
+        <title>Free Information Technology Cost Analysis Tool | Grand Strand Ally — Myrtle Beach, SC</title>
+        <meta name="description" content="Estimate your current information technology spend, identify overlapping tools and vendor redundancy, and review compliance considerations — in about 5 minutes. Free tool from Grand Strand Ally for Grand Strand businesses." />
         <link rel="canonical" href="https://gsally.com/cost-analysis" />
-        <meta property="og:title" content="Free Information Technology Cost Analysis Tool | Grand Strand Ally" />
-        <meta
-          property="og:description"
-          content="Estimate your current information technology spend and identify simplification opportunities. Free tool from Grand Strand Ally for Myrtle Beach and Grand Strand businesses."
-        />
-        <meta property="og:url" content="https://gsally.com/cost-analysis" />
+        <meta property="og:title" content="Free IT Cost Analysis Tool | Grand Strand Ally — Myrtle Beach, SC" />
+        <meta property="og:description" content="Estimate your current information technology spend and identify simplification opportunities. Free tool from Grand Strand Ally for Myrtle Beach and Grand Strand businesses." />
         <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://gsally.com/cost-analysis" />
+        <meta property="og:site_name" content="Grand Strand Ally" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Free IT Cost Analysis Tool | Grand Strand Ally — Myrtle Beach, SC" />
+        <meta name="twitter:description" content="5-minute tool to estimate IT spend, find overlapping tools, and review compliance gaps. Free from Grand Strand Ally for Grand Strand businesses." />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "WebApplication",
+              "name": "Grand Strand Ally Information Technology Cost Analysis Calculator",
+              "url": "https://gsally.com/cost-analysis",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web",
+              "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+              "provider": { "@id": "https://gsally.com/#organization" },
+              "description": "A free five-step calculator that estimates monthly and annual information technology spend, identifies overlapping tools, and surfaces compliance and access control gaps for small and medium businesses."
+            },
+            {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gsally.com" },
+                { "@type": "ListItem", "position": 2, "name": "Cost Analysis Tool", "item": "https://gsally.com/cost-analysis" }
+              ]
+            }
+          ]
+        })}</script>
       </Helmet>
 
       <div>

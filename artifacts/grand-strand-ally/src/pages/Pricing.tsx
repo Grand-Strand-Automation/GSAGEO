@@ -9,15 +9,36 @@ export default function Pricing() {
   return (
     <div className="flex flex-col">
       <Helmet>
-        <title>Pricing and Support Models | Grand Strand Ally — Myrtle Beach</title>
-        <meta
-          name="description"
-          content="Month-to-month information technology support with clear scope and no long-term contracts. Start with a free cost analysis to understand your current environment before committing to anything."
-        />
+        <title>Pricing and Support Models | Grand Strand Ally — Myrtle Beach, SC</title>
+        <meta name="description" content="Month-to-month information technology support with clear scope and no long-term contracts. Start with a free cost analysis to understand your current environment before committing to anything." />
         <link rel="canonical" href="https://gsally.com/pricing" />
-        <meta property="og:title" content="Pricing and Support Models | Grand Strand Ally" />
+        <meta property="og:title" content="Pricing and Support Models | Grand Strand Ally — Myrtle Beach, SC" />
         <meta property="og:description" content="Clear, month-to-month information technology pricing for small and medium businesses in the Grand Strand. No long-term contracts. Scope defined before work starts." />
+        <meta property="og:type" content="website" />
         <meta property="og:url" content="https://gsally.com/pricing" />
+        <meta property="og:site_name" content="Grand Strand Ally" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Pricing | Grand Strand Ally — Month-to-Month IT Support, Myrtle Beach" />
+        <meta name="twitter:description" content="Month-to-month IT support with clear scope and no long-term contracts. Grand Strand Ally — Myrtle Beach, SC." />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gsally.com" },
+                { "@type": "ListItem", "position": 2, "name": "Pricing", "item": "https://gsally.com/pricing" }
+              ]
+            },
+            {
+              "@type": "WebPage",
+              "url": "https://gsally.com/pricing",
+              "name": "Pricing and Support Models — Grand Strand Ally",
+              "isPartOf": { "@id": "https://gsally.com/#website" },
+              "provider": { "@id": "https://gsally.com/#organization" }
+            }
+          ]
+        })}</script>
       </Helmet>
 
       {/* Hero */}

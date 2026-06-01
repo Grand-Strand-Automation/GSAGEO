@@ -93,19 +93,36 @@ export default function Process() {
           content="Grand Strand Ally follows a four-step process: Review your current environment, Identify opportunities, Strengthen controls and operations, then Improve over time. Learn how we work with small and medium businesses in the Grand Strand."
         />
         <link rel="canonical" href="https://gsally.com/process" />
-        <meta property="og:title" content="Our Process | Grand Strand Ally — Myrtle Beach IT Support" />
+        <meta property="og:title" content="Our Four-Step Process | Grand Strand Ally — Myrtle Beach IT Support" />
         <meta property="og:description" content="A four-step process built around clarity before commitment: Review, Identify, Strengthen, Improve. No forced tool replacements. No long-term lock-in." />
+        <meta property="og:type" content="website" />
         <meta property="og:url" content="https://gsally.com/process" />
+        <meta property="og:site_name" content="Grand Strand Ally" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Our Process | Grand Strand Ally — Review, Identify, Strengthen, Improve" />
+        <meta name="twitter:description" content="A four-step process built around clarity before commitment. No forced tool replacements. No long-term lock-in." />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "HowTo",
-          "name": "Grand Strand Ally Information Technology Engagement Process",
-          "description": "A four-step process for reviewing, improving, and supporting information technology environments for small and medium businesses.",
-          "step": STEPS.map((s) => ({
-            "@type": "HowToStep",
-            "name": s.label,
-            "text": s.summary,
-          })),
+          "@graph": [
+            {
+              "@type": "HowTo",
+              "name": "Grand Strand Ally Information Technology Engagement Process",
+              "description": "A four-step process for reviewing, improving, and supporting information technology environments for small and medium businesses.",
+              "provider": { "@id": "https://gsally.com/#organization" },
+              "step": STEPS.map((s) => ({
+                "@type": "HowToStep",
+                "name": s.label,
+                "text": s.summary,
+              })),
+            },
+            {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gsally.com" },
+                { "@type": "ListItem", "position": 2, "name": "Our Process", "item": "https://gsally.com/process" }
+              ]
+            }
+          ]
         })}</script>
       </Helmet>
 

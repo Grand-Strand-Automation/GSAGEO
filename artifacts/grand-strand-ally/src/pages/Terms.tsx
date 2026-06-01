@@ -1,7 +1,15 @@
+import { Helmet } from "react-helmet-async";
 import { siteConfig } from "@/lib/site";
 
 export default function Terms() {
   return (
+    <>
+      <Helmet>
+        <title>Terms of Service | Grand Strand Ally</title>
+        <meta name="description" content="Terms of service for Grand Strand Ally (gsally.com). Month-to-month service model, scope of services, and limitations of liability." />
+        <link rel="canonical" href="https://gsally.com/terms" />
+        <meta name="robots" content="noindex, follow" />
+      </Helmet>
     <div className="min-h-screen bg-white pt-32 pb-20">
       <div className="container mx-auto px-4 max-w-3xl">
         <h1 className="text-4xl font-heading font-bold text-primary mb-8">Terms of Service</h1>
@@ -22,5 +30,6 @@ export default function Terms() {
         </div>
       </div>
     </div>
+    </>
   );
 }

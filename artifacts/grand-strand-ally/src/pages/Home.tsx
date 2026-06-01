@@ -15,12 +15,40 @@ import { content } from "@/lib/content";
 import { FAQ } from "@/components/FAQ";
 import { CTABand } from "@/components/CTABand";
 import { Button } from "@/components/ui/button";
+import { Helmet } from "react-helmet-async";
 
 const clarityIcons = [BarChart2, Layers, ClipboardList];
 
 export default function Home() {
   return (
     <div className="flex flex-col">
+      <Helmet>
+        <title>Grand Strand Ally | Information Technology Support &amp; Cost Analysis — Myrtle Beach, SC</title>
+        <meta name="description" content="Grand Strand Ally helps small and medium businesses in the Myrtle Beach and Grand Strand area gain visibility into information technology costs, simplify vendor structure, and strengthen compliance-minded support. Month-to-month. No long-term contracts." />
+        <link rel="canonical" href="https://gsally.com" />
+        <meta property="og:title" content="Grand Strand Ally | Information Technology Support — Myrtle Beach, SC" />
+        <meta property="og:description" content="Practical information technology support, cost analysis, and compliance-minded systems for small and medium businesses in the Myrtle Beach and Grand Strand area." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://gsally.com" />
+        <meta property="og:site_name" content="Grand Strand Ally" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Grand Strand Ally | Information Technology Support — Myrtle Beach, SC" />
+        <meta name="twitter:description" content="Gain clearer visibility into your information technology costs and support structure. Serving small and medium businesses across the Grand Strand." />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "@id": "https://gsally.com/#webpage",
+          "url": "https://gsally.com",
+          "name": "Grand Strand Ally — Information Technology Support for the Grand Strand",
+          "isPartOf": { "@id": "https://gsally.com/#website" },
+          "about": { "@id": "https://gsally.com/#organization" },
+          "description": "Managed information technology support, cost analysis, Microsoft 365 administration, and compliance-minded systems for small and medium businesses in the Myrtle Beach and Grand Strand area of South Carolina.",
+          "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gsally.com" }]
+          }
+        })}</script>
+      </Helmet>
 
       {/* ── 1. Hero ─────────────────────────────────────────────── */}
       <section className="bg-[#0E2F54] text-white pt-32 pb-0 md:pt-40 relative overflow-hidden">

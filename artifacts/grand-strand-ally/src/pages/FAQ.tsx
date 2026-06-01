@@ -168,10 +168,23 @@ export default function FAQPage() {
           content="Answers to common questions about Grand Strand Ally's information technology services, cost analysis process, pricing, contracts, and how to get started. Serving small and medium businesses across the Grand Strand."
         />
         <link rel="canonical" href="https://gsally.com/faq" />
-        <meta property="og:title" content="Frequently Asked Questions | Grand Strand Ally" />
+        <meta property="og:title" content="Frequently Asked Questions | Grand Strand Ally — Myrtle Beach IT Support" />
         <meta property="og:description" content="Common questions about Grand Strand Ally's IT services, free cost analysis, pricing, and getting started for businesses in the Myrtle Beach and Grand Strand area." />
+        <meta property="og:type" content="website" />
         <meta property="og:url" content="https://gsally.com/faq" />
+        <meta property="og:site_name" content="Grand Strand Ally" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="FAQ | Grand Strand Ally — IT Support Myrtle Beach" />
+        <meta name="twitter:description" content="Answers to common questions about Grand Strand Ally's IT services, cost analysis, pricing, and how to get started across the Grand Strand." />
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gsally.com" },
+            { "@type": "ListItem", "position": 2, "name": "FAQ", "item": "https://gsally.com/faq" }
+          ]
+        })}</script>
       </Helmet>
 
       {/* ── Hero ── */}

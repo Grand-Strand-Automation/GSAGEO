@@ -1,7 +1,15 @@
+import { Helmet } from "react-helmet-async";
 import { siteConfig } from "@/lib/site";
 
 export default function Privacy() {
   return (
+    <>
+      <Helmet>
+        <title>Privacy Policy | Grand Strand Ally</title>
+        <meta name="description" content="Privacy policy for Grand Strand Ally (gsally.com). How we collect, use, and protect information submitted through our website." />
+        <link rel="canonical" href="https://gsally.com/privacy" />
+        <meta name="robots" content="noindex, follow" />
+      </Helmet>
     <div className="min-h-screen bg-white pt-32 pb-20">
       <div className="container mx-auto px-4 max-w-3xl">
         <h1 className="text-4xl font-heading font-bold text-primary mb-8">Privacy Policy</h1>
@@ -22,5 +30,6 @@ export default function Privacy() {
         </div>
       </div>
     </div>
+    </>
   );
 }

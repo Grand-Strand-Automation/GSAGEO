@@ -164,16 +164,32 @@ export default function FreeITCostAnalysis() {
         <link rel="canonical" href={CANONICAL} />
         <meta property="og:title" content={TITLE} />
         <meta property="og:description" content={DESC} />
+        <meta property="og:type" content="website" />
         <meta property="og:url" content={CANONICAL} />
+        <meta property="og:site_name" content="Grand Strand Ally" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Free IT Cost Analysis | Grand Strand Ally — Myrtle Beach, SC" />
+        <meta name="twitter:description" content="Free structured review of your IT environment. Written findings. No commitment. Serving small businesses across the Grand Strand." />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "Service",
-          "name": "Free Information Technology Cost Analysis",
-          "provider": { "@type": "Organization", "name": "Grand Strand Ally", "url": "https://gsally.com" },
-          "description": DESC,
-          "areaServed": { "@type": "Place", "name": "Grand Strand, Myrtle Beach, SC" },
-          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-          "url": CANONICAL,
+          "@graph": [
+            {
+              "@type": "Service",
+              "name": "Free Information Technology Cost Analysis",
+              "provider": { "@id": "https://gsally.com/#organization" },
+              "description": DESC,
+              "areaServed": { "@type": "Place", "name": "Grand Strand, Myrtle Beach, SC" },
+              "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+              "url": CANONICAL,
+            },
+            {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gsally.com" },
+                { "@type": "ListItem", "position": 2, "name": "Free IT Cost Analysis", "item": CANONICAL }
+              ]
+            }
+          ]
         })}</script>
       </Helmet>
 

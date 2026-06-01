@@ -38,25 +38,41 @@ export default function About() {
     <div className="flex flex-col">
       <Helmet>
         <title>About Grand Strand Ally | Information Technology Services — Myrtle Beach, SC</title>
-        <meta
-          name="description"
-          content="Grand Strand Ally (gsally.com) provides information technology cost clarity, vendor simplification, Microsoft 365 support, and compliance-minded services for small and medium businesses across the Grand Strand and Myrtle Beach area."
-        />
+        <meta name="description" content="Grand Strand Ally (gsally.com) provides information technology cost clarity, vendor simplification, Microsoft 365 support, and compliance-minded services for small and medium businesses across the Grand Strand and Myrtle Beach area." />
         <link rel="canonical" href="https://gsally.com/about" />
         <meta property="og:title" content="About Grand Strand Ally | IT Services — Myrtle Beach, SC" />
         <meta property="og:description" content="Grand Strand Ally helps small and medium businesses in the Myrtle Beach and Grand Strand area gain cost clarity, simplify vendors, and strengthen compliance-minded support." />
+        <meta property="og:type" content="website" />
         <meta property="og:url" content="https://gsally.com/about" />
+        <meta property="og:site_name" content="Grand Strand Ally" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="About Grand Strand Ally | IT Services — Myrtle Beach, SC" />
+        <meta name="twitter:description" content="Grand Strand Ally (gsally.com) — IT cost clarity, vendor simplification, Microsoft 365 support, and compliance-minded services for Grand Strand businesses." />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "Organization",
-          "name": "Grand Strand Ally",
-          "alternateName": ["GSally", "gsally.com"],
-          "url": "https://gsally.com",
-          "telephone": "+19732021455",
-          "email": "shawn@gsally.com",
-          "description": "Information technology cost clarity, vendor simplification, Microsoft 365 administration, and compliance-minded support for small and medium businesses in the Grand Strand and Myrtle Beach area.",
-          "areaServed": { "@type": "Place", "name": "Grand Strand, Myrtle Beach, SC" },
-          "sameAs": ["https://gsally.com"]
+          "@graph": [
+            {
+              "@type": "Organization",
+              "@id": "https://gsally.com/#organization",
+              "name": "Grand Strand Ally",
+              "alternateName": ["GSally", "gsally.com"],
+              "url": "https://gsally.com",
+              "logo": "https://gsally.com/brand/logo-icon.png",
+              "telephone": "+19732021455",
+              "email": "shawn@gsally.com",
+              "description": "Information technology cost clarity, vendor simplification, Microsoft 365 administration, and compliance-minded support for small and medium businesses in the Grand Strand and Myrtle Beach area.",
+              "address": { "@type": "PostalAddress", "addressLocality": "Myrtle Beach", "addressRegion": "SC", "addressCountry": "US" },
+              "areaServed": { "@type": "Place", "name": "Grand Strand, Myrtle Beach, SC" },
+              "sameAs": ["https://gsally.com"]
+            },
+            {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gsally.com" },
+                { "@type": "ListItem", "position": 2, "name": "About", "item": "https://gsally.com/about" }
+              ]
+            }
+          ]
         })}</script>
       </Helmet>
 

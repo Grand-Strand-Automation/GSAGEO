@@ -22,46 +22,70 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "Grand Strand Ally",
-      "description": "Information technology cost analysis, managed support, Microsoft 365 administration, and compliance-minded systems for small and medium businesses in the Grand Strand and Myrtle Beach area.",
-      "url": "https://gsally.com",
-      "telephone": "+19732021455",
-      "email": "shawn@gsally.com",
-      "areaServed": [
+      "@graph": [
         {
-          "@type": "City",
-          "name": "Myrtle Beach",
-          "sameAs": "https://en.wikipedia.org/wiki/Myrtle_Beach,_South_Carolina"
+          "@type": ["LocalBusiness", "ProfessionalService"],
+          "@id": "https://gsally.com/#organization",
+          "name": "Grand Strand Ally",
+          "alternateName": ["GSally", "gsally.com"],
+          "description": "Information technology cost analysis, managed support, Microsoft 365 administration, and compliance-minded systems for small and medium businesses in the Grand Strand and Myrtle Beach area.",
+          "url": "https://gsally.com",
+          "logo": "https://gsally.com/brand/logo-icon.png",
+          "telephone": "+19732021455",
+          "email": "shawn@gsally.com",
+          "priceRange": "$$",
+          "areaServed": [
+            {
+              "@type": "City",
+              "name": "Myrtle Beach",
+              "sameAs": "https://en.wikipedia.org/wiki/Myrtle_Beach,_South_Carolina"
+            },
+            { "@type": "Place", "name": "Conway, South Carolina" },
+            { "@type": "Place", "name": "North Myrtle Beach, South Carolina" },
+            { "@type": "Place", "name": "Grand Strand, South Carolina" }
+          ],
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Myrtle Beach",
+            "addressRegion": "SC",
+            "addressCountry": "US"
+          },
+          "sameAs": ["https://gsally.com"],
+          "knowsAbout": [
+            "Managed Information Technology Support",
+            "Microsoft 365 Administration",
+            "Cybersecurity and Compliance",
+            "Information Technology Cost Analysis",
+            "Onboarding and Offboarding Automation",
+            "Vendor Simplification",
+            "Backup and Recovery"
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Information Technology Services",
+            "itemListElement": [
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Managed Information Technology Support" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Microsoft 365 Setup and Administration" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cybersecurity and Compliance Support" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Backup and Recovery" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Network and Wi-Fi Management" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Free Information Technology Cost Analysis", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" } } }
+            ]
+          }
         },
         {
-          "@type": "Place",
-          "name": "Grand Strand, South Carolina"
+          "@type": "WebSite",
+          "@id": "https://gsally.com/#website",
+          "url": "https://gsally.com",
+          "name": "Grand Strand Ally",
+          "publisher": { "@id": "https://gsally.com/#organization" },
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": { "@type": "EntryPoint", "urlTemplate": "https://gsally.com/?s={search_term_string}" },
+            "query-input": "required name=search_term_string"
+          }
         }
-      ],
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Myrtle Beach",
-        "addressRegion": "SC",
-        "addressCountry": "US"
-      },
-      "knowsAbout": [
-        "Managed Information Technology Support",
-        "Microsoft 365 Administration",
-        "Cybersecurity and Compliance",
-        "Information Technology Cost Analysis",
-        "Onboarding and Offboarding Automation"
-      ],
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Information Technology Services",
-        "itemListElement": [
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Managed Information Technology Support" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Microsoft 365 Setup and Support" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cybersecurity and Compliance Support" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Free Information Technology Cost Analysis" } }
-        ]
-      }
+      ]
     }
     </script>
   </head>

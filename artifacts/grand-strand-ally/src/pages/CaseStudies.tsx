@@ -226,19 +226,35 @@ export default function CaseStudies() {
         <link rel="canonical" href={CANONICAL} />
         <meta property="og:title" content={TITLE} />
         <meta property="og:description" content={DESC} />
+        <meta property="og:type" content="website" />
         <meta property="og:url" content={CANONICAL} />
+        <meta property="og:site_name" content="Grand Strand Ally" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Case Studies | Grand Strand Ally — Real Results" />
+        <meta name="twitter:description" content={DESC} />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "ItemList",
-          "name": "Grand Strand Ally Case Studies",
-          "description": DESC,
-          "url": CANONICAL,
-          "itemListElement": CASE_STUDIES.map((cs, i) => ({
-            "@type": "ListItem",
-            "position": i + 1,
-            "name": `${cs.industry}: ${cs.headline}`,
-            "url": `${CANONICAL}#${cs.id}`,
-          })),
+          "@graph": [
+            {
+              "@type": "ItemList",
+              "name": "Grand Strand Ally Case Studies",
+              "description": DESC,
+              "url": CANONICAL,
+              "itemListElement": CASE_STUDIES.map((cs, i) => ({
+                "@type": "ListItem",
+                "position": i + 1,
+                "name": `${cs.industry}: ${cs.headline}`,
+                "url": `${CANONICAL}#${cs.id}`,
+              })),
+            },
+            {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gsally.com" },
+                { "@type": "ListItem", "position": 2, "name": "Case Studies", "item": CANONICAL }
+              ]
+            }
+          ]
         })}</script>
       </Helmet>
 

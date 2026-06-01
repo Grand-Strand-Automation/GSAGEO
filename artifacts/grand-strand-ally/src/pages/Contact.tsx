@@ -7,15 +7,36 @@ export default function Contact() {
   return (
     <div className="flex flex-col">
       <Helmet>
-        <title>Contact Grand Strand Ally | Free Cost Analysis — Myrtle Beach, SC</title>
-        <meta
-          name="description"
-          content="Schedule a free, no-obligation information technology cost analysis with Grand Strand Ally. Serving small and medium businesses across the Grand Strand and Myrtle Beach area. Response within one business day."
-        />
+        <title>Contact Grand Strand Ally | Schedule a Free Cost Analysis — Myrtle Beach, SC</title>
+        <meta name="description" content="Schedule a free, no-obligation information technology cost analysis with Grand Strand Ally. Serving small and medium businesses across the Grand Strand and Myrtle Beach area. Response within one business day." />
         <link rel="canonical" href="https://gsally.com/contact" />
-        <meta property="og:title" content="Contact Grand Strand Ally | Free Cost Analysis for Myrtle Beach Businesses" />
+        <meta property="og:title" content="Contact Grand Strand Ally | Free Cost Analysis — Myrtle Beach, SC" />
         <meta property="og:description" content="Reach out to Grand Strand Ally to schedule a free information technology cost analysis. No obligation, no pressure — just a clear review of your current environment." />
+        <meta property="og:type" content="website" />
         <meta property="og:url" content="https://gsally.com/contact" />
+        <meta property="og:site_name" content="Grand Strand Ally" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Contact Grand Strand Ally | Free Cost Analysis — Myrtle Beach, SC" />
+        <meta name="twitter:description" content="Schedule a free IT cost analysis with Grand Strand Ally. No commitment required. Response within one business day." />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "ContactPage",
+              "url": "https://gsally.com/contact",
+              "name": "Contact Grand Strand Ally",
+              "isPartOf": { "@id": "https://gsally.com/#website" },
+              "about": { "@id": "https://gsally.com/#organization" }
+            },
+            {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gsally.com" },
+                { "@type": "ListItem", "position": 2, "name": "Contact", "item": "https://gsally.com/contact" }
+              ]
+            }
+          ]
+        })}</script>
       </Helmet>
 
       {/* Hero */}
