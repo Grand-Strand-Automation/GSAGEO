@@ -263,7 +263,8 @@ export default function HowMuchItSupport() {
                   { label: "How to find overlapping IT tools and vendors", href: "/how-to-find-overlapping-it-tools-and-vendors" },
                   { label: "What an IT cost analysis should include", href: "/what-an-it-cost-analysis-should-include" },
                   { label: "Small business offboarding checklist", href: "/small-business-offboarding-checklist" },
-                  { label: "Try the free cost analysis tool", href: "/cost-analysis" },
+                  { label: "View our services", href: "/services" },
+                  { label: "Schedule a free cost analysis", href: "/free-it-cost-analysis" },
                 ].map((link) => (
                   <Link key={link.href} href={link.href} className="bg-white border border-[#D7E1EA] hover:border-[#1F5E95] rounded-xl px-5 py-3.5 text-sm font-medium text-[#0E2F54] hover:text-[#1F5E95] transition-colors flex items-center gap-2">
                     <span className="w-1 h-1 rounded-full bg-[#1F5E95] inline-block shrink-0" />

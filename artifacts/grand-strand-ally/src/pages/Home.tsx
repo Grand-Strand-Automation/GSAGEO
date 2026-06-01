@@ -416,7 +416,70 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── 9. FAQ ──────────────────────────────────────────────── */}
+      {/* ── 9. Guides & resources ───────────────────────────────── */}
+      <section className="py-14 bg-[#F7F5F1]">
+        <div className="container mx-auto px-4 md:px-6 max-w-5xl">
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
+            <div>
+              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#4B5B6B] flex items-center gap-1.5 mb-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#1F5E95] inline-block" />
+                Guides &amp; resources
+              </span>
+              <h2 className="text-2xl md:text-3xl font-heading font-bold text-[#0E2F54] leading-tight">
+                Learn before you decide.
+              </h2>
+            </div>
+            <div className="flex flex-wrap gap-x-5 gap-y-2">
+              <Link href="/case-studies" className="text-sm font-semibold text-[#1F5E95] hover:text-[#0E2F54] transition-colors flex items-center gap-1">
+                Case studies <ArrowRight size={13} />
+              </Link>
+              <Link href="/pricing" className="text-sm font-semibold text-[#1F5E95] hover:text-[#0E2F54] transition-colors flex items-center gap-1">
+                Pricing <ArrowRight size={13} />
+              </Link>
+              <Link href="/free-it-cost-analysis" className="text-sm font-semibold text-[#1F5E95] hover:text-[#0E2F54] transition-colors flex items-center gap-1">
+                Free analysis overview <ArrowRight size={13} />
+              </Link>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {[
+              {
+                title: "How much should a small business spend on IT support?",
+                href: "/how-much-should-a-small-business-spend-on-it-support",
+                desc: "Benchmarks by company size and risk profile, with signals for both over- and underspending.",
+              },
+              {
+                title: "How to find overlapping IT tools and vendors",
+                href: "/how-to-find-overlapping-it-tools-and-vendors",
+                desc: "A four-step process for mapping your vendor stack and finding where you are paying twice for the same capability.",
+              },
+              {
+                title: "Small business employee offboarding checklist",
+                href: "/small-business-offboarding-checklist",
+                desc: "Organized by timing — covering account disabling, license reclamation, file transfer, and access audits.",
+              },
+              {
+                title: "What an IT cost analysis should include",
+                href: "/what-an-it-cost-analysis-should-include",
+                desc: "The five areas a useful analysis covers, and five red flags that signal a sales pitch instead.",
+              },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="group bg-white border border-[#D7E1EA] hover:border-[#1F5E95] rounded-xl p-5 transition-colors"
+              >
+                <p className="text-[15px] font-heading font-bold text-[#0E2F54] group-hover:text-[#1F5E95] mb-2 leading-snug transition-colors">
+                  {item.title}
+                </p>
+                <p className="text-sm text-[#4B5B6B] leading-relaxed">{item.desc}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 10. FAQ ──────────────────────────────────────────────── */}
       <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-2xl">
           <div className="text-center mb-10">

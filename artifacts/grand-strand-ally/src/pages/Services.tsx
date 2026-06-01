@@ -165,11 +165,57 @@ export default function Services() {
         </div>
       </section>
 
+      {/* Related reading */}
+      <section className="py-14 bg-[#F7F5F1]">
+        <div className="container mx-auto px-4 md:px-6 max-w-5xl">
+          <div className="mb-7">
+            <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#4B5B6B] flex items-center gap-1.5 mb-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#1F5E95] inline-block" />
+              Guides &amp; resources
+            </span>
+            <h2 className="text-2xl font-heading font-bold text-[#0E2F54]">
+              Common questions before getting started.
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {[
+              {
+                title: "How much should a small business spend on IT support?",
+                href: "/how-much-should-a-small-business-spend-on-it-support",
+                desc: "Benchmarks by company size and risk profile — with signals for both over- and underspending.",
+              },
+              {
+                title: "How to find overlapping IT tools and vendors",
+                href: "/how-to-find-overlapping-it-tools-and-vendors",
+                desc: "A four-step process for mapping your vendor stack and finding where you are paying twice for the same capability.",
+              },
+              {
+                title: "What an IT cost analysis should include",
+                href: "/what-an-it-cost-analysis-should-include",
+                desc: "The five areas a useful analysis covers — and five red flags that signal a sales pitch instead.",
+              },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="group bg-white border border-[#D7E1EA] hover:border-[#1F5E95] rounded-xl p-5 transition-colors"
+              >
+                <p className="text-[15px] font-heading font-bold text-[#0E2F54] group-hover:text-[#1F5E95] mb-2 leading-snug transition-colors">
+                  {item.title}
+                </p>
+                <p className="text-sm text-[#4B5B6B] leading-relaxed">{item.desc}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <CTABand
         title="Not sure which service comes first?"
         subtitle="Start with a free cost analysis. We review your current environment, identify overlap and friction, and help prioritize practical next steps."
         buttons={[
           { label: "Schedule a Free Cost Analysis", href: "/contact", primary: true },
+          { label: "View Case Studies", href: "/case-studies", primary: false },
         ]}
       />
     </div>

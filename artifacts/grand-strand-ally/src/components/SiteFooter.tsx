@@ -86,11 +86,41 @@ export function SiteFooter() {
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-sm text-white/55 hover:text-white transition-colors">
-                  About Grand Strand Ally
+                <Link href="/free-it-cost-analysis" className="text-sm text-white/55 hover:text-white transition-colors">
+                  Free Cost Analysis Overview
+                </Link>
+              </li>
+              <li>
+                <Link href="/case-studies" className="text-sm text-white/55 hover:text-white transition-colors">
+                  Case Studies
                 </Link>
               </li>
             </ul>
+            <div className="mt-6 pt-6 border-t border-white/10">
+              <h3 className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/35 mb-3">Articles</h3>
+              <ul className="space-y-3">
+                <li>
+                  <Link href="/how-much-should-a-small-business-spend-on-it-support" className="text-sm text-white/55 hover:text-white transition-colors">
+                    IT Support Cost Guide
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/how-to-find-overlapping-it-tools-and-vendors" className="text-sm text-white/55 hover:text-white transition-colors">
+                    Finding Tool Overlap
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/small-business-offboarding-checklist" className="text-sm text-white/55 hover:text-white transition-colors">
+                    Offboarding Checklist
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/what-an-it-cost-analysis-should-include" className="text-sm text-white/55 hover:text-white transition-colors">
+                    Cost Analysis Guide
+                  </Link>
+                </li>
+              </ul>
+            </div>
             <div className="mt-6 pt-6 border-t border-white/10">
               <h3 className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/35 mb-3">Legal</h3>
               <ul className="space-y-3">
