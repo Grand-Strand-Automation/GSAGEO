@@ -44,7 +44,21 @@
     <priority>0.9</priority>
   </url>
 
-  <!-- Tool / educational marketing -->
+  <url>
+    <loc>https://gsally.com/case-studies</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Offer landing pages -->
+  <url>
+    <loc>https://gsally.com/free-it-cost-analysis</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <url>
     <loc>https://gsally.com/cost-analysis</loc>
     <lastmod>2026-06-01</lastmod>

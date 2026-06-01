@@ -15,6 +15,8 @@ import Contact from "@/pages/Contact";
 import CostAnalysis from "@/pages/CostAnalysis";
 import FAQPage from "@/pages/FAQ";
 import Process from "@/pages/Process";
+import CaseStudies from "@/pages/CaseStudies";
+import FreeITCostAnalysis from "@/pages/FreeITCostAnalysis";
 import ThankYou from "@/pages/ThankYou";
 import Privacy from "@/pages/Privacy";
 import Terms from "@/pages/Terms";
@@ -42,6 +44,8 @@ function Router() {
           <Route path="/cost-analysis" component={CostAnalysis} />
           <Route path="/faq" component={FAQPage} />
           <Route path="/process" component={Process} />
+          <Route path="/case-studies" component={CaseStudies} />
+          <Route path="/free-it-cost-analysis" component={FreeITCostAnalysis} />
           <Route path="/thank-you" component={ThankYou} />
           <Route path="/privacy" component={Privacy} />
           <Route path="/terms" component={Terms} />
