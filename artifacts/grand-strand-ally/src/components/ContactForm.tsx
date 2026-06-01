@@ -194,7 +194,7 @@ export function ContactForm() {
           disabled={isSubmitting}
           data-testid="contact-form-submit"
         >
-          {isSubmitting ? <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> Sending...</> : "Book a Free Cost Analysis →"}
+          {isSubmitting ? <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> Sending...</> : "Schedule a Free Cost Analysis →"}
         </Button>
       </form>
     </Form>
