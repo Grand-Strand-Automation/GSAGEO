@@ -8,10 +8,13 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 
 import Home from "@/pages/Home";
+import About from "@/pages/About";
 import Services from "@/pages/Services";
 import Pricing from "@/pages/Pricing";
 import Contact from "@/pages/Contact";
 import CostAnalysis from "@/pages/CostAnalysis";
+import FAQPage from "@/pages/FAQ";
+import Process from "@/pages/Process";
 import ThankYou from "@/pages/ThankYou";
 import Privacy from "@/pages/Privacy";
 import Terms from "@/pages/Terms";
@@ -26,10 +29,13 @@ function Router() {
       <main className="flex-grow">
         <Switch>
           <Route path="/" component={Home} />
+          <Route path="/about" component={About} />
           <Route path="/services" component={Services} />
           <Route path="/pricing" component={Pricing} />
           <Route path="/contact" component={Contact} />
           <Route path="/cost-analysis" component={CostAnalysis} />
+          <Route path="/faq" component={FAQPage} />
+          <Route path="/process" component={Process} />
           <Route path="/thank-you" component={ThankYou} />
           <Route path="/privacy" component={Privacy} />
           <Route path="/terms" component={Terms} />

@@ -50,9 +50,11 @@ export function SiteFooter() {
             <h3 className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/35 mb-5">Company</h3>
             <ul className="space-y-3">
               {[
-                { label: "Home", href: siteConfig.links.home },
+                { label: "Home", href: "/" },
+                { label: "About", href: "/about" },
                 { label: "Services", href: siteConfig.links.services },
                 { label: "Pricing", href: siteConfig.links.pricing },
+                { label: "Our Process", href: "/process" },
                 { label: "Cost Analysis", href: siteConfig.links.costAnalysis },
                 { label: "Contact", href: siteConfig.links.contact },
               ].map(({ label, href }) => (
@@ -66,20 +68,45 @@ export function SiteFooter() {
           </div>
 
           <div>
-            <h3 className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/35 mb-5">Legal</h3>
+            <h3 className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/35 mb-5">Resources</h3>
             <ul className="space-y-3">
               <li>
-                <Link href={siteConfig.links.privacy} className="text-sm text-white/55 hover:text-white transition-colors">
-                  Privacy Policy
+                <Link href="/faq" className="text-sm text-white/55 hover:text-white transition-colors">
+                  FAQ
                 </Link>
               </li>
               <li>
-                <Link href={siteConfig.links.terms} className="text-sm text-white/55 hover:text-white transition-colors">
-                  Terms of Service
+                <Link href="/process" className="text-sm text-white/55 hover:text-white transition-colors">
+                  How We Work
+                </Link>
+              </li>
+              <li>
+                <Link href="/cost-analysis" className="text-sm text-white/55 hover:text-white transition-colors">
+                  Free Cost Analysis Tool
+                </Link>
+              </li>
+              <li>
+                <Link href="/about" className="text-sm text-white/55 hover:text-white transition-colors">
+                  About Grand Strand Ally
                 </Link>
               </li>
             </ul>
-            <div className="mt-8">
+            <div className="mt-6 pt-6 border-t border-white/10">
+              <h3 className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/35 mb-3">Legal</h3>
+              <ul className="space-y-3">
+                <li>
+                  <Link href={siteConfig.links.privacy} className="text-sm text-white/55 hover:text-white transition-colors">
+                    Privacy Policy
+                  </Link>
+                </li>
+                <li>
+                  <Link href={siteConfig.links.terms} className="text-sm text-white/55 hover:text-white transition-colors">
+                    Terms of Service
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div className="mt-6">
               <h3 className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/35 mb-3">Get Started</h3>
               <Link
                 href={siteConfig.links.contact}
