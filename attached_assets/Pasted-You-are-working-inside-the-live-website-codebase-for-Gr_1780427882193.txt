@@ -1,0 +1,151 @@
+You are working inside the live website codebase for Grand Strand Ally at gsally.com.
+
+Goal:
+Run a final QA polish pass across the entire public site before production launch. Do not redesign the site. Do not change the brand voice. Do not change working functionality unless needed to fix UX, clarity, content polish, or obvious QA issues.
+
+Primary objective:
+Clean up small but noticeable copy, structure, and page-finish issues so the site feels polished, intentional, and production-ready.
+
+Important context:
+The site is already largely functional and launch-ready. This is not a rebuild. This is a final editorial + UX QA pass.
+Keep the current styling, layout, spacing, colors, components, typography, and overall tone.
+Do not make the site sound generic or over-marketed.
+
+Main QA issues to fix:
+
+1. Contact page redundancy
+The Contact page currently repeats the “not a hard sell” idea too many times.
+It includes lines like:
+- “No pressure, no hard sell”
+- “A practical conversation, not a hard sell”
+
+Fix this by keeping only one strong version of the message.
+Recommended approach:
+- keep “A practical conversation, not a hard sell”
+- remove “No pressure, no hard sell”
+
+Also review the Contact page for duplicate service-area sentences and remove repeated wording where the same idea is stated more than once.
+
+2. CTA clarity on Contact page
+Make sure the Contact page still feels calm and low-pressure, but without repeating the same reassurance multiple times.
+
+3. Thin or unfinished-looking bottom sections
+Review all public service pages and educational pages for sections like:
+- “Frequently asked questions”
+- “Related reading”
+If any of these sections are empty, too thin, or look like placeholders, fix them.
+
+For each core service page, make sure there is:
+- a real FAQ block with 4 to 6 useful questions and answers
+- a real related-reading block with working internal links
+- one clear CTA near the bottom
+
+For each educational page, make sure “Related reading” contains real internal links and does not appear as an empty heading.
+
+4. FAQ page quality check
+Inspect the FAQ page.
+Make sure the content does not feel too thin or incomplete.
+If the page uses collapsible sections or accordions, make sure the visible experience feels complete and the answers are actually present in the rendered page.
+If needed, improve the page by making the question/answer content more substantial and clearly readable.
+
+5. Free IT Cost Analysis page numbering check
+Inspect the page:
+- /free-it-cost-analysis
+Make sure the “Three steps” section is correctly numbered and visually complete.
+If Step 01 is missing, hidden, or unclear, fix it so the sequence reads correctly and feels intentional.
+
+6. Service-page finish quality
+Review these service pages:
+- /network-wifi-management-myrtle-beach
+- /managed-it-support-myrtle-beach
+- /microsoft-365-support
+- /it-cost-analysis
+- /cybersecurity-compliance-support
+- /backup-recovery-support
+- /onboarding-offboarding-automation
+
+For each one:
+- remove any awkward repetition
+- improve any abrupt endings
+- ensure the page ends with a complete, polished lower section
+- preserve the tone and core messaging
+
+7. Educational-page finish quality
+Review these educational pages:
+- /how-much-should-a-small-business-spend-on-it-support
+- /how-to-find-overlapping-it-tools-and-vendors
+- /small-business-offboarding-checklist
+- /what-an-it-cost-analysis-should-include
+
+For each one:
+- remove awkward or repetitive phrasing
+- make sure the ending feels complete
+- ensure related internal links are present and useful
+- preserve the informative, practical tone
+
+8. Site-wide repetition pass
+Run an editorial QA pass across the public site and look for:
+- repeated reassurance phrases
+- repeated service-area sentences
+- repeated CTA copy used too many times in the same page
+- repeated phrases that make the copy feel templated
+Tighten these where appropriate without changing the overall message.
+
+9. Final CTA and page polish pass
+Check homepage, services, pricing, process, FAQ, case studies, contact, free-it-cost-analysis, and the service pages for:
+- awkward copy repetition
+- placeholder-feeling endings
+- incomplete transition into footer or CTA
+- missed opportunities to make the final section feel intentional
+
+Rules:
+- Do not redesign the site
+- Do not change working form behavior
+- Do not rewrite everything
+- Keep the current Grand Strand Ally voice:
+  practical, calm, credible, specific, low-hype, compliance-minded, cost-clarity-focused
+- Avoid generic MSP marketing copy
+- Keep edits surgical and high quality
+- Preserve existing SEO intent and page structure unless a small change improves clarity
+
+Work in this order:
+1. inspect the current public pages and identify exact QA issues
+2. fix the Contact page repetition issue first
+3. fix thin or empty FAQ / related-reading sections
+4. fix Free IT Cost Analysis step numbering if needed
+5. polish service-page endings
+6. polish educational-page endings
+7. run a final site-wide repetition cleanup
+8. run final QA review
+
+Pages to review:
+- /
+- /about
+- /services
+- /pricing
+- /process
+- /faq
+- /case-studies
+- /contact
+- /free-it-cost-analysis
+- /cost-analysis
+- /network-wifi-management-myrtle-beach
+- /managed-it-support-myrtle-beach
+- /microsoft-365-support
+- /it-cost-analysis
+- /cybersecurity-compliance-support
+- /backup-recovery-support
+- /onboarding-offboarding-automation
+- /how-much-should-a-small-business-spend-on-it-support
+- /how-to-find-overlapping-it-tools-and-vendors
+- /small-business-offboarding-checklist
+- /what-an-it-cost-analysis-should-include
+
+When finished, give me:
+1. a changed-files list
+2. a page-by-page summary of what you changed
+3. the exact repeated phrases you removed or consolidated
+4. confirmation that the Contact page no longer repeats the “hard sell” phrasing
+5. confirmation that FAQ / related-reading sections are now complete where needed
+6. confirmation that the Free IT Cost Analysis steps are correctly numbered
+7. a final launch-readiness QA summary
