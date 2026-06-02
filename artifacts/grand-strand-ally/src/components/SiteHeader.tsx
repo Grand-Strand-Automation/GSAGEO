@@ -14,46 +14,79 @@ const SERVICE_LINKS = [
   { label: "Onboarding and Offboarding", href: siteConfig.links.onboardingOffboardingAutomation },
 ];
 
+const RESOURCE_LINKS = [
+  { label: "IT Support Cost Guide", href: "/how-much-should-a-small-business-spend-on-it-support" },
+  { label: "Finding Tool Overlap", href: "/how-to-find-overlapping-it-tools-and-vendors" },
+  { label: "Offboarding Checklist", href: "/small-business-offboarding-checklist" },
+  { label: "Cost Analysis Guide", href: "/what-an-it-cost-analysis-should-include" },
+];
+
+const SERVICE_ROOTS = [
+  "/managed-it", "/microsoft-365", "/it-cost", "/cybersecurity",
+  "/backup", "/onboarding", "/employee-onboarding", "/services",
+];
+
 export function SiteHeader() {
   const [location] = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const isActive = (href: string) =>
+    href === "/" ? location === "/" : location.startsWith(href);
+
+  const isServicesActive = SERVICE_ROOTS.some((r) => location.startsWith(r));
 
   useEffect(() => {
     setMobileMenuOpen(false);
     setMobileServicesOpen(false);
+    setMobileResourcesOpen(false);
     setDropdownOpen(false);
   }, [location]);
 
   useEffect(() => {
     if (!dropdownOpen) return;
-    function onOutsideClick(e: MouseEvent) {
+    function handler(e: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
         setDropdownOpen(false);
       }
     }
-    document.addEventListener("mousedown", onOutsideClick);
-    return () => document.removeEventListener("mousedown", onOutsideClick);
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
   }, [dropdownOpen]);
+
+  const desktopLinkClass = (href: string) =>
+    `text-sm font-medium transition-colors whitespace-nowrap ${
+      isActive(href) ? "text-white" : "text-white/70 hover:text-white"
+    }`;
+
+  const mobileLinkClass = (href: string) =>
+    `block text-sm font-medium py-3 px-3 rounded-lg transition-colors ${
+      isActive(href)
+        ? "text-white bg-white/[0.08]"
+        : "text-white/80 hover:text-white hover:bg-white/5"
+    }`;
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#0E2F54] border-b border-white/10">
-      <div className="container mx-auto px-4 md:px-6 flex items-center h-16 gap-4">
+      <div className="container mx-auto px-4 xl:px-6 flex items-center h-16 gap-4">
 
         <div className="flex-none">
           <Logo />
         </div>
 
-        {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-5 ml-auto flex-none">
+        {/* ── Desktop nav (xl+) ─────────────────────────────── */}
+        <nav className="hidden xl:flex items-center gap-3 ml-auto flex-none">
 
           {/* Services dropdown */}
           <div className="relative" ref={dropdownRef}>
             <button
               onClick={() => setDropdownOpen((o) => !o)}
-              className="flex items-center gap-1 text-sm font-medium text-white/70 hover:text-white transition-colors whitespace-nowrap"
+              className={`flex items-center gap-1 text-sm font-medium transition-colors whitespace-nowrap ${
+                isServicesActive ? "text-white" : "text-white/70 hover:text-white"
+              }`}
               data-testid="nav-link-services"
               aria-haspopup="true"
               aria-expanded={dropdownOpen}
@@ -79,25 +112,40 @@ export function SiteHeader() {
                     <Link
                       key={link.href}
                       href={link.href}
-                      className="block px-4 py-2.5 text-sm text-white/65 hover:text-white hover:bg-white/5 transition-colors rounded-lg mx-1"
+                      className={`block px-4 py-2.5 text-sm hover:bg-white/5 transition-colors rounded-lg mx-1 ${
+                        isActive(link.href) ? "text-white" : "text-white/65 hover:text-white"
+                      }`}
                     >
                       {link.label}
                     </Link>
                   ))}
+                </div>
+                <div className="border-t border-white/10 mt-1 pt-1 px-1">
+                  <Link
+                    href="/free-it-cost-analysis"
+                    className={`flex items-center gap-2 px-3 py-2.5 text-sm font-semibold hover:bg-white/5 rounded-lg transition-colors ${
+                      isActive("/free-it-cost-analysis") ? "text-white" : "text-[#60B8F0] hover:text-white"
+                    }`}
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#60B8F0] inline-block shrink-0" />
+                    Free IT Cost Analysis
+                  </Link>
                 </div>
               </div>
             )}
           </div>
 
           {[
-            { label: "Pricing", href: siteConfig.links.pricing },
-            { label: "Cost Analysis", href: siteConfig.links.costAnalysis },
+            { label: "About", href: "/about" },
+            { label: "Process", href: "/process" },
+            { label: "Case Studies", href: "/case-studies" },
+            { label: "FAQ", href: "/faq" },
             { label: "Contact", href: siteConfig.links.contact },
           ].map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-white/70 hover:text-white transition-colors whitespace-nowrap"
+              className={desktopLinkClass(link.href)}
               data-testid={`nav-link-${link.label.toLowerCase().replace(/\s+/g, "-")}`}
             >
               {link.label}
@@ -107,7 +155,7 @@ export function SiteHeader() {
           <Button
             asChild
             size="sm"
-            className="bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold text-sm px-5 h-9 rounded-lg border-0 whitespace-nowrap ml-1"
+            className="bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold text-sm px-4 h-9 rounded-lg border-0 whitespace-nowrap ml-1"
           >
             <Link href={siteConfig.links.contact} data-testid="nav-cta-button">
               Schedule a Free Cost Analysis
@@ -115,9 +163,9 @@ export function SiteHeader() {
           </Button>
         </nav>
 
-        {/* Mobile hamburger */}
+        {/* ── Hamburger (below xl) ───────────────────────────── */}
         <button
-          className="md:hidden p-2 -mr-1 text-white/80 hover:text-white rounded-md transition-colors ml-auto"
+          className="xl:hidden p-2 -mr-1 text-white/80 hover:text-white rounded-md transition-colors ml-auto"
           onClick={() => setMobileMenuOpen((o) => !o)}
           aria-label="Toggle menu"
           aria-expanded={mobileMenuOpen}
@@ -127,13 +175,20 @@ export function SiteHeader() {
         </button>
       </div>
 
-      {/* Mobile menu */}
+      {/* ── Mobile / tablet menu ───────────────────────────── */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#0A2440] border-t border-white/10 px-4 pt-3 pb-4 flex flex-col gap-1">
+        <div className="xl:hidden bg-[#0A2440] border-t border-white/10 px-4 pt-3 pb-5 flex flex-col gap-0.5 max-h-[calc(100vh-64px)] overflow-y-auto">
+
+          <Link href="/" className={mobileLinkClass("/")}>Home</Link>
+          <Link href="/about" className={mobileLinkClass("/about")}>About</Link>
 
           {/* Services accordion */}
           <button
-            className="flex items-center justify-between w-full text-sm font-medium text-white/80 py-3 px-3 hover:bg-white/5 rounded-lg transition-colors"
+            className={`flex items-center justify-between w-full text-sm font-medium py-3 px-3 rounded-lg transition-colors ${
+              mobileServicesOpen || isServicesActive
+                ? "text-white bg-white/[0.08]"
+                : "text-white/80 hover:text-white hover:bg-white/5"
+            }`}
             onClick={() => setMobileServicesOpen((o) => !o)}
           >
             Services
@@ -155,27 +210,69 @@ export function SiteHeader() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-sm text-white/65 py-2 px-3 hover:bg-white/5 hover:text-white rounded-lg transition-colors"
+                  className={`text-sm py-2 px-3 rounded-lg transition-colors ${
+                    isActive(link.href)
+                      ? "text-white font-medium bg-white/5"
+                      : "text-white/65 hover:text-white hover:bg-white/5"
+                  }`}
                 >
                   {link.label}
                 </Link>
               ))}
+              <Link
+                href="/free-it-cost-analysis"
+                className={`flex items-center gap-2 text-sm font-semibold py-2 px-3 rounded-lg transition-colors ${
+                  isActive("/free-it-cost-analysis")
+                    ? "text-white bg-white/5"
+                    : "text-[#60B8F0] hover:text-white hover:bg-white/5"
+                }`}
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-[#60B8F0] inline-block shrink-0" />
+                Free IT Cost Analysis
+              </Link>
             </div>
           )}
 
-          {[
-            { label: "Pricing", href: siteConfig.links.pricing },
-            { label: "Cost Analysis", href: siteConfig.links.costAnalysis },
-            { label: "Contact", href: siteConfig.links.contact },
-          ].map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-white/80 py-3 px-3 hover:bg-white/5 rounded-lg transition-colors"
+          <Link href="/process" className={mobileLinkClass("/process")}>Process</Link>
+          <Link href="/case-studies" className={mobileLinkClass("/case-studies")}>Case Studies</Link>
+          <Link href="/faq" className={mobileLinkClass("/faq")}>FAQ</Link>
+          <Link href={siteConfig.links.contact} className={mobileLinkClass(siteConfig.links.contact)}>Contact</Link>
+
+          {/* Resources accordion */}
+          <div className="border-t border-white/10 mt-2 pt-2">
+            <button
+              className={`flex items-center justify-between w-full text-sm font-medium py-3 px-3 rounded-lg transition-colors ${
+                mobileResourcesOpen
+                  ? "text-white/80 bg-white/5"
+                  : "text-white/55 hover:text-white/80 hover:bg-white/5"
+              }`}
+              onClick={() => setMobileResourcesOpen((o) => !o)}
             >
-              {link.label}
-            </Link>
-          ))}
+              Resources
+              <ChevronDown
+                size={14}
+                className={`transition-transform duration-150 ${mobileResourcesOpen ? "rotate-180" : ""}`}
+              />
+            </button>
+
+            {mobileResourcesOpen && (
+              <div className="pl-3 flex flex-col gap-0.5 mb-1">
+                {RESOURCE_LINKS.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`text-sm py-2 px-3 rounded-lg transition-colors ${
+                      isActive(link.href)
+                        ? "text-white font-medium bg-white/5"
+                        : "text-white/55 hover:text-white hover:bg-white/5"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
 
           <div className="pt-3 border-t border-white/10 mt-2">
             <Button asChild className="w-full bg-[#1F5E95] hover:bg-[#1a5080] text-white text-sm h-11 rounded-lg font-semibold">

@@ -36,6 +36,7 @@ export function SiteFooter() {
                 { label: "Cybersecurity and Compliance", href: siteConfig.links.cybersecurityCompliancePage },
                 { label: "Backup and Recovery", href: siteConfig.links.backupRecoverySupportPage },
                 { label: "Onboarding and Offboarding", href: siteConfig.links.onboardingOffboardingAutomation },
+                { label: "Free IT Cost Analysis", href: "/free-it-cost-analysis" },
               ].map(({ label, href }) => (
                 <li key={label}>
                   <Link href={href} className="text-sm text-white/55 hover:text-white transition-colors">
@@ -53,9 +54,10 @@ export function SiteFooter() {
                 { label: "Home", href: "/" },
                 { label: "About", href: "/about" },
                 { label: "Services", href: siteConfig.links.services },
-                { label: "Pricing", href: siteConfig.links.pricing },
                 { label: "Our Process", href: "/process" },
-                { label: "Cost Analysis", href: siteConfig.links.costAnalysis },
+                { label: "Case Studies", href: "/case-studies" },
+                { label: "FAQ", href: "/faq" },
+                { label: "Pricing", href: siteConfig.links.pricing },
                 { label: "Contact", href: siteConfig.links.contact },
               ].map(({ label, href }) => (
                 <li key={label}>
@@ -71,56 +73,38 @@ export function SiteFooter() {
             <h3 className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/35 mb-5">Resources</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/faq" className="text-sm text-white/55 hover:text-white transition-colors">
-                  FAQ
-                </Link>
-              </li>
-              <li>
-                <Link href="/process" className="text-sm text-white/55 hover:text-white transition-colors">
-                  How We Work
-                </Link>
-              </li>
-              <li>
                 <Link href="/cost-analysis" className="text-sm text-white/55 hover:text-white transition-colors">
                   Free Cost Analysis Tool
                 </Link>
               </li>
-              <li>
-                <Link href="/free-it-cost-analysis" className="text-sm text-white/55 hover:text-white transition-colors">
-                  Free Cost Analysis Overview
-                </Link>
-              </li>
-              <li>
-                <Link href="/case-studies" className="text-sm text-white/55 hover:text-white transition-colors">
-                  Case Studies
-                </Link>
-              </li>
             </ul>
+
             <div className="mt-6 pt-6 border-t border-white/10">
-              <h3 className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/35 mb-3">Articles</h3>
+              <h3 className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/35 mb-4">Articles</h3>
               <ul className="space-y-3">
                 <li>
                   <Link href="/how-much-should-a-small-business-spend-on-it-support" className="text-sm text-white/55 hover:text-white transition-colors">
-                    IT Support Cost Guide
+                    How Much Should a Small Business Spend on IT Support?
                   </Link>
                 </li>
                 <li>
                   <Link href="/how-to-find-overlapping-it-tools-and-vendors" className="text-sm text-white/55 hover:text-white transition-colors">
-                    Finding Tool Overlap
+                    How to Find Overlapping IT Tools and Vendors
                   </Link>
                 </li>
                 <li>
                   <Link href="/small-business-offboarding-checklist" className="text-sm text-white/55 hover:text-white transition-colors">
-                    Offboarding Checklist
+                    Small Business Offboarding Checklist
                   </Link>
                 </li>
                 <li>
                   <Link href="/what-an-it-cost-analysis-should-include" className="text-sm text-white/55 hover:text-white transition-colors">
-                    Cost Analysis Guide
+                    What an IT Cost Analysis Should Include
                   </Link>
                 </li>
               </ul>
             </div>
+
             <div className="mt-6 pt-6 border-t border-white/10">
               <h3 className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/35 mb-3">Legal</h3>
               <ul className="space-y-3">
@@ -136,6 +120,7 @@ export function SiteFooter() {
                 </li>
               </ul>
             </div>
+
             <div className="mt-6">
               <h3 className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/35 mb-3">Get Started</h3>
               <Link
