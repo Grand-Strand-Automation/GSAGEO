@@ -19,6 +19,12 @@ import { Helmet } from "react-helmet-async";
 
 const clarityIcons = [BarChart2, Layers, ClipboardList];
 
+const CORE_SYSTEM_LINKS: Record<string, string> = {
+  cost: "/it-cost-analysis",
+  support: "/managed-it-support-myrtle-beach",
+  compliance: "/cybersecurity-compliance-support",
+};
+
 export default function Home() {
   return (
     <div className="flex flex-col">
@@ -194,6 +200,13 @@ export default function Home() {
                     <p className="text-[10px] font-bold uppercase tracking-widest text-[#1F5E95] mb-1">Our approach</p>
                     <p className="text-[#0E2F54] leading-snug font-medium">{sys.solution}</p>
                   </div>
+                  {CORE_SYSTEM_LINKS[sys.id] && (
+                    <div className="pt-1">
+                      <Link href={CORE_SYSTEM_LINKS[sys.id]} className="inline-flex items-center gap-1 text-xs font-semibold text-[#1F5E95] hover:text-[#0E2F54] transition-colors">
+                        Learn more <ArrowRight size={11} />
+                      </Link>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
@@ -205,6 +218,24 @@ export default function Home() {
             >
               See all services <ArrowRight size={14} />
             </Link>
+            <div className="flex flex-wrap justify-center gap-2 mt-5">
+              {[
+                { label: "Managed IT Support", href: "/managed-it-support-myrtle-beach" },
+                { label: "Microsoft 365 Support", href: "/microsoft-365-support" },
+                { label: "IT Cost Analysis", href: "/it-cost-analysis" },
+                { label: "Cybersecurity and Compliance", href: "/cybersecurity-compliance-support" },
+                { label: "Backup and Recovery", href: "/backup-recovery-support" },
+                { label: "Onboarding and Offboarding", href: "/onboarding-offboarding-automation" },
+              ].map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-xs font-medium text-[#1F5E95] hover:text-[#0E2F54] border border-[#D7E1EA] hover:border-[#1F5E95] rounded-full px-4 py-1.5 bg-white transition-colors whitespace-nowrap"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -282,10 +313,15 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <div className="text-center mt-10">
+          <div className="text-center mt-10 space-y-4">
             <p className="text-xs text-[#4B5B6B] inline-block border border-[#D7E1EA] rounded-xl py-3 px-6 bg-[#F7F5F1] tracking-wide">
               No forced replacements &nbsp;·&nbsp; No unnecessary complexity &nbsp;·&nbsp; No long-term lock-in
             </p>
+            <div>
+              <Link href="/process" className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#1F5E95] hover:text-[#0E2F54] transition-colors">
+                Read more about how we work <ArrowRight size={13} />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -313,6 +349,11 @@ export default function Home() {
                 <p className="text-sm text-white/55 leading-relaxed">{card.description}</p>
               </div>
             ))}
+          </div>
+          <div className="text-center mt-8">
+            <Link href="/about" className="inline-flex items-center gap-1.5 text-sm font-semibold text-white/60 hover:text-white transition-colors">
+              Learn more about Grand Strand Ally <ArrowRight size={13} />
+            </Link>
           </div>
         </div>
       </section>
@@ -343,10 +384,15 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <div className="text-center mt-8">
+          <div className="text-center mt-8 space-y-3">
             <Button asChild className="bg-[#0E2F54] hover:bg-[#0A2440] text-white font-semibold h-12 px-7 text-[15px] rounded-lg">
               <Link href="/contact">Schedule a Free Cost Analysis →</Link>
             </Button>
+            <div>
+              <Link href="/free-it-cost-analysis" className="inline-flex items-center gap-1.5 text-sm font-medium text-[#1F5E95] hover:text-[#0E2F54] transition-colors">
+                What does the free cost analysis include? <ArrowRight size={13} />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -492,6 +538,11 @@ export default function Home() {
             </h2>
           </div>
           <FAQ />
+          <div className="text-center mt-8">
+            <Link href="/faq" className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#1F5E95] hover:text-[#0E2F54] transition-colors">
+              See all frequently asked questions <ArrowRight size={13} />
+            </Link>
+          </div>
         </div>
       </section>
 
