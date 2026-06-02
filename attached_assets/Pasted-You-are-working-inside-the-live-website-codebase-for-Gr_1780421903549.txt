@@ -1,0 +1,127 @@
+You are working inside the live website codebase for Grand Strand Ally at gsally.com.
+
+Goal:
+Run a full internal-link and routing cleanup so the site is safe to deploy to production today.
+
+Important context:
+The live site is mostly working, and the main public pages are up. The contact form is now working correctly, so do not change form behavior unless needed for link cleanup.
+This task is specifically about:
+1. fixing any internal links that point to the wrong place
+2. ensuring every internal link points to the preferred canonical URL
+3. redirecting any alternate or legacy URLs to the correct canonical page
+4. making sitemap.xml, navigation, services page, footer links, and content links consistent
+5. running a final QA pass before deployment
+
+Canonical URLs to keep as the preferred service pages:
+- /managed-it-support-myrtle-beach
+- /microsoft-365-support
+- /it-cost-analysis
+- /cybersecurity-compliance-support
+- /backup-recovery-support
+- /onboarding-offboarding-automation
+- /network-wifi-management-myrtle-beach
+
+Core pages to keep:
+- /
+- /about
+- /services
+- /pricing
+- /process
+- /faq
+- /case-studies
+- /contact
+- /free-it-cost-analysis
+- /cost-analysis
+- /how-much-should-a-small-business-spend-on-it-support
+- /how-to-find-overlapping-it-tools-and-vendors
+- /small-business-offboarding-checklist
+- /what-an-it-cost-analysis-should-include
+- /privacy
+- /terms
+
+Known alternate/legacy URLs that should not stay as independent duplicates:
+- /microsoft-365-support-myrtle-beach -> redirect to /microsoft-365-support
+- /cybersecurity-support-myrtle-beach -> redirect to /cybersecurity-compliance-support
+- /backup-and-recovery-myrtle-beach -> redirect to /backup-recovery-support
+- /employee-onboarding-offboarding-it -> redirect to /onboarding-offboarding-automation
+
+Tasks:
+1. Inspect the codebase and identify:
+   - framework/router
+   - where routes are defined
+   - where redirects are configured
+   - where header, footer, and services page links are defined
+   - where sitemap.xml is generated or stored
+
+2. Crawl or inspect all internal links in:
+   - header navigation
+   - mobile menu
+   - footer
+   - homepage
+   - /services
+   - /pricing
+   - /process
+   - /faq
+   - /case-studies
+   - /contact
+   - all service pages
+   - all educational pages
+
+3. Fix any internal link that points to:
+   - an alternate/legacy URL instead of the canonical URL
+   - a duplicate route
+   - a placeholder route
+   - a route that should be redirected
+
+4. Add proper redirects for all alternate/legacy service URLs so that:
+   - they 301 redirect to the canonical URL
+   - internal links never rely on the alternate URL
+   - sitemap.xml only includes canonical URLs
+
+5. Ensure /services only links to canonical service pages.
+   Keep Network and Wi-Fi Management included as a real service page and make its links consistent across the site.
+
+6. Ensure header, mobile nav, footer, homepage service cards, CTA blocks, related-reading blocks, and service-page links all point to canonical destinations.
+
+7. Check for broken anchors or broken hash links such as #calculator or #how-it-works.
+   If those anchors do not exist on the target page, either:
+   - add the matching anchor target to the destination page, or
+   - change the link to a working destination
+
+8. Update sitemap.xml so it contains only final canonical public URLs.
+
+9. Run a final QA pass and verify:
+   - no internal links point to old/alternate service URLs
+   - all main public URLs return successfully
+   - redirects work correctly
+   - no important page is orphaned
+   - header/footer/menu links are correct
+   - sitemap.xml matches the final public architecture
+   - there are no broken internal links in the production build
+
+Rules:
+- Do not redesign the site
+- Do not change copy unless necessary to fix link labels or routing clarity
+- Do not change the working form logic
+- Preserve the current styling, layout, components, and brand voice
+- Prefer true redirects over leaving duplicate routes live
+- If a route should remain public, make sure it is linked intentionally and included consistently
+
+When finished, give me:
+1. a changed-files list
+2. a redirect map
+3. a list of every internal link you corrected
+4. the final canonical URL list
+5. the final sitemap URL list
+6. a short deploy checklist for production today
+7. a QA summary with pass/fail for:
+   - header links
+   - mobile menu links
+   - footer links
+   - homepage links
+   - services page links
+   - service page links
+   - educational page links
+   - redirects
+   - sitemap consistency
+   - broken-link check

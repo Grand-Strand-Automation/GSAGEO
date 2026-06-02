@@ -8,6 +8,7 @@ import { siteConfig } from "@/lib/site";
 const SERVICE_LINKS = [
   { label: "Managed IT Support", href: siteConfig.links.managedItSupport },
   { label: "Microsoft 365 Support", href: siteConfig.links.microsoft365SupportPage },
+  { label: "Network and Wi-Fi", href: siteConfig.links.networkWifiManagement },
   { label: "IT Cost Analysis", href: siteConfig.links.itCostAnalysis },
   { label: "Cybersecurity and Compliance", href: siteConfig.links.cybersecurityCompliancePage },
   { label: "Backup and Recovery", href: siteConfig.links.backupRecoverySupportPage },
@@ -22,8 +23,8 @@ const RESOURCE_LINKS = [
 ];
 
 const SERVICE_ROOTS = [
-  "/managed-it", "/microsoft-365", "/it-cost", "/cybersecurity",
-  "/backup", "/onboarding", "/employee-onboarding", "/services",
+  "/managed-it", "/microsoft-365", "/network-wifi", "/it-cost", "/cybersecurity",
+  "/backup", "/onboarding", "/services",
 ];
 
 export function SiteHeader() {
