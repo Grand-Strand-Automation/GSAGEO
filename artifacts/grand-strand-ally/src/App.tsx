@@ -1,4 +1,5 @@
-import { Switch, Route, Router as WouterRouter } from "wouter";
+import { useEffect } from "react";
+import { Switch, Route, Router as WouterRouter, useLocation } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
@@ -30,16 +31,18 @@ import CostAnalysisGuide from "@/pages/edu/CostAnalysisGuide";
 
 // Service pages
 import ManagedITSupport from "@/pages/services/ManagedITSupport";
-import Microsoft365Support from "@/pages/services/Microsoft365Support";
 import NetworkWifiManagement from "@/pages/services/NetworkWifiManagement";
-import CybersecuritySupport from "@/pages/services/CybersecuritySupport";
-import BackupRecovery from "@/pages/services/BackupRecovery";
-import WorkflowAutomation from "@/pages/services/WorkflowAutomation";
 import Microsoft365SupportPage from "@/pages/services/Microsoft365SupportPage";
 import ITCostAnalysisPage from "@/pages/services/ITCostAnalysisPage";
 import CybersecurityComplianceSupportPage from "@/pages/services/CybersecurityComplianceSupportPage";
 import BackupRecoverySupportPage from "@/pages/services/BackupRecoverySupportPage";
 import OnboardingOffboardingAutomation from "@/pages/services/OnboardingOffboardingAutomation";
+
+function RedirectTo({ to }: { to: string }) {
+  const [, navigate] = useLocation();
+  useEffect(() => { navigate(to, { replace: true }); }, [to]);
+  return null;
+}
 
 const queryClient = new QueryClient();
 
@@ -71,11 +74,11 @@ function Router() {
 
           {/* Service pages */}
           <Route path="/managed-it-support-myrtle-beach" component={ManagedITSupport} />
-          <Route path="/microsoft-365-support-myrtle-beach" component={Microsoft365Support} />
+          <Route path="/microsoft-365-support-myrtle-beach" component={() => <RedirectTo to="/microsoft-365-support" />} />
           <Route path="/network-wifi-management-myrtle-beach" component={NetworkWifiManagement} />
-          <Route path="/cybersecurity-support-myrtle-beach" component={CybersecuritySupport} />
-          <Route path="/backup-and-recovery-myrtle-beach" component={BackupRecovery} />
-          <Route path="/employee-onboarding-offboarding-it" component={WorkflowAutomation} />
+          <Route path="/cybersecurity-support-myrtle-beach" component={() => <RedirectTo to="/cybersecurity-compliance-support" />} />
+          <Route path="/backup-and-recovery-myrtle-beach" component={() => <RedirectTo to="/backup-recovery-support" />} />
+          <Route path="/employee-onboarding-offboarding-it" component={() => <RedirectTo to="/onboarding-offboarding-automation" />} />
           <Route path="/microsoft-365-support" component={Microsoft365SupportPage} />
           <Route path="/it-cost-analysis" component={ITCostAnalysisPage} />
           <Route path="/cybersecurity-compliance-support" component={CybersecurityComplianceSupportPage} />

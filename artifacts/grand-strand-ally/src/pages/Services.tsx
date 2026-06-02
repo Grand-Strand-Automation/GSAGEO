@@ -16,11 +16,11 @@ const iconMap: Record<string, LucideIcon> = {
 
 const SERVICE_HREFS: Record<string, string> = {
   "managed-it": "/managed-it-support-myrtle-beach",
-  "microsoft-365": "/microsoft-365-support-myrtle-beach",
+  "microsoft-365": "/microsoft-365-support",
   "network-wifi": "/network-wifi-management-myrtle-beach",
-  "cybersecurity": "/cybersecurity-support-myrtle-beach",
-  "backup-recovery": "/backup-and-recovery-myrtle-beach",
-  "workflow-automation": "/employee-onboarding-offboarding-it",
+  "cybersecurity": "/cybersecurity-compliance-support",
+  "backup-recovery": "/backup-recovery-support",
+  "workflow-automation": "/onboarding-offboarding-automation",
 };
 
 export default function Services() {

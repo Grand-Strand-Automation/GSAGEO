@@ -210,6 +210,13 @@ export default function BackupRecoverySupportPage() {
             </section>
 
             <section className="border-t border-[#D7E1EA] pt-8">
+              <h2 className="text-2xl font-heading font-bold text-[#0E2F54] mb-4">Serving the Grand Strand</h2>
+              <p className="text-sm text-[#4B5B6B] leading-relaxed">
+                Backup and recovery support is available to small and medium businesses throughout the Myrtle Beach and Grand Strand area, including Conway, North Myrtle Beach, Surfside Beach, Murrells Inlet, Pawleys Island, Little River, and Socastee. Tested recovery procedures and clear documentation — not just a backup job that runs without any verification.
+              </p>
+            </section>
+
+            <section className="border-t border-[#D7E1EA] pt-8">
               <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#4B5B6B] mb-4">Related reading</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[

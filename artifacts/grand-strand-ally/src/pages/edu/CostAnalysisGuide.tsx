@@ -281,6 +281,7 @@ export default function CostAnalysisGuide() {
                   { label: "How much should a small business spend on IT support?", href: "/how-much-should-a-small-business-spend-on-it-support" },
                   { label: "How to find overlapping IT tools and vendors", href: "/how-to-find-overlapping-it-tools-and-vendors" },
                   { label: "Small business offboarding checklist", href: "/small-business-offboarding-checklist" },
+                  { label: "IT cost analysis service", href: "/it-cost-analysis" },
                   { label: "View our services", href: "/services" },
                   { label: "Schedule a free cost analysis", href: "/free-it-cost-analysis" },
                 ].map((link) => (

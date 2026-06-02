@@ -212,6 +212,13 @@ export default function Microsoft365SupportPage() {
             </section>
 
             <section className="border-t border-[#D7E1EA] pt-8">
+              <h2 className="text-2xl font-heading font-bold text-[#0E2F54] mb-4">Serving the Grand Strand</h2>
+              <p className="text-sm text-[#4B5B6B] leading-relaxed">
+                Grand Strand Ally supports Microsoft 365 setup, licensing, and ongoing administration for businesses throughout the Grand Strand — Myrtle Beach, Conway, North Myrtle Beach, Surfside Beach, Murrells Inlet, Pawleys Island, Little River, and Socastee. If your business is in the area and uses Microsoft 365, we can review your current configuration and right-size your licensing without requiring a long-term commitment.
+              </p>
+            </section>
+
+            <section className="border-t border-[#D7E1EA] pt-8">
               <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#4B5B6B] mb-4">Related reading</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[

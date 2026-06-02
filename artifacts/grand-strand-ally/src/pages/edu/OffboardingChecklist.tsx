@@ -243,6 +243,7 @@ export default function OffboardingChecklist() {
                   { label: "How to find overlapping IT tools and vendors", href: "/how-to-find-overlapping-it-tools-and-vendors" },
                   { label: "What an IT cost analysis should include", href: "/what-an-it-cost-analysis-should-include" },
                   { label: "How much should a small business spend on IT support?", href: "/how-much-should-a-small-business-spend-on-it-support" },
+                  { label: "Onboarding and offboarding automation", href: "/onboarding-offboarding-automation" },
                   { label: "View our services", href: "/services" },
                   { label: "Schedule a free cost analysis", href: "/free-it-cost-analysis" },
                 ].map((link) => (

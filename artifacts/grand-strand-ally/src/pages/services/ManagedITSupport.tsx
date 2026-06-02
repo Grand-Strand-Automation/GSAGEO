@@ -243,6 +243,13 @@ export default function ManagedITSupport() {
             </section>
 
             <section className="border-t border-[#D7E1EA] pt-8">
+              <h2 className="text-2xl font-heading font-bold text-[#0E2F54] mb-4">Serving the Grand Strand</h2>
+              <p className="text-sm text-[#4B5B6B] leading-relaxed">
+                Grand Strand Ally provides managed information technology support to small and medium businesses throughout the Myrtle Beach area, including Conway, North Myrtle Beach, Surfside Beach, Murrells Inlet, Pawleys Island, Little River, and Socastee. Month-to-month support with a clearly defined scope — available to any business operating across Horry or Georgetown county without a long-term commitment.
+              </p>
+            </section>
+
+            <section className="border-t border-[#D7E1EA] pt-8">
               <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#4B5B6B] mb-4">Related reading</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[

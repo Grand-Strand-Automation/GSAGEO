@@ -1,0 +1,134 @@
+You are working inside the live website codebase for Grand Strand Ally at gsally.com.
+
+Your goal is to clean up the site after a GEO/SEO audit without redesigning the brand or changing the visual style. Reuse the current components, layout, spacing, colors, typography, and overall UX. Do not replace the current design system.
+
+Context:
+The website now has strong foundational GEO/SEO elements including a valid sitemap.xml, robots.txt, llms.txt, homepage schema, trust pages, service pages, educational pages, and case-study content. However, the audit found several structural issues that need to be fixed to improve crawlability, canonical clarity, internal linking, and answer-engine visibility.
+
+Main issues to fix:
+1. Duplicate service-page architecture:
+   There are multiple route variants for the same service topics. The site should use one canonical URL per service topic.
+   Canonical service URLs to keep:
+   - /managed-it-support-myrtle-beach
+   - /microsoft-365-support
+   - /it-cost-analysis
+   - /cybersecurity-compliance-support
+   - /backup-recovery-support
+   - /onboarding-offboarding-automation
+
+   Alternate/duplicate URLs currently present in the app should be redirected to the canonical versions:
+   - /microsoft-365-support-myrtle-beach -> /microsoft-365-support
+   - /cybersecurity-support-myrtle-beach -> /cybersecurity-compliance-support
+   - /backup-and-recovery-myrtle-beach -> /backup-recovery-support
+   - /employee-onboarding-offboarding-it -> /onboarding-offboarding-automation
+
+   Also inspect for any additional alias or legacy service routes and redirect them to the canonical versions.
+
+2. Services page internal-link inconsistency:
+   The /services page must link only to the canonical service URLs above. Remove links to alternate versions.
+
+3. Empty or thin end-of-page sections:
+   Many service pages currently end with headings like “Frequently asked questions” and “Related reading” but do not include real content.
+   For each core service page, add:
+   - 4 to 6 real FAQ items
+   - 3 to 5 real related-reading internal links to educational or adjacent service pages
+   - one clear CTA section linking to /contact or /free-it-cost-analysis
+
+4. Service-page localization:
+   Add a short local service-area section to each core service page that naturally references Myrtle Beach, Conway, North Myrtle Beach, Surfside Beach, Murrells Inlet, Pawleys Island, Little River, and the wider Grand Strand where appropriate.
+   Keep it natural and not spammy.
+
+5. Network/Wi-Fi service consistency:
+   The current /services page includes a Network and Wi-Fi Management offering and links to /network-wifi-management-myrtle-beach, but this page is not consistently represented in the main discovery files.
+   Inspect whether this page is intended to be a real public money page.
+   If yes:
+   - keep it live
+   - add it to sitemap.xml
+   - add it to llms.txt
+   - include it in related internal links where appropriate
+   If not:
+   - remove or de-emphasize it from /services so the architecture stays consistent.
+
+6. Structured data cleanup:
+   Review the homepage schema.
+   - If SearchAction points to a site search that does not really function, remove it.
+   - Replace self-referential sameAs entries with real external profiles if those exist in the codebase or config.
+   - If no real external profiles exist, remove sameAs rather than self-referencing the homepage.
+   Keep the existing Organization / LocalBusiness / ProfessionalService structure otherwise.
+
+7. Thank-you page indexing hygiene:
+   The /thank-you page is disallowed in robots.txt. Also ensure it is noindex, nofollow at the page level and is not included in the sitemap or public nav.
+
+8. Rendering / crawlability improvements:
+   Inspect the framework and build setup.
+   If the site is currently heavily client-rendered, improve crawl reliability by pre-rendering or statically generating all key public pages if the framework supports it.
+   Prioritize:
+   - homepage
+   - about
+   - services
+   - pricing
+   - process
+   - faq
+   - case-studies
+   - contact
+   - all core service pages
+   - educational pages
+   - free-it-cost-analysis
+   - cost-analysis
+   Do this only in a way that preserves the current behavior and deployment setup.
+
+9. Educational page linking:
+   Make sure each educational page links to:
+   - at least one relevant service page
+   - at least one offer page such as /free-it-cost-analysis or /contact
+   - at least one adjacent educational or proof page
+   Replace placeholder “Related reading” headings with actual internal links.
+
+10. Sitemap and llms alignment:
+   Update sitemap.xml and llms.txt so they reflect the final canonical public URL structure after all cleanup is complete.
+
+Implementation requirements:
+- Do not redesign the site
+- Do not replace current copy with generic MSP filler copy
+- Keep the brand voice aligned with Grand Strand Ally:
+  cost clarity, vendor simplification, Microsoft 365 administration, compliance-minded support, backup/recovery, onboarding/offboarding controls, month-to-month service, and Grand Strand / Myrtle Beach relevance
+- Preserve all existing strong pages and content unless changes are needed for canonical cleanup or internal-link improvement
+- Use proper redirects, not duplicate live copies, where routes overlap
+- Preserve the current menu/header/footer unless updates are needed to point to canonical routes
+- Ensure no important page returns a broken route after the cleanup
+
+Please work in this order:
+1. Inspect codebase and identify:
+   - framework/router
+   - route definitions
+   - redirect handling
+   - sitemap generation
+   - llms.txt location
+   - schema location
+   - whether pre-rendering / static generation is available
+2. Canonicalize service routes and add redirects
+3. Fix /services links
+4. Fill FAQ and Related Reading sections on service pages
+5. Add local-area sections to service pages
+6. Resolve Network/Wi-Fi page consistency
+7. Clean up schema
+8. Add noindex to /thank-you
+9. Improve rendering/pre-rendering where feasible
+10. Update sitemap.xml and llms.txt
+11. Run final QA
+
+At the end, give me:
+- a changed-files list
+- a redirect map
+- the final canonical service URL list
+- the final sitemap URL list
+- any pages that still need manual copy review
+- a QA report with pass/fail for:
+  - canonical consistency
+  - broken links
+  - internal links
+  - sitemap accuracy
+  - llms.txt accuracy
+  - thank-you noindex handling
+  - schema sanity
+  - crawlability / rendering readiness

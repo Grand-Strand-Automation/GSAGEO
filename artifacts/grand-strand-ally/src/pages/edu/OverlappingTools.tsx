@@ -258,6 +258,7 @@ export default function OverlappingTools() {
                   { label: "How much should a small business spend on IT support?", href: "/how-much-should-a-small-business-spend-on-it-support" },
                   { label: "What an IT cost analysis should include", href: "/what-an-it-cost-analysis-should-include" },
                   { label: "Small business offboarding checklist", href: "/small-business-offboarding-checklist" },
+                  { label: "IT cost analysis service", href: "/it-cost-analysis" },
                   { label: "View our services", href: "/services" },
                   { label: "Schedule a free cost analysis", href: "/free-it-cost-analysis" },
                 ].map((link) => (

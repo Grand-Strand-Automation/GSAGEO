@@ -210,6 +210,13 @@ export default function ITCostAnalysisPage() {
             </section>
 
             <section className="border-t border-[#D7E1EA] pt-8">
+              <h2 className="text-2xl font-heading font-bold text-[#0E2F54] mb-4">Serving the Grand Strand</h2>
+              <p className="text-sm text-[#4B5B6B] leading-relaxed">
+                The free IT cost analysis is available to any small or medium business in the Grand Strand area — Myrtle Beach, Conway, North Myrtle Beach, Surfside Beach, Murrells Inlet, Pawleys Island, Little River, and Socastee. It is a working session, not a sales call, and produces a written summary you keep regardless of whether you move forward with managed support.
+              </p>
+            </section>
+
+            <section className="border-t border-[#D7E1EA] pt-8">
               <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#4B5B6B] mb-4">Related reading</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[
