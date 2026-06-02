@@ -132,7 +132,7 @@ export default function Contact() {
 
               <div className="bg-white rounded-xl border border-[#D7E1EA] p-5 shadow-sm">
                 <p className="text-sm font-bold text-[#0E2F54] mb-2">
-                  You do not need to have everything figured out first.
+                  You don't have to have it all figured out at first.
                 </p>
                 <p className="text-sm text-[#4B5B6B] leading-relaxed">
                   Many businesses reach out because something feels more complex, more expensive, or harder to manage than it should be. That is enough to start.
