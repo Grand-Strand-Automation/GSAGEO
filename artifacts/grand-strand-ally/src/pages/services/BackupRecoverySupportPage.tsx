@@ -88,6 +88,7 @@ export default function BackupRecoverySupportPage() {
           "@graph": [
             {
               "@type": "Service",
+              "serviceType": "Backup and Recovery",
               "name": "Backup and Recovery Support",
               "description": DESC,
               "provider": { "@id": "https://gsally.com/#organization" },

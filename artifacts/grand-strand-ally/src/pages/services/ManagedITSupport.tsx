@@ -92,6 +92,7 @@ export default function ManagedITSupport() {
           "@graph": [
             {
               "@type": "Service",
+              "serviceType": "Managed IT Support",
               "name": "Managed Information Technology Support",
               "description": DESC,
               "provider": { "@id": "https://gsally.com/#organization" },

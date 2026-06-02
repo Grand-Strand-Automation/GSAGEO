@@ -88,6 +88,7 @@ export default function ITCostAnalysisPage() {
           "@graph": [
             {
               "@type": "Service",
+              "serviceType": "IT Cost Analysis",
               "name": "IT Cost Analysis",
               "description": DESC,
               "provider": { "@id": "https://gsally.com/#organization" },

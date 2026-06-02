@@ -89,6 +89,7 @@ export default function CybersecurityComplianceSupportPage() {
           "@graph": [
             {
               "@type": "Service",
+              "serviceType": "Cybersecurity and Compliance Support",
               "name": "Cybersecurity and Compliance Support",
               "description": DESC,
               "provider": { "@id": "https://gsally.com/#organization" },

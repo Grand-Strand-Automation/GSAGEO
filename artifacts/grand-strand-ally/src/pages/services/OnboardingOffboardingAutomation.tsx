@@ -94,6 +94,7 @@ export default function OnboardingOffboardingAutomation() {
           "@graph": [
             {
               "@type": "Service",
+              "serviceType": "IT Onboarding and Offboarding",
               "name": "Onboarding and Offboarding Automation",
               "description": DESC,
               "provider": { "@id": "https://gsally.com/#organization" },

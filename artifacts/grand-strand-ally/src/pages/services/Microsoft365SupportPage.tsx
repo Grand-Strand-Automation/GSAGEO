@@ -90,6 +90,7 @@ export default function Microsoft365SupportPage() {
           "@graph": [
             {
               "@type": "Service",
+              "serviceType": "Microsoft 365 Administration",
               "name": "Microsoft 365 Setup and Support",
               "description": DESC,
               "provider": { "@id": "https://gsally.com/#organization" },

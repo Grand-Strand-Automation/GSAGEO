@@ -71,6 +71,15 @@ export default function About() {
                 { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gsally.com" },
                 { "@type": "ListItem", "position": 2, "name": "About", "item": "https://gsally.com/about" }
               ]
+            },
+            {
+              "@type": "WebPage",
+              "@id": "https://gsally.com/about#webpage",
+              "url": "https://gsally.com/about",
+              "name": "About Grand Strand Ally",
+              "isPartOf": { "@id": "https://gsally.com/#website" },
+              "about": { "@id": "https://gsally.com/#organization" },
+              "description": "Grand Strand Ally (gsally.com) provides information technology cost clarity, vendor simplification, Microsoft 365 support, and compliance-minded services for small and medium businesses across the Grand Strand and Myrtle Beach area of South Carolina."
             }
           ]
         })}</script>
