@@ -44,11 +44,35 @@ function RedirectTo({ to }: { to: string }) {
   return null;
 }
 
+function ScrollRestoration() {
+  const [location] = useLocation();
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const id = hash.slice(1);
+      requestAnimationFrame(() => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }
+      });
+    } else {
+      // Direct property assignment bypasses CSS scroll-behavior: smooth
+      // so the page snaps instantly to top on every normal route change.
+      document.documentElement.scrollTop = 0;
+    }
+  }, [location]);
+
+  return null;
+}
+
 const queryClient = new QueryClient();
 
 function Router() {
   return (
     <div className="flex flex-col min-h-screen">
+      <ScrollRestoration />
       <SiteHeader />
       <main className="flex-grow">
         <Switch>

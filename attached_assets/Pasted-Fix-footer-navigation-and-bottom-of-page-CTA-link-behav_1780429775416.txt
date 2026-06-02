@@ -1,0 +1,95 @@
+Fix footer navigation and bottom-of-page CTA link behavior on gsally.com.
+
+Goal:
+When a user clicks any footer link or bottom-of-page CTA, the destination page should open in the correct scroll position:
+- normal page links should open at the TOP of the destination page
+- anchor links should scroll to the correct section on the destination page
+- this should work consistently on desktop and mobile
+- preserve current design and routing
+
+Context:
+This is a client-routed SPA. The footer contains links such as:
+- /
+- /about
+- /services
+- /process
+- /case-studies
+- /faq
+- /pricing
+- /contact
+- /cost-analysis
+- /how-much-should-a-small-business-spend-on-it-support
+- /how-to-find-overlapping-it-tools-and-vendors
+- /small-business-offboarding-checklist
+- /what-an-it-cost-analysis-should-include
+
+The app bundle also shows a contact-form anchor link already exists as:
+- /contact#contact-form
+
+Problem to solve:
+Links clicked from the bottom/footer are not taking users to the top of the respective destination page. It appears scroll position is being preserved incorrectly across route changes. I need all footer links and bottom CTAs to behave correctly before production deployment.
+
+Tasks:
+1. Inspect the router and shared Link/navigation components to find how route changes are currently handled.
+2. Implement global scroll restoration logic for client-side navigation:
+   - if navigating to a new pathname with NO hash, scroll to top immediately after route change
+   - if navigating to a URL with a hash, scroll to the matching element instead of top
+   - preserve browser back/forward behavior as much as possible
+3. Audit all footer links and bottom CTA links across the site and make sure they use the correct href targets.
+4. Keep /contact#contact-form for “Schedule a Free Cost Analysis” if that CTA is meant to jump to the contact form.
+5. Make sure standard page links like /about, /services, /pricing, /faq, /contact, /case-studies, article pages, and service pages always land at the top of the page.
+6. Make sure hash links like:
+   - /contact#contact-form
+   - /cost-analysis#calculator
+   - /cost-analysis#how-it-works
+   scroll to the correct section.
+7. Add or fix scroll offset handling for sticky headers so the top heading or target section is not hidden behind the header.
+8. Verify footer link behavior on:
+   - homepage
+   - services page
+   - pricing page
+   - contact page
+   - all service pages
+   - all article/educational pages
+9. If there is a reusable footer component or shared CTA component, update it there instead of patching pages one by one when possible.
+10. Do not redesign the footer, do not change branding, and do not alter copy unless needed for link correctness.
+
+Expected behavior:
+- Clicking any footer navigation link opens the destination page at the top.
+- Clicking “Schedule a Free Cost Analysis” opens /contact and scrolls to #contact-form.
+- Clicking “Free Cost Analysis Tool” opens the correct destination and lands at the top unless a specific hash is intended.
+- Clicking article links in the footer opens each article at the top.
+- No footer links preserve the previous page’s scroll position incorrectly.
+
+Implementation guidance:
+- Add a centralized scroll restoration component or route listener tied to pathname/hash changes.
+- If using React Router, handle scroll restoration on location changes.
+- If using a custom Link wrapper, ensure it supports:
+  - scroll to top on normal route changes
+  - anchor scrolling on hash routes
+- Use smooth scrolling only if it does not create buggy behavior.
+- Add scroll-margin-top or equivalent on anchored sections if needed for sticky header offset.
+
+QA checklist:
+1. From the footer of each major page, click every footer link and confirm:
+   - correct destination
+   - correct top-of-page landing
+   - correct anchor landing where intended
+2. Confirm /contact#contact-form lands with the form visible and not hidden by the header.
+3. Confirm /cost-analysis#calculator and /cost-analysis#how-it-works land on the correct sections if those anchors exist.
+4. Confirm no footer link still lands mid-page because of preserved scroll state.
+5. Confirm behavior works on desktop and mobile.
+
+Deliverables:
+1. List of changed files
+2. Summary of the root cause
+3. Exact footer links audited
+4. Any hrefs that were corrected
+5. Description of the new scroll restoration logic
+6. QA results for desktop and mobile
+7. Any links or anchors still needing manual review
+
+Important:
+Do not just describe the issue. Fix it in the codebase.
+Prioritize a production-safe solution today.
+Keep the existing visual design unchanged.
