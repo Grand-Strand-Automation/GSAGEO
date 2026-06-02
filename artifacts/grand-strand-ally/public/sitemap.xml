@@ -102,19 +102,6 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- Legal -->
-  <url>
-    <loc>https://gsally.com/privacy</loc>
-    <lastmod>2026-06-01</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://gsally.com/terms</loc>
-    <lastmod>2026-06-01</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
+  <!-- Legal pages are noindex and intentionally excluded from the sitemap -->
 
 </urlset>
