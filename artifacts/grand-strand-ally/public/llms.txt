@@ -18,35 +18,56 @@ Grand Strand Ally helps small and medium businesses in the Myrtle Beach and Gran
 - Counties served: Horry County, Georgetown County
 - Nearby communities: Conway, North Myrtle Beach, Surfside Beach, Murrells Inlet, Pawleys Island, Little River, Socastee
 
-## Main Service Pages
+## Main Pages
 
 - Homepage: https://gsally.com/
 - Services overview: https://gsally.com/services
+- About Grand Strand Ally: https://gsally.com/about
+- Our process: https://gsally.com/process
 - Pricing and support models: https://gsally.com/pricing
+- Case studies: https://gsally.com/case-studies
+- Frequently asked questions: https://gsally.com/faq
 - Contact and cost analysis scheduling: https://gsally.com/contact
 
-## Individual Service Pages
+## Service Pages
 
-- Managed IT Support: https://gsally.com/managed-it-support-myrtle-beach
-- Microsoft 365 Support: https://gsally.com/microsoft-365-support-myrtle-beach
-- Network and Wi-Fi Management: https://gsally.com/network-wifi-management-myrtle-beach
-- Cybersecurity and Compliance Support: https://gsally.com/cybersecurity-support-myrtle-beach
-- Backup and Recovery: https://gsally.com/backup-and-recovery-myrtle-beach
-- Employee Onboarding and Offboarding IT: https://gsally.com/employee-onboarding-offboarding-it
+- Managed IT Support (Myrtle Beach): https://gsally.com/managed-it-support-myrtle-beach
+- Microsoft 365 Support: https://gsally.com/microsoft-365-support
+- IT Cost Analysis: https://gsally.com/it-cost-analysis
+- Cybersecurity and Compliance Support: https://gsally.com/cybersecurity-compliance-support
+- Backup and Recovery Support: https://gsally.com/backup-recovery-support
+- Onboarding and Offboarding Automation: https://gsally.com/onboarding-offboarding-automation
 
 ## Services Offered
 
 - Managed Information Technology Support — predictable monthly support with clear ownership and fewer vendors to manage
-- Microsoft 365 Setup and Support — right-sized licensing, cleaner admin controls, and consistent user lifecycle management
-- Network and Wi-Fi Management — reliable, documented networking for small and medium business environments
+- Microsoft 365 Administration — right-sized licensing, cleaner admin controls, and consistent user lifecycle management
+- Information Technology Cost Analysis — structured review of current spending, vendor overlap, and simplification opportunities
 - Cybersecurity and Compliance Support — practical security controls, access management, and compliance-minded configurations
 - Backup and Recovery — automated, tested backups supporting business continuity and documentation requirements
-- Workflow Automation and User Onboarding and Offboarding — standardized user lifecycle workflows that reduce compliance risk
+- Onboarding and Offboarding Automation — standardized user lifecycle workflows that reduce compliance risk and manual effort
 
-## Educational and Tool Pages
+## Offer and Landing Pages
 
-- Free Information Technology Cost Analysis tool: https://gsally.com/cost-analysis
-  This free, no-login-required tool helps businesses estimate their current information technology spend, identify overlapping tools and vendor redundancy, and surface compliance considerations. Takes approximately five minutes to complete.
+- Free IT cost analysis overview: https://gsally.com/free-it-cost-analysis
+  Overview of what the free cost analysis covers, who it is for, and what to expect from the process.
+
+- Free IT cost analysis tool: https://gsally.com/cost-analysis
+  A free, no-login-required interactive tool that helps businesses estimate their current information technology spend, identify overlapping tools and vendor redundancy, and surface compliance considerations. Takes approximately five minutes to complete.
+
+## Educational Pages
+
+- How much should a small business spend on IT support: https://gsally.com/how-much-should-a-small-business-spend-on-it-support
+  Benchmarks by company size and risk profile, with signals for both over- and underspending.
+
+- How to find overlapping IT tools and vendors: https://gsally.com/how-to-find-overlapping-it-tools-and-vendors
+  A four-step process for mapping your vendor stack and finding where you are paying twice for the same capability.
+
+- Small business employee offboarding checklist: https://gsally.com/small-business-offboarding-checklist
+  Organized by timing — covering account disabling, license reclamation, file transfer, and access audits.
+
+- What an IT cost analysis should include: https://gsally.com/what-an-it-cost-analysis-should-include
+  The five areas a useful analysis covers, and five red flags that signal a sales pitch instead.
 
 ## Legal Pages
 
