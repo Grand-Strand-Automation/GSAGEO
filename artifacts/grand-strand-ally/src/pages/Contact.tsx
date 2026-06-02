@@ -70,7 +70,7 @@ export default function Contact() {
             {[
               "No commitment required",
               "Response within 1 business day",
-              "No pressure, no hard sell",
+              "Serving the Grand Strand since 2015",
             ].map((label) => (
               <div key={label} className="flex items-center justify-center gap-2.5 py-4 sm:px-8 text-sm text-[#4B5B6B] font-medium">
                 <CheckCircle2 size={14} className="text-[#1F5E95] flex-shrink-0" />
@@ -138,10 +138,6 @@ export default function Contact() {
                   Many businesses reach out because something feels more complex, more expensive, or harder to manage than it should be. That is enough to start.
                 </p>
               </div>
-
-              <p className="text-xs text-[#4B5B6B] leading-relaxed px-1">
-                Grand Strand Ally serves small and medium businesses across the Grand Strand and Myrtle Beach area.
-              </p>
 
             </div>
 

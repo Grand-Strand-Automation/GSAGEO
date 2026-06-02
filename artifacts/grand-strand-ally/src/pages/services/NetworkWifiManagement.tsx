@@ -1,6 +1,7 @@
+import { useState } from "react";
 import { Link } from "wouter";
 import { Helmet } from "react-helmet-async";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, ChevronDown } from "lucide-react";
 import { CTABand } from "@/components/CTABand";
 
 const CANONICAL = "https://gsally.com/network-wifi-management-myrtle-beach";
@@ -25,7 +26,32 @@ const WHY_DOCS_MATTER = [
   { title: "Cleaner vendor transitions", desc: "If a provider relationship changes, documented infrastructure means nothing critical is locked in someone else's head." },
 ];
 
+const FAQ_ITEMS = [
+  {
+    q: "What does managed network service actually include?",
+    a: "Network inventory and documentation, firewall configuration and monitoring, Wi-Fi management, guest network segmentation, VLAN and switch management, internet service provider coordination, and remote monitoring with alerting. The specific scope is agreed in writing before the engagement begins.",
+  },
+  {
+    q: "Do you manage both the firewall and the Wi-Fi, or just one?",
+    a: "Both. Firewall and Wi-Fi management are closely related — a properly segmented network requires both to be configured consistently. Managing one without visibility into the other creates gaps that are easy to miss.",
+  },
+  {
+    q: "How do you handle multi-location businesses?",
+    a: "Each location is inventoried and documented separately, then reviewed for consistency. Multi-location environments often have configuration drift — different equipment, different settings, different levels of documentation — that is identified and addressed as part of initial setup.",
+  },
+  {
+    q: "What if our current network was set up by a previous provider and nothing is documented?",
+    a: "That is the most common starting point. The first phase of the engagement is always a discovery and documentation pass — building a current network diagram, inventorying active equipment, and establishing a baseline before any changes are made.",
+  },
+  {
+    q: "Is this included in a managed IT support engagement, or is it a separate service?",
+    a: "Network management can be included as part of a broader managed support engagement or structured as a standalone service. For businesses that have a support provider but no one actively managing network infrastructure, it is available on its own.",
+  },
+];
+
 export default function NetworkWifiManagement() {
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
   return (
     <div className="flex flex-col">
       <Helmet>
@@ -139,6 +165,35 @@ export default function NetworkWifiManagement() {
                   </li>
                 ))}
               </ul>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-heading font-bold text-[#0E2F54] mb-5">Frequently asked questions</h2>
+              <div className="divide-y divide-[#D7E1EA] border border-[#D7E1EA] rounded-2xl bg-white overflow-hidden">
+                {FAQ_ITEMS.map((item, i) => (
+                  <div key={i}>
+                    <button
+                      className="flex items-start justify-between w-full text-left gap-4 px-6 py-4"
+                      onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                    >
+                      <span className="text-[15px] font-heading font-semibold text-[#0E2F54]">{item.q}</span>
+                      <ChevronDown size={16} className={`text-[#1F5E95] shrink-0 mt-0.5 transition-transform duration-150 ${openFaq === i ? "rotate-180" : ""}`} />
+                    </button>
+                    {openFaq === i && (
+                      <div className="px-6 pb-5">
+                        <p className="text-sm text-[#4B5B6B] leading-relaxed">{item.a}</p>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            <section className="border-t border-[#D7E1EA] pt-8">
+              <h2 className="text-2xl font-heading font-bold text-[#0E2F54] mb-4">Serving the Grand Strand</h2>
+              <p className="text-sm text-[#4B5B6B] leading-relaxed">
+                Grand Strand Ally provides network and Wi-Fi management to small and medium businesses throughout the Myrtle Beach area, including Conway, North Myrtle Beach, Surfside Beach, Murrells Inlet, Pawleys Island, Little River, and Socastee. On-site visits are available across Horry and Georgetown counties when equipment configuration or troubleshooting requires hands-on access.
+              </p>
             </section>
 
             <section className="border-t border-[#D7E1EA] pt-8">
