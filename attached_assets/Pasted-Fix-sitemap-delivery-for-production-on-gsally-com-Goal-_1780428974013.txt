@@ -1,0 +1,68 @@
+Fix sitemap delivery for production on gsally.com.
+
+Goal:
+Make sure https://gsally.com/sitemap.xml is always served in a way that Google Search Console and Googlebot can read reliably, with no dynamic rendering issues, no incorrect content type, no SPA fallback, no redirects, no auth checks, and no caching inconsistencies.
+
+Context:
+The live sitemap currently exists at /sitemap.xml and robots.txt references it. However, Google Search Console has reported that the sitemap “can’t be read.” I want you to harden sitemap delivery so it is production-safe and bot-safe.
+
+Requirements:
+1. Inspect the codebase and deployment setup to determine how /sitemap.xml is currently generated and served.
+2. Ensure /sitemap.xml is served as a plain XML response or static file, not through client-side rendering and not through the SPA app shell.
+3. Ensure the response for /sitemap.xml has:
+   - HTTP 200
+   - Content-Type set to application/xml or text/xml
+   - UTF-8 encoding
+   - No HTML wrapper
+   - No JavaScript dependency
+4. Ensure /sitemap.xml is directly accessible at the root path and does not redirect.
+5. Ensure /robots.txt is also statically or directly served and contains:
+   User-agent: *
+   Allow: /
+   Disallow: /thank-you
+   Sitemap: https://gsally.com/sitemap.xml
+6. Make sure hosting or routing rules do not accidentally rewrite /sitemap.xml to index.html or the frontend app.
+7. If this is a React / Vite / SPA deployment, explicitly exclude /sitemap.xml and /robots.txt from SPA fallback behavior.
+8. If sitemap generation is dynamic, replace it with a deterministic server-side or build-time generated XML file if that is more reliable.
+9. Validate the XML structure:
+   - XML declaration
+   - <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+   - valid <url>, <loc>, optional <lastmod>, <changefreq>, <priority>
+   - no malformed characters
+10. Check for gzip/compression or cache behavior that might cause intermittent fetch issues for bots.
+11. Make sure no firewall, middleware, auth layer, bot protection, or rate limiting touches /sitemap.xml or /robots.txt.
+12. If there is a platform config file (for example Replit config, server config, nginx-like config, Cloudflare config, Vercel/Netlify style rewrites, or custom Express middleware), update it so sitemap delivery is explicitly safe.
+13. Preserve the current sitemap URLs unless a URL is clearly invalid.
+14. Do not redesign the site or modify unrelated page content.
+
+Implementation preference:
+- Best option: serve a real static sitemap.xml file from the public/root static assets path.
+- Second-best option: serve it from a simple server endpoint that returns raw XML with the correct content-type.
+- Avoid any solution that depends on browser rendering, hydration, or frontend routing.
+
+Verification tasks:
+1. Confirm /sitemap.xml returns 200 with XML content type.
+2. Confirm the raw response body starts with <?xml version="1.0" encoding="UTF-8"?>.
+3. Confirm /sitemap.xml is not rewritten to the homepage or app shell.
+4. Confirm /robots.txt returns 200 as plain text and includes the sitemap line.
+5. Confirm there are no redirects for /sitemap.xml.
+6. Confirm sitemap.xml is production-ready for Google Search Console submission.
+
+Deliverables:
+1. List all changed files.
+2. Explain exactly how sitemap delivery was fixed.
+3. Show the final sitemap-serving logic or file location.
+4. Show the final robots.txt contents.
+5. Note any routing or rewrite rules that were changed.
+6. Provide a short QA report with pass/fail for:
+   - direct sitemap access
+   - content type
+   - no redirect
+   - no SPA fallback
+   - robots.txt correctness
+   - Googlebot-safe delivery
+
+Important:
+Do not just tell me what is wrong. Make the fixes in the codebase.
+Do not redesign the site.
+Prioritize reliability for production deployment today.

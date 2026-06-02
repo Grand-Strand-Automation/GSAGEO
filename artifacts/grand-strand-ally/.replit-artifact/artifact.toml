@@ -23,6 +23,18 @@ publicDir = "artifacts/grand-strand-ally/dist/public"
 serve = "static"
 
 [[services.production.rewrites]]
+from = "/sitemap.xml"
+to = "/sitemap.xml"
+
+[[services.production.rewrites]]
+from = "/robots.txt"
+to = "/robots.txt"
+
+[[services.production.rewrites]]
+from = "/llms.txt"
+to = "/llms.txt"
+
+[[services.production.rewrites]]
 from = "/*"
 to = "/index.html"
 
