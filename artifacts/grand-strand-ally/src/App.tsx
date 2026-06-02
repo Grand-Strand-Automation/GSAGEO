@@ -35,6 +35,11 @@ import NetworkWifiManagement from "@/pages/services/NetworkWifiManagement";
 import CybersecuritySupport from "@/pages/services/CybersecuritySupport";
 import BackupRecovery from "@/pages/services/BackupRecovery";
 import WorkflowAutomation from "@/pages/services/WorkflowAutomation";
+import Microsoft365SupportPage from "@/pages/services/Microsoft365SupportPage";
+import ITCostAnalysisPage from "@/pages/services/ITCostAnalysisPage";
+import CybersecurityComplianceSupportPage from "@/pages/services/CybersecurityComplianceSupportPage";
+import BackupRecoverySupportPage from "@/pages/services/BackupRecoverySupportPage";
+import OnboardingOffboardingAutomation from "@/pages/services/OnboardingOffboardingAutomation";
 
 const queryClient = new QueryClient();
 
@@ -71,6 +76,11 @@ function Router() {
           <Route path="/cybersecurity-support-myrtle-beach" component={CybersecuritySupport} />
           <Route path="/backup-and-recovery-myrtle-beach" component={BackupRecovery} />
           <Route path="/employee-onboarding-offboarding-it" component={WorkflowAutomation} />
+          <Route path="/microsoft-365-support" component={Microsoft365SupportPage} />
+          <Route path="/it-cost-analysis" component={ITCostAnalysisPage} />
+          <Route path="/cybersecurity-compliance-support" component={CybersecurityComplianceSupportPage} />
+          <Route path="/backup-recovery-support" component={BackupRecoverySupportPage} />
+          <Route path="/onboarding-offboarding-automation" component={OnboardingOffboardingAutomation} />
 
           <Route component={NotFound} />
         </Switch>

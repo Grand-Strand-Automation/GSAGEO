@@ -18,5 +18,10 @@ export const siteConfig = {
     cybersecuritySupport: "/cybersecurity-support-myrtle-beach",
     backupRecovery: "/backup-and-recovery-myrtle-beach",
     workflowAutomation: "/employee-onboarding-offboarding-it",
+    microsoft365SupportPage: "/microsoft-365-support",
+    itCostAnalysis: "/it-cost-analysis",
+    cybersecurityCompliancePage: "/cybersecurity-compliance-support",
+    backupRecoverySupportPage: "/backup-recovery-support",
+    onboardingOffboardingAutomation: "/onboarding-offboarding-automation",
   }
 };

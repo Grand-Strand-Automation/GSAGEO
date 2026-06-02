@@ -31,11 +31,11 @@ export function SiteFooter() {
             <ul className="space-y-3">
               {[
                 { label: "Managed IT Support", href: siteConfig.links.managedItSupport },
-                { label: "Microsoft 365 Support", href: siteConfig.links.microsoft365Support },
-                { label: "Network and Wi-Fi Management", href: siteConfig.links.networkWifiManagement },
-                { label: "Cybersecurity Support", href: siteConfig.links.cybersecuritySupport },
-                { label: "Backup and Recovery", href: siteConfig.links.backupRecovery },
-                { label: "Employee Onboarding and Offboarding", href: siteConfig.links.workflowAutomation },
+                { label: "Microsoft 365 Support", href: siteConfig.links.microsoft365SupportPage },
+                { label: "IT Cost Analysis", href: siteConfig.links.itCostAnalysis },
+                { label: "Cybersecurity and Compliance", href: siteConfig.links.cybersecurityCompliancePage },
+                { label: "Backup and Recovery", href: siteConfig.links.backupRecoverySupportPage },
+                { label: "Onboarding and Offboarding", href: siteConfig.links.onboardingOffboardingAutomation },
               ].map(({ label, href }) => (
                 <li key={label}>
                   <Link href={href} className="text-sm text-white/55 hover:text-white transition-colors">
