@@ -202,8 +202,8 @@ export default function Home() {
                   </div>
                   {CORE_SYSTEM_LINKS[sys.id] && (
                     <div className="pt-1">
-                      <Link href={CORE_SYSTEM_LINKS[sys.id]} className="inline-flex items-center gap-1 text-xs font-semibold text-[#1F5E95] hover:text-[#0E2F54] transition-colors">
-                        Learn more <ArrowRight size={11} />
+                      <Link href={CORE_SYSTEM_LINKS[sys.id]} aria-label={`Learn more about ${sys.name}`} className="inline-flex items-center gap-1 text-xs font-semibold text-[#1F5E95] hover:text-[#0E2F54] transition-colors">
+                        Learn more <ArrowRight size={11} aria-hidden="true" />
                       </Link>
                     </div>
                   )}

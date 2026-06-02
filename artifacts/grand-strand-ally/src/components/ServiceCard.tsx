@@ -37,9 +37,10 @@ export function ServiceCard({
       {href && (
         <Link
           href={href}
+          aria-label={`Learn more about ${name}`}
           className="text-[#1F5E95] text-sm font-semibold inline-flex items-center gap-1.5 mt-5 hover:gap-2.5 transition-all"
         >
-          Learn more <ArrowRight size={14} />
+          Learn more <ArrowRight size={14} aria-hidden="true" />
         </Link>
       )}
     </div>

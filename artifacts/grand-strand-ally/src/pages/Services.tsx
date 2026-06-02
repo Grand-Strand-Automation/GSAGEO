@@ -133,9 +133,10 @@ export default function Services() {
                       {SERVICE_HREFS[svc.id] && (
                         <Link
                           href={SERVICE_HREFS[svc.id]}
+                          aria-label={`Learn more about ${svc.name}`}
                           className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#1F5E95] hover:text-[#0E2F54] mt-4 transition-colors"
                         >
-                          Learn more <ArrowRight size={13} />
+                          Learn more <ArrowRight size={13} aria-hidden="true" />
                         </Link>
                       )}
                     </div>

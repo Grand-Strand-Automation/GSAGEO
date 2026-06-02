@@ -105,7 +105,7 @@ export function SiteHeader() {
                   className="flex items-center justify-between px-4 py-2 text-[11px] font-bold uppercase tracking-[0.15em] text-[#60B8F0] hover:text-white transition-colors"
                 >
                   All Services
-                  <span className="text-white/40 font-normal normal-case tracking-normal text-sm">→</span>
+                  <span className="text-white/40 font-normal normal-case tracking-normal text-sm" aria-hidden="true">→</span>
                 </Link>
                 <div className="border-t border-white/10 mt-1 pt-1">
                   {SERVICE_LINKS.map((link) => (
