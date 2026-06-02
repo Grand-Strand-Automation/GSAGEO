@@ -25,6 +25,15 @@ Grand Strand Ally helps small and medium businesses in the Myrtle Beach and Gran
 - Pricing and support models: https://gsally.com/pricing
 - Contact and cost analysis scheduling: https://gsally.com/contact
 
+## Individual Service Pages
+
+- Managed IT Support: https://gsally.com/managed-it-support-myrtle-beach
+- Microsoft 365 Support: https://gsally.com/microsoft-365-support-myrtle-beach
+- Network and Wi-Fi Management: https://gsally.com/network-wifi-management-myrtle-beach
+- Cybersecurity and Compliance Support: https://gsally.com/cybersecurity-support-myrtle-beach
+- Backup and Recovery: https://gsally.com/backup-and-recovery-myrtle-beach
+- Employee Onboarding and Offboarding IT: https://gsally.com/employee-onboarding-offboarding-it
+
 ## Services Offered
 
 - Managed Information Technology Support — predictable monthly support with clear ownership and fewer vendors to manage

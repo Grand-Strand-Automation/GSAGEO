@@ -28,6 +28,14 @@ import OverlappingTools from "@/pages/edu/OverlappingTools";
 import OffboardingChecklist from "@/pages/edu/OffboardingChecklist";
 import CostAnalysisGuide from "@/pages/edu/CostAnalysisGuide";
 
+// Service pages
+import ManagedITSupport from "@/pages/services/ManagedITSupport";
+import Microsoft365Support from "@/pages/services/Microsoft365Support";
+import NetworkWifiManagement from "@/pages/services/NetworkWifiManagement";
+import CybersecuritySupport from "@/pages/services/CybersecuritySupport";
+import BackupRecovery from "@/pages/services/BackupRecovery";
+import WorkflowAutomation from "@/pages/services/WorkflowAutomation";
+
 const queryClient = new QueryClient();
 
 function Router() {
@@ -55,6 +63,14 @@ function Router() {
           <Route path="/how-to-find-overlapping-it-tools-and-vendors" component={OverlappingTools} />
           <Route path="/small-business-offboarding-checklist" component={OffboardingChecklist} />
           <Route path="/what-an-it-cost-analysis-should-include" component={CostAnalysisGuide} />
+
+          {/* Service pages */}
+          <Route path="/managed-it-support-myrtle-beach" component={ManagedITSupport} />
+          <Route path="/microsoft-365-support-myrtle-beach" component={Microsoft365Support} />
+          <Route path="/network-wifi-management-myrtle-beach" component={NetworkWifiManagement} />
+          <Route path="/cybersecurity-support-myrtle-beach" component={CybersecuritySupport} />
+          <Route path="/backup-and-recovery-myrtle-beach" component={BackupRecovery} />
+          <Route path="/employee-onboarding-offboarding-it" component={WorkflowAutomation} />
 
           <Route component={NotFound} />
         </Switch>

@@ -30,16 +30,16 @@ export function SiteFooter() {
             <h3 className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/35 mb-5">Services</h3>
             <ul className="space-y-3">
               {[
-                "Managed Information Technology Support",
-                "Microsoft 365 Setup and Support",
-                "Network and Wi-Fi Management",
-                "Cybersecurity and Compliance",
-                "Backup and Recovery",
-                "Workflow Automation",
-              ].map((svc) => (
-                <li key={svc}>
-                  <Link href={siteConfig.links.services} className="text-sm text-white/55 hover:text-white transition-colors">
-                    {svc}
+                { label: "Managed IT Support", href: siteConfig.links.managedItSupport },
+                { label: "Microsoft 365 Support", href: siteConfig.links.microsoft365Support },
+                { label: "Network and Wi-Fi Management", href: siteConfig.links.networkWifiManagement },
+                { label: "Cybersecurity Support", href: siteConfig.links.cybersecuritySupport },
+                { label: "Backup and Recovery", href: siteConfig.links.backupRecovery },
+                { label: "Employee Onboarding and Offboarding", href: siteConfig.links.workflowAutomation },
+              ].map(({ label, href }) => (
+                <li key={label}>
+                  <Link href={href} className="text-sm text-white/55 hover:text-white transition-colors">
+                    {label}
                   </Link>
                 </li>
               ))}

@@ -3,7 +3,7 @@ import { content } from "@/lib/content";
 import { CTABand } from "@/components/CTABand";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { CheckCircle2, Headset, Cloud, Wifi, Shield, Database, Zap, LucideIcon } from "lucide-react";
+import { CheckCircle2, Headset, Cloud, Wifi, Shield, Database, Zap, ArrowRight, LucideIcon } from "lucide-react";
 
 const iconMap: Record<string, LucideIcon> = {
   headset: Headset,
@@ -12,6 +12,15 @@ const iconMap: Record<string, LucideIcon> = {
   shield: Shield,
   database: Database,
   zap: Zap,
+};
+
+const SERVICE_HREFS: Record<string, string> = {
+  "managed-it": "/managed-it-support-myrtle-beach",
+  "microsoft-365": "/microsoft-365-support-myrtle-beach",
+  "network-wifi": "/network-wifi-management-myrtle-beach",
+  "cybersecurity": "/cybersecurity-support-myrtle-beach",
+  "backup-recovery": "/backup-and-recovery-myrtle-beach",
+  "workflow-automation": "/employee-onboarding-offboarding-it",
 };
 
 export default function Services() {
@@ -121,6 +130,14 @@ export default function Services() {
                           </li>
                         ))}
                       </ul>
+                      {SERVICE_HREFS[svc.id] && (
+                        <Link
+                          href={SERVICE_HREFS[svc.id]}
+                          className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#1F5E95] hover:text-[#0E2F54] mt-4 transition-colors"
+                        >
+                          Learn more <ArrowRight size={13} />
+                        </Link>
+                      )}
                     </div>
                   </div>
                 </div>

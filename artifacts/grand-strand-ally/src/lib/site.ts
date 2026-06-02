@@ -12,5 +12,11 @@ export const siteConfig = {
     costAnalysis: "/cost-analysis",
     privacy: "/privacy",
     terms: "/terms",
+    managedItSupport: "/managed-it-support-myrtle-beach",
+    microsoft365Support: "/microsoft-365-support-myrtle-beach",
+    networkWifiManagement: "/network-wifi-management-myrtle-beach",
+    cybersecuritySupport: "/cybersecurity-support-myrtle-beach",
+    backupRecovery: "/backup-and-recovery-myrtle-beach",
+    workflowAutomation: "/employee-onboarding-offboarding-it",
   }
 };
