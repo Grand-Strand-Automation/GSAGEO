@@ -243,7 +243,7 @@ export default function BackupRecoverySupportPage() {
         title="Not sure what is actually backed up — or whether it would restore?"
         subtitle="The free cost analysis includes a review of your current backup coverage and identifies gaps before they become a problem."
         buttons={[
-          { label: "Schedule a Free Cost Analysis", href: "/contact", primary: true },
+          { label: "Schedule a Free Cost Analysis", href: "/contact#contact-form", primary: true },
           { label: "View All Services", href: "/services", primary: false },
         ]}
       />

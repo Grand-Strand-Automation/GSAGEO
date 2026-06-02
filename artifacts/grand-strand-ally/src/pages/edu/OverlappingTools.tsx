@@ -279,7 +279,7 @@ export default function OverlappingTools() {
         subtitle="The free Grand Strand Ally cost analysis builds a full category map of your current tools and identifies the most common overlap patterns — in one structured conversation."
         buttons={[
           { label: "Start the Free Cost Analysis", href: "/cost-analysis", primary: true },
-          { label: "Schedule a Conversation", href: "/contact", primary: false },
+          { label: "Schedule a Conversation", href: "/contact#contact-form", primary: false },
         ]}
       />
     </div>

@@ -125,7 +125,7 @@ export function SiteFooter() {
             <div className="mt-6">
               <h3 className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/35 mb-3">Get Started</h3>
               <Link
-                href={siteConfig.links.contact}
+                href={siteConfig.links.contactForm}
                 className="inline-block text-sm font-semibold text-[#60B8F0] hover:text-white transition-colors"
               >
                 Schedule a Free Cost Analysis →

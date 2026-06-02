@@ -240,7 +240,7 @@ export default function FAQPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
-                href="/contact"
+                href="/contact#contact-form"
                 className="inline-flex items-center justify-center gap-2 bg-[#0E2F54] hover:bg-[#0A2440] text-white font-semibold text-sm h-11 px-7 rounded-lg transition-colors"
               >
                 Send us a message
@@ -260,7 +260,7 @@ export default function FAQPage() {
         title="Ready to get started?"
         subtitle="Schedule a free cost analysis — no commitment required. We will review your current environment and share practical findings within a week."
         buttons={[
-          { label: "Schedule a Free Cost Analysis", href: "/contact", primary: true },
+          { label: "Schedule a Free Cost Analysis", href: "/contact#contact-form", primary: true },
           { label: "See Our Process", href: "/process", primary: false },
         ]}
       />

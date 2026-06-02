@@ -276,7 +276,7 @@ export default function ManagedITSupport() {
         title="Want a clear picture of what managed support would cost?"
         subtitle="The free Grand Strand Ally cost analysis reviews your current environment and identifies what a defined support scope would look like for your business — before any commitment is made."
         buttons={[
-          { label: "Schedule a Free Cost Analysis", href: "/contact", primary: true },
+          { label: "Schedule a Free Cost Analysis", href: "/contact#contact-form", primary: true },
           { label: "View All Services", href: "/services", primary: false },
         ]}
       />

@@ -264,7 +264,7 @@ export default function OnboardingOffboardingAutomation() {
         title="Want to see what a consistent onboarding and offboarding process looks like?"
         subtitle="The free cost analysis includes a review of your current user lifecycle process — identifying gaps in access control, license management, and documentation."
         buttons={[
-          { label: "Schedule a Free Cost Analysis", href: "/contact", primary: true },
+          { label: "Schedule a Free Cost Analysis", href: "/contact#contact-form", primary: true },
           { label: "View All Services", href: "/services", primary: false },
         ]}
       />

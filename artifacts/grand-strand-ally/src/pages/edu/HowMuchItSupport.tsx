@@ -284,7 +284,7 @@ export default function HowMuchItSupport() {
         subtitle="The free Grand Strand Ally cost analysis walks through your current vendors and costs category by category and identifies where the typical savings opportunities are."
         buttons={[
           { label: "Start the Free Cost Analysis", href: "/cost-analysis", primary: true },
-          { label: "Schedule a Conversation", href: "/contact", primary: false },
+          { label: "Schedule a Conversation", href: "/contact#contact-form", primary: false },
         ]}
       />
     </div>

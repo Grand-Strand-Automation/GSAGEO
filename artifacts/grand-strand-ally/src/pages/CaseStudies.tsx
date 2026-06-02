@@ -379,7 +379,7 @@ export default function CaseStudies() {
         subtitle="Every engagement on this page started with a free cost analysis. It takes about 30 minutes of your time and produces a written summary of findings — no commitment required."
         buttons={[
           { label: "Start the Free Cost Analysis", href: "/free-it-cost-analysis", primary: true },
-          { label: "Schedule a Conversation", href: "/contact", primary: false },
+          { label: "Schedule a Conversation", href: "/contact#contact-form", primary: false },
         ]}
       />
     </div>

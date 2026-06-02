@@ -90,7 +90,7 @@ const STEPS = [
     label: "Fill out the contact form or use the calculator",
     desc: "Tell us your company name, team size, and the best way to reach you. You can also start with the cost analysis calculator to send us your initial numbers before the call.",
     links: [
-      { label: "Schedule via contact form", href: "/contact" },
+      { label: "Schedule via contact form", href: "/contact#contact-form" },
       { label: "Start the cost analysis calculator", href: "/cost-analysis" },
     ],
   },
@@ -209,7 +209,7 @@ export default function FreeITCostAnalysis() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
-              href="/contact"
+              href="/contact#contact-form"
               className="inline-flex items-center justify-center gap-2 bg-white text-[#0E2F54] hover:bg-[#DCEAF7] font-bold text-sm h-12 px-8 rounded-lg transition-colors"
             >
               Schedule a Free Cost Analysis →
@@ -388,7 +388,7 @@ export default function FreeITCostAnalysis() {
           </div>
           <div className="text-center mt-10">
             <Link
-              href="/contact"
+              href="/contact#contact-form"
               className="inline-flex items-center gap-2 bg-white hover:bg-[#DCEAF7] text-[#0E2F54] font-bold text-sm h-12 px-10 rounded-lg transition-colors"
             >
               Schedule a Free Cost Analysis →
@@ -450,7 +450,7 @@ export default function FreeITCostAnalysis() {
         title="Ready to get started?"
         subtitle="Fill out the contact form or use the calculator to send your initial numbers. We follow up within one business day."
         buttons={[
-          { label: "Schedule a Free Cost Analysis", href: "/contact", primary: true },
+          { label: "Schedule a Free Cost Analysis", href: "/contact#contact-form", primary: true },
           { label: "Use the Calculator First", href: "/cost-analysis", primary: false },
         ]}
       />

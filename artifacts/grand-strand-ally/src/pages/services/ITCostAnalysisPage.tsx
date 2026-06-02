@@ -243,7 +243,7 @@ export default function ITCostAnalysisPage() {
         title="Ready to see the full picture of your current IT spend?"
         subtitle="Schedule a free cost analysis — a working session where we map your vendor stack, calculate your total monthly spend, and identify where the money is going."
         buttons={[
-          { label: "Schedule a Free Cost Analysis", href: "/contact", primary: true },
+          { label: "Schedule a Free Cost Analysis", href: "/contact#contact-form", primary: true },
           { label: "Try the Self-Service Tool", href: "/cost-analysis", primary: false },
         ]}
       />

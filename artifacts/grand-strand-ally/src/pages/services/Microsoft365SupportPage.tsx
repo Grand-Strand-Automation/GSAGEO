@@ -245,7 +245,7 @@ export default function Microsoft365SupportPage() {
         title="Not sure if your Microsoft 365 environment is right-sized?"
         subtitle="The free cost analysis includes a review of your current Microsoft 365 licensing and configuration — identifying waste, gaps, and security features that should be enabled."
         buttons={[
-          { label: "Schedule a Free Cost Analysis", href: "/contact", primary: true },
+          { label: "Schedule a Free Cost Analysis", href: "/contact#contact-form", primary: true },
           { label: "View All Services", href: "/services", primary: false },
         ]}
       />

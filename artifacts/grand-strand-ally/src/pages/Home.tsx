@@ -103,7 +103,7 @@ export default function Home() {
               className="bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-7 text-[15px] rounded-lg border-0"
               data-testid="hero-primary-cta"
             >
-              <Link href="/contact">Schedule a Free Cost Analysis →</Link>
+              <Link href="/contact#contact-form">Schedule a Free Cost Analysis →</Link>
             </Button>
             <Button
               asChild
@@ -386,7 +386,7 @@ export default function Home() {
           </div>
           <div className="text-center mt-8 space-y-3">
             <Button asChild className="bg-[#0E2F54] hover:bg-[#0A2440] text-white font-semibold h-12 px-7 text-[15px] rounded-lg">
-              <Link href="/contact">Schedule a Free Cost Analysis →</Link>
+              <Link href="/contact#contact-form">Schedule a Free Cost Analysis →</Link>
             </Button>
             <div>
               <Link href="/free-it-cost-analysis" className="inline-flex items-center gap-1.5 text-sm font-medium text-[#1F5E95] hover:text-[#0E2F54] transition-colors">
@@ -551,7 +551,7 @@ export default function Home() {
         title={content.finalCta.headline}
         subtitle={content.finalCta.copy}
         buttons={[
-          { label: "Schedule a Free Cost Analysis", href: "/contact", primary: true },
+          { label: "Schedule a Free Cost Analysis", href: "/contact#contact-form", primary: true },
           { label: "View Pricing", href: "/pricing", primary: false },
         ]}
       />

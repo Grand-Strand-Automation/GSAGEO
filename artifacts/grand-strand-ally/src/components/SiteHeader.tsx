@@ -158,7 +158,7 @@ export function SiteHeader() {
             size="sm"
             className="bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold text-sm px-4 h-9 rounded-lg border-0 whitespace-nowrap ml-1"
           >
-            <Link href={siteConfig.links.contact} data-testid="nav-cta-button">
+            <Link href={siteConfig.links.contactForm} data-testid="nav-cta-button">
               Schedule a Free Cost Analysis
             </Link>
           </Button>
@@ -277,7 +277,7 @@ export function SiteHeader() {
 
           <div className="pt-3 border-t border-white/10 mt-2">
             <Button asChild className="w-full bg-[#1F5E95] hover:bg-[#1a5080] text-white text-sm h-11 rounded-lg font-semibold">
-              <Link href={siteConfig.links.contact}>Schedule a Free Cost Analysis</Link>
+              <Link href={siteConfig.links.contactForm}>Schedule a Free Cost Analysis</Link>
             </Button>
           </div>
         </div>

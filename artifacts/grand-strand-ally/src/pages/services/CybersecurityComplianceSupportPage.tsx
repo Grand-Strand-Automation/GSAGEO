@@ -244,7 +244,7 @@ export default function CybersecurityComplianceSupportPage() {
         title="Not sure where your security gaps are?"
         subtitle="The free cost analysis includes a review of your current security posture — access controls, endpoint coverage, email security, and the most common gaps for businesses your size."
         buttons={[
-          { label: "Schedule a Free Cost Analysis", href: "/contact", primary: true },
+          { label: "Schedule a Free Cost Analysis", href: "/contact#contact-form", primary: true },
           { label: "View All Services", href: "/services", primary: false },
         ]}
       />

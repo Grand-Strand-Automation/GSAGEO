@@ -263,7 +263,7 @@ export default function OffboardingChecklist() {
         title="Need help building a consistent offboarding process?"
         subtitle="Grand Strand Ally helps small businesses document and automate onboarding and offboarding inside Microsoft 365 — so the right steps happen every time without relying on memory."
         buttons={[
-          { label: "Schedule a Free Cost Analysis", href: "/contact", primary: true },
+          { label: "Schedule a Free Cost Analysis", href: "/contact#contact-form", primary: true },
           { label: "See Our Services", href: "/services", primary: false },
         ]}
       />

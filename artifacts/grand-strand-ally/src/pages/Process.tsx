@@ -321,7 +321,7 @@ export default function Process() {
         title="Ready to start the process?"
         subtitle="The first step is a free, no-obligation cost analysis. We review your current environment and share practical findings — no commitment required."
         buttons={[
-          { label: "Schedule a Free Cost Analysis", href: "/contact", primary: true },
+          { label: "Schedule a Free Cost Analysis", href: "/contact#contact-form", primary: true },
           { label: "Read the FAQ", href: "/faq", primary: false },
         ]}
       />

@@ -1,0 +1,50 @@
+You are working inside the live website codebase for Grand Strand Ally at gsally.com.
+
+Goal:
+Fix every “Schedule a Free Cost Analysis” link so it takes the user directly to the actual contact form section instead of only loading the Contact page.
+
+Problem:
+The CTA currently goes to /contact, but that does not reliably bring the user to the form section. The actual form is on the Contact page under the heading:
+“Tell us what you want us to review”
+
+Tasks:
+1. Open the Contact page component or route.
+2. Find the section that wraps the real contact form.
+3. Add this exact anchor ID to that section:
+   id="contact-form"
+
+4. Update every “Schedule a Free Cost Analysis” CTA across the site:
+   - from other pages, change the target to /contact#contact-form
+   - from the Contact page itself, change the target to #contact-form
+
+5. Check and update these locations specifically:
+   - header CTA
+   - mobile menu CTA
+   - homepage CTA buttons
+   - services page CTA buttons
+   - pricing page CTA buttons
+   - footer CTA
+   - any reusable CTA component shared across pages
+
+6. If the site has a sticky header, make sure the form section is not hidden after scroll.
+   Add the simplest safe fix, such as scroll-margin-top on the contact form section.
+
+7. If smooth scrolling is already supported, preserve it.
+   If it is not supported and can be added safely without redesigning anything, add it in the simplest clean way.
+
+8. Do not redesign the site.
+   Do not change the copy, branding, layout, colors, spacing, or form behavior beyond this anchor-link fix.
+
+9. After making the change, verify:
+   - clicking “Schedule a Free Cost Analysis” from any other page opens /contact and scrolls to the form
+   - clicking the CTA while already on /contact scrolls to the form section
+   - no important CTA still points to plain /contact unless intentional
+   - the sticky header does not cover the form heading
+   - desktop and mobile both work correctly
+
+When finished, give me:
+1. the files changed
+2. every CTA link updated
+3. confirmation that the final anchor is id="contact-form"
+4. confirmation that the form section is visible after scrolling
+5. a short QA summary for desktop and mobile

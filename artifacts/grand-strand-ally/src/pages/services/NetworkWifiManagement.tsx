@@ -167,7 +167,7 @@ export default function NetworkWifiManagement() {
         title="Not sure what your current network actually looks like?"
         subtitle="The free cost analysis includes a review of your network environment — what is documented, what is not, and where the most practical improvements are."
         buttons={[
-          { label: "Schedule a Free Cost Analysis", href: "/contact", primary: true },
+          { label: "Schedule a Free Cost Analysis", href: "/contact#contact-form", primary: true },
           { label: "View All Services", href: "/services", primary: false },
         ]}
       />

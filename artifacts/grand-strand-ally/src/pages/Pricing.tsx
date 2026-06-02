@@ -63,7 +63,7 @@ export default function Pricing() {
             Grand Strand Ally helps businesses gain visibility into their information technology spend before recommending new services. We review the current environment, identify redundancy, and build a support model based on actual needs.
           </p>
           <Button asChild className="bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-7 text-[15px] rounded-lg border-0">
-            <Link href="/contact">Schedule a Free Cost Analysis →</Link>
+            <Link href="/contact#contact-form">Schedule a Free Cost Analysis →</Link>
           </Button>
         </div>
       </section>
@@ -155,7 +155,7 @@ export default function Pricing() {
                 ))}
               </div>
               <Button asChild className="mt-5 w-full bg-[#0E2F54] hover:bg-[#0A2440] text-white font-semibold h-12 text-sm rounded-lg">
-                <Link href="/contact">Schedule a Free Cost Analysis →</Link>
+                <Link href="/contact#contact-form">Schedule a Free Cost Analysis →</Link>
               </Button>
             </div>
 
@@ -224,7 +224,7 @@ export default function Pricing() {
                 <Button asChild className={`w-full h-10 text-sm rounded-lg font-semibold border-0 ${
                   model.highlight ? "bg-[#1F5E95] hover:bg-[#1a5080] text-white" : "bg-[#0E2F54] hover:bg-[#0A2440] text-white"
                 }`}>
-                  <Link href="/contact">Request a Quote</Link>
+                  <Link href="/contact#contact-form">Request a Quote</Link>
                 </Button>
               </div>
             ))}
@@ -248,7 +248,7 @@ export default function Pricing() {
                 If we move forward after a cost analysis, we define scope clearly, explain what is included, identify what is optional, and show where simplification or consolidation can create meaningful improvements.
               </p>
               <Link
-                href="/contact"
+                href="/contact#contact-form"
                 className="inline-flex items-center gap-2 text-sm font-semibold text-[#1F5E95] hover:text-[#0E2F54] transition-colors"
               >
                 Start the conversation <ArrowRight size={14} />
@@ -318,7 +318,7 @@ export default function Pricing() {
         title="Before adding more tools, understand what you already have."
         subtitle="A free cost analysis helps identify overlap, clarify support needs, and surface practical opportunities to simplify and improve."
         buttons={[
-          { label: "Schedule a Free Cost Analysis", href: "/contact", primary: true },
+          { label: "Schedule a Free Cost Analysis", href: "/contact#contact-form", primary: true },
           { label: "See Services", href: "/services", primary: false },
         ]}
       />

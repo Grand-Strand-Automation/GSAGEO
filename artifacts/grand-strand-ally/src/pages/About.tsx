@@ -320,7 +320,7 @@ export default function About() {
         title="Ready to get a clearer picture?"
         subtitle="Start with a free cost analysis — no obligation, no pressure. Just a structured look at your current environment."
         buttons={[
-          { label: "Schedule a Free Cost Analysis", href: "/contact", primary: true },
+          { label: "Schedule a Free Cost Analysis", href: "/contact#contact-form", primary: true },
           { label: "See How It Works", href: "/process", primary: false },
         ]}
       />

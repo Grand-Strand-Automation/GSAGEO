@@ -9,6 +9,7 @@ export const siteConfig = {
     services: "/services",
     pricing: "/pricing",
     contact: "/contact",
+    contactForm: "/contact#contact-form",
     costAnalysis: "/cost-analysis",
     privacy: "/privacy",
     terms: "/terms",

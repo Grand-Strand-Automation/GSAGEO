@@ -290,7 +290,7 @@ export function ResultsStep({
               one business day to walk through your findings.
             </p>
             <Link
-              href="/contact"
+              href="/contact#contact-form"
               className="inline-flex items-center gap-2 bg-[#0E2F54] hover:bg-[#0A2440] text-white font-semibold text-sm h-11 px-7 rounded-lg transition-colors"
             >
               Schedule a Free Cost Analysis →
@@ -316,7 +316,7 @@ export function ResultsStep({
 
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link
-                  href="/contact"
+                  href="/contact#contact-form"
                   className="inline-flex items-center justify-center gap-2 bg-[#0E2F54] hover:bg-[#0A2440] text-white font-semibold text-sm h-11 px-6 rounded-lg transition-colors sm:flex-1"
                 >
                   Schedule a Free Cost Analysis →

@@ -198,7 +198,7 @@ export default function CostAnalysis() {
               consultant will review your environment and walk you through practical next steps.
             </p>
             <Link
-              href="/contact"
+              href="/contact#contact-form"
               className="inline-flex items-center gap-2 bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-11 px-8 text-sm rounded-lg transition-colors"
             >
               Schedule a Free Cost Analysis →

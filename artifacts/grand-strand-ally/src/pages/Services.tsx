@@ -82,7 +82,7 @@ export default function Services() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Button asChild className="bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-7 text-[15px] rounded-lg border-0">
-              <Link href="/contact">Schedule a Free Cost Analysis →</Link>
+              <Link href="/contact#contact-form">Schedule a Free Cost Analysis →</Link>
             </Button>
             <Button asChild variant="outline" className="border-white/25 text-white hover:bg-white/8 hover:text-white h-12 px-7 text-[15px] bg-transparent rounded-lg">
               <Link href="/pricing">View Pricing</Link>
@@ -232,7 +232,7 @@ export default function Services() {
         title="Not sure which service comes first?"
         subtitle="Start with a free cost analysis. We review your current environment, identify overlap and friction, and help prioritize practical next steps."
         buttons={[
-          { label: "Schedule a Free Cost Analysis", href: "/contact", primary: true },
+          { label: "Schedule a Free Cost Analysis", href: "/contact#contact-form", primary: true },
           { label: "View Case Studies", href: "/case-studies", primary: false },
         ]}
       />
