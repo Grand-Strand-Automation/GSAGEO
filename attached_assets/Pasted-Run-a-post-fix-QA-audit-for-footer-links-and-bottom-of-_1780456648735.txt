@@ -1,0 +1,119 @@
+Run a post-fix QA audit for footer links and bottom-of-page CTA navigation on gsally.com.
+
+Goal:
+Verify that all footer links and bottom CTA links now navigate to the correct destination and land in the correct scroll position after the recent scroll-restoration / anchor-link fix.
+
+Scope:
+Test the live site behavior across the public pages, with special focus on:
+- footer navigation links
+- footer resource/article links
+- footer/service links
+- bottom-of-page CTA links
+- hash/anchor links such as /contact#contact-form and /cost-analysis#calculator
+
+Known expected behavior:
+- Standard page links should open the destination page at the TOP.
+- Anchor links should scroll to the correct section on the destination page.
+- Sticky header must not hide the top heading or anchor target.
+- This should work consistently on desktop and mobile.
+
+Pages to include in QA:
+- /
+- /about
+- /services
+- /pricing
+- /process
+- /faq
+- /case-studies
+- /contact
+- /free-it-cost-analysis
+- /cost-analysis
+- /managed-it-support-myrtle-beach
+- /microsoft-365-support
+- /network-wifi-management-myrtle-beach
+- /it-cost-analysis
+- /cybersecurity-compliance-support
+- /backup-recovery-support
+- /onboarding-offboarding-automation
+- /how-much-should-a-small-business-spend-on-it-support
+- /how-to-find-overlapping-it-tools-and-vendors
+- /small-business-offboarding-checklist
+- /what-an-it-cost-analysis-should-include
+
+Footer links to validate wherever present:
+- Home
+- About
+- Services
+- Our Process
+- Case Studies
+- FAQ
+- Pricing
+- Contact
+- Free Cost Analysis Tool
+- all footer article/resource links
+- all footer service links
+- “Schedule a Free Cost Analysis” CTA links
+- any bottom CTA buttons/links near the end of pages
+
+QA tasks:
+1. Inspect the shared footer and shared CTA components in the codebase to identify all relevant links being rendered.
+2. Crawl and test the live site behavior for those links from multiple pages, especially from pages where the user is already scrolled near the bottom.
+3. Confirm that clicking standard footer links:
+   - changes route correctly
+   - lands at the top of the destination page
+   - does NOT preserve the previous page’s scroll position
+4. Confirm that clicking anchor/hash links:
+   - lands on the correct target section
+   - does not overshoot or undershoot
+   - leaves the target visible below the sticky header
+5. Specifically test:
+   - /contact#contact-form
+   - /cost-analysis#calculator
+   - /cost-analysis#how-it-works
+   and confirm those IDs exist and are reachable
+6. Test behavior from desktop and mobile viewport sizes.
+7. Check for broken, duplicated, incorrect, or inconsistent href values in the footer or bottom CTA components.
+8. Check whether any footer link still points to plain /contact when it should point to /contact#contact-form.
+9. Check whether any resource/article/service footer link points to an alternate or legacy URL instead of the intended canonical URL.
+10. Check whether browser back/forward navigation still works reasonably after the scroll fix.
+11. Confirm no console errors or route errors occur during navigation.
+12. Confirm no footer links cause partial-page landing unless a hash anchor is intended.
+
+Expected pass criteria:
+- Every normal footer page link lands at the top of the correct page.
+- Every intended hash link lands at the correct section.
+- The contact form CTA lands with the form visible.
+- No sticky-header overlap blocks the heading/section target.
+- No broken footer links.
+- No legacy or wrong hrefs in footer or bottom CTA links.
+- No JS/router errors during navigation.
+
+Rules:
+- Do not redesign the site.
+- Do not change content unless a link target or href is incorrect.
+- If a bug is found, fix it in the codebase instead of only reporting it.
+- Keep existing branding, layout, copy, and form behavior unchanged unless a link correction is required.
+
+Deliverables:
+1. Changed files list
+2. Footer links inventory actually tested
+3. Bottom CTA links inventory actually tested
+4. Any incorrect hrefs found and how they were fixed
+5. Any missing anchor IDs found and how they were fixed
+6. Desktop QA results
+7. Mobile QA results
+8. Console/network/navigation issues found, if any
+9. Final pass/fail summary for:
+   - footer navigation links
+   - footer service links
+   - footer resource/article links
+   - bottom CTA links
+   - /contact#contact-form
+   - /cost-analysis#calculator
+   - /cost-analysis#how-it-works
+   - sticky-header offset handling
+   - back/forward behavior
+
+Important:
+Do not stop at “looks good.”
+Actually test the live navigation behavior from the bottom of pages and confirm the final result is production-ready.
