@@ -1,0 +1,264 @@
+Update the existing GEO service page on gsally.com to add the approved pricing tiers and deliverables section.
+
+Goal:
+Add a polished, production-ready pricing section to the existing Generative Engine Optimization / AI Search Visibility offering page without redesigning the rest of the page. Match the current site style, spacing, typography, CTA patterns, and calm/practical brand voice.
+
+Important:
+- Do not rebuild the GEO page from scratch if it already exists.
+- Do not redesign the site.
+- Reuse existing card, section, button, accordion, CTA, and layout components where possible.
+- Keep the page tone practical, credible, plain-English, and low-hype.
+- Make this feel like a natural part of gsally.com.
+
+Page context:
+This pricing section belongs on the GEO offering page, which may be using either:
+- /generative-engine-optimization
+or
+- /geo
+
+First inspect the codebase and identify the actual route/component already used for the GEO page, then update that page.
+
+================================
+SECTION TO ADD
+================================
+
+Add a new pricing section with a clear heading and short intro.
+
+Suggested section heading:
+AI Search Visibility Pricing
+
+Suggested intro copy:
+Choose the level of support that fits your current site, team, and growth goals — from a one-time audit to ongoing monthly optimization.
+
+Use a clean 3-card pricing layout on desktop and a stacked layout on mobile.
+
+================================
+PRICING TIERS TO IMPLEMENT
+================================
+
+TIER 1
+Title:
+AI Search Visibility Audit
+
+Price:
+$1,950
+
+Price note:
+One-time engagement
+
+Short description:
+A focused audit and roadmap for companies that want to understand how visible, citation-ready, and structurally prepared they are for AI search experiences.
+
+Deliverables:
+- technical GEO audit
+- sitemap, robots, and crawlability review
+- homepage and key service-page review
+- entity and business-profile consistency review
+- internal linking and page architecture review
+- service/content gap analysis
+- AI search query map
+- GEO scorecard
+- prioritized 90-day action plan
+- review call or walkthrough
+
+CTA button:
+Request a GEO Audit
+
+CTA target:
+Point to the GEO intake flow / audit request page already built for this offering.
+If there is a canonical GEO intake route, use it consistently across all three pricing cards.
+
+Badge or label:
+Best place to start
+
+--------------------------------
+
+TIER 2
+Title:
+AI Search Foundation
+
+Price:
+Starting at $5,500
+
+Price note:
+One-time implementation package
+
+Short description:
+A practical buildout for businesses that need the key technical fixes, structure improvements, and first wave of AI-search-ready content assets.
+
+Deliverables:
+- everything in the audit
+- technical GEO fixes
+- sitemap / robots / canonical cleanup where needed
+- internal linking improvements
+- schema recommendations and implementation
+- conversion CTA review
+- 3–6 priority pages or page rewrites
+- FAQ or FAQ hub framework
+- proof-content / case-study framework
+- reporting setup
+- implementation summary
+
+CTA button:
+Build My GEO Foundation
+
+CTA target:
+Use the same GEO intake / audit route, but if the form supports a tier parameter or hidden field, prefill this selection as Foundation.
+
+Badge or label:
+Most popular
+
+--------------------------------
+
+TIER 3
+Title:
+AI Search Growth
+
+Price:
+Starting at $2,500/mo
+
+Price note:
+Ongoing monthly optimization
+
+Short description:
+Ongoing monitoring, prioritization, and expansion for companies that want continued improvement in AI search visibility, content coverage, and lead generation.
+
+Deliverables:
+- monthly GEO monitoring
+- technical regression checks
+- Search Console review
+- Bing Webmaster / AI visibility review where available
+- monthly content opportunity updates
+- 2–4 content briefs per month
+- 1–2 refresh recommendations per month
+- internal-linking recommendations
+- structured data / entity consistency review
+- monthly priority action list
+- monthly strategy summary or walkthrough
+
+CTA button:
+Start Monthly GEO Growth
+
+CTA target:
+Use the same GEO intake / audit route, with tier prefill if supported.
+
+Badge or label:
+Ongoing support
+
+================================
+SECTION REQUIREMENTS
+================================
+
+1. Visual structure
+- Use three pricing cards with clear hierarchy
+- Make Tier 2 visually emphasized as the recommended middle option
+- Price should be prominent
+- Deliverables should be easy to scan
+- CTA should be clear and high-contrast
+- Use spacing consistent with the rest of the site
+
+2. Mobile behavior
+- Stack cards cleanly
+- Keep buttons full-width or consistent with existing mobile CTA patterns
+- Avoid cramped bullet lists
+
+3. Tone
+- Avoid hype like “dominate AI search”
+- Avoid guarantees
+- Keep the language practical and grounded
+- Use “AI Search Visibility” as the lead framing, with GEO referenced naturally where helpful
+
+4. CTA behavior
+- All pricing-card CTAs must work
+- They should route users into the GEO intake flow
+- If the app supports query params or state, pass the selected tier
+  Example ideas:
+  - /geo-audit?tier=audit
+  - /geo-audit?tier=foundation
+  - /geo-audit?tier=growth
+- If no prefill exists yet, add a clean way for the intake form to capture selected plan automatically
+
+5. Reusability
+- If appropriate, make this pricing section a reusable component
+- Keep prop structure simple if abstracted
+
+================================
+OPTIONAL ENHANCEMENTS
+================================
+
+If it fits the current page cleanly, add:
+1. a short “Need something custom?” line under the cards
+   Example:
+   Need a larger rollout, multi-location support, or ongoing implementation help? Request a custom GEO plan.
+
+2. a small reassurance line under the section
+   Example:
+   No hype, no unnecessary rebuilds — just a clearer plan for improving visibility in AI-driven search experiences.
+
+3. support for a simple “compare tiers” anchor link if the page already uses section nav
+
+Only add these if they fit naturally.
+
+================================
+RELATED UPDATES
+================================
+
+After adding the pricing section, inspect the rest of the GEO page and make sure:
+- any earlier “pricing” placeholder copy is updated to match these tiers
+- CTA labels are consistent with the new tier names
+- FAQ answers do not conflict with the pricing structure
+- the intake flow can capture the selected plan if possible
+
+If the intake form currently has no “selected plan” field:
+- add a hidden or visible field to capture:
+  - audit
+  - foundation
+  - growth
+- persist that value with the submission
+- include it in stored lead data and audit-job metadata if applicable
+
+================================
+SEO / CONTENT REQUIREMENTS
+================================
+
+Keep the section copy aligned with current guidance for AI-search optimization:
+- practical technical clarity
+- useful content structure
+- internal linking
+- entity consistency
+- structured data accuracy
+- ongoing measurement
+
+Do not add fake claims or guaranteed results.
+
+================================
+QA REQUIREMENTS
+================================
+
+Before finishing, verify:
+1. pricing section renders correctly on desktop
+2. pricing section renders correctly on mobile
+3. Tier 2 is visually emphasized
+4. all CTA buttons work
+5. selected tier is passed into the intake flow if implemented
+6. no layout regressions on the rest of the GEO page
+7. no console errors
+8. no broken links
+9. copy is clean and consistent with site tone
+
+================================
+DELIVERABLES
+================================
+
+When done, provide:
+1. changed files list
+2. route/component updated
+3. whether a reusable pricing component was created
+4. final CTA targets used
+5. whether selected tier is now captured in the intake flow
+6. short QA summary
+7. any small follow-up recommendations
+
+Important:
+Do not just suggest the pricing tiers in comments.
+Actually implement the pricing section on the existing GEO page in the codebase.
