@@ -1,0 +1,691 @@
+Build the complete AI Search Visibility / Generative Engine Optimization (GEO) offering for gsally.com inside the existing website codebase.
+
+IMPORTANT:
+- Do not redesign the whole site.
+- Match the existing gsally.com voice, layout rhythm, spacing, typography, CTA patterns, and overall visual system.
+- Reuse current shared components wherever possible.
+- Keep the tone aligned with the live site:
+  - practical
+  - plain-English
+  - low-pressure
+  - clarity-first
+  - no hype
+  - no “secret AI hack” language
+- The live site messaging emphasizes:
+  - clear visibility into current costs and structure
+  - simplifying overlap and vendor sprawl
+  - practical improvements
+  - compliance-minded operations
+  - month-to-month / no long-term lock-in
+  - reviewing the current environment before recommending changes
+- The GEO offering must feel like a natural extension of that positioning.
+- This must be a real implementation, not a mockup.
+
+OVERALL GOAL:
+Add a new service offering that helps businesses improve visibility in AI-generated search experiences and answer engines. This should include:
+1. a public GEO service landing page
+2. pricing tiers and deliverables
+3. a lead intake flow
+4. an automated audit workflow
+5. storage for submissions and audit jobs
+6. an admin/report view
+7. production-safe QA
+
+==================================================
+PHASE 1 — INSPECT THE EXISTING CODEBASE FIRST
+==================================================
+
+Before making changes:
+1. Inspect the app structure and identify:
+   - framework
+   - router
+   - shared layout components
+   - shared button/card/form/accordion/section components
+   - how metadata/SEO tags are handled
+   - how forms are handled
+   - how current routes are organized
+   - how persistence/storage currently works
+2. Reuse existing patterns instead of inventing a separate design system.
+3. Identify whether a GEO page or similar route already exists.
+4. Preserve current navigation, footer, contact flow, sitemap, and service-page structure unless change is required for this feature.
+
+Preferred route:
+- /generative-engine-optimization
+
+Optional alias:
+- /geo
+
+==================================================
+PHASE 2 — BUILD / UPDATE THE PUBLIC GEO OFFER PAGE
+==================================================
+
+Create or update the GEO offering page.
+
+Purpose:
+Explain the service clearly to business owners who may not know what GEO is, show exactly what is included, present pricing tiers, and drive users into the intake workflow.
+
+This page MUST feel like it belongs on gsally.com.
+
+Use the same messaging principles already present on the site:
+- start with clarity
+- review the current environment first
+- reduce complexity
+- practical improvements, not hype
+- no unnecessary rebuilds
+- no pressure / no hard sell
+- plain-language findings and recommendations
+
+Required sections:
+
+1. HERO
+Headline should be outcome-focused and consistent with the site voice.
+Do not sound trendy or overly technical.
+
+Good direction:
+- Improve how your business appears in AI search results
+- Clearer visibility in AI-driven search experiences
+- Practical AI search visibility for growing businesses
+
+Subheadline should explain:
+- businesses are increasingly discovered through AI-generated answers and summaries
+- this service helps improve discoverability, site structure, content coverage, and citation readiness
+- the approach starts with reviewing the current environment before recommending changes
+
+Primary CTA:
+- Request a GEO Audit
+
+Secondary CTA:
+- See What’s Included
+
+Optional microcopy:
+- Practical guidance, not a new sales pitch
+- No hype, no unnecessary rebuilds
+
+2. WHAT GEO MEANS
+Create a plain-English explanation of Generative Engine Optimization.
+
+Explain:
+- GEO helps businesses improve how they are understood, cited, and surfaced in AI-driven search experiences
+- strong GEO depends on:
+  - crawlability
+  - clear site structure
+  - strong service pages
+  - useful FAQ / guide / comparison content
+  - entity consistency
+  - trust and proof content
+- do not present this as “gaming AI”
+- frame it as a practical extension of good SEO, site clarity, and helpful content
+
+3. WHO IT’S FOR
+Use the current gsally.com positioning style.
+
+Ideal fit examples:
+- small and medium businesses
+- local B2B service businesses
+- teams with weak service-page structure
+- businesses with scattered content and unclear site architecture
+- companies that depend on trust and inbound lead generation
+- compliance-conscious organizations that want clearer digital visibility
+- businesses that have grown faster than their site structure has matured
+
+Not a fit examples:
+- businesses looking for guaranteed rankings
+- companies that want AI hype without improving the site
+- teams unwilling to strengthen content or technical structure
+- one-page brochure sites with no meaningful service depth
+
+4. WHAT’S INCLUDED
+Use a clean grid or card section. Match existing “What we offer” / “What clients gain” style.
+
+Include:
+- GEO audit and scorecard
+- AI search query mapping
+- sitemap / robots / crawlability review
+- page structure and internal linking review
+- service-page and content-gap review
+- structured data review
+- business/entity consistency review
+- FAQ / comparison / checklist / case-study recommendations
+- implementation roadmap and prioritization
+
+5. PROCESS SECTION
+Follow the consultative structure already used on gsally.com.
+
+Use a 4-step or 5-step process like:
+01 Review
+Understand the current site, service structure, core pages, and discoverability gaps
+
+02 Identify
+Surface where content, crawlability, structure, and trust signals are weak or incomplete
+
+03 Prioritize
+Organize the highest-value fixes, pages, and improvements in a clear roadmap
+
+04 Improve
+Implement practical changes over time without unnecessary complexity
+
+Optional 05:
+Measure
+Track visibility improvements, content growth, and next priorities over time
+
+This process should feel similar in tone to:
+- “Review current environment”
+- “Identify overlap and gaps”
+- “Present findings clearly”
+- “Scope a plan if it makes sense”
+
+6. DELIVERABLES SECTION
+Clear bullets, easy to scan.
+
+Include:
+- GEO scorecard
+- priority fixes
+- content opportunities
+- page recommendations
+- technical findings
+- implementation roadmap
+- optional monthly optimization path
+
+7. PRICING SECTION
+Add a polished pricing section with 3 tiers.
+This should match the tone of the current Pricing page:
+- straightforward
+- clear scope
+- no bloated bundles
+- no lock-in language
+- practical business framing
+
+Section heading:
+AI Search Visibility Pricing
+
+Section intro:
+Choose the level of support that fits your current site, team, and growth goals — from a one-time audit to ongoing monthly optimization.
+
+Use a 3-card layout on desktop and stacked layout on mobile.
+Visually emphasize Tier 2 as the recommended middle option.
+
+--------------------------------
+TIER 1
+Title:
+AI Search Visibility Audit
+
+Price:
+$1,950
+
+Price note:
+One-time engagement
+
+Short description:
+A focused audit and roadmap for businesses that want a clearer picture of how visible, citation-ready, and structurally prepared they are for AI search experiences.
+
+Deliverables:
+- technical GEO audit
+- sitemap, robots, and crawlability review
+- homepage and key service-page review
+- entity and business-profile consistency review
+- internal linking and page architecture review
+- service/content gap analysis
+- AI search query map
+- GEO scorecard
+- prioritized 90-day action plan
+- review call or walkthrough
+
+CTA:
+Request a GEO Audit
+
+Badge:
+Best place to start
+
+--------------------------------
+TIER 2
+Title:
+AI Search Foundation
+
+Price:
+Starting at $5,500
+
+Price note:
+One-time implementation package
+
+Short description:
+A practical buildout for businesses that need the core technical fixes, structure improvements, and first wave of AI-search-ready content assets.
+
+Deliverables:
+- everything in the audit
+- technical GEO fixes
+- sitemap / robots / canonical cleanup where needed
+- internal linking improvements
+- schema recommendations and implementation
+- conversion CTA review
+- 3–6 priority pages or page rewrites
+- FAQ or FAQ hub framework
+- proof-content / case-study framework
+- reporting setup
+- implementation summary
+
+CTA:
+Build My GEO Foundation
+
+Badge:
+Most popular
+
+--------------------------------
+TIER 3
+Title:
+AI Search Growth
+
+Price:
+Starting at $2,500/mo
+
+Price note:
+Ongoing monthly optimization
+
+Short description:
+Ongoing monitoring, prioritization, and expansion for businesses that want continued improvement in AI search visibility, content coverage, and lead generation.
+
+Deliverables:
+- monthly GEO monitoring
+- technical regression checks
+- Search Console review
+- Bing Webmaster / AI visibility review where available
+- monthly content opportunity updates
+- 2–4 content briefs per month
+- 1–2 refresh recommendations per month
+- internal-linking recommendations
+- structured data / entity consistency review
+- monthly priority action list
+- monthly strategy summary or walkthrough
+
+CTA:
+Start Monthly GEO Growth
+
+Badge:
+Ongoing support
+
+Optional helper line:
+Need a larger rollout, multi-location support, or ongoing implementation help? Request a custom GEO plan.
+
+Optional reassurance line:
+No hype, no unnecessary rebuilds — just a clearer plan for improving visibility in AI-driven search experiences.
+
+8. FAQ SECTION
+Add a real FAQ section with 8–12 questions.
+
+Suggested questions:
+- What is Generative Engine Optimization?
+- How is GEO different from SEO?
+- Do I need to rebuild my website?
+- Can this help a local service business?
+- What does the audit include?
+- Do you implement the recommendations too?
+- Can this work if our site already ranks well?
+- How long does a GEO audit take?
+- Can this be ongoing monthly?
+- What platforms do you work with?
+
+Answers must be practical and plain-language.
+
+9. FINAL CTA
+End-of-page CTA should feel aligned with current site language.
+
+Primary CTA:
+- Request a GEO Audit
+
+Supporting copy:
+- Start with a structured review of your current site, visibility, and content gaps.
+
+==================================================
+PHASE 3 — BUILD THE GEO INTAKE FLOW
+==================================================
+
+Create a dedicated intake route for the GEO offer.
+
+Preferred route:
+- /geo-audit
+
+Alternative acceptable route:
+- /generative-engine-optimization/audit
+
+This should feel like the existing site’s conversion flow, not a separate product.
+
+Required fields:
+1. Full name
+2. Work email
+3. Company name
+4. Website URL
+5. Phone (optional if existing form pattern prefers optional)
+6. Primary service / offer
+7. Service area / target locations
+8. Industry
+9. Approximate business size
+   - 1–5
+   - 6–20
+   - 21–50
+   - 51–200
+   - 200+
+10. Main goal
+   - more qualified leads
+   - stronger visibility in AI search
+   - better service-page performance
+   - more local visibility
+   - technical cleanup
+   - ongoing monthly optimization
+11. Top competitors
+12. Existing CMS / platform
+   - WordPress
+   - Webflow
+   - Shopify
+   - Custom / React
+   - Other
+13. Current challenges
+   - weak rankings
+   - poor content structure
+   - limited service pages
+   - no clear internal linking
+   - weak local visibility
+   - no analytics / reporting
+   - not sure
+14. Access available
+   - no access yet
+   - Search Console
+   - Analytics
+   - CMS
+   - Bing Webmaster Tools
+15. Selected plan
+   - audit
+   - foundation
+   - growth
+16. Additional notes / goals
+
+Form behavior:
+- validate required fields
+- show clear inline errors
+- mobile-friendly and accessible
+- submit cleanly
+- show success state or confirmation page
+- preserve existing contact flow if separate
+- all GEO page CTAs should point here
+
+If supported, allow prefilled tier query params:
+- /geo-audit?tier=audit
+- /geo-audit?tier=foundation
+- /geo-audit?tier=growth
+
+Persist selected tier in stored lead data.
+
+==================================================
+PHASE 4 — SUBMISSION STORAGE AND JOB MODEL
+==================================================
+
+Implement real, structured persistence using the simplest production-safe option already compatible with the codebase.
+
+Store:
+- GEO submissions
+- audit jobs
+- audit results
+- selected plan
+- timestamps
+- optional admin notes
+
+Each audit job should include:
+- job ID
+- submission ID
+- createdAt
+- updatedAt
+- selectedPlan
+- status
+- domain
+- companyName
+- input payload
+- results payload
+- summary payload
+
+Statuses:
+- submitted
+- queued
+- processing
+- complete
+- failed
+
+==================================================
+PHASE 5 — BUILD THE AUTOMATED GEO AUDIT WORKFLOW
+==================================================
+
+Build a practical v1 audit pipeline triggered by GEO intake submissions.
+
+Workflow:
+1. save submission
+2. create audit job
+3. set status to queued
+4. process job
+5. store results
+6. set status complete or failed
+
+Audit modules required for v1:
+
+A. PAGE DISCOVERY
+- fetch homepage
+- try sitemap.xml
+- try robots.txt
+- gather key public page URLs if discoverable
+
+B. TECHNICAL CHECKS
+- homepage status
+- sitemap presence
+- robots presence
+- title/meta extraction
+- canonical presence if detectable
+- structured data presence if detectable
+- basic crawlability findings
+
+C. ENTITY / BUSINESS EXTRACTION
+Try to extract:
+- business name
+- contact information
+- service labels
+- location mentions
+- visible positioning clues
+
+D. CONTENT ARCHITECTURE CHECKS
+Look for presence or likely absence of:
+- home
+- about
+- services
+- contact
+- FAQ
+- pricing
+- process
+- case studies / testimonials
+- service pages
+- educational pages
+- trust / proof pages
+
+E. GEO CONTENT GAP CHECKS
+Rules-based suggestions for missing assets such as:
+- service pages
+- city/service pages where appropriate
+- FAQ hubs
+- comparison pages
+- pricing/process pages
+- case studies
+- checklist or guide pages
+- about/founder/trust pages
+
+F. INTERNAL STRUCTURE SIGNALS
+Where possible:
+- whether key pages appear linked
+- whether structure seems shallow or fragmented
+- whether navigable architecture exists
+
+G. SCORECARD
+Generate category scores for:
+- crawlability
+- technical readiness
+- entity clarity
+- service-page depth
+- trust / proof content
+- answer-engine content coverage
+- internal structure
+- conversion readiness
+
+H. RECOMMENDATION ENGINE
+Generate:
+- top 5 priority fixes
+- top 5 content opportunities
+- suggested next pages to build
+- recommended offer tier:
+  - Audit only
+  - Foundation
+  - Growth
+
+I. HUMAN-READABLE SUMMARY
+Generate a readable summary explaining:
+- what was found
+- biggest gaps
+- what to do next
+
+Keep the output practical and explainable. If uncertain, mark uncertainty clearly.
+
+==================================================
+PHASE 6 — ADMIN / REPORT VIEW
+==================================================
+
+Create a simple internal admin-friendly way to inspect GEO leads and reports.
+
+Minimum requirements:
+1. submission list view
+2. audit job status view
+3. per-job detail/report view
+
+Each report view should show:
+- company
+- website
+- selected plan
+- submission details
+- audit status
+- scorecard
+- findings
+- recommendations
+- generated summary
+
+Reuse any current admin/internal patterns if they exist.
+
+==================================================
+PHASE 7 — CTA AND ROUTING INTEGRATION
+==================================================
+
+Integrate the GEO offer cleanly into the site.
+
+Tasks:
+- add or update GEO CTAs so they point into the intake flow
+- use consistent CTA targets across the GEO page
+- add GEO to services navigation or service lists if it fits cleanly
+- if primary nav becomes cluttered, add it in service/further-resources/footer sections instead
+- do not break existing routes
+- do not break footer behavior
+- keep CTA language aligned with current site style:
+  - Request a GEO Audit
+  - Start with a structured review
+  - Clear next steps, no pressure
+
+==================================================
+PHASE 8 — CONTENT / MESSAGING RULES
+==================================================
+
+The site’s existing positioning is:
+- practical local partner
+- review current environment first
+- simplify complexity
+- compliance-minded support
+- no long-term lock-in
+- clear visibility before recommendations
+
+The GEO page must follow those same rules.
+
+Use language like:
+- clearer visibility
+- practical AI search improvements
+- structured review
+- clearer understanding of how your site appears
+- identify gaps before recommending changes
+- strengthen discoverability over time
+
+Avoid:
+- dominate AI search
+- secret GEO tactics
+- guaranteed visibility
+- trendy buzzword overload
+- salesy agency language
+
+==================================================
+PHASE 9 — OPTIONAL ENHANCEMENTS IF CLEAN
+==================================================
+
+Only if these fit cleanly without overcomplication, add:
+- selected tier auto-capture from CTA
+- sample GEO audit preview section
+- hidden anti-spam field
+- email notification on new submission
+- admin export to CSV or JSON
+- confirmation summary after submit
+
+Do not destabilize the v1 build.
+
+==================================================
+PHASE 10 — QA AND PRODUCTION READINESS
+==================================================
+
+Before finishing, test:
+
+PUBLIC PAGE
+- GEO page loads correctly
+- metadata is present
+- pricing section displays correctly
+- CTAs work
+- mobile layout is clean
+- copy matches site tone
+- no style regressions
+
+INTAKE FLOW
+- form validates correctly
+- selected tier is captured correctly
+- success state works
+- no console errors
+- mobile form UX is clean
+
+WORKFLOW
+- submission is stored
+- audit job is created
+- status updates properly
+- results are stored
+- report view renders correctly
+- failed jobs degrade gracefully
+
+SITE SAFETY
+- existing contact form still works
+- footer/header links still work
+- no route conflicts
+- no SEO regressions
+- no styling regressions elsewhere
+
+==================================================
+PHASE 11 — FINAL DELIVERABLES
+==================================================
+
+When complete, provide:
+1. changed files list
+2. new routes created
+3. GEO page route/component used
+4. pricing section implementation summary
+5. intake fields implemented
+6. persistence/storage approach used
+7. audit workflow logic summary
+8. admin/report route summary
+9. final CTA targets used
+10. whether selected tier is captured in the intake flow
+11. QA summary
+12. any limitations or recommended v2 improvements
+
+FINAL INSTRUCTION:
+Do not stop at a static marketing page.
+Actually implement the GEO service page, pricing tiers, intake flow, submission storage, audit job workflow, and admin/report view in the existing gsally.com codebase, using the current gsally.com style and messaging patterns.

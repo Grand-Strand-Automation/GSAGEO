@@ -12,6 +12,7 @@ type Submission = {
   industry: string | null;
   businessSize: string | null;
   mainGoal: string | null;
+  selectedPlan: string | null;
 };
 
 type AuditJob = {
@@ -109,6 +110,7 @@ function ReportModal({ jobId, onClose }: { jobId: string; onClose: () => void })
                     ["Website", data.submission?.websiteUrl],
                     ["Industry", data.submission?.industry ?? "—"],
                     ["Goal", data.submission?.mainGoal ?? "—"],
+                    ["Selected Plan", data.submission?.selectedPlan ?? "—"],
                   ].map(([k, v]) => (
                     <div key={k}>
                       <span className="font-semibold text-[#0E2F54]">{k}: </span>
@@ -219,6 +221,29 @@ export default function GeoAdminDashboard() {
 
   const jobsBySubmissionId = Object.fromEntries(jobs.map(j => [j.submissionId, j]));
 
+  function handleExportCSV() {
+    const headers = ["Date","Company","Plan","Contact","Email","Website","Industry","Business Size","Goal"];
+    const rows = submissions.map(s => [
+      new Date(s.createdAt).toLocaleDateString(),
+      s.companyName,
+      s.selectedPlan ?? "",
+      s.fullName,
+      s.workEmail,
+      s.websiteUrl,
+      s.industry ?? "",
+      s.businessSize ?? "",
+      s.mainGoal ?? "",
+    ].map(v => `"${String(v).replace(/"/g, '""')}"`).join(","));
+    const csv = [headers.join(","), ...rows].join("\n");
+    const blob = new Blob([csv], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `geo-submissions-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
   return (
     <div className="flex flex-col">
       <Helmet>
@@ -255,6 +280,14 @@ export default function GeoAdminDashboard() {
                 <h2 className="font-heading font-bold text-lg text-[#0E2F54]">
                   Submissions ({submissions.length})
                 </h2>
+                {submissions.length > 0 && (
+                  <button
+                    onClick={handleExportCSV}
+                    className="text-xs font-semibold text-[#1F5E95] hover:text-[#0E2F54] border border-[#D7E1EA] bg-white rounded-lg px-3 py-1.5 transition-colors"
+                  >
+                    Export CSV
+                  </button>
+                )}
               </div>
 
               {submissions.length === 0 ? (
@@ -269,6 +302,7 @@ export default function GeoAdminDashboard() {
                         <tr className="border-b border-[#D7E1EA] bg-[#F7F5F1]">
                           <th className="text-left px-5 py-3.5 text-[11px] font-bold uppercase tracking-[0.12em] text-[#9AAEBB]">Date</th>
                           <th className="text-left px-5 py-3.5 text-[11px] font-bold uppercase tracking-[0.12em] text-[#9AAEBB]">Company</th>
+                          <th className="text-left px-5 py-3.5 text-[11px] font-bold uppercase tracking-[0.12em] text-[#9AAEBB]">Plan</th>
                           <th className="text-left px-5 py-3.5 text-[11px] font-bold uppercase tracking-[0.12em] text-[#9AAEBB]">Contact</th>
                           <th className="text-left px-5 py-3.5 text-[11px] font-bold uppercase tracking-[0.12em] text-[#9AAEBB]">Website</th>
                           <th className="text-left px-5 py-3.5 text-[11px] font-bold uppercase tracking-[0.12em] text-[#9AAEBB]">Audit Status</th>
@@ -286,6 +320,18 @@ export default function GeoAdminDashboard() {
                                 {new Date(sub.createdAt).toLocaleDateString()}
                               </td>
                               <td className="px-5 py-4 font-medium text-[#0E2F54]">{sub.companyName}</td>
+                              <td className="px-5 py-4">
+                                {sub.selectedPlan ? (
+                                  <span className={`text-xs font-semibold px-2 py-0.5 rounded-full border ${
+                                    sub.selectedPlan === "foundation" ? "bg-[#E8EFF6] text-[#1F5E95] border-[#C5D8EE]" :
+                                    sub.selectedPlan === "growth"     ? "bg-green-50 text-green-700 border-green-200" :
+                                    sub.selectedPlan === "audit"      ? "bg-[#F7F5F1] text-[#4B5B6B] border-[#D7E1EA]" :
+                                    "bg-gray-50 text-gray-600 border-gray-200"
+                                  }`}>
+                                    {sub.selectedPlan}
+                                  </span>
+                                ) : <span className="text-xs text-[#9AAEBB]">—</span>}
+                              </td>
                               <td className="px-5 py-4 text-[#4B5B6B]">
                                 <div>{sub.fullName}</div>
                                 <div className="text-xs text-[#9AAEBB]">{sub.workEmail}</div>
