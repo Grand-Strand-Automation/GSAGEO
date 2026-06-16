@@ -13,6 +13,7 @@ const SERVICE_LINKS = [
   { label: "Cybersecurity and Compliance", href: siteConfig.links.cybersecurityCompliancePage },
   { label: "Backup and Recovery", href: siteConfig.links.backupRecoverySupportPage },
   { label: "Onboarding and Offboarding", href: siteConfig.links.onboardingOffboardingAutomation },
+  { label: "GEO / AI Visibility", href: siteConfig.links.geo },
 ];
 
 const RESOURCE_LINKS = [
@@ -24,7 +25,7 @@ const RESOURCE_LINKS = [
 
 const SERVICE_ROOTS = [
   "/managed-it", "/microsoft-365", "/network-wifi", "/it-cost", "/cybersecurity",
-  "/backup", "/onboarding", "/services",
+  "/backup", "/onboarding", "/services", "/generative-engine-optimization", "/geo-audit",
 ];
 
 export function SiteHeader() {

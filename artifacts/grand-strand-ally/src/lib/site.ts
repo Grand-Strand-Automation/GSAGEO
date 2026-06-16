@@ -20,5 +20,7 @@ export const siteConfig = {
     cybersecurityCompliancePage: "/cybersecurity-compliance-support",
     backupRecoverySupportPage: "/backup-recovery-support",
     onboardingOffboardingAutomation: "/onboarding-offboarding-automation",
+    geo: "/generative-engine-optimization",
+    geoAudit: "/geo-audit",
   }
 };

@@ -1,0 +1,422 @@
+Build a complete “Generative Engine Optimization (GEO)” offering on gsally.com, including:
+
+1. a public GEO service landing page
+2. a lead capture / intake flow
+3. an automated GEO audit workflow
+4. an admin/report output structure
+5. clear CTAs that connect the service page to the intake form and report workflow
+
+IMPORTANT:
+- Do not redesign the whole site.
+- Match the existing visual system, typography, layout rhythm, CTA style, and brand tone already used on gsally.com.
+- Keep the site’s current navigation, footer, forms, SEO setup, and deployment structure intact unless a change is required for this feature.
+- Build this to be production-ready, not a mockup.
+- If the codebase already has shared layout, button, section, card, form, and route components, reuse them.
+
+GOAL OF THE OFFER:
+Create a new service that helps companies improve how they appear in AI-generated search experiences and answer engines. The service should be positioned as a practical business offering, not hype. It should emphasize visibility, discoverability, citation-readiness, site structure, content quality, and ongoing improvement.
+
+================================
+PART 1 — PUBLIC OFFERING PAGE
+================================
+
+Create a new page/route for the offering. Preferred slug:
+- /generative-engine-optimization
+If that is too long for existing route conventions, use:
+- /geo
+
+Page objective:
+Explain the service clearly to business owners who may not know what GEO is, make the value concrete, and drive them into the intake flow.
+
+Required sections on the page:
+
+1. Hero
+- Headline focused on business outcome, not jargon
+- Subheadline explaining that this service helps companies improve visibility in AI search experiences and answer engines
+- Primary CTA: “Request a GEO Audit”
+- Secondary CTA: “See What’s Included”
+- Optional trust microcopy such as practical / no-hype / no-pressure language consistent with existing site voice
+
+2. What GEO Means
+- Simple explanation of Generative Engine Optimization
+- Explain that customers are increasingly discovering vendors through AI-generated answers, summaries, and recommendations
+- Explain that strong GEO depends on technical clarity, useful expert content, internal structure, entity consistency, and conversion-ready pages
+- Avoid buzzword-heavy language
+
+3. Who It’s For
+- Ideal client bullets
+- Not-a-fit bullets
+- Focus on SMBs, service businesses, local B2B, compliance-aware teams, firms with weak content structure, or companies that rely on inbound trust
+
+4. What’s Included
+Create a clean card/grid section for the GEO offering components:
+- GEO audit and scorecard
+- AI visibility query mapping
+- technical crawlability and indexing checks
+- service page and content gap analysis
+- entity / business profile consistency review
+- structured data review
+- internal linking and page architecture review
+- recommendations for pages, FAQs, comparisons, checklists, and case studies
+- reporting and prioritization roadmap
+
+5. How the Process Works
+Use a 4-step or 5-step process section:
+- Discover
+- Audit
+- Prioritize
+- Implement
+- Improve
+Should feel similar in style to existing process/consultative content on the site
+
+6. Deliverables
+Clear bullets for what the client receives:
+- GEO scorecard
+- prioritized action plan
+- content map
+- technical recommendations
+- implementation roadmap
+- optional ongoing monthly optimization
+
+7. Pricing / Engagement Options
+Add a section with 3 tiers:
+- GEO Quick Audit
+- GEO Foundation Build
+- GEO Growth / Monthly Optimization
+Do not hardcode prices unless the codebase already has a pricing pattern. If prices are not yet decided, use “Custom quote” or “Starting at” placeholders that are easy to edit.
+
+8. FAQs
+Include a real FAQ section on the page. Add 8–12 FAQs such as:
+- What is GEO?
+- How is GEO different from SEO?
+- Can you help if our site is already optimized for SEO?
+- Does this include technical fixes?
+- Do you write the content too?
+- Can this help local businesses?
+- Do I need to change my whole website?
+- How long does a GEO audit take?
+- Can this be ongoing monthly?
+Answers should be practical and business-friendly
+
+9. Final CTA
+Strong end-of-page CTA:
+- “Request a GEO Audit”
+- links into the intake form
+- make sure CTA behavior is correct on desktop and mobile
+
+10. SEO / metadata
+Add page-specific:
+- title tag
+- meta description
+- canonical
+- Open Graph tags if the site uses them
+- structured data if appropriate (Service, FAQPage if eligible and rendered correctly)
+
+================================
+PART 2 — INTAKE FLOW
+================================
+
+Build a lead intake flow specifically for the GEO offer.
+
+Preferred route:
+- /geo-audit
+or
+- /generative-engine-optimization/audit
+
+This should be a polished multi-step or single-page structured intake form. Reuse existing form components/styles where possible.
+
+Required form fields:
+1. Full name
+2. Work email
+3. Company name
+4. Website URL
+5. Phone (optional if current form patterns prefer optional phone)
+6. Primary service / offer
+7. Service area / target locations
+8. Industry
+9. Approximate business size
+   - 1–5
+   - 6–20
+   - 21–50
+   - 51–200
+   - 200+
+10. Main goal
+   - more qualified leads
+   - stronger visibility in AI search
+   - better service-page performance
+   - more local visibility
+   - technical cleanup
+   - ongoing monthly optimization
+11. Top competitors (free text or repeatable field)
+12. Existing CMS / platform
+   - WordPress
+   - Webflow
+   - Shopify
+   - Custom / React
+   - Other
+13. Current challenges
+   - weak rankings
+   - poor content structure
+   - limited service pages
+   - no clear internal linking
+   - weak local visibility
+   - no analytics / reporting
+   - not sure
+14. Access available
+   - no access yet
+   - Search Console
+   - Analytics
+   - CMS
+   - Bing Webmaster Tools
+15. Additional notes / goals
+
+Form behavior:
+- validate required fields
+- show clear inline errors
+- submit cleanly on desktop/mobile
+- preserve accessibility best practices
+- show success state
+- send user to a thank-you or confirmation state after successful submit
+
+CTA behavior:
+- all GEO CTAs on the service page should route to this intake flow
+- if existing contact form infrastructure is reusable, do not break it
+- if better, create a separate GEO intake endpoint / submission handler
+
+================================
+PART 3 — AUTOMATED GEO AUDIT WORKFLOW
+================================
+
+Build the first version of an automated GEO audit pipeline behind the intake form.
+
+Objective:
+When a form is submitted, create a structured audit job using the submitted website and business inputs. The workflow does not need to be fully enterprise-grade, but it must be real, organized, and extensible.
+
+Required workflow behavior:
+
+A. On successful form submission:
+- store the submission
+- create a unique audit job ID
+- mark status as:
+  - submitted
+  - queued
+  - processing
+  - complete
+  - failed
+
+B. Audit modules to include in v1:
+1. Crawl / page inventory
+   - fetch homepage
+   - try sitemap.xml
+   - try robots.txt
+   - gather key page URLs if discoverable
+2. Technical checks
+   - status code checks
+   - sitemap presence
+   - robots presence
+   - canonical presence on homepage if detectable
+   - title/meta extraction
+   - indexability basics where possible
+3. Business/entity extraction
+   - business name
+   - contact info if visible
+   - service labels if visible
+   - location mentions
+4. Content architecture checks
+   - existence of About, Services, Contact, FAQ, Case Studies / Testimonials, Pricing / Process pages if detectable
+   - count/flag service pages if discoverable
+   - identify likely missing high-intent page types
+5. GEO content-gap checks
+   Generate a rules-based assessment for missing page types like:
+   - service pages
+   - location/service pages
+   - FAQs
+   - comparisons
+   - pricing / process pages
+   - case studies
+   - checklist / guide content
+6. Internal structure checks
+   - if key links are discoverable, note whether the site appears to have navigable structure
+7. Output a GEO scorecard
+   categories:
+   - crawlability
+   - technical readiness
+   - entity clarity
+   - service-page depth
+   - trust/proof content
+   - answer-engine content coverage
+   - internal structure
+   - conversion readiness
+
+C. Recommendation engine
+Based on the audit results, generate:
+- top 5 highest-priority fixes
+- top 5 content opportunities
+- suggested next pages to build
+- suggested implementation tier:
+  - Quick Audit only
+  - Foundation Build
+  - Monthly GEO Growth
+
+D. Report output
+Generate a structured report object and a presentable human-readable summary.
+
+At minimum produce:
+- job metadata
+- company info
+- submitted inputs
+- detected pages
+- audit findings
+- scorecard
+- recommendations
+- next-step CTA
+
+================================
+PART 4 — ADMIN / STORAGE / REPORTING
+================================
+
+Implement a lightweight but real storage pattern compatible with the current app.
+
+Preferred approach:
+- choose the simplest production-safe storage already supported by the codebase
+- if there is no DB, add a minimal structured persistence layer that is realistic for Replit deployment
+- do not build fake temporary-only logic if avoidable
+
+Need storage for:
+- GEO intake submissions
+- audit job status
+- audit results
+- timestamps
+- optional admin notes field
+
+Create an admin-friendly way to inspect results.
+This can be:
+- a protected admin route
+- a basic internal dashboard
+- a simple audit list view
+- or stored structured report files if that fits the current project better
+
+Minimum admin views:
+1. submission list
+2. job status
+3. per-job report view
+
+================================
+PART 5 — UX / MESSAGING REQUIREMENTS
+================================
+
+Tone:
+- practical
+- calm
+- credible
+- plain English
+- no hype
+- no “secret AI trick” language
+- consistent with the current Grand Strand Ally style
+
+Avoid:
+- overpromising rankings
+- “guaranteed AI visibility”
+- spammy marketing language
+- unnecessary jargon
+- generic filler content
+
+Use language that emphasizes:
+- clarity
+- discoverability
+- structure
+- better supporting pages
+- stronger visibility in AI search experiences
+- prioritized improvements over hacks
+
+================================
+PART 6 — TECHNICAL REQUIREMENTS
+================================
+
+1. Inspect the existing codebase first
+- identify framework/router
+- identify shared UI components
+- identify form handling
+- identify deployment/runtime constraints
+- identify current SEO/meta patterns
+
+2. Reuse existing shared components where possible
+- header
+- footer
+- layout wrappers
+- buttons
+- cards
+- forms
+- FAQ accordion
+- CTA sections
+
+3. Do not break:
+- current contact form
+- sitemap
+- robots
+- current routes
+- current service pages
+- existing analytics or tracking if present
+
+4. Make the new offering page and intake pages:
+- mobile-friendly
+- accessible
+- performant
+- consistent with existing page spacing and typography
+
+5. Add the new GEO offering into navigation only if it fits the existing IA cleanly.
+If it would clutter the primary nav, add it in the services area and footer/service lists instead.
+Use judgment based on the current site structure.
+
+================================
+PART 7 — OPTIONAL SMART ENHANCEMENTS
+================================
+
+If feasible without overcomplicating the build, also add:
+- downloadable sample GEO audit PDF or placeholder sample report section
+- lead source tagging
+- ability to email the submission details to the business owner
+- auto-generated plain-language “initial findings” summary after submission
+- admin export to CSV or JSON
+- hidden anti-spam field / basic spam protection
+
+Only implement these if they fit cleanly.
+
+================================
+PART 8 — FINAL QA
+================================
+
+Before finishing, test:
+1. GEO page loads correctly
+2. metadata is present
+3. all GEO CTAs work
+4. intake form validates correctly
+5. successful form submission stores data
+6. audit job is created
+7. audit workflow runs and stores results
+8. report view is readable
+9. mobile layout is clean
+10. no console errors
+11. existing site functionality still works
+12. footer/header links still work
+13. no accidental styling regressions
+
+================================
+PART 9 — DELIVERABLES
+================================
+
+When complete, provide:
+1. changed files list
+2. new routes created
+3. storage/persistence approach used
+4. intake form fields implemented
+5. audit workflow logic summary
+6. report/output structure summary
+7. any admin access notes
+8. any remaining limitations or suggested v2 improvements
+
+IMPORTANT:
+Do not stop at a static marketing page.
+Actually build the GEO offering page, the intake flow, and the automated audit workflow in the codebase.
+Use the existing gsally.com style system and voice.
+Make implementation choices that are simple, clean, and production-safe.

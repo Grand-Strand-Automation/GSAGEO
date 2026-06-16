@@ -37,6 +37,7 @@ export function SiteFooter() {
                 { label: "Cybersecurity and Compliance", href: siteConfig.links.cybersecurityCompliancePage },
                 { label: "Backup and Recovery", href: siteConfig.links.backupRecoverySupportPage },
                 { label: "Onboarding and Offboarding", href: siteConfig.links.onboardingOffboardingAutomation },
+                { label: "GEO / AI Visibility", href: siteConfig.links.geo },
                 { label: "Free IT Cost Analysis", href: "/free-it-cost-analysis" },
               ].map(({ label, href }) => (
                 <li key={label}>

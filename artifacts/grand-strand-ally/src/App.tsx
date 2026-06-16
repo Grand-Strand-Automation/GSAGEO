@@ -38,6 +38,11 @@ import CybersecurityComplianceSupportPage from "@/pages/services/CybersecurityCo
 import BackupRecoverySupportPage from "@/pages/services/BackupRecoverySupportPage";
 import OnboardingOffboardingAutomation from "@/pages/services/OnboardingOffboardingAutomation";
 
+// GEO pages
+import GenerativeEngineOptimization from "@/pages/GenerativeEngineOptimization";
+import GeoAudit from "@/pages/GeoAudit";
+import GeoAdminDashboard from "@/pages/GeoAdminDashboard";
+
 function RedirectTo({ to }: { to: string }) {
   const [, navigate] = useLocation();
   useEffect(() => { navigate(to, { replace: true }); }, [to]);
@@ -108,6 +113,11 @@ function Router() {
           <Route path="/cybersecurity-compliance-support" component={CybersecurityComplianceSupportPage} />
           <Route path="/backup-recovery-support" component={BackupRecoverySupportPage} />
           <Route path="/onboarding-offboarding-automation" component={OnboardingOffboardingAutomation} />
+
+          {/* GEO pages */}
+          <Route path="/generative-engine-optimization" component={GenerativeEngineOptimization} />
+          <Route path="/geo-audit" component={GeoAudit} />
+          <Route path="/geo-audit-admin" component={GeoAdminDashboard} />
 
           <Route component={NotFound} />
         </Switch>
