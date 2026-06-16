@@ -56,6 +56,7 @@ const formSchema = z.object({
   accessAvailable:   z.array(z.string()).optional(),
   additionalNotes:   z.string().optional(),
   website:           z.string().optional(),
+  selectedPlan:      z.string().optional(),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -97,6 +98,11 @@ function CheckboxGroup({
 export default function GeoAudit() {
   const [, setLocation] = useLocation();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [initialTier] = useState(() =>
+    typeof window !== "undefined"
+      ? (new URLSearchParams(window.location.search).get("tier") ?? "")
+      : ""
+  );
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -117,6 +123,7 @@ export default function GeoAudit() {
       accessAvailable:   [],
       additionalNotes:   "",
       website:           "",
+      selectedPlan:      initialTier,
     },
   });
 
@@ -210,6 +217,31 @@ export default function GeoAudit() {
                   autoComplete="off"
                   aria-hidden="true"
                   {...form.register("website")}
+                />
+
+                {/* Selected Plan */}
+                <FormField
+                  control={form.control}
+                  name="selectedPlan"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className={label}>Interested in (optional)</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger className="h-11">
+                            <SelectValue placeholder="Select a plan or leave blank" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="audit">AI Search Visibility Audit — $1,950 one-time</SelectItem>
+                          <SelectItem value="foundation">AI Search Foundation — Starting at $5,500</SelectItem>
+                          <SelectItem value="growth">AI Search Growth — Starting at $2,500/mo</SelectItem>
+                          <SelectItem value="custom">Custom scope / not sure yet</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
 
                 {/* Section 1: Contact Info */}

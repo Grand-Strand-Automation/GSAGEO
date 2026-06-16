@@ -123,56 +123,77 @@ const DELIVERABLES = [
   "Content map showing recommended pages, topics, and content types",
   "Technical recommendations for site structure, schema markup, and crawlability",
   "Implementation roadmap with suggested tier and sequencing",
-  "Optional: monthly GEO optimization for ongoing improvement",
+  "Optional: ongoing AI search optimization through the AI Search Growth engagement",
 ];
 
 const TIERS = [
   {
-    name: "GEO Quick Audit",
-    price: "Starting at $750",
-    period: "One-time review",
-    desc: "For businesses that want a clear baseline before committing to broader work.",
+    name: "AI Search Visibility Audit",
+    badge: "Best place to start",
+    price: "$1,950",
+    period: "One-time engagement",
+    tier: "audit",
+    desc: "A focused audit and roadmap for companies that want to understand how visible, citation-ready, and structurally prepared they are for AI search experiences.",
     includes: [
-      "Full site audit across eight GEO categories",
-      "GEO scorecard with letter grades",
-      "Findings summary with specific evidence",
-      "Prioritized list of top fixes and content gaps",
-      "Suggested implementation tier",
-    ],
-    excludes: "Does not include implementation, content creation, or structural changes.",
-    cta: "Request This Audit",
-    primary: true,
-  },
-  {
-    name: "GEO Foundation Build",
-    price: "Starting at $2,500",
-    period: "One-time project",
-    desc: "For businesses ready to close the most critical gaps and build the right structure.",
-    includes: [
-      "Everything in the Quick Audit",
-      "Top technical fixes implemented",
-      "Content map for your service area",
-      "3–5 new or restructured pages built",
-      "Structured data setup where applicable",
+      "Technical GEO audit",
+      "Sitemap, robots, and crawlability review",
+      "Homepage and key service-page review",
+      "Entity and business-profile consistency review",
+      "Internal linking and page architecture review",
+      "Service and content gap analysis",
+      "AI search query map",
+      "GEO scorecard",
+      "Prioritized 90-day action plan",
+      "Review call or walkthrough",
     ],
     excludes: null,
-    cta: "Request a Foundation Build",
+    cta: "Request a GEO Audit",
     primary: false,
   },
   {
-    name: "GEO Monthly Growth",
-    price: "Starting at $750/month",
-    period: "Ongoing engagement · 3-month minimum",
-    desc: "For businesses that want to improve AI visibility continuously over time.",
+    name: "AI Search Foundation",
+    badge: "Most popular",
+    price: "Starting at $5,500",
+    period: "One-time implementation package",
+    tier: "foundation",
+    desc: "A practical buildout for businesses that need the key technical fixes, structure improvements, and first wave of AI-search-ready content assets.",
     includes: [
-      "Monthly site review and progress report",
-      "Continued content development",
-      "Structured data monitoring and updates",
-      "New page builds as opportunities emerge",
-      "Ongoing technical maintenance",
+      "Everything in the Audit tier",
+      "Technical GEO fixes implemented",
+      "Sitemap, robots, and canonical cleanup",
+      "Internal linking improvements",
+      "Schema recommendations and implementation",
+      "Conversion CTA review",
+      "3–6 priority pages or page rewrites",
+      "FAQ or FAQ hub framework",
+      "Proof-content and case-study framework",
+      "Reporting setup",
+      "Implementation summary",
     ],
     excludes: null,
-    cta: "Discuss Monthly Scope",
+    cta: "Build My GEO Foundation",
+    primary: true,
+  },
+  {
+    name: "AI Search Growth",
+    badge: "Ongoing support",
+    price: "Starting at $2,500/mo",
+    period: "Ongoing monthly optimization",
+    tier: "growth",
+    desc: "Ongoing monitoring, prioritization, and expansion for companies that want continued improvement in AI search visibility, content coverage, and lead generation.",
+    includes: [
+      "Monthly GEO monitoring and technical checks",
+      "Search Console and Bing Webmaster review",
+      "Monthly content opportunity updates",
+      "2–4 content briefs per month",
+      "1–2 refresh recommendations per month",
+      "Internal linking recommendations",
+      "Structured data and entity consistency review",
+      "Monthly priority action list",
+      "Monthly strategy summary or walkthrough",
+    ],
+    excludes: null,
+    cta: "Start Monthly GEO Growth",
     primary: false,
   },
 ];
@@ -196,11 +217,11 @@ const FAQ_ITEMS = [
   },
   {
     q: "Do you fix the issues you find?",
-    a: "That depends on the engagement tier. The Quick Audit documents findings and provides a prioritized action plan — you can implement the recommendations yourself or hire us to do it. The Foundation Build and Monthly Growth tiers include hands-on implementation work.",
+    a: "That depends on the engagement tier. The AI Search Visibility Audit documents findings and provides a prioritized action plan — you can implement the recommendations yourself or hire us to do it. The AI Search Foundation and AI Search Growth tiers include hands-on implementation work.",
   },
   {
     q: "Do you write the content too?",
-    a: "Yes, for Foundation Build and Monthly Growth engagements. We write new service pages, FAQ content, process documentation, case studies, and other page types identified in the audit. All content is written to match your business voice and reviewed by you before it goes live.",
+    a: "Yes, for AI Search Foundation and AI Search Growth engagements. We write new service pages, FAQ content, process documentation, case studies, and other page types identified in the audit. All content is written to match your business voice and reviewed by you before it goes live.",
   },
   {
     q: "Can this help a local service business?",
@@ -216,7 +237,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Can this be an ongoing monthly service?",
-    a: "Yes. GEO is not a one-time fix. AI systems update frequently, new query patterns emerge, and adding content over time steadily improves your visibility. The Monthly Growth tier is designed for businesses that want continuous improvement rather than a single audit snapshot.",
+    a: "Yes. GEO is not a one-time fix. AI systems update frequently, new query patterns emerge, and adding content over time steadily improves your visibility. The AI Search Growth tier is designed for businesses that want continuous improvement rather than a single audit snapshot.",
   },
 ];
 
@@ -516,13 +537,13 @@ export default function GenerativeEngineOptimization() {
           <div className="max-w-2xl mb-12">
             <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#1F5E95] flex items-center gap-1.5 mb-4">
               <span className="w-1.5 h-1.5 rounded-full bg-[#1F5E95] inline-block" />
-              Pricing and Engagement Options
+              AI Search Visibility Pricing
             </span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#0E2F54] mb-4 leading-[1.15]">
-              Three ways to engage.
+              Choose your level of support.
             </h2>
             <p className="text-[#4B5B6B] text-base md:text-lg leading-relaxed">
-              Start with a quick audit to understand where you stand, or move directly into implementation. All pricing is quoted based on site size and scope after the intake form.
+              Choose the level of support that fits your current site, team, and growth goals — from a one-time audit to ongoing monthly optimization.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -536,6 +557,13 @@ export default function GenerativeEngineOptimization() {
                 }`}
               >
                 <div className="mb-6">
+                  {tier.badge && (
+                    <span className={`inline-block text-[10px] font-bold uppercase tracking-[0.12em] px-2.5 py-1 rounded-full mb-3 ${
+                      tier.primary ? "bg-white/10 text-white/80" : "bg-[#E8EFF6] text-[#1F5E95]"
+                    }`}>
+                      {tier.badge}
+                    </span>
+                  )}
                   <h3 className={`font-heading font-bold text-lg mb-1 ${tier.primary ? "text-white" : "text-[#0E2F54]"}`}>
                     {tier.name}
                   </h3>
@@ -570,10 +598,21 @@ export default function GenerativeEngineOptimization() {
                       : "bg-[#F7F5F1] hover:bg-[#EAE8E4] text-[#0E2F54] border border-[#D7E1EA] font-semibold h-11 text-sm rounded-lg w-full"
                   }
                 >
-                  <Link href="/geo-audit">{tier.cta} →</Link>
+                  <Link href={`/geo-audit?tier=${tier.tier}`}>{tier.cta} →</Link>
                 </Button>
               </div>
             ))}
+          </div>
+          <div className="mt-10 text-center space-y-3">
+            <p className="text-sm text-[#4B5B6B]">
+              Need a larger rollout, multi-location support, or ongoing implementation help?{" "}
+              <Link href="/geo-audit?tier=custom" className="text-[#1F5E95] hover:underline font-medium">
+                Request a custom GEO plan.
+              </Link>
+            </p>
+            <p className="text-xs text-[#9AAEBB]">
+              No hype, no unnecessary rebuilds — just a clearer plan for improving visibility in AI-driven search experiences.
+            </p>
           </div>
         </div>
       </section>

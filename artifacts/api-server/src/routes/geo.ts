@@ -475,6 +475,7 @@ router.post("/geo-audit", async (req, res) => {
           : body.accessAvailable ? String(body.accessAvailable) : null,
         additionalNotes:   body.additionalNotes   ? String(body.additionalNotes)   : null,
         honeypot:          body.website           ? String(body.website)           : null,
+        selectedPlan:      body.selectedPlan      ? String(body.selectedPlan)      : null,
       })
       .returning();
 

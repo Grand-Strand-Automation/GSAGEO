@@ -19,6 +19,7 @@ export const geoSubmissionsTable = pgTable("geo_submissions", {
   accessAvailable: text("access_available"),
   additionalNotes: text("additional_notes"),
   honeypot: text("honeypot"),
+  selectedPlan: text("selected_plan"),
 });
 
 export const geoAuditJobsTable = pgTable("geo_audit_jobs", {
