@@ -1,0 +1,341 @@
+Run a full production QA pass for the new GEO / AI Search Visibility offering on gsally.com before launch.
+
+Goal:
+Verify that the GEO service page, pricing tiers, intake flow, submission storage, automated audit workflow, admin/reporting view, and related CTAs are production-ready, mobile-safe, and do not break existing site behavior.
+
+IMPORTANT:
+- This is a real QA pass, not a visual skim.
+- Actually test the live behavior in the project.
+- If you find broken links, bad CTA targets, missing form behavior, incorrect storage, layout regressions, or workflow failures, fix them in the codebase instead of only reporting them.
+- Do not redesign the site.
+- Preserve the current gsally.com look, tone, and structure.
+
+==================================================
+SCOPE
+==================================================
+
+Test the complete GEO feature set, including:
+1. GEO public service page
+2. pricing section
+3. GEO intake form
+4. CTA links and tier prefill behavior
+5. submission storage
+6. audit job creation
+7. audit processing
+8. admin/report views
+9. SEO/meta output
+10. mobile responsiveness
+11. sitewide regression safety
+
+Primary routes to test:
+- /generative-engine-optimization
+- /geo (if alias exists)
+- /geo-audit
+- any success / thank-you / confirmation route for GEO
+- any admin/report route created for GEO
+
+Also test existing core site routes for regression:
+- /
+- /about
+- /services
+- /pricing
+- /process
+- /faq
+- /case-studies
+- /contact
+- core service pages
+- footer and header navigation flows
+
+==================================================
+PHASE 1 — PUBLIC GEO PAGE QA
+==================================================
+
+Verify the GEO page loads correctly and matches the current gsally.com tone and structure.
+
+Check:
+1. page loads with HTTP 200
+2. no console errors
+3. no broken assets
+4. hero section is complete
+5. “What GEO Means” section is complete
+6. “Who It’s For” section is complete
+7. “What’s Included” section is complete
+8. process section is complete
+9. pricing section is complete
+10. FAQ section is complete
+11. final CTA section is complete
+12. all buttons and links work
+13. no placeholder copy remains
+14. tone matches gsally.com:
+   - practical
+   - plain-English
+   - low-pressure
+   - no hype
+15. page spacing and layout match the rest of the site
+16. mobile layout is clean
+17. desktop layout is clean
+
+If any part is incomplete, broken, awkward, or inconsistent with the site, fix it.
+
+==================================================
+PHASE 2 — PRICING SECTION QA
+==================================================
+
+Verify the pricing cards are implemented correctly.
+
+Expected tiers:
+1. AI Search Visibility Audit
+2. AI Search Foundation
+3. AI Search Growth
+
+Check:
+1. all 3 tiers are present
+2. price labels display correctly
+3. one-time vs monthly labels display correctly
+4. deliverables lists are readable
+5. Tier 2 is visually emphasized
+6. buttons work
+7. button labels are correct
+8. no pricing card overflows or layout breaks on mobile
+9. no duplicate or conflicting pricing copy elsewhere on the GEO page
+10. optional helper copy and reassurance lines fit naturally if included
+
+If the selected tier should prefill the intake form:
+- confirm it works
+- if it does not work, fix it
+
+==================================================
+PHASE 3 — GEO INTAKE FLOW QA
+==================================================
+
+Test the GEO intake form thoroughly.
+
+Required checks:
+1. form route loads
+2. all required fields are present
+3. validation works
+4. invalid submissions show clear inline errors
+5. required fields cannot be skipped
+6. selected plan is captured correctly
+7. tier prefill from CTA works if implemented
+8. form submits successfully
+9. success state or thank-you flow works
+10. mobile form UX is clean
+11. keyboard accessibility is acceptable
+12. no console errors during form use
+
+Test at least:
+- one valid submission for Audit
+- one valid submission for Foundation
+- one valid submission for Growth
+
+If the form stores plan via query param or hidden field, confirm the correct value is persisted.
+
+If anything is broken, fix it.
+
+==================================================
+PHASE 4 — SUBMISSION STORAGE QA
+==================================================
+
+Verify that GEO leads are actually stored correctly.
+
+Check:
+1. submission record is created
+2. selected plan is stored
+3. timestamps are stored
+4. website URL is stored
+5. company name is stored
+6. input payload is complete
+7. no required fields are silently dropped
+8. duplicate test submissions are handled safely
+9. status field initializes correctly
+
+Expected job/submission statuses:
+- submitted
+- queued
+- processing
+- complete
+- failed
+
+If storage is incomplete, brittle, or not production-safe, fix it.
+
+==================================================
+PHASE 5 — AUTOMATED AUDIT WORKFLOW QA
+==================================================
+
+Run end-to-end tests on the automated GEO audit workflow.
+
+For each test submission, verify:
+1. audit job is created
+2. job status changes correctly
+3. page discovery runs
+4. homepage check runs
+5. sitemap.xml check runs
+6. robots.txt check runs
+7. technical findings are generated
+8. content architecture findings are generated
+9. scorecard is generated
+10. recommendations are generated
+11. summary is generated
+12. results are stored
+13. completed job can be reviewed
+14. failed job states degrade gracefully
+
+Test at least:
+- one domain that works well
+- one domain with partial issues
+- one invalid or problematic input to confirm failure handling
+
+If the audit workflow hangs, crashes, fails silently, or stores incomplete reports, fix it.
+
+==================================================
+PHASE 6 — ADMIN / REPORT VIEW QA
+==================================================
+
+Verify that the GEO admin/reporting interface works.
+
+Check:
+1. submission list view loads
+2. audit status view loads
+3. individual report view loads
+4. each report shows:
+   - company
+   - website
+   - selected plan
+   - submission details
+   - status
+   - scorecard
+   - findings
+   - recommendations
+   - summary
+5. reports are readable
+6. layout works on standard desktop widths
+7. no obvious public exposure if route should be internal only
+8. no console errors
+
+If there is no usable report view or the view is incomplete, fix it.
+
+==================================================
+PHASE 7 — CTA / LINK QA
+==================================================
+
+Test all GEO-related CTAs and supporting links.
+
+Check:
+1. hero CTA works
+2. secondary CTA works
+3. pricing card CTAs work
+4. final CTA works
+5. any service-listing or footer link to GEO works
+6. GEO page links to intake flow correctly
+7. intake flow returns a good success path
+8. no link goes to the wrong route
+9. no broken anchors
+10. no plain placeholder hrefs remain
+
+If any CTA or link is wrong, fix it.
+
+==================================================
+PHASE 8 — SEO / META QA
+==================================================
+
+Verify the GEO pages are technically ready for indexing and sharing.
+
+Check:
+1. title tag exists
+2. meta description exists
+3. canonical is correct
+4. Open Graph tags exist if the site uses them
+5. no accidental noindex
+6. page is not blocked by robots
+7. GEO page is included in sitemap if intended
+8. FAQ structured data matches visible FAQ content if used
+9. any Service schema is valid and consistent with visible content
+10. no broken metadata inheritance from other pages
+
+If SEO/meta output is wrong or incomplete, fix it.
+
+==================================================
+PHASE 9 — MOBILE / RESPONSIVE QA
+==================================================
+
+Test the GEO page and intake flow on mobile viewport sizes.
+
+Check:
+1. hero text wraps correctly
+2. pricing cards stack cleanly
+3. buttons are tappable
+4. form fields are usable
+5. accordions/FAQs work
+6. no clipped text
+7. no overflow
+8. no sticky-header overlap issues
+9. success state is readable
+10. admin/report page is at least functionally usable if mobile support is intended
+
+Fix any mobile issues found.
+
+==================================================
+PHASE 10 — SITEWIDE REGRESSION QA
+==================================================
+
+Verify the GEO feature did not break the rest of gsally.com.
+
+Check:
+1. homepage still works
+2. about page still works
+3. services page still works
+4. pricing page still works
+5. contact page still works
+6. existing form still works
+7. header links still work
+8. footer links still work
+9. no layout regressions on unrelated pages
+10. no console errors introduced sitewide
+11. no broken routes
+12. no broken build or deployment issues
+
+If anything regressed, fix it.
+
+==================================================
+PHASE 11 — ANALYTICS / TRACKING QA
+==================================================
+
+If analytics or conversion tracking exist, verify:
+1. GEO pageview can be tracked
+2. intake submissions can be tracked
+3. tier selection can be tracked if designed to be trackable
+4. success state or thank-you event can be tracked
+5. no existing analytics behavior is broken
+
+If easy and safe, add missing basic tracking hooks consistent with the existing site.
+
+==================================================
+PHASE 12 — FINAL PASS / FAIL SUMMARY
+==================================================
+
+When finished, provide:
+
+1. changed files list
+2. routes tested
+3. submissions tested
+4. audit jobs tested
+5. issues found
+6. issues fixed
+7. any remaining limitations
+8. final QA summary with pass/fail for:
+   - GEO page
+   - pricing section
+   - intake flow
+   - tier prefill
+   - submission storage
+   - audit workflow
+   - admin/report view
+   - CTA/link integrity
+   - SEO/meta
+   - mobile responsiveness
+   - sitewide regression safety
+
+Important:
+Do not stop at reporting issues.
+Fix what you can in the codebase and then provide the QA summary after fixes are applied.

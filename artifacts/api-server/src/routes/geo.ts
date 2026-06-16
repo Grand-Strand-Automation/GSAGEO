@@ -281,9 +281,9 @@ function generateRecommendations(
 
   const { overall } = scorecard;
   const suggestedTier =
-    overall < 40 ? "GEO Foundation Build" :
-    overall < 65 ? "GEO Quick Audit"       :
-                   "GEO Monthly Growth";
+    overall < 40 ? "AI Search Foundation — Starting at $5,500" :
+    overall < 65 ? "AI Search Visibility Audit — $1,950 one-time" :
+                   "AI Search Growth — Starting at $2,500/mo";
 
   return {
     topFixes: fixes.slice(0, 5),

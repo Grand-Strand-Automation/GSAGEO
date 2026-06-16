@@ -98,6 +98,7 @@ function CheckboxGroup({
 export default function GeoAudit() {
   const [, setLocation] = useLocation();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const [initialTier] = useState(() =>
     typeof window !== "undefined"
       ? (new URLSearchParams(window.location.search).get("tier") ?? "")
@@ -129,17 +130,27 @@ export default function GeoAudit() {
 
   async function onSubmit(values: FormValues) {
     setIsSubmitting(true);
+    setSubmitError("");
     try {
-      await fetch("/api/geo-audit", {
+      const resp = await fetch("/api/geo-audit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),
       });
+      if (!resp.ok) {
+        const data = await resp.json().catch(() => ({}));
+        throw new Error(data.error ?? `Server error (${resp.status})`);
+      }
+      setLocation("/thank-you");
     } catch (err) {
       console.error("[GeoAudit] Submission error:", err);
+      setSubmitError(
+        err instanceof Error
+          ? err.message
+          : "Something went wrong submitting your request. Please try again or email us directly at shawn@gsally.com."
+      );
     } finally {
       setIsSubmitting(false);
-      setLocation("/thank-you");
     }
   }
 
@@ -512,6 +523,12 @@ export default function GeoAudit() {
                     )}
                   />
                 </div>
+
+                {submitError && (
+                  <div className="bg-red-50 border border-red-200 rounded-xl p-4 text-sm text-red-700 leading-relaxed">
+                    {submitError}
+                  </div>
+                )}
 
                 <Button
                   type="submit"

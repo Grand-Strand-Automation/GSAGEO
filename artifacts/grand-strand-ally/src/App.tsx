@@ -116,6 +116,7 @@ function Router() {
 
           {/* GEO pages */}
           <Route path="/generative-engine-optimization" component={GenerativeEngineOptimization} />
+          <Route path="/geo" component={() => <RedirectTo to="/generative-engine-optimization" />} />
           <Route path="/geo-audit" component={GeoAudit} />
           <Route path="/geo-audit-admin" component={GeoAdminDashboard} />
 
