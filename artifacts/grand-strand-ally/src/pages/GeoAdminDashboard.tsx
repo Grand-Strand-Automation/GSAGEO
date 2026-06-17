@@ -1,6 +1,72 @@
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "wouter";
+import { Lock } from "lucide-react";
+
+const PASSCODE_KEY = "geo_admin_token";
+
+function adminHeaders(): HeadersInit {
+  const stored = sessionStorage.getItem(PASSCODE_KEY);
+  return stored ? { "X-Admin-Key": stored } : {};
+}
+
+function AdminGate({ children }: { children: React.ReactNode }) {
+  const expected = import.meta.env.VITE_ADMIN_PASSCODE as string | undefined;
+  const [authed, setAuthed] = useState(() => {
+    if (!expected) return true;
+    return sessionStorage.getItem(PASSCODE_KEY) === expected;
+  });
+  const [input, setInput] = useState("");
+  const [error, setError] = useState(false);
+
+  if (!expected || authed) return <>{children}</>;
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (input === expected) {
+      sessionStorage.setItem(PASSCODE_KEY, input);
+      setAuthed(true);
+    } else {
+      setError(true);
+      setInput("");
+    }
+  }
+
+  return (
+    <div className="min-h-screen bg-[#F7F5F1] flex items-center justify-center px-4 pt-20">
+      <div className="bg-white rounded-2xl border border-[#D7E1EA] shadow-sm p-10 w-full max-w-sm text-center">
+        <div className="w-12 h-12 bg-[#E8EFF6] rounded-full flex items-center justify-center mx-auto mb-6">
+          <Lock size={20} className="text-[#1F5E95]" />
+        </div>
+        <h1 className="font-heading font-bold text-xl text-[#0E2F54] mb-2">Admin Access</h1>
+        <p className="text-sm text-[#4B5B6B] mb-7">Enter the admin passcode to review GEO submissions.</p>
+        <form onSubmit={handleSubmit} className="space-y-3 text-left">
+          <input
+            type="password"
+            value={input}
+            onChange={e => { setInput(e.target.value); setError(false); }}
+            placeholder="Passcode"
+            className="w-full border border-[#D7E1EA] rounded-lg h-11 px-4 text-sm text-[#0E2F54] focus:outline-none focus:ring-2 focus:ring-[#1F5E95]/30 transition-shadow"
+            autoFocus
+            autoComplete="current-password"
+          />
+          {error && (
+            <p className="text-sm text-red-600 text-center">Incorrect passcode — please try again.</p>
+          )}
+          <button
+            type="submit"
+            className="w-full bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-11 rounded-lg text-sm transition-colors"
+          >
+            Continue →
+          </button>
+        </form>
+        <p className="text-xs text-[#9AAEBB] mt-6">
+          <Link href="/" className="hover:text-[#0E2F54] transition-colors">← Back to site</Link>
+        </p>
+      </div>
+    </div>
+  );
+}
 
 type Submission = {
   id: number;
@@ -68,7 +134,7 @@ function ReportModal({ jobId, onClose }: { jobId: string; onClose: () => void })
   const [error, setError] = useState("");
 
   useEffect(() => {
-    fetch(`/api/geo-admin/report/${jobId}`)
+    fetch(`/api/geo-admin/report/${jobId}`, { headers: adminHeaders() })
       .then(r => r.json())
       .then(d => { if (d.ok) setData(d); else setError(d.error ?? "Failed to load"); })
       .catch(() => setError("Network error"))
@@ -208,8 +274,8 @@ export default function GeoAdminDashboard() {
 
   useEffect(() => {
     Promise.all([
-      fetch("/api/geo-admin/submissions").then(r => r.json()),
-      fetch("/api/geo-admin/jobs").then(r => r.json()),
+      fetch("/api/geo-admin/submissions", { headers: adminHeaders() }).then(r => r.json()),
+      fetch("/api/geo-admin/jobs", { headers: adminHeaders() }).then(r => r.json()),
     ])
       .then(([subData, jobData]) => {
         if (subData.ok) setSubmissions(subData.submissions);
@@ -245,6 +311,7 @@ export default function GeoAdminDashboard() {
   }
 
   return (
+    <AdminGate>
     <div className="flex flex-col">
       <Helmet>
         <title>GEO Audit Admin | Grand Strand Ally</title>
@@ -384,5 +451,6 @@ export default function GeoAdminDashboard() {
         />
       )}
     </div>
+    </AdminGate>
   );
 }
