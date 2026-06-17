@@ -1,0 +1,349 @@
+Audit and complete the GEO / AI Search Visibility setup on gsally.com so it is fully operational, not just visually present.
+
+IMPORTANT:
+- Do not assume the current GEO implementation is complete.
+- Inspect the existing codebase and current live implementation first.
+- Identify everything missing that is required to actually run this offer as a real service.
+- Fix missing pieces in the codebase instead of only reporting them.
+- Match the current gsally.com style, tone, and structure.
+- Do not redesign the whole site.
+- Preserve existing pages, navigation, footer, contact form, and core site behavior unless a change is required to support the GEO offering properly.
+
+GOAL:
+Make sure the GEO offering on gsally.com is fully set up and operational, including:
+1. public GEO page
+2. pricing section
+3. working intake flow
+4. submission storage
+5. automated audit workflow
+6. admin access / admin page / internal report view
+7. tracking
+8. SEO/meta
+9. production QA
+
+Context:
+Right now, I do not see a clear way to log into an admin page or review GEO submissions/jobs. That means the GEO feature may be incomplete operationally even if the public page exists. I need you to inspect the implementation and finish whatever is missing.
+
+==================================================
+PHASE 1 — INSPECT WHAT ALREADY EXISTS
+==================================================
+
+First, inspect the codebase and determine:
+
+1. Whether a GEO page already exists
+   - /generative-engine-optimization
+   - /geo
+   - or another related route
+
+2. Whether a GEO intake route already exists
+   - /geo-audit
+   - or another related route
+
+3. Whether pricing tiers are already implemented on the GEO page
+
+4. Whether the GEO form actually stores submissions somewhere real
+
+5. Whether the form triggers any audit job or workflow
+
+6. Whether any admin page, internal dashboard, login gate, or report view already exists
+
+7. Whether there is any authentication or access protection for internal views
+
+8. Whether analytics/tracking for the GEO flow already exists
+
+9. Whether the GEO page has metadata, canonical tags, and correct internal links
+
+Do not guess. Inspect the actual codebase and summarize the current state before deciding what to build or fix.
+
+==================================================
+PHASE 2 — IDENTIFY THE MISSING OPERATIONAL PIECES
+==================================================
+
+After inspection, identify what is missing from a real operational GEO service.
+
+At minimum, check for these required operational capabilities:
+
+A. PUBLIC OFFER
+- public GEO page exists
+- public GEO page has complete sections
+- pricing tiers are present
+- CTAs work
+- CTA buttons route correctly
+
+B. INTAKE FLOW
+- intake route exists
+- intake form is complete
+- selected tier is captured
+- validation works
+- success state works
+
+C. STORAGE
+- submissions are saved
+- selected plan is saved
+- timestamps are saved
+- job status can be stored
+- stored data can be reviewed later
+
+D. AUDIT WORKFLOW
+- audit job is created
+- job status transitions exist
+- site checks run
+- findings are stored
+- recommendations are stored
+- summary is generated
+- failure state is handled
+
+E. ADMIN / INTERNAL OPERATIONS
+- there is a real internal page to review submissions
+- there is a real internal page to review audit jobs
+- there is a report view per submission/job
+- there is a way to access this area intentionally
+- if appropriate, there is route protection or a simple admin gate
+
+F. TRACKING / SEO
+- page metadata exists
+- tracking exists or can be added safely
+- intake conversion can be monitored
+- noindex/robots problems do not block the GEO page
+
+G. QA / REGRESSION SAFETY
+- no broken existing routes
+- no broken existing forms
+- no styling regressions
+- no broken footer/header behavior
+
+==================================================
+PHASE 3 — BUILD OR FIX WHAT IS MISSING
+==================================================
+
+Fix the GEO feature so it is fully usable in production.
+
+Required implementation goals:
+
+1. PUBLIC GEO PAGE
+If missing or incomplete, complete the GEO page so it includes:
+- hero
+- what GEO means
+- who it’s for
+- what’s included
+- process
+- deliverables
+- pricing tiers
+- FAQ
+- final CTA
+
+Use gsally.com tone:
+- practical
+- plain-English
+- low-pressure
+- clarity-first
+- no hype
+
+2. PRICING TIERS
+Make sure these tiers exist and are wired correctly:
+
+- AI Search Visibility Audit — $1,950
+- AI Search Foundation — Starting at $5,500
+- AI Search Growth — Starting at $2,500/mo
+
+Each card must:
+- show deliverables
+- show correct label
+- route into the intake flow
+- pass the selected tier if possible
+
+3. GEO INTAKE FLOW
+Make sure a dedicated route exists, preferably:
+- /geo-audit
+
+Required fields:
+- full name
+- work email
+- company name
+- website URL
+- phone optional
+- primary service
+- service area / target locations
+- industry
+- business size
+- main goal
+- top competitors
+- CMS/platform
+- current challenges
+- access available
+- selected plan
+- notes
+
+Form requirements:
+- required field validation
+- clear inline errors
+- success state
+- selected_plan stored
+- mobile-safe
+- does not break the existing contact form
+
+4. SUBMISSION STORAGE
+Make sure real storage exists for GEO submissions.
+
+At minimum store:
+- id
+- created_at
+- updated_at
+- company_name
+- website_url
+- selected_plan
+- full form payload
+- status
+- audit job reference
+
+5. AUDIT JOB WORKFLOW
+Implement or fix the workflow so each valid submission can create an audit job.
+
+At minimum support:
+- submitted
+- queued
+- processing
+- complete
+- failed
+
+Audit checks should include:
+- homepage fetch
+- sitemap.xml check
+- robots.txt check
+- title/meta extraction
+- basic page discovery
+- content architecture check
+- entity/business extraction
+- content-gap recommendations
+- scorecard generation
+- summary generation
+
+6. ADMIN PAGE / INTERNAL DASHBOARD
+This is a major requirement.
+
+I need a real internal place to review GEO submissions and audit results.
+
+Create or complete:
+- an internal submissions list page
+- a job status view
+- a detailed per-job report page
+
+Preferred route pattern:
+- /admin/geo-submissions
+- /admin/geo-submissions/:id
+
+If the app already has an admin area, integrate there.
+If it does not, create a minimal internal admin section that is consistent with the app.
+
+Admin requirements:
+- easy to find
+- usable
+- shows new submissions
+- shows selected plan
+- shows status
+- shows audit results
+- shows summary/recommendations
+
+7. ADMIN ACCESS / LOGIN
+Because I do not currently see a way to log into an admin page, inspect how access is handled today.
+
+If there is already auth in the project:
+- reuse it
+- add the GEO admin area into the existing auth flow
+
+If there is no auth at all:
+- implement the simplest production-safe protection that fits this project
+- do not leave sensitive internal GEO lead/report pages publicly exposed if avoidable
+
+At minimum, I need:
+- a clear route for admin access
+- a way to know how to access it
+- some reasonable level of route protection if appropriate for the current app architecture
+
+If full auth is too heavy for this version, implement a minimal internal-access gate that is realistic and document clearly how to use it.
+
+8. TRACKING
+If analytics are already present, add GEO tracking safely:
+- GEO page view
+- pricing CTA clicks
+- intake submit success
+- selected plan if supported
+
+If analytics hooks do not exist, add minimal clean support consistent with the existing app.
+
+9. SEO / META
+Make sure the GEO public page has:
+- title tag
+- meta description
+- canonical
+- internal links where appropriate
+- no accidental noindex
+- Open Graph tags if site uses them
+
+==================================================
+PHASE 4 — REQUIRED QA
+==================================================
+
+After fixes are implemented, run a full QA pass.
+
+Test:
+
+PUBLIC PAGE
+- GEO page loads
+- sections complete
+- pricing visible
+- CTAs work
+- mobile clean
+- no console errors
+
+INTAKE FLOW
+- form loads
+- validation works
+- tier prefills work if implemented
+- form submits
+- submission stored
+- success state works
+
+WORKFLOW
+- audit job created
+- statuses update correctly
+- findings stored
+- summary generated
+- failed job handling works
+
+ADMIN
+- admin route exists
+- admin route is accessible the intended way
+- submissions list works
+- detail/report page works
+- selected plan visible
+- status visible
+- recommendations visible
+
+SITE SAFETY
+- home/about/services/pricing/contact still work
+- existing contact form still works
+- no broken footer/header links
+- no broken styling elsewhere
+
+==================================================
+PHASE 5 — DELIVERABLES I NEED BACK
+==================================================
+
+When complete, provide:
+
+1. current-state summary of what existed before fixes
+2. changed files list
+3. public GEO routes
+4. intake route
+5. admin route(s)
+6. exactly how admin access/login now works
+7. whether selected tier is stored
+8. whether audit jobs are created automatically
+9. how submissions and reports are stored
+10. QA summary
+11. any remaining limitations
+
+IMPORTANT:
+Do not only tell me what is missing.
+Actually build/fix the missing operational pieces so the GEO offering on gsally.com is fully set up and manageable in production.

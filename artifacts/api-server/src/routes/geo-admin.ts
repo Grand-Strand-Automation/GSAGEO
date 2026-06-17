@@ -1,9 +1,22 @@
-import { Router, type IRouter } from "express";
+import { Router, type IRouter, type Request, type Response, type NextFunction } from "express";
 import { db } from "@workspace/db";
 import { geoSubmissionsTable, geoAuditJobsTable } from "@workspace/db/schema";
 import { desc, eq } from "drizzle-orm";
 
 const router: IRouter = Router();
+
+function requireAdminKey(req: Request, res: Response, next: NextFunction) {
+  const expected = process.env.ADMIN_PASSCODE;
+  if (!expected) { next(); return; }
+  const provided = req.headers["x-admin-key"];
+  if (provided !== expected) {
+    res.status(401).json({ ok: false, error: "Unauthorized" });
+    return;
+  }
+  next();
+}
+
+router.use(requireAdminKey);
 
 router.get("/geo-admin/submissions", async (_req, res) => {
   try {
