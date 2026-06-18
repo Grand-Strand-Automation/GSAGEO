@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Lock } from "lucide-react";
 import Link from "next/link";
+import { BrandLogo } from "@/components/BrandLogo";
 
 export default function AdminLoginForm() {
   const router = useRouter();
@@ -40,13 +41,16 @@ export default function AdminLoginForm() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F7F5F1] flex items-center justify-center px-4 pt-20">
-      <div className="bg-white rounded-2xl border border-[#D7E1EA] shadow-sm p-10 w-full max-w-sm text-center">
-        <div className="w-12 h-12 bg-[#E8EFF6] rounded-full flex items-center justify-center mx-auto mb-6">
-          <Lock size={20} className="text-[#1F5E95]" />
+    <div className="min-h-screen bg-brand-cream flex items-center justify-center px-4 pt-20">
+      <div className="card-brand rounded-2xl p-10 w-full max-w-sm text-center shadow-card-md">
+        <div className="flex justify-center mb-6">
+          <BrandLogo onDark={false} />
         </div>
-        <h1 className="font-heading font-bold text-xl text-[#0E2F54] mb-2">Admin Login</h1>
-        <p className="text-sm text-[#4B5B6B] mb-7">Sign in with your authorized admin account.</p>
+        <div className="w-12 h-12 bg-brand-blue-light rounded-full flex items-center justify-center mx-auto mb-6">
+          <Lock size={20} className="text-brand-blue" />
+        </div>
+        <h1 className="font-heading font-bold text-xl text-brand-navy mb-2">Admin Login</h1>
+        <p className="text-sm text-brand-muted mb-7">Sign in with your authorized admin account.</p>
         <form onSubmit={handleSubmit} className="space-y-3 text-left">
           <input
             type="email"
@@ -54,7 +58,7 @@ export default function AdminLoginForm() {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Email"
             required
-            className="w-full border border-[#D7E1EA] rounded-lg h-11 px-4 text-sm"
+            className="w-full border border-brand-border rounded-lg h-11 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30"
           />
           <input
             type="password"
@@ -62,19 +66,19 @@ export default function AdminLoginForm() {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
             required
-            className="w-full border border-[#D7E1EA] rounded-lg h-11 px-4 text-sm"
+            className="w-full border border-brand-border rounded-lg h-11 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30"
           />
           {error && <p className="text-sm text-red-600 text-center">{error}</p>}
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-11 rounded-lg text-sm disabled:opacity-60"
+            className="w-full bg-brand-blue hover:bg-brand-blue-hover text-white font-heading font-semibold h-11 rounded-lg text-sm disabled:opacity-60"
           >
             {loading ? "Signing in…" : "Sign in →"}
           </button>
         </form>
-        <p className="text-xs text-[#9AAEBB] mt-6">
-          <Link href="/" className="hover:text-[#0E2F54]">
+        <p className="text-xs text-brand-subtle mt-6">
+          <Link href="/" className="hover:text-brand-navy">
             ← Back to site
           </Link>
         </p>

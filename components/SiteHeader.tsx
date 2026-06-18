@@ -1,25 +1,87 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
+import { Menu, X } from "lucide-react";
+import { BrandLogo } from "@/components/BrandLogo";
+import { ButtonLink } from "@/components/ui/Button";
+import { siteConfig } from "@/lib/brand/site";
+
+const NAV_LINKS = [
+  { label: "What's Included", href: "/#whats-included" },
+  { label: "Pricing", href: "/#pricing" },
+  { label: "FAQ", href: "/#faq" },
+];
 
 export function SiteHeader() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 bg-[#0E2F54]/95 backdrop-blur border-b border-white/10">
-      <div className="container px-4 md:px-6 h-16 flex items-center justify-between">
-        <Link href="/" className="font-heading font-bold text-white text-sm tracking-tight">
-          Grand Strand Ally
-          <span className="text-white/50 font-medium ml-2 hidden sm:inline">· GEO</span>
-        </Link>
-        <nav className="flex items-center gap-4 text-sm">
-          <Link href="/#pricing" className="text-white/70 hover:text-white transition-colors hidden sm:inline">
-            Pricing
-          </Link>
-          <Link
-            href="/audit"
-            className="bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold px-4 py-2 rounded-lg transition-colors"
+    <header className="fixed top-0 left-0 right-0 z-50 bg-brand-navy border-b border-white/10">
+      <div className="container mx-auto px-4 md:px-6 flex items-center h-16 gap-4">
+        <BrandLogo />
+
+        <nav className="hidden md:flex items-center gap-5 ml-auto">
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-sm font-medium text-white/70 hover:text-white transition-colors whitespace-nowrap"
+            >
+              {link.label}
+            </Link>
+          ))}
+          <a
+            href={siteConfig.mainSiteUrl}
+            className="text-sm font-medium text-white/55 hover:text-white transition-colors whitespace-nowrap"
+            target="_blank"
+            rel="noopener noreferrer"
           >
+            Main site
+          </a>
+          <ButtonLink href="/audit" size="sm" className="ml-1 whitespace-nowrap">
             Request Audit
-          </Link>
+          </ButtonLink>
         </nav>
+
+        <button
+          type="button"
+          className="md:hidden p-2 -mr-1 text-white/80 hover:text-white rounded-md transition-colors ml-auto"
+          onClick={() => setMobileOpen((o) => !o)}
+          aria-label="Toggle menu"
+          aria-expanded={mobileOpen}
+        >
+          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+        </button>
       </div>
+
+      {mobileOpen && (
+        <div className="md:hidden bg-brand-dark border-t border-white/10 px-4 pt-3 pb-5 flex flex-col gap-1">
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setMobileOpen(false)}
+              className="text-sm font-medium text-white/80 hover:text-white py-3 px-3 rounded-lg hover:bg-white/5 transition-colors"
+            >
+              {link.label}
+            </Link>
+          ))}
+          <a
+            href={siteConfig.mainSiteUrl}
+            className="text-sm font-medium text-white/55 hover:text-white py-3 px-3 rounded-lg hover:bg-white/5 transition-colors"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Main site
+          </a>
+          <div className="pt-3 mt-2 border-t border-white/10">
+            <ButtonLink href="/audit" className="w-full" onClick={() => setMobileOpen(false)}>
+              Request Audit
+            </ButtonLink>
+          </div>
+        </div>
+      )}
     </header>
   );
 }

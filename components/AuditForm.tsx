@@ -4,8 +4,16 @@ import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader2, CheckCircle2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
+import { HeroOverlay } from "@/components/HeroOverlay";
+import { TrustBar } from "@/components/TrustBar";
 import { submissionSchema, type SubmissionInput } from "@/lib/validation/submission";
+
+const labelClass = "text-sm font-semibold text-brand-navy";
+const inputClass =
+  "w-full border border-brand-border rounded-lg h-11 px-4 text-sm text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-blue/30";
+const sectionHeading =
+  "text-xs font-bold uppercase tracking-[0.15em] text-brand-blue mb-5 pt-2 border-t border-brand-border";
 
 const CHALLENGE_OPTIONS = [
   { value: "weak-rankings", label: "Weak rankings in traditional search" },
@@ -24,12 +32,6 @@ const ACCESS_OPTIONS = [
   { value: "cms-access", label: "CMS / website backend" },
   { value: "bing-webmaster", label: "Bing Webmaster Tools" },
 ];
-
-const labelClass = "text-sm font-semibold text-[#0E2F54]";
-const inputClass =
-  "w-full border border-[#D7E1EA] rounded-lg h-11 px-4 text-sm text-[#0E2F54] focus:outline-none focus:ring-2 focus:ring-[#1F5E95]/30";
-const sectionHeading =
-  "text-xs font-bold uppercase tracking-[0.15em] text-[#1F5E95] mb-5 pt-2 border-t border-[#D7E1EA]";
 
 function CheckboxGroup({
   options,
@@ -53,7 +55,7 @@ function CheckboxGroup({
             onChange={(e) => toggle(opt.value, e.target.checked)}
             className="mt-1"
           />
-          <span className="text-sm text-[#4B5B6B] leading-snug">{opt.label}</span>
+          <span className="text-sm text-brand-muted leading-snug">{opt.label}</span>
         </label>
       ))}
     </div>
@@ -131,8 +133,10 @@ export function AuditForm() {
 
   return (
     <div className="flex flex-col">
-      <section className="bg-[#0E2F54] text-white pt-28 pb-14 md:pt-36 relative overflow-hidden">
+      <section className="bg-brand-hero text-white pt-28 pb-14 md:pt-36 relative overflow-hidden">
+        <HeroOverlay />
         <div className="container px-4 md:px-6 text-center max-w-2xl relative z-10">
+          <div className="eyebrow-pill mb-6 mx-auto w-fit">GEO Audit Request</div>
           <h1 className="text-4xl sm:text-5xl font-heading font-extrabold mb-5">
             Request a GEO Audit
           </h1>
@@ -142,26 +146,17 @@ export function AuditForm() {
         </div>
       </section>
 
-      <div className="bg-white border-b border-[#D7E1EA]">
-        <div className="container px-4 md:px-6">
-          <div className="flex flex-col sm:flex-row items-stretch justify-center divide-y sm:divide-y-0 sm:divide-x divide-[#D7E1EA]">
-            {[
-              "No commitment required",
-              "Results within 2–3 business days",
-              "Practical, no-pressure approach",
-            ].map((t) => (
-              <div key={t} className="flex items-center justify-center gap-2.5 py-4 sm:px-8 text-sm text-[#4B5B6B] font-medium">
-                <CheckCircle2 size={14} className="text-[#1F5E95] flex-shrink-0" />
-                {t}
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      <TrustBar
+        items={[
+          "No commitment required",
+          "Results within 2–3 business days",
+          "Practical, no-pressure approach",
+        ]}
+      />
 
-      <section className="py-16 md:py-24 bg-[#F7F5F1]">
+      <section className="py-16 md:py-24 bg-brand-cream">
         <div className="container px-4 md:px-6 max-w-2xl">
-          <div className="bg-white rounded-2xl border border-[#D7E1EA] p-8 md:p-10 shadow-sm">
+          <div className="card-brand rounded-2xl p-8 md:p-10 shadow-card-md">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <input type="text" className="hidden" tabIndex={-1} autoComplete="off" {...register("website")} />
 
@@ -294,7 +289,7 @@ export function AuditForm() {
               <div>
                 <label className={labelClass}>Anything else we should know?</label>
                 <textarea
-                  className="w-full border border-[#D7E1EA] rounded-lg min-h-[120px] p-4 text-sm mt-1 resize-y focus:outline-none focus:ring-2 focus:ring-[#1F5E95]/30"
+                  className="w-full border border-brand-border rounded-lg min-h-[120px] p-4 text-sm mt-1 resize-y focus:outline-none focus:ring-2 focus:ring-brand-blue/30"
                   {...register("notes")}
                 />
               </div>
@@ -306,7 +301,7 @@ export function AuditForm() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-[#1F5E95] hover:bg-[#1a5080] disabled:opacity-60 text-white h-12 text-base font-semibold rounded-lg flex items-center justify-center"
+                className="w-full bg-brand-blue hover:bg-brand-blue-hover disabled:opacity-60 text-white h-12 text-base font-heading font-semibold rounded-lg flex items-center justify-center"
               >
                 {isSubmitting ? (
                   <>

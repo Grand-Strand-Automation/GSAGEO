@@ -4,10 +4,62 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply antialiased text-brand-navy bg-white;
+:root {
+  --brand-hero: #002040;
+  --brand-navy: #0e2f54;
+  --brand-dark: #0a2440;
+  --brand-blue: #1f5e95;
+  --brand-blue-hover: #1a5080;
+  --brand-sky: #60b8f0;
+  --brand-muted: #4b5b6b;
+  --brand-subtle: #9AAEBB;
+  --brand-border: #d7e1ea;
+  --brand-cream: #f7f5f1;
+  --brand-cream-dark: #eae8e4;
+  --brand-blue-light: #e8eff6;
 }
 
-.font-heading {
-  font-family: "Manrope", sans-serif;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply antialiased font-sans bg-white text-brand-navy;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading tracking-tight;
+  }
+}
+
+@layer components {
+  .container {
+    @apply mx-auto w-full max-w-6xl;
+  }
+
+  .section-pad {
+    @apply py-20 md:py-28;
+  }
+
+  .card-brand {
+    @apply bg-white rounded-xl border border-brand-border shadow-sm;
+  }
+
+  .card-brand-muted {
+    @apply bg-brand-cream rounded-xl border border-brand-border;
+  }
+
+  .card-brand-hover {
+    @apply card-brand transition-colors hover:border-brand-blue/40 hover:shadow-md;
+  }
+
+  .eyebrow-pill {
+    @apply inline-flex items-center gap-2 border border-white/15 rounded-full px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-white/60 bg-white/5;
+  }
 }

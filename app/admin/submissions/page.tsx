@@ -41,12 +41,12 @@ export default async function AdminSubmissionsPage() {
   );
 
   return (
-    <div className="bg-[#F7F5F1] min-h-screen pt-24 pb-16">
+    <div className="bg-brand-cream min-h-screen pt-24 pb-16">
       <div className="container px-4 md:px-6">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-2xl font-heading font-bold text-[#0E2F54]">GEO Submissions</h1>
-            <p className="text-sm text-[#4B5B6B]">Internal admin view</p>
+            <h1 className="text-2xl font-heading font-bold text-brand-navy">GEO Submissions</h1>
+            <p className="text-sm text-brand-muted">Internal admin view</p>
           </div>
           <SignOutButton />
         </div>
