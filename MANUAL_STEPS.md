@@ -1,0 +1,53 @@
+# Manual steps (blocked on account access)
+
+These items cannot be completed from code alone. Do them in order after reviewing [DEPLOYMENT_STEPS.md](./DEPLOYMENT_STEPS.md).
+
+## Supabase (requires dashboard access)
+
+- [ ] Create Supabase project for production
+- [ ] Run migration: `supabase/migrations/001_geo_schema.sql`
+- [ ] Copy project URL, anon key, and **service role key** into Vercel env vars
+- [ ] Disable public signups: Authentication → Providers → Email → disable "Enable sign ups"
+- [ ] Create first admin user(s) manually: Authentication → Users → Add user
+- [ ] Set `ADMIN_EMAIL_ALLOWLIST` in Vercel to match admin email(s)
+
+## Vercel (requires dashboard access)
+
+- [ ] Import GitHub repo `Grand-Strand-Automation/GSAGEO`
+- [ ] Set all env vars from `.env.example`
+- [ ] Generate and set `CRON_SECRET` (random string)
+- [ ] Confirm cron job appears after deploy (Hobby plan: cron may require Pro — see Vercel docs)
+- [ ] Add custom domain `geo.gsally.com`
+
+## DNS (requires domain registrar / DNS host access)
+
+- [ ] Add CNAME `geo` → `cname.vercel-dns.com` (or values Vercel provides)
+- [ ] Wait for SSL certificate provisioning
+
+## Resend (optional)
+
+- [ ] Create Resend account and API key
+- [ ] Verify sending domain for production `from` address
+- [ ] Set `RESEND_API_KEY` and `RESEND_FROM_EMAIL` in Vercel
+- [ ] Wire email in `lib/audit/processor.ts` (TODO in code)
+
+## Sentry / PostHog (optional)
+
+- [ ] Create projects and add DSN/keys to Vercel
+- [ ] Integrate SDKs (not yet wired in code — placeholders only)
+
+## Replit main site (requires Replit access)
+
+- [ ] Update GEO links per [REPLIT_LINK_UPDATES.md](./REPLIT_LINK_UPDATES.md)
+
+## Business decisions
+
+- [ ] Confirm pricing copy on landing page is current
+- [ ] Confirm admin notification email recipient (default: shawn@gsally.com)
+- [ ] Decide whether automated audit emails go to client or admin only
+
+## Not automated (by design)
+
+- Full async audit worker at scale — scaffolded via `after()` + Vercel Cron backup
+- Client-facing PDF reports — admin UI shows JSON-derived results only
+- Payment / checkout — intake form only, no Stripe

@@ -37,6 +37,17 @@ yarn-error.log
 testem.log
 /typings
 
+# Next.js
+.next
+out
+.env
+.env.local
+.env.*.local
+next-env.d.ts
+
+# Vercel
+.vercel
+
 # System Files
 .DS_Store
 Thumbs.db
