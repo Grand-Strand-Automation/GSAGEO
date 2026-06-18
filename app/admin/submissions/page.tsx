@@ -3,6 +3,7 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { requireAdminUser } from "@/lib/auth/require-admin";
 import { SignOutButton } from "@/components/admin/SignOutButton";
 import type { GeoSubmission } from "@/lib/types/database";
+import { formatPlanLabel, planBadgeClass } from "@/lib/brand/plans";
 
 export const dynamic = "force-dynamic";
 
@@ -78,7 +79,17 @@ export default async function AdminSubmissionsPage() {
                         {new Date(sub.created_at).toLocaleDateString()}
                       </td>
                       <td className="px-5 py-4 font-medium text-[#0E2F54]">{sub.company_name}</td>
-                      <td className="px-5 py-4">{sub.selected_plan ?? "—"}</td>
+                      <td className="px-5 py-4">
+                        {sub.selected_plan ? (
+                          <span
+                            className={`text-xs font-semibold px-2 py-0.5 rounded-full ${planBadgeClass(sub.selected_plan)}`}
+                          >
+                            {formatPlanLabel(sub.selected_plan)}
+                          </span>
+                        ) : (
+                          "—"
+                        )}
+                      </td>
                       <td className="px-5 py-4 text-[#4B5B6B]">{sub.work_email}</td>
                       <td className="px-5 py-4">
                         <StatusBadge status={sub.status} />

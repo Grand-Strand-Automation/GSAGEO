@@ -8,6 +8,7 @@ import { Loader2 } from "lucide-react";
 import { HeroOverlay } from "@/components/HeroOverlay";
 import { TrustBar } from "@/components/TrustBar";
 import { submissionSchema, type SubmissionInput } from "@/lib/validation/submission";
+import { INTAKE_PLAN_OPTIONS } from "@/lib/brand/plans";
 
 const labelClass = "text-sm font-semibold text-brand-navy";
 const inputClass =
@@ -164,10 +165,11 @@ export function AuditForm() {
                 <label className={labelClass}>Interested in (optional)</label>
                 <select className={`${inputClass} mt-1`} {...register("selected_plan")}>
                   <option value="">Select a plan or leave blank</option>
-                  <option value="audit">AI Search Visibility Audit — $1,950 one-time</option>
-                  <option value="foundation">AI Search Foundation — Starting at $5,500</option>
-                  <option value="growth">AI Search Growth — Starting at $2,500/mo</option>
-                  <option value="custom">Custom scope / not sure yet</option>
+                  {INTAKE_PLAN_OPTIONS.map((opt) => (
+                    <option key={opt.value} value={opt.value}>
+                      {opt.label}
+                    </option>
+                  ))}
                 </select>
               </div>
 

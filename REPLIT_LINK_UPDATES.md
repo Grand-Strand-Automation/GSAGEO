@@ -7,9 +7,10 @@ Update the **Replit-hosted** main site so GEO traffic goes to `geo.gsally.com`.
 | Purpose | URL |
 |---------|-----|
 | GEO landing / service page | `https://geo.gsally.com/` |
-| Audit tier CTA | `https://geo.gsally.com/audit?tier=audit` |
-| Foundation tier CTA | `https://geo.gsally.com/audit?tier=foundation` |
+| Monitor tier CTA | `https://geo.gsally.com/audit?tier=monitor` |
 | Growth tier CTA | `https://geo.gsally.com/audit?tier=growth` |
+| Managed tier CTA | `https://geo.gsally.com/audit?tier=managed` |
+| Custom scope CTA | `https://geo.gsally.com/audit?tier=custom` |
 | Generic audit request | `https://geo.gsally.com/audit` |
 
 ## Files likely to update (Replit codebase)
@@ -20,9 +21,10 @@ Search the Replit project for these paths and replace with geo.gsally.com URLs:
 |--------------------|---------|
 | `/generative-engine-optimization` | `https://geo.gsally.com/` |
 | `/geo-audit` | `https://geo.gsally.com/audit` |
-| `/geo-audit?tier=audit` | `https://geo.gsally.com/audit?tier=audit` |
-| `/geo-audit?tier=foundation` | `https://geo.gsally.com/audit?tier=foundation` |
+| `/geo-audit?tier=monitor` | `https://geo.gsally.com/audit?tier=monitor` |
 | `/geo-audit?tier=growth` | `https://geo.gsally.com/audit?tier=growth` |
+| `/geo-audit?tier=managed` | `https://geo.gsally.com/audit?tier=managed` |
+| `/geo-audit?tier=custom` | `https://geo.gsally.com/audit?tier=custom` |
 
 ## Components to check
 

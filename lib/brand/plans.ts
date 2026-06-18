@@ -1,0 +1,41 @@
+/** Plan tier IDs used in /audit?tier=... and geo_submissions.selected_plan */
+export const PLAN_TIER_IDS = ["monitor", "growth", "managed", "custom"] as const;
+export type PlanTierId = (typeof PLAN_TIER_IDS)[number] | "audit" | "foundation";
+
+/** Human-readable labels for admin and intake (includes legacy tiers) */
+export const PLAN_LABELS: Record<string, string> = {
+  monitor: "AI Visibility Monitor — $99/mo",
+  growth: "AI Visibility Growth — from $499/mo",
+  managed: "Managed GEO / AI Visibility — from $1,250/mo",
+  custom: "Custom GEO engagement",
+  audit: "AI Search Visibility Audit (legacy)",
+  foundation: "AI Search Foundation (legacy)",
+};
+
+export function formatPlanLabel(plan: string | null | undefined): string {
+  if (!plan) return "—";
+  return PLAN_LABELS[plan] ?? plan;
+}
+
+/** Options for the audit intake form select */
+export const INTAKE_PLAN_OPTIONS = [
+  { value: "monitor", label: PLAN_LABELS.monitor },
+  { value: "growth", label: PLAN_LABELS.growth },
+  { value: "managed", label: PLAN_LABELS.managed },
+  { value: "custom", label: PLAN_LABELS.custom },
+] as const;
+
+export function planBadgeClass(plan: string | null | undefined): string {
+  switch (plan) {
+    case "monitor":
+      return "bg-brand-cream text-brand-muted border border-brand-border";
+    case "growth":
+      return "bg-brand-blue-light text-brand-blue border border-brand-blue/20";
+    case "managed":
+      return "bg-brand-navy text-white border border-brand-navy";
+    case "custom":
+      return "bg-gray-50 text-gray-600 border border-gray-200";
+    default:
+      return "bg-gray-50 text-gray-600 border border-gray-200";
+  }
+}

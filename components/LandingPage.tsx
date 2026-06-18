@@ -11,6 +11,11 @@ import {
   FAQ_ITEMS,
   GOOD_FIT,
   NOT_FIT,
+  PRICING_CUSTOM_NOTE,
+  PRICING_HEADLINE,
+  PRICING_HELPER,
+  PRICING_INTRO,
+  PRICING_REASSURANCE,
   TIERS,
   WHATS_INCLUDED,
 } from "@/lib/content/landing";
@@ -155,9 +160,9 @@ export function LandingPage() {
       <section id="pricing" className="section-pad bg-brand-cream scroll-mt-20">
         <div className="container px-4 md:px-6">
           <SectionHeading
-            label="AI Search Visibility Pricing"
-            title="Choose your level of support."
-            description="Choose the level of support that fits your current site, team, and growth goals."
+            label="Plans for SMBs"
+            title={PRICING_HEADLINE}
+            description={PRICING_INTRO}
           />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
             {TIERS.map((tier) => (
@@ -223,12 +228,28 @@ export function LandingPage() {
               </div>
             ))}
           </div>
-          <p className="mt-10 text-center text-sm text-brand-muted">
-            Need a larger rollout or custom scope?{" "}
-            <Link href="/audit?tier=custom" className="text-brand-blue hover:underline font-medium">
-              Request a custom GEO plan.
-            </Link>
-          </p>
+
+          <div className="mt-10 flex flex-col sm:flex-row items-stretch justify-center divide-y sm:divide-y-0 sm:divide-x divide-brand-border bg-white rounded-xl border border-brand-border shadow-sm">
+            {PRICING_REASSURANCE.map((label) => (
+              <div
+                key={label}
+                className="flex items-center justify-center gap-2.5 py-4 sm:px-6 text-sm text-brand-muted font-medium text-center"
+              >
+                <CheckCircle2 size={14} className="text-brand-blue flex-shrink-0" />
+                {label}
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 text-center space-y-3 max-w-2xl mx-auto">
+            <p className="text-sm text-brand-muted leading-relaxed">{PRICING_HELPER}</p>
+            <p className="text-sm text-brand-muted">
+              {PRICING_CUSTOM_NOTE}{" "}
+              <Link href="/audit?tier=custom" className="text-brand-blue hover:underline font-medium">
+                Request a custom GEO engagement.
+              </Link>
+            </p>
+          </div>
         </div>
       </section>
 

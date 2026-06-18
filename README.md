@@ -28,7 +28,7 @@ Open [http://localhost:3000](http://localhost:3000).
 | Route | Description |
 |-------|-------------|
 | `/` | GEO landing page |
-| `/audit` | Intake form (`?tier=audit\|foundation\|growth`) |
+| `/audit` | Intake form (`?tier=monitor\|growth\|managed\|custom`) |
 | `/thank-you` | Post-submit confirmation |
 | `/admin/login` | Supabase admin login |
 | `/admin/submissions` | Submission list |

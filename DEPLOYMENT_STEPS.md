@@ -36,7 +36,7 @@ Follow [DNS_SETUP.md](./DNS_SETUP.md):
 
 ```text
 [ ] https://geo.gsally.com/ loads
-[ ] https://geo.gsally.com/audit?tier=audit loads form with tier pre-selected
+[ ] https://geo.gsally.com/audit?tier=monitor loads form with tier pre-selected
 [ ] Test submission → thank-you page → row in Supabase
 [ ] https://geo.gsally.com/admin/login — admin can sign in
 [ ] Submission visible in /admin/submissions

@@ -4,6 +4,7 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { requireAdminUser } from "@/lib/auth/require-admin";
 import { AddNoteForm } from "@/components/admin/AddNoteForm";
 import { SignOutButton } from "@/components/admin/SignOutButton";
+import { formatPlanLabel } from "@/lib/brand/plans";
 import type { GeoAuditJob, GeoAuditResult, GeoSubmission, GeoAdminNote } from "@/lib/types/database";
 
 export const dynamic = "force-dynamic";
@@ -92,7 +93,7 @@ export default async function SubmissionDetailPage({
             <h2 className="text-xs font-bold uppercase text-[#1F5E95] mb-4">Overview</h2>
             <dl className="grid grid-cols-2 md:grid-cols-3 gap-4">
               <Field label="Website" value={sub.website_url} />
-              <Field label="Selected plan" value={sub.selected_plan} />
+              <Field label="Selected plan" value={formatPlanLabel(sub.selected_plan)} />
               <Field label="Status" value={sub.status} />
               <Field label="Submitted" value={new Date(sub.created_at).toLocaleString()} />
               <Field label="Updated" value={new Date(sub.updated_at).toLocaleString()} />

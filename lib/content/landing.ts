@@ -33,73 +33,82 @@ export const DELIVERABLES = [
   "Content map showing recommended pages, topics, and content types",
   "Technical recommendations for site structure, schema markup, and crawlability",
   "Implementation roadmap with suggested tier and sequencing",
-  "Optional: ongoing AI search optimization through the AI Search Growth engagement",
+  "Optional: ongoing support through AI Visibility Growth or Managed GEO engagements",
 ];
+
+export const PRICING_HEADLINE = "AI Search Visibility Plans for Small and Medium Businesses";
+
+export const PRICING_INTRO =
+  "Choose a starting point that fits your current site, team, and growth goals — from a simple monthly visibility check to ongoing support and implementation guidance.";
+
+export const PRICING_REASSURANCE = [
+  "No bloated bundles",
+  "Clear deliverables",
+  "Built for practical next steps",
+  "Month-to-month starting points where appropriate",
+];
+
+export const PRICING_HELPER =
+  "Not sure where to start? Begin with Monitor and upgrade once you have a clearer picture of what needs attention.";
+
+export const PRICING_CUSTOM_NOTE =
+  "Need support across multiple locations, a larger service footprint, or a more involved implementation plan?";
 
 export const TIERS = [
   {
-    name: "AI Search Visibility Audit",
+    name: "AI Visibility Monitor",
     badge: "Best place to start",
-    price: "$1,950",
-    period: "One-time engagement",
-    tier: "audit",
-    desc: "A focused audit and roadmap for companies that want to understand how visible and structurally prepared they are for AI search.",
+    price: "$99/month",
+    period: "Month-to-month · cancel anytime",
+    tier: "monitor",
+    desc: "A simple monthly starting point for businesses that want a clearer picture of how prepared they are for AI-driven search visibility — without committing to a larger engagement yet.",
     includes: [
-      "Technical GEO audit",
-      "Sitemap, robots, and crawlability review",
-      "Homepage and key service-page review",
-      "Entity and business-profile consistency review",
-      "Internal linking and page architecture review",
-      "Service and content gap analysis",
-      "AI search query map",
-      "GEO scorecard",
-      "Prioritized 90-day action plan",
-      "Review call or walkthrough",
+      "Monthly AI visibility snapshot",
+      "Basic crawlability and indexing check",
+      "GEO scorecard refresh",
+      "3 priority recommendations",
+      "Email summary",
+      "Cancel anytime",
     ],
-    cta: "Request a GEO Audit",
+    cta: "Start with AI Visibility Monitor",
     primary: false,
   },
   {
-    name: "AI Search Foundation",
-    badge: "Most popular",
-    price: "Starting at $5,500",
-    period: "One-time implementation package",
-    tier: "foundation",
-    desc: "A practical buildout for businesses that need key technical fixes, structure improvements, and first-wave AI-search-ready content.",
+    name: "AI Visibility Growth",
+    badge: "Most practical for growing teams",
+    price: "Starting at $499/month",
+    period: "Ongoing monthly guidance",
+    tier: "growth",
+    desc: "A practical fit for growing businesses that want recurring guidance, stronger content direction, and a clearer monthly plan — without stepping into full managed support immediately.",
     includes: [
-      "Everything in the Audit tier",
-      "Technical GEO fixes implemented",
-      "Sitemap, robots, and canonical cleanup",
-      "Internal linking improvements",
-      "Schema recommendations and implementation",
-      "3–6 priority pages or page rewrites",
-      "FAQ or FAQ hub framework",
-      "Proof-content and case-study framework",
-      "Reporting setup",
-      "Implementation summary",
+      "Everything in Monitor",
+      "Monthly visibility review",
+      "Content gap updates",
+      "Internal linking recommendations",
+      "Search Console and Bing review",
+      "1–2 refresh recommendations per month",
+      "Monthly action summary",
     ],
-    cta: "Build My GEO Foundation",
+    cta: "Start AI Visibility Growth",
     primary: true,
   },
   {
-    name: "AI Search Growth",
-    badge: "Ongoing support",
-    price: "Starting at $2,500/mo",
-    period: "Ongoing monthly optimization",
-    tier: "growth",
-    desc: "Ongoing monitoring and expansion for companies that want continued improvement in AI search visibility and content coverage.",
+    name: "Managed GEO / AI Visibility",
+    badge: "Higher-touch support",
+    price: "Starting at $1,250/month",
+    period: "Hands-on ongoing engagement",
+    tier: "managed",
+    desc: "A higher-touch engagement for businesses that want hands-on support improving structure, content coverage, and AI visibility over time.",
     includes: [
-      "Monthly GEO monitoring and technical checks",
-      "Search Console and Bing Webmaster review",
-      "Monthly content opportunity updates",
-      "2–4 content briefs per month",
-      "1–2 refresh recommendations per month",
-      "Internal linking recommendations",
-      "Structured data and entity consistency review",
-      "Monthly priority action list",
-      "Monthly strategy summary or walkthrough",
+      "Everything in Growth",
+      "Ongoing optimization support",
+      "Implementation guidance",
+      "Content planning and prioritization",
+      "Structured data and page architecture recommendations",
+      "More hands-on monthly support",
+      "Priority roadmap reviews",
     ],
-    cta: "Start Monthly GEO Growth",
+    cta: "Request Managed GEO Help",
     primary: false,
   },
 ];
@@ -123,7 +132,7 @@ export const FAQ_ITEMS = [
   },
   {
     q: "Do you fix the issues you find?",
-    a: "That depends on the tier. The Audit documents findings and a prioritized plan. Foundation and Growth tiers include hands-on implementation.",
+    a: "That depends on the plan. Monitor gives you a structured monthly snapshot and priority recommendations — not hands-on implementation. Growth adds recurring guidance and refresh recommendations. Managed GEO includes more hands-on support for structure, content, and ongoing improvement.",
   },
   {
     q: "How long does a GEO audit take?",
@@ -131,6 +140,10 @@ export const FAQ_ITEMS = [
   },
   {
     q: "Can this be an ongoing monthly service?",
-    a: "Yes. The AI Search Growth tier is designed for businesses that want continuous improvement rather than a single audit snapshot.",
+    a: "Yes. AI Visibility Monitor is a low-friction monthly starting point. AI Visibility Growth and Managed GEO are designed for businesses that want continued guidance and stronger visibility over time.",
+  },
+  {
+    q: "What is the $99/month plan?",
+    a: "AI Visibility Monitor is a monitoring and diagnostic tier — not full optimization or hands-on implementation. You receive a monthly snapshot, basic technical checks, a refreshed scorecard, and a short list of priority recommendations so you know what to work on next.",
   },
 ];
