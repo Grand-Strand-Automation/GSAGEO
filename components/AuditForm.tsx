@@ -118,7 +118,7 @@ export function AuditForm({ initialPlan = "" }: { initialPlan?: string }) {
             : "Something went wrong submitting your request.",
         );
       }
-      router.push("/thank-you");
+      router.push(`/thank-you?t=${encodeURIComponent(data.resultsToken ?? "")}`);
     } catch (err) {
       setSubmitError(
         err instanceof Error

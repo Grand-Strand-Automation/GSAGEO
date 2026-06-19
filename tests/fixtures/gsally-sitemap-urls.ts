@@ -1,0 +1,33 @@
+export const GSALLY_SITEMAP_URLS = [
+  "https://gsally.com/",
+  "https://gsally.com/about",
+  "https://gsally.com/services",
+  "https://gsally.com/pricing",
+  "https://gsally.com/process",
+  "https://gsally.com/faq",
+  "https://gsally.com/case-studies",
+  "https://gsally.com/contact",
+  "https://gsally.com/network-wifi-management-myrtle-beach",
+  "https://gsally.com/managed-it-support-myrtle-beach",
+  "https://gsally.com/microsoft-365-support",
+  "https://gsally.com/it-cost-analysis",
+  "https://gsally.com/cybersecurity-compliance-support",
+  "https://gsally.com/backup-recovery-support",
+  "https://gsally.com/onboarding-offboarding-automation",
+  "https://gsally.com/free-it-cost-analysis",
+  "https://gsally.com/cost-analysis",
+  "https://gsally.com/how-much-should-a-small-business-spend-on-it-support",
+  "https://gsally.com/how-to-find-overlapping-it-tools-and-vendors",
+  "https://gsally.com/small-business-offboarding-checklist",
+  "https://gsally.com/what-an-it-cost-analysis-should-include",
+  "https://gsally.com/generative-engine-optimization",
+];
+
+export const GSALLY_PAGE_SAMPLES: Record<string, string> = {
+  "https://gsally.com/faq": "<html><head><title>FAQ | Grand Strand Ally</title></head><body><h1>Frequently Asked Questions</h1></body></html>",
+  "https://gsally.com/process": "<html><head><title>Our Process</title></head><body><h1>How It Works</h1></body></html>",
+  "https://gsally.com/case-studies": "<html><head><title>Case Studies</title></head><body><h1>Client Results</h1></body></html>",
+  "https://gsally.com/contact": "<html><head><title>Contact</title></head><body><h1>Contact Us</h1><a href=\"mailto:shawn@gsally.com\">Email</a></body></html>",
+  "https://gsally.com/about": "<html><head><title>About Grand Strand Ally</title></head><body><h1>About Our Company</h1></body></html>",
+  "https://gsally.com/free-it-cost-analysis": "<html><head><title>Free IT Cost Analysis</title></head><body><h1>Free Cost Analysis</h1><form><input /></form></body></html>",
+};

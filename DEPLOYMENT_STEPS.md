@@ -7,7 +7,7 @@ Deploy in this order.
 Follow [SUPABASE_SETUP.md](./SUPABASE_SETUP.md):
 
 1. Create project
-2. Apply `001_geo_schema.sql` and `002_geo_admin_users.sql`
+2. Apply `001_geo_schema.sql`, `002_geo_admin_users.sql`, and `003_results_flow.sql`
 3. Create admin user(s)
 4. Disable public signups
 5. Note URL, anon key, service role key
@@ -41,9 +41,12 @@ Follow [DNS_SETUP.md](./DNS_SETUP.md):
 ```text
 [ ] https://gsageo.vercel.app/ loads (public landing)
 [ ] https://gsageo.vercel.app/audit?tier=monitor loads form with tier pre-selected
-[ ] Test submission → thank-you page → row in Supabase geo_submissions
+[ ] Test submission → thank-you page with ?t= token → row in geo_submissions + geo_audit_jobs
+[ ] /results/{token} shows pending then published results (auto-publish default)
+[ ] Fix previews visible on customer results page
 [ ] https://gsageo.vercel.app/admin/login — admin can sign in
-[ ] Submission visible in /admin/submissions
+[ ] Submission visible in /admin/submissions with job status
+[ ] Detail page shows audit results, fix previews, publish/rerun actions
 [ ] Detail page + admin note creation works
 [ ] Sign out returns to login
 ```

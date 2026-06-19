@@ -1,6 +1,6 @@
 # GSAGEO — GEO / AI Visibility App
 
-Standalone Next.js app for [geo.gsally.com](https://geo.gsally.com): GEO landing page, audit intake form, Supabase-backed submissions, admin dashboard, and automated audit job scaffolding.
+Standalone Next.js app for [geo.gsally.com](https://geo.gsally.com): GEO landing page, audit intake form, automated site audit, fix previews, private customer results, and admin dashboard.
 
 The main gsally.com site remains on Replit. This repo is **only** the GEO offering.
 
@@ -29,10 +29,11 @@ Open [http://localhost:3000](http://localhost:3000).
 |-------|-------------|
 | `/` | GEO landing page |
 | `/audit` | Intake form (`?tier=monitor\|growth\|managed\|custom`) |
-| `/thank-you` | Post-submit confirmation |
+| `/thank-you` | Post-submit confirmation + private results link |
+| `/results/[token]` | Private customer audit results (tokenized) |
 | `/admin/login` | Supabase admin login |
 | `/admin/submissions` | Submission list |
-| `/admin/submissions/[id]` | Submission detail + audit results |
+| `/admin/submissions/[id]` | Submission detail, audit results, fix previews, publish/rerun |
 
 ## Scripts
 
@@ -47,6 +48,7 @@ pnpm typecheck  # TypeScript check
 
 | File | Purpose |
 |------|---------|
+| [RESULTS_FLOW.md](./RESULTS_FLOW.md) | Submission → audit → results lifecycle |
 | [DEPLOYMENT_STEPS.md](./DEPLOYMENT_STEPS.md) | End-to-end deploy order |
 | [SUPABASE_SETUP.md](./SUPABASE_SETUP.md) | Database, migrations, admin users |
 | [VERCEL_SETUP.md](./VERCEL_SETUP.md) | Vercel project import and env vars |
@@ -61,5 +63,7 @@ The `artifacts/` folder contains the original Replit monorepo (Vite + Express). 
 ## QA
 
 - `tests/submission-validation.test.ts` — form validation
+- `tests/audit-discovery.test.ts` — gsally.com regression (no false negatives)
+- `tests/results-flow.test.ts` — tokens, previews, auto-publish
 - `tests/AUTH_GUARD_NOTES.md` — admin auth manual checks
 - `tests/SMOKE_TEST.md` — full submission flow + rollback notes

@@ -16,7 +16,15 @@ Copy `.env.example` to `.env.local` for local development. Set the same values i
 
 | Variable | Purpose |
 |----------|---------|
-| `CRON_SECRET` | Protects `/api/cron/process-audit-jobs` |
+| `CRON_SECRET` | Protects `/api/cron/process-audit-jobs` (backup job processor) |
+
+## Audit / results automation
+
+| Variable | Default | Purpose |
+|----------|---------|---------|
+| `AUDIT_AUTO_PUBLISH` | `true` | Auto-publish results to customer after audit |
+| `AUDIT_REVIEW_REQUIRED` | `false` | When `true`, jobs finish as `awaiting_review`; admin must publish |
+| `RESULTS_TOKEN_EXPIRY_DAYS` | `90` | Optional expiry for customer results tokens |
 
 ## Optional
 
@@ -49,4 +57,4 @@ Open `http://localhost:3000/admin/login` after creating an admin user in Supabas
 - Admin dashboard reads submission data with the service role **after** verifying a Supabase Auth session and admin authorization.
 - Public signup must stay disabled in Supabase; admins are created manually in the dashboard.
 
-See also [SUPABASE_SETUP.md](./SUPABASE_SETUP.md) and [MANUAL_STEPS.md](./MANUAL_STEPS.md).
+See also [SUPABASE_SETUP.md](./SUPABASE_SETUP.md), [RESULTS_FLOW.md](./RESULTS_FLOW.md), and [MANUAL_STEPS.md](./MANUAL_STEPS.md).

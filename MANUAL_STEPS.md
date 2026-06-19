@@ -8,6 +8,7 @@ These items cannot be completed from code alone. Do them in order after reviewin
 - [ ] Run migrations:
   - [ ] `supabase/migrations/001_geo_schema.sql`
   - [ ] `supabase/migrations/002_geo_admin_users.sql`
+  - [ ] `supabase/migrations/003_results_flow.sql`
 - [ ] Copy project URL, anon key, and **service role key** into Vercel env vars (see [ENV_SETUP.md](./ENV_SETUP.md))
 - [ ] Disable public signups: Authentication → Providers → Email → disable **Enable sign ups**
 - [ ] Create first admin user(s) manually: Authentication → Users → Add user
@@ -18,7 +19,9 @@ These items cannot be completed from code alone. Do them in order after reviewin
 
 - [ ] Import GitHub repo `Grand-Strand-Automation/GSAGEO`
 - [ ] Set all env vars from `.env.example` / [ENV_SETUP.md](./ENV_SETUP.md)
-- [ ] Generate and set `CRON_SECRET` (random string)
+- [ ] Generate and set `CRON_SECRET` (random string) — backs up audit job processing
+- [ ] Set `AUDIT_AUTO_PUBLISH=true` (default) or `AUDIT_REVIEW_REQUIRED=true` for admin review gate
+- [ ] Set `NEXT_PUBLIC_APP_URL` to production URL (used in results links)
 - [ ] Confirm cron job appears after deploy (Hobby plan: cron may require Pro — see Vercel docs)
 - [ ] Add custom domain `geo.gsally.com` (preview: `gsageo.vercel.app`)
 
@@ -59,7 +62,8 @@ These items cannot be completed from code alone. Do them in order after reviewin
 - [ ] Logged-out visit to `/admin/submissions` redirects to `/admin/login` (no framework crash)
 - [ ] Missing Supabase env vars show an internal setup message instead of a crash
 - [ ] Submissions list loads real rows from `geo_submissions` when configured
-- [ ] Detail page shows intake + audit data + admin notes
+- [ ] Detail page shows intake + audit job status + results + fix previews + admin notes
+- [ ] Publish / rerun actions work when review gate enabled
 - [ ] Adding a note saves to `geo_admin_notes`
 - [ ] Sign out clears session and returns to login
 - [ ] `/robots.txt` and `/sitemap.xml` return 200
@@ -74,6 +78,8 @@ See [tests/AUTH_GUARD_NOTES.md](./tests/AUTH_GUARD_NOTES.md) and [tests/SMOKE_TE
 
 ## Not automated (by design)
 
-- Full async audit worker at scale — scaffolded via `after()` + Vercel Cron backup
-- Client-facing PDF reports — admin UI shows JSON-derived results only
+- Email delivery of results link — customer gets link on thank-you page only (Resend TODO)
+- Client-facing PDF reports — web results page only
 - Payment / checkout — intake form only, no Stripe
+
+See [RESULTS_FLOW.md](./RESULTS_FLOW.md) for the full automation lifecycle.

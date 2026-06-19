@@ -5,16 +5,17 @@ import { requireAdminUser } from "@/lib/auth/require-admin";
 import { isSupabaseAdminConfigured, isSupabaseAuthConfigured } from "@/lib/auth/admin";
 import { AddNoteForm } from "@/components/admin/AddNoteForm";
 import { SignOutButton } from "@/components/admin/SignOutButton";
+import { JobActions } from "@/components/admin/JobActions";
 import { formatPlanLabel } from "@/lib/brand/plans";
-import type { GeoAuditJob, GeoAuditResult, GeoSubmission, GeoAdminNote } from "@/lib/types/database";
+import type { GeoAuditJob, GeoAuditResult, GeoFixPreview, GeoSubmission, GeoAdminNote } from "@/lib/types/database";
 
 export const dynamic = "force-dynamic";
 
 function Field({ label, value }: { label: string; value: string | null | undefined }) {
   return (
     <div>
-      <dt className="text-xs font-bold uppercase text-[#9AAEBB]">{label}</dt>
-      <dd className="text-sm text-[#0E2F54] mt-1">{value || "—"}</dd>
+      <dt className="text-xs font-bold uppercase text-brand-subtle">{label}</dt>
+      <dd className="text-sm text-brand-navy mt-1">{value || "—"}</dd>
     </div>
   );
 }
@@ -58,6 +59,7 @@ export default async function SubmissionDetailPage({
   let submission: GeoSubmission | null = null;
   let job: GeoAuditJob | null = null;
   let result: GeoAuditResult | null = null;
+  let previews: GeoFixPreview[] = [];
   let notes: GeoAdminNote[] = [];
 
   try {
@@ -83,6 +85,13 @@ export default async function SubmissionDetailPage({
         .order("created_at", { ascending: false })
         .limit(1);
       result = (results?.[0] ?? null) as GeoAuditResult | null;
+
+      const { data: previewRows } = await supabase
+        .from("geo_fix_previews")
+        .select("*")
+        .eq("audit_job_id", job.id)
+        .order("created_at", { ascending: true });
+      previews = (previewRows ?? []) as GeoFixPreview[];
     }
 
     const { data: noteRows } = await supabase
@@ -99,137 +108,136 @@ export default async function SubmissionDetailPage({
   }
 
   const sub = submission;
-
   const scorecard = result?.scorecard_json as {
     overall?: number;
     overallGrade?: string;
     categories?: Record<string, { score: number; grade: string; label: string }>;
   } | null;
 
-  const recommendations = result?.recommendations_json as {
-    topFixes?: { priority: string; title: string; description: string }[];
-    topContentGaps?: { impact: string; title: string; description: string }[];
-    suggestedTier?: string;
-  } | null;
+  const strengths = (result?.strengths_json ?? []) as { title: string; summary: string }[];
 
   return (
     <div className="bg-brand-cream min-h-screen py-12">
       <div className="container px-4 md:px-6 max-w-4xl">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <Link href="/admin/submissions" className="text-sm text-[#1F5E95] hover:underline">
+            <Link href="/admin/submissions" className="text-sm text-brand-blue hover:underline">
               ← All submissions
             </Link>
-            <h1 className="text-2xl font-heading font-bold text-[#0E2F54] mt-2">{sub.company_name}</h1>
-            <p className="text-sm text-[#4B5B6B]">{sub.work_email}</p>
+            <h1 className="text-2xl font-heading font-bold text-brand-navy mt-2">{sub.company_name}</h1>
+            <p className="text-sm text-brand-muted">{sub.work_email}</p>
           </div>
           <SignOutButton />
         </div>
 
         <div className="grid gap-6">
-          <section className="bg-white rounded-xl border border-[#D7E1EA] p-6">
-            <h2 className="text-xs font-bold uppercase text-[#1F5E95] mb-4">Overview</h2>
+          <section className="bg-white rounded-xl border border-brand-border p-6">
+            <h2 className="text-xs font-bold uppercase text-brand-blue mb-4">Overview</h2>
             <dl className="grid grid-cols-2 md:grid-cols-3 gap-4">
               <Field label="Website" value={sub.website_url} />
               <Field label="Selected plan" value={formatPlanLabel(sub.selected_plan)} />
               <Field label="Status" value={sub.status} />
               <Field label="Submitted" value={new Date(sub.created_at).toLocaleString()} />
-              <Field label="Updated" value={new Date(sub.updated_at).toLocaleString()} />
               <Field label="Phone" value={sub.phone} />
             </dl>
           </section>
 
-          <section className="bg-white rounded-xl border border-[#D7E1EA] p-6">
-            <h2 className="text-xs font-bold uppercase text-[#1F5E95] mb-4">Intake details</h2>
-            <dl className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Field label="Full name" value={sub.full_name} />
-              <Field label="Primary service" value={sub.primary_service} />
-              <Field label="Service area" value={sub.service_area} />
-              <Field label="Industry" value={sub.industry} />
-              <Field label="Business size" value={sub.business_size} />
-              <Field label="Main goal" value={sub.main_goal} />
-              <Field label="Competitors" value={sub.competitors} />
-              <Field label="CMS platform" value={sub.cms_platform} />
-              <Field label="Current challenges" value={sub.current_challenges} />
-              <Field label="Access available" value={sub.access_available} />
-              <Field label="Notes" value={sub.notes} />
-            </dl>
-          </section>
-
-          <section className="bg-white rounded-xl border border-[#D7E1EA] p-6">
-            <h2 className="text-xs font-bold uppercase text-[#1F5E95] mb-4">Audit job</h2>
+          <section className="bg-white rounded-xl border border-brand-border p-6">
+            <h2 className="text-xs font-bold uppercase text-brand-blue mb-4">Audit job</h2>
             {!job ? (
-              <p className="text-sm text-[#4B5B6B]">No audit job found.</p>
+              <p className="text-sm text-brand-muted">No audit job found.</p>
             ) : (
-              <dl className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                <Field label="Job status" value={job.status} />
-                <Field label="Audit version" value={job.audit_version} />
-                <Field label="Started" value={job.started_at ? new Date(job.started_at).toLocaleString() : null} />
-                <Field label="Completed" value={job.completed_at ? new Date(job.completed_at).toLocaleString() : null} />
-                <Field label="Failure reason" value={job.failure_reason} />
-              </dl>
+              <>
+                <dl className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
+                  <Field label="Job status" value={job.status} />
+                  <Field label="Audit version" value={job.audit_version} />
+                  <Field label="Published" value={job.published_at ? new Date(job.published_at).toLocaleString() : null} />
+                  <Field label="Started" value={job.started_at ? new Date(job.started_at).toLocaleString() : null} />
+                  <Field label="Completed" value={job.completed_at ? new Date(job.completed_at).toLocaleString() : null} />
+                  <Field label="Failure reason" value={job.failure_reason} />
+                </dl>
+                <JobActions jobId={job.id} jobStatus={job.status} submissionId={sub.id} />
+                <p className="text-xs text-brand-subtle mt-3">
+                  Customer receives a private results link on the thank-you page after submission.
+                </p>
+              </>
             )}
-            {/* TODO: Manual re-queue button for failed jobs once admin actions are wired */}
           </section>
 
           {result && (
-            <section className="bg-white rounded-xl border border-[#D7E1EA] p-6">
-              <h2 className="text-xs font-bold uppercase text-[#1F5E95] mb-4">Audit results</h2>
-              {result.summary && <p className="text-sm text-[#4B5B6B] mb-4">{result.summary}</p>}
+            <section className="bg-white rounded-xl border border-brand-border p-6">
+              <h2 className="text-xs font-bold uppercase text-brand-blue mb-4">Audit results</h2>
+              {result.executive_summary && (
+                <p className="text-sm text-brand-muted mb-4">{result.executive_summary}</p>
+              )}
+              {result.summary && <p className="text-sm text-brand-muted mb-4">{result.summary}</p>}
               {scorecard?.overall != null && (
-                <p className="text-sm font-semibold text-[#0E2F54] mb-4">
+                <p className="text-sm font-semibold text-brand-navy mb-4">
                   Overall: {scorecard.overall}/100 ({scorecard.overallGrade})
-                  {recommendations?.suggestedTier && (
-                    <> · Suggested: {recommendations.suggestedTier}</>
-                  )}
                 </p>
               )}
+              {strengths.length > 0 && (
+                <div className="mb-4">
+                  <h3 className="text-sm font-bold text-brand-navy mb-2">Strengths</h3>
+                  <ul className="space-y-2 text-sm text-brand-muted">
+                    {strengths.map((s) => (
+                      <li key={s.title}>
+                        <strong>{s.title}:</strong> {s.summary}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
               {scorecard?.categories && (
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                   {Object.values(scorecard.categories).map((cat) => (
-                    <div key={cat.label} className="bg-[#F7F5F1] rounded-lg border border-[#D7E1EA] p-3 text-center">
+                    <div key={cat.label} className="bg-brand-cream rounded-lg border border-brand-border p-3 text-center">
                       <div className="text-xl font-bold">{cat.grade}</div>
-                      <div className="text-xs text-[#4B5B6B]">{cat.score}/100</div>
-                      <div className="text-[10px] text-[#9AAEBB] mt-1">{cat.label}</div>
+                      <div className="text-xs text-brand-muted">{cat.score}/100</div>
+                      <div className="text-[10px] text-brand-subtle mt-1">{cat.label}</div>
                     </div>
                   ))}
-                </div>
-              )}
-              {recommendations?.topFixes && recommendations.topFixes.length > 0 && (
-                <div className="mb-4">
-                  <h3 className="text-sm font-bold text-[#0E2F54] mb-2">Top fixes</h3>
-                  <ul className="space-y-2 text-sm text-[#4B5B6B]">
-                    {recommendations.topFixes.map((f) => (
-                      <li key={f.title}>
-                        <strong>[{f.priority}]</strong> {f.title}: {f.description}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {recommendations?.topContentGaps && recommendations.topContentGaps.length > 0 && (
-                <div>
-                  <h3 className="text-sm font-bold text-[#0E2F54] mb-2">Content opportunities</h3>
-                  <ul className="space-y-2 text-sm text-[#4B5B6B]">
-                    {recommendations.topContentGaps.map((g) => (
-                      <li key={g.title}>
-                        <strong>[{g.impact}]</strong> {g.title}: {g.description}
-                      </li>
-                    ))}
-                  </ul>
                 </div>
               )}
             </section>
           )}
 
-          <section className="bg-white rounded-xl border border-[#D7E1EA] p-6">
-            <h2 className="text-xs font-bold uppercase text-[#1F5E95] mb-4">Admin notes</h2>
+          {previews.length > 0 && (
+            <section className="bg-white rounded-xl border border-brand-border p-6">
+              <h2 className="text-xs font-bold uppercase text-brand-blue mb-4">Fix previews</h2>
+              <ul className="space-y-4">
+                {previews.map((p) => (
+                  <li key={p.id} className="border border-brand-border rounded-lg p-4">
+                    <div className="flex justify-between gap-2 mb-2">
+                      <p className="font-semibold text-brand-navy text-sm">{p.title}</p>
+                      <span className="text-xs text-brand-subtle">{p.status}</span>
+                    </div>
+                    <p className="text-sm text-brand-muted">{p.issue_summary}</p>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          <section className="bg-white rounded-xl border border-brand-border p-6">
+            <h2 className="text-xs font-bold uppercase text-brand-blue mb-4">Intake details</h2>
+            <dl className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Field label="Full name" value={sub.full_name} />
+              <Field label="Primary service" value={sub.primary_service} />
+              <Field label="Service area" value={sub.service_area} />
+              <Field label="Industry" value={sub.industry} />
+              <Field label="Notes" value={sub.notes} />
+            </dl>
+          </section>
+
+          <section className="bg-white rounded-xl border border-brand-border p-6">
+            <h2 className="text-xs font-bold uppercase text-brand-blue mb-4">Admin notes</h2>
             <AddNoteForm submissionId={id} />
             <ul className="mt-6 space-y-4">
               {notes.map((n) => (
-                <li key={n.id} className="border-t border-[#D7E1EA] pt-4 text-sm">
-                  <p className="text-[#4B5B6B]">{n.note}</p>
-                  <p className="text-xs text-[#9AAEBB] mt-1">
+                <li key={n.id} className="border-t border-brand-border pt-4 text-sm">
+                  <p className="text-brand-muted">{n.note}</p>
+                  <p className="text-xs text-brand-subtle mt-1">
                     {n.author_email} · {new Date(n.created_at).toLocaleString()}
                   </p>
                 </li>

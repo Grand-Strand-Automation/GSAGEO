@@ -2,8 +2,8 @@
 
 ## Prerequisites
 
-- Supabase project created and migrations `001` + `002` applied
-- `.env.local` filled with Supabase keys and `ADMIN_EMAIL_ALLOWLIST`
+- Supabase project created and migrations `001`, `002`, and `003` applied
+- `.env.local` filled with Supabase keys, `ADMIN_EMAIL_ALLOWLIST`, and `NEXT_PUBLIC_APP_URL`
 - Admin user created in Supabase Auth (signups disabled)
 
 ## Production blocker checklist
@@ -18,38 +18,49 @@
 8. [ ] `/` homepage still renders
 9. [ ] `/thank-you` still renders
 
-## Public intake flow
+## Public intake + results flow
 
 1. Start dev server: `pnpm dev`
 2. Open `http://localhost:3000/audit?tier=monitor`
 3. Confirm “Interested in” pre-selects AI Visibility Monitor
-4. Open `http://localhost:3000/audit?tier=audit` and confirm the same Monitor selection
-5. Submit form with valid test data
-6. Expect redirect to `/thank-you`
-7. In Supabase dashboard, verify:
-   - `geo_submissions` row created with `status = submitted`
-   - `geo_audit_jobs` row created with status progressing to `queued` → `processing` → `complete` or `failed`
-   - `geo_audit_results` row if audit completed
+4. Submit form with valid test data (use a real crawlable URL for best audit output)
+5. Expect redirect to `/thank-you?t={token}`
+6. Thank-you page shows “View your results” link to `/results/{token}`
+7. Open results page — expect **pending/processing** briefly, then **published** (auto-publish default)
+8. Confirm results page shows: summary, scorecard, strengths, opportunities, fix previews, next steps
+9. In Supabase dashboard, verify:
+   - `geo_submissions` row with `status = submitted`
+   - `geo_audit_jobs` row: `queued` → `processing` → `published` (or `awaiting_review` if review gate on)
+   - `geo_audit_results` row with findings JSON
+   - `geo_fix_previews` rows (5+ preview types)
+   - `geo_result_access_tokens` row with `token_hash` (not raw token)
 
 ## Admin flow
 
-8. Open `http://localhost:3000/admin/login`
-9. Sign in with allowlisted admin credentials
-10. Confirm redirect to `/admin/submissions`
-11. Submission from step 5 appears in the list (newest first)
-12. Click **View →** — detail page shows intake fields
-13. If audit completed, audit results section is populated
-14. Add an internal note → saves to `geo_admin_notes` and displays author + time
-15. Sign out → returns to login; `/admin/submissions` redirects to login
+10. Open `http://localhost:3000/admin/login`
+11. Sign in with allowlisted admin credentials
+12. Submission from step 4 appears in the list with job status badge
+13. Click **View →** — detail page shows intake, job status, audit results, fix previews
+14. If `AUDIT_REVIEW_REQUIRED=true`, test **Publish to customer** button
+15. Test **Rerun audit** if needed
+16. Add an internal note → saves to `geo_admin_notes`
+17. Sign out → returns to login
+
+## Token security
+
+- [ ] Invalid token `/results/bad-token` shows safe error (not other customers’ data)
+- [ ] Results page is read-only (no admin data exposed)
 
 ## Production smoke test
 
-Repeat blocker checklist and admin flow against `https://gsageo.vercel.app` after Vercel env vars are set and redeployed.
+Repeat against `https://gsageo.vercel.app` after migration `003` and env vars are set.
 
 ## Rollback
 
 If a bad deploy breaks submissions:
 
-1. In Vercel, roll back to the previous deployment (Deployments → … → Promote to Production).
-2. Database rows are append-only; no migration rollback needed for a frontend-only rollback.
-3. If a migration caused issues, restore from Supabase backup or manually revert SQL in dashboard.
+1. In Vercel, roll back to the previous deployment.
+2. Database rows are append-only; no migration rollback needed for frontend-only rollback.
+3. If migration `003` caused issues, manually revert SQL in Supabase dashboard.
+
+See [RESULTS_FLOW.md](../RESULTS_FLOW.md) for lifecycle details.

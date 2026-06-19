@@ -4,14 +4,14 @@ import {
   mapSubmissionToRow,
   submissionSchema,
 } from "@/lib/validation/submission";
-import { processAuditJob } from "@/lib/audit/processor";
+import { createResultsAccessToken, processAuditJob } from "@/lib/audit/processor";
 import { AUDIT_VERSION } from "@/lib/audit/crawl-checks";
+import { isAuditReviewRequired } from "@/lib/results/tokens";
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
 
-    // Honeypot anti-spam
     if (body.website) {
       return NextResponse.json({ ok: true });
     }
@@ -47,6 +47,7 @@ export async function POST(request: Request) {
         submission_id: submission.id,
         status: "queued",
         audit_version: AUDIT_VERSION,
+        review_required: isAuditReviewRequired(),
       })
       .select("id")
       .single();
@@ -59,7 +60,8 @@ export async function POST(request: Request) {
       );
     }
 
-    // Background processing — Vercel serverless continues via after()
+    const resultsToken = await createResultsAccessToken(submission.id, job.id);
+
     after(async () => {
       try {
         await processAuditJob(job.id);
@@ -68,7 +70,12 @@ export async function POST(request: Request) {
       }
     });
 
-    return NextResponse.json({ ok: true, submissionId: submission.id, jobId: job.id });
+    return NextResponse.json({
+      ok: true,
+      submissionId: submission.id,
+      jobId: job.id,
+      resultsToken,
+    });
   } catch (err) {
     console.error("[submissions] Unexpected error:", err);
     return NextResponse.json(
