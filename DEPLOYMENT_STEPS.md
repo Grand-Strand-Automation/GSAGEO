@@ -7,12 +7,16 @@ Deploy in this order.
 Follow [SUPABASE_SETUP.md](./SUPABASE_SETUP.md):
 
 1. Create project
-2. Apply `supabase/migrations/001_geo_schema.sql`
+2. Apply `001_geo_schema.sql` and `002_geo_admin_users.sql`
 3. Create admin user(s)
 4. Disable public signups
 5. Note URL, anon key, service role key
 
-## 2. Vercel
+## 2. Environment variables
+
+Follow [ENV_SETUP.md](./ENV_SETUP.md) — set all **Required** vars in Vercel before first admin test.
+
+## 3. Vercel
 
 Follow [VERCEL_SETUP.md](./VERCEL_SETUP.md):
 
@@ -21,10 +25,10 @@ Follow [VERCEL_SETUP.md](./VERCEL_SETUP.md):
 3. Root directory: **`.`** (repo root)
 4. Build command: `pnpm build` (or `npm run build`)
 5. Install command: `pnpm install`
-6. Add environment variables from `.env.example`
+6. Add environment variables
 7. Deploy
 
-## 3. DNS
+## 4. DNS
 
 Follow [DNS_SETUP.md](./DNS_SETUP.md):
 
@@ -32,19 +36,21 @@ Follow [DNS_SETUP.md](./DNS_SETUP.md):
 2. Configure DNS CNAME at your registrar
 3. Wait for SSL
 
-## 4. Post-deploy smoke test
+## 5. Post-deploy smoke test
 
 ```text
-[ ] https://geo.gsally.com/ loads
-[ ] https://geo.gsally.com/audit?tier=monitor loads form with tier pre-selected
-[ ] Test submission → thank-you page → row in Supabase
-[ ] https://geo.gsally.com/admin/login — admin can sign in
+[ ] https://gsageo.vercel.app/ loads (public landing)
+[ ] https://gsageo.vercel.app/audit?tier=monitor loads form with tier pre-selected
+[ ] Test submission → thank-you page → row in Supabase geo_submissions
+[ ] https://gsageo.vercel.app/admin/login — admin can sign in
 [ ] Submission visible in /admin/submissions
+[ ] Detail page + admin note creation works
+[ ] Sign out returns to login
 ```
 
 See [tests/SMOKE_TEST.md](./tests/SMOKE_TEST.md) for details.
 
-## 5. Replit link updates
+## 6. Replit link updates
 
 Update main site links per [REPLIT_LINK_UPDATES.md](./REPLIT_LINK_UPDATES.md).
 

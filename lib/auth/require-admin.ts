@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import { isAdminEmail } from "@/lib/auth/admin";
+import { isAdminAuthorized } from "@/lib/auth/admin";
 
 export async function requireAdminUser() {
   const supabase = await createClient();
@@ -8,8 +8,8 @@ export async function requireAdminUser() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (!user?.email || !isAdminEmail(user.email)) {
-    redirect("/admin/login");
+  if (!user?.email || !(await isAdminAuthorized(user.email))) {
+    redirect("/admin/login?error=unauthorized");
   }
   return user;
 }

@@ -1,19 +1,16 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { signOutAdmin } from "@/lib/auth/actions";
 
 export function SignOutButton() {
-  const router = useRouter();
-
-  async function handleSignOut() {
-    await fetch("/api/admin/auth", { method: "DELETE" });
-    router.push("/admin/login");
-    router.refresh();
-  }
-
   return (
-    <button type="button" onClick={handleSignOut} className="text-sm text-[#1F5E95] hover:underline">
-      Sign out
-    </button>
+    <form action={signOutAdmin}>
+      <button
+        type="submit"
+        className="text-sm text-brand-blue font-semibold hover:underline"
+      >
+        Sign out
+      </button>
+    </form>
   );
 }

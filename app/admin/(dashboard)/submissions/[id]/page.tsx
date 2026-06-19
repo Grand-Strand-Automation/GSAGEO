@@ -75,7 +75,7 @@ export default async function SubmissionDetailPage({
   } | null;
 
   return (
-    <div className="bg-[#F7F5F1] min-h-screen pt-24 pb-16">
+    <div className="bg-brand-cream min-h-screen py-12">
       <div className="container px-4 md:px-6 max-w-4xl">
         <div className="flex items-center justify-between mb-8">
           <div>

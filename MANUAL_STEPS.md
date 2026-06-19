@@ -5,19 +5,22 @@ These items cannot be completed from code alone. Do them in order after reviewin
 ## Supabase (requires dashboard access)
 
 - [ ] Create Supabase project for production
-- [ ] Run migration: `supabase/migrations/001_geo_schema.sql`
-- [ ] Copy project URL, anon key, and **service role key** into Vercel env vars
-- [ ] Disable public signups: Authentication → Providers → Email → disable "Enable sign ups"
+- [ ] Run migrations:
+  - [ ] `supabase/migrations/001_geo_schema.sql`
+  - [ ] `supabase/migrations/002_geo_admin_users.sql`
+- [ ] Copy project URL, anon key, and **service role key** into Vercel env vars (see [ENV_SETUP.md](./ENV_SETUP.md))
+- [ ] Disable public signups: Authentication → Providers → Email → disable **Enable sign ups**
 - [ ] Create first admin user(s) manually: Authentication → Users → Add user
-- [ ] Set `ADMIN_EMAIL_ALLOWLIST` in Vercel to match admin email(s)
+- [ ] Set `ADMIN_EMAIL_ALLOWLIST` in Vercel to match admin email(s) exactly
+- [ ] Optional: add same email(s) to `geo_admin_users` table for DB-backed allowlist
 
 ## Vercel (requires dashboard access)
 
 - [ ] Import GitHub repo `Grand-Strand-Automation/GSAGEO`
-- [ ] Set all env vars from `.env.example`
+- [ ] Set all env vars from `.env.example` / [ENV_SETUP.md](./ENV_SETUP.md)
 - [ ] Generate and set `CRON_SECRET` (random string)
 - [ ] Confirm cron job appears after deploy (Hobby plan: cron may require Pro — see Vercel docs)
-- [ ] Add custom domain `geo.gsally.com`
+- [ ] Add custom domain `geo.gsally.com` (preview: `gsageo.vercel.app`)
 
 ## DNS (requires domain registrar / DNS host access)
 
@@ -45,6 +48,19 @@ These items cannot be completed from code alone. Do them in order after reviewin
 - [ ] Confirm pricing copy on landing page is current
 - [ ] Confirm admin notification email recipient (default: shawn@gsally.com)
 - [ ] Decide whether automated audit emails go to client or admin only
+
+## Admin QA checklist (after env + Supabase are configured)
+
+- [ ] `/admin/login` shows email + password form (no public site header)
+- [ ] Invalid credentials show a clear error
+- [ ] Valid admin login redirects to `/admin/submissions`
+- [ ] Logged-out visit to `/admin/submissions` redirects to `/admin/login`
+- [ ] Submissions list loads real rows from `geo_submissions`
+- [ ] Detail page shows intake + audit data + admin notes
+- [ ] Adding a note saves to `geo_admin_notes`
+- [ ] Sign out clears session and returns to login
+
+See [tests/AUTH_GUARD_NOTES.md](./tests/AUTH_GUARD_NOTES.md) and [tests/SMOKE_TEST.md](./tests/SMOKE_TEST.md).
 
 ## Not automated (by design)
 
