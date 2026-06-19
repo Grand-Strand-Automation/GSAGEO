@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { requireAdminUser } from "@/lib/auth/require-admin";
+import { isSupabaseAdminConfigured, isSupabaseAuthConfigured } from "@/lib/auth/admin";
 import { AddNoteForm } from "@/components/admin/AddNoteForm";
 import { SignOutButton } from "@/components/admin/SignOutButton";
 import { formatPlanLabel } from "@/lib/brand/plans";
@@ -18,49 +19,86 @@ function Field({ label, value }: { label: string; value: string | null | undefin
   );
 }
 
+function ConfigError({ message }: { message: string }) {
+  return (
+    <div className="bg-brand-cream min-h-screen py-12">
+      <div className="container px-4 md:px-6 max-w-2xl">
+        <Link href="/admin/submissions" className="text-sm text-brand-blue hover:underline">
+          ← All submissions
+        </Link>
+        <div className="bg-white rounded-xl border border-red-200 p-8 text-center mt-6">
+          <h2 className="font-heading font-bold text-brand-navy mb-2">Submission unavailable</h2>
+          <p className="text-sm text-brand-muted">{message}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default async function SubmissionDetailPage({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
-  await requireAdminUser();
-  const { id } = await params;
-  const supabase = createAdminClient();
-
-  const { data: submission } = await supabase
-    .from("geo_submissions")
-    .select("*")
-    .eq("id", id)
-    .single();
-
-  if (!submission) notFound();
-
-  const sub = submission as GeoSubmission;
-
-  const { data: jobs } = await supabase
-    .from("geo_audit_jobs")
-    .select("*")
-    .eq("submission_id", id)
-    .order("created_at", { ascending: false });
-
-  const job = (jobs?.[0] ?? null) as GeoAuditJob | null;
-
-  let result: GeoAuditResult | null = null;
-  if (job) {
-    const { data: results } = await supabase
-      .from("geo_audit_results")
-      .select("*")
-      .eq("audit_job_id", job.id)
-      .order("created_at", { ascending: false })
-      .limit(1);
-    result = (results?.[0] ?? null) as GeoAuditResult | null;
+  if (!isSupabaseAuthConfigured()) {
+    return (
+      <ConfigError message="Supabase auth environment variables are missing. Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in Vercel, then redeploy." />
+    );
   }
 
-  const { data: notes } = await supabase
-    .from("geo_admin_notes")
-    .select("*")
-    .eq("submission_id", id)
-    .order("created_at", { ascending: false });
+  await requireAdminUser();
+  const { id } = await params;
+
+  if (!isSupabaseAdminConfigured()) {
+    return (
+      <ConfigError message="Database access is not configured. Set SUPABASE_SERVICE_ROLE_KEY in Vercel, then redeploy." />
+    );
+  }
+
+  let submission: GeoSubmission | null = null;
+  let job: GeoAuditJob | null = null;
+  let result: GeoAuditResult | null = null;
+  let notes: GeoAdminNote[] = [];
+
+  try {
+    const supabase = createAdminClient();
+
+    const { data } = await supabase.from("geo_submissions").select("*").eq("id", id).single();
+    if (!data) notFound();
+    submission = data as GeoSubmission;
+
+    const { data: jobs } = await supabase
+      .from("geo_audit_jobs")
+      .select("*")
+      .eq("submission_id", id)
+      .order("created_at", { ascending: false });
+
+    job = (jobs?.[0] ?? null) as GeoAuditJob | null;
+
+    if (job) {
+      const { data: results } = await supabase
+        .from("geo_audit_results")
+        .select("*")
+        .eq("audit_job_id", job.id)
+        .order("created_at", { ascending: false })
+        .limit(1);
+      result = (results?.[0] ?? null) as GeoAuditResult | null;
+    }
+
+    const { data: noteRows } = await supabase
+      .from("geo_admin_notes")
+      .select("*")
+      .eq("submission_id", id)
+      .order("created_at", { ascending: false });
+
+    notes = (noteRows ?? []) as GeoAdminNote[];
+  } catch {
+    return (
+      <ConfigError message="Could not load this submission. Verify Supabase migrations and service role access." />
+    );
+  }
+
+  const sub = submission;
 
   const scorecard = result?.scorecard_json as {
     overall?: number;
@@ -188,7 +226,7 @@ export default async function SubmissionDetailPage({
             <h2 className="text-xs font-bold uppercase text-[#1F5E95] mb-4">Admin notes</h2>
             <AddNoteForm submissionId={id} />
             <ul className="mt-6 space-y-4">
-              {((notes ?? []) as GeoAdminNote[]).map((n) => (
+              {notes.map((n) => (
                 <li key={n.id} className="border-t border-[#D7E1EA] pt-4 text-sm">
                   <p className="text-[#4B5B6B]">{n.note}</p>
                   <p className="text-xs text-[#9AAEBB] mt-1">

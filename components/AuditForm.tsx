@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
@@ -63,10 +63,8 @@ function CheckboxGroup({
   );
 }
 
-export function AuditForm() {
+export function AuditForm({ initialPlan = "" }: { initialPlan?: string }) {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const initialTier = searchParams.get("tier") ?? "";
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
@@ -96,7 +94,7 @@ export function AuditForm() {
       access_available: [],
       notes: "",
       website: "",
-      selected_plan: initialTier || "",
+      selected_plan: initialPlan,
     },
   });
 

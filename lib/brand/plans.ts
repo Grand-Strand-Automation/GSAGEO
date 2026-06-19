@@ -2,6 +2,24 @@
 export const PLAN_TIER_IDS = ["monitor", "growth", "managed", "custom"] as const;
 export type PlanTierId = (typeof PLAN_TIER_IDS)[number] | "audit" | "foundation";
 
+const LEGACY_TIER_MAP: Record<string, PlanTierId> = {
+  audit: "monitor",
+  foundation: "managed",
+};
+
+/** Normalize /audit?tier= query values, including legacy aliases. */
+export function normalizeAuditTier(raw: string | null | undefined): PlanTierId | "" {
+  if (!raw) return "";
+  const tier = raw.trim().toLowerCase();
+  if (tier in LEGACY_TIER_MAP) {
+    return LEGACY_TIER_MAP[tier];
+  }
+  if ((PLAN_TIER_IDS as readonly string[]).includes(tier)) {
+    return tier as PlanTierId;
+  }
+  return "";
+}
+
 /** Human-readable labels for admin and intake (includes legacy tiers) */
 export const PLAN_LABELS: Record<string, string> = {
   monitor: "AI Visibility Monitor — $99/mo",

@@ -6,33 +6,45 @@
 - `.env.local` filled with Supabase keys and `ADMIN_EMAIL_ALLOWLIST`
 - Admin user created in Supabase Auth (signups disabled)
 
+## Production blocker checklist
+
+1. [ ] `/audit?tier=monitor` renders the full intake form (not stuck on “Loading form…”)
+2. [ ] `/audit?tier=audit` pre-selects Monitor plan (legacy alias)
+3. [ ] `/audit?tier=growth`, `managed`, and `custom` still render the form
+4. [ ] `/admin/submissions` does **not** show a framework crash page when logged out (redirects to login)
+5. [ ] `/admin/submissions` shows a setup message (not a crash) if Supabase env vars are missing
+6. [ ] `/robots.txt` returns 200 with sitemap reference
+7. [ ] `/sitemap.xml` returns 200 valid XML (public routes only)
+8. [ ] `/` homepage still renders
+9. [ ] `/thank-you` still renders
+
 ## Public intake flow
 
 1. Start dev server: `pnpm dev`
-2. Open `http://localhost:3000/audit?tier=growth`
-3. Confirm “Interested in” pre-selects Growth tier
-4. Submit form with valid test data
-5. Expect redirect to `/thank-you`
-6. In Supabase dashboard, verify:
+2. Open `http://localhost:3000/audit?tier=monitor`
+3. Confirm “Interested in” pre-selects AI Visibility Monitor
+4. Open `http://localhost:3000/audit?tier=audit` and confirm the same Monitor selection
+5. Submit form with valid test data
+6. Expect redirect to `/thank-you`
+7. In Supabase dashboard, verify:
    - `geo_submissions` row created with `status = submitted`
    - `geo_audit_jobs` row created with status progressing to `queued` → `processing` → `complete` or `failed`
    - `geo_audit_results` row if audit completed
 
 ## Admin flow
 
-7. Open `http://localhost:3000/admin/login`
-8. Sign in with allowlisted admin credentials
-9. Confirm redirect to `/admin/submissions`
-10. Submission from step 4 appears in the list (newest first)
-11. Click **View →** — detail page shows intake fields
-12. If audit completed, audit results section is populated
-13. Add an internal note → saves to `geo_admin_notes` and displays author + time
-14. Use status/plan filters and search — list updates via URL params
+8. Open `http://localhost:3000/admin/login`
+9. Sign in with allowlisted admin credentials
+10. Confirm redirect to `/admin/submissions`
+11. Submission from step 5 appears in the list (newest first)
+12. Click **View →** — detail page shows intake fields
+13. If audit completed, audit results section is populated
+14. Add an internal note → saves to `geo_admin_notes` and displays author + time
 15. Sign out → returns to login; `/admin/submissions` redirects to login
 
 ## Production smoke test
 
-Repeat steps 2–15 against `https://gsageo.vercel.app` after Vercel env vars are set and redeployed.
+Repeat blocker checklist and admin flow against `https://gsageo.vercel.app` after Vercel env vars are set and redeployed.
 
 ## Rollback
 

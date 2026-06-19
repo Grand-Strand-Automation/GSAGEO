@@ -15,7 +15,9 @@ export default function AdminLoginForm() {
   const queryError =
     searchParams.get("error") === "unauthorized"
       ? "Your account is not authorized for admin access."
-      : "";
+      : searchParams.get("error") === "config"
+        ? "Admin auth is not configured yet. Set Supabase environment variables in Vercel and redeploy."
+        : "";
 
   const [state, formAction, pending] = useActionState(signInAdmin, initialState);
   const error = state.error ?? queryError;

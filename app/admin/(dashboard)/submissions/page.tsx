@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { requireAdminUser } from "@/lib/auth/require-admin";
+import { isSupabaseAdminConfigured, isSupabaseAuthConfigured } from "@/lib/auth/admin";
 import { SignOutButton } from "@/components/admin/SignOutButton";
 import { SubmissionsFilters } from "@/components/admin/SubmissionsFilters";
 import type { GeoSubmission } from "@/lib/types/database";
@@ -29,15 +30,11 @@ function StatusBadge({ status }: { status: string }) {
   );
 }
 
-function ConfigError() {
+function ConfigError({ message }: { message: string }) {
   return (
     <div className="bg-white rounded-xl border border-red-200 p-8 text-center">
       <h2 className="font-heading font-bold text-brand-navy mb-2">Admin dashboard unavailable</h2>
-      <p className="text-sm text-brand-muted">
-        Supabase is not configured. Set{" "}
-        <code className="text-xs bg-brand-cream px-1 rounded">SUPABASE_SERVICE_ROLE_KEY</code> and
-        related env vars, then redeploy.
-      </p>
+      <p className="text-sm text-brand-muted">{message}</p>
     </div>
   );
 }
@@ -47,8 +44,36 @@ export default async function AdminSubmissionsPage({
 }: {
   searchParams: Promise<{ q?: string; status?: string; plan?: string }>;
 }) {
+  if (!isSupabaseAuthConfigured()) {
+    return (
+      <div className="bg-brand-cream min-h-screen py-12">
+        <div className="container px-4 md:px-6">
+          <ConfigError message="Supabase auth environment variables are missing. Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in Vercel, then redeploy." />
+        </div>
+      </div>
+    );
+  }
+
   const user = await requireAdminUser();
   const params = await searchParams;
+
+  if (!isSupabaseAdminConfigured()) {
+    return (
+      <div className="bg-brand-cream min-h-screen py-12">
+        <div className="container px-4 md:px-6">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+            <div>
+              <p className="text-xs font-bold uppercase text-brand-blue tracking-wide">Internal</p>
+              <h1 className="text-2xl font-heading font-bold text-brand-navy">GEO Submissions</h1>
+              <p className="text-sm text-brand-muted">Signed in as {user.email}</p>
+            </div>
+            <SignOutButton />
+          </div>
+          <ConfigError message="Database access is not configured. Set SUPABASE_SERVICE_ROLE_KEY in Vercel, then redeploy." />
+        </div>
+      </div>
+    );
+  }
 
   let submissions: GeoSubmission[] | null = null;
   let jobsBySubmission: Record<string, { status: string }> = {};
@@ -84,13 +109,7 @@ export default async function AdminSubmissionsPage({
 
     jobsBySubmission = Object.fromEntries((jobs ?? []).map((j) => [j.submission_id, j]));
   } catch {
-    return (
-      <div className="bg-brand-cream min-h-screen py-12">
-        <div className="container px-4 md:px-6">
-          <ConfigError />
-        </div>
-      </div>
-    );
+    loadError = "Could not load submissions. Verify Supabase migrations and service role access.";
   }
 
   return (
@@ -100,9 +119,7 @@ export default async function AdminSubmissionsPage({
           <div>
             <p className="text-xs font-bold uppercase text-brand-blue tracking-wide">Internal</p>
             <h1 className="text-2xl font-heading font-bold text-brand-navy">GEO Submissions</h1>
-            <p className="text-sm text-brand-muted">
-              Signed in as {user.email}
-            </p>
+            <p className="text-sm text-brand-muted">Signed in as {user.email}</p>
           </div>
           <SignOutButton />
         </div>

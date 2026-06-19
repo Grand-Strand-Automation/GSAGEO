@@ -1,5 +1,17 @@
 import { createAdminClient } from "@/lib/supabase/admin";
 
+export function isSupabaseAuthConfigured(): boolean {
+  return Boolean(
+    process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+  );
+}
+
+export function isSupabaseAdminConfigured(): boolean {
+  return Boolean(
+    process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY,
+  );
+}
+
 export function getAdminAllowlist(): string[] {
   const raw = process.env.ADMIN_EMAIL_ALLOWLIST ?? "";
   return raw
