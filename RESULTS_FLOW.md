@@ -9,7 +9,7 @@
 5. `after()` triggers `processAuditJob` (also backed up by Vercel Cron on `/api/cron/process-audit-jobs`)
 6. Job runs discovery audit v2, saves `geo_audit_results`, `geo_fix_previews`
 7. Job status → `published` (auto) or `awaiting_review` (if review gate enabled)
-8. Customer opens `/results/{token}` — read-only, token-scoped
+8. Customer opens `/results/{token}` — premium report layout with scorecard, charts, findings, previews, roadmap
 
 ## Job status model
 

@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "test": "tsx --test tests/submission-validation.test.ts tests/auth-admin.test.ts tests/audit-tier.test.ts tests/audit-discovery.test.ts tests/results-flow.test.ts"
+    "test": "tsx --test tests/submission-validation.test.ts tests/auth-admin.test.ts tests/audit-tier.test.ts tests/audit-discovery.test.ts tests/results-flow.test.ts tests/report-view-model.test.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
@@ -20,6 +20,7 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.56.4",
+    "recharts": "^3.8.1",
     "resend": "^4.5.1",
     "tailwind-merge": "^3.3.1",
     "zod": "^3.25.76"

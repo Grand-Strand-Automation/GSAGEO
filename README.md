@@ -48,6 +48,7 @@ pnpm typecheck  # TypeScript check
 
 | File | Purpose |
 |------|---------|
+| [DESIGN_NOTES_RESULTS_PAGE.md](./DESIGN_NOTES_RESULTS_PAGE.md) | Premium results page UI structure |
 | [RESULTS_FLOW.md](./RESULTS_FLOW.md) | Submission → audit → results lifecycle |
 | [DEPLOYMENT_STEPS.md](./DEPLOYMENT_STEPS.md) | End-to-end deploy order |
 | [SUPABASE_SETUP.md](./SUPABASE_SETUP.md) | Database, migrations, admin users |

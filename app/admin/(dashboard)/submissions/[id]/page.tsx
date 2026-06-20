@@ -7,7 +7,8 @@ import { AddNoteForm } from "@/components/admin/AddNoteForm";
 import { SignOutButton } from "@/components/admin/SignOutButton";
 import { JobActions } from "@/components/admin/JobActions";
 import { formatPlanLabel } from "@/lib/brand/plans";
-import type { GeoAuditJob, GeoAuditResult, GeoFixPreview, GeoSubmission, GeoAdminNote } from "@/lib/types/database";
+import { AuditReportView } from "@/components/results/AuditReportView";
+import type { GeoAuditJob, GeoAuditResult, GeoFixPreview, GeoSubmission, GeoAdminNote, ResultsBundle } from "@/lib/types/database";
 
 export const dynamic = "force-dynamic";
 
@@ -108,144 +109,103 @@ export default async function SubmissionDetailPage({
   }
 
   const sub = submission;
-  const scorecard = result?.scorecard_json as {
-    overall?: number;
-    overallGrade?: string;
-    categories?: Record<string, { score: number; grade: string; label: string }>;
-  } | null;
-
-  const strengths = (result?.strengths_json ?? []) as { title: string; summary: string }[];
+  const reportBundle: ResultsBundle | null =
+    job && result
+      ? { submission: sub, job, result, previews }
+      : null;
 
   return (
-    <div className="bg-brand-cream min-h-screen py-12">
-      <div className="container px-4 md:px-6 max-w-4xl">
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <Link href="/admin/submissions" className="text-sm text-brand-blue hover:underline">
-              ← All submissions
-            </Link>
-            <h1 className="text-2xl font-heading font-bold text-brand-navy mt-2">{sub.company_name}</h1>
-            <p className="text-sm text-brand-muted">{sub.work_email}</p>
+    <div className="bg-brand-cream min-h-screen">
+      <div className="py-12">
+        <div className="container px-4 md:px-6 max-w-4xl">
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <Link href="/admin/submissions" className="text-sm text-brand-blue hover:underline">
+                ← All submissions
+              </Link>
+              <h1 className="text-2xl font-heading font-bold text-brand-navy mt-2">{sub.company_name}</h1>
+              <p className="text-sm text-brand-muted">{sub.work_email}</p>
+            </div>
+            <SignOutButton />
           </div>
-          <SignOutButton />
-        </div>
 
-        <div className="grid gap-6">
-          <section className="bg-white rounded-xl border border-brand-border p-6">
-            <h2 className="text-xs font-bold uppercase text-brand-blue mb-4">Overview</h2>
-            <dl className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              <Field label="Website" value={sub.website_url} />
-              <Field label="Selected plan" value={formatPlanLabel(sub.selected_plan)} />
-              <Field label="Status" value={sub.status} />
-              <Field label="Submitted" value={new Date(sub.created_at).toLocaleString()} />
-              <Field label="Phone" value={sub.phone} />
-            </dl>
-          </section>
-
-          <section className="bg-white rounded-xl border border-brand-border p-6">
-            <h2 className="text-xs font-bold uppercase text-brand-blue mb-4">Audit job</h2>
-            {!job ? (
-              <p className="text-sm text-brand-muted">No audit job found.</p>
-            ) : (
-              <>
-                <dl className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
-                  <Field label="Job status" value={job.status} />
-                  <Field label="Audit version" value={job.audit_version} />
-                  <Field label="Published" value={job.published_at ? new Date(job.published_at).toLocaleString() : null} />
-                  <Field label="Started" value={job.started_at ? new Date(job.started_at).toLocaleString() : null} />
-                  <Field label="Completed" value={job.completed_at ? new Date(job.completed_at).toLocaleString() : null} />
-                  <Field label="Failure reason" value={job.failure_reason} />
-                </dl>
-                <JobActions jobId={job.id} jobStatus={job.status} submissionId={sub.id} />
-                <p className="text-xs text-brand-subtle mt-3">
-                  Customer receives a private results link on the thank-you page after submission.
-                </p>
-              </>
-            )}
-          </section>
-
-          {result && (
+          <div className="grid gap-6">
             <section className="bg-white rounded-xl border border-brand-border p-6">
-              <h2 className="text-xs font-bold uppercase text-brand-blue mb-4">Audit results</h2>
-              {result.executive_summary && (
-                <p className="text-sm text-brand-muted mb-4">{result.executive_summary}</p>
-              )}
-              {result.summary && <p className="text-sm text-brand-muted mb-4">{result.summary}</p>}
-              {scorecard?.overall != null && (
-                <p className="text-sm font-semibold text-brand-navy mb-4">
-                  Overall: {scorecard.overall}/100 ({scorecard.overallGrade})
-                </p>
-              )}
-              {strengths.length > 0 && (
-                <div className="mb-4">
-                  <h3 className="text-sm font-bold text-brand-navy mb-2">Strengths</h3>
-                  <ul className="space-y-2 text-sm text-brand-muted">
-                    {strengths.map((s) => (
-                      <li key={s.title}>
-                        <strong>{s.title}:</strong> {s.summary}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {scorecard?.categories && (
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                  {Object.values(scorecard.categories).map((cat) => (
-                    <div key={cat.label} className="bg-brand-cream rounded-lg border border-brand-border p-3 text-center">
-                      <div className="text-xl font-bold">{cat.grade}</div>
-                      <div className="text-xs text-brand-muted">{cat.score}/100</div>
-                      <div className="text-[10px] text-brand-subtle mt-1">{cat.label}</div>
-                    </div>
-                  ))}
-                </div>
+              <h2 className="text-xs font-bold uppercase text-brand-blue mb-4">Overview</h2>
+              <dl className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <Field label="Website" value={sub.website_url} />
+                <Field label="Selected plan" value={formatPlanLabel(sub.selected_plan)} />
+                <Field label="Status" value={sub.status} />
+                <Field label="Submitted" value={new Date(sub.created_at).toLocaleString()} />
+                <Field label="Phone" value={sub.phone} />
+              </dl>
+            </section>
+
+            <section className="bg-white rounded-xl border border-brand-border p-6">
+              <h2 className="text-xs font-bold uppercase text-brand-blue mb-4">Audit job</h2>
+              {!job ? (
+                <p className="text-sm text-brand-muted">No audit job found.</p>
+              ) : (
+                <>
+                  <dl className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
+                    <Field label="Job status" value={job.status} />
+                    <Field label="Audit version" value={job.audit_version} />
+                    <Field label="Published" value={job.published_at ? new Date(job.published_at).toLocaleString() : null} />
+                    <Field label="Started" value={job.started_at ? new Date(job.started_at).toLocaleString() : null} />
+                    <Field label="Completed" value={job.completed_at ? new Date(job.completed_at).toLocaleString() : null} />
+                    <Field label="Failure reason" value={job.failure_reason} />
+                  </dl>
+                  <JobActions jobId={job.id} jobStatus={job.status} submissionId={sub.id} />
+                  <p className="text-xs text-brand-subtle mt-3">
+                    Customer receives a private results link on the thank-you page after submission.
+                  </p>
+                </>
               )}
             </section>
-          )}
 
-          {previews.length > 0 && (
             <section className="bg-white rounded-xl border border-brand-border p-6">
-              <h2 className="text-xs font-bold uppercase text-brand-blue mb-4">Fix previews</h2>
-              <ul className="space-y-4">
-                {previews.map((p) => (
-                  <li key={p.id} className="border border-brand-border rounded-lg p-4">
-                    <div className="flex justify-between gap-2 mb-2">
-                      <p className="font-semibold text-brand-navy text-sm">{p.title}</p>
-                      <span className="text-xs text-brand-subtle">{p.status}</span>
-                    </div>
-                    <p className="text-sm text-brand-muted">{p.issue_summary}</p>
+              <h2 className="text-xs font-bold uppercase text-brand-blue mb-4">Intake details</h2>
+              <dl className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Field label="Full name" value={sub.full_name} />
+                <Field label="Primary service" value={sub.primary_service} />
+                <Field label="Service area" value={sub.service_area} />
+                <Field label="Industry" value={sub.industry} />
+                <Field label="Notes" value={sub.notes} />
+              </dl>
+            </section>
+
+            <section className="bg-white rounded-xl border border-brand-border p-6">
+              <h2 className="text-xs font-bold uppercase text-brand-blue mb-4">Admin notes</h2>
+              <AddNoteForm submissionId={id} />
+              <ul className="mt-6 space-y-4">
+                {notes.map((n) => (
+                  <li key={n.id} className="border-t border-brand-border pt-4 text-sm">
+                    <p className="text-brand-muted">{n.note}</p>
+                    <p className="text-xs text-brand-subtle mt-1">
+                      {n.author_email} · {new Date(n.created_at).toLocaleString()}
+                    </p>
                   </li>
                 ))}
               </ul>
             </section>
-          )}
-
-          <section className="bg-white rounded-xl border border-brand-border p-6">
-            <h2 className="text-xs font-bold uppercase text-brand-blue mb-4">Intake details</h2>
-            <dl className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Field label="Full name" value={sub.full_name} />
-              <Field label="Primary service" value={sub.primary_service} />
-              <Field label="Service area" value={sub.service_area} />
-              <Field label="Industry" value={sub.industry} />
-              <Field label="Notes" value={sub.notes} />
-            </dl>
-          </section>
-
-          <section className="bg-white rounded-xl border border-brand-border p-6">
-            <h2 className="text-xs font-bold uppercase text-brand-blue mb-4">Admin notes</h2>
-            <AddNoteForm submissionId={id} />
-            <ul className="mt-6 space-y-4">
-              {notes.map((n) => (
-                <li key={n.id} className="border-t border-brand-border pt-4 text-sm">
-                  <p className="text-brand-muted">{n.note}</p>
-                  <p className="text-xs text-brand-subtle mt-1">
-                    {n.author_email} · {new Date(n.created_at).toLocaleString()}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          </section>
+          </div>
         </div>
       </div>
+
+      {reportBundle ? (
+        <div className="border-t border-brand-border">
+          <AuditReportView
+            bundle={reportBundle}
+            showAdminBanner
+            embedded
+            footerNote={
+              <p className="text-center text-xs text-brand-subtle pt-2">
+                Admin preview of the customer-facing report layout.
+              </p>
+            }
+          />
+        </div>
+      ) : null}
     </div>
   );
 }

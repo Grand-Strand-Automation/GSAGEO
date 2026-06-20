@@ -26,8 +26,8 @@
 4. Submit form with valid test data (use a real crawlable URL for best audit output)
 5. Expect redirect to `/thank-you?t={token}`
 6. Thank-you page shows “View your results” link to `/results/{token}`
-7. Open results page — expect **pending/processing** briefly, then **published** (auto-publish default)
-8. Confirm results page shows: summary, scorecard, strengths, opportunities, fix previews, next steps
+7. Open results page — expect **pending/processing** briefly, then **published** premium report (auto-publish default)
+8. Confirm results page shows: hero + score badge, stat cards, charts, scorecard, priorities, findings, page analysis, fix previews, roadmap, CTA
 9. In Supabase dashboard, verify:
    - `geo_submissions` row with `status = submitted`
    - `geo_audit_jobs` row: `queued` → `processing` → `published` (or `awaiting_review` if review gate on)
