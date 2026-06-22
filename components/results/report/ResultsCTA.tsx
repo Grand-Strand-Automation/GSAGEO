@@ -11,7 +11,7 @@ export function ResultsCTA({
   selectedPlan: string | null;
   suggestedTier: string | null;
 }) {
-  const planLabel = formatPlanLabel(selectedPlan) || suggestedTier;
+  const planLabel = selectedPlan ? formatPlanLabel(selectedPlan) : suggestedTier;
 
   return (
     <section className="report-cta rounded-3xl overflow-hidden border border-brand-navy/10 shadow-card-md">
@@ -39,7 +39,7 @@ export function ResultsCTA({
             href="/audit"
             className="inline-flex items-center justify-center rounded-xl border border-white/25 text-white font-heading font-semibold px-6 py-3.5 text-sm hover:bg-white/10 transition-colors"
           >
-            Explore Growth / Managed plans
+            Explore Growth and Managed plans
           </Link>
         </div>
       </div>

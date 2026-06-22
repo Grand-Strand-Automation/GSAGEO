@@ -48,8 +48,8 @@ export default async function SubmissionDetailPage({
     );
   }
 
-  await requireAdminUser();
   const { id } = await params;
+  await requireAdminUser(`/admin/submissions/${encodeURIComponent(id)}`);
 
   if (!isSupabaseAdminConfigured()) {
     return (

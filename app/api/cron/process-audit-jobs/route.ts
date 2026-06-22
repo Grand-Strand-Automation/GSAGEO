@@ -3,8 +3,8 @@ import { processQueuedJobs } from "@/lib/audit/processor";
 
 /**
  * Vercel Cron backup endpoint for stuck queued audit jobs.
- * Configure in vercel.json with CRON_SECRET header check.
- * TODO: Add Vercel Cron schedule in dashboard once deployed.
+ * Wire this endpoint to a platform scheduler with an Authorization: Bearer CRON_SECRET header
+ * when background job retries are needed.
  */
 export async function GET(request: Request) {
   const authHeader = request.headers.get("authorization");

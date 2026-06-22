@@ -11,7 +11,7 @@ export const GOOD_FIT = [
 export const NOT_FIT = [
   "Businesses looking for guaranteed rankings or quick-turnaround results",
   "Companies still early in defining their product or service offering",
-  "Organizations with a recently launched placeholder site and no content to improve",
+  "Organizations with a newly launched site and little content to improve",
   "Teams unwilling to add or revise content over time",
 ];
 
@@ -36,7 +36,7 @@ export const DELIVERABLES = [
   "Optional: ongoing support through AI Visibility Growth or Managed GEO engagements",
 ];
 
-export const PRICING_HEADLINE = "AI Search Visibility Plans for Small and Medium Businesses";
+export const PRICING_HEADLINE = "AI Visibility Plans for Small and Medium Businesses";
 
 export const PRICING_INTRO =
   "Choose a starting point that fits your current site, team, and growth goals — from a simple monthly visibility check to ongoing support and implementation guidance.";
@@ -108,7 +108,7 @@ export const TIERS = [
       "More hands-on monthly support",
       "Priority roadmap reviews",
     ],
-    cta: "Request Managed GEO Help",
+    cta: "Request Managed GEO / AI Visibility",
     primary: false,
   },
 ];

@@ -22,10 +22,10 @@
 
 1. Start dev server: `pnpm dev`
 2. Open `http://localhost:3000/audit?tier=monitor`
-3. Confirm “Interested in” pre-selects AI Visibility Monitor
+3. Confirm “Interested plan” pre-selects AI Visibility Monitor and shows the selected-plan confirmation
 4. Submit form with valid test data (use a real crawlable URL for best audit output)
 5. Expect redirect to `/thank-you?t={token}`
-6. Thank-you page shows “View your results” link to `/results/{token}`
+6. Thank-you page shows a private audit status link to `/results/{token}`
 7. Open results page — expect **pending/processing** briefly, then **published** premium report (auto-publish default)
 8. Confirm results page shows: hero + score badge, stat cards, charts, scorecard, priorities, findings, page analysis, fix previews, roadmap, CTA
 9. In Supabase dashboard, verify:

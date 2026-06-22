@@ -44,7 +44,7 @@ export function LandingPage() {
             </ButtonLink>
           </div>
           <p className="text-xs text-white/35 font-medium">
-            Practical review · No-pressure approach · Grand Strand–based
+            Practical review · No-pressure approach · Grand Strand-based
           </p>
         </div>
       </section>
