@@ -6,8 +6,11 @@ import { isSupabaseAdminConfigured, isSupabaseAuthConfigured } from "@/lib/auth/
 import { AddNoteForm } from "@/components/admin/AddNoteForm";
 import { SignOutButton } from "@/components/admin/SignOutButton";
 import { JobActions } from "@/components/admin/JobActions";
+import { ReportDistributionPanel } from "@/components/admin/ReportDistributionPanel";
 import { formatPlanLabel } from "@/lib/brand/plans";
 import { AuditReportView } from "@/components/results/AuditReportView";
+import { isResultsVisible } from "@/lib/results/access";
+import { loadPublishedReportBySubmissionId } from "@/lib/results/published-report";
 import type { GeoAuditJob, GeoAuditResult, GeoFixPreview, GeoSubmission, GeoAdminNote, ResultsBundle } from "@/lib/types/database";
 
 export const dynamic = "force-dynamic";
@@ -109,10 +112,16 @@ export default async function SubmissionDetailPage({
   }
 
   const sub = submission;
-  const reportBundle: ResultsBundle | null =
-    job && result
-      ? { submission: sub, job, result, previews }
-      : null;
+  let reportBundle: ResultsBundle | null = null;
+
+  if (job && result) {
+    if (isResultsVisible(job)) {
+      const published = await loadPublishedReportBySubmissionId(id);
+      reportBundle = published.ok ? published.bundle : null;
+    } else {
+      reportBundle = { submission: sub, job, result, previews };
+    }
+  }
 
   return (
     <div className="bg-brand-cream min-h-screen">
@@ -162,6 +171,10 @@ export default async function SubmissionDetailPage({
                 </>
               )}
             </section>
+
+            {job ? (
+              <ReportDistributionPanel submissionId={id} jobStatus={job.status} />
+            ) : null}
 
             <section className="bg-white rounded-xl border border-brand-border p-6">
               <h2 className="text-xs font-bold uppercase text-brand-blue mb-4">Intake details</h2>

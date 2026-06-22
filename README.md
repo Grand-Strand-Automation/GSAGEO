@@ -48,6 +48,7 @@ pnpm typecheck  # TypeScript check
 
 | File | Purpose |
 |------|---------|
+| [ADMIN_REVIEW_WORKFLOW.md](./ADMIN_REVIEW_WORKFLOW.md) | Publish, share, and PDF export |
 | [DESIGN_NOTES_RESULTS_PAGE.md](./DESIGN_NOTES_RESULTS_PAGE.md) | Premium results page UI structure |
 | [RESULTS_FLOW.md](./RESULTS_FLOW.md) | Submission → audit → results lifecycle |
 | [DEPLOYMENT_STEPS.md](./DEPLOYMENT_STEPS.md) | End-to-end deploy order |

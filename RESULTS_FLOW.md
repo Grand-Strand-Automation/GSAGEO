@@ -67,6 +67,14 @@ pnpm dev
 # Check /admin/submissions for job + previews
 ```
 
+## Share and PDF export
+
+See [ADMIN_REVIEW_WORKFLOW.md](./ADMIN_REVIEW_WORKFLOW.md).
+
+- **Share:** tokenized `/results/{token}` URL (hash stored in DB, raw token shown once)
+- **PDF:** server-generated via `@react-pdf/renderer` at `/api/results/{token}/pdf`
+- **Admin:** distribution panel on submission detail — generate/copy/revoke link, download PDF
+
 ## Known limitations
 
 - No headless browser (sample HTML only)

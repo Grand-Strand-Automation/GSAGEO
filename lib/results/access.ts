@@ -1,12 +1,7 @@
 import { createAdminClient } from "@/lib/supabase/admin";
 import { hashResultsToken } from "@/lib/results/tokens";
-import type {
-  GeoAuditJob,
-  GeoAuditResult,
-  GeoFixPreview,
-  GeoSubmission,
-  ResultsBundle,
-} from "@/lib/types/database";
+import { loadPublishedReportBySubmissionId } from "@/lib/results/published-report";
+import type { GeoAuditJob, ResultsBundle } from "@/lib/types/database";
 
 export type CustomerResultsState =
   | "pending"
@@ -66,18 +61,10 @@ export async function loadResultsByToken(rawToken: string): Promise<{
     .update({ last_accessed_at: new Date().toISOString() })
     .eq("id", tokenRow.id);
 
-  const { data: submission } = await supabase
-    .from("geo_submissions")
-    .select("*")
-    .eq("id", tokenRow.submission_id)
-    .single();
-
-  if (!submission) return { state: "pending", bundle: null };
-
   const { data: jobs } = await supabase
     .from("geo_audit_jobs")
     .select("*")
-    .eq("submission_id", submission.id)
+    .eq("submission_id", tokenRow.submission_id)
     .order("created_at", { ascending: false })
     .limit(1);
 
@@ -88,31 +75,13 @@ export async function loadResultsByToken(rawToken: string): Promise<{
     return { state, bundle: null };
   }
 
-  if (!job) return { state, bundle: null };
-
-  const { data: results } = await supabase
-    .from("geo_audit_results")
-    .select("*")
-    .eq("audit_job_id", job.id)
-    .order("created_at", { ascending: false })
-    .limit(1);
-
-  const result = (results?.[0] ?? null) as GeoAuditResult | null;
-
-  const { data: previews } = await supabase
-    .from("geo_fix_previews")
-    .select("*")
-    .eq("audit_job_id", job.id)
-    .eq("status", "published")
-    .order("created_at", { ascending: true });
+  const published = await loadPublishedReportBySubmissionId(tokenRow.submission_id);
+  if (!published.ok) {
+    return { state, bundle: null };
+  }
 
   return {
     state: "ready",
-    bundle: {
-      submission: submission as GeoSubmission,
-      job,
-      result,
-      previews: (previews ?? []) as GeoFixPreview[],
-    },
+    bundle: published.bundle,
   };
 }

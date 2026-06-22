@@ -12,16 +12,19 @@ import { FixPreviewCard } from "./report/FixPreviewCard";
 import { RoadmapSection } from "./report/RoadmapSection";
 import { ResultsCTA } from "./report/ResultsCTA";
 import { ReportNav, ReportNavMobile } from "./report/ReportNav";
+import { ReportActionBar } from "./report/ReportActionBar";
 
 export function AuditReportView({
   bundle,
   showAdminBanner = false,
   embedded = false,
+  shareToken,
   footerNote,
 }: {
   bundle: ResultsBundle;
   showAdminBanner?: boolean;
   embedded?: boolean;
+  shareToken?: string;
   footerNote?: React.ReactNode;
 }) {
   const report = buildReportViewModel({
@@ -38,6 +41,9 @@ export function AuditReportView({
       <div className="container px-4 md:px-6 max-w-7xl">
         <div className="grid xl:grid-cols-[1fr_13rem] gap-8 xl:gap-10 items-start">
           <div className="min-w-0 space-y-10 md:space-y-14">
+            {shareToken && !showAdminBanner ? (
+              <ReportActionBar token={shareToken} companyName={report.companyName} />
+            ) : null}
             <ReportHero report={report} showAdminBanner={showAdminBanner} />
             <ReportNavMobile />
 
