@@ -52,6 +52,16 @@ These items cannot be completed from code alone. Do them in order after reviewin
 - [ ] Confirm admin notification email recipient (default: shawn@gsally.com)
 - [ ] Decide whether automated audit emails go to client or admin only
 
+## Customer-facing QA (after env + Supabase are configured)
+
+- [ ] Submit `/audit` → redirects to `/thank-you?t={token}`
+- [ ] Thank-you shows current status card and “View audit status” / “View your report” CTA
+- [ ] Thank-you auto-updates when report becomes ready (no manual refresh needed)
+- [ ] `/results/{token}` shows pending state with auto-polling while audit runs
+- [ ] Published report shows Share + Copy link + Download PDF action bar at top
+- [ ] PDF download works and excludes internal-only content
+- [ ] Share link opens the same customer-safe report in an incognito window
+
 ## Admin QA checklist (after env + Supabase are configured)
 
 - [ ] `/audit?tier=monitor` renders the full intake form (no stuck “Loading form…” state)

@@ -29,11 +29,21 @@ Open [http://localhost:3000](http://localhost:3000).
 |-------|-------------|
 | `/` | GEO landing page |
 | `/audit` | Intake form (`?tier=monitor\|growth\|managed\|custom`) |
-| `/thank-you` | Post-submit confirmation + private results link |
-| `/results/[token]` | Private customer audit results (tokenized) |
+| `/thank-you` | Post-submit confirmation, live status polling, link to `/results/[token]` |
+| `/results/[token]` | Private customer report — pending/processing/review/ready states; share + PDF when published |
+| `GET /api/results/[token]/status` | JSON status for thank-you and results polling |
+| `GET /api/results/[token]/pdf` | Customer PDF export (published content only) |
 | `/admin/login` | Supabase admin login |
 | `/admin/submissions` | Submission list |
 | `/admin/submissions/[id]` | Submission detail, audit results, fix previews, publish/rerun |
+
+## Customer report flow
+
+After submitting `/audit`, the customer is redirected to `/thank-you?t={token}`. That page confirms receipt, shows **live audit status** (polls every 8s), and links to `/results/{token}`.
+
+The results page shows a calm pending/processing/review state until the job is published, then the full premium report with **Share** and **Download PDF** in the action bar. All customer output comes from `getCustomerReportByToken()` / `loadPublishedReportBySubmissionId()` — no draft or internal data.
+
+See [RESULTS_FLOW.md](./RESULTS_FLOW.md) for publish rules and token security.
 
 ## Scripts
 
@@ -66,6 +76,6 @@ The `artifacts/` folder contains the original Replit monorepo (Vite + Express). 
 
 - `tests/submission-validation.test.ts` — form validation
 - `tests/audit-discovery.test.ts` — gsally.com regression (no false negatives)
-- `tests/results-flow.test.ts` — tokens, previews, auto-publish
+- `tests/customer-report-flow.test.ts` — customer status copy and visibility rules
 - `tests/AUTH_GUARD_NOTES.md` — admin auth manual checks
 - `tests/SMOKE_TEST.md` — full submission flow + rollback notes

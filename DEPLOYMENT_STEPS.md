@@ -42,7 +42,9 @@ Follow [DNS_SETUP.md](./DNS_SETUP.md):
 [ ] https://gsageo.vercel.app/ loads (public landing)
 [ ] https://gsageo.vercel.app/audit?tier=monitor loads form with tier pre-selected
 [ ] Test submission → thank-you page with ?t= token → row in geo_submissions + geo_audit_jobs
+[ ] Thank-you page shows live status and links to /results/{token}
 [ ] /results/{token} shows pending then published results (auto-publish default)
+[ ] Customer can Copy share link and Download PDF on published report
 [ ] Fix previews visible on customer results page
 [ ] https://gsageo.vercel.app/admin/login — admin can sign in
 [ ] Submission visible in /admin/submissions with job status

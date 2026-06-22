@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "test": "tsx --test tests/submission-validation.test.ts tests/auth-admin.test.ts tests/audit-tier.test.ts tests/audit-discovery.test.ts tests/results-flow.test.ts tests/report-view-model.test.ts tests/share-export.test.ts"
+    "test": "tsx --test tests/submission-validation.test.ts tests/auth-admin.test.ts tests/audit-tier.test.ts tests/audit-discovery.test.ts tests/results-flow.test.ts tests/report-view-model.test.ts tests/share-export.test.ts tests/customer-report-flow.test.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",

@@ -1,5 +1,5 @@
 import { createAdminClient } from "@/lib/supabase/admin";
-import { isResultsVisible } from "@/lib/results/access";
+import { isResultsVisible } from "@/lib/results/customer-state";
 import type {
   GeoAuditJob,
   GeoAuditResult,

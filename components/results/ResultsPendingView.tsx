@@ -1,54 +1,20 @@
+"use client";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import {
   AlertCircle,
-  Clock3,
   Loader2,
   Lock,
   RefreshCw,
   ShieldCheck,
 } from "lucide-react";
-import type { CustomerResultsState } from "@/lib/results/access";
-
-const COPY: Record<
-  CustomerResultsState,
-  { title: string; body: string; tone?: "error" | "waiting" | "info" }
-> = {
-  pending: {
-    title: "Your audit is queued",
-    body: "We received your request and your automated site review will begin shortly. Most reviews finish within a few minutes.",
-    tone: "waiting",
-  },
-  processing: {
-    title: "Your audit is in progress",
-    body: "We are analyzing your site structure, sitemap, and key pages. This usually takes one to three minutes.",
-    tone: "waiting",
-  },
-  awaiting_review: {
-    title: "Your audit is being finalized",
-    body: "Our team is reviewing your results before they are published. You will be able to view the full report here once ready.",
-    tone: "info",
-  },
-  ready: {
-    title: "Your results are ready",
-    body: "Opening the published report now.",
-    tone: "info",
-  },
-  failed: {
-    title: "We could not complete your audit",
-    body: "Something went wrong during the automated review. Please email shawn@gsally.com and we will follow up manually with your results.",
-    tone: "error",
-  },
-  expired: {
-    title: "This results link has expired",
-    body: "Please contact shawn@gsally.com for a refreshed link.",
-    tone: "error",
-  },
-  revoked: {
-    title: "This results link is no longer valid",
-    body: "Please contact shawn@gsally.com if you need access.",
-    tone: "error",
-  },
-};
+import {
+  CUSTOMER_STATUS_COPY,
+  type CustomerResultsState,
+} from "@/lib/results/customer-state";
+import { useCustomerReportStatus } from "./useCustomerReportStatus";
 
 function StateIcon({ state }: { state: CustomerResultsState }) {
   if (state === "failed" || state === "expired" || state === "revoked") {
@@ -72,22 +38,27 @@ function StateIcon({ state }: { state: CustomerResultsState }) {
       </div>
     );
   }
-  return (
-    <div className="w-16 h-16 rounded-2xl bg-brand-cream text-brand-muted flex items-center justify-center mx-auto mb-6">
-      <Clock3 size={28} />
-    </div>
-  );
+  return null;
 }
 
 export function ResultsPendingView({
-  state,
+  state: initialState,
   token,
 }: {
   state: CustomerResultsState;
   token: string;
 }) {
-  const copy = COPY[state] ?? COPY.pending;
+  const router = useRouter();
+  const { status } = useCustomerReportStatus(token, true);
+  const state = status?.state ?? initialState;
+  const copy = CUSTOMER_STATUS_COPY[state] ?? CUSTOMER_STATUS_COPY.pending;
   const isWaiting = state === "pending" || state === "processing" || state === "awaiting_review";
+
+  useEffect(() => {
+    if (status?.ready) {
+      router.refresh();
+    }
+  }, [status?.ready, router]);
 
   return (
     <div className="report-page bg-brand-cream min-h-screen pt-24 pb-16 px-4">
@@ -118,23 +89,21 @@ export function ResultsPendingView({
                 <ul className="space-y-2 text-sm text-brand-muted">
                   <li className="flex items-start gap-2">
                     <RefreshCw size={14} className="mt-0.5 shrink-0 text-brand-blue" />
-                    Refresh this page in a minute to check progress
+                    This page checks for updates automatically every few seconds
                   </li>
                   <li className="flex items-start gap-2">
                     <Lock size={14} className="mt-0.5 shrink-0 text-brand-blue" />
-                    Your private link remains the same — bookmark it for later
+                    Your private link stays the same — bookmark it for later
                   </li>
                 </ul>
               </div>
             ) : null}
 
             {isWaiting ? (
-              <Link
-                href={`/results/${encodeURIComponent(token)}`}
-                className="inline-flex items-center justify-center mt-8 rounded-xl bg-brand-blue text-white font-heading font-semibold px-6 py-3 text-sm hover:bg-brand-blue-hover transition-colors"
-              >
-                Refresh report status
-              </Link>
+              <p className="text-xs text-brand-subtle mt-6 inline-flex items-center gap-2 justify-center">
+                <Loader2 size={14} className="animate-spin text-brand-blue" />
+                Checking for your report…
+              </p>
             ) : null}
 
             <div className="mt-8">

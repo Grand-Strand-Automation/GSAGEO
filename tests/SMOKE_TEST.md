@@ -25,10 +25,13 @@
 3. Confirm “Interested plan” pre-selects AI Visibility Monitor and shows the selected-plan confirmation
 4. Submit form with valid test data (use a real crawlable URL for best audit output)
 5. Expect redirect to `/thank-you?t={token}`
-6. Thank-you page shows a private audit status link to `/results/{token}`
+6. Thank-you page shows **live status** (queued → processing → ready) and a CTA to `/results/{token}`
 7. Open results page — expect **pending/processing** briefly, then **published** premium report (auto-publish default)
-8. Confirm results page shows: hero + score badge, stat cards, charts, scorecard, priorities, findings, page analysis, fix previews, roadmap, CTA
-9. In Supabase dashboard, verify:
+8. Confirm results page shows: action bar (Share + Copy link + Download PDF), hero + score badge, stat cards, charts, scorecard, priorities, findings, page analysis, fix previews, roadmap, CTA
+9. **Share:** click Copy share link — clipboard contains `https://…/results/{token}`; on mobile, native Share may appear
+10. **PDF:** click Download PDF — file downloads from `/api/results/{token}/pdf` with branded layout (published content only)
+11. **Status API:** `GET /api/results/{token}/status` returns `{ ok, state, ready, companyName }`
+12. In Supabase dashboard, verify:
    - `geo_submissions` row with `status = submitted`
    - `geo_audit_jobs` row: `queued` → `processing` → `published` (or `awaiting_review` if review gate on)
    - `geo_audit_results` row with findings JSON
@@ -48,8 +51,11 @@
 
 ## Token security
 
-- [ ] Invalid token `/results/bad-token` shows safe error (not other customers’ data)
-- [ ] Results page is read-only (no admin data exposed)
+- [ ] Invalid token `/results/bad-token` shows safe pending/unavailable state (not other customers’ data)
+- [ ] Results page is read-only (no admin notes, draft findings, or internal previews)
+- [ ] Share and PDF buttons only appear when job is **published**
+- [ ] Revoked token (admin revoke) shows “link no longer valid” copy
+- [ ] PDF response is 404/403 when report not yet published
 
 ## Production smoke test
 
