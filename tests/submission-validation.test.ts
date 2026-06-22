@@ -4,7 +4,7 @@ import {
   mapSubmissionToRow,
   normalizeArrayField,
   submissionSchema,
-} from "../lib/validation/submission.ts";
+} from "../lib/validation/submission";
 
 describe("submissionSchema", () => {
   it("rejects missing required fields", () => {
