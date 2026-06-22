@@ -274,8 +274,8 @@ export function generateRecommendations(
     overall < 40
       ? "AI Visibility Monitor — $99/mo"
       : overall < 65
-        ? "AI Visibility Growth — from $499/mo"
-        : "Managed GEO / AI Visibility — from $1,250/mo";
+        ? "AI Visibility Growth — starting at $499/mo"
+        : "Managed GEO / AI Visibility — starting at $1,250/mo";
 
   return {
     topFixes: fixes.slice(0, 5),

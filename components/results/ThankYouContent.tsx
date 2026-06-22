@@ -21,8 +21,8 @@ export function ThankYouContent() {
           We received your request.
         </h1>
         <p className="text-brand-muted text-[15px] leading-relaxed mb-3 max-w-sm mx-auto">
-          Your GEO audit is being prepared now. Most automated reviews finish within a few minutes.
-          Save the link below to check your results when they are ready.
+          Your GEO audit request has been saved and the automated checks are starting. The private
+          link below will show status first, then the report when it is ready.
         </p>
         {resultsHref ? (
           <div className="mt-8 p-4 bg-brand-cream rounded-xl border border-brand-border text-left">
@@ -30,14 +30,14 @@ export function ThankYouContent() {
               Your private results link
             </p>
             <p className="text-sm text-brand-muted mb-4">
-              Bookmark this page or email it to yourself. Only people with this link can view your
-              audit results.
+              Bookmark this page or save the link somewhere secure. Only people with this link can
+              view your audit status and results.
             </p>
             <Link
               href={resultsHref}
               className="inline-flex items-center gap-2 text-brand-blue font-semibold text-sm hover:underline"
             >
-              View your audit results <ExternalLink size={14} />
+              View audit status <ExternalLink size={14} />
             </Link>
           </div>
         ) : null}

@@ -2,7 +2,12 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { isAdminAuthorized, isSupabaseAuthConfigured } from "@/lib/auth/admin";
 
-export async function requireAdminUser() {
+function adminLoginUrl(params: Record<string, string>) {
+  const query = new URLSearchParams(params);
+  return `/admin/login?${query.toString()}`;
+}
+
+export async function requireAdminUser(returnTo = "/admin/submissions") {
   if (!isSupabaseAuthConfigured()) {
     redirect("/admin/login?error=config");
   }
@@ -13,11 +18,11 @@ export async function requireAdminUser() {
   } = await supabase.auth.getUser();
 
   if (!user?.email) {
-    redirect("/admin/login");
+    redirect(adminLoginUrl({ next: returnTo }));
   }
 
   if (!(await isAdminAuthorized(user.email))) {
-    redirect("/admin/login?error=unauthorized");
+    redirect(adminLoginUrl({ error: "unauthorized", next: returnTo }));
   }
 
   return user;

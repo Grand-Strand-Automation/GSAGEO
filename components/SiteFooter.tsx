@@ -83,7 +83,7 @@ export function SiteFooter() {
             © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
           </p>
           <p className="text-sm text-white/30 text-center sm:text-right">
-            Practical review · Clear deliverables · Grand Strand–based
+            Practical review · Clear deliverables · Grand Strand-based
           </p>
         </div>
       </div>

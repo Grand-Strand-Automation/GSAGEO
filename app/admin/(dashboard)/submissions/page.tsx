@@ -126,7 +126,13 @@ export default async function AdminSubmissionsPage({
           <SignOutButton />
         </div>
 
-        <Suspense fallback={<div className="text-sm text-brand-muted mb-6">Loading filters…</div>}>
+        <Suspense
+          fallback={
+            <div className="text-sm text-brand-muted mb-6">
+              Preparing submission filters…
+            </div>
+          }
+        >
           <SubmissionsFilters />
         </Suspense>
 

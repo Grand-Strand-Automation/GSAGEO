@@ -30,7 +30,7 @@ const COPY: Record<
   },
   ready: {
     title: "Your results are ready",
-    body: "Loading your report…",
+    body: "Opening the published report now.",
     tone: "info",
   },
   failed: {
