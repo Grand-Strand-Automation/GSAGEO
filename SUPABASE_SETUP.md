@@ -14,6 +14,7 @@
 2. Paste and run `supabase/migrations/001_geo_schema.sql`
 3. Paste and run `supabase/migrations/002_geo_admin_users.sql`
 4. Paste and run `supabase/migrations/003_results_flow.sql`
+5. Paste and run `supabase/migrations/004_geo_internal_fixes.sql`
 
 **Option B — Supabase CLI**
 
@@ -30,6 +31,7 @@ supabase db push
 | `geo_audit_jobs` | Audit job queue / status |
 | `geo_audit_results` | Structured audit output (findings, scorecard, strengths) |
 | `geo_fix_previews` | Customer-facing “what fixes could look like” previews |
+| `geo_internal_fixes` | **Employee-only** implementation drafts (never in customer routes) |
 | `geo_result_access_tokens` | Hashed tokens for private `/results/[token]` access |
 | `geo_admin_notes` | Internal admin notes |
 | `geo_admin_users` | Optional DB allowlist of admin emails |

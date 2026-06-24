@@ -71,6 +71,34 @@ export type GeoFixPreview = {
   status: string;
 };
 
+export type GeoInternalFix = {
+  id: string;
+  submission_id: string;
+  audit_job_id: string;
+  related_finding_label: string | null;
+  related_finding_category: string | null;
+  type: string;
+  title: string;
+  issue_summary: string;
+  why_it_matters: string;
+  affected_urls: string[];
+  generated_content: Record<string, unknown>;
+  generated_html: string | null;
+  generated_json: Record<string, unknown> | null;
+  implementation_notes: string | null;
+  implementation_effort: string;
+  priority: string;
+  confidence: string;
+  status: string;
+  internal_only: boolean;
+  customer_visible: boolean;
+  created_by_system: boolean;
+  internal_note: string | null;
+  promoted_preview_id: string | null;
+  created_at: string;
+  updated_at: string;
+};
+
 export type GeoResultAccessToken = {
   id: string;
   submission_id: string;

@@ -43,6 +43,8 @@ After submitting `/audit`, the customer is redirected to `/thank-you?t={token}`.
 
 The results page shows a calm pending/processing/review state until the job is published, then the full premium report with **Share** and **Download PDF** in the action bar. All customer output comes from `getCustomerReportByToken()` / `loadPublishedReportBySubmissionId()` — no draft or internal data.
 
+**Internal fix drafts** (`geo_internal_fixes`) are employee-only and never loaded by customer routes. See [ADMIN_REVIEW_WORKFLOW.md](./ADMIN_REVIEW_WORKFLOW.md).
+
 See [RESULTS_FLOW.md](./RESULTS_FLOW.md) for publish rules and token security.
 
 ## Scripts
@@ -76,6 +78,6 @@ The `artifacts/` folder contains the original Replit monorepo (Vite + Express). 
 
 - `tests/submission-validation.test.ts` — form validation
 - `tests/audit-discovery.test.ts` — gsally.com regression (no false negatives)
-- `tests/customer-report-flow.test.ts` — customer status copy and visibility rules
+- `tests/internal-fix-generation.test.ts` — internal fix mapping and customer isolation
 - `tests/AUTH_GUARD_NOTES.md` — admin auth manual checks
 - `tests/SMOKE_TEST.md` — full submission flow + rollback notes

@@ -59,4 +59,43 @@ On `/results/[token]` when published:
 - **Source:** `loadPublishedReportBySubmissionId()` — published previews only
 - **Filename:** `geo-report-{domain}-{date}.pdf`
 
+## Internal fix generation (employee-only)
+
+After audit completes, GSAGEO auto-generates **internal implementation drafts** stored in `geo_internal_fixes`. These are visible only in `/admin/submissions/[id]` under **Internal Fix Drafts**.
+
+| Property | Value |
+|----------|-------|
+| Customer visibility | **Never** by default (`internal_only=true`, `customer_visible=false`) |
+| Auto-generation | Runs in `processAuditJob` after findings are saved |
+| Customer report | Uses `geo_fix_previews` only — separate table, separate publish flow |
+
+### Employee actions
+
+On the internal fix workspace:
+
+- **Approve** — mark ready for internal implementation
+- **Edit** — PATCH via API (status → `edited_internal`)
+- **Hide / Reject / Archive** — remove from active workflow
+- **Regenerate** — re-run generator for one fix or all fixes
+- **Copy** — clipboard implementation packet for one fix
+- **Export packet** — JSON download of all fixes for the submission
+- **Promote to customer draft** — creates a sanitized `geo_fix_previews` row as `draft` (requires explicit admin action + job publish)
+
+### Internal fix APIs (admin auth required)
+
+| Route | Purpose |
+|-------|------|
+| `GET /api/admin/submissions/[id]/internal-fixes` | List fixes for latest job |
+| `POST /api/admin/submissions/[id]/internal-fixes/generate` | Generate / regenerate all |
+| `GET /api/admin/submissions/[id]/internal-fixes/export` | Download implementation JSON packet |
+| `PATCH /api/admin/internal-fixes/[fixId]` | Update status, notes, content |
+| `POST /api/admin/internal-fixes/[fixId]/regenerate` | Regenerate one fix |
+| `POST /api/admin/internal-fixes/[fixId]/promote` | Create customer-safe preview draft |
+
+### Finding → fix mapping
+
+High/medium impact findings map to fix types (FAQ → `faq_fix`, service pages → `service_page_fix`, schema → `schema_fix`, etc.). Low-confidence “not confirmed” findings produce **cautious** drafts with validation notes—not overconfident rewrites.
+
+See `lib/internal-fixes/mapping.ts` and `lib/internal-fixes/generator.ts`.
+
 PDF excludes: admin notes, draft previews, internal metadata, unpublished sections.

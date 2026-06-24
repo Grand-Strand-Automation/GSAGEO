@@ -49,6 +49,14 @@
 16. Add an internal note → saves to `geo_admin_notes`
 17. Sign out → returns to login
 
+## Internal fix workspace (employee-only)
+
+18. On submission detail, open **Internal Fix Drafts** panel
+19. Confirm fixes were auto-generated after audit (or click **Generate internal fixes**)
+20. Test **Copy**, **Regenerate**, **Approve**, **Hide**, **Export packet**
+21. Confirm `/results/{token}` does **not** show internal fix content
+22. Optional: **Promote to customer draft** → verify new `geo_fix_previews` row with `status=draft`
+
 ## Token security
 
 - [ ] Invalid token `/results/bad-token` shows safe pending/unavailable state (not other customers’ data)

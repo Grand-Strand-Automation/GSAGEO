@@ -24,6 +24,8 @@ Status API: `GET /api/results/{token}/status` (used by thank-you and results pol
 
 Customer report payload: `getCustomerReportByToken()` — published content only.
 
+**Internal fixes:** `geo_internal_fixes` are generated after audit for employees only. Customer routes never query this table. Optional admin **Promote to customer draft** copies a sanitized subset into `geo_fix_previews` as `draft`.
+
 ## Job status model
 
 | Status | Meaning |

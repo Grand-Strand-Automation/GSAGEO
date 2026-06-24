@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CheckCircle2, Minus } from "lucide-react";
+import { CheckCircle2, XCircle } from "lucide-react";
 import { CTABand } from "@/components/CTABand";
 import { FaqItem } from "@/components/FaqItem";
 import { HeroOverlay } from "@/components/HeroOverlay";
@@ -94,7 +94,7 @@ export function LandingPage() {
               <ul className="space-y-3.5">
                 {GOOD_FIT.map((item) => (
                   <li key={item} className="flex gap-3 text-sm text-brand-muted leading-relaxed">
-                    <CheckCircle2 size={16} className="text-brand-blue flex-shrink-0 mt-0.5" />
+                    <CheckCircle2 size={16} className="text-emerald-600 flex-shrink-0 mt-0.5" />
                     {item}
                   </li>
                 ))}
@@ -107,7 +107,7 @@ export function LandingPage() {
               <ul className="space-y-3.5">
                 {NOT_FIT.map((item) => (
                   <li key={item} className="flex gap-3 text-sm text-brand-muted leading-relaxed">
-                    <Minus size={16} className="text-brand-subtle flex-shrink-0 mt-0.5" />
+                    <XCircle size={16} className="text-red-600 flex-shrink-0 mt-0.5" />
                     {item}
                   </li>
                 ))}

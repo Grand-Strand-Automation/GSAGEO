@@ -9,6 +9,7 @@ These items cannot be completed from code alone. Do them in order after reviewin
   - [ ] `supabase/migrations/001_geo_schema.sql`
   - [ ] `supabase/migrations/002_geo_admin_users.sql`
   - [ ] `supabase/migrations/003_results_flow.sql`
+  - [ ] `supabase/migrations/004_geo_internal_fixes.sql`
 - [ ] Copy project URL, anon key, and **service role key** into Vercel env vars (see [ENV_SETUP.md](./ENV_SETUP.md))
 - [ ] Disable public signups: Authentication → Providers → Email → disable **Enable sign ups**
 - [ ] Create first admin user(s) manually: Authentication → Users → Add user
@@ -61,6 +62,16 @@ These items cannot be completed from code alone. Do them in order after reviewin
 - [ ] Published report shows Share + Copy link + Download PDF action bar at top
 - [ ] PDF download works and excludes internal-only content
 - [ ] Share link opens the same customer-safe report in an incognito window
+- [ ] Customer results/PDF do **not** expose `geo_internal_fixes` content
+
+## Internal fix workspace QA (employee-only)
+
+- [ ] After audit completes, `/admin/submissions/[id]` shows **Internal Fix Drafts** panel
+- [ ] Panel badge reads “Internal only · Hidden from customer report”
+- [ ] Fixes can be approved, hidden, rejected, regenerated, and copied
+- [ ] Export packet downloads JSON implementation brief
+- [ ] Promote creates a `geo_fix_previews` draft (still requires job publish for customer visibility)
+- [ ] `/results/{token}` and customer PDF never show internal fix drafts or JSON-LD implementation blocks
 
 ## Admin QA checklist (after env + Supabase are configured)
 

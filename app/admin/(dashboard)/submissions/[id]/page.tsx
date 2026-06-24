@@ -7,11 +7,13 @@ import { AddNoteForm } from "@/components/admin/AddNoteForm";
 import { SignOutButton } from "@/components/admin/SignOutButton";
 import { JobActions } from "@/components/admin/JobActions";
 import { ReportDistributionPanel } from "@/components/admin/ReportDistributionPanel";
+import { InternalFixWorkspace } from "@/components/admin/InternalFixWorkspace";
+import { loadInternalFixesForJob } from "@/lib/internal-fixes/persist";
 import { formatPlanLabel } from "@/lib/brand/plans";
 import { AuditReportView } from "@/components/results/AuditReportView";
 import { isResultsVisible } from "@/lib/results/access";
 import { loadPublishedReportBySubmissionId } from "@/lib/results/published-report";
-import type { GeoAuditJob, GeoAuditResult, GeoFixPreview, GeoSubmission, GeoAdminNote, ResultsBundle } from "@/lib/types/database";
+import type { GeoAuditJob, GeoAuditResult, GeoFixPreview, GeoSubmission, GeoAdminNote, GeoInternalFix, ResultsBundle } from "@/lib/types/database";
 
 export const dynamic = "force-dynamic";
 
@@ -64,6 +66,7 @@ export default async function SubmissionDetailPage({
   let job: GeoAuditJob | null = null;
   let result: GeoAuditResult | null = null;
   let previews: GeoFixPreview[] = [];
+  let internalFixes: GeoInternalFix[] = [];
   let notes: GeoAdminNote[] = [];
 
   try {
@@ -96,6 +99,12 @@ export default async function SubmissionDetailPage({
         .eq("audit_job_id", job.id)
         .order("created_at", { ascending: true });
       previews = (previewRows ?? []) as GeoFixPreview[];
+
+      try {
+        internalFixes = (await loadInternalFixesForJob(job.id)) as GeoInternalFix[];
+      } catch {
+        internalFixes = [];
+      }
     }
 
     const { data: noteRows } = await supabase
@@ -174,6 +183,14 @@ export default async function SubmissionDetailPage({
 
             {job ? (
               <ReportDistributionPanel submissionId={id} jobStatus={job.status} />
+            ) : null}
+
+            {job ? (
+              <InternalFixWorkspace
+                submissionId={id}
+                jobId={job.id}
+                initialFixes={internalFixes}
+              />
             ) : null}
 
             <section className="bg-white rounded-xl border border-brand-border p-6">

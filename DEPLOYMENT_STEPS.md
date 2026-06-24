@@ -7,7 +7,7 @@ Deploy in this order.
 Follow [SUPABASE_SETUP.md](./SUPABASE_SETUP.md):
 
 1. Create project
-2. Apply `001_geo_schema.sql`, `002_geo_admin_users.sql`, and `003_results_flow.sql`
+2. Apply `001_geo_schema.sql`, `002_geo_admin_users.sql`, `003_results_flow.sql`, and `004_geo_internal_fixes.sql`
 3. Create admin user(s)
 4. Disable public signups
 5. Note URL, anon key, service role key

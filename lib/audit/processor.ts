@@ -16,6 +16,9 @@ import {
   isAuditReviewRequired,
 } from "@/lib/results/tokens";
 import { AUDIT_VERSION } from "./types";
+import {
+  generateAndPersistInternalFixesForJob,
+} from "@/lib/internal-fixes/persist";
 
 export type AuditRunResult = {
   summary: string;
@@ -222,6 +225,15 @@ export async function processAuditJob(jobId: string): Promise<void> {
       );
       if (previewError) throw previewError;
     }
+
+    await generateAndPersistInternalFixesForJob(submission.id, jobId, {
+      companyName: submission.company_name,
+      websiteUrl: submission.website_url,
+      primaryService: submission.primary_service,
+      serviceArea: submission.service_area,
+      structuredFindings: result.structuredFindings,
+      sitemapUrls: (result.findings.sitemapUrls as string[] | undefined) ?? [submission.website_url],
+    });
 
     const finalStatus = reviewRequired ? "awaiting_review" : autoPublish ? "published" : "complete";
 
