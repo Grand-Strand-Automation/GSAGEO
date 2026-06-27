@@ -1,9 +1,9 @@
 export const content = {
   hero: {
     headline: "Gain a clearer view of your information technology costs, tools, and support structure.",
-    subheadline: "Grand Strand Ally helps small and medium businesses improve visibility into current spending, simplify vendor and tool structure, and strengthen compliance-minded support and operations.",
-    primaryButton: "Schedule a Free Cost Analysis",
-    secondaryButton: "See Services",
+    subheadline: "Now offering AI Visibility assessments for service businesses that want to show up more clearly in ChatGPT, Google AI Overviews, and answer-driven search — alongside practical IT advisory services for the Grand Strand.",
+    primaryButton: "Start Your GEO Assessment",
+    secondaryButton: "Explore IT & Advisory Services",
   },
   problems: {
     heading: "Common areas where businesses seek clarity.",

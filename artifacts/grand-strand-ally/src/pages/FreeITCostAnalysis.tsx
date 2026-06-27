@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { Helmet } from "react-helmet-async";
 import { CheckCircle2, X, ChevronDown, ChevronUp, ArrowRight } from "lucide-react";
 import { CTABand } from "@/components/CTABand";
+import { GeoCTABlock } from "@/components/GeoCTABlock";
 
 const CANONICAL = "https://gsally.com/free-it-cost-analysis";
 const TITLE = "Free IT Cost Analysis for Small Businesses | Grand Strand Ally";
@@ -445,6 +446,15 @@ export default function FreeITCostAnalysis() {
           </div>
         </div>
       </section>
+
+      <GeoCTABlock
+        headline="Also Wondering How Your Business Appears in AI Search?"
+        body="Many businesses that are reviewing their IT spend also have questions about visibility. If you rely on inbound leads, it is worth knowing whether your website is clearly understood by AI-driven discovery tools. Our GEO / AI Visibility assessment answers that — separately from the cost analysis."
+        buttonText="Start Your GEO Assessment"
+        supportText="No overlap with the cost analysis. Two different questions."
+        variant="light"
+        analyticsId="free-it-cost-analysis-page"
+      />
 
       <CTABand
         title="Ready to get started?"

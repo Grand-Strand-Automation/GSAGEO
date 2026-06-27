@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import { Helmet } from "react-helmet-async";
 import { Search, Layers, ShieldCheck, TrendingUp, CheckCircle2, ArrowRight } from "lucide-react";
 import { CTABand } from "@/components/CTABand";
+import { GeoCTABlock } from "@/components/GeoCTABlock";
 
 const STEPS = [
   {
@@ -316,6 +317,15 @@ export default function Process() {
           </div>
         </div>
       </section>
+
+      <GeoCTABlock
+        headline="See How Your Website Looks to AI Search"
+        body="While you review your IT environment, it is worth asking a parallel question: how clearly does your website explain what you do to AI-driven search tools? Our GEO assessment answers that."
+        buttonText="Request an AI Visibility Assessment"
+        supportText="Takes less than a day to complete."
+        variant="dark"
+        analyticsId="process-page"
+      />
 
       <CTABand
         title="Ready to start the process?"

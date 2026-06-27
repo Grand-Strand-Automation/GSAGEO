@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { MapPin, CheckCircle2, ArrowRight } from "lucide-react";
 import { CTABand } from "@/components/CTABand";
 import { siteConfig } from "@/lib/site";
+import { GeoCTABlock } from "@/components/GeoCTABlock";
 
 const PILLARS = [
   {
@@ -315,6 +316,15 @@ export default function About() {
           </div>
         </div>
       </section>
+
+      <GeoCTABlock
+        headline="Find Out Whether Your Site Is AI-Ready"
+        body="Our GEO / AI Visibility assessment helps local service businesses understand how clearly they show up in ChatGPT, Google AI Overviews, and answer-driven search — before those gaps cost them leads."
+        buttonText="Start Your GEO Assessment"
+        supportText="No hype. Clear next steps."
+        variant="light"
+        analyticsId="about-page"
+      />
 
       <CTABand
         title="Ready to get a clearer picture?"

@@ -104,20 +104,22 @@ export default function Home() {
             {content.hero.subheadline}
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center w-full sm:w-auto">
-            <Button
-              asChild
-              className="bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-7 text-[15px] rounded-lg border-0"
-              data-testid="hero-primary-cta"
+            <a
+              href={GEO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-geo-cta="hero-primary-cta"
+              className="inline-flex items-center justify-center gap-2 bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-7 text-[15px] rounded-lg transition-colors"
             >
-              <Link href="/contact#contact-form">Schedule a Free Cost Analysis →</Link>
-            </Button>
+              Start Your GEO Assessment <ArrowRight size={15} aria-hidden="true" />
+            </a>
             <Button
               asChild
               variant="outline"
               className="border-white/25 text-white hover:bg-white/8 hover:text-white h-12 px-7 text-[15px] bg-transparent rounded-lg"
               data-testid="hero-secondary-cta"
             >
-              <Link href="/services">See Services</Link>
+              <Link href="/services">Explore IT &amp; Advisory Services</Link>
             </Button>
           </div>
 

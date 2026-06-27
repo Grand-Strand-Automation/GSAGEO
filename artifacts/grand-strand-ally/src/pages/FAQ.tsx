@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { Helmet } from "react-helmet-async";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { CTABand } from "@/components/CTABand";
+import { GeoCTABlock } from "@/components/GeoCTABlock";
 
 const FAQ_ITEMS = [
   {
@@ -255,6 +256,15 @@ export default function FAQPage() {
           </div>
         </div>
       </section>
+
+      <GeoCTABlock
+        headline="Benchmark Your Local AI Visibility"
+        body="If you are asking questions about IT support and costs, you may also want to know whether your website is easy for AI systems to understand. Our assessment gives you a concrete answer — not a pitch."
+        buttonText="Start Your GEO Assessment"
+        supportText="Built for Myrtle Beach and Grand Strand service businesses."
+        variant="light"
+        analyticsId="faq-page"
+      />
 
       <CTABand
         title="Ready to get started?"

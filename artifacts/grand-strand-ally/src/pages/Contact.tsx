@@ -1,7 +1,8 @@
 import { Helmet } from "react-helmet-async";
 import { ContactForm } from "@/components/ContactForm";
 import { siteConfig } from "@/lib/site";
-import { Mail, Phone, MapPin, Clock, CheckCircle2 } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, CheckCircle2, ArrowRight } from "lucide-react";
+import { GEO_ASSESSMENT_URL } from "@/components/GeoCTABlock";
 
 export default function Contact() {
   return (
@@ -80,6 +81,56 @@ export default function Contact() {
           </div>
         </div>
       </div>
+
+      {/* Intent branching */}
+      <section className="bg-[#F7F5F1] border-b border-[#D7E1EA] py-10">
+        <div className="container mx-auto px-4 md:px-6 max-w-4xl">
+          <p className="text-center text-[11px] font-bold uppercase tracking-[0.2em] text-[#4B5B6B] mb-6">
+            What do you need help with?
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a
+              href="#contact-form"
+              className="group bg-white border border-[#D7E1EA] hover:border-[#1F5E95] rounded-xl p-6 transition-colors block"
+            >
+              <div className="flex items-start gap-4">
+                <div className="w-9 h-9 bg-[#DCEAF7] rounded-lg flex items-center justify-center shrink-0 group-hover:bg-[#1F5E95]/10 transition-colors">
+                  <CheckCircle2 size={16} className="text-[#1F5E95]" aria-hidden="true" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-[14px] font-heading font-bold text-[#0E2F54] mb-1 group-hover:text-[#1F5E95] transition-colors flex items-center gap-1.5">
+                    IT Support &amp; Cost Analysis <ArrowRight size={13} aria-hidden="true" />
+                  </p>
+                  <p className="text-xs text-[#4B5B6B] leading-relaxed">
+                    Questions about IT costs, tools, Microsoft 365, compliance support, or managed services — use the form below.
+                  </p>
+                </div>
+              </div>
+            </a>
+            <a
+              href={GEO_ASSESSMENT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-geo-cta="contact-intent-branch"
+              className="group bg-white border border-[#D7E1EA] hover:border-[#1F5E95] rounded-xl p-6 transition-colors block"
+            >
+              <div className="flex items-start gap-4">
+                <div className="w-9 h-9 bg-[#DCEAF7] rounded-lg flex items-center justify-center shrink-0 group-hover:bg-[#1F5E95]/10 transition-colors">
+                  <ArrowRight size={16} className="text-[#1F5E95]" aria-hidden="true" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-[14px] font-heading font-bold text-[#0E2F54] mb-1 group-hover:text-[#1F5E95] transition-colors flex items-center gap-1.5">
+                    AI Visibility / GEO Assessment <ArrowRight size={13} aria-hidden="true" />
+                  </p>
+                  <p className="text-xs text-[#4B5B6B] leading-relaxed">
+                    Trying to improve how your business shows up in ChatGPT, Google AI Overviews, or answer-driven search? Start the assessment instead.
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
 
       {/* Form + Sidebar */}
       <section id="contact-form" className="py-16 md:py-24 bg-[#F7F5F1] scroll-mt-20">
