@@ -321,41 +321,93 @@ export default function GenerativeEngineOptimization() {
             backgroundSize: "56px 56px",
           }}
         />
-        <div className="container mx-auto px-4 md:px-6 max-w-4xl relative z-10">
-          <nav aria-label="Breadcrumb" className="mb-7 flex items-center gap-2 text-xs text-white/45 font-medium">
+        <div className="container mx-auto px-4 md:px-6 max-w-6xl relative z-10">
+          <nav aria-label="Breadcrumb" className="mb-8 flex items-center gap-2 text-xs text-white/45 font-medium">
             <Link href="/" className="hover:text-white/70 transition-colors">Grand Strand Ally</Link>
-            <span>/</span>
+            <span aria-hidden="true">/</span>
             <Link href="/services" className="hover:text-white/70 transition-colors">Services</Link>
-            <span>/</span>
+            <span aria-hidden="true">/</span>
             <span className="text-white/70">GEO / AI Visibility</span>
           </nav>
-          <div className="inline-flex items-center gap-2 border border-white/15 rounded-full px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-white/60 mb-7 bg-white/5">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#60B8F0] inline-block" />
-            GEO / AI Visibility
+
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] xl:grid-cols-[1fr_380px] gap-10 xl:gap-16 items-start">
+
+            {/* Left — headline, subheadline, chips, CTAs */}
+            <div>
+              <div className="inline-flex items-center gap-2 border border-white/15 rounded-full px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-white/60 mb-7 bg-white/5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#60B8F0] inline-block" aria-hidden="true" />
+                GEO / AI Visibility for service businesses
+              </div>
+
+              <h1 className="text-4xl sm:text-5xl md:text-[56px] font-heading font-extrabold mb-6 leading-[1.06] tracking-tight max-w-2xl">
+                Find Out How Your Business Looks to AI Search
+              </h1>
+
+              <p className="text-[17px] text-white/65 leading-relaxed max-w-xl mb-8">
+                Customers are increasingly discovering service providers through ChatGPT, Google AI Overviews, and other answer-driven search tools. Our GEO / AI Visibility Assessment helps you see whether your website is clear, trustworthy, and structured well enough to be understood and recommended.
+              </p>
+
+              {/* Trust chips */}
+              <div className="flex flex-wrap gap-2 mb-8">
+                {["Practical review", "Clear deliverables", "No hype"].map((chip) => (
+                  <span
+                    key={chip}
+                    className="inline-flex items-center gap-1.5 text-[12px] font-medium text-white/55 border border-white/15 rounded-full px-3.5 py-1.5 bg-white/5"
+                  >
+                    <CheckCircle2 size={11} className="text-[#60B8F0]" aria-hidden="true" />
+                    {chip}
+                  </span>
+                ))}
+              </div>
+
+              {/* CTAs */}
+              <div className="flex flex-col sm:flex-row gap-3 mb-5">
+                <Button
+                  asChild
+                  className="bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-7 text-[15px] rounded-lg border-0 w-full sm:w-auto"
+                >
+                  <Link href="/geo-audit">Start Your Assessment →</Link>
+                </Button>
+                <Button
+                  asChild
+                  className="bg-transparent border border-white/25 text-white hover:bg-white/8 font-semibold h-12 px-7 text-[15px] rounded-lg w-full sm:w-auto"
+                >
+                  <a href="#how-it-works">Learn How GEO Works</a>
+                </Button>
+              </div>
+
+              <p className="text-xs text-white/35 font-medium">
+                Built for Myrtle Beach and Grand Strand service businesses
+              </p>
+            </div>
+
+            {/* Right — assessment review card */}
+            <div className="bg-white/[0.055] border border-white/[0.12] rounded-2xl p-6 lg:p-7 lg:mt-2">
+              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#60B8F0] mb-5">
+                What the assessment reviews
+              </p>
+              <ul className="space-y-3.5" aria-label="Assessment review areas">
+                {[
+                  "Service page clarity",
+                  "FAQ and trust content",
+                  "Internal linking and structure",
+                  "AI visibility gaps",
+                  "Practical next-step recommendations",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-[14px] text-white/70 leading-snug">
+                    <CheckCircle2 size={14} className="text-[#60B8F0] flex-shrink-0 mt-0.5" aria-hidden="true" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-7 pt-5 border-t border-white/[0.10]">
+                <p className="text-[12px] text-white/35 leading-relaxed">
+                  Delivered as a structured written report with graded categories and a prioritized action plan.
+                </p>
+              </div>
+            </div>
+
           </div>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-heading font-extrabold mb-6 leading-[1.05] max-w-3xl">
-            Show up in AI-generated answers, not just search results.
-          </h1>
-          <p className="text-lg text-white/65 leading-relaxed max-w-2xl mb-8">
-            Customers are increasingly finding service providers through AI-powered answer engines — not just a list of links. Generative Engine Optimization helps your business become the kind of source those engines reference.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 mb-8">
-            <Button
-              asChild
-              className="bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-7 text-sm rounded-lg border-0 w-full sm:w-auto"
-            >
-              <Link href="/geo-audit">Request a GEO Audit →</Link>
-            </Button>
-            <Button
-              asChild
-              className="bg-transparent border border-white/25 text-white hover:bg-white/8 font-semibold h-12 px-7 text-sm rounded-lg w-full sm:w-auto"
-            >
-              <a href="#whats-included">See What's Included</a>
-            </Button>
-          </div>
-          <p className="text-xs text-white/35 font-medium">
-            Practical review · No-pressure approach · Grand Strand–based
-          </p>
         </div>
       </section>
 

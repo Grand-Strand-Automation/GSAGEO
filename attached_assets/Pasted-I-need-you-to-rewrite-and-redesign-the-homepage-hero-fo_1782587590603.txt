@@ -1,0 +1,195 @@
+I need you to rewrite and redesign the homepage hero for the GEO site in this Replit project.
+
+Important:
+- Do the work in code now.
+- Do not just suggest ideas.
+- Inspect the project first and identify the homepage file, hero component, shared layout components, button styles, spacing system, typography patterns, and responsive behavior.
+- Then update the homepage hero cleanly within the existing design system.
+- Preserve the site’s premium, calm, practical brand tone.
+- Do not break navigation, pricing sections, audit links, or the mobile layout.
+
+Goal:
+Rewrite the homepage hero so it explains the GEO offer in plain English for visitors who do not know what “GEO” means.
+
+Critical strategy:
+Most visitors do not know what Generative Engine Optimization is.
+So the hero must:
+1. lead with the outcome,
+2. explain the problem in normal language,
+3. introduce GEO / AI Visibility as the label second,
+4. make the primary CTA very clear.
+
+The hero should answer:
+- What is this?
+- Why should I care?
+- What do I do next?
+
+Current issue to solve:
+The homepage likely explains GEO intelligently, but too abstractly for cold traffic.
+I want the hero to feel clearer, stronger, more premium, and more conversion-oriented without becoming hypey.
+
+======================================================================
+NEW HERO COPY TO IMPLEMENT
+======================================================================
+
+Use this as the default hero copy unless the current layout requires very minor adjustments for line length or responsive spacing.
+
+Eyebrow / small label above headline:
+GEO / AI Visibility for service businesses
+
+Headline:
+Find Out How Your Business Looks to AI Search
+
+Subheadline:
+Customers are increasingly discovering service providers through ChatGPT, Google AI Overviews, and other answer-driven search tools. Our GEO / AI Visibility Assessment helps you see whether your website is clear, trustworthy, and structured well enough to be understood and recommended.
+
+Primary CTA:
+Start Your Assessment
+
+Primary CTA destination:
+Use the existing primary audit path in the project. If there is no stronger existing convention, point this button to the monitor tier audit/start page.
+
+Secondary CTA:
+Learn How GEO Works
+
+Secondary CTA destination:
+Scroll to the “What is Generative Engine Optimization?” section on the homepage if that section already exists, or to the most appropriate on-page explainer section.
+
+Supporting microcopy below CTAs:
+Built for Myrtle Beach and Grand Strand service businesses
+
+Supporting trust chips or short highlights:
+- Practical review
+- Clear deliverables
+- No hype
+
+If the current design supports a hero-side card or supporting panel, add this:
+
+Card title:
+What the assessment reviews
+
+Card bullet list:
+- Service page clarity
+- FAQ and trust content
+- Internal linking and structure
+- AI visibility gaps
+- Practical next-step recommendations
+
+======================================================================
+DESIGN / LAYOUT REQUIREMENTS
+======================================================================
+
+This is a design task, not just a copy swap.
+
+Update the hero so it feels:
+- clearer
+- more premium
+- more outcome-driven
+- easier for a first-time visitor to understand
+- stronger on mobile
+
+Requirements:
+- Keep strong typography hierarchy
+- Improve readability of the headline and subheadline
+- Ensure line lengths are not too wide
+- Make the primary CTA visually dominant
+- Keep the secondary CTA visible but subordinate
+- Use spacing and alignment that feels polished
+- Maintain brand consistency with the rest of the GEO site
+- Avoid generic startup landing page styling
+- Avoid clutter
+- Avoid overusing gradients or flashy effects
+
+If the current hero includes weak or low-contrast microcopy, improve contrast/accessibility.
+
+If the current hero layout is too text-heavy, rebalance it using:
+- better spacing
+- a supporting card
+- cleaner chips
+- stronger CTA grouping
+
+======================================================================
+MOBILE REQUIREMENTS
+======================================================================
+
+The hero must work extremely well on mobile.
+
+Make sure:
+- the headline remains readable and not awkwardly broken
+- the subheadline is readable and not too dense
+- the primary CTA is visible quickly without excessive scrolling
+- buttons are large and tappable
+- supporting chips wrap cleanly
+- the supporting card stacks nicely if present
+- there is no overflow, crowding, or weak spacing
+
+======================================================================
+CONTENT / UX REQUIREMENTS
+======================================================================
+
+Keep the tone:
+- calm
+- practical
+- smart
+- trustworthy
+- local
+- no hype
+- no exaggerated guarantees
+
+Do not use language like:
+- dominate AI search
+- crush competitors
+- guaranteed rankings
+- explosive growth
+
+This hero should make a skeptical small business owner feel:
+“Okay, I understand what this is, why it matters, and what to do next.”
+
+======================================================================
+IMPLEMENTATION NOTES
+======================================================================
+
+Please:
+- inspect the repo and find the correct homepage hero implementation
+- update the hero copy
+- update the hero layout if needed
+- preserve existing CTA routing conventions where appropriate
+- preserve existing section anchors if used by navigation
+- reuse existing button and card components if possible
+- avoid unnecessary dependencies
+
+If there is already a homepage section explaining GEO, keep it, but make sure the hero now sets it up more effectively.
+
+If the project uses metadata or homepage SEO config, update the hero-related summary text only if it is appropriate and safe to do so.
+
+======================================================================
+DO NOT
+======================================================================
+
+Do not:
+- rewrite the whole site
+- break the existing pricing section
+- remove the existing GEO explainer section
+- change every CTA on the page
+- introduce visual inconsistency
+- make the hero longer than necessary
+- make the hero feel like jargon
+- make the site sound like a generic marketing agency
+
+======================================================================
+FINAL REPORT REQUIRED
+======================================================================
+
+After implementing the hero update, provide a concise report with:
+- files changed
+- whether the hero layout changed or only the copy changed
+- CTA destinations used
+- any mobile-specific adjustments made
+- any recommendations for a phase 2 improvement
+
+Then do a self-QA pass and confirm:
+- the homepage hero is clearer for visitors unfamiliar with GEO
+- the primary CTA is visually dominant
+- the layout feels premium
+- mobile readability is strong
+- the hero now leads with outcomes before jargon
