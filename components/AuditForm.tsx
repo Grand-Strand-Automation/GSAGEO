@@ -136,12 +136,13 @@ export function AuditForm({ initialPlan = "" }: { initialPlan?: string }) {
       <section className="bg-brand-hero text-white pt-28 pb-14 md:pt-36 relative overflow-hidden">
         <HeroOverlay />
         <div className="container px-4 md:px-6 text-center max-w-2xl relative z-10">
-          <div className="eyebrow-pill mb-6 mx-auto w-fit">GEO Audit Request</div>
+          <div className="eyebrow-pill mb-6 mx-auto w-fit">GEO / AI Visibility Assessment</div>
           <h1 className="text-4xl sm:text-5xl font-heading font-extrabold mb-5">
-            Request a GEO Audit
+            Request Your Assessment
           </h1>
-          <p className="text-base text-white/65 leading-relaxed">
-            Fill out the form below and we will review your site&apos;s AI visibility, score it across eight categories, and follow up within two to three business days.
+          <p className="text-base md:text-lg text-white/70 leading-relaxed">
+            Tell us about your business and website. We use this to understand your visibility baseline,
+            identify the most relevant gaps, and recommend the clearest next steps.
           </p>
         </div>
       </section>
@@ -149,13 +150,38 @@ export function AuditForm({ initialPlan = "" }: { initialPlan?: string }) {
       <TrustBar
         items={[
           "No commitment required",
-          "Results within 2–3 business days",
-          "Practical, no-pressure approach",
+          "Automated review begins after submission",
+          "Practical findings — not a generic score dump",
         ]}
       />
 
       <section className="py-16 md:py-24 bg-brand-cream">
         <div className="container px-4 md:px-6 max-w-2xl">
+          <div className="rounded-2xl border border-brand-border bg-white p-6 md:p-8 shadow-card mb-8">
+            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-brand-blue mb-4">
+              Before you begin
+            </p>
+            <p className="text-sm text-brand-muted leading-relaxed mb-5">
+              Before you begin, tell us a little about your business, website, and goals. We use this
+              information to understand your current visibility baseline, identify the most relevant gaps,
+              and recommend the clearest next steps.
+            </p>
+            <div className="grid sm:grid-cols-3 gap-4 text-left">
+              <div className="rounded-xl bg-brand-cream p-4">
+                <p className="text-xs font-bold uppercase text-brand-subtle mb-1">What you receive</p>
+                <p className="text-sm text-brand-muted">A structured assessment with category findings and priority recommendations.</p>
+              </div>
+              <div className="rounded-xl bg-brand-cream p-4">
+                <p className="text-xs font-bold uppercase text-brand-subtle mb-1">What happens next</p>
+                <p className="text-sm text-brand-muted">Your request is saved and your site review begins automatically.</p>
+              </div>
+              <div className="rounded-xl bg-brand-cream p-4">
+                <p className="text-xs font-bold uppercase text-brand-subtle mb-1">Turnaround</p>
+                <p className="text-sm text-brand-muted">Most automated reviews finish within minutes; follow-up within 2–3 business days if needed.</p>
+              </div>
+            </div>
+          </div>
+
           <div className="card-brand rounded-2xl p-8 md:p-10 shadow-card-md">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <input type="text" className="hidden" tabIndex={-1} autoComplete="off" {...register("website")} />
@@ -329,7 +355,7 @@ export function AuditForm({ initialPlan = "" }: { initialPlan?: string }) {
                     <Loader2 className="mr-2 h-5 w-5 animate-spin" /> Submitting…
                   </>
                 ) : (
-                  "Submit GEO Audit Request →"
+                  "Submit Assessment Request →"
                 )}
               </button>
             </form>

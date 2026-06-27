@@ -1,12 +1,8 @@
 import { Suspense } from "react";
 import { ThankYouContent } from "@/components/results/ThankYouContent";
-import type { Metadata } from "next";
+import { THANK_YOU_METADATA } from "@/lib/seo/metadata";
 
-export const metadata: Metadata = {
-  title: "Thank You",
-  description: "Confirmation for your private GEO audit request and results status link.",
-  robots: { index: false, follow: false },
-};
+export const metadata = THANK_YOU_METADATA;
 
 export default function ThankYouPage() {
   return (
@@ -16,7 +12,7 @@ export default function ThankYouPage() {
           <div className="card-brand rounded-2xl p-8 text-center shadow-card">
             <p className="text-sm font-semibold text-brand-navy">Preparing your confirmation…</p>
             <p className="text-sm text-brand-muted mt-2">
-              We are setting up your private audit status link.
+              We are setting up your private assessment status link.
             </p>
           </div>
         </div>

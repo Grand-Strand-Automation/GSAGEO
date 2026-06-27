@@ -6,6 +6,6 @@ export const siteConfig = {
   email: "shawn@gsally.com",
   phone: "843-555-0100",
   mainSiteUrl: "https://gsally.com",
-  geoCanonicalUrl: "https://geo.gsally.com",
+  geoCanonicalUrl: "https://geo.vercel.app",
   logoIconSrc: "/brand/logo-icon.png",
 } as const;

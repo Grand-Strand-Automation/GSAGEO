@@ -7,9 +7,11 @@ import {
   CheckCircle2,
   ExternalLink,
   Loader2,
+  Mail,
   Sparkles,
 } from "lucide-react";
 import { ButtonLink } from "@/components/ui/Button";
+import { HOME_HERO } from "@/lib/content/landing";
 import { CUSTOMER_STATUS_COPY } from "@/lib/results/customer-state";
 import { useCustomerReportStatus } from "./useCustomerReportStatus";
 
@@ -44,22 +46,45 @@ export function ThankYouContent() {
         </div>
 
         <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-brand-blue mb-3">
-          {status?.ready ? "Report ready" : "Submission received"}
+          {status?.ready ? "Report ready" : "Assessment request received"}
         </p>
 
         <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-brand-navy mb-4">
-          {status?.ready ? copy.title : "We received your request."}
+          {status?.ready ? copy.title : "Thanks — your assessment request has been received."}
         </h1>
 
         <p className="text-brand-muted text-[15px] leading-relaxed mb-3 max-w-sm mx-auto">
           {status?.ready
             ? copy.body
-            : "Your GEO audit request has been saved. We started preparing your private report — use the link below to check status or open the full report when it is ready."}
+            : "We'll review the information you submitted and use it to understand your website, service structure, and current AI visibility baseline. If we need anything else, we'll reach out. You should expect a practical, no-hype next step — not a generic score dump."}
         </p>
 
         {status?.companyName ? (
           <p className="text-sm text-brand-navy font-semibold">{status.companyName}</p>
         ) : null}
+
+        <div className="mt-6 rounded-xl border border-brand-border bg-brand-cream/70 p-4 text-left text-sm text-brand-muted">
+          <p className="text-xs font-bold uppercase text-brand-blue tracking-wide mb-2">What happens next</p>
+          <ul className="space-y-2">
+            <li>Your site review has started — check your private status link below.</li>
+            <li>We may follow up by email at the address you provided if we need clarification.</li>
+            <li>When ready, your assessment report includes category findings and practical recommendations.</li>
+          </ul>
+        </div>
+
+        <div className="mt-6 rounded-xl border border-brand-border bg-white p-4 text-left">
+          <p className="text-xs font-bold uppercase text-brand-blue tracking-wide mb-2">
+            What we review
+          </p>
+          <ul className="space-y-1.5 text-sm text-brand-muted">
+            {HOME_HERO.reviewCardBullets.map((item) => (
+              <li key={item} className="flex gap-2">
+                <CheckCircle2 size={14} className="text-brand-blue shrink-0 mt-0.5" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
 
         {token ? (
           <div className="mt-8 p-4 bg-brand-cream rounded-xl border border-brand-border text-left">
@@ -88,17 +113,18 @@ export function ThankYouContent() {
             </ButtonLink>
           ) : null}
           <ButtonLink href="/" size="md" variant={resultsHref ? "secondaryLight" : "primary"}>
-            Return to GEO Home
+            Back to overview
           </ButtonLink>
         </div>
 
         {isWaiting && token ? (
           <p className="text-xs text-brand-subtle mt-6">
-            This page updates automatically while your audit is being prepared.
+            This page updates automatically while your assessment is being prepared.
           </p>
         ) : null}
 
-        <p className="text-xs text-brand-subtle mt-6">
+        <p className="text-xs text-brand-subtle mt-6 inline-flex items-center gap-1.5 justify-center">
+          <Mail size={13} />
           Questions?{" "}
           <a href="mailto:shawn@gsally.com" className="text-brand-blue hover:underline">
             shawn@gsally.com

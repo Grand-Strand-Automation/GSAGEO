@@ -9,7 +9,7 @@ Copy `.env.example` to `.env.local` for local development. Set the same values i
 | `NEXT_PUBLIC_SUPABASE_URL` | `https://xxxx.supabase.co` | Supabase project URL |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | `eyJ...` | Browser + server auth (public) |
 | `SUPABASE_SERVICE_ROLE_KEY` | `eyJ...` | Server-only DB access — **never expose to client** |
-| `NEXT_PUBLIC_APP_URL` | `https://gsageo.vercel.app` | Canonical app URL for metadata/links |
+| `NEXT_PUBLIC_APP_URL` | `https://geo.vercel.app` | Canonical app URL for metadata, sitemap, robots, and results links |
 | `ADMIN_EMAIL_ALLOWLIST` | `shawn@gsally.com,ops@gsally.com` | Comma-separated admin emails (required for login authorization) |
 
 ## Recommended

@@ -7,9 +7,11 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { TrustBar } from "@/components/TrustBar";
 import { ButtonLink } from "@/components/ui/Button";
 import {
+  ASSESSMENT_PREVIEW,
   DELIVERABLES,
   FAQ_ITEMS,
   GOOD_FIT,
+  HOME_HERO,
   NOT_FIT,
   PRICING_CUSTOM_NOTE,
   PRICING_HEADLINE,
@@ -23,29 +25,44 @@ import {
 export function LandingPage() {
   return (
     <div className="flex flex-col">
-      <section className="bg-brand-hero text-white pt-28 pb-16 md:pt-36 md:pb-20 relative overflow-hidden">
+      <section className="bg-brand-hero text-white pt-28 pb-16 md:pt-36 md:pb-24 relative overflow-hidden">
         <HeroOverlay />
-        <div className="container px-4 md:px-6 max-w-4xl relative z-10">
-          <div className="eyebrow-pill mb-7">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-sky inline-block" />
-            GEO / AI Visibility
+        <div className="container px-4 md:px-6 relative z-10">
+          <div className="grid lg:grid-cols-[1fr_340px] gap-10 lg:gap-12 items-start max-w-6xl">
+            <div className="max-w-3xl">
+              <div className="eyebrow-pill mb-7">
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-sky inline-block" />
+                {HOME_HERO.eyebrow}
+              </div>
+              <h1 className="text-4xl sm:text-5xl md:text-[3.25rem] font-heading font-extrabold mb-6 leading-[1.05]">
+                {HOME_HERO.headline}
+              </h1>
+              <p className="text-lg md:text-xl text-white/70 leading-relaxed max-w-2xl mb-8">
+                {HOME_HERO.subheadline}
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3 mb-6">
+                <ButtonLink href={HOME_HERO.primaryHref}>{HOME_HERO.primaryCta} →</ButtonLink>
+                <ButtonLink href={HOME_HERO.secondaryHref} variant="secondary">
+                  {HOME_HERO.secondaryCta}
+                </ButtonLink>
+              </div>
+              <p className="text-sm text-white/50 font-medium">{HOME_HERO.supportLine}</p>
+            </div>
+
+            <div className="rounded-2xl border border-white/15 bg-white/[0.06] backdrop-blur-sm p-6 md:p-7 shadow-card-md lg:mt-4">
+              <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-brand-sky mb-4">
+                {HOME_HERO.reviewCardTitle}
+              </p>
+              <ul className="space-y-3">
+                {HOME_HERO.reviewCardBullets.map((item) => (
+                  <li key={item} className="flex gap-3 text-sm text-white/80 leading-relaxed">
+                    <CheckCircle2 size={16} className="text-brand-sky shrink-0 mt-0.5" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-heading font-extrabold mb-6 leading-[1.05] max-w-3xl">
-            Show up in AI-generated answers, not just search results.
-          </h1>
-          <p className="text-lg text-white/65 leading-relaxed max-w-2xl mb-8">
-            Customers are increasingly finding service providers through AI-powered answer engines.
-            Generative Engine Optimization helps your business become the kind of source those engines reference.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 mb-8">
-            <ButtonLink href="/audit">Request a GEO Audit →</ButtonLink>
-            <ButtonLink href="#whats-included" variant="secondary">
-              See What&apos;s Included
-            </ButtonLink>
-          </div>
-          <p className="text-xs text-white/35 font-medium">
-            Practical review · No-pressure approach · Grand Strand-based
-          </p>
         </div>
       </section>
 
@@ -57,7 +74,49 @@ export function LandingPage() {
         ]}
       />
 
-      <section className="section-pad bg-white">
+      <section id="assessment-preview" className="section-pad bg-white scroll-mt-20">
+        <div className="container px-4 md:px-6 max-w-5xl">
+          <SectionHeading
+            label={ASSESSMENT_PREVIEW.label}
+            title={ASSESSMENT_PREVIEW.title}
+            description={ASSESSMENT_PREVIEW.description}
+            centered
+          />
+          <div className="grid md:grid-cols-2 gap-5 mb-8">
+            {ASSESSMENT_PREVIEW.categories.map((cat) => (
+              <div key={cat.name} className="card-brand p-6 shadow-card flex gap-4 items-start">
+                <div className="shrink-0 w-12 h-12 rounded-xl bg-brand-blue-light flex items-center justify-center">
+                  <span className="font-heading font-extrabold text-brand-blue text-sm">{cat.grade}</span>
+                </div>
+                <div>
+                  <h3 className="font-heading font-bold text-[15px] text-brand-navy mb-1">{cat.name}</h3>
+                  <p className="text-sm text-brand-muted leading-relaxed">{cat.note}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="rounded-2xl border border-brand-border bg-brand-cream/60 p-6 md:p-8">
+            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-brand-blue mb-4">
+              Example priority issues
+            </p>
+            <ul className="space-y-2.5">
+              {ASSESSMENT_PREVIEW.issueExamples.map((issue) => (
+                <li key={issue} className="flex gap-3 text-sm text-brand-muted leading-relaxed">
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand-blue shrink-0 mt-2" />
+                  {issue}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="mt-8 text-center">
+            <ButtonLink href="/audit?tier=monitor" size="md">
+              Start Your Assessment →
+            </ButtonLink>
+          </div>
+        </div>
+      </section>
+
+      <section id="understanding-geo" className="section-pad bg-brand-cream scroll-mt-20">
         <div className="container px-4 md:px-6 max-w-3xl">
           <SectionHeading
             label="Understanding GEO"
@@ -83,7 +142,7 @@ export function LandingPage() {
         </div>
       </section>
 
-      <section className="section-pad bg-brand-cream">
+      <section className="section-pad bg-white">
         <div className="container px-4 md:px-6 max-w-4xl">
           <SectionHeading title="A good fit — and not a good fit." />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
@@ -268,7 +327,7 @@ export function LandingPage() {
         title="Ready to see where your business stands?"
         subtitle="We review your site, score it across eight GEO-readiness categories, and give you a clear plan for what to improve first."
         buttons={[
-          { label: "Request a GEO Audit", href: "/audit", primary: true },
+          { label: "Start Your Assessment", href: "/audit?tier=monitor", primary: true },
           { label: "View Pricing", href: "/#pricing", primary: false },
         ]}
       />

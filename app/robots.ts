@@ -1,17 +1,23 @@
 import type { MetadataRoute } from "next";
-
-function siteUrl() {
-  return (process.env.NEXT_PUBLIC_APP_URL ?? "https://geo.gsally.com").replace(/\/$/, "");
-}
+import { getSiteUrl } from "@/lib/seo/site-url";
 
 export default function robots(): MetadataRoute.Robots {
-  const base = siteUrl();
+  const base = getSiteUrl();
   return {
-    rules: {
-      userAgent: "*",
-      allow: "/",
-      disallow: ["/admin/", "/api/"],
-    },
+    rules: [
+      {
+        userAgent: "*",
+        allow: "/",
+        disallow: [
+          "/admin/",
+          "/admin",
+          "/api/",
+          "/results/",
+          "/thank-you",
+        ],
+      },
+    ],
     sitemap: `${base}/sitemap.xml`,
+    host: base,
   };
 }

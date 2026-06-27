@@ -24,7 +24,7 @@ Add in Project → Settings → Environment Variables (Production + Preview):
 NEXT_PUBLIC_SUPABASE_URL=https://xxxx.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJ...
 SUPABASE_SERVICE_ROLE_KEY=eyJ...
-NEXT_PUBLIC_APP_URL=https://geo.gsally.com
+NEXT_PUBLIC_APP_URL=https://geo.vercel.app
 ADMIN_EMAIL_ALLOWLIST=shawn@gsally.com
 CRON_SECRET=<generate-random-string>
 ```
@@ -52,16 +52,24 @@ Settings → Git → Production Branch: `main` (or your default branch)
 
 ## 6. Custom domain
 
-Settings → Domains → Add `geo.gsally.com`
+Settings → Domains → Add `geo.gsally.com` (production) and ensure **`geo.vercel.app`** is assigned to **this Next.js project** — not a legacy Create React App deployment.
+
+If `geo.vercel.app` shows title **React App** or CRA meta descriptions, the domain is pointed at the wrong Vercel project. Remove it from the old project and attach it to the GSAGEO Next.js deployment (`pnpm build`).
+
+Set `NEXT_PUBLIC_APP_URL=https://geo.vercel.app` in Production env vars so sitemap, robots, canonicals, and share links match.
 
 See [DNS_SETUP.md](./DNS_SETUP.md).
 
 ## 7. Post-deploy smoke test
 
 ```bash
-curl -I https://geo.gsally.com/
-curl -I https://geo.gsally.com/audit
+curl -I https://geo.vercel.app/
+curl -I https://geo.vercel.app/sitemap.xml
+curl https://geo.vercel.app/robots.txt
+curl -s https://geo.vercel.app/ | grep -E '<title>|create-react-app'
 ```
+
+Expected: sitemap returns `application/xml`, robots includes `Sitemap: https://geo.vercel.app/sitemap.xml`, homepage title contains **AI Visibility** — not **React App**.
 
 Manual checklist: [tests/SMOKE_TEST.md](./tests/SMOKE_TEST.md)
 

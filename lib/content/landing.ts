@@ -1,3 +1,41 @@
+export const HOME_HERO = {
+  eyebrow: "GEO / AI Visibility for service businesses",
+  headline: "Find Out How Your Business Looks to AI Search",
+  subheadline:
+    "Customers are increasingly discovering service providers through ChatGPT, Google AI Overviews, and other answer-driven search tools. Our GEO / AI Visibility Assessment helps you see whether your website is clear, trustworthy, and structured well enough to be understood and recommended.",
+  primaryCta: "Start Your Assessment",
+  primaryHref: "/audit?tier=monitor",
+  secondaryCta: "Learn How GEO Works",
+  secondaryHref: "#understanding-geo",
+  supportLine: "Built for Myrtle Beach and Grand Strand service businesses",
+  reviewCardTitle: "What the assessment reviews",
+  reviewCardBullets: [
+    "Service page clarity",
+    "FAQ and trust content",
+    "Internal linking and structure",
+    "AI visibility gaps",
+    "Practical next-step recommendations",
+  ],
+} as const;
+
+export const ASSESSMENT_PREVIEW = {
+  label: "Sample output",
+  title: "What you receive from the assessment",
+  description:
+    "Illustrative examples of the categories, issues, and recommendations the assessment surfaces — not fabricated scores for your site.",
+  categories: [
+    { name: "Service page depth", grade: "C+", note: "Services mentioned but thin on fit and proof" },
+    { name: "FAQ & answer coverage", grade: "D", note: "Key buyer questions not addressed on-site" },
+    { name: "Entity clarity", grade: "B-", note: "Business visible but specialization could be clearer" },
+    { name: "Trust & proof content", grade: "C", note: "Limited case-study or outcome signals" },
+  ],
+  issueExamples: [
+    "Thin service pages without clear “who this is for”",
+    "Missing FAQ coverage for common buyer questions",
+    "Weak internal linking between services and proof pages",
+  ],
+} as const;
+
 export const GOOD_FIT = [
   "Service businesses that rely on inbound trust and referrals",
   "Local B2B companies not appearing in AI-generated search responses",

@@ -1,15 +1,28 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { getSiteUrl } from "@/lib/seo/site-url";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? "https://geo.gsally.com"),
+  metadataBase: new URL(getSiteUrl()),
   icons: { icon: "/favicon.svg" },
   title: {
-    default: "GEO / AI Visibility | Grand Strand Ally",
-    template: "%s | Grand Strand Ally",
+    default: "GEO / AI Visibility Assessments for Service Businesses | GEO",
+    template: "%s | GEO",
   },
   description:
-    "Generative Engine Optimization for service businesses. Practical audits, clear deliverables, and a no-pressure approach from the Grand Strand.",
+    "See how clearly your business is positioned for ChatGPT, Google AI Overviews, and AI-driven search. GEO assessments for service businesses with clear deliverables and practical next steps.",
+  openGraph: {
+    siteName: "GEO",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

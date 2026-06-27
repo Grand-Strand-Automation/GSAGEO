@@ -1,31 +1,14 @@
 import type { MetadataRoute } from "next";
-
-function siteUrl() {
-  return (process.env.NEXT_PUBLIC_APP_URL ?? "https://geo.gsally.com").replace(/\/$/, "");
-}
+import { getSiteUrl, PUBLIC_INDEX_ROUTES } from "@/lib/seo/site-url";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = siteUrl();
+  const base = getSiteUrl();
   const lastModified = new Date();
 
-  return [
-    {
-      url: base,
-      lastModified,
-      changeFrequency: "weekly",
-      priority: 1,
-    },
-    {
-      url: `${base}/audit`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${base}/myrtle-beach-ai-visibility-benchmark`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.85,
-    },
-  ];
+  return PUBLIC_INDEX_ROUTES.map(({ path, changeFrequency, priority }) => ({
+    url: `${base}${path === "/" ? "" : path}`,
+    lastModified,
+    changeFrequency,
+    priority,
+  }));
 }
