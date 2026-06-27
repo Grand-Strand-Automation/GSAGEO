@@ -1,0 +1,265 @@
+I need you to update GSally.com in this Replit project to fix the top 5 highest-impact homepage and conversion issues in one pass.
+
+Important:
+- Do the work in code now.
+- Do not just suggest ideas.
+- Inspect the current Replit project first, understand the routing, shared components, layout system, styling patterns, mobile behavior, and content organization.
+- Then implement the updates cleanly.
+- Preserve the current credibility, calm tone, and polished visual quality.
+- Do not break existing routes, forms, or service pages.
+
+Core business context:
+GSally currently looks more like an IT support / cost analysis / Microsoft 365 / compliance-minded services company that also offers GEO.
+I need the site to feel more like:
+- a GEO / AI Visibility-led company
+- with IT, systems, compliance, and operational credibility behind it
+
+In short:
+GEO should feel like the front door.
+The older IT advisory story should support that, not overpower it.
+
+Canonical GEO destination:
+First inspect the project for the current canonical GEO URL.
+- If a single source of truth already exists, use it everywhere.
+- If not, create one clean constant/config value and use it sitewide.
+- Default to https://geo.vercel.app/ only if that is clearly the intended live destination.
+- If another GEO domain is already consistently used in the project, preserve it instead of creating conflicting links.
+Do not leave multiple competing GEO URLs in the codebase.
+
+The top 5 issues to fix are:
+
+1. The homepage still tells two stories:
+   - above the fold: GEO / AI Visibility
+   - below the fold: traditional IT support and cost analysis
+   This creates strategic confusion.
+
+2. The homepage’s top-level brand framing still sounds too IT-first.
+   “Cost Clarity · Practical Support · Compliance-Minded Systems” is credible, but it does not support a GEO-first growth strategy strongly enough.
+
+3. The free IT cost analysis still competes too directly with GEO.
+   It pulls attention into the wrong funnel when GEO is supposed to be the lead offer.
+
+4. The site still does not make the GEO assessment tangible enough.
+   Visitors need to quickly understand what they get, what is reviewed, and what the output looks like.
+
+5. The mobile above-the-fold experience is still too long and slightly repetitive.
+   The top bar + GEO CTA + supporting content need to be tighter and more decisive on smaller screens.
+
+========================================================
+PRIMARY OBJECTIVE
+========================================================
+
+Make GSally.com feel like a stronger feeder into the GEO / AI Visibility offer without destroying the trust and advisory tone of the broader business.
+
+The finished experience should make visitors think:
+“This company helps me understand whether my business can show up clearly in AI search.”
+and only secondarily:
+“They also have IT, operations, and compliance credibility.”
+
+========================================================
+FIX 1 — REFRAME THE HOMEPAGE MESSAGE HIERARCHY
+========================================================
+
+The homepage currently still feels too split between:
+- GEO / AI Visibility
+- IT support / cost clarity / vendor simplification
+
+I need you to rebalance the homepage so GEO feels more central and foundational.
+
+Do this by:
+- strengthening the GEO-led framing in the hero
+- tightening or repositioning old IT-first framing
+- making the homepage narrative flow more clearly from:
+  problem → GEO assessment → trust/credibility → supporting services
+instead of:
+  GEO intro → long return to old IT story
+
+Update the homepage so the top-level message hierarchy is:
+
+1. AI visibility / GEO for service businesses
+2. Practical assessment and clear next steps
+3. Broader operational / IT / compliance credibility
+4. Supporting service categories
+
+The GEO story should remain visible and persuasive deeper into the page, not disappear after the hero.
+
+========================================================
+FIX 2 — UPDATE THE TOP-LEVEL BRAND FRAMING
+========================================================
+
+The current top-of-page framing still sounds too IT-operations-first.
+
+Inspect the homepage brand line, hero support language, and nearby microcopy.
+Adjust them so the business is framed more clearly around AI visibility and business clarity without sounding like a hypey marketing agency.
+
+Do NOT make it cheesy or generic.
+
+Preferred direction:
+- AI visibility for service businesses
+- practical website clarity for AI-driven discovery
+- clear next steps, not vague SEO promises
+- local and trusted
+- still grounded in operational and technical credibility
+
+You may keep some trust-oriented legacy phrasing, but the homepage opening should not be anchored mainly to cost analysis, Microsoft 365, or compliance systems.
+
+Lead with growth/discovery clarity first.
+Use IT/compliance trust as secondary support.
+
+========================================================
+FIX 3 — DEMOTE OR REFRAME THE FREE IT COST ANALYSIS
+========================================================
+
+Right now the free IT cost analysis is still a strong competing CTA.
+
+I do NOT necessarily want it removed.
+But I do want it to stop competing with the GEO assessment for homepage attention.
+
+Update this area so:
+- GEO remains the primary growth CTA
+- cost analysis is clearly a secondary or alternative path
+- the hierarchy makes it obvious that cost analysis is for IT/ops clarity, not the main front-door offer
+
+Possible approaches:
+- reduce its visual dominance
+- move it lower
+- relabel it as a secondary advisory tool
+- place it in an “Other ways we help” type section
+- add a clear comparison or branch:
+  “Need visibility help?” → GEO
+  “Need IT cost clarity?” → Cost analysis
+
+Whatever you choose, the page should stop making these two offers feel equally primary.
+
+========================================================
+FIX 4 — MAKE THE GEO OFFER MORE TANGIBLE
+========================================================
+
+The homepage needs a clearer sense of what the GEO assessment actually includes.
+
+Add a premium section, card cluster, mini-preview, or sample-output block that makes the offer feel real.
+
+This should quickly answer:
+- What does the assessment review?
+- What kinds of gaps does it identify?
+- What does the visitor receive?
+
+Suggested content direction:
+Title:
+What the GEO Assessment Reviews
+
+Possible bullets/cards:
+- Service page clarity
+- FAQ and trust content
+- Internal linking and content structure
+- AI visibility gaps
+- Practical next-step recommendations
+
+Optional second layer:
+What you receive
+- a focused review
+- priority gaps
+- practical next steps
+- no-hype recommendations
+
+You can also include a small sample result style preview such as:
+- FAQ coverage: limited
+- Service structure: moderate
+- CTA clarity: weak
+- Next best action: strengthen one key service page, add FAQ support, clarify core conversion path
+
+Do not fabricate testimonials or fake results.
+Use sample/demo framing if needed.
+The goal is tangibility, not hype.
+
+========================================================
+FIX 5 — TIGHTEN THE MOBILE ABOVE-THE-FOLD EXPERIENCE
+========================================================
+
+The mobile homepage currently feels a bit too tall and repetitive at the top.
+
+Inspect the mobile layout and tighten:
+- announcement bar spacing
+- hero spacing
+- CTA grouping
+- support chip spacing
+- any redundant explanatory lines
+- any supporting card layout that pushes important content too far down
+
+Requirements:
+- the GEO CTA should still be highly visible
+- the top should feel tighter and more premium
+- there should be less vertical drag before a user understands the offer
+- buttons should remain large and tappable
+- nothing should feel cramped
+
+Do not just shrink everything.
+Improve hierarchy and spacing thoughtfully.
+
+========================================================
+ADDITIONAL IMPLEMENTATION RULES
+========================================================
+
+1. Keep the tone calm, practical, local, and trustworthy.
+2. Do not make GSally sound like a generic marketing agency.
+3. Do not clutter the page with too many competing buttons.
+4. Preserve the current visual polish and brand consistency.
+5. Reuse existing shared components where possible.
+6. If the codebase supports reusable CTA sections or content cards, use them.
+7. Keep the copy understandable for business owners who do not know what GEO means.
+8. Use plain-English framing before jargon.
+
+Examples of acceptable plain-English direction:
+- See how your business looks to AI search
+- Find out whether your website is easy for AI tools to understand
+- Identify the service-page, FAQ, and trust gaps affecting AI visibility
+
+========================================================
+DO NOT
+========================================================
+
+Do not:
+- rewrite the entire site unnecessarily
+- remove all IT credibility content
+- turn the homepage into a generic SEO landing page
+- use hypey phrases like dominate AI search or crush competitors
+- make cost analysis disappear if it still has strategic value
+- introduce visual inconsistency
+- break forms, links, or mobile responsiveness
+- leave multiple competing GEO URLs in the codebase
+
+========================================================
+PRIORITY EXECUTION ORDER
+========================================================
+
+Implement in this order:
+1. canonical GEO URL cleanup / standardization
+2. homepage message hierarchy rebalance
+3. top-level brand framing update
+4. cost analysis demotion / reframing
+5. GEO tangibility section
+6. mobile tightening and polish
+
+========================================================
+FINAL REPORT REQUIRED
+========================================================
+
+After implementation, provide a concise report with:
+- files changed
+- components added or updated
+- what changed in the homepage hierarchy
+- how the cost analysis section was reframed or demoted
+- what was added to make GEO more tangible
+- what mobile-specific improvements were made
+- which GEO URL is now canonical
+- any assumptions made
+- any recommended phase 2 improvements
+
+Then do a self-QA pass and confirm:
+- the homepage now feels more GEO-led
+- the old IT story now supports rather than overpowers GEO
+- the GEO offer is more tangible
+- the free IT cost analysis no longer competes too strongly
+- mobile above-the-fold feels tighter and clearer
+- all GEO CTAs point to the same canonical destination
+- the site still feels polished and credible
