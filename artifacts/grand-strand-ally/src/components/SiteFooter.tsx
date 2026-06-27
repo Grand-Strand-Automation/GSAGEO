@@ -1,11 +1,42 @@
 import { Link } from "wouter";
 import { Logo } from "./Logo";
 import { siteConfig } from "@/lib/site";
+import { ArrowRight } from "lucide-react";
 
 export function SiteFooter() {
   return (
     <footer className="bg-[#0A2440] text-white pt-16 pb-8">
       <div className="container mx-auto px-4 md:px-6">
+
+        {/* ── GEO callout band ─── */}
+        <div className="border-b border-white/10 pb-12 mb-14">
+          <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
+            <div className="flex-1 min-w-0">
+              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#60B8F0] flex items-center gap-1.5 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#60B8F0] inline-block" />
+                New offering
+              </span>
+              <h2 className="text-xl md:text-2xl font-heading font-bold text-white mb-2 leading-snug">
+                Want to Know How Visible Your Business Is in AI Search?
+              </h2>
+              <p className="text-sm text-white/55 leading-relaxed max-w-xl">
+                Start with a GEO / AI Visibility assessment and get a clearer picture of how your website is positioned for AI-driven discovery.
+              </p>
+            </div>
+            <div className="shrink-0">
+              <a
+                href={siteConfig.links.geoAssessment}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-geo-cta="footer"
+                className="inline-flex items-center gap-2 bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-7 rounded-lg text-sm transition-colors whitespace-nowrap"
+              >
+                Start Assessment <ArrowRight size={14} aria-hidden="true" />
+              </a>
+            </div>
+          </div>
+        </div>
+
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-8 mb-14">
 
           <div className="col-span-2 md:col-span-1 space-y-4">

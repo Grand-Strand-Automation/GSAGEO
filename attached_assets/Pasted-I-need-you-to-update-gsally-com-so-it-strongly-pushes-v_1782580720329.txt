@@ -1,0 +1,390 @@
+I need you to update gsally.com so it strongly pushes visitors toward my GEO / AI Visibility offer.
+
+Important:
+- Do the work in code now.
+- Do not just suggest ideas.
+- Inspect the existing Replit project first, understand the routing/component structure, and then implement the updates cleanly.
+- Preserve the current site quality, responsiveness, and branding consistency.
+- Do not break existing pages, layout, navigation, or forms.
+- The goal is to make GSally.com act as a strong feeder site into my GEO offer.
+
+Critical destination:
+Use this GEO assessment URL as the main destination for all GEO CTAs:
+https://gsageo.vercel.app/
+
+If there is any hardcoded alternate GEO URL already in the project, standardize it to the correct one above unless the codebase clearly indicates a different final production domain.
+
+Business context:
+GSally currently presents Grand Strand Ally as an IT support / cost analysis / compliance-minded services business. I am now going all-in on the GEO / AI Visibility offer, so GSally.com needs to prominently and repeatedly direct relevant visitors to the GEO assessment site.
+
+High-level objective:
+Make GEO / AI Visibility a highly visible, high-priority offer across the GSally site with large, clear, premium CTAs and supporting copy that explains why a visitor should click through.
+
+Design goal:
+This should feel intentional and premium, not like a sloppy banner dump.
+The GEO CTA needs to be:
+- visually obvious
+- repeated in the right places
+- easy to understand
+- relevant to the page context
+- especially strong on mobile
+- impossible to miss without making the site feel spammy
+
+Overall strategy:
+Keep GSally.com credible as the parent/related business site, but make GEO / AI Visibility the most obvious “next step” for visitors who want growth, visibility, and lead generation support.
+
+I want you to implement the following:
+
+======================================================================
+1. GLOBAL TOP-OF-SITE GEO ANNOUNCEMENT BAR
+======================================================================
+
+Add a highly visible announcement bar at the top of the site on all major public pages.
+
+Purpose:
+Immediately tell visitors that GSally now offers GEO / AI Visibility assessments.
+
+Bar copy:
+New: AI Visibility / GEO Assessments for Myrtle Beach and Grand Strand service businesses
+
+CTA text:
+Start Your GEO Assessment
+
+CTA destination:
+https://gsageo.vercel.app/
+
+Requirements:
+- prominent but polished
+- mobile-friendly
+- sticky if it fits the current design pattern cleanly
+- should not feel like a cheap coupon bar
+- strong contrast and high readability
+
+======================================================================
+2. HOMEPAGE HERO UPDATE
+======================================================================
+
+Update the homepage hero so GEO is impossible to miss.
+
+Current homepage messaging is about:
+- cost clarity
+- practical support
+- compliance-minded systems
+- IT cost analysis and support
+
+Keep the business credibility, but add GEO / AI Visibility as a major featured action.
+
+Implement:
+- a large GEO-focused CTA in the hero
+- a supporting line explaining why it matters
+- make the GEO CTA one of the most visually dominant elements on the page
+
+Suggested new supporting copy:
+Now offering GEO / AI Visibility Assessments for service businesses that want to show up more clearly in AI-driven search and answer engines.
+
+Primary hero CTA:
+Start Your GEO Assessment
+
+Primary CTA URL:
+https://gsageo.vercel.app/
+
+Secondary hero CTA:
+Explore IT & Cost Analysis Services
+(or keep existing equivalent internal CTA if already present)
+
+Also add a short trust-support line near the hero CTA area:
+Built for Myrtle Beach and Grand Strand service businesses
+
+If appropriate, add a small visual GEO highlight card inside or near the hero with copy like:
+AI Visibility for local service businesses
+See how clearly your business is positioned for ChatGPT, Google AI Overviews, and answer-driven search
+
+======================================================================
+3. HOMEPAGE MID-PAGE FEATURE SECTION FOR GEO
+======================================================================
+
+Add a dedicated GEO feature section on the homepage, above the fold if possible or at least high on the page.
+
+Section title:
+Now Offering GEO / AI Visibility Assessments
+
+Section copy:
+Traditional websites can still underperform in AI-driven search if their content is unclear, thin, weakly structured, or missing the page types answer engines rely on. Our GEO assessment helps service businesses understand how visible and understandable their site is for AI-powered discovery.
+
+Include 3 short value blocks:
+- AI visibility review
+- content and structure gaps
+- practical next-step recommendations
+
+Suggested short blurbs:
+AI Visibility Review
+See how clearly your business is positioned for AI-generated search and recommendation engines.
+
+Content & Structure Gaps
+Identify weak service pages, missing FAQs, unclear positioning, and internal linking gaps.
+
+Practical Next Steps
+Get a clearer picture of what to improve first rather than vague marketing advice.
+
+Main CTA:
+Request Your GEO Assessment
+
+CTA URL:
+https://gsageo.vercel.app/
+
+Design requirement:
+This should feel like a premium conversion section, not just another paragraph block.
+
+======================================================================
+4. SERVICES PAGE GEO CROSS-SELL SECTION
+======================================================================
+
+On the main services page, add a strong GEO / AI Visibility promotional section.
+
+Reason:
+Visitors exploring services are high-intent and should be offered the GEO assessment clearly.
+
+Section title:
+Need Better Visibility, Not Just Better Infrastructure?
+
+Section copy:
+If your business depends on trust, search visibility, and inbound leads, your website may need more than technical support. Our GEO / AI Visibility assessment helps identify whether your content, structure, and service pages are strong enough to be understood by AI-driven search tools.
+
+CTA:
+Start Your GEO Assessment
+
+CTA URL:
+https://gsageo.vercel.app/
+
+Also add contextual GEO links or CTA buttons near relevant service areas if appropriate, especially around:
+- Microsoft 365 / support if relevant
+- automation/process clarity
+- compliance/trust-heavy businesses
+But do this tastefully.
+
+======================================================================
+5. REPEATED GEO CTA BLOCKS ON HIGH-INTENT PAGES
+======================================================================
+
+Add reusable GEO CTA blocks to the most relevant pages, such as:
+- homepage
+- services page
+- about page
+- process page
+- FAQ page
+- contact page
+- free IT cost analysis page
+- relevant service detail pages if they exist
+
+Use contextual variations in copy while keeping the same destination:
+https://gsageo.vercel.app/
+
+Example CTA headlines to rotate:
+- See How Your Website Looks to AI Search
+- Request a GEO / AI Visibility Assessment
+- Find Out Whether Your Site Is AI-Ready
+- Benchmark Your Local Visibility
+
+Each block should have:
+- short headline
+- 1–2 sentence explanation
+- one strong button
+- optional small support text like “No hype. Clear next steps.”
+
+Build this as a reusable component if the stack supports it cleanly.
+
+======================================================================
+6. NAVIGATION UPDATE
+======================================================================
+
+Add a clear navigation item for GEO.
+
+Preferred nav label:
+AI Visibility
+or
+GEO Assessment
+
+This nav item should be visually important.
+If the nav design allows, style it like a prominent CTA button rather than a plain text link.
+
+Destination:
+https://gsageo.vercel.app/
+
+Also consider adding the same link in any mobile menu in a highly visible position.
+
+======================================================================
+7. FOOTER CTA UPGRADE
+======================================================================
+
+Update the footer so it includes a strong GEO callout.
+
+Suggested footer heading:
+Want to Know How Visible Your Business Is in AI Search?
+
+Footer copy:
+Start with a GEO / AI Visibility assessment and get a clearer picture of how your website is positioned for AI-driven discovery.
+
+Footer CTA:
+Start Assessment
+
+Footer CTA URL:
+https://gsageo.vercel.app/
+
+======================================================================
+8. CONTACT PAGE / COST ANALYSIS PAGE CROSSOVER
+======================================================================
+
+On pages where users might currently request IT help or a cost analysis, add a clear branch for GEO.
+
+Examples:
+If you are trying to grow visibility and lead flow, start with our GEO / AI Visibility assessment instead.
+
+Add either:
+- a side-by-side choice block
+or
+- a high-visibility “Also looking for growth?” section
+
+The goal is to prevent growth/marketing-intent visitors from getting trapped in IT-only pathways.
+
+======================================================================
+9. COPY IMPROVEMENTS TO SUPPORT THE GEO PUSH
+======================================================================
+
+Without rewriting the whole site unnecessarily, add copy in strategic places that frames GEO as a major offer.
+
+Themes to introduce:
+- AI-driven search is changing how businesses are discovered
+- service businesses need clear, structured content
+- visibility now depends on more than traditional SEO
+- local businesses need to know how they appear in AI-generated answers
+
+Keep tone:
+- calm
+- credible
+- practical
+- local
+- not overhyped
+- not spammy
+- not overly technical
+
+Do not make GSally sound like a generic marketing agency.
+Keep the voice grounded and advisory.
+
+======================================================================
+10. VISUAL DESIGN REQUIREMENTS
+======================================================================
+
+This is a website design task, not just a content task.
+
+Make the GEO CTAs:
+- larger
+- higher contrast
+- visually stronger
+- cleanly spaced
+- premium in style
+- consistent with the rest of the site
+
+Use:
+- strong CTA buttons
+- premium cards
+- section contrast
+- good whitespace
+- mobile-first spacing
+- readable typography
+- subtle emphasis, not visual chaos
+
+I want the GEO offer to feel like a major initiative, not a small add-on.
+
+======================================================================
+11. MOBILE EXPERIENCE
+======================================================================
+
+The GEO CTA must be extremely clear on mobile.
+
+Make sure:
+- top announcement bar works well on small screens
+- hero CTA is obvious without scrolling too much
+- GEO nav item is visible in mobile menu
+- repeated CTA blocks stack nicely
+- buttons are large and tappable
+- no broken spacing or overflow
+
+======================================================================
+12. SEO / TECHNICAL / LINKING DETAILS
+======================================================================
+
+Where appropriate:
+- use descriptive anchor text
+- make external GEO links open in the correct way based on current site conventions
+- if external-link indicators are part of the design system, use them consistently
+- preserve semantic heading structure
+- do not damage page SEO by replacing core headings carelessly
+- keep IT-related relevance intact while elevating GEO
+
+If the site has sitewide metadata or structured navigation config, update it cleanly.
+
+======================================================================
+13. ANALYTICS / TRACKING FRIENDLINESS
+======================================================================
+
+If the project already uses tracking hooks, analytics attributes, or event naming patterns, wire the GEO CTAs into those patterns consistently.
+
+At minimum, make it easy later to identify clicks on:
+- top GEO announcement bar
+- homepage hero GEO CTA
+- homepage GEO section CTA
+- services page GEO CTA
+- footer GEO CTA
+- nav GEO CTA
+
+Do not introduce a giant analytics system if one does not exist. Just make the markup clean and tracking-friendly.
+
+======================================================================
+14. DO NOT
+======================================================================
+
+Do not:
+- clutter every section with too many buttons
+- make the site feel desperate or low-trust
+- remove important existing credibility content
+- break current forms or internal links
+- turn the whole homepage into a generic marketing landing page
+- add fake stats or fake testimonials
+- introduce unnecessary dependencies
+- create visual inconsistency with the existing brand
+- bury the GEO CTA low on the page
+
+======================================================================
+15. PRIORITY IMPLEMENTATION ORDER
+======================================================================
+
+Prioritize these changes first:
+1. top announcement bar
+2. homepage hero GEO CTA
+3. homepage GEO feature section
+4. nav GEO CTA
+5. services page GEO section
+6. footer GEO CTA
+7. reusable GEO CTA blocks on relevant pages
+
+======================================================================
+16. FINAL DELIVERABLE
+======================================================================
+
+After implementation, provide a concise report with:
+- files changed
+- components added
+- pages updated
+- where GEO CTAs were added
+- which CTA text variations were used
+- any assumptions made
+- anything still recommended for future improvement
+
+Then do a self-QA pass and confirm:
+- homepage GEO CTA is very obvious
+- services page pushes GEO clearly
+- nav includes GEO
+- footer includes GEO
+- mobile looks good
+- links go to https://gsageo.vercel.app/
+- the site feels more conversion-oriented toward GEO without looking messy

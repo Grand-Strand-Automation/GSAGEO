@@ -7,6 +7,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { GeoAnnouncementBar } from "@/components/GeoAnnouncementBar";
 
 import Home from "@/pages/Home";
 import About from "@/pages/About";
@@ -78,6 +79,7 @@ function Router() {
   return (
     <div className="flex flex-col min-h-screen">
       <ScrollRestoration />
+      <GeoAnnouncementBar />
       <SiteHeader />
       <main className="flex-grow">
         <Switch>

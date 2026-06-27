@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { CheckCircle2, Headset, Cloud, Wifi, Shield, Database, Zap, ArrowRight, LucideIcon } from "lucide-react";
 
+const GEO_URL = "https://gsageo.vercel.app/";
+
 const iconMap: Record<string, LucideIcon> = {
   headset: Headset,
   cloud: Cloud,
@@ -179,6 +181,53 @@ export default function Services() {
                 </li>
               ))}
             </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* GEO cross-sell */}
+      <section className="py-16 md:py-20 bg-[#F7F5F1]">
+        <div className="container mx-auto px-4 md:px-6 max-w-4xl">
+          <div className="bg-white border border-[#D7E1EA] rounded-2xl p-8 md:p-12 shadow-sm">
+            <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
+              <div className="flex-1 min-w-0">
+                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#4B5B6B] flex items-center gap-1.5 mb-4">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#1F5E95] inline-block" />
+                  GEO / AI Visibility
+                </span>
+                <h2 className="text-2xl md:text-3xl font-heading font-bold text-[#0E2F54] mb-3 leading-tight">
+                  Need Better Visibility, Not Just Better Infrastructure?
+                </h2>
+                <p className="text-[#4B5B6B] text-[15px] leading-relaxed mb-7">
+                  If your business depends on trust, search visibility, and inbound leads, your website may need more than technical support. Our GEO / AI Visibility assessment helps identify whether your content, structure, and service pages are strong enough to be understood by AI-driven search tools.
+                </p>
+                <a
+                  href={GEO_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-geo-cta="services-page"
+                  className="inline-flex items-center gap-2 bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-7 rounded-lg text-[15px] transition-colors"
+                >
+                  Start Your GEO Assessment <ArrowRight size={15} aria-hidden="true" />
+                </a>
+                <p className="text-xs text-[#9AAEBB] mt-3">No hype. Clear next steps.</p>
+              </div>
+              <div className="md:w-56 shrink-0 flex flex-col gap-3 md:pt-14">
+                {[
+                  "AI visibility review",
+                  "Content and structure gap analysis",
+                  "Practical next-step recommendations",
+                ].map((item) => (
+                  <div
+                    key={item}
+                    className="flex items-center gap-3 text-sm text-[#0E2F54] font-medium bg-[#F7F5F1] border border-[#D7E1EA] rounded-lg px-4 py-3"
+                  >
+                    <CheckCircle2 size={14} className="text-[#1F5E95] flex-shrink-0" aria-hidden="true" />
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>

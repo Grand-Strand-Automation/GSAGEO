@@ -10,12 +10,18 @@ import {
   Layers,
   ClipboardList,
   Minus,
+  Globe,
+  FileSearch,
+  Target,
 } from "lucide-react";
+
 import { content } from "@/lib/content";
 import { FAQ } from "@/components/FAQ";
 import { CTABand } from "@/components/CTABand";
 import { Button } from "@/components/ui/button";
 import { Helmet } from "react-helmet-async";
+
+const GEO_URL = "https://gsageo.vercel.app/";
 
 const clarityIcons = [BarChart2, Layers, ClipboardList];
 
@@ -114,6 +120,36 @@ export default function Home() {
               <Link href="/services">See Services</Link>
             </Button>
           </div>
+
+          {/* GEO highlight card */}
+          <a
+            href={GEO_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-geo-cta="hero-card"
+            className="mt-7 w-full max-w-xl group block bg-white/[0.06] border border-white/[0.12] hover:bg-white/[0.10] hover:border-white/[0.22] rounded-xl p-5 text-left transition-colors"
+            aria-label="AI Visibility / GEO Assessment — opens in new tab"
+          >
+            <div className="flex items-start gap-4">
+              <div className="w-9 h-9 bg-[#1F5E95]/50 border border-white/10 rounded-lg flex items-center justify-center shrink-0">
+                <Globe size={16} className="text-[#60B8F0]" aria-hidden="true" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center flex-wrap gap-x-2 gap-y-0.5 mb-1.5">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#60B8F0]">New</span>
+                  <span className="text-white/25 text-xs" aria-hidden="true">·</span>
+                  <span className="text-[10px] font-medium uppercase tracking-[0.10em] text-white/40">GEO / AI Visibility</span>
+                </div>
+                <p className="text-[15px] font-heading font-bold text-white leading-snug mb-1 group-hover:text-[#60B8F0] transition-colors">
+                  AI Visibility for local service businesses
+                </p>
+                <p className="text-sm text-white/50 leading-relaxed">
+                  See how clearly your business is positioned for ChatGPT, Google AI Overviews, and answer-driven search.
+                </p>
+              </div>
+              <ArrowRight size={15} className="text-white/25 group-hover:text-[#60B8F0] transition-colors shrink-0 mt-1" aria-hidden="true" />
+            </div>
+          </a>
         </div>
 
         {/* Trust strip */}
@@ -236,6 +272,68 @@ export default function Home() {
                 </Link>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── GEO Feature Section ─────────────────────────────────── */}
+      <section className="py-16 md:py-24 bg-[#0E2F54] text-white">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center mb-12">
+            <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/40 flex items-center justify-center gap-1.5 mb-4">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#60B8F0] inline-block" />
+              New offering
+            </span>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-white leading-tight mb-4">
+              Now Offering GEO / AI Visibility Assessments
+            </h2>
+            <p className="text-white/65 text-[15px] max-w-2xl mx-auto leading-relaxed">
+              Traditional websites can still underperform in AI-driven search if their content is unclear, thin, weakly structured, or missing the page types answer engines rely on. Our GEO assessment helps service businesses understand how visible and understandable their site is for AI-powered discovery.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto mb-12">
+            {[
+              {
+                Icon: Globe,
+                title: "AI Visibility Review",
+                body: "See how clearly your business is positioned for AI-generated search and recommendation engines — ChatGPT, Google AI Overviews, and more.",
+              },
+              {
+                Icon: FileSearch,
+                title: "Content & Structure Gaps",
+                body: "Identify weak service pages, missing FAQs, unclear positioning, and internal linking gaps that hurt how AI systems interpret your site.",
+              },
+              {
+                Icon: Target,
+                title: "Practical Next Steps",
+                body: "Get a clearer picture of what to improve first — structured priorities rather than vague marketing advice.",
+              },
+            ].map(({ Icon, title, body }) => (
+              <div
+                key={title}
+                className="bg-white/[0.05] border border-white/10 rounded-xl p-6 hover:bg-white/[0.08] transition-colors"
+              >
+                <div className="w-9 h-9 bg-white/10 rounded-lg flex items-center justify-center mb-5">
+                  <Icon size={17} className="text-[#60B8F0]" aria-hidden="true" />
+                </div>
+                <h3 className="text-[15px] font-heading font-bold text-white mb-2">{title}</h3>
+                <p className="text-sm text-white/55 leading-relaxed">{body}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <a
+              href={GEO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-geo-cta="homepage-geo-section"
+              className="inline-flex items-center gap-2 bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-8 rounded-lg text-[15px] transition-colors"
+            >
+              Request Your GEO Assessment <ArrowRight size={15} aria-hidden="true" />
+            </a>
+            <p className="text-sm text-white/30 mt-3">No hype. Clear next steps. Built for Myrtle Beach and Grand Strand service businesses.</p>
           </div>
         </div>
       </section>

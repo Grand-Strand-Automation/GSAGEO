@@ -72,7 +72,10 @@ export function SiteHeader() {
     }`;
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#0E2F54] border-b border-white/10">
+    <header
+      className="fixed left-0 right-0 z-50 bg-[#0E2F54] border-b border-white/10"
+      style={{ top: "var(--ann-h, 0px)" }}
+    >
       <div className="container mx-auto px-4 xl:px-6 flex items-center h-16 gap-4">
 
         <div className="flex-none">
@@ -154,6 +157,15 @@ export function SiteHeader() {
             </Link>
           ))}
 
+          <a
+            href={siteConfig.links.geoAssessment}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-geo-cta="nav-desktop"
+            className="inline-flex items-center gap-1.5 bg-[#60B8F0]/15 hover:bg-[#60B8F0]/25 border border-[#60B8F0]/30 hover:border-[#60B8F0]/50 text-[#60B8F0] hover:text-white rounded-lg px-3.5 h-9 text-sm font-semibold transition-colors whitespace-nowrap"
+          >
+            AI Visibility ↗
+          </a>
           <Button
             asChild
             size="sm"
@@ -276,7 +288,17 @@ export function SiteHeader() {
             )}
           </div>
 
-          <div className="pt-3 border-t border-white/10 mt-2">
+          <div className="pt-3 border-t border-white/10 mt-2 flex flex-col gap-2.5">
+            <a
+              href={siteConfig.links.geoAssessment}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-geo-cta="nav-mobile"
+              className="flex items-center justify-center gap-2 w-full bg-[#60B8F0]/15 hover:bg-[#60B8F0]/25 border border-[#60B8F0]/30 text-[#60B8F0] hover:text-white text-sm font-semibold h-11 rounded-lg transition-colors"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-[#60B8F0] shrink-0" aria-hidden="true" />
+              AI Visibility Assessment ↗
+            </a>
             <Button asChild className="w-full bg-[#1F5E95] hover:bg-[#1a5080] text-white text-sm h-11 rounded-lg font-semibold">
               <Link href={siteConfig.links.contactForm}>Schedule a Free Cost Analysis</Link>
             </Button>
