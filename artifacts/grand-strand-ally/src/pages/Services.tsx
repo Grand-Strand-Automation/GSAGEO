@@ -3,9 +3,8 @@ import { content } from "@/lib/content";
 import { CTABand } from "@/components/CTABand";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { CheckCircle2, Headset, Cloud, Wifi, Shield, Database, Zap, ArrowRight, LucideIcon } from "lucide-react";
-
-const GEO_URL = "https://gsageo.vercel.app/";
+import { CheckCircle2, Headset, Cloud, Wifi, Shield, Database, Zap, Sparkles, ArrowRight, LucideIcon } from "lucide-react";
+import { GEO_ASSESSMENT_URL } from "@/components/GeoCTABlock";
 
 const iconMap: Record<string, LucideIcon> = {
   headset: Headset,
@@ -29,17 +28,17 @@ export default function Services() {
   return (
     <div className="flex flex-col">
       <Helmet>
-        <title>Information Technology Services | Grand Strand Ally — Myrtle Beach, SC</title>
-        <meta name="description" content="Managed support, Microsoft 365 administration, cybersecurity, backup, and compliance-minded services for small and medium businesses in the Grand Strand area. Month-to-month, no long-term contracts." />
+        <title>Services | Grand Strand Ally — AI Visibility, IT Support &amp; Compliance, Myrtle Beach SC</title>
+        <meta name="description" content="AI Visibility Assessments, managed IT support, Microsoft 365 administration, cybersecurity, backup, and compliance-minded services for small and medium businesses in the Grand Strand. Month-to-month, no long-term contracts." />
         <link rel="canonical" href="https://gsally.com/services" />
-        <meta property="og:title" content="Information Technology Services | Grand Strand Ally — Myrtle Beach, SC" />
-        <meta property="og:description" content="Practical information technology services for small and medium businesses across the Grand Strand. Managed support, Microsoft 365, cybersecurity, and compliance-minded operations." />
+        <meta property="og:title" content="Services | Grand Strand Ally — AI Visibility, IT Support &amp; Compliance" />
+        <meta property="og:description" content="We help service businesses strengthen website clarity, AI visibility, and operational structure. Practical services for the Grand Strand area." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://gsally.com/services" />
         <meta property="og:site_name" content="Grand Strand Ally" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Information Technology Services | Grand Strand Ally — Myrtle Beach, SC" />
-        <meta name="twitter:description" content="Managed support, Microsoft 365, cybersecurity, backup, and compliance-minded services for small and medium businesses in the Grand Strand. Month-to-month, no contracts." />
+        <meta name="twitter:title" content="Services | Grand Strand Ally — AI Visibility, IT Support &amp; Compliance" />
+        <meta name="twitter:description" content="AI Visibility Assessments, managed IT support, Microsoft 365, cybersecurity, and compliance-minded services for small and medium businesses in the Grand Strand." />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@graph": [
@@ -53,7 +52,7 @@ export default function Services() {
             {
               "@type": "WebPage",
               "url": "https://gsally.com/services",
-              "name": "Information Technology Services — Grand Strand Ally",
+              "name": "Services — Grand Strand Ally",
               "isPartOf": { "@id": "https://gsally.com/#website" },
               "provider": { "@id": "https://gsally.com/#organization" }
             }
@@ -61,7 +60,7 @@ export default function Services() {
         })}</script>
       </Helmet>
 
-      {/* Hero */}
+      {/* ── Hero ─────────────────────────────────────────────────── */}
       <section className="bg-[#0E2F54] text-white pt-28 pb-16 md:pt-36 md:pb-20 relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.04]"
@@ -74,41 +73,95 @@ export default function Services() {
         <div className="container mx-auto px-4 md:px-6 text-center max-w-3xl relative z-10">
           <div className="inline-flex items-center gap-2 border border-white/15 rounded-full px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-white/60 mb-7 bg-white/5">
             <span className="w-1.5 h-1.5 rounded-full bg-[#60B8F0] inline-block" />
-            What we offer
+            Services
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-heading font-extrabold mb-5 leading-[1.05]">
-            Information technology services built to reduce complexity and improve control.
+            Services that support clearer visibility, stronger structure, and more practical operations.
           </h1>
           <p className="text-lg text-white/65 leading-relaxed max-w-2xl mx-auto mb-8">
-            We start by understanding your current environment, then simplify support, consolidate tools, and strengthen compliance-minded operations.
+            We help service businesses strengthen how clearly they are understood — by customers, by search systems, and increasingly by AI-driven answer engines. That includes AI visibility assessments, clearer service structure, stronger trust content, and the practical systems support needed to keep operations clean and manageable.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button asChild className="bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-7 text-[15px] rounded-lg border-0">
-              <Link href="/contact#contact-form">Schedule a Free Cost Analysis →</Link>
-            </Button>
+            <a
+              href={GEO_ASSESSMENT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-geo-cta="services-hero"
+              className="inline-flex items-center justify-center gap-2 bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-7 text-[15px] rounded-lg transition-colors"
+            >
+              Start Your Assessment <ArrowRight size={15} aria-hidden="true" />
+            </a>
             <Button asChild variant="outline" className="border-white/25 text-white hover:bg-white/8 hover:text-white h-12 px-7 text-[15px] bg-transparent rounded-lg">
-              <Link href="/pricing">View Pricing</Link>
+              <Link href="/contact#contact-form">Schedule a Free Cost Analysis</Link>
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Short intro */}
+      {/* ── Short intro ──────────────────────────────────────────── */}
       <section className="py-10 md:py-14 bg-white border-b border-[#D7E1EA]">
         <div className="container mx-auto px-4 md:px-6 max-w-3xl text-center">
           <h2 className="text-xl md:text-2xl font-heading font-bold text-[#0E2F54] mb-3">
-            Support that starts with clarity, not a new sales pitch.
+            Support that starts with clarity — not hype, not complexity, and not a generic bundle of services.
           </h2>
           <p className="text-[#4B5B6B] leading-relaxed text-[15px]">
-            We review your current environment first — tools, costs, vendors, and gaps. Then we simplify what makes sense, strengthen what is weak, and automate what is repetitive.
+            We begin by identifying what is unclear, what is underperforming, and what needs to be strengthened across visibility, structure, support, and day-to-day operations.
           </p>
         </div>
       </section>
 
-      {/* Service cards */}
+      {/* ── Service offerings ────────────────────────────────────── */}
       <section className="py-16 md:py-24 bg-[#F7F5F1]">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-5xl mx-auto">
+        <div className="container mx-auto px-4 md:px-6 max-w-5xl">
+
+          {/* GEO / AI Visibility — featured signature offer */}
+          <div className="bg-[#0E2F54] text-white rounded-2xl p-7 md:p-10 mb-6 shadow-sm" data-testid="service-card-geo">
+            <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2.5 mb-4">
+                  <div className="w-9 h-9 bg-white/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Sparkles size={16} className="text-[#60B8F0]" aria-hidden="true" />
+                  </div>
+                  <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/45">Signature offer</span>
+                </div>
+                <h3 className="text-xl md:text-2xl font-heading font-bold text-white mb-3 leading-snug">
+                  AI Visibility / GEO Assessment
+                </h3>
+                <p className="text-white/65 text-[15px] leading-relaxed mb-6">
+                  A practical review of how clearly your website is positioned for ChatGPT, Google AI Overviews, and answer-driven search. We look at service-page clarity, FAQ coverage, trust signals, internal linking, and structural gaps that affect how AI systems understand your business.
+                </p>
+                <a
+                  href={GEO_ASSESSMENT_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-geo-cta="services-featured-card"
+                  className="inline-flex items-center gap-2 bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-11 px-6 rounded-lg text-[14px] transition-colors"
+                >
+                  Start Your Assessment <ArrowRight size={14} aria-hidden="true" />
+                </a>
+                <p className="text-xs text-white/35 mt-3">No hype. Clear next steps.</p>
+              </div>
+              <div className="md:w-52 shrink-0 flex flex-col gap-2.5">
+                {[
+                  "Service page clarity review",
+                  "FAQ and trust content gaps",
+                  "Internal linking and content structure",
+                  "Practical next-step recommendations",
+                ].map((item) => (
+                  <div
+                    key={item}
+                    className="flex items-center gap-2.5 text-sm text-white/75 font-medium bg-white/[0.06] border border-white/10 rounded-lg px-4 py-2.5"
+                  >
+                    <CheckCircle2 size={13} className="text-[#60B8F0] flex-shrink-0" aria-hidden="true" />
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Supporting IT / operational services */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {content.services.map((svc) => {
               const Icon = iconMap[svc.icon] || Zap;
               return (
@@ -150,7 +203,7 @@ export default function Services() {
         </div>
       </section>
 
-      {/* Outcomes */}
+      {/* ── Outcomes ─────────────────────────────────────────────── */}
       <section className="py-16 md:py-20 bg-[#0A2440] text-white">
         <div className="container mx-auto px-4 md:px-6 max-w-4xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
@@ -160,19 +213,19 @@ export default function Services() {
                 Outcomes
               </span>
               <h2 className="text-2xl md:text-3xl font-heading font-bold text-white mb-4">
-                What clients gain.
+                What businesses gain.
               </h2>
               <p className="text-sm text-white/55 leading-relaxed">
-                After a cost analysis and engagement, most clients have a clearer view of what they are paying for, fewer overlapping tools, and stronger information technology processes.
+                After a review and engagement, most businesses leave with a clearer picture of what is working, what is under-structured, and what needs to improve first — across visibility, service clarity, internal systems, and ongoing support.
               </p>
             </div>
             <ul className="space-y-3 pt-2 md:pt-12">
               {[
-                "Clearer understanding of current information technology spend",
-                "Fewer overlapping tools and subscriptions",
-                "Simpler support model with clear ownership",
-                "Cleaner Microsoft 365 administration",
-                "Stronger onboarding and offboarding controls",
+                "Clearer service and website structure",
+                "Better visibility into what is weak or underdeveloped",
+                "Fewer overlapping tools and cleaner vendor ownership",
+                "Stronger trust signals and process clarity",
+                "More practical next steps across systems and site content",
                 "Better support for compliance-conscious operations",
               ].map((item, i) => (
                 <li key={i} className="flex items-center gap-3 text-sm text-white/75 font-medium">
@@ -185,7 +238,7 @@ export default function Services() {
         </div>
       </section>
 
-      {/* GEO cross-sell */}
+      {/* ── GEO cross-sell ───────────────────────────────────────── */}
       <section className="py-16 md:py-20 bg-[#F7F5F1]">
         <div className="container mx-auto px-4 md:px-6 max-w-4xl">
           <div className="bg-white border border-[#D7E1EA] rounded-2xl p-8 md:p-12 shadow-sm">
@@ -196,19 +249,19 @@ export default function Services() {
                   GEO / AI Visibility
                 </span>
                 <h2 className="text-2xl md:text-3xl font-heading font-bold text-[#0E2F54] mb-3 leading-tight">
-                  Need Better Visibility, Not Just Better Infrastructure?
+                  Need better visibility, not just better infrastructure?
                 </h2>
                 <p className="text-[#4B5B6B] text-[15px] leading-relaxed mb-7">
-                  If your business depends on trust, search visibility, and inbound leads, your website may need more than technical support. Our GEO / AI Visibility assessment helps identify whether your content, structure, and service pages are strong enough to be understood by AI-driven search tools.
+                  If your business depends on trust, search visibility, and inbound leads, your website may need more than operational support. Our AI Visibility assessment helps identify whether your service pages, FAQs, trust signals, and content structure are strong enough to support AI-driven discovery.
                 </p>
                 <a
-                  href={GEO_URL}
+                  href={GEO_ASSESSMENT_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  data-geo-cta="services-page"
+                  data-geo-cta="services-cross-sell"
                   className="inline-flex items-center gap-2 bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-7 rounded-lg text-[15px] transition-colors"
                 >
-                  Start Your GEO Assessment <ArrowRight size={15} aria-hidden="true" />
+                  Start Your Assessment <ArrowRight size={15} aria-hidden="true" />
                 </a>
                 <p className="text-xs text-[#9AAEBB] mt-3">No hype. Clear next steps.</p>
               </div>
@@ -232,7 +285,7 @@ export default function Services() {
         </div>
       </section>
 
-      {/* Related reading */}
+      {/* ── Related reading ──────────────────────────────────────── */}
       <section className="py-14 bg-[#F7F5F1]">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <div className="mb-7">
@@ -243,6 +296,9 @@ export default function Services() {
             <h2 className="text-2xl font-heading font-bold text-[#0E2F54]">
               Common questions before getting started.
             </h2>
+            <p className="text-sm text-[#4B5B6B] mt-2 leading-relaxed max-w-xl">
+              Some businesses come to us for systems clarity. Others need a better understanding of how their website appears in AI-driven search. We help identify what is weak, what is unclear, and what to prioritize first.
+            </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {[
@@ -277,12 +333,13 @@ export default function Services() {
         </div>
       </section>
 
+      {/* ── Final CTA ────────────────────────────────────────────── */}
       <CTABand
-        title="Not sure which service comes first?"
-        subtitle="Start with a free cost analysis. We review your current environment, identify overlap and friction, and help prioritize practical next steps."
+        title="Not sure where to start?"
+        subtitle="If your main concern is website clarity and AI visibility, start with the GEO assessment. If you need operational support, tool consolidation, or IT cost clarity, the free cost analysis is the right first step."
         buttons={[
-          { label: "Schedule a Free Cost Analysis", href: "/contact#contact-form", primary: true },
-          { label: "View Case Studies", href: "/case-studies", primary: false },
+          { label: "Start Your Assessment", href: GEO_ASSESSMENT_URL, primary: true, external: true },
+          { label: "Schedule a Free Cost Analysis", href: "/contact#contact-form", primary: false },
         ]}
       />
     </div>

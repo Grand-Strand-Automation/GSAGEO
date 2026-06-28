@@ -1,0 +1,288 @@
+I need you to rewrite the GSally Services page copy block by block inside this Replit project so it matches the newer homepage messaging and supports a GEO / AI Visibility-led positioning.
+
+Important:
+- Do the work in code now.
+- Do not just suggest ideas.
+- Inspect the current Services page implementation first and identify:
+  - the page structure
+  - hero copy
+  - intro copy
+  - service category blocks
+  - section headings
+  - CTA labels
+  - support text
+  - any reusable content/config patterns
+- Then rewrite the Services page copy directly in the codebase.
+- Preserve the current layout, visual polish, responsiveness, and general page structure unless a very small structural adjustment is needed to support a clearer message hierarchy.
+- Do not break routes, service links, buttons, forms, or mobile behavior.
+
+Goal:
+Make the Services page feel consistent with the homepage so the site reads as:
+1. a GEO / AI Visibility-led business for service companies,
+2. supported by practical IT, operational, compliance, and systems credibility,
+3. not like a generic MSP site with a random GEO add-on.
+
+Core problem to solve:
+Right now, the homepage is moving toward GEO-first messaging, but the Services page likely still reads more like a classic IT support / Microsoft 365 / infrastructure services page.
+That creates message drift.
+I need the Services page to reinforce the same strategic hierarchy as the homepage:
+- first: AI visibility / website clarity / service-business visibility support
+- second: supporting systems, IT, compliance, and operational clarity
+- third: older service categories as supporting capabilities, not the dominant identity
+
+Voice requirements:
+- calm
+- practical
+- premium
+- trustworthy
+- local
+- consultative
+- no hype
+- no generic agency fluff
+- no exaggerated promises
+- no cheesy SEO language
+
+Messaging principle:
+Most visitors still do not know what “GEO” means.
+
+So throughout the Services page:
+- lead with plain-English outcomes
+- use “AI Visibility” and “AI-driven search” in understandable language
+- make GEO feel like a real business service, not jargon
+- preserve operational credibility without letting it overpower the GEO story
+
+Examples of acceptable framing:
+- Help your business become easier for AI search tools to understand
+- Improve service-page clarity, FAQ coverage, trust signals, and structure
+- Support stronger visibility, clearer messaging, and better business systems
+- Practical next steps, not vague marketing advice
+
+Do NOT use language like:
+- dominate AI search
+- crush competitors
+- explosive visibility
+- guaranteed rankings
+- growth hacking
+- full-funnel domination
+
+Canonical GEO destination:
+First inspect the project and preserve the current single source of truth for GEO CTA links.
+If no single source exists, create one clean constant/config value and use it for all GEO CTAs on the Services page.
+Default to https://geo.vercel.app/ only if that is clearly the intended live destination.
+
+========================================================
+SERVICES PAGE COPY REWRITE — BLOCK BY BLOCK
+========================================================
+
+I want you to rewrite the Services page one block at a time.
+
+1. PAGE TITLE / HERO HEADING
+If the Services page currently opens with a generic “What we offer” or traditional IT services framing, rewrite it so it better matches the homepage.
+
+Preferred heading direction:
+Services that support clearer visibility, stronger structure, and more practical operations
+
+Alternative:
+Services for businesses that need stronger AI visibility and cleaner operational support
+
+This heading should make the page feel broader than just “IT support,” but still grounded and credible.
+
+2. HERO INTRO / SUPPORT COPY
+Rewrite the intro so the Services page supports the GEO-first positioning.
+
+Preferred direction:
+We help service businesses strengthen how clearly they are understood — by customers, by search systems, and increasingly by AI-driven answer engines. That includes AI visibility assessments, clearer service structure, stronger trust content, and the practical systems support needed to keep operations clean and manageable.
+
+Alternative version if needed for line length:
+We help service businesses improve website clarity, strengthen trust signals, simplify systems, and identify the visibility gaps that affect both discovery and operations.
+
+This copy should act as the bridge between GEO and the broader support offerings.
+
+3. PRIMARY SERVICES INTRO BLOCK
+If the page currently uses “Support that starts with clarity, not a new sales pitch” or similar wording, refine it so it fits the new hierarchy.
+
+Preferred direction:
+Support that starts with clarity — not hype, not complexity, and not a generic bundle of services. We begin by identifying what is unclear, what is underperforming, and what needs to be strengthened across visibility, structure, support, and day-to-day operations.
+
+This should sound like a practical advisory model, not a sales funnel.
+
+4. GEO / AI VISIBILITY SERVICE BLOCK
+If the Services page does not currently make GEO prominent enough, add or elevate a GEO / AI Visibility service block near the top of the Services list.
+
+Preferred service title:
+AI Visibility / GEO Assessment
+
+Preferred service description:
+A practical review of how clearly your website is positioned for ChatGPT, Google AI Overviews, and answer-driven search. We look at service-page clarity, FAQ coverage, trust signals, internal linking, and structural gaps that affect how AI systems understand your business.
+
+Suggested supporting bullets:
+- Service page clarity review
+- FAQ and trust content gaps
+- Internal linking and content structure
+- Practical next-step recommendations
+
+CTA:
+Start Your Assessment
+
+This service block should feel like the lead or signature offer, not a buried extra.
+
+5. EXISTING IT / SUPPORT SERVICE BLOCKS
+For the rest of the services, keep them honest and useful, but rewrite them so they support the GEO-led story rather than competing with it.
+
+This means:
+- keep legitimate service categories
+- do not pretend IT support is actually GEO
+- reframe them as helping businesses become clearer, more reliable, better structured, and easier to operate
+
+Examples of how to frame existing services:
+- Managed IT Support → operational reliability and cleaner ownership
+- Microsoft 365 Support → cleaner administration, user management, and workflow clarity
+- Security / compliance support → trust, documentation, access control, and operational discipline
+- Backup / recovery → resilience and continuity
+- onboarding/offboarding automation → cleaner workflows and reduced risk
+
+Rewrite each service block so it sounds like a supporting business capability, not the main identity of the company.
+
+6. SERVICE BLOCK TITLES AND SUBTEXT
+Review all major service cards or rows.
+
+Tighten titles and subcopy where needed so they:
+- sound more premium
+- feel more consultative
+- avoid overly generic MSP wording
+- align with the new homepage tone
+
+Do not over-brand everything as GEO.
+Instead, make the page sound like:
+“Here are the practical services that support business clarity, trust, structure, visibility, and ongoing operations.”
+
+7. OUTCOMES / BENEFITS SECTION
+If the Services page includes an “Outcomes” or “What clients gain” section, rewrite it to better reflect the new positioning.
+
+Preferred section title:
+What businesses gain
+
+Preferred direction:
+After a review and engagement, most businesses leave with a clearer picture of what is working, what is under-structured, and what needs to improve first — across visibility, service clarity, internal systems, and ongoing support.
+
+Suggested bullets:
+- clearer service and website structure
+- better visibility into what is weak or underdeveloped
+- fewer overlapping tools and cleaner ownership
+- stronger trust and process clarity
+- more practical next steps across systems and site content
+- better support for compliance-conscious operations
+
+This should connect visibility and operational clarity into one coherent story.
+
+8. GEO CROSS-SELL / BRANCHING SECTION
+If the Services page currently lacks a strong GEO cross-sell, add or strengthen a dedicated section.
+
+Preferred section title:
+Need better visibility, not just better infrastructure?
+
+Preferred copy:
+If your business depends on trust, search visibility, and inbound leads, your website may need more than operational support. Our AI Visibility assessment helps identify whether your service pages, FAQs, trust signals, and content structure are strong enough to support AI-driven discovery.
+
+CTA:
+Start Your GEO Assessment
+
+Support line:
+No hype. Clear next steps.
+
+This section should make it extremely obvious where a growth/visibility-intent visitor should go next.
+
+9. CTA COPY ACROSS THE PAGE
+Audit and rewrite CTA labels so they align with the homepage.
+
+Preferred GEO CTA labels:
+- Start Your Assessment
+- Request Your GEO Assessment
+- See How Your Website Looks to AI Search
+
+Preferred non-GEO CTA labels:
+- Explore Support Services
+- Learn More
+- See Service Details
+
+Make sure the page does not use overly generic or conflicting CTA language.
+
+10. TRUST / CONSULTATIVE FRAMING
+Where the Services page references approach, support style, or relationship model, refine it so it sounds like:
+- practical
+- structured
+- consultative
+- local
+- month-to-month where applicable
+- low-drama and no-hype
+
+Keep or strengthen tone like:
+- no unnecessary complexity
+- clear ownership
+- practical next steps
+- cleaner structure
+- built for real businesses, not bloated retainers
+
+11. FAQ / RESOURCE / LOWER-PAGE SUPPORT COPY
+If the Services page includes a guides/resources area or lower-page support section, rewrite it so it supports the GEO-first direction.
+
+Example direction:
+Some businesses come to us for systems clarity. Others need a better understanding of how their website appears in AI-driven search. We help identify what is weak, what is unclear, and what to prioritize first.
+
+If there is a final CTA area, make sure the GEO path is the most compelling option.
+
+12. FINAL SERVICES PAGE CTA
+If the page ends with a general CTA, rewrite it so the page ends with a clearer choice.
+
+Suggested direction:
+If your business needs stronger website clarity and better AI visibility, start with the GEO / AI Visibility assessment.
+If your main concern is operational support, tool sprawl, Microsoft 365 administration, or IT cost clarity, explore the broader service options.
+
+This section should help route the right buyer to the right path without making the site feel confused.
+
+========================================================
+COPY CONSISTENCY RULES
+========================================================
+
+As you rewrite:
+- keep the tone aligned with the updated homepage
+- reduce pure MSP-style wording where possible
+- make section transitions feel more intentional
+- preserve the calm local-business credibility
+- remove phrases that make the page feel like it belongs to a separate business from the homepage
+- keep plain-English framing first and GEO terminology second
+
+========================================================
+DO NOT
+========================================================
+
+Do not:
+- redesign the whole Services page unless a very small structural adjustment is necessary
+- delete legitimate service offerings
+- remove operational credibility
+- turn every block into GEO jargon
+- make the page sound like a generic digital marketing agency
+- add fake proof or fake claims
+- add hypey SEO language
+- leave conflicting GEO URLs in the codebase
+- make the Services page feel disconnected from the homepage
+
+========================================================
+FINAL REPORT REQUIRED
+========================================================
+
+After rewriting the Services page copy, provide a concise report with:
+- files changed
+- which Services page blocks were rewritten
+- whether a GEO service block was added or elevated
+- which CTA labels were updated
+- how the Services page now better matches the homepage messaging
+- any assumptions made
+- any recommended phase 2 copy improvements
+
+Then do a self-QA pass and confirm:
+- the Services page now feels more aligned with the homepage
+- GEO / AI Visibility is clearer and more visible
+- legacy IT services now support rather than overpower the new positioning
+- the tone still feels calm, practical, and credible
+- CTA paths are clearer for both GEO-intent and IT-support-intent visitors

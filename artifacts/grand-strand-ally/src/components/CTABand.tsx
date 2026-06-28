@@ -8,7 +8,7 @@ export function CTABand({
 }: {
   title: string;
   subtitle?: string;
-  buttons?: { label: string; href: string; primary?: boolean }[];
+  buttons?: { label: string; href: string; primary?: boolean; external?: boolean }[];
 }) {
   return (
     <section className="py-24 md:py-32 bg-[#0E2F54] text-white text-center relative overflow-hidden">
@@ -40,7 +40,11 @@ export function CTABand({
                 }
                 data-testid={`cta-button-${i}`}
               >
-                <Link href={btn.href}>{btn.label}{btn.primary ? " →" : ""}</Link>
+                {btn.external ? (
+                  <a href={btn.href} target="_blank" rel="noopener noreferrer">{btn.label}{btn.primary ? " →" : ""}</a>
+                ) : (
+                  <Link href={btn.href}>{btn.label}{btn.primary ? " →" : ""}</Link>
+                )}
               </Button>
             ))}
           </div>
