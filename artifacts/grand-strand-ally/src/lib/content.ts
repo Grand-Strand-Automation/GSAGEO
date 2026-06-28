@@ -1,60 +1,62 @@
 export const content = {
   hero: {
-    headline: "Find Out How Your Business Shows Up in AI Search.",
-    subheadline: "Customers increasingly discover service providers through ChatGPT, Google AI Overviews, and answer-driven search. Our GEO / AI Visibility Assessment helps you understand whether your website is clear, structured, and trustworthy enough to be recommended.",
-    primaryButton: "Start Your GEO Assessment",
+    headline: "Find Out How Your Business Looks to AI Search.",
+    subheadline: "Customers are increasingly discovering service providers through ChatGPT, Google AI Overviews, and other answer-driven search tools. Our GEO / AI Visibility Assessment helps you see whether your website is clear, trustworthy, and structured well enough to be understood and recommended.",
+    primaryButton: "Start Your Assessment",
     secondaryButton: "Explore IT & Advisory Services",
   },
   problems: {
-    heading: "Common areas where businesses seek clarity.",
+    heading: "Where businesses often lose clarity.",
     cards: [
       {
-        title: "Limited visibility into current information technology costs",
-        description: "Monthly spending across support, software, security, and subscriptions can become difficult to track — especially when multiple vendors are involved and individual line items are unclear.",
+        title: "Unclear service pages and thin website content",
+        description: "When service pages are vague, incomplete, or hard to navigate, both visitors and AI search tools have difficulty understanding what the business does — and who it actually serves.",
       },
       {
-        title: "Overlapping tools and fragmented vendor ownership",
-        description: "Many environments carry redundant tools for backup, email security, endpoint protection, or user management that overlap without meaningfully improving outcomes or reducing cost.",
+        title: "Missing trust signals and FAQ coverage",
+        description: "AI-driven search systems look for clear FAQ pages, consistent trust cues, and well-structured service descriptions. When these are absent or weak, a business can be passed over in favor of better-structured competitors.",
       },
       {
-        title: "Inconsistent processes and compliance-minded controls",
-        description: "Onboarding, offboarding, access management, and documentation often develop inconsistently over time, creating operational complexity and potential compliance exposure.",
+        title: "Fragmented systems and unclear operational structure",
+        description: "Over time, tools, vendors, and internal processes accumulate without clear ownership — making the business harder to manage, harder to document, and harder to present confidently to new customers.",
       },
     ],
   },
   coreSystems: [
     {
       id: "cost",
-      name: "Cost and Vendor Analysis",
-      problem: "Many environments carry multiple subscriptions, unclear spend lines, and tool overlap that is difficult to see from within.",
-      solution: "We review current spending, identify redundant tools and vendors, and help build a simpler and more cost-effective support model.",
+      name: "IT Cost Clarity and Vendor Review",
+      problem: "Many businesses carry unclear spend lines, redundant tools, and vendor overlap that is difficult to see from within — adding cost without improving outcomes.",
+      solution: "We review current spending, identify redundant tools and vendors, and help build a simpler, more cost-effective support model with clearer ownership across the stack.",
     },
     {
       id: "support",
-      name: "Information Technology Support and Microsoft 365",
-      problem: "Support coverage and Microsoft 365 administration are often inconsistent, over-provisioned, or unclear in scope and ownership.",
-      solution: "Predictable monthly support with right-sized Microsoft 365 licensing and cleaner administrative controls.",
+      name: "Technology Support and Administration",
+      problem: "Support coverage and Microsoft 365 administration are often inconsistent, over-provisioned, or unclear in scope — creating gaps in ownership and accountability.",
+      solution: "Predictable monthly support with right-sized licensing, cleaner administrative controls, and documented ownership so there are no surprises when something needs attention.",
     },
     {
       id: "compliance",
-      name: "Compliance, Security, and User Lifecycle Management",
-      problem: "Access management, onboarding and offboarding, and compliance documentation often develop without consistent standards.",
-      solution: "Practical security controls and consistent user lifecycle processes built for compliance-conscious teams.",
+      name: "Compliance, Security, and Operational Structure",
+      problem: "Access management, onboarding and offboarding processes, and compliance documentation often develop without consistent standards — creating operational complexity and potential exposure over time.",
+      solution: "Practical security controls and consistent user lifecycle processes built for compliance-conscious teams that want cleaner, more defensible operations.",
     },
   ],
   whoWeHelp: {
-    heading: "A good fit for growing businesses.",
+    heading: "A good fit for service businesses ready to get clearer.",
     goodFit: [
-      "Small and medium businesses with multiple information technology vendors",
-      "Teams seeking better visibility into current costs and vendor structure",
-      "Microsoft 365 environments that would benefit from improved administration",
-      "Organizations looking to improve onboarding and offboarding processes",
-      "Compliance-conscious teams that want stronger operational controls",
+      "Service businesses that rely on inbound inquiries, local reputation, and trust",
+      "Companies with thin, vague, or unclear service pages that may underperform in AI-driven search",
+      "Teams that want to understand their AI visibility gaps before investing further in marketing",
+      "Businesses with multiple service areas that need clearer website structure and positioning",
+      "Compliance-conscious or trust-dependent organizations with operational complexity",
+      "Small and medium businesses looking to simplify their IT vendor structure and reduce unnecessary costs",
     ],
     probablyNot: [
-      "Very small teams with minimal recurring information technology infrastructure",
-      "Organizations looking only for one-time project support",
-      "Businesses not yet ready to review current tools or spending",
+      "Brand-new businesses with no established services, content, or website presence",
+      "Organizations expecting guaranteed search rankings or instant results",
+      "Teams unwilling to review or improve existing site content and service page clarity",
+      "Very small setups with minimal infrastructure and no near-term growth intent",
     ],
   },
   howWeWork: {
@@ -63,17 +65,17 @@ export const content = {
       {
         step: "01",
         title: "Review",
-        desc: "Understand your current tools, vendors, Microsoft 365 setup, and support structure",
+        desc: "Understand your current site, systems, tools, vendors, and visibility gaps",
       },
       {
         step: "02",
         title: "Identify",
-        desc: "Identify opportunities to simplify, consolidate, and strengthen controls",
+        desc: "Identify the clearest structural, content, and operational opportunities",
       },
       {
         step: "03",
         title: "Strengthen",
-        desc: "Improve support coverage, security baseline, and compliance-minded processes",
+        desc: "Strengthen the pages, trust signals, and workflows that affect clarity most",
       },
       {
         step: "04",
@@ -86,16 +88,16 @@ export const content = {
     heading: "Why businesses choose Grand Strand Ally.",
     cards: [
       {
-        title: "Improved cost visibility",
-        description: "We help clients understand what they are paying for, where tools overlap, and how to build a simpler and more predictable support model.",
+        title: "Clearer picture of what is working",
+        description: "We help clients understand how their website, systems, and vendor structure appear from the outside — and where gaps are affecting clarity, trust, and discoverability.",
       },
       {
-        title: "Simplified vendor structure",
-        description: "We look for redundant subscriptions, overlapping security layers, and vendor sprawl that adds cost without meaningfully improving outcomes.",
+        title: "Simpler systems and cleaner structure",
+        description: "We look for redundant tools, unclear vendor relationships, and structural complexity that adds cost or confusion without meaningfully improving outcomes.",
       },
       {
-        title: "Compliance-minded support",
-        description: "We build support, access management, onboarding and offboarding, and documentation with compliance in mind — practical, cleaner, and easier to maintain.",
+        title: "Practical, compliance-minded recommendations",
+        description: "We approach access management, documentation, and user lifecycle processes with compliance in mind — practical, cleaner, and easier to maintain over time.",
       },
       {
         title: "Month-to-month flexibility",
@@ -114,17 +116,17 @@ export const content = {
     "Compliance-minded process gaps",
   ],
   finalCta: {
-    headline: "Bring more clarity to your information technology costs and support structure.",
-    copy: "A free cost analysis is a structured first step — no obligation, no pressure, just a clear view of your current tools, costs, and areas for practical improvement.",
+    headline: "Want to know how clearly your business is positioned for AI search?",
+    copy: "Start with the GEO / AI Visibility Assessment and get practical next steps — no hype, no obligation. For IT cost clarity, the free cost analysis is also available as a separate path.",
   },
   faq: [
     {
-      question: "What does a free cost analysis involve?",
-      answer: "A structured review of your current information technology environment — tools, vendors, Microsoft 365 setup, security layers, and support model. The goal is to help you understand what you are paying for and identify practical opportunities to simplify.",
+      question: "What does the GEO / AI Visibility Assessment include?",
+      answer: "A structured review of how your website is positioned for AI-driven search — covering service page clarity, FAQ and trust content, internal linking, AI visibility gaps, and practical next-step recommendations. You receive a focused written report with prioritized actions.",
     },
     {
-      question: "Can you review what we are currently paying for?",
-      answer: "Yes. Improving visibility into current spend is one of the primary goals. We identify where tools overlap, where licensing may be over-provisioned, and where consolidation could reduce cost without weakening support.",
+      question: "What does a free IT cost analysis involve?",
+      answer: "A structured review of your current information technology environment — tools, vendors, Microsoft 365 setup, security layers, and support model. The goal is to help you understand what you are paying for and identify practical opportunities to simplify.",
     },
     {
       question: "Can you help us consolidate overlapping tools?",

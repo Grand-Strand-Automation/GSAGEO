@@ -47,7 +47,7 @@ export function GeoAnnouncementBar() {
               <span className="w-1.5 h-1.5 rounded-full bg-[#60B8F0] inline-block shrink-0" />
               <span className="font-bold text-white text-[11px] sm:text-xs uppercase tracking-[0.12em]">New</span>
             </span>
-            AI Visibility / GEO Assessments for Myrtle Beach and Grand Strand service businesses
+            Now offering AI Visibility Assessments for Myrtle Beach and Grand Strand service businesses
           </p>
           <a
             href={GEO_ASSESSMENT_URL}
@@ -56,7 +56,7 @@ export function GeoAnnouncementBar() {
             data-geo-cta="announcement-bar"
             className="inline-flex items-center gap-1.5 bg-white/15 hover:bg-white/25 border border-white/25 rounded-md px-3 py-1 text-xs sm:text-sm font-semibold text-white whitespace-nowrap transition-colors shrink-0"
           >
-            Start Your GEO Assessment <ArrowRight size={11} aria-hidden="true" />
+            Start Your Assessment <ArrowRight size={11} aria-hidden="true" />
           </a>
         </div>
         <button

@@ -111,7 +111,7 @@ export default function Home() {
               data-geo-cta="hero-primary-cta"
               className="inline-flex items-center justify-center gap-2 bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-7 text-[15px] rounded-lg transition-colors"
             >
-              Start Your GEO Assessment <ArrowRight size={15} aria-hidden="true" />
+              Start Your Assessment <ArrowRight size={15} aria-hidden="true" />
             </a>
             <Button
               asChild
@@ -121,6 +121,15 @@ export default function Home() {
             >
               <Link href="/services">Explore IT &amp; Advisory Services</Link>
             </Button>
+          </div>
+
+          <div className="flex items-center justify-center gap-3 mt-5 flex-wrap">
+            {["Practical review", "Clear deliverables", "No hype"].map((chip) => (
+              <span key={chip} className="inline-flex items-center gap-1.5 text-[11px] font-medium text-white/45 border border-white/15 rounded-full px-3.5 py-1">
+                <span className="w-1 h-1 rounded-full bg-[#60B8F0] shrink-0" />
+                {chip}
+              </span>
+            ))}
           </div>
 
         </div>
@@ -153,10 +162,10 @@ export default function Home() {
               GEO / AI Visibility Assessment
             </span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-white leading-tight mb-4">
-              What the Assessment Reviews
+              What the GEO / AI Visibility Assessment Reviews
             </h2>
             <p className="text-white/65 text-[15px] max-w-2xl mx-auto leading-relaxed">
-              Many websites look fine at a glance but may not be clearly understood by AI-driven search systems. The assessment reviews your site across five areas that directly affect whether AI tools can find, understand, and recommend you.
+              Many business websites look fine at a glance but may not be clearly understood by AI-driven search systems. This assessment helps show whether your services, trust signals, structure, and content are strong enough to support visibility in answer-driven search.
             </p>
           </div>
 
@@ -253,10 +262,10 @@ export default function Home() {
           <div className="text-center mb-10">
             <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#4B5B6B] flex items-center justify-center gap-1.5 mb-3">
               <span className="w-1.5 h-1.5 rounded-full bg-[#1F5E95] inline-block" />
-              How we help
+              Our services
             </span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#0E2F54] leading-tight">
-              Three core service areas.
+              How we help businesses get clearer.
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
