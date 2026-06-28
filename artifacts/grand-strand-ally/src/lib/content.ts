@@ -1,7 +1,7 @@
 export const content = {
   hero: {
-    headline: "Gain a clearer view of your information technology costs, tools, and support structure.",
-    subheadline: "Now offering AI Visibility assessments for service businesses that want to show up more clearly in ChatGPT, Google AI Overviews, and answer-driven search — alongside practical IT advisory services for the Grand Strand.",
+    headline: "Find Out How Your Business Shows Up in AI Search.",
+    subheadline: "Customers increasingly discover service providers through ChatGPT, Google AI Overviews, and answer-driven search. Our GEO / AI Visibility Assessment helps you understand whether your website is clear, structured, and trustworthy enough to be recommended.",
     primaryButton: "Start Your GEO Assessment",
     secondaryButton: "Explore IT & Advisory Services",
   },

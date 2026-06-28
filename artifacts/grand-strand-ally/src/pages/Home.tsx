@@ -3,7 +3,6 @@ import {
   CheckCircle2,
   ArrowRight,
   MapPin,
-  DollarSign,
   ShieldCheck,
   Search,
   BarChart2,
@@ -13,6 +12,7 @@ import {
   Globe,
   FileSearch,
   Target,
+  Sparkles,
 } from "lucide-react";
 
 import { content } from "@/lib/content";
@@ -35,11 +35,11 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       <Helmet>
-        <title>Grand Strand Ally | Information Technology Support &amp; Cost Analysis — Myrtle Beach, SC</title>
-        <meta name="description" content="Grand Strand Ally helps small and medium businesses in the Myrtle Beach and Grand Strand area gain visibility into information technology costs, simplify vendor structure, and strengthen compliance-minded support. Month-to-month. No long-term contracts." />
+        <title>Grand Strand Ally | GEO / AI Visibility &amp; IT Advisory — Myrtle Beach, SC</title>
+        <meta name="description" content="Find out how your business appears in AI-driven search. Grand Strand Ally offers GEO / AI Visibility Assessments and practical IT advisory services for small and medium businesses across the Myrtle Beach and Grand Strand area." />
         <link rel="canonical" href="https://gsally.com" />
-        <meta property="og:title" content="Grand Strand Ally | Information Technology Support — Myrtle Beach, SC" />
-        <meta property="og:description" content="Practical information technology support, cost analysis, and compliance-minded systems for small and medium businesses in the Myrtle Beach and Grand Strand area." />
+        <meta property="og:title" content="Grand Strand Ally | GEO / AI Visibility &amp; IT Advisory — Myrtle Beach, SC" />
+        <meta property="og:description" content="GEO / AI Visibility Assessments and practical IT advisory for service businesses in Myrtle Beach and the Grand Strand. Find out how your business shows up in AI search." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://gsally.com" />
         <meta property="og:site_name" content="Grand Strand Ally" />
@@ -63,7 +63,7 @@ export default function Home() {
       </Helmet>
 
       {/* ── 1. Hero ─────────────────────────────────────────────── */}
-      <section className="bg-[#0E2F54] text-white pt-32 pb-0 md:pt-40 relative overflow-hidden">
+      <section className="bg-[#0E2F54] text-white pt-20 pb-0 sm:pt-28 md:pt-40 relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{
@@ -72,7 +72,7 @@ export default function Home() {
             backgroundSize: "56px 56px",
           }}
         />
-        <div className="container mx-auto px-4 md:px-6 relative z-10 text-center flex flex-col items-center pb-16 md:pb-24">
+        <div className="container mx-auto px-4 md:px-6 relative z-10 text-center flex flex-col items-center pb-10 md:pb-20">
 
           {/* Brand lockup */}
           <div className="flex flex-col items-center mb-9">
@@ -87,7 +87,7 @@ export default function Home() {
               Grand Strand Ally
             </p>
             <p className="text-[10.5px] font-semibold tracking-[0.2em] uppercase text-white/40 leading-none">
-              Cost Clarity · Practical Support · Compliance-Minded Systems
+              AI Visibility · IT Advisory · Local to the Grand Strand
             </p>
           </div>
 
@@ -123,35 +123,6 @@ export default function Home() {
             </Button>
           </div>
 
-          {/* GEO highlight card */}
-          <a
-            href={GEO_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            data-geo-cta="hero-card"
-            className="mt-7 w-full max-w-xl group block bg-white/[0.06] border border-white/[0.12] hover:bg-white/[0.10] hover:border-white/[0.22] rounded-xl p-5 text-left transition-colors"
-            aria-label="AI Visibility / GEO Assessment — opens in new tab"
-          >
-            <div className="flex items-start gap-4">
-              <div className="w-9 h-9 bg-[#1F5E95]/50 border border-white/10 rounded-lg flex items-center justify-center shrink-0">
-                <Globe size={16} className="text-[#60B8F0]" aria-hidden="true" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center flex-wrap gap-x-2 gap-y-0.5 mb-1.5">
-                  <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#60B8F0]">New</span>
-                  <span className="text-white/25 text-xs" aria-hidden="true">·</span>
-                  <span className="text-[10px] font-medium uppercase tracking-[0.10em] text-white/40">GEO / AI Visibility</span>
-                </div>
-                <p className="text-[15px] font-heading font-bold text-white leading-snug mb-1 group-hover:text-[#60B8F0] transition-colors">
-                  AI Visibility for local service businesses
-                </p>
-                <p className="text-sm text-white/50 leading-relaxed">
-                  See how clearly your business is positioned for ChatGPT, Google AI Overviews, and answer-driven search.
-                </p>
-              </div>
-              <ArrowRight size={15} className="text-white/25 group-hover:text-[#60B8F0] transition-colors shrink-0 mt-1" aria-hidden="true" />
-            </div>
-          </a>
         </div>
 
         {/* Trust strip */}
@@ -159,11 +130,11 @@ export default function Home() {
           <div className="container mx-auto px-4 md:px-6">
             <div className="flex flex-col sm:flex-row items-stretch justify-center divide-y sm:divide-y-0 sm:divide-x divide-white/10">
               {[
+                { icon: Sparkles, label: "AI Visibility for service businesses" },
                 { icon: MapPin, label: "Local to the Grand Strand" },
-                { icon: DollarSign, label: "Clear monthly pricing" },
-                { icon: ShieldCheck, label: "Compliance-minded support" },
+                { icon: ShieldCheck, label: "No hype. Clear next steps." },
               ].map(({ icon: Icon, label }) => (
-                <div key={label} className="flex items-center justify-center gap-3 py-5 sm:px-10 text-sm text-white/70 font-medium">
+                <div key={label} className="flex items-center justify-center gap-3 py-4 sm:py-5 sm:px-10 text-sm text-white/70 font-medium">
                   <Icon size={15} className="text-[#60B8F0] flex-shrink-0" />
                   {label}
                 </div>
@@ -173,7 +144,77 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── 2. Where we help ────────────────────────────────────── */}
+      {/* ── 2. GEO Assessment ─────────────────────────────────────── */}
+      <section className="py-16 md:py-24 bg-[#0E2F54] text-white">
+        <div className="container mx-auto px-4 md:px-6 max-w-6xl">
+          <div className="text-center mb-12">
+            <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/40 flex items-center justify-center gap-1.5 mb-4">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#60B8F0] inline-block" />
+              GEO / AI Visibility Assessment
+            </span>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-white leading-tight mb-4">
+              What the Assessment Reviews
+            </h2>
+            <p className="text-white/65 text-[15px] max-w-2xl mx-auto leading-relaxed">
+              Many websites look fine at a glance but may not be clearly understood by AI-driven search systems. The assessment reviews your site across five areas that directly affect whether AI tools can find, understand, and recommend you.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 max-w-5xl mx-auto mb-12">
+            {[
+              { Icon: Globe, title: "Service page clarity", body: "Are your service pages clear, specific, and structured well enough for AI to summarize and recommend you?" },
+              { Icon: FileSearch, title: "FAQ and trust content", body: "Do you have FAQ content that answers the questions AI tools look for when building recommendations?" },
+              { Icon: Layers, title: "Internal linking", body: "Is your site structured so AI systems can navigate and understand the relationship between your pages?" },
+              { Icon: Target, title: "AI visibility gaps", body: "Where does your site fall short of what AI-driven discovery tools expect from a credible service provider?" },
+              { Icon: CheckCircle2, title: "Next-step priorities", body: "What should you address first? The report ranks gaps by expected impact so you know where to start." },
+            ].map(({ Icon, title, body }) => (
+              <div key={title} className="bg-white/[0.05] border border-white/10 rounded-xl p-5 hover:bg-white/[0.08] transition-colors">
+                <div className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mb-4">
+                  <Icon size={15} className="text-[#60B8F0]" aria-hidden="true" />
+                </div>
+                <h3 className="text-[13px] font-heading font-bold text-white mb-1.5 leading-snug">{title}</h3>
+                <p className="text-xs text-white/50 leading-relaxed">{body}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="max-w-xl mx-auto mb-12 bg-white/[0.04] border border-white/10 rounded-2xl p-6 md:p-8">
+            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#60B8F0] mb-5">Sample output — illustrative only</p>
+            <div className="space-y-0">
+              {[
+                { area: "Service page clarity", status: "Needs improvement", dot: "bg-amber-400" },
+                { area: "FAQ and trust content", status: "Limited coverage", dot: "bg-amber-400" },
+                { area: "Internal linking", status: "Moderate", dot: "bg-[#60B8F0]" },
+                { area: "AI visibility gaps", status: "Significant gaps found", dot: "bg-red-400" },
+                { area: "Next-step priorities", status: "3 clear actions identified", dot: "bg-emerald-400" },
+              ].map(({ area, status, dot }) => (
+                <div key={area} className="flex items-center justify-between gap-4 py-3 border-b border-white/[0.07] last:border-0">
+                  <span className="text-sm text-white/70">{area}</span>
+                  <span className="flex items-center gap-2 shrink-0">
+                    <span className={`w-2 h-2 rounded-full ${dot}`} />
+                    <span className="text-xs text-white/50 font-medium">{status}</span>
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="text-center">
+            <a
+              href={GEO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-geo-cta="homepage-geo-section"
+              className="inline-flex items-center gap-2 bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-8 rounded-lg text-[15px] transition-colors"
+            >
+              Request Your GEO Assessment <ArrowRight size={15} aria-hidden="true" />
+            </a>
+            <p className="text-sm text-white/30 mt-3">No hype. Clear next steps. Built for Myrtle Beach and Grand Strand service businesses.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 3. Where we help ────────────────────────────────────── */}
       <section className="py-16 md:py-24 bg-[#F7F5F1]">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-10">
@@ -274,68 +315,6 @@ export default function Home() {
                 </Link>
               ))}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── GEO Feature Section ─────────────────────────────────── */}
-      <section className="py-16 md:py-24 bg-[#0E2F54] text-white">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center mb-12">
-            <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/40 flex items-center justify-center gap-1.5 mb-4">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#60B8F0] inline-block" />
-              New offering
-            </span>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-white leading-tight mb-4">
-              Now Offering GEO / AI Visibility Assessments
-            </h2>
-            <p className="text-white/65 text-[15px] max-w-2xl mx-auto leading-relaxed">
-              Traditional websites can still underperform in AI-driven search if their content is unclear, thin, weakly structured, or missing the page types answer engines rely on. Our GEO assessment helps service businesses understand how visible and understandable their site is for AI-powered discovery.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto mb-12">
-            {[
-              {
-                Icon: Globe,
-                title: "AI Visibility Review",
-                body: "See how clearly your business is positioned for AI-generated search and recommendation engines — ChatGPT, Google AI Overviews, and more.",
-              },
-              {
-                Icon: FileSearch,
-                title: "Content & Structure Gaps",
-                body: "Identify weak service pages, missing FAQs, unclear positioning, and internal linking gaps that hurt how AI systems interpret your site.",
-              },
-              {
-                Icon: Target,
-                title: "Practical Next Steps",
-                body: "Get a clearer picture of what to improve first — structured priorities rather than vague marketing advice.",
-              },
-            ].map(({ Icon, title, body }) => (
-              <div
-                key={title}
-                className="bg-white/[0.05] border border-white/10 rounded-xl p-6 hover:bg-white/[0.08] transition-colors"
-              >
-                <div className="w-9 h-9 bg-white/10 rounded-lg flex items-center justify-center mb-5">
-                  <Icon size={17} className="text-[#60B8F0]" aria-hidden="true" />
-                </div>
-                <h3 className="text-[15px] font-heading font-bold text-white mb-2">{title}</h3>
-                <p className="text-sm text-white/55 leading-relaxed">{body}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center">
-            <a
-              href={GEO_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-geo-cta="homepage-geo-section"
-              className="inline-flex items-center gap-2 bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-8 rounded-lg text-[15px] transition-colors"
-            >
-              Request Your GEO Assessment <ArrowRight size={15} aria-hidden="true" />
-            </a>
-            <p className="text-sm text-white/30 mt-3">No hype. Clear next steps. Built for Myrtle Beach and Grand Strand service businesses.</p>
           </div>
         </div>
       </section>
@@ -458,103 +437,43 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── 7. What a cost analysis covers ──────────────────────── */}
-      <section className="py-16 md:py-24 bg-[#F7F5F1]">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center mb-10">
-            <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#4B5B6B] flex items-center justify-center gap-1.5 mb-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#1F5E95] inline-block" />
-              Free cost analysis
-            </span>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#0E2F54] leading-tight">
-              What a cost analysis covers.
-            </h2>
-            <p className="text-[#4B5B6B] text-[15px] mt-3 max-w-lg mx-auto">
-              A structured look at your current environment — not a sales pitch, not a commitment.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 max-w-4xl mx-auto">
-            {content.costAnalysisItems.map((item, i) => (
-              <div
-                key={i}
-                className="bg-white border border-[#D7E1EA] rounded-xl px-4 py-4 flex items-center gap-3 shadow-sm"
-              >
-                <Search size={14} className="text-[#1F5E95] flex-shrink-0" />
-                <span className="text-sm text-[#0E2F54] font-medium">{item}</span>
+      {/* ── 7. Also available: IT cost clarity ─────────────────── */}
+      <section className="py-10 md:py-14 bg-white border-t border-[#D7E1EA]">
+        <div className="container mx-auto px-4 md:px-6 max-w-5xl">
+          <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
+            <div className="flex-1">
+              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#4B5B6B] flex items-center gap-1.5 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#1F5E95] inline-block" />
+                Also available
+              </span>
+              <h2 className="text-xl md:text-2xl font-heading font-bold text-[#0E2F54] mb-3 leading-tight">
+                Need IT cost clarity instead?
+              </h2>
+              <p className="text-[#4B5B6B] text-[14px] leading-relaxed mb-5 max-w-sm">
+                If your immediate need is understanding IT spending — tools, vendors, Microsoft 365, and support costs — the free IT cost analysis is a separate path built for that.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Link
+                  href="/contact#contact-form"
+                  className="inline-flex items-center gap-2 bg-[#0E2F54] hover:bg-[#0A2440] text-white font-semibold h-10 px-5 text-sm rounded-lg transition-colors"
+                >
+                  Schedule a Free Cost Analysis
+                </Link>
+                <Link
+                  href="/free-it-cost-analysis"
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-[#1F5E95] hover:text-[#0E2F54] h-10 px-1 transition-colors"
+                >
+                  What does it include? <ArrowRight size={13} />
+                </Link>
               </div>
-            ))}
-          </div>
-          <div className="text-center mt-8 space-y-3">
-            <Button asChild className="bg-[#0E2F54] hover:bg-[#0A2440] text-white font-semibold h-12 px-7 text-[15px] rounded-lg">
-              <Link href="/contact#contact-form">Schedule a Free Cost Analysis →</Link>
-            </Button>
-            <div>
-              <Link href="/free-it-cost-analysis" className="inline-flex items-center gap-1.5 text-sm font-medium text-[#1F5E95] hover:text-[#0E2F54] transition-colors">
-                What does the free cost analysis include? <ArrowRight size={13} />
-              </Link>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 8. Free tool teaser ─────────────────────────────────── */}
-      <section className="py-16 md:py-20 bg-[#F7F5F1]">
-        <div className="container mx-auto px-4 md:px-6 max-w-4xl">
-          <div className="bg-[#0E2F54] rounded-2xl px-8 py-10 md:px-12 md:py-12">
-            <div className="flex flex-col md:flex-row md:items-start gap-10">
-              <div className="flex-1">
-                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/40 flex items-center gap-1.5 mb-4">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#60B8F0] inline-block" />
-                  Free Tool
-                </span>
-                <h2 className="text-2xl md:text-3xl font-heading font-bold text-white mb-3 leading-tight">
-                  Get a clearer picture of your current information technology spend.
-                </h2>
-                <p className="text-white/55 text-sm leading-relaxed mb-6">
-                  Estimate your costs, spot potential tool overlap, and identify where simplification may help — in about 5 minutes.
-                </p>
-                <ul className="space-y-2 mb-7">
-                  {[
-                    "Estimate monthly information technology costs",
-                    "Identify potential tool overlap and vendor consolidation opportunities",
-                    "Review compliance and control considerations",
-                  ].map((point) => (
-                    <li key={point} className="flex items-start gap-2.5">
-                      <span className="w-4 h-4 rounded-full bg-[#1F5E95] flex items-center justify-center shrink-0 mt-0.5">
-                        <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
-                          <path d="M1.5 4l2 2 3-3" stroke="white" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      </span>
-                      <span className="text-sm text-white/70">{point}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="flex flex-col sm:flex-row items-start gap-3">
-                  <Link
-                    href="/cost-analysis#calculator"
-                    className="inline-flex items-center gap-2 bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-11 px-6 text-sm rounded-lg transition-colors whitespace-nowrap"
-                  >
-                    Start Free Cost Analysis →
-                  </Link>
-                  <Link
-                    href="/cost-analysis#how-it-works"
-                    className="inline-flex items-center gap-2 text-white/50 hover:text-white text-sm font-medium h-11 px-2 transition-colors"
-                  >
-                    Learn How It Works
-                  </Link>
-                </div>
-              </div>
-
-              <div className="md:w-48 shrink-0 flex flex-row md:flex-col gap-4 md:gap-5">
-                {[
-                  { value: "~5 min", label: "Takes about 5 minutes" },
-                  { value: "Free", label: "No login required" },
-                  { value: "0", label: "Obligation or commitment" },
-                ].map(({ value, label }) => (
-                  <div key={label} className="flex-1 md:flex-none bg-white/5 border border-white/10 rounded-xl p-4 text-center">
-                    <p className="text-xl font-bold text-white mb-0.5">{value}</p>
-                    <p className="text-xs text-white/45 leading-snug">{label}</p>
-                  </div>
+            <div className="md:w-64 shrink-0">
+              <div className="flex flex-wrap gap-2">
+                {content.costAnalysisItems.slice(0, 6).map((item) => (
+                  <span key={item} className="inline-flex items-center gap-1.5 text-xs font-medium text-[#4B5B6B] border border-[#D7E1EA] rounded-full px-3 py-1.5 bg-[#F7F5F1]">
+                    <Search size={10} className="text-[#1F5E95] shrink-0" />
+                    {item}
+                  </span>
                 ))}
               </div>
             </div>
@@ -562,7 +481,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── 9. Guides & resources ───────────────────────────────── */}
+      {/* ── 8. Guides & resources ───────────────────────────────── */}
       <section className="py-14 bg-[#F7F5F1]">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
@@ -646,15 +565,39 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── 10. Final CTA ───────────────────────────────────────── */}
-      <CTABand
-        title={content.finalCta.headline}
-        subtitle={content.finalCta.copy}
-        buttons={[
-          { label: "Schedule a Free Cost Analysis", href: "/contact#contact-form", primary: true },
-          { label: "View Pricing", href: "/pricing", primary: false },
-        ]}
-      />
+      {/* ── Final CTA ────────────────────────────────────────────── */}
+      <section className="bg-[#0E2F54] py-16 md:py-20 text-white">
+        <div className="container mx-auto px-4 md:px-6 text-center max-w-2xl">
+          <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/40 flex items-center justify-center gap-1.5 mb-5">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#60B8F0] inline-block" />
+            GEO / AI Visibility
+          </span>
+          <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-white mb-4 leading-tight">
+            See How Your Business Shows Up in AI Search.
+          </h2>
+          <p className="text-white/60 text-[15px] mb-9 leading-relaxed">
+            The GEO / AI Visibility Assessment is a structured, practical review — no hype, no obligation. Find out whether your website is clear, trustworthy, and structured well enough to be recommended by AI-driven search tools.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <a
+              href={GEO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-geo-cta="homepage-final-cta"
+              className="inline-flex items-center justify-center gap-2 bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-8 text-[15px] rounded-lg transition-colors"
+            >
+              Request Your GEO Assessment <ArrowRight size={15} aria-hidden="true" />
+            </a>
+            <Link
+              href="/contact#contact-form"
+              className="inline-flex items-center justify-center gap-2 border border-white/25 text-white hover:bg-white/8 font-semibold h-12 px-7 text-[15px] rounded-lg transition-colors"
+            >
+              Schedule an IT Consultation
+            </Link>
+          </div>
+          <p className="text-white/30 text-xs mt-6">Also need IT cost clarity? <Link href="/free-it-cost-analysis" className="underline underline-offset-2 hover:text-white/60 transition-colors">Free cost analysis overview →</Link></p>
+        </div>
+      </section>
 
     </div>
   );
