@@ -1,0 +1,366 @@
+I need you to rewrite the GSally homepage copy block by block inside this Replit project so the homepage reads as a GEO / AI Visibility-led business with IT, compliance, and operational credibility behind it.
+
+Important:
+- Do the work in code now.
+- Do not just suggest ideas.
+- Inspect the current homepage implementation first and identify the content blocks, hero copy, support text, CTA text, section headings, microcopy, and any reusable content/config patterns.
+- Then rewrite the homepage copy directly in the codebase.
+- Preserve the current layout, general visual structure, calm tone, and brand credibility.
+- Do not redesign the whole site unless a very small structural change is needed to support cleaner copy hierarchy.
+- Do not break links, routes, buttons, or responsive behavior.
+
+Goal:
+Make the GSally homepage read more clearly as:
+1. a GEO / AI Visibility-led offer for service businesses,
+2. explained in plain English for people who do not know what GEO means,
+3. supported by broader IT / operations / compliance credibility.
+
+Critical context:
+Right now the homepage still feels like it tells two competing stories:
+- one story about GEO / AI visibility
+- another story about IT support, vendor simplification, Microsoft 365, and cost analysis
+
+The rewrite should make GEO the front-door story and turn the old IT/advisory content into supporting trust context.
+
+Voice requirements:
+- calm
+- practical
+- premium
+- local
+- trustworthy
+- no hype
+- no cheesy marketing language
+- no exaggerated promises
+- no fake urgency
+- no generic SEO agency tone
+
+Key messaging principle:
+Most visitors do not know what “GEO” means.
+
+So throughout the homepage:
+- lead with plain-English outcome first
+- use “AI Visibility” or “AI-driven search” before or alongside “GEO”
+- explain what the visitor gets and why it matters
+- keep jargon secondary
+
+Examples of acceptable framing:
+- See how your business looks to AI search
+- Find out whether your website is easy for ChatGPT and AI search tools to understand
+- Identify the service-page, FAQ, trust, and structure gaps affecting visibility
+- Get clearer next steps, not vague SEO advice
+
+Do NOT use lines like:
+- dominate AI search
+- crush competitors
+- rank instantly
+- explosive growth
+- guaranteed rankings
+
+Canonical GEO CTA destination:
+Inspect the current project and preserve the existing single source of truth for the GEO destination URL.
+If no single source exists, create one clean constant/config value and use it for homepage GEO CTAs.
+Default to https://geo.vercel.app/ only if that is clearly the intended live destination.
+
+========================================================
+COPY REWRITE INSTRUCTIONS BY BLOCK
+========================================================
+
+I want you to rewrite these homepage blocks one by one.
+
+1. TOP ANNOUNCEMENT BAR
+Current purpose:
+Announce the GEO offer clearly.
+
+Rewrite it so it feels clean, premium, and direct.
+
+Preferred direction:
+Now offering AI Visibility Assessments for Myrtle Beach and Grand Strand service businesses
+
+CTA text:
+Start Your Assessment
+
+Keep it short, high-clarity, and scannable.
+
+2. HERO EYEBROW / MICRO LABEL
+If there is a small top label above the hero headline, rewrite it to support GEO-first positioning.
+
+Suggested direction:
+AI Visibility for service businesses
+
+Alternative:
+GEO / AI Visibility for Myrtle Beach businesses
+
+Keep it short and sharp.
+
+3. HOMEPAGE HERO HEADLINE
+Rewrite the main hero headline so it leads with the outcome, not jargon.
+
+Preferred direction:
+Find Out How Your Business Looks to AI Search
+
+Alternative acceptable direction:
+See Whether Your Website Is Clear Enough for AI-Driven Search
+
+Use the option that best fits the current layout and line length.
+
+4. HERO SUBHEADLINE
+Rewrite the hero subheadline to explain the problem in normal language.
+
+Preferred copy direction:
+Customers are increasingly discovering service providers through ChatGPT, Google AI Overviews, and other answer-driven search tools. Our GEO / AI Visibility Assessment helps you see whether your website is clear, trustworthy, and structured well enough to be understood and recommended.
+
+You may slightly tighten line length for design fit, but preserve the core meaning.
+
+5. HERO CTA BUTTONS
+Make sure the hero CTA labels are clearer and more aligned to GEO-first conversion.
+
+Preferred primary CTA:
+Start Your Assessment
+
+Alternative:
+Request Your GEO Assessment
+
+Preferred secondary CTA:
+Explore IT & Advisory Services
+or
+See How It Works
+
+Use the option that best fits the existing CTA pattern and routing.
+
+6. HERO SUPPORTING MICROCOPY
+Add or refine a short line under or near the hero CTA area.
+
+Preferred direction:
+Built for Myrtle Beach and Grand Strand service businesses
+
+Optional additions if layout supports chips:
+- Practical review
+- Clear deliverables
+- No hype
+
+7. HERO SUPPORT CARD / SIDE PANEL
+If the homepage already includes a supporting GEO card or can support one without changing the layout too much, rewrite it to make the offer more tangible.
+
+Preferred title:
+What the assessment reviews
+
+Preferred bullets:
+- Service page clarity
+- FAQ and trust content
+- Internal linking and structure
+- AI visibility gaps
+- Practical next-step recommendations
+
+Keep it simple, clean, and credible.
+
+8. “COMMON AREAS WHERE BUSINESSES SEEK CLARITY” SECTION
+This section currently sounds more IT/advisory-first.
+
+Rewrite this section so it better bridges the old business story and the new GEO-first story.
+
+Preferred section heading:
+Where businesses often lose clarity
+
+Alternative:
+Where visibility and operations start to break down
+
+Rewrite the supporting intro copy so it allows both:
+- AI visibility problems
+- operational / vendor / support complexity
+
+without making the site sound scattered.
+
+For the cards, keep the structure but tighten copy so it feels more relevant to a GEO-led story.
+Where appropriate, make the issues sound like they affect:
+- clarity
+- trust
+- structure
+- decision-making
+- visibility
+
+not just IT cost management.
+
+9. “THREE CORE SERVICE AREAS” SECTION
+This section likely still feels too old-business-first.
+
+Do NOT necessarily remove the three service areas, but rewrite:
+- section heading
+- intro copy
+- card titles/subcopy if needed
+
+so they support the idea that GSally helps businesses become:
+- clearer
+- simpler
+- better structured
+- more trustworthy
+- more visible
+
+rather than sounding only like an MSP / IT support company.
+
+If necessary, lightly rename or reframe the service area intros to better align with:
+- visibility
+- structure
+- operational clarity
+- trust-building systems
+
+Preserve honesty.
+Do not pretend core IT services are actually SEO services.
+Just make the framing support the new hierarchy.
+
+10. “NOW OFFERING GEO / AI VISIBILITY ASSESSMENTS” SECTION
+This is one of the most important sections.
+Rewrite it to be clearer, stronger, and more tangible.
+
+Preferred section title:
+Now Offering GEO / AI Visibility Assessments
+
+Preferred section body direction:
+Many business websites look fine at a glance but still may not be clearly understood by AI-driven search systems. This assessment helps show whether your services, trust signals, structure, and content are strong enough to support visibility in answer-driven search.
+
+Rewrite the three supporting cards to feel a little tighter and more premium.
+
+Preferred cards:
+A. AI Visibility Review
+See how clearly your business is positioned for ChatGPT, Google AI Overviews, and AI-driven search.
+
+B. Content & Structure Gaps
+Identify weak service pages, missing FAQs, unclear positioning, and internal linking gaps.
+
+C. Practical Next Steps
+Get a clearer picture of what to improve first instead of vague marketing advice.
+
+CTA:
+Request Your GEO Assessment
+
+Support line:
+No hype. Clear next steps. Built for Myrtle Beach and Grand Strand service businesses.
+
+11. “WHO WE HELP” SECTION
+This section currently likely leans too heavily toward IT operations and Microsoft 365-type buyers.
+
+Rewrite the section so it still keeps legitimate operational buyers, but clearly includes GEO-relevant audiences.
+
+Preferred direction:
+A good fit for:
+- service businesses that rely on trust and inbound inquiries
+- local companies with thin or unclear service pages
+- teams that want stronger website clarity before investing further
+- businesses with multiple offerings that need clearer structure
+- compliance-conscious or trust-dependent organizations
+- companies that want better visibility without hype
+
+Probably not a fit for:
+- brand-new businesses with little content or no clear offer
+- organizations looking for guaranteed rankings
+- teams unwilling to improve site content or page clarity
+- very small setups with minimal infrastructure and no growth intent
+
+Keep this section clear and practical.
+
+12. “OUR PROCESS” SECTION
+Rewrite this section so it sounds more like a consultative clarity process, not just a legacy IT service onboarding process.
+
+Preferred framing:
+A structured, consultative approach to understanding where your business needs clearer systems, stronger visibility, and more practical next steps.
+
+The four steps can remain if structurally needed, but refine the step copy so it supports the GEO-led strategy.
+Examples:
+- Review: understand current site, systems, tools, and visibility gaps
+- Identify: identify the clearest structural and content opportunities
+- Strengthen: strengthen the pages, signals, and workflows that matter most
+- Improve: improve over time without unnecessary complexity
+
+Keep the trust line:
+No forced replacements. No unnecessary complexity. No long-term lock-in.
+That tone is good.
+
+13. “WHY GRAND STRAND ALLY” SECTION
+This section should become more aligned with business clarity, structured improvement, and trust — not just cost control.
+
+Rewrite the heading if needed:
+Why businesses choose Grand Strand Ally
+
+Refine the support cards to better match a GEO-led business.
+For example:
+- clearer visibility into what is working and what is unclear
+- simpler systems and cleaner structure
+- practical, compliance-minded recommendations
+- month-to-month flexibility without bloated retainers
+
+Keep the tone grounded and credible.
+
+14. FREE COST ANALYSIS SECTION
+This section currently risks competing too strongly with the GEO offer.
+
+Do not remove it unless clearly necessary, but rewrite it so it is obviously a secondary path.
+
+Suggested section heading direction:
+Need IT cost clarity instead?
+
+Or:
+Other ways we help
+
+Rewrite the supporting copy so it is clear this tool is for:
+- IT spend visibility
+- vendor overlap
+- operational simplification
+
+not the main growth or visibility path.
+
+If the section can support a small comparison cue, use language like:
+If your main concern is lead flow, visibility, or how your business appears in AI search, start with the GEO assessment instead.
+
+Keep the cost analysis honest and useful, but clearly secondary.
+
+15. FINAL CTA / LOWER-PAGE SUPPORT COPY
+If the homepage ends with a CTA or lower conversion area, rewrite it so the GEO assessment remains the strongest next step.
+
+Suggested direction:
+Want to know how clearly your business is positioned for AI-driven search?
+Start with the GEO / AI Visibility assessment and get practical next steps.
+
+========================================================
+COPY CLEANUP RULES
+========================================================
+
+As you rewrite:
+- remove unnecessary repetition
+- tighten long sentences
+- reduce places where the site sounds like two unrelated businesses
+- make section transitions more logical
+- keep plain English first
+- use “GEO” as a supporting label, not the first thing the visitor must decode
+
+========================================================
+DO NOT
+========================================================
+
+Do not:
+- redesign the whole homepage unnecessarily
+- remove all IT credibility
+- make the site sound like a generic digital-marketing agency
+- add fake stats
+- add fake testimonials
+- add hype or exaggerated claims
+- leave conflicting GEO URLs in the codebase
+- make the copy overly technical
+
+========================================================
+FINAL REPORT REQUIRED
+========================================================
+
+After rewriting the homepage copy, provide a concise report with:
+- files changed
+- which homepage blocks were rewritten
+- which GEO CTA text is now used
+- how the homepage message hierarchy is now clearer
+- how the cost analysis section was reframed
+- any assumptions made
+- any phase 2 copy suggestions
+
+Then do a self-QA pass and confirm:
+- the homepage now reads more clearly as GEO-led
+- the copy is understandable for visitors unfamiliar with GEO
+- the old IT story now supports rather than competes with GEO
+- the cost analysis section feels secondary
+- the tone still feels calm, practical, and credible
