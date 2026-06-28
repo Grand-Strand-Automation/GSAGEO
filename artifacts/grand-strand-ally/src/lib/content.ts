@@ -1,9 +1,9 @@
 export const content = {
   hero: {
-    headline: "Find Out How Your Business Looks to AI Search.",
-    subheadline: "Customers are increasingly discovering service providers through ChatGPT, Google AI Overviews, and other answer-driven search tools. Our GEO / AI Visibility Assessment helps you see whether your website is clear, trustworthy, and structured well enough to be understood and recommended.",
-    primaryButton: "Start Your Assessment",
-    secondaryButton: "Explore IT & Advisory Services",
+    headline: "Clearer systems. Better support. Stronger business visibility.",
+    subheadline: "Grand Strand Ally helps service businesses simplify support, improve operational clarity, and strengthen the systems that support trust and growth. For businesses that want to understand how they appear in AI-driven search, we also offer a dedicated AI Visibility assessment.",
+    primaryButton: "Explore Services",
+    secondaryButton: "See the AI Visibility Assessment",
   },
   problems: {
     heading: "Where businesses often lose clarity.",
@@ -60,7 +60,7 @@ export const content = {
     ],
   },
   howWeWork: {
-    heading: "A structured, consultative approach.",
+    heading: "A structured, practical approach.",
     steps: [
       {
         step: "01",

@@ -1,0 +1,372 @@
+I need you to update the GSALLY.com homepage in this Replit project so it no longer mirrors the GEO homepage wording and instead plays a clearly different strategic role.
+
+Important:
+- Do the work in code now.
+- Do not just suggest ideas.
+- Inspect the current homepage implementation first, including the hero, announcement bar, supporting sections, GEO feature block, CTA copy, section headings, footer CTA, and any shared content/config patterns.
+- Then rewrite and adjust the GSALLY homepage directly in the codebase.
+- Preserve the current visual polish, calm tone, local-business credibility, and responsive layout.
+- Do not break routing, service pages, forms, or existing links.
+
+Core strategy:
+Right now GSALLY.com and geo.vercel.app are too close in homepage wording and positioning.
+That is a problem.
+
+These two sites should have DIFFERENT jobs:
+
+1. GSALLY.com should be:
+- the parent credibility site
+- the broader advisory/business clarity site
+- the local trust bridge
+- the place that introduces the GEO problem in a lighter way
+- the site that routes qualified visitors into the GEO assessment funnel
+
+2. geo.vercel.app should be:
+- the specialized GEO / AI Visibility site
+- the place that fully explains the assessment
+- the place that gives the deeper GEO pitch
+- the place that handles primary conversion into the GEO offer
+
+GSALLY should TEASE and ROUTE.
+GEO should EXPLAIN and CONVERT.
+
+Do not make GSALLY sound like a duplicate of the GEO site.
+
+========================================================
+PRIMARY OBJECTIVE
+========================================================
+
+Rewrite the GSALLY homepage so it sounds like:
+- a credible Myrtle Beach / Grand Strand business advisory and support company
+- that now also offers a dedicated AI Visibility / GEO assessment
+- and that sends growth/visibility-intent visitors to the specialized GEO site
+
+The homepage should make a visitor think:
+“This is a credible local company that helps businesses get clearer and stronger operationally — and if I want to know how my business appears in AI search, they have a dedicated assessment for that.”
+
+It should NOT make the visitor think:
+“This is basically the same homepage as the GEO site.”
+
+========================================================
+MESSAGING DIFFERENTIATION RULES
+========================================================
+
+On GSALLY.com:
+- Keep GEO visible
+- Keep GEO important
+- But do NOT fully sell GEO the same way the GEO site does
+- Do NOT use the same hero copy or same framing as geo.vercel.app
+- Do NOT make GSALLY feel like the main GEO explainer page
+
+Instead, GSALLY should emphasize:
+- business clarity
+- advisory support
+- operational trust
+- structure
+- compliance-minded support
+- clearer systems
+- local credibility
+- plus a dedicated AI Visibility assessment for businesses that need growth/discovery clarity
+
+Use plain-English phrasing like:
+- AI Visibility assessment
+- see how your business appears in AI-driven search
+- dedicated assessment for service businesses
+- clearer website positioning for AI search tools
+- visibility, trust, and structure
+
+Avoid making GSALLY the deepest GEO education page.
+That job belongs to geo.vercel.app.
+
+========================================================
+REWRITE THE HOMEPAGE BLOCK BY BLOCK
+========================================================
+
+1. TOP ANNOUNCEMENT BAR
+Keep a GEO-related announcement bar, but make it feel like a referral into a specialized service, not the full homepage pitch.
+
+Preferred direction:
+Now offering dedicated AI Visibility assessments for service businesses
+
+CTA text:
+See the Assessment
+
+Destination:
+Use the canonical GEO URL already used in the project.
+If no single source exists, create one clean constant/config value.
+Default to https://geo.vercel.app/ only if that is clearly the intended live destination.
+
+This bar should feel like:
+“we now offer this”
+not
+“this whole site is the GEO sales page”
+
+2. HOMEPAGE HERO EYEBROW
+If there is a small eyebrow line above the main hero heading, rewrite it so it supports the broader GSALLY identity.
+
+Preferred direction:
+Business clarity, practical support, and AI visibility
+
+Alternative:
+Operational clarity for growing service businesses
+
+Keep this broader than the GEO site.
+
+3. HOMEPAGE HERO HEADLINE
+Rewrite the hero headline so it sounds more like GSALLY and less like the GEO site.
+
+It should not duplicate the GEO homepage headline.
+
+Preferred direction:
+Clearer systems. Better support. Stronger business visibility.
+
+Alternative:
+Helping service businesses get clearer — in operations, support, and visibility.
+
+This hero should frame GSALLY as the broader strategic/advisory business.
+
+4. HOMEPAGE HERO SUBHEADLINE
+Rewrite the hero subheadline so it explains the business in broader terms while introducing the GEO assessment as a dedicated offer.
+
+Preferred direction:
+Grand Strand Ally helps service businesses simplify support, improve operational clarity, and strengthen the systems that support trust and growth. For businesses that want to understand how they appear in AI-driven search, we also offer a dedicated AI Visibility assessment.
+
+Alternative acceptable direction:
+We help businesses build clearer systems, cleaner support structures, and more confidence in how they operate. And for service companies focused on growth, we now offer a dedicated assessment for AI visibility and answer-driven search.
+
+The key:
+GSALLY introduces GEO, but does not fully explain it the same way GEO site does.
+
+5. HERO CTA BUTTONS
+Update the hero CTA structure so GSALLY routes clearly.
+
+Preferred primary CTA:
+Explore Services
+
+Preferred secondary CTA:
+See the AI Visibility Assessment
+
+This is important:
+On GSALLY, the default hero should not feel exactly like the GEO site’s direct conversion hero.
+It should have a broader primary path and a GEO-specific secondary path.
+
+If the current layout works better with GEO as primary and services secondary, that is acceptable only if the copy still clearly differentiates GSALLY from the GEO homepage.
+But in general, GSALLY should feel like the bridge, not the specialized assessment page itself.
+
+6. HERO SUPPORT LINE / TRUST MICROCOPY
+Rewrite supporting microcopy to reinforce GSALLY’s broader role.
+
+Preferred direction:
+Built for Myrtle Beach and Grand Strand service businesses
+
+Optional support chips:
+- Practical support
+- Clear next steps
+- Month-to-month where appropriate
+
+Avoid copying the GEO-site hero microcopy exactly.
+
+7. HERO SIDE CARD / SUPPORT CARD
+If there is a hero-side support card, do NOT use the same “what the assessment reviews” card copy as the GEO site.
+
+Instead, use a broader GSALLY version.
+
+Preferred card title:
+How we help businesses get clearer
+
+Preferred bullets:
+- Support and vendor clarity
+- Website and visibility guidance
+- Process and trust improvements
+- Practical next-step recommendations
+
+This keeps the GSALLY hero differentiated.
+
+8. “COMMON AREAS” OR PROBLEM SECTION
+Rewrite this section so it supports a broader advisory/business clarity identity, not just IT cost analysis and not just GEO.
+
+Preferred direction:
+Where businesses often lose clarity
+
+Intro idea:
+Many growing service businesses do not have one single problem — they have a mix of support complexity, unclear ownership, inconsistent processes, thin website structure, or weak trust signals that make growth harder than it should be.
+
+If there are 3 issue cards, rewrite them so the mix includes:
+- operational/vendor complexity
+- weak service/business clarity
+- inconsistent process / trust / support structure
+
+This section should bridge operational and visibility problems naturally.
+
+9. “THREE CORE SERVICE AREAS” SECTION
+This section should remain broad and credible.
+Do not rewrite it to sound like the GEO site.
+
+Instead, reframe it so the service areas support:
+- clarity
+- structure
+- support
+- visibility
+- trust
+
+Possible section heading:
+How we help
+
+Possible intro:
+We help businesses strengthen the operational and structural foundations that support clearer growth, better support, and stronger business visibility.
+
+Keep the service categories honest.
+Do not fake-marketing-spin operational services into SEO services.
+But do make sure the framing matches the homepage’s broader identity.
+
+10. GEO FEATURE SECTION
+This section is where GSALLY should route into GEO.
+It should NOT fully duplicate the GEO homepage copy.
+
+Rewrite it so it sounds like a handoff into a dedicated offer.
+
+Preferred section title:
+Need a clearer picture of how your business appears in AI search?
+
+Preferred body copy:
+For service businesses that rely on trust, local discovery, and inbound leads, we offer a dedicated AI Visibility assessment. It is designed to show whether your website is clear, well-structured, and easy for AI-driven search tools to understand.
+
+Supporting cards can be:
+- AI visibility baseline
+- service-page and FAQ gaps
+- practical next steps
+
+CTA:
+See the AI Visibility Assessment
+
+Support line:
+Dedicated assessment. Clear deliverables. No hype.
+
+Key rule:
+This section should make the visitor want to click through to GEO.
+It should not try to replace the GEO homepage.
+
+11. “WHO WE HELP” SECTION
+Rewrite so it better matches GSALLY’s broader identity while still supporting GEO intent.
+
+Preferred direction:
+A good fit for:
+- service businesses that need clearer support and operational structure
+- businesses with multiple vendors or overlapping tools
+- local companies that rely on trust and inbound leads
+- organizations with thin or unclear service messaging
+- teams that want clearer next steps before committing to bigger changes
+
+Probably not a fit for:
+- businesses looking only for a quick one-time technical fix
+- very early-stage companies with no clear service offer
+- teams looking for guaranteed rankings or hype-driven marketing promises
+- organizations unwilling to improve structure, content, or process clarity
+
+12. PROCESS SECTION
+Keep this consultative and broader than the GEO site.
+
+Preferred section framing:
+A structured, practical approach
+
+Suggested intro:
+We start by understanding what is unclear — across support, structure, process, and visibility — then help identify the most practical next steps.
+
+You may keep the 4-step structure, but make sure it sounds like GSALLY’s broader approach, not the GEO site’s assessment flow.
+
+13. “WHY GSALLY” SECTION
+Rewrite this so it reinforces:
+- practical business clarity
+- structured support
+- cleaner operations
+- grounded recommendations
+- local trust
+
+Suggested direction:
+Why businesses work with Grand Strand Ally
+
+And cards like:
+- clearer visibility into what is working and what is not
+- simpler support and cleaner ownership
+- practical recommendations without unnecessary complexity
+- local, month-to-month, consultative support
+
+14. FREE COST ANALYSIS SECTION
+This is important.
+Do NOT let this section compete equally with GEO.
+
+Rewrite it so it is clearly a secondary path.
+
+Suggested section title:
+Need IT cost clarity instead?
+
+Suggested body direction:
+If your main concern is support costs, vendor overlap, Microsoft 365 administration, or operational simplification, our cost analysis can help. If your main concern is visibility, lead flow, or how your business appears in AI-driven search, start with the AI Visibility assessment instead.
+
+This makes cost analysis supportive, not competing.
+
+15. FINAL CTA / LOWER-PAGE CTA
+Rewrite the final CTA so it supports GSALLY’s role as a routing and advisory site.
+
+Suggested direction:
+Need clearer support, cleaner structure, or a better understanding of how your business appears in AI search?
+
+CTA options:
+- Explore Services
+- See the AI Visibility Assessment
+
+Again:
+GSALLY routes.
+GEO converts.
+
+========================================================
+KEY COPY RULES
+========================================================
+
+Across the homepage:
+- do not reuse the GEO homepage wording too closely
+- do not use the same hero framing as geo.vercel.app
+- keep GSALLY broader
+- keep GSALLY more advisory
+- keep GSALLY more trust/credibility oriented
+- make GEO a dedicated linked offer, not a duplicate homepage pitch
+
+Use GEO-related language more lightly on GSALLY.
+Use deeper GEO explanation only on geo.vercel.app.
+
+========================================================
+DO NOT
+========================================================
+
+Do not:
+- duplicate the GEO homepage copy
+- make GSALLY sound like the GEO sales page
+- remove all IT / advisory credibility
+- make the site sound like a generic digital marketing agency
+- add fake stats
+- add fake testimonials
+- use hypey growth language
+- leave conflicting GEO URLs in the codebase
+- break the homepage layout or CTA links
+
+========================================================
+FINAL REPORT REQUIRED
+========================================================
+
+After updating the GSALLY homepage copy, provide a concise report with:
+- files changed
+- which homepage blocks were rewritten
+- how GSALLY is now differentiated from geo.vercel.app
+- what role GSALLY now plays in the funnel
+- what GEO CTA text is now used
+- how the free cost analysis section was reframed
+- any assumptions made
+- any recommended phase 2 improvements
+
+Then do a self-QA pass and confirm:
+- GSALLY no longer reads like a duplicate of geo.vercel.app
+- GSALLY now feels like the parent credibility / advisory site
+- GEO is still visible but positioned as a dedicated offer
+- the homepage routing is clearer
+- the cost analysis section feels secondary
+- the tone remains calm, practical, local, and credible
