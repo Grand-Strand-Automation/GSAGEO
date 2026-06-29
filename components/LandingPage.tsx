@@ -9,6 +9,8 @@ import { TrustBar } from "@/components/TrustBar";
 import { ButtonLink } from "@/components/ui/Button";
 import {
   DELIVERABLES,
+  DELIVERABLES_INTRO,
+  DELIVERABLES_SUPPORT,
   FAQ_ITEMS,
   GOOD_FIT,
   HOME_HERO,
@@ -20,6 +22,7 @@ import {
   PRICING_REASSURANCE,
   TIERS,
   WHATS_INCLUDED,
+  WHATS_INCLUDED_INTRO,
 } from "@/lib/content/landing";
 
 export function LandingPage() {
@@ -135,41 +138,59 @@ export function LandingPage() {
       </section>
 
       <section id="whats-included" className="section-pad bg-white scroll-mt-20">
-        <div className="container px-4 md:px-6">
+        <div className="container px-4 md:px-6 max-w-4xl">
           <SectionHeading
-            label="What's Included"
-            title="Everything covered in a GEO engagement."
-            description="Every audit covers these nine areas. The depth of implementation depends on the engagement tier."
+            title="What's Included"
+            description={WHATS_INCLUDED_INTRO}
+            className="mb-8 md:mb-10"
           />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
             {WHATS_INCLUDED.map(({ title, desc }) => (
-              <div key={title} className="card-brand-hover p-6 md:p-7">
-                <div className="w-9 h-9 rounded-lg bg-brand-blue-light flex items-center justify-center mb-4">
-                  <span className="w-2 h-2 rounded-full bg-brand-blue" />
+              <div
+                key={title}
+                className="flex gap-3.5 rounded-xl border border-brand-border/80 bg-brand-cream/30 px-4 py-4 md:px-5 md:py-4"
+              >
+                <CheckCircle2 size={18} className="text-brand-blue shrink-0 mt-0.5" />
+                <div className="min-w-0">
+                  <h3 className="font-heading font-bold text-[15px] text-brand-navy leading-snug">
+                    {title}
+                  </h3>
+                  <p className="text-sm text-brand-muted leading-snug mt-1">{desc}</p>
                 </div>
-                <h3 className="font-heading font-bold text-[15px] text-brand-navy mb-2">{title}</h3>
-                <p className="text-sm text-brand-muted leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
-        </div>
-      </section>
 
-      <section className="section-pad bg-white">
-        <div className="container px-4 md:px-6 max-w-3xl">
-          <SectionHeading label="Deliverables" title="What you receive." />
-          <ul className="space-y-4 -mt-2">
-            {DELIVERABLES.map((item) => (
-              <li key={item} className="flex gap-3 text-brand-muted text-base leading-relaxed">
-                <CheckCircle2 size={18} className="text-brand-blue flex-shrink-0 mt-0.5" />
-                {item}
-              </li>
-            ))}
-          </ul>
-          <div className="mt-10">
-            <ButtonLink href="/audit" size="md">
-              Request a GEO Audit →
-            </ButtonLink>
+          <div className="mt-12 md:mt-14 pt-12 md:pt-14 border-t border-brand-border">
+            <SectionHeading
+              title="What You'll Receive"
+              description={DELIVERABLES_INTRO}
+              className="mb-8 md:mb-10"
+            />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+              {DELIVERABLES.map(({ title, desc }) => (
+                <div
+                  key={title}
+                  className="flex gap-3.5 rounded-xl border border-brand-border/80 bg-white px-4 py-4 md:px-5 md:py-4"
+                >
+                  <CheckCircle2 size={18} className="text-emerald-600 shrink-0 mt-0.5" />
+                  <div className="min-w-0">
+                    <h3 className="font-heading font-bold text-[15px] text-brand-navy leading-snug">
+                      {title}
+                    </h3>
+                    <p className="text-sm text-brand-muted leading-snug mt-1">{desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <p className="mt-6 md:mt-8 text-sm text-brand-muted text-center leading-relaxed">
+              {DELIVERABLES_SUPPORT}
+            </p>
+            <div className="mt-8 text-center">
+              <ButtonLink href={HOME_HERO.primaryHref} size="md">
+                Start Your Assessment →
+              </ButtonLink>
+            </div>
           </div>
         </div>
       </section>

@@ -64,25 +64,55 @@ export const NOT_FIT = [
   "Teams unwilling to add or revise content over time",
 ];
 
+export const WHATS_INCLUDED_INTRO =
+  "Your assessment is designed to give you a clear picture of how easy your business is to understand online — and what to improve first.";
+
 export const WHATS_INCLUDED = [
-  { title: "GEO Audit and Scorecard", desc: "A structured review across eight GEO-readiness categories, each scored and graded." },
-  { title: "AI Visibility Query Mapping", desc: "Analysis of queries where your business should appear — and whether your content supports that." },
-  { title: "Technical Crawlability and Indexing", desc: "Sitemap, robots.txt, canonical tags, and indexability signals." },
-  { title: "Service Page and Content Gap Analysis", desc: "Review of current service pages with specific recommendations." },
-  { title: "Entity and Business Profile Consistency", desc: "How consistently your business name, location, and services appear." },
-  { title: "Structured Data and Schema Review", desc: "Whether your pages use structured data that represents your business accurately." },
-  { title: "Internal Linking and Page Architecture", desc: "How pages connect and whether structure helps AI systems understand relationships." },
-  { title: "Content Recommendations", desc: "Specific recommendations for FAQs, comparison pages, case studies, and more." },
-  { title: "Reporting and Roadmap", desc: "A clear, prioritized action plan with findings and suggested implementation path." },
+  {
+    title: "Visibility Review",
+    desc: "We review how clearly your business can be understood by AI search tools and modern search results.",
+  },
+  {
+    title: "Website Clarity",
+    desc: "We look at whether your services, pages, and messaging are easy to follow.",
+  },
+  {
+    title: "Trust & Credibility",
+    desc: "We review signs that help your business feel more trustworthy and complete online.",
+  },
+  {
+    title: "Site Structure",
+    desc: "We check whether your website is organized in a way that is easier to read and navigate.",
+  },
+  {
+    title: "Priority Improvements",
+    desc: "We highlight the biggest opportunities to improve visibility, clarity, and conversions.",
+  },
 ];
 
+export const DELIVERABLES_INTRO =
+  "After the audit, you'll receive a simple, easy-to-read summary of what looks good, what needs work, and what to do next.";
+
+export const DELIVERABLES_SUPPORT =
+  "No technical overwhelm. Just clear findings and practical next steps.";
+
 export const DELIVERABLES = [
-  "GEO scorecard across eight categories with a letter grade for each",
-  "Prioritized action plan: top five technical fixes and top five content opportunities",
-  "Content map showing recommended pages, topics, and content types",
-  "Technical recommendations for site structure, schema markup, and crawlability",
-  "Implementation roadmap with suggested tier and sequencing",
-  "Optional: ongoing support through AI Visibility Growth or Managed GEO engagements",
+  {
+    title: "Simple Score Summary",
+    desc: "A plain-English snapshot of how your business currently looks online.",
+  },
+  {
+    title: "Top Issues to Fix",
+    desc: "The main areas that may be holding back clarity, trust, or visibility.",
+  },
+  {
+    title: "Clear Recommendations",
+    desc: "Straightforward suggestions for what to improve first.",
+  },
+  {
+    title: "Next-Step Action Plan",
+    desc: "A practical plan for moving forward without guesswork.",
+  },
 ];
 
 export const PRICING_HEADLINE = "AI Visibility Plans for Small and Medium Businesses";
