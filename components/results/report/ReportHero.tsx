@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, CalendarDays, Globe, Sparkles } from "lucide-react";
 import type { ReportViewModel } from "@/lib/results/report-view-model";
 import { ScoreBadge } from "./ScoreBadge";
+import { gradeToneClassesForGrade } from "@/lib/results/score-utils";
 import { cn } from "@/lib/utils";
 
 function formatDate(iso: string | null): string {
@@ -84,7 +85,7 @@ export function ReportHero({
             <div className="rounded-2xl bg-white/95 backdrop-blur p-5 md:p-6 text-center shadow-card-md min-w-[200px]">
               <ScoreBadge score={report.overallScore} grade={report.overallGrade} size="xl" />
               <p className="mt-4 text-sm font-heading font-bold text-brand-navy">AI Visibility Readiness</p>
-              <p className={cn("text-xs mt-1 font-medium text-brand-blue")}>
+              <p className={cn("text-xs mt-1 font-medium", gradeToneClassesForGrade(report.overallGrade).text)}>
                 {report.overallInterpretation}
               </p>
             </div>

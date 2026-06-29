@@ -27,20 +27,19 @@ export function ScoreBadge({
           cy={dimension / 2}
           r={radius}
           fill="none"
-          stroke="currentColor"
+          stroke={colors.trackStroke}
           strokeWidth={stroke}
-          className="text-brand-border/80"
         />
         <circle
           cx={dimension / 2}
           cy={dimension / 2}
           r={radius}
           fill="none"
+          stroke={colors.stroke}
           strokeWidth={stroke}
           strokeLinecap="round"
           strokeDasharray={circumference}
           strokeDashoffset={offset}
-          className={colors.ring}
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-2">

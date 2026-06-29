@@ -16,6 +16,8 @@ export function gradeToneClasses(tone: GradeTone): {
   text: string;
   bar: string;
   fill: string;
+  stroke: string;
+  trackStroke: string;
 } {
   switch (tone) {
     case "green":
@@ -25,6 +27,8 @@ export function gradeToneClasses(tone: GradeTone): {
         text: "text-emerald-800",
         bar: "bg-emerald-500",
         fill: "#059669",
+        stroke: "#059669",
+        trackStroke: "#a7f3d0",
       };
     case "yellow":
       return {
@@ -33,6 +37,8 @@ export function gradeToneClasses(tone: GradeTone): {
         text: "text-amber-800",
         bar: "bg-amber-500",
         fill: "#d97706",
+        stroke: "#d97706",
+        trackStroke: "#fde68a",
       };
     default:
       return {
@@ -41,11 +47,25 @@ export function gradeToneClasses(tone: GradeTone): {
         text: "text-red-800",
         bar: "bg-red-500",
         fill: "#dc2626",
+        stroke: "#dc2626",
+        trackStroke: "#fecaca",
       };
   }
 }
 
+const NEUTRAL_GRADE_CLASSES = {
+  ring: "stroke-brand-subtle",
+  bg: "bg-brand-cream",
+  text: "text-brand-navy",
+  bar: "bg-brand-subtle",
+  fill: "#9aaeb8",
+  stroke: "#9aaeb8",
+  trackStroke: "#d7e1ea",
+} as const;
+
 export function gradeToneClassesForGrade(grade: string) {
+  const letter = grade.trim().charAt(0).toUpperCase();
+  if (!letter || letter === "—" || letter === "-") return NEUTRAL_GRADE_CLASSES;
   return gradeToneClasses(gradeTone(grade));
 }
 
