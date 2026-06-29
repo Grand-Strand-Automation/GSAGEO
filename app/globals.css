@@ -70,6 +70,10 @@
     @apply inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] border border-brand-gold/60 bg-brand-gold/20 text-brand-gold shadow-[0_0_24px_rgba(196,163,90,0.25)];
   }
 
+  .eyebrow-pill-gold-blue {
+    @apply inline-flex items-center justify-center rounded-full px-5 py-2.5 text-xs sm:text-sm font-extrabold uppercase tracking-[0.18em] bg-brand-gold text-brand-navy border-2 border-brand-blue shadow-[0_2px_14px_rgba(31,94,149,0.12)];
+  }
+
   .report-page {
     @apply text-brand-navy;
   }

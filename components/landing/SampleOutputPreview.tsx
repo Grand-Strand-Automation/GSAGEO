@@ -71,7 +71,7 @@ export function SampleOutputPreview() {
     <section id="sample-output" className="section-pad bg-brand-cream scroll-mt-20">
       <div className="container px-4 md:px-6 max-w-6xl">
         <div className="flex flex-col items-center text-center mb-10 md:mb-12 max-w-3xl mx-auto">
-          <span className="inline-flex items-center rounded-full border-2 border-brand-gold/70 bg-brand-gold/20 px-5 py-2.5 text-xs sm:text-sm font-extrabold uppercase tracking-[0.2em] text-brand-gold shadow-[0_0_28px_rgba(196,163,90,0.2)] mb-6">
+          <span className="eyebrow-pill-gold-blue mb-6">
             {ASSESSMENT_PREVIEW.eyebrow}
           </span>
           <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-brand-navy leading-[1.12]">
