@@ -87,7 +87,7 @@ export default function Services() {
               target="_blank"
               rel="noopener noreferrer"
               data-geo-cta="services-hero"
-              className="inline-flex items-center justify-center gap-2 bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-7 text-[15px] rounded-lg transition-colors"
+              className="btn-geo h-12 px-7 text-[15px]"
             >
               Start Your Assessment <ArrowRight size={15} aria-hidden="true" />
             </a>
@@ -119,10 +119,10 @@ export default function Services() {
             <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2.5 mb-4">
-                  <div className="w-9 h-9 bg-white/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Sparkles size={16} className="text-[#60B8F0]" aria-hidden="true" />
+                  <div className="w-9 h-9 bg-[#C09030]/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Sparkles size={16} className="text-[#E8C870]" aria-hidden="true" />
                   </div>
-                  <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/45">Signature offer</span>
+                  <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#E8C870]">Signature offer</span>
                 </div>
                 <h3 className="text-xl md:text-2xl font-heading font-bold text-white mb-3 leading-snug">
                   AI Visibility / GEO Assessment
@@ -135,7 +135,7 @@ export default function Services() {
                   target="_blank"
                   rel="noopener noreferrer"
                   data-geo-cta="services-featured-card"
-                  className="inline-flex items-center gap-2 bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-11 px-6 rounded-lg text-[14px] transition-colors"
+                  className="btn-geo h-11 px-6 text-[14px]"
                 >
                   Start Your Assessment <ArrowRight size={14} aria-hidden="true" />
                 </a>
@@ -245,7 +245,7 @@ export default function Services() {
             <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
               <div className="flex-1 min-w-0">
                 <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#4B5B6B] flex items-center gap-1.5 mb-4">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#1F5E95] inline-block" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#C09030] inline-block" />
                   GEO / AI Visibility
                 </span>
                 <h2 className="text-2xl md:text-3xl font-heading font-bold text-[#0E2F54] mb-3 leading-tight">
@@ -259,7 +259,7 @@ export default function Services() {
                   target="_blank"
                   rel="noopener noreferrer"
                   data-geo-cta="services-cross-sell"
-                  className="inline-flex items-center gap-2 bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-7 rounded-lg text-[15px] transition-colors"
+                  className="btn-geo h-12 px-7 text-[15px]"
                 >
                   Start Your Assessment <ArrowRight size={15} aria-hidden="true" />
                 </a>
@@ -338,7 +338,7 @@ export default function Services() {
         title="Not sure where to start?"
         subtitle="If your main concern is website clarity and AI visibility, start with the GEO assessment. If you need operational support, tool consolidation, or IT cost clarity, the free cost analysis is the right first step."
         buttons={[
-          { label: "Start Your Assessment", href: GEO_ASSESSMENT_URL, primary: true, external: true },
+          { label: "Start Your Assessment", href: GEO_ASSESSMENT_URL, geo: true, external: true },
           { label: "Schedule a Free Cost Analysis", href: "/contact#contact-form", primary: false },
         ]}
       />

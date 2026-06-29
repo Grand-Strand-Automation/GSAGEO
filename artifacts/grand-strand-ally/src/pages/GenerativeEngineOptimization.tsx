@@ -341,8 +341,8 @@ export default function GenerativeEngineOptimization() {
 
             {/* Left — headline, subheadline, chips, CTAs */}
             <div>
-              <div className="inline-flex items-center gap-2 border border-white/15 rounded-full px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-white/60 mb-7 bg-white/5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#60B8F0] inline-block" aria-hidden="true" />
+              <div className="inline-flex items-center gap-2 border border-[#C09030]/30 rounded-full px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-[#E8C870] mb-7 bg-[#C09030]/[0.07]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#C09030] inline-block" aria-hidden="true" />
                 GEO / AI Visibility for service businesses
               </div>
 
@@ -369,12 +369,15 @@ export default function GenerativeEngineOptimization() {
 
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-3 mb-5">
-                <Button
-                  asChild
-                  className="bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-7 text-[15px] rounded-lg border-0 w-full sm:w-auto"
+                <a
+                  href={geoAuditUrl()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-geo-cta="geo-page-hero"
+                  className="btn-geo h-12 px-7 text-[15px] w-full sm:w-auto justify-center"
                 >
-                  <a href={geoAuditUrl()} target="_blank" rel="noopener noreferrer" data-geo-cta="geo-page-hero">Start Your Assessment →</a>
-                </Button>
+                  Start Your Assessment →
+                </a>
                 <Button
                   asChild
                   className="bg-transparent border border-white/25 text-white hover:bg-white/8 font-semibold h-12 px-7 text-[15px] rounded-lg w-full sm:w-auto"
@@ -580,12 +583,15 @@ export default function GenerativeEngineOptimization() {
             ))}
           </ul>
           <div className="mt-10">
-            <Button
-              asChild
-              className="bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-7 text-sm rounded-lg border-0"
+            <a
+              href={geoAuditUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-geo-cta="geo-page-deliverables"
+              className="btn-geo h-12 px-7 text-sm"
             >
-              <a href={geoAuditUrl()} target="_blank" rel="noopener noreferrer" data-geo-cta="geo-page-deliverables">Request a GEO Audit →</a>
-            </Button>
+              Request a GEO Audit →
+            </a>
           </div>
         </div>
       </section>
@@ -649,23 +655,26 @@ export default function GenerativeEngineOptimization() {
                     Note: {tier.excludes}
                   </p>
                 )}
-                <Button
-                  asChild
+                <a
+                  href={geoAuditUrl(TIER_AUDIT_PARAMS[tier.tier] ?? "monitor")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-geo-cta={`geo-page-tier-${tier.tier}`}
                   className={
                     tier.primary
-                      ? "bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-11 text-sm rounded-lg border-0 w-full"
-                      : "bg-[#F7F5F1] hover:bg-[#EAE8E4] text-[#0E2F54] border border-[#D7E1EA] font-semibold h-11 text-sm rounded-lg w-full"
+                      ? "btn-geo h-11 text-sm rounded-lg w-full justify-center"
+                      : "inline-flex items-center justify-center h-11 text-sm font-semibold rounded-lg w-full border border-[#C09030] text-[#0E2F54] bg-white hover:bg-[#C09030]/10 transition-colors"
                   }
                 >
-                  <a href={geoAuditUrl(TIER_AUDIT_PARAMS[tier.tier] ?? "monitor")} target="_blank" rel="noopener noreferrer" data-geo-cta={`geo-page-tier-${tier.tier}`}>{tier.cta} →</a>
-                </Button>
+                  {tier.cta} →
+                </a>
               </div>
             ))}
           </div>
           <div className="mt-10 text-center space-y-3">
             <p className="text-sm text-[#4B5B6B]">
               Need a larger rollout, multi-location support, or ongoing implementation help?{" "}
-              <a href={geoAuditUrl("custom")} target="_blank" rel="noopener noreferrer" className="text-[#1F5E95] hover:underline font-medium">
+              <a href={geoAuditUrl("custom")} target="_blank" rel="noopener noreferrer" className="text-[#6B4E0A] hover:text-[#4E3208] hover:underline font-medium">
                 Request a custom GEO plan.
               </a>
             </p>

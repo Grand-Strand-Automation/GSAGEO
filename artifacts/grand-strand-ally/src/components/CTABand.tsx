@@ -8,7 +8,7 @@ export function CTABand({
 }: {
   title: string;
   subtitle?: string;
-  buttons?: { label: string; href: string; primary?: boolean; external?: boolean }[];
+  buttons?: { label: string; href: string; primary?: boolean; external?: boolean; geo?: boolean }[];
 }) {
   return (
     <section className="py-24 md:py-32 bg-[#0E2F54] text-white text-center relative overflow-hidden">
@@ -34,7 +34,9 @@ export function CTABand({
                 key={i}
                 asChild
                 className={
-                  btn.primary
+                  btn.geo
+                    ? "btn-geo h-12 px-7 text-sm w-full sm:w-auto justify-center"
+                    : btn.primary
                     ? "bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-7 text-sm rounded-lg border-0 w-full sm:w-auto"
                     : "bg-transparent border border-white/25 text-white hover:bg-white/8 font-semibold h-12 px-7 text-sm rounded-lg w-full sm:w-auto"
                 }

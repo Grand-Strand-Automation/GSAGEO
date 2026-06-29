@@ -41,9 +41,7 @@ export function GeoCTABlock({
                 }`}
               >
                 <span
-                  className={`w-1.5 h-1.5 rounded-full inline-block ${
-                    isDark ? "bg-[#60B8F0]" : "bg-[#1F5E95]"
-                  }`}
+                  className="w-1.5 h-1.5 rounded-full inline-block bg-[#C09030]"
                 />
                 GEO / AI Visibility
               </span>
@@ -68,7 +66,7 @@ export function GeoCTABlock({
                 target="_blank"
                 rel="noopener noreferrer"
                 data-geo-cta={analyticsId}
-                className="inline-flex items-center gap-2 bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-7 rounded-lg text-[15px] transition-colors whitespace-nowrap"
+                className="btn-geo h-12 px-7 text-[15px]"
               >
                 {buttonText} <ArrowRight size={15} aria-hidden="true" />
               </a>

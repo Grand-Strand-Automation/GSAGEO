@@ -112,7 +112,7 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
               data-geo-cta="hero-secondary-cta"
-              className="inline-flex items-center justify-center gap-2 border border-white/25 text-white hover:bg-white/[0.08] font-semibold h-12 px-7 text-[15px] rounded-lg transition-colors"
+              className="btn-geo h-12 px-7 text-[15px]"
             >
               Start Your Assessment
             </a>
@@ -153,8 +153,8 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-start">
             <div>
-              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/40 flex items-center gap-1.5 mb-5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#60B8F0] inline-block" />
+              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#E8C870] flex items-center gap-1.5 mb-5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#C09030] inline-block" />
                 AI Visibility Assessment
               </span>
               <h2 className="text-3xl md:text-4xl font-heading font-bold text-white leading-tight mb-5">
@@ -168,7 +168,7 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-geo-cta="homepage-geo-section"
-                className="inline-flex items-center gap-2 bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-7 rounded-lg text-[15px] transition-colors"
+                className="btn-geo h-12 px-7 text-[15px]"
               >
                 Start Your Assessment <ArrowRight size={15} aria-hidden="true" />
               </a>
@@ -578,7 +578,7 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
               data-geo-cta="homepage-final-cta"
-              className="inline-flex items-center justify-center gap-2 border border-white/25 text-white hover:bg-white/[0.08] font-semibold h-12 px-7 text-[15px] rounded-lg transition-colors"
+              className="btn-geo h-12 px-7 text-[15px]"
             >
               Start the GEO Audit
             </a>

@@ -57,6 +57,10 @@
   --color-sidebar-accent-border: var(--sidebar-accent-border);
   --color-sidebar-ring: hsl(var(--sidebar-ring));
 
+  /* GEO / AI Visibility accent */
+  --color-geo-gold: #C09030;
+  --color-geo-gold-hover: #A87820;
+
   --font-sans: 'Inter', sans-serif;
   --font-serif: Georgia, serif;
   --font-mono: Menlo, monospace;
@@ -121,6 +125,30 @@
   --chart-5: 42 33% 96%;
 
   --radius: 0.5rem;
+}
+
+/* ── GEO / AI Visibility CTA system ─────────────────────── */
+@layer components {
+  /* Primary GEO CTA — gold fill, dark navy text */
+  .btn-geo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    transition: background-color 0.15s;
+    white-space: nowrap;
+    background-color: #C09030;
+    color: #0E2F54;
+    text-decoration: none;
+  }
+  .btn-geo:hover {
+    background-color: #A87820;
+  }
+  .btn-geo:focus-visible {
+    outline: 2px solid #C09030;
+    outline-offset: 2px;
+  }
 }
 
 @layer base {

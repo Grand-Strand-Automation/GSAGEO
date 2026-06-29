@@ -29,7 +29,7 @@ export function SiteFooter() {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-geo-cta="footer"
-                className="inline-flex items-center gap-2 bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-7 rounded-lg text-sm transition-colors whitespace-nowrap"
+                className="btn-geo h-12 px-7 text-sm"
               >
                 Start Your GEO Assessment <ArrowRight size={14} aria-hidden="true" />
               </a>
@@ -72,7 +72,14 @@ export function SiteFooter() {
                 { label: "Free IT Cost Analysis", href: "/free-it-cost-analysis" },
               ].map(({ label, href }) => (
                 <li key={label}>
-                  <Link href={href} className="text-sm text-white/55 hover:text-white transition-colors">
+                  <Link
+                    href={href}
+                    className={`text-sm transition-colors ${
+                      label === "GEO / AI Visibility"
+                        ? "text-[#E8C870] hover:text-[#F0D890] font-medium"
+                        : "text-white/55 hover:text-white"
+                    }`}
+                  >
                     {label}
                   </Link>
                 </li>

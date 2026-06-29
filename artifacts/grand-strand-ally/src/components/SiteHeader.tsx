@@ -113,17 +113,24 @@ export function SiteHeader() {
                   <span className="text-white/40 font-normal normal-case tracking-normal text-sm" aria-hidden="true">→</span>
                 </Link>
                 <div className="border-t border-white/10 mt-1 pt-1">
-                  {SERVICE_LINKS.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      className={`block px-4 py-2.5 text-sm hover:bg-white/5 transition-colors rounded-lg mx-1 ${
-                        isActive(link.href) ? "text-white" : "text-white/65 hover:text-white"
-                      }`}
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
+                  {SERVICE_LINKS.map((link) => {
+                    const isGeo = link.href === siteConfig.links.geo;
+                    return (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        className={`block px-4 py-2.5 text-sm hover:bg-white/5 transition-colors rounded-lg mx-1 ${
+                          isActive(link.href)
+                            ? "text-white"
+                            : isGeo
+                            ? "text-[#E8C870] hover:text-[#F0D890] font-medium"
+                            : "text-white/65 hover:text-white"
+                        }`}
+                      >
+                        {link.label}
+                      </Link>
+                    );
+                  })}
                 </div>
                 <div className="border-t border-white/10 mt-1 pt-1 px-1">
                   <Link
@@ -162,7 +169,7 @@ export function SiteHeader() {
             target="_blank"
             rel="noopener noreferrer"
             data-geo-cta="nav-desktop"
-            className="inline-flex items-center gap-1.5 bg-[#60B8F0]/15 hover:bg-[#60B8F0]/25 border border-[#60B8F0]/30 hover:border-[#60B8F0]/50 text-[#60B8F0] hover:text-white rounded-lg px-3.5 h-9 text-sm font-semibold transition-colors whitespace-nowrap"
+            className="inline-flex items-center gap-1.5 bg-[#C09030]/15 hover:bg-[#C09030]/25 border border-[#C09030]/40 hover:border-[#C09030]/70 text-[#E8C870] hover:text-[#F0D890] rounded-lg px-3.5 h-9 text-sm font-semibold transition-colors whitespace-nowrap focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#C09030] focus-visible:outline-offset-2"
           >
             AI Visibility ↗
           </a>
@@ -220,19 +227,24 @@ export function SiteHeader() {
               >
                 All Services →
               </Link>
-              {SERVICE_LINKS.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`text-sm py-2 px-3 rounded-lg transition-colors ${
-                    isActive(link.href)
-                      ? "text-white font-medium bg-white/5"
-                      : "text-white/65 hover:text-white hover:bg-white/5"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {SERVICE_LINKS.map((link) => {
+                const isGeo = link.href === siteConfig.links.geo;
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`text-sm py-2 px-3 rounded-lg transition-colors ${
+                      isActive(link.href)
+                        ? "text-white font-medium bg-white/5"
+                        : isGeo
+                        ? "text-[#E8C870] hover:text-[#F0D890] hover:bg-white/5 font-medium"
+                        : "text-white/65 hover:text-white hover:bg-white/5"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
               <Link
                 href="/free-it-cost-analysis"
                 className={`flex items-center gap-2 text-sm font-semibold py-2 px-3 rounded-lg transition-colors ${

@@ -1,0 +1,219 @@
+I need you to update the GSally.com site in this Replit project so the GEO assessment links and buttons stand out much more visually.
+
+Important:
+- Do the work in code now.
+- Do not just suggest ideas.
+- Inspect the project first and identify:
+  - all GEO-related links/buttons/CTAs
+  - shared button components
+  - link styles
+  - color tokens / theme variables
+  - any logo color references
+  - announcement bar CTA
+  - hero GEO CTA
+  - GEO feature section CTA
+  - nav GEO item
+  - footer GEO CTA
+  - Services page GEO links
+  - any reusable GEO CTA blocks
+- Then implement the changes cleanly.
+- Preserve the site’s premium, trustworthy look.
+- Do not make the GEO links look cheap, neon, spammy, or out of place.
+- Do not break layout, accessibility, routing, or responsive behavior.
+
+========================================================
+PRIMARY GOAL
+========================================================
+
+I want the GEO assessment links/buttons on GSally.com to stand out more clearly than they do now.
+
+Right now they are not visually distinct enough.
+
+I want you to:
+- use the gold color from the logo if that works well,
+- or use another stronger accent color if that creates better contrast and premium visibility.
+
+The GEO CTAs should feel:
+- more noticeable
+- more intentional
+- more premium
+- more clickable
+- clearly different from standard secondary links
+
+========================================================
+DESIGN DIRECTION
+========================================================
+
+Use the logo’s gold tone as the first option to test.
+
+If the logo gold works well:
+- use it for GEO-specific CTA emphasis
+- keep it tasteful and premium
+- ensure text contrast and readability are strong
+
+If the gold tone does NOT provide good enough contrast or feels off-brand in buttons/links:
+- choose a nearby premium accent color that stands out more while still fitting the brand
+- keep it warm, refined, and high-contrast
+- do not use generic bright orange unless it truly fits
+- do not use cheap “sale banner” yellow
+
+The result should feel like:
+- a premium featured action
+- not a warning color
+- not an error state
+- not a discount banner
+
+========================================================
+WHAT TO UPDATE
+========================================================
+
+Update the GEO-related CTAs/links only, or primarily, so they become visually stronger than standard site links.
+
+Priority elements:
+1. top announcement bar GEO CTA
+2. homepage hero GEO CTA
+3. homepage GEO feature section CTA
+4. navigation GEO item
+5. Services page GEO CTA
+6. footer GEO CTA
+7. reusable GEO CTA block buttons
+8. any “See the AI Visibility Assessment” style links
+9. any GEO cross-sell buttons/links on About / Process / Contact / FAQ if present
+
+If there are text-only GEO links that should remain text links, make them stand out more with:
+- color
+- weight
+- underline treatment
+- hover state
+- icon treatment if already used in the design system
+
+========================================================
+STYLE RULES
+========================================================
+
+For GEO-specific buttons and links:
+- increase visual contrast
+- make hover state obvious and polished
+- make focus state accessible and visible
+- ensure the button still looks like part of the same brand system
+- keep spacing and padding consistent
+- preserve responsive behavior
+
+If the site uses multiple button variants, create or refine a GEO-specific CTA variant if appropriate.
+
+Examples of acceptable treatment:
+- gold filled button with dark text if contrast passes
+- dark button with gold border/accent
+- gold text link with stronger underline/hover
+- premium highlight treatment for nav item
+- gold accent pill/button for GEO-specific CTAs
+
+========================================================
+ACCESSIBILITY REQUIREMENTS
+========================================================
+
+Make sure:
+- contrast is strong enough for readability
+- hover and focus states are visible
+- mobile tap clarity remains strong
+- GEO CTAs remain obviously interactive
+- no color choice looks washed out against white, navy, or existing section backgrounds
+
+If gold alone is too low-contrast on white, solve that properly with:
+- darker gold
+- different text color
+- filled button treatment
+- outline treatment
+- subtle background contrast block
+
+Do not just apply pale yellow text on white.
+
+========================================================
+CONSISTENCY RULES
+========================================================
+
+Use one intentional GEO CTA color treatment across the site.
+
+That means:
+- GEO CTAs should feel like a consistent featured action family
+- standard site links/buttons should still look like standard links/buttons
+- the visitor should be able to visually recognize “this is the GEO path”
+
+Do not randomly style each GEO link differently unless a small variation is clearly needed by context.
+
+========================================================
+IF A THEME / TOKEN SYSTEM EXISTS
+========================================================
+
+If the project uses:
+- CSS variables
+- theme tokens
+- Tailwind config
+- shared design constants
+- button variants
+
+update those cleanly.
+
+Prefer:
+- a dedicated GEO CTA color token or variant
+- reusable styling
+- maintainable approach
+- not scattered one-off inline color overrides
+
+========================================================
+MOBILE REQUIREMENTS
+========================================================
+
+Check the GEO CTA styling on mobile too:
+- buttons should still stand out
+- nav GEO item should be clear in the mobile menu
+- top-bar CTA should remain readable
+- no awkward contrast issues
+- no text clipping
+- no oversized glow/shadow effects
+
+========================================================
+DO NOT
+========================================================
+
+Do not:
+- make the site look flashy or cheap
+- use ugly bright yellow
+- use poor contrast
+- over-style every link on the site
+- create inconsistent GEO CTA styles
+- break the design system
+- break hover/focus/mobile behavior
+- reduce readability in pursuit of attention
+
+========================================================
+IMPLEMENTATION PREFERENCE
+========================================================
+
+Best approach:
+- inspect the logo color
+- derive the best usable gold/accent
+- apply it through reusable CTA styles
+- verify contrast on dark and light backgrounds
+- update GEO-specific buttons and links systematically
+
+========================================================
+FINAL REPORT REQUIRED
+========================================================
+
+After implementation, provide a concise report with:
+- files changed
+- whether a reusable GEO CTA style/variant was created
+- what color/accent was chosen
+- whether logo gold was used directly or adjusted
+- which GEO elements were updated
+- any accessibility/contrast considerations handled
+- any assumptions made
+- any recommended phase 2 refinements
+
+Then do a self-QA pass and confirm:
+- GEO links/buttons stand out more
+- the styling still feels premium
+- contrast is strong
+- the site still looks cohesive
+- GEO CTAs are easier to notice on desktop and mobile

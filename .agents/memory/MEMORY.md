@@ -1,0 +1,1 @@
+- [GEO Gold Color System](geo-gold-system.md) — all GEO/AI Visibility CTAs use amber-gold #C09030 / .btn-geo component class; never blue #1F5E95 for GEO CTAs

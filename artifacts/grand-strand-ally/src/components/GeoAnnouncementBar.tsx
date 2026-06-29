@@ -44,7 +44,7 @@ export function GeoAnnouncementBar() {
         <div className="flex-1 flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-4 min-w-0">
           <p className="text-xs sm:text-sm font-medium leading-snug text-white/90 min-w-0">
             <span className="inline-flex items-center gap-1.5 mr-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#60B8F0] inline-block shrink-0" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#C09030] inline-block shrink-0" />
               <span className="font-bold text-white text-[11px] sm:text-xs uppercase tracking-[0.12em]">New</span>
             </span>
             Now offering dedicated AI Visibility assessments for service businesses
@@ -54,7 +54,7 @@ export function GeoAnnouncementBar() {
             target="_blank"
             rel="noopener noreferrer"
             data-geo-cta="announcement-bar"
-            className="inline-flex items-center gap-1.5 bg-white/15 hover:bg-white/25 border border-white/25 rounded-md px-3 py-1 text-xs sm:text-sm font-semibold text-white whitespace-nowrap transition-colors shrink-0"
+            className="inline-flex items-center gap-1.5 bg-[#C09030] hover:bg-[#A87820] text-[#0E2F54] rounded-md px-3 py-1 text-xs sm:text-sm font-semibold whitespace-nowrap transition-colors shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-[#C09030]"
           >
             Start Your Assessment <ArrowRight size={11} aria-hidden="true" />
           </a>
