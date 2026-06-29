@@ -134,21 +134,21 @@ export function AuditForm({ initialPlan = "" }: { initialPlan?: string }) {
       <section className="bg-brand-hero text-white pt-28 pb-14 md:pt-36 relative overflow-hidden">
         <HeroOverlay />
         <div className="container px-4 md:px-6 text-center max-w-2xl relative z-10">
-          <div className="eyebrow-pill mb-6 mx-auto w-fit">GEO / AI Visibility Assessment</div>
+          <div className="eyebrow-pill mb-6 mx-auto w-fit">Assessment request</div>
           <h1 className="text-4xl sm:text-5xl font-heading font-extrabold mb-5">
-            Request Your Assessment
+            You&apos;re in the right place
           </h1>
           <p className="text-base md:text-lg text-white/70 leading-relaxed">
-            Tell us about your business and website. We use this to understand your visibility baseline,
-            identify the most relevant gaps, and recommend the clearest next steps.
+            This page is where you request your assessment. Fill out the form below with your
+            business and website details — then submit. That&apos;s all you need to do to get started.
           </p>
         </div>
       </section>
 
       <TrustBar
         items={[
-          "No commitment required",
-          "Automated review begins after submission",
+          "Just complete the form below",
+          "Your site review starts after you submit",
           "Actionable findings — prioritized by impact",
         ]}
       />
@@ -157,30 +157,38 @@ export function AuditForm({ initialPlan = "" }: { initialPlan?: string }) {
         <div className="container px-4 md:px-6 max-w-2xl">
           <div className="rounded-2xl border border-brand-border bg-white p-6 md:p-8 shadow-card mb-8">
             <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-brand-blue mb-4">
-              Before you begin
+              What happens after you submit
             </p>
             <p className="text-sm text-brand-muted leading-relaxed mb-5">
-              Before you begin, tell us a little about your business, website, and goals. We use this
-              information to understand your current visibility baseline, identify the most relevant gaps,
-              and recommend the clearest next steps.
+              Once you send the form below, we save your request and begin reviewing your website
+              automatically. No extra steps, phone calls, or follow-up forms needed to get started.
             </p>
             <div className="grid sm:grid-cols-3 gap-4 text-left">
               <div className="rounded-xl bg-brand-cream p-4">
                 <p className="text-xs font-bold uppercase text-brand-subtle mb-1">What you receive</p>
-                <p className="text-sm text-brand-muted">A structured assessment with category findings and priority recommendations.</p>
+                <p className="text-sm text-brand-muted">A clear assessment of what looks good on your site and what to improve first.</p>
               </div>
               <div className="rounded-xl bg-brand-cream p-4">
                 <p className="text-xs font-bold uppercase text-brand-subtle mb-1">What happens next</p>
-                <p className="text-sm text-brand-muted">Your request is saved and your site review begins automatically.</p>
+                <p className="text-sm text-brand-muted">Your review begins right after you hit submit on the form below.</p>
               </div>
               <div className="rounded-xl bg-brand-cream p-4">
                 <p className="text-xs font-bold uppercase text-brand-subtle mb-1">Turnaround</p>
-                <p className="text-sm text-brand-muted">Most automated reviews finish within minutes; follow-up within 2–3 business days if needed.</p>
+                <p className="text-sm text-brand-muted">Most reviews finish within minutes. We&apos;ll reach out within 2–3 business days only if we need more info.</p>
               </div>
             </div>
           </div>
 
           <div className="card-brand rounded-2xl p-8 md:p-10 shadow-card-md">
+            <div className="mb-6">
+              <h2 className="text-xl md:text-2xl font-heading font-extrabold text-brand-navy">
+                Fill out the form below
+              </h2>
+              <p className="mt-2 text-sm text-brand-muted leading-relaxed">
+                Share your business details so we can review your site and prepare your assessment.
+                Fields marked with * are required.
+              </p>
+            </div>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <input type="text" className="hidden" tabIndex={-1} autoComplete="off" {...register("website")} />
               <input type="hidden" {...register("selected_plan")} />
@@ -322,7 +330,7 @@ export function AuditForm({ initialPlan = "" }: { initialPlan?: string }) {
                     <Loader2 className="mr-2 h-5 w-5 animate-spin" /> Submitting…
                   </>
                 ) : (
-                  "Submit Assessment Request →"
+                  "Submit my request →"
                 )}
               </button>
             </form>

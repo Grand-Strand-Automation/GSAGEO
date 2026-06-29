@@ -53,9 +53,9 @@ export const HOME_METADATA = buildPageMetadata({
 });
 
 export const AUDIT_METADATA = buildPageMetadata({
-  title: "Request a GEO / AI Visibility Assessment | GEO",
+  title: "Complete Your Assessment Request | GEO",
   description:
-    "Request a GEO / AI Visibility assessment and get a clearer picture of your service page quality, trust signals, structure, and AI search readiness.",
+    "Fill out the form on this page to request your GEO / AI Visibility assessment. Submit your business and website details to start your review.",
   path: "/audit",
 });
 
