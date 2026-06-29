@@ -19,7 +19,7 @@ export const HOME_HERO = {
 } as const;
 
 export const ASSESSMENT_PREVIEW = {
-  eyebrow: "Sample report preview",
+  eyebrow: "SAMPLE REPORT PREVIEW",
   title: "What a Full GEO Audit Report Can Look Like",
   description:
     "This is a sample preview of the kind of customer-facing GEO / AI Visibility report you may receive after a full audit.",

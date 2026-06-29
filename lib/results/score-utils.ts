@@ -1,5 +1,54 @@
 export type ScoreTone = "strong" | "good" | "moderate" | "attention" | "critical";
 
+export type GradeTone = "green" | "yellow" | "red";
+
+/** Letter grade accent: A = green, B/C = yellow, D/F = red */
+export function gradeTone(grade: string): GradeTone {
+  const letter = grade.trim().charAt(0).toUpperCase();
+  if (letter === "A") return "green";
+  if (letter === "B" || letter === "C") return "yellow";
+  return "red";
+}
+
+export function gradeToneClasses(tone: GradeTone): {
+  ring: string;
+  bg: string;
+  text: string;
+  bar: string;
+  fill: string;
+} {
+  switch (tone) {
+    case "green":
+      return {
+        ring: "stroke-emerald-600",
+        bg: "bg-emerald-50",
+        text: "text-emerald-800",
+        bar: "bg-emerald-500",
+        fill: "#059669",
+      };
+    case "yellow":
+      return {
+        ring: "stroke-amber-500",
+        bg: "bg-amber-50",
+        text: "text-amber-800",
+        bar: "bg-amber-500",
+        fill: "#d97706",
+      };
+    default:
+      return {
+        ring: "stroke-red-500",
+        bg: "bg-red-50",
+        text: "text-red-800",
+        bar: "bg-red-500",
+        fill: "#dc2626",
+      };
+  }
+}
+
+export function gradeToneClassesForGrade(grade: string) {
+  return gradeToneClasses(gradeTone(grade));
+}
+
 export function scoreTone(score: number): ScoreTone {
   if (score >= 85) return "strong";
   if (score >= 70) return "good";

@@ -1,4 +1,4 @@
-import { scoreTone, scoreToneClasses } from "@/lib/results/score-utils";
+import { gradeToneClassesForGrade } from "@/lib/results/score-utils";
 import { cn } from "@/lib/utils";
 
 export function ScoreBadge({
@@ -12,8 +12,7 @@ export function ScoreBadge({
   size?: "md" | "lg" | "xl";
   className?: string;
 }) {
-  const tone = scoreTone(score);
-  const colors = scoreToneClasses(tone);
+  const colors = gradeToneClassesForGrade(grade);
   const dimension = size === "xl" ? 132 : size === "lg" ? 112 : 88;
   const stroke = size === "xl" ? 8 : 7;
   const radius = (dimension - stroke) / 2;
@@ -45,10 +44,10 @@ export function ScoreBadge({
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-2">
-        <span className="text-2xl md:text-3xl font-heading font-extrabold text-brand-navy leading-none">
+        <span className={cn("text-2xl md:text-3xl font-heading font-extrabold leading-none", colors.text)}>
           {score}
         </span>
-        <span className="text-[11px] font-bold uppercase tracking-wide text-brand-subtle mt-1">
+        <span className={cn("text-[11px] font-bold uppercase tracking-wide mt-1", colors.text)}>
           /100 · {grade}
         </span>
       </div>
@@ -67,8 +66,7 @@ export function ScoreMeter({
   grade: string;
   interpretation: string;
 }) {
-  const tone = scoreTone(score);
-  const colors = scoreToneClasses(tone);
+  const colors = gradeToneClassesForGrade(grade);
 
   return (
     <div className="rounded-xl border border-brand-border bg-white p-4 md:p-5">
@@ -78,8 +76,8 @@ export function ScoreMeter({
           <p className={cn("text-xs mt-1 font-medium", colors.text)}>{interpretation}</p>
         </div>
         <div className="text-right shrink-0">
-          <p className="text-lg font-heading font-extrabold text-brand-navy">{score}</p>
-          <p className="text-[10px] uppercase tracking-wide text-brand-subtle">{grade}</p>
+          <p className={cn("text-lg font-heading font-extrabold", colors.text)}>{score}</p>
+          <p className={cn("text-[10px] uppercase tracking-wide font-semibold", colors.text)}>{grade}</p>
         </div>
       </div>
       <div className="h-2 rounded-full bg-brand-cream overflow-hidden">

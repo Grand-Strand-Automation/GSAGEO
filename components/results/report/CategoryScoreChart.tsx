@@ -11,9 +11,7 @@ import {
   YAxis,
 } from "recharts";
 import type { ScoreCategory } from "@/lib/results/report-view-model";
-import { scoreTone, scoreToneClasses } from "@/lib/results/score-utils";
-
-const CHART_COLORS = ["#1f5e95", "#2f7ab8", "#60b8f0", "#0e2f54", "#4b5b6b", "#9aaeb8"];
+import { gradeToneClassesForGrade } from "@/lib/results/score-utils";
 
 function CustomTooltip({
   active,
@@ -55,23 +53,12 @@ export function CategoryScoreChart({ categories }: { categories: ScoreCategory[]
             />
             <Tooltip content={<CustomTooltip />} cursor={{ fill: "rgba(31, 94, 149, 0.06)" }} />
             <Bar dataKey="score" radius={[0, 6, 6, 0]} barSize={18}>
-              {data.map((entry, index) => {
-                const tone = scoreTone(entry.score);
-                const barClass = scoreToneClasses(tone).bar;
-                const colorMap: Record<string, string> = {
-                  "bg-emerald-500": "#10b981",
-                  "bg-brand-blue": "#1f5e95",
-                  "bg-amber-500": "#f59e0b",
-                  "bg-orange-500": "#f97316",
-                  "bg-red-500": "#ef4444",
-                };
-                return (
-                  <Cell
-                    key={entry.key}
-                    fill={colorMap[barClass] ?? CHART_COLORS[index % CHART_COLORS.length]}
-                  />
-                );
-              })}
+              {data.map((entry) => (
+                <Cell
+                  key={entry.key}
+                  fill={gradeToneClassesForGrade(entry.grade).fill}
+                />
+              ))}
             </Bar>
           </BarChart>
         </ResponsiveContainer>
