@@ -149,7 +149,7 @@ export function AuditForm({ initialPlan = "" }: { initialPlan?: string }) {
         items={[
           "No commitment required",
           "Automated review begins after submission",
-          "Practical findings — not a generic score dump",
+          "Actionable findings — prioritized by impact",
         ]}
       />
 
