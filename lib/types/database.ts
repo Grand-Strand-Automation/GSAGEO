@@ -19,6 +19,20 @@ export type GeoSubmission = {
   selected_plan: string | null;
   notes: string | null;
   status: string;
+  follow_up_status?: string | null;
+  recommended_offer?: string | null;
+  confirmation_email_sent_at?: string | null;
+  report_email_sent_at?: string | null;
+  follow_up_day_1_sent_at?: string | null;
+  follow_up_day_3_sent_at?: string | null;
+  follow_up_day_5_sent_at?: string | null;
+  follow_up_day_7_sent_at?: string | null;
+  booked_review_at?: string | null;
+  converted_at?: string | null;
+  follow_up_stopped_at?: string | null;
+  last_contacted_at?: string | null;
+  admin_notified_at?: string | null;
+  results_token?: string | null;
 };
 
 export type GeoAuditJob = {

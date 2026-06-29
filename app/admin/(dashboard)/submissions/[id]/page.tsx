@@ -7,6 +7,7 @@ import { AddNoteForm } from "@/components/admin/AddNoteForm";
 import { SignOutButton } from "@/components/admin/SignOutButton";
 import { JobActions } from "@/components/admin/JobActions";
 import { ReportDistributionPanel } from "@/components/admin/ReportDistributionPanel";
+import { FollowUpActions } from "@/components/admin/FollowUpActions";
 import { InternalFixWorkspace } from "@/components/admin/InternalFixWorkspace";
 import { loadInternalFixesForJob } from "@/lib/internal-fixes/persist";
 import { formatPlanLabel } from "@/lib/brand/plans";
@@ -184,6 +185,8 @@ export default async function SubmissionDetailPage({
             {job ? (
               <ReportDistributionPanel submissionId={id} jobStatus={job.status} />
             ) : null}
+
+            <FollowUpActions submissionId={id} submission={sub} auditJobId={job?.id ?? null} />
 
             {job ? (
               <InternalFixWorkspace

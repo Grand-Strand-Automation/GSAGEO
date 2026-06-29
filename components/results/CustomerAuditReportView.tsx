@@ -7,6 +7,7 @@ import { CustomerSimpleScorecard } from "./report/CustomerSimpleScorecard";
 import { CustomerPriorityCard } from "./report/CustomerPriorityCard";
 import { CustomerFixExampleCard } from "./report/CustomerFixExampleCard";
 import { ReportActionBar } from "./report/ReportActionBar";
+import { RecommendedNextStep } from "./report/RecommendedNextStep";
 import { ResultsCTA } from "./report/ResultsCTA";
 import { CheckCircle2, AlertTriangle } from "lucide-react";
 
@@ -113,23 +114,9 @@ export function CustomerAuditReportView({
             </div>
           ) : null}
 
-          <section className="rounded-3xl border border-brand-border bg-white p-6 md:p-8 shadow-card-md">
-            <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-brand-blue mb-3">
-              Next best step
-            </p>
-            <h2 className="text-2xl font-heading font-extrabold text-brand-navy">
-              Start with one high-impact improvement
-            </h2>
-            <p className="mt-4 text-sm md:text-[15px] text-brand-muted leading-relaxed">
-              {report.nextBestStep}
-            </p>
-          </section>
+          <RecommendedNextStep offerId={report.recommendedOfferId} companyName={report.companyName} />
 
-          <ResultsCTA
-            companyName={report.companyName}
-            selectedPlan={bundle.submission.selected_plan}
-            suggestedTier={report.suggestedTier}
-          />
+          <ResultsCTA companyName={report.companyName} />
 
           <p className="text-center text-xs text-brand-subtle pt-2">
             Private report — do not share publicly.{" "}

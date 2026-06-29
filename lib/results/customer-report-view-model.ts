@@ -14,6 +14,8 @@ import {
   type CustomerSimpleStatus,
 } from "./plain-language";
 import { scoreTone, type ScoreTone } from "./score-utils";
+import { getRecommendedOffer } from "@/lib/follow-up/recommend";
+import type { BridgeOfferId } from "@/lib/content/follow-up";
 
 export type CustomerScoreRow = {
   key: string;
@@ -54,6 +56,7 @@ export type CustomerReportViewModel = {
   nextBestStep: string;
   fixExamples: CustomerFixExample[];
   suggestedTier: string | null;
+  recommendedOfferId: BridgeOfferId;
 };
 
 function uniqueNonEmpty(items: string[], limit: number): string[] {
@@ -121,6 +124,13 @@ export function buildCustomerReportViewModel(bundle: ResultsBundle): CustomerRep
   const storedHeadline = bundle.result?.customer_headline?.trim();
   const storedSummary = bundle.result?.customer_executive_summary?.trim();
 
+  const recommended = getRecommendedOffer({
+    overallScore: report.overallScore,
+    issueCount: whatNeedsImprovement.length,
+    suggestedTier: report.suggestedTier,
+    selectedPlan: bundle.submission.selected_plan,
+  });
+
   return {
     companyName: report.companyName,
     domain: report.domain,
@@ -152,5 +162,6 @@ export function buildCustomerReportViewModel(bundle: ResultsBundle): CustomerRep
     ),
     fixExamples,
     suggestedTier: report.suggestedTier,
+    recommendedOfferId: recommended.id,
   };
 }

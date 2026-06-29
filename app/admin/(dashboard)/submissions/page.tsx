@@ -7,6 +7,7 @@ import { SignOutButton } from "@/components/admin/SignOutButton";
 import { SubmissionsFilters } from "@/components/admin/SubmissionsFilters";
 import type { GeoSubmission } from "@/lib/types/database";
 import { formatPlanLabel, planBadgeClass } from "@/lib/brand/plans";
+import { FOLLOW_UP_STATUS_LABELS } from "@/lib/content/follow-up";
 
 export const dynamic = "force-dynamic";
 
@@ -156,6 +157,7 @@ export default async function AdminSubmissionsPage({
                   <th className="px-5 py-3 text-xs font-bold uppercase text-brand-subtle">Website</th>
                   <th className="px-5 py-3 text-xs font-bold uppercase text-brand-subtle">Status</th>
                   <th className="px-5 py-3 text-xs font-bold uppercase text-brand-subtle">Assessment</th>
+                  <th className="px-5 py-3 text-xs font-bold uppercase text-brand-subtle">Follow-up</th>
                   <th className="px-5 py-3" />
                 </tr>
               </thead>
@@ -188,6 +190,13 @@ export default async function AdminSubmissionsPage({
                       </td>
                       <td className="px-5 py-4">
                         {job ? <StatusBadge status={job.status} /> : "—"}
+                      </td>
+                      <td className="px-5 py-4">
+                        <span className="text-xs font-medium text-brand-muted whitespace-nowrap">
+                          {FOLLOW_UP_STATUS_LABELS[sub.follow_up_status ?? "submitted"] ??
+                            sub.follow_up_status ??
+                            "—"}
+                        </span>
                       </td>
                       <td className="px-5 py-4">
                         <Link

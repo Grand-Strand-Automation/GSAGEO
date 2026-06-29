@@ -7,6 +7,7 @@ import {
 import { createResultsAccessToken, processAuditJob } from "@/lib/audit/processor";
 import { AUDIT_VERSION } from "@/lib/audit/crawl-checks";
 import { isAuditReviewRequired } from "@/lib/results/tokens";
+import { handlePostSubmissionFollowUp } from "@/lib/follow-up/service";
 
 export async function POST(request: Request) {
   try {
@@ -63,6 +64,15 @@ export async function POST(request: Request) {
     const resultsToken = await createResultsAccessToken(submission.id, job.id);
 
     after(async () => {
+      try {
+        await handlePostSubmissionFollowUp({
+          submissionId: submission.id,
+          auditJobId: job.id,
+          resultsToken,
+        });
+      } catch (err) {
+        console.error("[submissions] Post-submission follow-up failed:", err);
+      }
       try {
         await processAuditJob(job.id);
       } catch (err) {

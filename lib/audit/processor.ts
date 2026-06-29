@@ -20,6 +20,7 @@ import {
   generateAndPersistInternalFixesForJob,
 } from "@/lib/internal-fixes/persist";
 import { buildCustomerExecutiveContent } from "./customer-summary";
+import { deliverReportEmailForJob } from "@/lib/follow-up/report-delivery";
 
 export type AuditRunResult = {
   summary: string;
@@ -266,6 +267,14 @@ export async function processAuditJob(jobId: string): Promise<void> {
       .from("geo_submissions")
       .update({ status: "reviewing" })
       .eq("id", submission.id);
+
+    if (finalStatus === "published") {
+      try {
+        await deliverReportEmailForJob(jobId);
+      } catch (emailErr) {
+        console.error("[audit] Report delivery email failed:", jobId, emailErr);
+      }
+    }
   } catch (err) {
     const message = err instanceof Error ? err.message : "Unknown audit failure";
     console.error("[audit] Job failed:", jobId, err);

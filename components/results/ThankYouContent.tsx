@@ -4,15 +4,16 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import {
+  ArrowRight,
   CheckCircle2,
   ExternalLink,
   Loader2,
   Mail,
-  Sparkles,
 } from "lucide-react";
 import { ButtonLink } from "@/components/ui/Button";
-import { HOME_HERO } from "@/lib/content/landing";
+import { REVIEW_BOOKING_URL, THANK_YOU } from "@/lib/content/follow-up";
 import { CUSTOMER_STATUS_COPY } from "@/lib/results/customer-state";
+import { trackConversionEvent } from "@/lib/analytics/events";
 import { useCustomerReportStatus } from "./useCustomerReportStatus";
 
 export function ThankYouContent() {
@@ -33,97 +34,106 @@ export function ThankYouContent() {
   const isWaiting = state === "pending" || state === "processing" || state === "awaiting_review";
 
   return (
-    <div className="flex flex-col min-h-[80vh] bg-brand-cream items-center justify-center pt-20 pb-16 px-4">
-      <div className="max-w-lg w-full text-center card-brand p-10 shadow-card-md">
-        <div className="w-16 h-16 bg-brand-blue-light text-brand-blue rounded-full flex items-center justify-center mx-auto mb-7">
-          {loading && isWaiting ? (
-            <Loader2 size={30} className="animate-spin" />
-          ) : status?.ready ? (
-            <Sparkles size={30} />
-          ) : (
-            <CheckCircle2 size={30} />
-          )}
-        </div>
+    <div className="flex flex-col min-h-[80vh] bg-brand-cream pt-20 pb-16 px-4">
+      <div className="container max-w-2xl mx-auto">
+        <div className="text-center card-brand p-8 md:p-10 shadow-card-md">
+          <div className="w-16 h-16 bg-brand-blue-light text-brand-blue rounded-full flex items-center justify-center mx-auto mb-6">
+            {loading && isWaiting ? (
+              <Loader2 size={30} className="animate-spin" />
+            ) : (
+              <CheckCircle2 size={30} />
+            )}
+          </div>
 
-        <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-brand-blue mb-3">
-          {status?.ready ? "Report ready" : "Assessment request received"}
-        </p>
+          <span className="eyebrow-pill-gold-blue mb-5 inline-flex">
+            {THANK_YOU.eyebrow}
+          </span>
 
-        <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-brand-navy mb-4">
-          {status?.ready ? copy.title : "Thanks — your assessment request has been received."}
-        </h1>
+          <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-brand-navy mb-4">
+            {status?.ready ? copy.title : THANK_YOU.headline}
+          </h1>
 
-        <p className="text-brand-muted text-[15px] leading-relaxed mb-3 max-w-sm mx-auto">
-          {status?.ready
-            ? copy.body
-            : "We'll review the information you submitted and use it to understand your website, service structure, and current AI visibility baseline. If we need anything else, we'll reach out. You should expect a practical, no-hype next step — not a generic score dump."}
-        </p>
-
-        {status?.companyName ? (
-          <p className="text-sm text-brand-navy font-semibold">{status.companyName}</p>
-        ) : null}
-
-        <div className="mt-6 rounded-xl border border-brand-border bg-brand-cream/70 p-4 text-left text-sm text-brand-muted">
-          <p className="text-xs font-bold uppercase text-brand-blue tracking-wide mb-2">What happens next</p>
-          <ul className="space-y-2">
-            <li>Your site review has started — check your private status link below.</li>
-            <li>We may follow up by email at the address you provided if we need clarification.</li>
-            <li>When ready, your assessment report includes category findings and practical recommendations.</li>
-          </ul>
-        </div>
-
-        <div className="mt-6 rounded-xl border border-brand-border bg-white p-4 text-left">
-          <p className="text-xs font-bold uppercase text-brand-blue tracking-wide mb-2">
-            What we review
+          <p className="text-brand-muted text-base md:text-[15px] leading-relaxed max-w-lg mx-auto">
+            {status?.ready ? copy.body : THANK_YOU.supportCopy}
           </p>
-          <ul className="space-y-1.5 text-sm text-brand-muted">
-            {HOME_HERO.reviewCardBullets.map((item) => (
-              <li key={item} className="flex gap-2">
-                <CheckCircle2 size={14} className="text-brand-blue shrink-0 mt-0.5" />
-                {item}
-              </li>
-            ))}
-          </ul>
+
+          {status?.companyName ? (
+            <p className="mt-3 text-sm text-brand-navy font-semibold">{status.companyName}</p>
+          ) : null}
+
+          <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+            <ButtonLink
+              href={REVIEW_BOOKING_URL}
+              variant="gold"
+              size="md"
+              className="w-full sm:w-auto"
+              onClick={() => trackConversionEvent("thank_you_book_review_clicked")}
+            >
+              {THANK_YOU.primaryCta} →
+            </ButtonLink>
+            {resultsHref ? (
+              <ButtonLink href={resultsHref} variant="secondaryLight" size="md" className="w-full sm:w-auto">
+                {status?.ready ? "View your report →" : `${copy.ctaLabel} →`}
+              </ButtonLink>
+            ) : null}
+          </div>
+
+          <p className="mt-5 text-xs text-brand-subtle">{THANK_YOU.reassurance}</p>
+        </div>
+
+        <div className="mt-8 grid sm:grid-cols-3 gap-4">
+          {THANK_YOU.whatHappensNext.map((step, index) => (
+            <div
+              key={step}
+              className="rounded-xl border border-brand-border bg-white p-4 text-left shadow-card"
+            >
+              <p className="text-[11px] font-bold uppercase tracking-wide text-brand-blue mb-2">
+                Step {index + 1}
+              </p>
+              <p className="text-sm text-brand-muted leading-snug">{step}</p>
+            </div>
+          ))}
         </div>
 
         {token ? (
-          <div className="mt-8 p-4 bg-brand-cream rounded-xl border border-brand-border text-left">
+          <div className="mt-8 rounded-xl border border-brand-border bg-white p-5 shadow-card">
             <p className="text-xs font-bold uppercase text-brand-blue tracking-wide mb-2">
               Current status
             </p>
-            <p className="text-sm font-semibold text-brand-navy mb-1">{copy.title}</p>
-            <p className="text-sm text-brand-muted mb-4">{copy.body}</p>
+            <p className="text-sm font-semibold text-brand-navy">{copy.title}</p>
+            <p className="text-sm text-brand-muted mt-1 mb-3">{copy.body}</p>
             <Link
               href={resultsHref}
               className="inline-flex items-center gap-2 text-brand-blue font-semibold text-sm hover:underline"
             >
               {copy.ctaLabel} <ExternalLink size={14} />
             </Link>
+            {isWaiting ? (
+              <p className="text-xs text-brand-subtle mt-4 inline-flex items-center gap-2">
+                <Loader2 size={14} className="animate-spin text-brand-blue" />
+                This page updates automatically while your assessment is being prepared.
+              </p>
+            ) : null}
           </div>
-        ) : (
-          <p className="mt-6 text-sm text-brand-muted">
-            If you arrived here without a private link, please contact shawn@gsally.com.
-          </p>
-        )}
-
-        <div className="flex flex-col sm:flex-row gap-3 justify-center mt-10">
-          {resultsHref ? (
-            <ButtonLink href={resultsHref} size="md">
-              {status?.ready ? "View your report →" : `${copy.ctaLabel} →`}
-            </ButtonLink>
-          ) : null}
-          <ButtonLink href="/" size="md" variant={resultsHref ? "secondaryLight" : "primary"}>
-            Back to overview
-          </ButtonLink>
-        </div>
-
-        {isWaiting && token ? (
-          <p className="text-xs text-brand-subtle mt-6">
-            This page updates automatically while your assessment is being prepared.
-          </p>
         ) : null}
 
-        <p className="text-xs text-brand-subtle mt-6 inline-flex items-center gap-1.5 justify-center">
+        <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center text-center">
+          <Link
+            href={THANK_YOU.secondaryHref}
+            className="inline-flex items-center justify-center gap-1 text-sm font-semibold text-brand-blue hover:underline"
+          >
+            {THANK_YOU.secondaryCta}
+            <ArrowRight size={14} />
+          </Link>
+          <Link
+            href={THANK_YOU.tertiaryHref}
+            className="text-sm font-semibold text-brand-muted hover:text-brand-navy"
+          >
+            {THANK_YOU.tertiaryCta}
+          </Link>
+        </div>
+
+        <p className="mt-8 text-xs text-brand-subtle text-center inline-flex items-center gap-1.5 justify-center w-full">
           <Mail size={13} />
           Questions?{" "}
           <a href="mailto:shawn@gsally.com" className="text-brand-blue hover:underline">

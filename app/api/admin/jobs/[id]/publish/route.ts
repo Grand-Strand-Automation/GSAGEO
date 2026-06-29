@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { isAdminAuthorized } from "@/lib/auth/admin";
 import { publishAuditJob } from "@/lib/audit/processor";
+import { deliverReportEmailForJob } from "@/lib/follow-up/report-delivery";
 
 async function requireAdmin() {
   const supabase = await createClient();
@@ -23,6 +24,11 @@ export async function POST(
   const { id } = await params;
   try {
     await publishAuditJob(id);
+    try {
+      await deliverReportEmailForJob(id);
+    } catch (emailErr) {
+      console.error("[admin/publish] Report delivery email failed:", id, emailErr);
+    }
     return NextResponse.json({ ok: true });
   } catch (err) {
     return NextResponse.json(
