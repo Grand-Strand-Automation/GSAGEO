@@ -46,16 +46,16 @@ export function buildPageMetadata({
 }
 
 export const HOME_METADATA = buildPageMetadata({
-  title: "GEO / AI Visibility Assessments for Service Businesses | GEO",
+  title: "Monthly AI Visibility Support for Service Businesses | GEO",
   description:
-    "See how clearly your business is positioned for ChatGPT, Google AI Overviews, and AI-driven search. GEO assessments for service businesses with clear deliverables and practical next steps.",
+    "See how clearly your business appears in AI search. Start with a free assessment, then continue with simple month-to-month support for clarity, trust, and visibility — cancel anytime.",
   path: "/",
 });
 
 export const AUDIT_METADATA = buildPageMetadata({
-  title: "Complete Your Assessment Request | GEO",
+  title: "Start Your Free GEO Assessment | GEO",
   description:
-    "Fill out the form on this page to request your GEO / AI Visibility assessment. Submit your business and website details to start your review.",
+    "Request your free GEO / AI Visibility assessment. Get clear findings and practical next steps — with optional month-to-month support when you are ready.",
   path: "/audit",
 });
 

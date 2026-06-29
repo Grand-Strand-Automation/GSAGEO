@@ -6,11 +6,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
   icons: { icon: "/favicon.svg" },
   title: {
-    default: "GEO / AI Visibility Assessments for Service Businesses | GEO",
+    default: "Monthly AI Visibility Support for Service Businesses | GEO",
     template: "%s | GEO",
   },
   description:
-    "See how clearly your business is positioned for ChatGPT, Google AI Overviews, and AI-driven search. GEO assessments for service businesses with clear deliverables and practical next steps.",
+    "See how clearly your business appears in AI search. Start with a free assessment, then continue with simple month-to-month support — cancel anytime.",
   openGraph: {
     siteName: "GEO",
     locale: "en_US",

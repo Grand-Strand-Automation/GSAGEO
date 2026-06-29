@@ -8,8 +8,12 @@ import {
 import { shouldSendCadenceDay } from "../lib/follow-up/processor";
 
 describe("follow-up recommendation", () => {
-  it("defaults to quick wins sprint for typical leads", () => {
-    assert.equal(recommendBridgeOffer({ overallScore: 62, issueCount: 4 }), "quick-wins-sprint");
+  it("defaults to visibility growth for typical leads", () => {
+    assert.equal(recommendBridgeOffer({ overallScore: 62, issueCount: 4 }), "visibility-growth");
+  });
+
+  it("recommends visibility monitor for monitor tier", () => {
+    assert.equal(recommendBridgeOffer({ selectedPlan: "monitor" }), "visibility-monitor");
   });
 
   it("recommends visibility growth for growth tier", () => {
@@ -23,9 +27,9 @@ describe("follow-up recommendation", () => {
     );
   });
 
-  it("returns offer content for quick wins sprint", () => {
+  it("returns offer content for visibility growth", () => {
     const offer = getRecommendedOffer({ overallScore: 50, issueCount: 3 });
-    assert.equal(offer.name, "GEO Quick Wins Sprint");
+    assert.equal(offer.name, "AI Visibility Growth");
     assert.ok(offer.includes.length >= 3);
   });
 });

@@ -1,30 +1,30 @@
 export const HOME_HERO = {
   eyebrow: "GEO / AI Visibility for service businesses",
-  headline: "Find Out How Your Business Looks to AI Search",
+  headline: "See How Clear Your Business Looks in AI Search",
   subheadline:
-    "Customers are increasingly discovering service providers through ChatGPT, Google AI Overviews, and other answer-driven search tools. Our GEO / AI Visibility Assessment helps you see whether your website is clear, trustworthy, and structured well enough to be understood and recommended.",
-  primaryCta: "Start Your Assessment",
-  primaryHref: "/audit?tier=monitor",
-  secondaryCta: "Learn How GEO Works",
-  secondaryHref: "#understanding-geo",
-  supportLine: "Built for Myrtle Beach and Grand Strand service businesses",
-  reviewCardTitle: "What the assessment reviews",
+    "We assess how clearly your business can be understood in AI-driven search — what looks strong, what needs work, and what to improve first. Start with a free assessment, then continue with simple month-to-month support if you want help making improvements over time.",
+  primaryCta: "Start Your Free Assessment",
+  primaryHref: "/audit",
+  secondaryCta: "See Monthly Plans",
+  secondaryHref: "#pricing",
+  supportLine: "Free assessment first · Month-to-month support available · Cancel anytime",
+  reviewCardTitle: "What the free assessment covers",
   reviewCardBullets: [
-    "Service page clarity",
-    "FAQ and trust content",
-    "Internal linking and structure",
-    "AI visibility gaps",
-    "Practical next-step recommendations",
+    "How clearly your business appears in AI search",
+    "Website clarity and trust signals",
+    "What looks strong and what needs work",
+    "Practical priorities to improve first",
+    "A clear path to ongoing monthly support",
   ],
 } as const;
 
 export const ASSESSMENT_PREVIEW = {
   eyebrow: "SAMPLE REPORT PREVIEW",
-  title: "What a Full GEO Assessment Report Can Look Like",
+  title: "What Your Free Assessment Can Show You",
   description:
-    "This is a sample preview of the kind of customer-facing GEO / AI Visibility report you may receive after a full assessment.",
+    "This is a sample preview of the kind of easy-to-read assessment you receive after submitting your free request — a starting point, not the final product.",
   disclaimer:
-    "Illustrative example — actual findings, strengths, and next steps will vary based on your business, website, and plan tier.",
+    "Illustrative example — actual findings and recommendations will vary based on your business, website, and goals.",
   screenshots: [
     {
       src: "/brand/sample-report/sample-visual-summary.png",
@@ -38,156 +38,200 @@ export const ASSESSMENT_PREVIEW = {
     },
   ],
   cta: {
-    heading: "Ready to see what your own report could reveal?",
-    body: "Request a full GEO assessment to get a clearer picture of what your website is doing well, what may be limiting visibility, and what to improve first.",
-    label: "Request Your Full Assessment",
-    href: "/audit?tier=monitor",
-    secondaryLabel: "See plans and pricing",
+    heading: "Ready to see where your business stands?",
+    body: "Request your free assessment to get a clearer picture of what your website is doing well, what may be limiting visibility, and what to improve first.",
+    label: "Start Your Free Assessment",
+    href: "/audit",
+    secondaryLabel: "See monthly plans",
     secondaryHref: "/#pricing",
   },
 } as const;
 
 export const GOOD_FIT = [
-  "Service businesses that rely on inbound trust and referrals",
-  "Local B2B companies not appearing in AI-generated search responses",
-  "Companies with weak, thin, or disorganized service page content",
-  "Teams that have invested in traditional SEO but not content quality or depth",
-  "Businesses in compliance-aware or trust-dependent industries",
-  "Organizations with no structured FAQ, process, or educational content",
-  "Companies that want to understand their AI visibility baseline before investing further",
+  "Service businesses that want a clearer picture of how they appear in AI search",
+  "Local B2B companies not showing up well in AI-generated answers",
+  "Teams with service pages, trust content, or messaging that feels unclear or thin",
+  "Businesses that want practical monthly guidance — not a vague marketing retainer",
+  "Companies in trust-dependent or compliance-aware industries",
+  "Owners who want ongoing help improving clarity and visibility over time",
+  "Teams ready to make steady improvements month to month",
 ];
 
 export const NOT_FIT = [
-  "Businesses looking for guaranteed rankings or quick-turnaround results",
+  "Businesses looking for guaranteed rankings or overnight results",
   "Companies still early in defining their product or service offering",
-  "Organizations with a newly launched site and little content to improve",
-  "Teams unwilling to add or revise content over time",
+  "Organizations with a brand-new site and very little content to work with",
+  "Teams unwilling to review or update content over time",
 ];
 
 export const WHATS_INCLUDED_INTRO =
-  "Your assessment is designed to give you a clear picture of how easy your business is to understand online — and what to improve first.";
+  "Your free assessment is the starting point. Ongoing monthly support helps you keep improving clarity, trust, and visibility — with practical next steps each month.";
 
 export const WHATS_INCLUDED = [
   {
-    title: "Visibility Review",
-    desc: "We review how clearly your business can be understood by AI search tools and modern search results.",
+    title: "Monthly Visibility Review",
+    desc: "We check how your business and website are showing up — and what has changed since last month.",
   },
   {
     title: "Website Clarity",
-    desc: "We look at whether your services, pages, and messaging are easy to follow.",
+    desc: "We help you improve whether your services, pages, and messaging are easy to understand.",
   },
   {
     title: "Trust & Credibility",
-    desc: "We review signs that help your business feel more trustworthy and complete online.",
+    desc: "We guide improvements that help your business feel more complete and trustworthy online.",
   },
   {
-    title: "Site Structure",
-    desc: "We check whether your website is organized in a way that is easier to read and navigate.",
+    title: "Content & Page Improvements",
+    desc: "We recommend practical updates to key pages, FAQs, and content that support visibility.",
   },
   {
-    title: "Priority Improvements",
-    desc: "We highlight the biggest opportunities to improve visibility, clarity, and conversions.",
+    title: "Clear Next Steps",
+    desc: "Each month you get a simple summary of priorities — what to improve first and why.",
+  },
+  {
+    title: "Ongoing Monthly Guidance",
+    desc: "You are not left on your own after the assessment. Support continues as long as it makes sense for your business.",
   },
 ];
 
+export const DELIVERABLES_HEADING = "What You Get Each Month";
+
 export const DELIVERABLES_INTRO =
-  "After the assessment, you'll receive a simple, easy-to-read summary of what looks good, what needs work, and what to do next.";
+  "Monthly support is designed to keep progress moving — not hand you a report and disappear.";
 
 export const DELIVERABLES_SUPPORT =
-  "No technical overwhelm. Just clear findings and practical next steps.";
+  "Designed to keep your business clear, credible, and easier to understand over time.";
 
 export const DELIVERABLES = [
   {
-    title: "Simple Score Summary",
+    title: "Simple Score Refresh",
     desc: "A plain-English snapshot of how your business currently looks online.",
   },
   {
-    title: "Top Issues to Fix",
-    desc: "The main areas that may be holding back clarity, trust, or visibility.",
+    title: "Clear Top Priorities",
+    desc: "The most important issues and opportunities to focus on right now.",
   },
   {
-    title: "Clear Recommendations",
-    desc: "Straightforward suggestions for what to improve first.",
+    title: "Practical Recommendations",
+    desc: "Straightforward suggestions for pages, content, trust, and structure.",
   },
   {
-    title: "Next-Step Action Plan",
-    desc: "A practical plan for moving forward without guesswork.",
+    title: "Monthly Progress Summary",
+    desc: "A short update on what changed, what improved, and what to tackle next.",
   },
 ];
 
-export const PRICING_HEADLINE = "AI Visibility Plans for Small and Medium Businesses";
+export const MONTHLY_RHYTHM = {
+  label: "How it works",
+  title: "How Monthly GEO Support Works",
+  intro:
+    "A simple rhythm that keeps your business clear and current — without turning this into a long, overwhelming project.",
+  steps: [
+    {
+      title: "Review",
+      desc: "We check how your site and business information are showing up and what has changed.",
+    },
+    {
+      title: "Prioritize",
+      desc: "We identify the most important issues and opportunities right now.",
+    },
+    {
+      title: "Improve",
+      desc: "We guide or support the updates that can make the biggest difference.",
+    },
+    {
+      title: "Refresh",
+      desc: "You receive a simple monthly summary with progress, priorities, and next steps.",
+    },
+  ],
+} as const;
+
+export const WHY_ONGOING = {
+  label: "Why stay subscribed",
+  title: "Why Ongoing Support Matters",
+  body: [
+    "The first assessment gives you a starting point. But AI visibility and website clarity are not static — your services change, competitors shift, and trust signals need regular attention.",
+    "Monthly support helps you keep improving the areas that affect how clearly your business is understood over time — without guessing what to fix next.",
+  ],
+  support: "Continue only if it makes sense. Cancel anytime.",
+} as const;
+
+export const PRICING_HEADLINE = "Monthly AI Visibility Support";
 
 export const PRICING_INTRO =
-  "Choose a starting point that fits your current site, team, and growth goals — from a simple monthly visibility check to ongoing support and implementation guidance.";
+  "Simple month-to-month plans for businesses that want ongoing clarity and improvement — without long contracts. Start with a free assessment, then choose the level of support that fits.";
+
+export const PRICING_SUBLINE = "Month-to-month plans · Cancel anytime · No long contracts";
 
 export const PRICING_REASSURANCE = [
-  "No bloated bundles",
-  "Clear deliverables",
-  "Built for practical next steps",
-  "Month-to-month starting points where appropriate",
+  "Cancel anytime",
+  "Month-to-month billing",
+  "No long contracts",
+  "Flexible plan options",
 ];
 
 export const PRICING_HELPER =
-  "Not sure where to start? Begin with Monitor and upgrade once you have a clearer picture of what needs attention.";
+  "Not sure where to start? Begin with your free assessment — we'll help you choose the right monthly plan based on what we find.";
+
+export const PRICING_DOWNGRADE_NOTE =
+  "Need lighter support? AI Visibility Monitor keeps you covered with a simpler monthly snapshot and priority recommendations — without full hands-on support every month.";
 
 export const PRICING_CUSTOM_NOTE =
-  "Need support across multiple locations, a larger service footprint, or a more involved implementation plan?";
+  "Need support across multiple locations, a larger service footprint, or a custom scope?";
 
 export const TIERS = [
   {
     name: "AI Visibility Monitor",
-    badge: "Best place to start",
+    badge: "Lighter monthly oversight",
     price: "$199/month",
     period: "Month-to-month · cancel anytime",
     tier: "monitor",
-    desc: "A simple monthly starting point for businesses that want a clearer picture of how prepared they are for AI-driven search visibility — without committing to a larger engagement yet.",
+    desc: "A lower-friction monthly option for businesses that want visibility oversight, a simple monthly snapshot, and clear recommendations — without hands-on implementation every month.",
     includes: [
-      "Monthly AI visibility snapshot",
-      "Basic crawlability and indexing check",
-      "GEO scorecard refresh",
-      "3 priority recommendations",
-      "Email summary",
+      "Monthly visibility snapshot",
+      "Plain-English score refresh",
+      "Top priority recommendations",
+      "Email summary each month",
+      "Clear guidance on what to improve next",
       "Cancel anytime",
     ],
-    cta: "Start with AI Visibility Monitor",
+    cta: "Start With Monitor",
     primary: false,
   },
   {
     name: "AI Visibility Growth",
-    badge: "Most practical for growing teams",
+    badge: "Recommended · best monthly value",
     price: "Starting at $499/month",
-    period: "Ongoing monthly guidance",
+    period: "Month-to-month · cancel anytime",
     tier: "growth",
-    desc: "A practical fit for growing businesses that want recurring guidance, stronger content direction, and a clearer monthly plan — without stepping into full managed support immediately.",
+    desc: "The clearest path to ongoing improvement. For businesses that want steady monthly progress — practical guidance, content direction, and support turning findings into action.",
     includes: [
       "Everything in Monitor",
       "Monthly visibility review",
-      "Content gap updates",
-      "Internal linking recommendations",
-      "Search Console and Bing review",
-      "1–2 refresh recommendations per month",
-      "Monthly action summary",
+      "Content and page improvement guidance",
+      "Priority refresh recommendations each month",
+      "Practical action summaries you can act on",
+      "Steady progress on clarity, trust, and visibility",
     ],
     cta: "Start AI Visibility Growth",
     primary: true,
   },
   {
     name: "Managed GEO / AI Visibility",
-    badge: "Higher-touch support",
+    badge: "More hands-on monthly support",
     price: "Starting at $1,250/month",
-    period: "Hands-on ongoing engagement",
+    period: "Month-to-month · cancel anytime",
     tier: "managed",
-    desc: "A higher-touch engagement for businesses that want hands-on support improving structure, content coverage, and AI visibility over time.",
+    desc: "A higher-touch monthly option for businesses that want more done-with-you and done-for-you support — deeper implementation help and ongoing optimization each month.",
     includes: [
       "Everything in Growth",
-      "Ongoing optimization support",
-      "Implementation guidance",
-      "Content planning and prioritization",
-      "Structured data and page architecture recommendations",
-      "More hands-on monthly support",
+      "Hands-on optimization support",
+      "Implementation guidance and prioritization",
+      "Content planning and structure recommendations",
+      "Deeper monthly support on key pages",
       "Priority roadmap reviews",
     ],
-    cta: "Request Managed GEO / AI Visibility",
+    cta: "Request Managed Support",
     primary: false,
   },
 ];
@@ -195,34 +239,42 @@ export const TIERS = [
 export const FAQ_ITEMS = [
   {
     q: "What is Generative Engine Optimization?",
-    a: "Generative Engine Optimization (GEO) is the practice of improving how your business is understood, cited, and surfaced by AI-powered search systems. Unlike traditional SEO, GEO focuses on content clarity, entity recognition, structured data, and page types that AI systems use to generate trustworthy answers.",
+    a: "GEO is about improving how clearly your business is understood in AI-powered search — so tools like ChatGPT and Google AI Overviews can represent your services accurately. In plain terms: we help your website communicate who you are, what you do, and why customers can trust you.",
   },
   {
-    q: "How is GEO different from SEO?",
-    a: "Traditional SEO is primarily about ranking in a list of links. GEO is about being cited inside an AI-generated answer. The signals that matter are different: entity consistency, content depth, structured data, and specific page types like FAQs and case studies.",
+    q: "Is this a contract?",
+    a: "No long-term contract is required. Monthly plans are designed to be flexible. You can continue, downgrade, or cancel based on what makes sense for your business.",
   },
   {
-    q: "We already invest in SEO — does GEO add anything?",
-    a: "Usually, yes. Most SEO work focuses on keywords and backlinks. GEO focuses on content structure, entity clarity, and schema markup — areas frequently underdeveloped even on sites with strong traditional SEO.",
+    q: "Can I cancel anytime?",
+    a: "Yes. All monthly plans are month-to-month. You can cancel when ongoing support no longer fits your needs — no long-term commitment required.",
   },
   {
-    q: "What does the assessment actually look at?",
-    a: "The assessment covers eight areas: crawlability, technical readiness, entity clarity, service page depth, trust content, answer-engine coverage, internal structure, and conversion readiness. Each area is scored and graded with evidence from your site.",
+    q: "What happens after the free assessment?",
+    a: "You receive a clear, easy-to-read summary of what looks strong, what needs work, and what to improve first. If you want help making those improvements over time, you can choose a monthly support plan — or book a short review call to walk through the findings together.",
   },
   {
-    q: "Do you fix the issues you find?",
-    a: "That depends on the plan. Monitor gives you a structured monthly snapshot and priority recommendations — not hands-on implementation. Growth adds recurring guidance and refresh recommendations. Managed GEO includes more hands-on support for structure, content, and ongoing improvement.",
+    q: "What does monthly support actually include?",
+    a: "Each month we review how your business is showing up, identify top priorities, and give you practical recommendations for clarity, trust, content, and structure. Growth and Managed plans include more active guidance and support turning those recommendations into action.",
   },
   {
-    q: "How long does a GEO assessment take?",
-    a: "The automated component runs within minutes of form submission. The full written report is typically delivered within two to three business days.",
+    q: "Do I need the monthly plan if I only want the assessment?",
+    a: "No. The free assessment stands on its own. Monthly support is optional — for businesses that want ongoing help improving clarity and visibility over time.",
   },
   {
-    q: "Can this be an ongoing monthly service?",
-    a: "Yes. AI Visibility Monitor is a low-friction monthly starting point. AI Visibility Growth and Managed GEO are designed for businesses that want continued guidance and stronger visibility over time.",
+    q: "What if I want a lighter option?",
+    a: "AI Visibility Monitor is designed for that. You get a monthly snapshot, score refresh, and priority recommendations — without the deeper hands-on support included in Growth or Managed.",
   },
   {
-    q: "What is the $199/month plan?",
-    a: "AI Visibility Monitor is a monitoring and diagnostic tier — not full optimization or hands-on implementation. You receive a monthly snapshot, basic technical checks, a refreshed scorecard, and a short list of priority recommendations so you know what to work on next.",
+    q: "How hands-on is the support?",
+    a: "It depends on the plan. Monitor gives you oversight and clear recommendations. Growth adds recurring guidance and monthly action summaries. Managed includes more hands-on support for structure, content, and implementation.",
+  },
+  {
+    q: "How is this different from traditional SEO?",
+    a: "Traditional SEO focuses on ranking in a list of links. GEO focuses on whether AI systems can understand and represent your business clearly — through content, structure, trust signals, and page clarity. Both matter, but the signals are different.",
+  },
+  {
+    q: "How long does the free assessment take?",
+    a: "The automated review runs within minutes of form submission. Your full written assessment is typically delivered within two to three business days.",
   },
 ];

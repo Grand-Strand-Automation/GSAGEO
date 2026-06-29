@@ -105,20 +105,15 @@ function emailForKey(
     case "followUpDay5":
     case "followUpDay7": {
       const copy = EMAIL_COPY[key];
-      const body =
-        key === "followUpDay3" && ctx.offerName
-          ? [
-              copy.body[0],
-              copy.body[1].replace("GEO Quick Wins Sprint", ctx.offerName),
-            ]
-          : copy.body;
+      const ctaHref =
+        "ctaHref" in copy && copy.ctaHref ? appUrl(copy.ctaHref) : booking;
       return {
         subject: copy.subject,
         html: renderBrandedEmail({
           headline: copy.headline,
           preview: copy.preview,
-          bodyParagraphs: body,
-          primaryCta: { label: copy.cta, href: booking },
+          bodyParagraphs: copy.body,
+          primaryCta: { label: copy.cta, href: ctaHref },
         }),
       };
     }
@@ -287,9 +282,9 @@ export async function sendCadenceFollowUpEmail(input: {
     7: "follow_up_day_7_sent_at",
   } as const;
 
-  const offerId = submission.recommended_offer ?? "quick-wins-sprint";
+  const offerId = submission.recommended_offer ?? "visibility-growth";
   const offerName =
-    BRIDGE_OFFERS[offerId as keyof typeof BRIDGE_OFFERS]?.name ?? BRIDGE_OFFERS["quick-wins-sprint"].name;
+    BRIDGE_OFFERS[offerId as keyof typeof BRIDGE_OFFERS]?.name ?? BRIDGE_OFFERS["visibility-growth"].name;
 
   const { subject, html } = emailForKey(keyMap[input.day], {
     companyName: submission.company_name,

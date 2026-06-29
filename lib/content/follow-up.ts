@@ -11,72 +11,80 @@ export const THANK_YOU = {
   eyebrow: "Assessment request received",
   headline: "Your assessment request is in",
   supportCopy:
-    "We'll review your submission and send back a clear, easy-to-read assessment. If you'd like, you can also book a short review call now so we can walk through the findings together.",
-  reassurance: "No pressure. Just clear findings and practical next steps.",
+    "We'll review your submission and send back a clear, easy-to-read assessment with practical next steps. If you'd like, you can book a short review call now — or explore month-to-month support when you're ready to keep improving over time.",
+  reassurance: "No pressure. No long contracts. Just clear findings and a simple path forward.",
   primaryCta: "Book My Review",
-  secondaryCta: "See What's Included",
-  secondaryHref: "/#whats-included",
+  secondaryCta: "See Monthly Plans",
+  secondaryHref: "/#pricing",
   tertiaryCta: "Return Home",
   tertiaryHref: "/",
   whatHappensNext: [
     "We review your website and visibility",
     "We send your assessment with top findings",
-    "We show you the clearest next step if you want help fixing it",
+    "We recommend the clearest next step — including monthly support if it fits",
   ],
 } as const;
 
-export const QUICK_WINS_SPRINT = {
-  id: "quick-wins-sprint",
-  name: "GEO Quick Wins Sprint",
-  tagline: "Fix the most important issues first — without a long, overwhelming project.",
+export const VISIBILITY_MONITOR = {
+  id: "visibility-monitor",
+  name: "AI Visibility Monitor",
+  tagline: "Lighter monthly oversight for businesses that want a simple snapshot and clear priorities.",
   summary:
-    "Based on this assessment, the best next step is to fix the most important issues first. A Quick Wins Sprint is designed to improve clarity, trust, and visibility without turning this into a long, overwhelming project.",
+    "For most businesses that want to stay informed without full hands-on support every month, AI Visibility Monitor keeps you covered with a monthly snapshot, score refresh, and priority recommendations.",
   includes: [
-    "Top-priority clarity improvements on key pages",
-    "Trust, FAQ, and content structure improvements",
-    "Clearer calls to action and messaging",
-    "Internal linking and page structure cleanup",
-    "Recommended technical cleanup where it matters most",
+    "Monthly visibility snapshot",
+    "Plain-English score refresh",
+    "Top priority recommendations",
+    "Email summary each month",
+    "Clear guidance on what to improve next",
   ],
   outcome:
-    "A clearer website that is easier for customers and search tools to understand — with the highest-impact fixes handled first.",
-  timeline: "Typically 2–4 weeks, depending on scope and approvals.",
+    "Ongoing visibility oversight without guessing what changed or what to focus on next.",
+  timeline: "Month-to-month · cancel anytime.",
+  ctaLabel: "See Monthly Plans",
+  ctaHref: "/#pricing",
+} as const;
+
+export const VISIBILITY_GROWTH = {
+  id: "visibility-growth",
+  name: "AI Visibility Growth",
+  tagline: "The recommended monthly plan for steady, practical improvement.",
+  summary:
+    "For most businesses, the best next step is ongoing monthly support that helps turn assessment findings into practical improvements over time — with clear priorities, guidance, and steady progress each month.",
+  includes: [
+    "Monthly visibility review",
+    "Content and page improvement guidance",
+    "Priority refresh recommendations each month",
+    "Practical action summaries you can act on",
+    "Steady progress on clarity, trust, and visibility",
+  ],
+  outcome:
+    "Visible monthly progress on the areas that affect how clearly your business is understood online.",
+  timeline: "Month-to-month · cancel anytime.",
+  ctaLabel: "Start Monthly Support",
+  ctaHref: "/#pricing",
+} as const;
+
+export const STRATEGY_SESSION = {
+  id: "strategy-session",
+  name: "Assessment Review Session",
+  tagline: "A focused conversation to understand what matters most right now.",
+  summary:
+    "If you want clarity before choosing a monthly plan, a short review session is the simplest way to walk through your assessment and decide what level of ongoing support makes sense.",
+  includes: [
+    "Walkthrough of your top findings",
+    "Plain-English explanation of priorities",
+    "A practical recommendation for the right monthly plan",
+  ],
+  outcome: "Confidence about what to fix first — and which monthly plan fits best.",
+  timeline: "One focused session, then month-to-month if you continue.",
   ctaLabel: "Book My Review",
 } as const;
 
 export const BRIDGE_OFFERS = {
-  "quick-wins-sprint": QUICK_WINS_SPRINT,
-  "visibility-growth": {
-    id: "visibility-growth",
-    name: "AI Visibility Growth",
-    tagline: "Ongoing monthly guidance for businesses ready to keep improving.",
-    summary:
-      "Your assessment shows enough opportunity to benefit from steady, recurring improvements — not just a one-time fix. AI Visibility Growth gives you a practical monthly plan.",
-    includes: [
-      "Monthly visibility review",
-      "Content and structure recommendations",
-      "Priority refresh suggestions each month",
-      "Clear action summaries you can act on",
-    ],
-    outcome: "Steadier progress on clarity, trust, and visibility over time.",
-    timeline: "Month-to-month starting point.",
-    ctaLabel: "Book My Review",
-  },
-  "strategy-session": {
-    id: "strategy-session",
-    name: "Assessment Review Session",
-    tagline: "A focused conversation to understand what matters most right now.",
-    summary:
-      "If you want clarity before committing to implementation, a short review session is the simplest way to walk through your assessment and decide what to tackle first.",
-    includes: [
-      "Walkthrough of your top findings",
-      "Plain-English explanation of priorities",
-      "A practical recommendation for what to do next",
-    ],
-    outcome: "Confidence about what to fix first — without guesswork.",
-    timeline: "One focused session.",
-    ctaLabel: "Book My Review",
-  },
+  "visibility-monitor": VISIBILITY_MONITOR,
+  "visibility-growth": VISIBILITY_GROWTH,
+  "strategy-session": STRATEGY_SESSION,
 } as const;
 
 export type BridgeOfferId = keyof typeof BRIDGE_OFFERS;
@@ -106,7 +114,7 @@ export const EMAIL_COPY = {
     cta: "Book My Assessment Review",
     viewReportCta: "View Your Assessment",
     closing:
-      "The easiest next step is a short review call so we can walk through the findings together and recommend one clear path forward.",
+      "The easiest next step is a short review call — or choose month-to-month support when you are ready to keep improving over time.",
   },
   followUpDay1: {
     subject: "Two things that stood out in your assessment",
@@ -120,32 +128,34 @@ export const EMAIL_COPY = {
     cta: "Book My Review",
   },
   followUpDay3: {
-    subject: "What fixing the top issues could look like",
-    preview: "A simple path from assessment findings to practical fixes.",
-    headline: "What fixing the top issues could look like",
+    subject: "What ongoing monthly support could look like",
+    preview: "A simple path from assessment findings to steady monthly progress.",
+    headline: "What ongoing monthly support could look like",
     body: [
       "You don't have to tackle everything at once.",
-      "A GEO Quick Wins Sprint focuses on the highest-impact improvements first — clarity, trust, structure, and visibility — without turning this into a huge technical project.",
+      "AI Visibility Growth focuses on the highest-impact improvements each month — clarity, trust, content, and visibility — with practical guidance and steady progress, not a huge technical project.",
+      "Month-to-month · cancel anytime.",
     ],
-    cta: "Book My Review",
+    cta: "See Monthly Plans",
+    ctaHref: "/#pricing",
   },
   followUpDay5: {
-    subject: "A simpler way to approach the fixes",
-    preview: "You don't need a full rebuild to make meaningful progress.",
-    headline: "A simpler way to approach the fixes",
+    subject: "A simpler way to keep improving",
+    preview: "Monthly support without long contracts or overwhelming projects.",
+    headline: "A simpler way to keep improving",
     body: [
-      "Many business owners worry that improving visibility means a massive website overhaul.",
-      "Usually it doesn't. The best next step is fixing the issues that matter most first — in plain language, with a practical plan.",
+      "Many business owners worry that improving visibility means a massive website overhaul or a long agency contract.",
+      "Usually it doesn't. Monthly support helps you fix what matters most each month — in plain language, with a practical plan you can actually follow.",
     ],
     cta: "Book My Review",
   },
   followUpDay7: {
     subject: "Would you like help with the next step?",
-    preview: "Happy to help you decide what to do next.",
+    preview: "Happy to help you decide what makes sense.",
     headline: "Would you like help with the next step?",
     body: [
-      "If you'd like to walk through your assessment and decide what to tackle first, you can book a short review call.",
-      "Or simply reply to this email and tell us what you're trying to improve — we'll point you in the right direction.",
+      "If you'd like to walk through your assessment and choose the right monthly plan, you can book a short review call.",
+      "Or simply reply to this email and tell us what you're trying to improve — we'll point you toward the lightest option that still makes sense.",
     ],
     cta: "Book My Review",
   },

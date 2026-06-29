@@ -11,6 +11,10 @@ export type OfferRecommendationInput = {
 export function recommendBridgeOffer(input: OfferRecommendationInput): BridgeOfferId {
   const tier = (input.suggestedTier || input.selectedPlan || "").toLowerCase();
 
+  if (tier === "monitor") {
+    return "visibility-monitor";
+  }
+
   if (tier === "growth" || tier === "managed") {
     return "visibility-growth";
   }
@@ -22,7 +26,7 @@ export function recommendBridgeOffer(input: OfferRecommendationInput): BridgeOff
     return "strategy-session";
   }
 
-  return "quick-wins-sprint";
+  return "visibility-growth";
 }
 
 export function getRecommendedOffer(input: OfferRecommendationInput) {

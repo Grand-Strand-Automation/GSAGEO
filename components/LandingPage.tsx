@@ -9,20 +9,25 @@ import { TrustBar } from "@/components/TrustBar";
 import { ButtonLink } from "@/components/ui/Button";
 import {
   DELIVERABLES,
+  DELIVERABLES_HEADING,
   DELIVERABLES_INTRO,
   DELIVERABLES_SUPPORT,
   FAQ_ITEMS,
   GOOD_FIT,
   HOME_HERO,
+  MONTHLY_RHYTHM,
   NOT_FIT,
   PRICING_CUSTOM_NOTE,
+  PRICING_DOWNGRADE_NOTE,
   PRICING_HEADLINE,
   PRICING_HELPER,
   PRICING_INTRO,
   PRICING_REASSURANCE,
+  PRICING_SUBLINE,
   TIERS,
   WHATS_INCLUDED,
   WHATS_INCLUDED_INTRO,
+  WHY_ONGOING,
 } from "@/lib/content/landing";
 
 export function LandingPage() {
@@ -71,8 +76,8 @@ export function LandingPage() {
 
       <TrustBar
         items={[
-          "No hype, no jargon",
-          "Clear deliverables at every tier",
+          "Free assessment to start",
+          "Month-to-month · cancel anytime",
           "Based in the Grand Strand since 2015",
         ]}
       />
@@ -81,23 +86,23 @@ export function LandingPage() {
         <div className="container px-4 md:px-6 max-w-3xl">
           <SectionHeading
             label="Understanding GEO"
-            title="What is Generative Engine Optimization?"
+            title="What is AI Visibility support?"
           />
           <div className="space-y-5 text-brand-muted text-base md:text-lg leading-relaxed -mt-4">
             <p>
               When someone asks ChatGPT, Perplexity, or Google&apos;s AI Overview to recommend a service
-              provider, the answer is generated from content those systems have indexed. Businesses that
-              appear tend to have sites that are clearly structured, well-documented, and content-rich.
+              provider, the answer is built from content those systems have indexed. Businesses that show up
+              clearly tend to have websites that are easy to understand, well-organized, and trustworthy.
             </p>
             <p>
-              GEO is the practice of improving how your business is understood, cited, and surfaced by AI
-              search systems. Unlike traditional SEO, GEO focuses on content clarity, entity recognition,
-              structured data, and the page types that help AI systems represent your business accurately.
+              GEO — Generative Engine Optimization — is about improving how clearly your business appears
+              in those AI-driven answers. It is not a one-time report. It is ongoing work on clarity, trust,
+              content, and structure so customers and search tools can understand what you do.
             </p>
             <p>
-              This is methodical work: reviewing your current site, identifying what is missing or unclear, and building out the content and
-              structure that makes your business easier to understand — for both AI systems and the people
-              asking them questions.
+              We start with a free assessment so you know where you stand. If you want help improving over
+              time, monthly support gives you practical next steps each month — without long contracts or
+              technical overwhelm.
             </p>
           </div>
         </div>
@@ -163,7 +168,7 @@ export function LandingPage() {
 
           <div className="mt-12 md:mt-14 pt-12 md:pt-14 border-t border-brand-border">
             <SectionHeading
-              title="What You'll Receive"
+              title={DELIVERABLES_HEADING}
               description={DELIVERABLES_INTRO}
               className="mb-8 md:mb-10"
             />
@@ -188,10 +193,51 @@ export function LandingPage() {
             </p>
             <div className="mt-8 text-center">
               <ButtonLink href={HOME_HERO.primaryHref} size="md">
-                Start Your Assessment →
+                {HOME_HERO.primaryCta} →
               </ButtonLink>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section id="how-it-works" className="section-pad bg-brand-cream scroll-mt-20">
+        <div className="container px-4 md:px-6 max-w-4xl">
+          <SectionHeading
+            label={MONTHLY_RHYTHM.label}
+            title={MONTHLY_RHYTHM.title}
+            description={MONTHLY_RHYTHM.intro}
+            className="mb-10"
+          />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {MONTHLY_RHYTHM.steps.map((step, index) => (
+              <div
+                key={step.title}
+                className="rounded-xl border border-brand-border bg-white p-5 shadow-card"
+              >
+                <p className="text-[11px] font-bold uppercase tracking-wide text-brand-blue mb-2">
+                  Step {index + 1}
+                </p>
+                <h3 className="font-heading font-bold text-brand-navy mb-2">{step.title}</h3>
+                <p className="text-sm text-brand-muted leading-relaxed">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-pad bg-white">
+        <div className="container px-4 md:px-6 max-w-3xl text-center">
+          <SectionHeading
+            label={WHY_ONGOING.label}
+            title={WHY_ONGOING.title}
+            className="mb-6"
+          />
+          <div className="space-y-4 text-brand-muted text-base leading-relaxed -mt-2">
+            {WHY_ONGOING.body.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+          <p className="mt-6 text-sm font-semibold text-brand-navy">{WHY_ONGOING.support}</p>
         </div>
       </section>
 
@@ -200,10 +246,13 @@ export function LandingPage() {
       <section id="pricing" className="section-pad bg-brand-cream scroll-mt-20">
         <div className="container px-4 md:px-6">
           <SectionHeading
-            label="Plans for SMBs"
+            label="Monthly plans"
             title={PRICING_HEADLINE}
             description={PRICING_INTRO}
           />
+          <p className="text-center text-sm font-semibold text-brand-navy -mt-4 mb-10">
+            {PRICING_SUBLINE}
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
             {TIERS.map((tier) => (
               <div
@@ -283,10 +332,11 @@ export function LandingPage() {
 
           <div className="mt-10 text-center space-y-3 max-w-2xl mx-auto">
             <p className="text-sm text-brand-muted leading-relaxed">{PRICING_HELPER}</p>
+            <p className="text-sm text-brand-muted leading-relaxed">{PRICING_DOWNGRADE_NOTE}</p>
             <p className="text-sm text-brand-muted">
               {PRICING_CUSTOM_NOTE}{" "}
               <Link href="/audit?tier=custom" className="text-brand-blue hover:underline font-medium">
-                Request a custom GEO engagement.
+                Request a custom engagement.
               </Link>
             </p>
           </div>
@@ -295,7 +345,7 @@ export function LandingPage() {
 
       <section id="faq" className="section-pad bg-white scroll-mt-20">
         <div className="container px-4 md:px-6 max-w-3xl">
-          <SectionHeading label="FAQ" title="Common questions about GEO." />
+          <SectionHeading label="FAQ" title="Common questions about monthly GEO support." />
           <div className="card-brand px-6 md:px-8 shadow-card">
             {FAQ_ITEMS.map((item) => (
               <FaqItem key={item.q} q={item.q} a={item.a} />
@@ -305,11 +355,11 @@ export function LandingPage() {
       </section>
 
       <CTABand
-        title="Ready to see where your business stands?"
-        subtitle="We review your site, score it across eight GEO-readiness categories, and give you a clear plan for what to improve first."
+        title="Start with a free assessment — continue month-to-month if it makes sense"
+        subtitle="See how clearly your business appears in AI search, get practical priorities, and choose ongoing support only when you are ready."
         buttons={[
-          { label: "Start Your Assessment", href: "/audit?tier=monitor", primary: true },
-          { label: "View Pricing", href: "/#pricing", primary: false },
+          { label: "Start Your Free Assessment", href: "/audit", primary: true },
+          { label: "See Monthly Plans", href: "/#pricing", primary: false },
         ]}
       />
     </div>

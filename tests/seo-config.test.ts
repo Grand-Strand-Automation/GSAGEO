@@ -27,7 +27,7 @@ describe("SEO site configuration", () => {
       typeof HOME_METADATA.title === "object" && HOME_METADATA.title && "absolute" in HOME_METADATA.title
         ? String(HOME_METADATA.title.absolute)
         : String(HOME_METADATA.title);
-    assert.match(title, /AI Visibility Assessments/);
+    assert.match(title, /Monthly AI Visibility Support/);
     assert.ok(String(HOME_METADATA.description).length > 50);
     assert.doesNotMatch(String(HOME_METADATA.description), /create-react-app/i);
   });

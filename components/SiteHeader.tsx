@@ -9,7 +9,8 @@ import { siteConfig } from "@/lib/brand/site";
 
 const NAV_LINKS = [
   { label: "What's Included", href: "/#whats-included" },
-  { label: "Pricing", href: "/#pricing" },
+  { label: "How It Works", href: "/#how-it-works" },
+  { label: "Monthly Plans", href: "/#pricing" },
   { label: "FAQ", href: "/#faq" },
 ];
 
@@ -40,7 +41,7 @@ export function SiteHeader() {
             Main site
           </a>
           <ButtonLink href="/audit" size="sm" variant="gold" className="ml-1 whitespace-nowrap">
-            Request Assessment
+            Start Free Assessment
           </ButtonLink>
         </nav>
 
@@ -77,7 +78,7 @@ export function SiteHeader() {
           </a>
           <div className="pt-3 mt-2 border-t border-white/10">
             <ButtonLink href="/audit" variant="gold" className="w-full" onClick={() => setMobileOpen(false)}>
-              Request Assessment
+              Start Free Assessment
             </ButtonLink>
           </div>
         </div>

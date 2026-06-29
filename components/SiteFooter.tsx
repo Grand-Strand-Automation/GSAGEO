@@ -10,8 +10,8 @@ export function SiteFooter() {
           <div className="md:col-span-5 space-y-4">
             <BrandLogo variant="geo" />
             <p className="text-sm text-white/55 max-w-md leading-relaxed pt-1">
-              Practical Generative Engine Optimization for service businesses — structured assessments,
-              clear deliverables, and a no-pressure approach from the Grand Strand.
+              Monthly AI visibility support for service businesses — start with a free assessment,
+              then continue month-to-month with practical guidance and clear next steps.
             </p>
             <div className="space-y-2 pt-2 text-sm">
               <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/35">
@@ -33,8 +33,8 @@ export function SiteFooter() {
             <ul className="space-y-3">
               {[
                 { label: "Overview", href: "/" },
-                { label: "Request an Assessment", href: "/audit" },
-                { label: "Pricing", href: "/#pricing" },
+                { label: "Free Assessment", href: "/audit" },
+                { label: "Monthly Plans", href: "/#pricing" },
                 { label: "FAQ", href: "/#faq" },
               ].map(({ label, href }) => (
                 <li key={label}>
@@ -72,7 +72,7 @@ export function SiteFooter() {
                 href="/audit"
                 className="inline-block text-sm font-semibold text-brand-sky hover:text-white transition-colors"
               >
-                Request a GEO Assessment →
+                Request your free assessment →
               </Link>
             </div>
           </div>
@@ -83,7 +83,7 @@ export function SiteFooter() {
             © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
           </p>
           <p className="text-sm text-white/30 text-center sm:text-right">
-            Practical review · Clear deliverables · Grand Strand-based
+            Practical monthly support · Cancel anytime · Grand Strand-based
           </p>
         </div>
       </div>

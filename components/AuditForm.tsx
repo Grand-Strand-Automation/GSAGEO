@@ -134,22 +134,23 @@ export function AuditForm({ initialPlan = "" }: { initialPlan?: string }) {
       <section className="bg-brand-hero text-white pt-28 pb-14 md:pt-36 relative overflow-hidden">
         <HeroOverlay />
         <div className="container px-4 md:px-6 text-center max-w-2xl relative z-10">
-          <div className="eyebrow-pill-gold mb-6 mx-auto w-fit">Assessment request</div>
+          <div className="eyebrow-pill-gold mb-6 mx-auto w-fit">Free assessment</div>
           <h1 className="text-4xl sm:text-5xl font-heading font-extrabold mb-5">
-            You&apos;re in the right place
+            Start with your free assessment
           </h1>
           <p className="text-base md:text-lg text-white/70 leading-relaxed">
-            This page is where you request your assessment. Fill out the form below with your
-            business and website details — then submit. That&apos;s all you need to do to get started.
+            This free assessment gives you a starting point — what looks strong, what needs work, and
+            what to improve first. If you want help improving over time, month-to-month support is
+            available with simple cancel-anytime plans.
           </p>
         </div>
       </section>
 
       <TrustBar
         items={[
-          "Just complete the form below",
-          "Your site review starts after you submit",
-          "Actionable findings — prioritized by impact",
+          "Free assessment · no obligation",
+          "Month-to-month support available",
+          "Cancel anytime on monthly plans",
         ]}
       />
 
@@ -161,12 +162,13 @@ export function AuditForm({ initialPlan = "" }: { initialPlan?: string }) {
             </p>
             <p className="text-sm text-brand-muted leading-relaxed mb-5">
               Once you send the form below, we save your request and begin reviewing your website
-              automatically. No extra steps, phone calls, or follow-up forms needed to get started.
+              automatically. You&apos;ll receive clear findings and recommended next steps — including
+              monthly support options if you want ongoing help.
             </p>
             <div className="grid sm:grid-cols-3 gap-4 text-left">
               <div className="rounded-xl bg-brand-cream p-4">
                 <p className="text-xs font-bold uppercase text-brand-subtle mb-1">What you receive</p>
-                <p className="text-sm text-brand-muted">A clear assessment of what looks good on your site and what to improve first.</p>
+                <p className="text-sm text-brand-muted">A clear assessment of what looks good and what to improve first — plus a path to monthly support if you want it.</p>
               </div>
               <div className="rounded-xl bg-brand-cream p-4">
                 <p className="text-xs font-bold uppercase text-brand-subtle mb-1">What happens next</p>
@@ -330,7 +332,7 @@ export function AuditForm({ initialPlan = "" }: { initialPlan?: string }) {
                     <Loader2 className="mr-2 h-5 w-5 animate-spin" /> Submitting…
                   </>
                 ) : (
-                  "Submit my request →"
+                  "Submit my free assessment →"
                 )}
               </button>
             </form>

@@ -20,8 +20,8 @@ export function ResultsCTA({
           Walk through your assessment with us
         </h2>
         <p className="mt-4 text-sm md:text-[15px] text-white/75 leading-relaxed max-w-2xl">
-          A short review call is the easiest way to understand what stood out, what to fix first, and
-          whether a focused implementation sprint makes sense for {companyName}.
+          A short review call is the easiest way to understand what stood out and choose the right
+          month-to-month plan for {companyName} — or continue with lighter monitoring if that fits better.
         </p>
         <div className="mt-8 flex flex-col sm:flex-row gap-3">
           <Link
@@ -36,7 +36,7 @@ export function ResultsCTA({
             href="/#pricing"
             className="inline-flex items-center justify-center rounded-xl border border-white/25 text-white font-heading font-semibold px-6 py-3.5 text-sm hover:bg-white/10 transition-colors"
           >
-            View service options
+            See monthly plans
           </Link>
         </div>
       </div>
