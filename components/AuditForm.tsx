@@ -8,7 +8,6 @@ import { Loader2 } from "lucide-react";
 import { HeroOverlay } from "@/components/HeroOverlay";
 import { TrustBar } from "@/components/TrustBar";
 import { submissionSchema, type SubmissionInput } from "@/lib/validation/submission";
-import { formatPlanLabel, INTAKE_PLAN_OPTIONS } from "@/lib/brand/plans";
 
 const labelClass = "text-sm font-semibold text-brand-navy";
 const inputClass =
@@ -100,7 +99,6 @@ export function AuditForm({ initialPlan = "" }: { initialPlan?: string }) {
 
   const challenges = watch("current_challenges") ?? [];
   const access = watch("access_available") ?? [];
-  const selectedPlan = watch("selected_plan") ?? "";
 
   async function onSubmit(values: SubmissionInput) {
     setIsSubmitting(true);
@@ -185,38 +183,7 @@ export function AuditForm({ initialPlan = "" }: { initialPlan?: string }) {
           <div className="card-brand rounded-2xl p-8 md:p-10 shadow-card-md">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <input type="text" className="hidden" tabIndex={-1} autoComplete="off" {...register("website")} />
-
-              <div>
-                <label className={labelClass} htmlFor="selected_plan">
-                  Interested plan (optional)
-                </label>
-                <select
-                  id="selected_plan"
-                  className={`${inputClass} mt-1 bg-white`}
-                  aria-describedby="selected_plan_help"
-                  {...register("selected_plan")}
-                >
-                  <option value="">Select a plan or leave blank</option>
-                  {INTAKE_PLAN_OPTIONS.map((opt) => (
-                    <option key={opt.value} value={opt.value}>
-                      {opt.label}
-                    </option>
-                  ))}
-                </select>
-                <div
-                  id="selected_plan_help"
-                  className="mt-3 rounded-lg border border-brand-border bg-brand-cream px-4 py-3 text-sm text-brand-muted"
-                >
-                  {selectedPlan ? (
-                    <>
-                      <span className="font-semibold text-brand-navy">Selected plan:</span>{" "}
-                      {formatPlanLabel(selectedPlan)}
-                    </>
-                  ) : (
-                    "Choose a plan if you already know where you want to start. You can also leave this blank."
-                  )}
-                </div>
-              </div>
+              <input type="hidden" {...register("selected_plan")} />
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
