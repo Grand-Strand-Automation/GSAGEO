@@ -18,61 +18,31 @@ export const HOME_HERO = {
   ],
 } as const;
 
-export type AssessmentPreviewStatus = "Needs work" | "Moderate" | "Weak" | "Strong";
-
 export const ASSESSMENT_PREVIEW = {
-  label: "Sample output",
-  title: "What a GEO Audit Might Highlight",
+  eyebrow: "Sample report preview",
+  title: "What a Full GEO Audit Report Can Look Like",
   description:
-    "Here's a simplified example of the kind of issues and recommendations a GEO / AI Visibility audit can surface. The goal is to give you a clearer sense of how the review is structured and what practical next steps might look like.",
-  demoLabel: "Illustrative preview only",
-  demoNote:
-    "Your actual audit will reflect your business, site structure, and plan selection.",
-  categoriesReviewed: [
-    "Service page clarity",
-    "FAQ & answer coverage",
-    "Trust & proof signals",
-    "Business clarity",
-  ],
-  reviewCards: [
+    "This is a sample preview of the kind of customer-facing GEO / AI Visibility report you may receive after a full audit.",
+  disclaimer:
+    "Illustrative example — actual findings, strengths, and next steps will vary based on your business, website, and audit tier.",
+  screenshots: [
     {
-      title: "FAQ Coverage",
-      status: "Needs work" as AssessmentPreviewStatus,
-      summary: "Important customer questions are not clearly answered across the site.",
+      src: "/brand/sample-report/sample-visual-summary.png",
+      label: "Sample visual summary",
+      alt: "Sample GEO audit visual summary report screenshot",
     },
     {
-      title: "Service Page Clarity",
-      status: "Moderate" as AssessmentPreviewStatus,
-      summary:
-        "Core services are visible, but some pages need clearer explanations and stronger structure.",
-    },
-    {
-      title: "Trust Signals",
-      status: "Weak" as AssessmentPreviewStatus,
-      summary:
-        "The site would benefit from stronger proof, process clarity, and visible credibility indicators.",
-    },
-    {
-      title: "Business Clarity",
-      status: "Moderate" as AssessmentPreviewStatus,
-      summary:
-        "The business is visible, but its specialization, service fit, and local relevance could be communicated more clearly.",
+      src: "/brand/sample-report/sample-report-hero.png",
+      label: "Sample report overview",
+      alt: "Sample GEO audit report overview screenshot",
     },
   ],
-  nextAction: {
-    title: "Example Next Best Action",
-    copy: "Strengthen one core service page, add a relevant FAQ section, improve internal links between supporting pages, and make the main call to action clearer.",
-  },
-  insight: {
-    title: "What this tells you",
-    copy: "A result like this helps identify what is already clear, what is underdeveloped, and what changes are most likely to improve visibility first.",
-  },
   cta: {
-    heading: "Ready to see how your own site compares?",
-    body: "Request a full GEO / AI Visibility audit and get a clearer picture of what your website is doing well, where it is underperforming, and what to improve first.",
+    heading: "Ready to see what your own report could reveal?",
+    body: "Request a full GEO audit to get a clearer picture of what your website is doing well, what may be limiting visibility, and what to improve first.",
     label: "Request Your Full Audit",
     href: "/audit?tier=monitor",
-    secondaryLabel: "See pricing and plan options",
+    secondaryLabel: "See plans and pricing",
     secondaryHref: "/#pricing",
   },
 } as const;

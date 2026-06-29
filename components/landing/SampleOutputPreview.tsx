@@ -1,96 +1,104 @@
-import Link from "next/link";
-import { SectionHeading } from "@/components/SectionHeading";
-import { ButtonLink } from "@/components/ui/Button";
-import {
-  ASSESSMENT_PREVIEW,
-  type AssessmentPreviewStatus,
-} from "@/lib/content/landing";
-import { cn } from "@/lib/utils";
+"use client";
 
-const STATUS_STYLES: Record<AssessmentPreviewStatus, string> = {
-  "Needs work": "bg-amber-50 text-amber-800 border-amber-200",
-  Moderate: "bg-brand-blue-light text-brand-blue border-brand-blue/20",
-  Weak: "bg-red-50 text-red-700 border-red-200",
-  Strong: "bg-emerald-50 text-emerald-800 border-emerald-200",
-};
+import { useCallback, useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { X, ZoomIn } from "lucide-react";
+import { ButtonLink } from "@/components/ui/Button";
+import { ASSESSMENT_PREVIEW } from "@/lib/content/landing";
+
+function SamplePreviewImage({
+  src,
+  alt,
+  label,
+  onExpand,
+}: {
+  src: string;
+  alt: string;
+  label: string;
+  onExpand: () => void;
+}) {
+  return (
+    <figure className="group">
+      <button
+        type="button"
+        onClick={onExpand}
+        className="relative block w-full rounded-xl border border-brand-border bg-brand-cream/50 overflow-hidden shadow-card text-left transition-shadow hover:shadow-card-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/50 focus-visible:ring-offset-2"
+        aria-label={`Enlarge ${label}`}
+      >
+        <div className="absolute top-3 right-3 z-10 inline-flex items-center gap-1 rounded-full bg-brand-navy/80 text-white text-[10px] font-semibold uppercase tracking-wide px-2.5 py-1 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity">
+          <ZoomIn size={12} />
+          Enlarge
+        </div>
+        <Image
+          src={src}
+          alt={alt}
+          width={1024}
+          height={592}
+          className="w-full h-auto"
+          sizes="(max-width: 768px) 100vw, 50vw"
+        />
+      </button>
+      <figcaption className="mt-3 text-center text-sm font-semibold text-brand-navy">
+        {label}
+      </figcaption>
+    </figure>
+  );
+}
 
 export function SampleOutputPreview() {
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  const closeLightbox = useCallback(() => setActiveIndex(null), []);
+
+  useEffect(() => {
+    if (activeIndex === null) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") closeLightbox();
+    };
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [activeIndex, closeLightbox]);
+
+  const activeShot =
+    activeIndex !== null ? ASSESSMENT_PREVIEW.screenshots[activeIndex] : null;
+
   return (
     <section id="sample-output" className="section-pad bg-brand-cream scroll-mt-20">
-      <div className="container px-4 md:px-6 max-w-5xl">
-        <SectionHeading
-          label={ASSESSMENT_PREVIEW.label}
-          title={ASSESSMENT_PREVIEW.title}
-          description={ASSESSMENT_PREVIEW.description}
-          centered
-        />
+      <div className="container px-4 md:px-6 max-w-6xl">
+        <div className="flex flex-col items-center text-center mb-10 md:mb-12 max-w-3xl mx-auto">
+          <span className="inline-flex items-center rounded-full border-2 border-brand-gold/70 bg-brand-gold/20 px-5 py-2.5 text-xs sm:text-sm font-extrabold uppercase tracking-[0.2em] text-brand-gold shadow-[0_0_28px_rgba(196,163,90,0.2)] mb-6">
+            {ASSESSMENT_PREVIEW.eyebrow}
+          </span>
+          <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-brand-navy leading-[1.12]">
+            {ASSESSMENT_PREVIEW.title}
+          </h2>
+          <p className="mt-4 text-base md:text-lg text-brand-muted leading-relaxed">
+            {ASSESSMENT_PREVIEW.description}
+          </p>
+        </div>
 
         <div className="rounded-2xl border border-brand-border bg-white shadow-card-md overflow-hidden">
           <div className="h-1.5 bg-gradient-to-r from-brand-gold via-brand-sky to-brand-blue" />
-
-          <div className="p-6 md:p-8">
-            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between mb-6">
-              <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-brand-subtle">
-                {ASSESSMENT_PREVIEW.demoLabel}
-              </p>
-              <p className="text-xs text-brand-muted sm:text-right max-w-md">
-                {ASSESSMENT_PREVIEW.demoNote}
-              </p>
-            </div>
-
-            <div className="flex flex-wrap gap-2 mb-6">
-              {ASSESSMENT_PREVIEW.categoriesReviewed.map((cat) => (
-                <span
-                  key={cat}
-                  className="inline-flex text-[10px] font-semibold uppercase tracking-wide text-brand-muted bg-brand-cream border border-brand-border rounded-full px-2.5 py-1"
-                >
-                  {cat}
-                </span>
+          <div className="p-5 md:p-8 lg:p-10">
+            <div className="grid lg:grid-cols-2 gap-6 md:gap-8">
+              {ASSESSMENT_PREVIEW.screenshots.map((shot, index) => (
+                <SamplePreviewImage
+                  key={shot.src}
+                  src={shot.src}
+                  alt={shot.alt}
+                  label={shot.label}
+                  onExpand={() => setActiveIndex(index)}
+                />
               ))}
             </div>
-
-            <div className="grid sm:grid-cols-2 gap-4 mb-6">
-              {ASSESSMENT_PREVIEW.reviewCards.map((item) => (
-                <div
-                  key={item.title}
-                  className="rounded-xl border border-brand-border bg-brand-cream/40 p-5 md:p-6 transition-colors hover:border-brand-blue/25"
-                >
-                  <div className="flex items-start justify-between gap-3 mb-3">
-                    <h3 className="font-heading font-bold text-[15px] text-brand-navy leading-snug">
-                      {item.title}
-                    </h3>
-                    <span
-                      className={cn(
-                        "shrink-0 text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full border",
-                        STATUS_STYLES[item.status],
-                      )}
-                    >
-                      {item.status}
-                    </span>
-                  </div>
-                  <p className="text-sm text-brand-muted leading-relaxed">{item.summary}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="grid md:grid-cols-[1.4fr_1fr] gap-4">
-              <div className="rounded-xl border border-brand-blue/20 bg-brand-blue-light/50 p-5 md:p-6">
-                <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-brand-blue mb-2">
-                  {ASSESSMENT_PREVIEW.nextAction.title}
-                </p>
-                <p className="text-sm md:text-[15px] text-brand-navy leading-relaxed">
-                  {ASSESSMENT_PREVIEW.nextAction.copy}
-                </p>
-              </div>
-              <div className="rounded-xl border border-brand-border bg-white p-5 md:p-6">
-                <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-brand-subtle mb-2">
-                  {ASSESSMENT_PREVIEW.insight.title}
-                </p>
-                <p className="text-sm text-brand-muted leading-relaxed">
-                  {ASSESSMENT_PREVIEW.insight.copy}
-                </p>
-              </div>
-            </div>
+            <p className="mt-8 text-center text-xs sm:text-sm text-brand-muted leading-relaxed max-w-2xl mx-auto">
+              {ASSESSMENT_PREVIEW.disclaimer}
+            </p>
           </div>
         </div>
 
@@ -114,6 +122,38 @@ export function SampleOutputPreview() {
           </div>
         </div>
       </div>
+
+      {activeShot ? (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-brand-navy/85 backdrop-blur-sm"
+          role="dialog"
+          aria-modal="true"
+          aria-label={activeShot.label}
+          onClick={closeLightbox}
+        >
+          <button
+            type="button"
+            onClick={closeLightbox}
+            className="absolute top-4 right-4 inline-flex items-center justify-center rounded-full bg-white/10 text-white p-2 hover:bg-white/20 transition-colors"
+            aria-label="Close preview"
+          >
+            <X size={22} />
+          </button>
+          <div
+            className="relative max-w-5xl w-full max-h-[90vh] overflow-auto rounded-xl border border-white/15 bg-white shadow-card-md"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <Image
+              src={activeShot.src}
+              alt={activeShot.alt}
+              width={1024}
+              height={592}
+              className="w-full h-auto"
+              sizes="90vw"
+            />
+          </div>
+        </div>
+      ) : null}
     </section>
   );
 }
