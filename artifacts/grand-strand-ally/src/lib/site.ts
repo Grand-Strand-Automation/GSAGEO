@@ -22,6 +22,6 @@ export const siteConfig = {
     onboardingOffboardingAutomation: "/onboarding-offboarding-automation",
     geo: "/generative-engine-optimization",
     geoAudit: "/geo-audit",
-    geoAssessment: "https://gsageo.vercel.app/",
+    geoAssessment: "https://gsageo.vercel.app/audit?tier=monitor",
   }
 };

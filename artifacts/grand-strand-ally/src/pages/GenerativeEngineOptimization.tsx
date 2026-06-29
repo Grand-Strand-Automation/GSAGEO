@@ -18,6 +18,7 @@ import {
 import { CTABand } from "@/components/CTABand";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { geoAuditUrl } from "@/components/GeoCTABlock";
 
 const CANONICAL = "https://gsally.com/generative-engine-optimization";
 const TITLE = "GEO / AI Visibility — Generative Engine Optimization | Grand Strand Ally";
@@ -198,6 +199,12 @@ const TIERS = [
   },
 ];
 
+const TIER_AUDIT_PARAMS: Record<string, string> = {
+  audit: "monitor",
+  foundation: "monitor",
+  growth: "growth",
+};
+
 const FAQ_ITEMS = [
   {
     q: "What is Generative Engine Optimization?",
@@ -366,7 +373,7 @@ export default function GenerativeEngineOptimization() {
                   asChild
                   className="bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-7 text-[15px] rounded-lg border-0 w-full sm:w-auto"
                 >
-                  <Link href="/geo-audit">Start Your Assessment →</Link>
+                  <a href={geoAuditUrl()} target="_blank" rel="noopener noreferrer" data-geo-cta="geo-page-hero">Start Your Assessment →</a>
                 </Button>
                 <Button
                   asChild
@@ -577,7 +584,7 @@ export default function GenerativeEngineOptimization() {
               asChild
               className="bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-7 text-sm rounded-lg border-0"
             >
-              <Link href="/geo-audit">Request a GEO Audit →</Link>
+              <a href={geoAuditUrl()} target="_blank" rel="noopener noreferrer" data-geo-cta="geo-page-deliverables">Request a GEO Audit →</a>
             </Button>
           </div>
         </div>
@@ -650,7 +657,7 @@ export default function GenerativeEngineOptimization() {
                       : "bg-[#F7F5F1] hover:bg-[#EAE8E4] text-[#0E2F54] border border-[#D7E1EA] font-semibold h-11 text-sm rounded-lg w-full"
                   }
                 >
-                  <Link href={`/geo-audit?tier=${tier.tier}`}>{tier.cta} →</Link>
+                  <a href={geoAuditUrl(TIER_AUDIT_PARAMS[tier.tier] ?? "monitor")} target="_blank" rel="noopener noreferrer" data-geo-cta={`geo-page-tier-${tier.tier}`}>{tier.cta} →</a>
                 </Button>
               </div>
             ))}
@@ -658,9 +665,9 @@ export default function GenerativeEngineOptimization() {
           <div className="mt-10 text-center space-y-3">
             <p className="text-sm text-[#4B5B6B]">
               Need a larger rollout, multi-location support, or ongoing implementation help?{" "}
-              <Link href="/geo-audit?tier=custom" className="text-[#1F5E95] hover:underline font-medium">
+              <a href={geoAuditUrl("custom")} target="_blank" rel="noopener noreferrer" className="text-[#1F5E95] hover:underline font-medium">
                 Request a custom GEO plan.
-              </Link>
+              </a>
             </p>
             <p className="text-xs text-[#9AAEBB]">
               No hype, no unnecessary rebuilds — just a clearer plan for improving visibility in AI-driven search experiences.
@@ -691,7 +698,7 @@ export default function GenerativeEngineOptimization() {
         title="Ready to see where your business stands?"
         subtitle="We review your site, score it across eight GEO-readiness categories, and give you a clear plan for what to improve first."
         buttons={[
-          { label: "Request a GEO Audit", href: "/geo-audit", primary: true },
+          { label: "Request a GEO Audit", href: geoAuditUrl(), primary: true, external: true },
           { label: "View All Services", href: "/services", primary: false },
         ]}
       />

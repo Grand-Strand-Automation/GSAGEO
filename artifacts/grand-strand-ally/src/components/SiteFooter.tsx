@@ -31,7 +31,7 @@ export function SiteFooter() {
                 data-geo-cta="footer"
                 className="inline-flex items-center gap-2 bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-7 rounded-lg text-sm transition-colors whitespace-nowrap"
               >
-                Start Assessment <ArrowRight size={14} aria-hidden="true" />
+                Start Your GEO Assessment <ArrowRight size={14} aria-hidden="true" />
               </a>
             </div>
           </div>

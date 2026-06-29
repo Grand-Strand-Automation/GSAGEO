@@ -1,0 +1,250 @@
+I need you to update GSALLY.com in this Replit project so GEO-related clicks take visitors directly to the GEO audit form with as few clicks as possible.
+
+Important:
+- Do the work in code now.
+- Do not just suggest ideas.
+- Inspect the current Replit project first and identify:
+  - homepage hero CTAs
+  - announcement bar CTAs
+  - GEO feature sections
+  - navigation links
+  - footer GEO links
+  - Services page GEO links
+  - About / Process / Contact / FAQ GEO links
+  - any /generative-engine-optimization route or GEO landing page links
+  - any shared CTA components or centralized URL config
+- Then implement the updates cleanly.
+- Preserve the current design quality, responsiveness, and overall credibility.
+- Do not break routing, service pages, forms, or non-GEO flows.
+
+========================================================
+PRIMARY GOAL
+========================================================
+
+I want GSALLY.com to act as a strong feeder site into the GEO audit funnel.
+
+That means:
+- when a user clicks GEO-related CTAs on GSALLY.com,
+- they should go directly to the GEO audit form,
+- not to an intermediate GEO homepage unless there is a very good reason.
+
+The click path should be as short as possible.
+
+========================================================
+DESTINATION RULES
+========================================================
+
+First inspect the codebase and determine whether there is already a single source of truth for GEO URLs.
+
+If a canonical GEO base URL or audit URL already exists in config/constants/env, preserve and reuse that pattern.
+If not, create a clean shared constant/config so GEO destinations are not hardcoded inconsistently.
+
+Preferred direct default GEO destination:
+https://geo.vercel.app/audit?tier=monitor
+
+Use this as the default destination for general GEO / AI Visibility CTAs unless a more specific tier-based mapping is clearly better.
+
+Tier mapping rules:
+- General GEO / AI Visibility CTA → /audit?tier=monitor
+- “Growth” language or recurring support CTA → /audit?tier=growth
+- “Managed” / higher-touch / hands-on CTA → /audit?tier=managed
+- “Custom GEO” or multi-location / advanced needs CTA → /audit?tier=custom
+
+If the existing GSALLY site does not clearly distinguish these CTA intents, default most GEO-related links to the monitor audit form to reduce friction.
+
+========================================================
+WHAT TO CHANGE
+========================================================
+
+1. HOMEPAGE GEO CTA LINKS
+Update all homepage GEO-related CTAs so they point directly to the GEO audit form, not the GEO homepage.
+
+This includes:
+- top announcement bar GEO CTA
+- hero GEO CTA
+- GEO feature section CTA
+- any GEO card/button/link in the homepage body
+- any lower-page GEO callout
+- footer GEO CTA if it is on the homepage
+
+If the current CTA text says things like:
+- See the Assessment
+- Learn More
+- AI Visibility
+- GEO Assessment
+but currently goes to a general GEO page, change the link target to the audit form.
+
+2. NAVIGATION GEO LINK
+Update the main nav GEO / AI Visibility / GEO Assessment item so it goes directly to:
+- the default GEO audit form
+not the general GEO homepage
+
+Do the same in:
+- desktop nav
+- mobile nav
+- hamburger menu
+- any sticky header / secondary nav if present
+
+3. GSALLY GEO PAGE / GENERATIVE-ENGINE-OPTIMIZATION PAGE
+Inspect whether GSALLY has a dedicated GEO page such as:
+- /generative-engine-optimization
+or similar
+
+If this page exists, I want one of the following implemented cleanly:
+
+Preferred option:
+Turn this page into a very short bridge page with:
+- a concise headline
+- 1–2 sentence explanation
+- immediate CTA to start the audit
+- optional automatic redirect after a short delay if that fits the current UX and routing cleanly
+
+Alternative acceptable option:
+If appropriate for the current architecture, redirect this route directly to the GEO audit form.
+
+Goal:
+No wasted step between GSALLY GEO interest and the actual GEO form.
+
+Use judgment based on current site structure, but minimize clicks.
+
+4. SERVICES PAGE GEO LINKS
+On the Services page, update all GEO-related links and CTAs so they go straight to the audit form.
+
+This includes:
+- dedicated GEO promo section
+- any “Need better visibility?” block
+- any contextual GEO cross-sell links
+- any service cards or CTA buttons pointing to GEO
+
+Do not send users to a GEO overview page first unless the CTA clearly implies education rather than action.
+
+5. ABOUT / PROCESS / CONTACT / FAQ / OTHER HIGH-INTENT PAGES
+Inspect the main public pages and update any GEO-related CTA or cross-sell links so they go straight to the audit form.
+
+Priority pages:
+- About
+- Process
+- Contact
+- FAQ
+- free IT cost analysis page
+- major service detail pages
+- footer across the site
+
+If a GEO CTA exists, it should usually go directly to the form.
+
+6. CTA LABEL CLEANUP
+If some CTA labels currently sound like informational links but now go directly to a form, tighten the copy so expectations match the destination.
+
+Preferred action-oriented CTA labels:
+- Start Your GEO Assessment
+- Request Your AI Visibility Assessment
+- Start the GEO Audit
+- See How Your Website Looks to AI Search
+- Start Your Assessment
+
+Avoid vague labels like:
+- Learn More
+- Explore GEO
+- Discover GEO
+if they now go directly to a form
+
+If an informational link is still needed somewhere, it can stay, but primary GEO CTAs on GSALLY should be action-oriented.
+
+7. OPTIONAL: KEEP A SMALL INFORMATIONAL GEO LINK WHERE NEEDED
+I still want the main conversion path to be direct-to-form.
+
+However, if there are places where a small “Learn how it works” or “What is GEO?” text link makes sense, that can remain secondary.
+
+Rule:
+- Primary GEO button → direct to form
+- Small secondary educational link → optional GEO homepage or GEO explainer route if it still exists
+
+This is optional, not required.
+The priority is fewer clicks to the audit form.
+
+8. TRACKING / ANALYTICS FRIENDLINESS
+If the project already has tracking hooks, data attributes, analytics events, or CTA naming patterns, update these direct GEO audit CTAs consistently.
+
+At minimum, make it easy later to distinguish clicks from:
+- homepage hero GEO CTA
+- top announcement bar GEO CTA
+- homepage GEO section CTA
+- nav GEO CTA
+- footer GEO CTA
+- services page GEO CTA
+- GEO page redirect/CTA
+
+Do not build a big new analytics system if one does not exist.
+Just make the markup and naming clean.
+
+9. OPEN-IN-SAME-TAB VS NEW-TAB
+Use current site conventions.
+But if there is no strong convention, prefer opening the GEO audit form in the same tab for the main CTA path.
+This keeps the experience feeling like one deliberate funnel and reduces friction.
+
+Do not make the user:
+- click to a GEO homepage
+- re-orient
+- click again to start the audit
+
+The point is to remove extra decision steps.
+
+10. MOBILE UX
+Make sure the mobile experience stays clean:
+- GEO nav CTA should still work cleanly
+- GEO CTA buttons should remain large and tappable
+- any shortened click path should not break mobile layout
+- if a route redirect is added, it should behave properly on mobile too
+
+========================================================
+PRIORITY IMPLEMENTATION ORDER
+========================================================
+
+Implement in this order:
+1. identify or create canonical GEO audit URL config
+2. update homepage GEO CTAs to direct-to-form
+3. update nav GEO link to direct-to-form
+4. update Services page GEO CTAs
+5. update footer and shared GEO CTA blocks
+6. inspect /generative-engine-optimization page and either shorten it heavily or redirect it
+7. update other high-intent pages
+8. clean CTA labels
+9. add tracking-friendly attributes if appropriate
+10. verify mobile behavior
+
+========================================================
+DO NOT
+========================================================
+
+Do not:
+- leave multiple conflicting GEO destinations in the codebase
+- send primary GEO CTAs to the general GEO homepage if the goal is conversion
+- break the existing GSALLY site design
+- break forms or internal service routes
+- create a confusing mix of direct-to-form and overview-first flows without purpose
+- use vague CTA labels for form destinations
+- introduce unnecessary dependencies
+- make the site feel messy or overcomplicated
+
+========================================================
+FINAL REPORT REQUIRED
+========================================================
+
+After implementation, provide a concise report with:
+- files changed
+- components or shared constants updated
+- which GEO audit URL is now canonical
+- which GSALLY pages now point directly to the GEO audit form
+- whether the GEO page was redirected, shortened, or otherwise changed
+- any CTA labels that were updated
+- any assumptions made
+- any recommended phase 2 improvements
+
+Then do a self-QA pass and confirm:
+- homepage GEO CTAs go directly to the audit form
+- nav GEO link goes directly to the audit form
+- services page GEO links go directly to the audit form
+- footer GEO links go directly to the audit form where appropriate
+- the click path to the GEO form is minimized
+- mobile behavior still works
+- all GEO CTA destinations are consistent

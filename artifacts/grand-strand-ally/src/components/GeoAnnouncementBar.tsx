@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { X, ArrowRight } from "lucide-react";
+import { GEO_ASSESSMENT_URL } from "@/components/GeoCTABlock";
 
 const DISMISS_KEY = "geo_ann_bar_v1";
-export const GEO_ASSESSMENT_URL = "https://gsageo.vercel.app/";
 
 export function GeoAnnouncementBar() {
   const [visible, setVisible] = useState(() => {
@@ -56,7 +56,7 @@ export function GeoAnnouncementBar() {
             data-geo-cta="announcement-bar"
             className="inline-flex items-center gap-1.5 bg-white/15 hover:bg-white/25 border border-white/25 rounded-md px-3 py-1 text-xs sm:text-sm font-semibold text-white whitespace-nowrap transition-colors shrink-0"
           >
-            See the Assessment <ArrowRight size={11} aria-hidden="true" />
+            Start Your Assessment <ArrowRight size={11} aria-hidden="true" />
           </a>
         </div>
         <button

@@ -1,6 +1,8 @@
 import { ArrowRight } from "lucide-react";
 
-export const GEO_ASSESSMENT_URL = "https://gsageo.vercel.app/";
+const GEO_BASE_URL = "https://gsageo.vercel.app";
+export const geoAuditUrl = (tier = "monitor") => `${GEO_BASE_URL}/audit?tier=${tier}`;
+export const GEO_ASSESSMENT_URL = geoAuditUrl();
 
 interface GeoCTABlockProps {
   headline?: string;

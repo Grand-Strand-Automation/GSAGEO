@@ -17,8 +17,7 @@ import { FAQ } from "@/components/FAQ";
 import { CTABand } from "@/components/CTABand";
 import { Button } from "@/components/ui/button";
 import { Helmet } from "react-helmet-async";
-
-const GEO_URL = "https://gsageo.vercel.app/";
+import { GEO_ASSESSMENT_URL } from "@/components/GeoCTABlock";
 
 const clarityIcons = [BarChart2, Layers, ClipboardList];
 
@@ -109,13 +108,13 @@ export default function Home() {
               <Link href="/services">Explore Services →</Link>
             </Button>
             <a
-              href={GEO_URL}
+              href={GEO_ASSESSMENT_URL}
               target="_blank"
               rel="noopener noreferrer"
               data-geo-cta="hero-secondary-cta"
               className="inline-flex items-center justify-center gap-2 border border-white/25 text-white hover:bg-white/[0.08] font-semibold h-12 px-7 text-[15px] rounded-lg transition-colors"
             >
-              See the AI Visibility Assessment
+              Start Your Assessment
             </a>
           </div>
 
@@ -165,13 +164,13 @@ export default function Home() {
                 For service businesses that rely on trust, local discovery, and inbound leads, we offer a dedicated AI Visibility assessment. It is designed to show whether your website is clear, well-structured, and easy for AI-driven search tools to understand.
               </p>
               <a
-                href={GEO_URL}
+                href={GEO_ASSESSMENT_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 data-geo-cta="homepage-geo-section"
                 className="inline-flex items-center gap-2 bg-[#1F5E95] hover:bg-[#1a5080] text-white font-semibold h-12 px-7 rounded-lg text-[15px] transition-colors"
               >
-                See the AI Visibility Assessment <ArrowRight size={15} aria-hidden="true" />
+                Start Your Assessment <ArrowRight size={15} aria-hidden="true" />
               </a>
               <p className="text-xs text-white/30 mt-3">Dedicated assessment. Clear deliverables. No hype.</p>
             </div>
@@ -575,13 +574,13 @@ export default function Home() {
               <Link href="/services">Explore Services →</Link>
             </Button>
             <a
-              href={GEO_URL}
+              href={GEO_ASSESSMENT_URL}
               target="_blank"
               rel="noopener noreferrer"
               data-geo-cta="homepage-final-cta"
               className="inline-flex items-center justify-center gap-2 border border-white/25 text-white hover:bg-white/[0.08] font-semibold h-12 px-7 text-[15px] rounded-lg transition-colors"
             >
-              See the AI Visibility Assessment
+              Start the GEO Audit
             </a>
           </div>
           <p className="text-white/30 text-xs mt-6">Need IT cost clarity? <Link href="/free-it-cost-analysis" className="underline underline-offset-2 hover:text-white/60 transition-colors">Free cost analysis overview →</Link></p>
