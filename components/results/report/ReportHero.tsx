@@ -36,7 +36,7 @@ export function ReportHero({
           <div className="max-w-2xl">
             <p className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] text-white/55 mb-4">
               <Sparkles size={14} className="text-brand-sky" />
-              GEO Audit Report
+              GEO Assessment Report
             </p>
             <h1 className="text-3xl md:text-4xl lg:text-[2.65rem] font-heading font-extrabold text-white leading-tight">
               {report.companyName}
@@ -65,7 +65,7 @@ export function ReportHero({
 
             <div className="mt-8 flex flex-col sm:flex-row gap-3">
               <Link
-                href={`mailto:shawn@gsally.com?subject=GEO audit follow-up — ${encodeURIComponent(report.companyName)}`}
+                href={`mailto:shawn@gsally.com?subject=GEO assessment follow-up — ${encodeURIComponent(report.companyName)}`}
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-white text-brand-navy font-heading font-semibold px-5 py-3.5 text-sm hover:bg-brand-cream transition-colors"
               >
                 Request implementation help

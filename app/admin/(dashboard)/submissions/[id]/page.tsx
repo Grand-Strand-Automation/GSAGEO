@@ -160,14 +160,14 @@ export default async function SubmissionDetailPage({
             </section>
 
             <section className="bg-white rounded-xl border border-brand-border p-6">
-              <h2 className="text-xs font-bold uppercase text-brand-blue mb-4">Audit job</h2>
+              <h2 className="text-xs font-bold uppercase text-brand-blue mb-4">Assessment job</h2>
               {!job ? (
-                <p className="text-sm text-brand-muted">No audit job found.</p>
+                <p className="text-sm text-brand-muted">No assessment job found.</p>
               ) : (
                 <>
                   <dl className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
                     <Field label="Job status" value={job.status} />
-                    <Field label="Audit version" value={job.audit_version} />
+                    <Field label="Assessment version" value={job.audit_version} />
                     <Field label="Published" value={job.published_at ? new Date(job.published_at).toLocaleString() : null} />
                     <Field label="Started" value={job.started_at ? new Date(job.started_at).toLocaleString() : null} />
                     <Field label="Completed" value={job.completed_at ? new Date(job.completed_at).toLocaleString() : null} />

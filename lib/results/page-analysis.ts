@@ -126,7 +126,7 @@ export function buildPageAnalysis(
     const signals = inferSignals(bucket, findings);
     const summary =
       relatedFindings.length > 0
-        ? `Reviewed as part of the audit. Related findings: ${relatedFindings.slice(0, 2).join(", ")}.`
+        ? `Reviewed as part of the assessment. Related findings: ${relatedFindings.slice(0, 2).join(", ")}.`
         : `${pageTypeLabel(bucket)} page identified in sitemap or discovery.`;
 
     return {

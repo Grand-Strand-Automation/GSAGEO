@@ -62,7 +62,7 @@ export function BenchmarkPreview() {
         </div>
         <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
           <ButtonLink href={BENCHMARK_CTAS.primaryAudit} size="md">
-            Request Your AI Visibility Audit →
+            Request Your AI Visibility Assessment →
           </ButtonLink>
           <ButtonLink href={BENCHMARK_CTAS.requestSummary} variant="secondaryLight" size="md">
             Request Benchmark Summary

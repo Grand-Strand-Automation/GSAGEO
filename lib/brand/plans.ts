@@ -27,7 +27,7 @@ export const PLAN_LABELS: Record<string, string> = {
   growth: "AI Visibility Growth — starting at $499/mo",
   managed: "Managed GEO / AI Visibility — starting at $1,250/mo",
   custom: "Custom GEO engagement",
-  audit: "AI Visibility Monitor — legacy audit alias",
+  audit: "AI Visibility Monitor — legacy assessment alias",
   foundation: "Managed GEO / AI Visibility — legacy foundation alias",
 };
 
@@ -36,7 +36,7 @@ export function formatPlanLabel(plan: string | null | undefined): string {
   return PLAN_LABELS[plan] ?? plan;
 }
 
-/** Options for the audit intake form select */
+/** Options for the assessment intake form select */
 export const INTAKE_PLAN_OPTIONS = [
   { value: "monitor", label: PLAN_LABELS.monitor },
   { value: "growth", label: PLAN_LABELS.growth },

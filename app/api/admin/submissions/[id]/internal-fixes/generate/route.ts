@@ -42,7 +42,7 @@ export async function POST(
       .maybeSingle();
 
     if (!job) {
-      return NextResponse.json({ ok: false, error: "No audit job found" }, { status: 404 });
+      return NextResponse.json({ ok: false, error: "No assessment job found" }, { status: 404 });
     }
 
     const { data: result } = await supabase

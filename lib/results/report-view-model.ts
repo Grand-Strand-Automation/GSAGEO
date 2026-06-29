@@ -185,7 +185,7 @@ export function buildReportViewModel(input: {
     overallGrade: scorecard.overallGrade ?? "—",
     overallInterpretation: scoreInterpretation(overallScore),
     executiveSummary:
-      result?.executive_summary ?? result?.summary ?? "Your audit results are being prepared.",
+      result?.executive_summary ?? result?.summary ?? "Your assessment results are being prepared.",
     quickStats: [
       {
         label: "Readiness score",

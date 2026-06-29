@@ -40,7 +40,7 @@ export async function GET(
       .maybeSingle();
 
     if (!job) {
-      return NextResponse.json({ ok: false, error: "No audit job" }, { status: 404 });
+      return NextResponse.json({ ok: false, error: "No assessment job" }, { status: 404 });
     }
 
     const fixes = await loadInternalFixesForJob(job.id);

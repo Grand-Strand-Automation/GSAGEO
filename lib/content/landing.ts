@@ -20,27 +20,27 @@ export const HOME_HERO = {
 
 export const ASSESSMENT_PREVIEW = {
   eyebrow: "SAMPLE REPORT PREVIEW",
-  title: "What a Full GEO Audit Report Can Look Like",
+  title: "What a Full GEO Assessment Report Can Look Like",
   description:
-    "This is a sample preview of the kind of customer-facing GEO / AI Visibility report you may receive after a full audit.",
+    "This is a sample preview of the kind of customer-facing GEO / AI Visibility report you may receive after a full assessment.",
   disclaimer:
-    "Illustrative example — actual findings, strengths, and next steps will vary based on your business, website, and audit tier.",
+    "Illustrative example — actual findings, strengths, and next steps will vary based on your business, website, and plan tier.",
   screenshots: [
     {
       src: "/brand/sample-report/sample-visual-summary.png",
       label: "Sample visual summary",
-      alt: "Sample GEO audit visual summary report screenshot",
+      alt: "Sample GEO assessment visual summary report screenshot",
     },
     {
       src: "/brand/sample-report/sample-report-hero.png",
       label: "Sample report overview",
-      alt: "Sample GEO audit report overview screenshot",
+      alt: "Sample GEO assessment report overview screenshot",
     },
   ],
   cta: {
     heading: "Ready to see what your own report could reveal?",
-    body: "Request a full GEO audit to get a clearer picture of what your website is doing well, what may be limiting visibility, and what to improve first.",
-    label: "Request Your Full Audit",
+    body: "Request a full GEO assessment to get a clearer picture of what your website is doing well, what may be limiting visibility, and what to improve first.",
+    label: "Request Your Full Assessment",
     href: "/audit?tier=monitor",
     secondaryLabel: "See plans and pricing",
     secondaryHref: "/#pricing",
@@ -91,7 +91,7 @@ export const WHATS_INCLUDED = [
 ];
 
 export const DELIVERABLES_INTRO =
-  "After the audit, you'll receive a simple, easy-to-read summary of what looks good, what needs work, and what to do next.";
+  "After the assessment, you'll receive a simple, easy-to-read summary of what looks good, what needs work, and what to do next.";
 
 export const DELIVERABLES_SUPPORT =
   "No technical overwhelm. Just clear findings and practical next steps.";
@@ -206,15 +206,15 @@ export const FAQ_ITEMS = [
     a: "Usually, yes. Most SEO work focuses on keywords and backlinks. GEO focuses on content structure, entity clarity, and schema markup — areas frequently underdeveloped even on sites with strong traditional SEO.",
   },
   {
-    q: "What does the audit actually look at?",
-    a: "The audit covers eight areas: crawlability, technical readiness, entity clarity, service page depth, trust content, answer-engine coverage, internal structure, and conversion readiness. Each area is scored and graded with evidence from your site.",
+    q: "What does the assessment actually look at?",
+    a: "The assessment covers eight areas: crawlability, technical readiness, entity clarity, service page depth, trust content, answer-engine coverage, internal structure, and conversion readiness. Each area is scored and graded with evidence from your site.",
   },
   {
     q: "Do you fix the issues you find?",
     a: "That depends on the plan. Monitor gives you a structured monthly snapshot and priority recommendations — not hands-on implementation. Growth adds recurring guidance and refresh recommendations. Managed GEO includes more hands-on support for structure, content, and ongoing improvement.",
   },
   {
-    q: "How long does a GEO audit take?",
+    q: "How long does a GEO assessment take?",
     a: "The automated component runs within minutes of form submission. The full written report is typically delivered within two to three business days.",
   },
   {

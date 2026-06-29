@@ -137,7 +137,7 @@ function formatDate(iso: string | null): string {
 function PageFooter({ domain }: { domain: string }) {
   return (
     <View style={styles.footer} fixed>
-      <Text style={styles.footerText}>GSAGEO · GEO / AI Visibility Audit</Text>
+      <Text style={styles.footerText}>GSAGEO · GEO / AI Visibility Assessment</Text>
       <Text style={styles.footerText}>{domain}</Text>
     </View>
   );
@@ -146,13 +146,13 @@ function PageFooter({ domain }: { domain: string }) {
 export function AuditReportPdfDocument({ report }: { report: ReportViewModel }) {
   return (
     <Document
-      title={`GEO Audit — ${report.companyName}`}
+      title={`GEO Assessment — ${report.companyName}`}
       author="GSAGEO"
-      subject={`AI Visibility Audit for ${report.domain}`}
+      subject={`AI Visibility Assessment for ${report.domain}`}
     >
       <Page size="LETTER" style={styles.page}>
         <View style={styles.coverBand}>
-          <Text style={styles.coverEyebrow}>GEO Audit Report</Text>
+          <Text style={styles.coverEyebrow}>GEO Assessment Report</Text>
           <Text style={styles.coverTitle}>{report.companyName}</Text>
           <Text style={styles.coverMeta}>{report.websiteUrl}</Text>
           <Text style={styles.coverMeta}>Prepared for {report.preparedFor}</Text>
@@ -193,7 +193,7 @@ export function AuditReportPdfDocument({ report }: { report: ReportViewModel }) 
       <Page size="LETTER" style={styles.page}>
         <Text style={styles.sectionEyebrow}>Strengths detected</Text>
         {report.strengths.length === 0 ? (
-          <Text style={styles.body}>No major strengths were highlighted in this audit snapshot.</Text>
+          <Text style={styles.body}>No major strengths were highlighted in this assessment snapshot.</Text>
         ) : (
           report.strengths.slice(0, 8).map((s) => (
             <View key={s.title} style={styles.card} wrap={false}>

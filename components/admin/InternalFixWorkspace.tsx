@@ -360,7 +360,7 @@ export function InternalFixWorkspace({
       </div>
 
       {!jobId ? (
-        <p className="p-6 text-sm text-brand-muted">No audit job yet — internal fixes generate after audit completes.</p>
+        <p className="p-6 text-sm text-brand-muted">No assessment job yet — internal fixes generate after the assessment completes.</p>
       ) : fixes.length === 0 ? (
         <div className="p-6 text-center">
           <p className="text-sm text-brand-muted mb-4">No internal fixes yet for this submission.</p>

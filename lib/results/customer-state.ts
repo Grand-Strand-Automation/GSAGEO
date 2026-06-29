@@ -43,31 +43,31 @@ export type CustomerStatusCopy = {
 
 export const CUSTOMER_STATUS_COPY: Record<CustomerResultsState, CustomerStatusCopy> = {
   pending: {
-    title: "Your audit is queued",
-    body: "We received your request and started preparing your audit. Most automated reviews finish within a few minutes.",
+    title: "Your assessment is queued",
+    body: "We received your request and started preparing your assessment. Most automated reviews finish within a few minutes.",
     tone: "waiting",
-    ctaLabel: "View audit status",
+    ctaLabel: "View assessment status",
   },
   processing: {
-    title: "Your audit is in progress",
+    title: "Your assessment is in progress",
     body: "We are analyzing your site structure, sitemap, and key pages. Your report will appear at this link when ready.",
     tone: "waiting",
     ctaLabel: "Check progress",
   },
   awaiting_review: {
     title: "Your report is being finalized",
-    body: "Your audit findings are being reviewed before the full report is published here. Check back soon.",
+    body: "Your assessment findings are being reviewed before the full report is published here. Check back soon.",
     tone: "info",
     ctaLabel: "Check report status",
   },
   ready: {
-    title: "Your audit report is ready",
-    body: "Your full GEO audit report is available. You can review it, share it securely, or download a PDF.",
+    title: "Your assessment report is ready",
+    body: "Your full GEO assessment report is available. You can review it, share it securely, or download a PDF.",
     tone: "success",
     ctaLabel: "View your report",
   },
   failed: {
-    title: "We could not complete your audit",
+    title: "We could not complete your assessment",
     body: "Something went wrong during the automated review. Please email shawn@gsally.com and we will follow up manually.",
     tone: "error",
     ctaLabel: "Contact support",

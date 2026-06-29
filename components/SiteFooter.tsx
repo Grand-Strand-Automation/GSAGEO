@@ -10,7 +10,7 @@ export function SiteFooter() {
           <div className="md:col-span-5 space-y-4">
             <BrandLogo variant="geo" />
             <p className="text-sm text-white/55 max-w-md leading-relaxed pt-1">
-              Practical Generative Engine Optimization for service businesses — structured audits,
+              Practical Generative Engine Optimization for service businesses — structured assessments,
               clear deliverables, and a no-pressure approach from the Grand Strand.
             </p>
             <div className="space-y-2 pt-2 text-sm">
@@ -33,7 +33,7 @@ export function SiteFooter() {
             <ul className="space-y-3">
               {[
                 { label: "Overview", href: "/" },
-                { label: "Request an Audit", href: "/audit" },
+                { label: "Request an Assessment", href: "/audit" },
                 { label: "Pricing", href: "/#pricing" },
                 { label: "FAQ", href: "/#faq" },
               ].map(({ label, href }) => (
@@ -72,7 +72,7 @@ export function SiteFooter() {
                 href="/audit"
                 className="inline-block text-sm font-semibold text-brand-sky hover:text-white transition-colors"
               >
-                Request a GEO Audit →
+                Request a GEO Assessment →
               </Link>
             </div>
           </div>

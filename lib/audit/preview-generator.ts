@@ -33,7 +33,7 @@ function faqPreview(ctx: PreviewContext): FixPreviewDraft {
     { q: "How does the process work?", a: "We review your site, identify priority fixes, and provide a structured plan. You can implement recommendations yourself or work with us for ongoing support." },
     { q: "How long until we see results?", a: "Technical and content improvements can begin immediately. AI visibility gains typically build over weeks and months as structure and content depth improve." },
     { q: "Do you require a long-term contract?", a: "Our starting plans are month-to-month where noted. Larger engagements are scoped clearly before work begins." },
-    { q: "What makes you different?", a: "We emphasize evidence-based audits, plain-language reporting, and fixes that match how real buyers search—including AI-driven discovery." },
+    { q: "What makes you different?", a: "We emphasize evidence-based assessments, plain-language reporting, and fixes that match how real buyers search—including AI-driven discovery." },
   ];
 
   const afterText = faqs.map((f, i) => `${i + 1}. ${f.q}\n${f.a}`).join("\n\n");
@@ -70,7 +70,7 @@ function servicePagePreview(ctx: PreviewContext): FixPreviewDraft {
     "",
     "What's included",
     "- Structured page sections (overview, fit, process, FAQs, CTA)",
-    "- Practical recommendations tied to your audit findings",
+    "- Practical recommendations tied to your assessment findings",
     "",
     "Next step",
     "Request a review call or start with a monitored visibility plan.",

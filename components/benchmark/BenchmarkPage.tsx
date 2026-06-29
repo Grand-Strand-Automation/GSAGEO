@@ -206,7 +206,7 @@ export function BenchmarkPage() {
           <SectionHeading title={BENCHMARK_MID_CTA.title} description={BENCHMARK_MID_CTA.copy} centered />
           <div className="flex flex-col sm:flex-row gap-3 justify-center -mt-4">
             <ButtonLink href={BENCHMARK_CTAS.primaryAudit} size="md">
-              Request Your AI Visibility Audit →
+              Request Your AI Visibility Assessment →
             </ButtonLink>
             <ButtonLink href={BENCHMARK_CTAS.bookReview} variant="secondaryLight" size="md">
               Book a Benchmark Review
@@ -239,7 +239,7 @@ export function BenchmarkPage() {
         title={BENCHMARK_FINAL_CTA.title}
         subtitle={BENCHMARK_FINAL_CTA.copy}
         buttons={[
-          { label: "Request Your AI Visibility Audit", href: BENCHMARK_CTAS.primaryAudit, primary: true },
+          { label: "Request Your AI Visibility Assessment", href: BENCHMARK_CTAS.primaryAudit, primary: true },
           { label: "Book a Benchmark Review", href: BENCHMARK_CTAS.bookReview, primary: false },
         ]}
       />

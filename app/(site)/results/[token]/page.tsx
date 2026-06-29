@@ -5,7 +5,7 @@ import { ResultsPendingView } from "@/components/results/ResultsPendingView";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Your GEO Audit Results",
+  title: "Your GEO Assessment Results",
   robots: { index: false, follow: false },
 };
 

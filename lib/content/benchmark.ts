@@ -18,7 +18,7 @@ export const BENCHMARK_HERO = {
     "Designed for service-based companies",
     "Focused on AI visibility, not just rankings",
   ],
-  primaryCta: "Request Your AI Visibility Audit",
+  primaryCta: "Request Your AI Visibility Assessment",
   secondaryCta: "Book a Benchmark Review",
 } as const;
 
@@ -156,7 +156,7 @@ export const BENCHMARK_LOCAL_CONTEXT = {
 export const BENCHMARK_STAT_STRIP = [
   { label: "Benchmark categories", value: "9" },
   { label: "Market focus", value: "Myrtle Beach & Grand Strand" },
-  { label: "Approach", value: "Audit-first & practical" },
+  { label: "Approach", value: "Assessment-first & practical" },
 ] as const;
 
 export const BENCHMARK_PROCESS = [
@@ -209,8 +209,8 @@ export const BENCHMARK_DELIVERABLES = [
     copy: "Context for how your site fits into common local patterns seen across Myrtle Beach and Grand Strand service businesses.",
   },
   {
-    title: "Optional Audit Follow-Up",
-    copy: "A path into a deeper audit or review conversation if you want more detailed help prioritizing improvements.",
+    title: "Optional Assessment Follow-Up",
+    copy: "A path into a deeper assessment or review conversation if you want more detailed help prioritizing improvements.",
   },
 ] as const;
 
@@ -247,7 +247,7 @@ export const BENCHMARK_WHY = {
   title: "Why Businesses Use GSAGEO for This",
   paragraphs: [
     "GSAGEO is built around a practical idea: many service businesses do not need more vague marketing advice. They need clearer visibility into what their website is actually communicating and where it is likely falling short.",
-    "Our approach is local, structured, and audit-first. We focus on service businesses, real-world clarity, and the content signals that help websites become easier to understand for both people and AI-driven systems.",
+    "Our approach is local, structured, and assessment-first. We focus on service businesses, real-world clarity, and the content signals that help websites become easier to understand for both people and AI-driven systems.",
     "Because this benchmark is framed around Myrtle Beach and the Grand Strand, the recommendations are grounded in the kind of businesses, competition, and trust dynamics that matter here.",
   ],
   pillars: [
@@ -290,7 +290,7 @@ export const BENCHMARK_FAQ = [
     a: "After the benchmark, you will have a clearer picture of where your site appears strong, where it is unclear, and what the most practical next improvements may be.",
   },
   {
-    q: "Is this a free review or a paid audit?",
+    q: "Is this a free review or a paid assessment?",
     a: "We can review the right next step based on your business, goals, and how detailed you want the analysis to be.",
   },
 ] as const;

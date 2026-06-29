@@ -41,8 +41,8 @@ export function ReportActionBar({
     try {
       if (navigator.share) {
         await navigator.share({
-          title: `${companyName} — GEO Audit Report`,
-          text: "Private GEO audit report",
+          title: `${companyName} — GEO Assessment Report`,
+          text: "Private GEO assessment report",
           url,
         });
         setShareState("shared");

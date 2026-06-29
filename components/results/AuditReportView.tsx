@@ -66,7 +66,7 @@ export function AuditReportView({
                   />
                   <div className="rounded-2xl border border-brand-border bg-white p-5 md:p-6 shadow-card-md">
                     <p className="text-[11px] font-bold uppercase tracking-wide text-brand-subtle mb-3">
-                      Audit snapshot
+                      Assessment snapshot
                     </p>
                     <ul className="space-y-3 text-sm text-brand-muted">
                       <li>
@@ -120,7 +120,7 @@ export function AuditReportView({
                     ))
                   ) : (
                     <p className="text-sm text-brand-muted md:col-span-2">
-                      No major priority gaps were flagged in this audit snapshot.
+                      No major priority gaps were flagged in this assessment snapshot.
                     </p>
                   )}
                 </div>

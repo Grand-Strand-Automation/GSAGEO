@@ -95,7 +95,7 @@ export function LandingPage() {
               structured data, and the page types that help AI systems represent your business accurately.
             </p>
             <p>
-              This is methodical work: auditing your site, identifying gaps, and building the content and
+              This is methodical work: reviewing your current site, identifying what is missing or unclear, and building out the content and
               structure that makes your business easier to understand — for both AI systems and the people
               asking them questions.
             </p>

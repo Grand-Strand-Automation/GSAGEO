@@ -85,7 +85,7 @@ function faqFix(
     {
       question: "What makes you different?",
       answer:
-        "Evidence-based audits, plain-language reporting, and fixes aligned with how real buyers search—including AI-driven discovery.",
+        "Evidence-based assessments, plain-language reporting, and fixes aligned with how real buyers search—including AI-driven discovery.",
       placement: "/faq",
     },
   ];
@@ -195,7 +195,7 @@ function ctaFix(
       },
       {
         label: "Lower-friction CTA",
-        copy: "See example audit findings — review a sample report before committing to changes.",
+        copy: "See example assessment findings — review a sample report before committing to changes.",
         placement: "Mid-page on service or conversion pages",
       },
       {
@@ -368,7 +368,7 @@ function processFix(
   const content: InternalFixGeneratedContent = {
     sections: [
       { heading: "Step 1 — Discovery", body: "Review site structure, sitemap, and priority pages." },
-      { heading: "Step 2 — Audit & plan", body: "Document findings with evidence URLs and prioritized fixes." },
+      { heading: "Step 2 — Assess & plan", body: "Document findings with evidence URLs and prioritized fixes." },
       { heading: "Step 3 — Implementation", body: "Apply content, schema, and linking improvements." },
       { heading: "Step 4 — Monitor", body: "Track visibility signals and iterate monthly." },
       {
@@ -429,7 +429,7 @@ function aboutCopyFix(
     sections: [
       {
         heading: "Business description (entity clarity)",
-        body: `${ctx.companyName} provides ${ctx.primaryService ?? "professional services"} to ${ctx.serviceArea ?? "businesses in the region"}. We help clients improve how their business is understood by search engines and AI systems through practical audits and implementation support.`,
+        body: `${ctx.companyName} provides ${ctx.primaryService ?? "professional services"} to ${ctx.serviceArea ?? "businesses in the region"}. We help clients improve how their business is understood by search engines and AI systems through practical assessments and implementation support.`,
       },
       {
         heading: "Credibility additions",

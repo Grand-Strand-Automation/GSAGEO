@@ -197,7 +197,7 @@ export async function processAuditJob(jobId: string): Promise<void> {
         recommendations_json: result.recommendations,
         limitations_json: {
           notes: [
-            "Automated audit uses sitemap discovery and sampled HTML—no headless browser.",
+            "Automated assessment uses sitemap discovery and sampled HTML—no headless browser.",
             "Client-rendered pages may require route/sitemap evidence.",
           ],
         },

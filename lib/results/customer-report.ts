@@ -56,7 +56,7 @@ async function resolveTokenContext(rawToken: string): Promise<
     ok: true,
     submissionId: tokenRow.submission_id,
     state: ready ? "ready" : state,
-    companyName: submission?.company_name ?? "Your audit",
+    companyName: submission?.company_name ?? "Your assessment",
     websiteUrl: submission?.website_url ?? null,
     updatedAt: job?.updated_at ?? job?.completed_at ?? null,
   };

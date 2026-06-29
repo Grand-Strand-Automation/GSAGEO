@@ -55,7 +55,7 @@ export async function POST(request: Request) {
     if (jobError || !job) {
       console.error("[submissions] Job insert failed:", jobError);
       return NextResponse.json(
-        { ok: false, error: "Failed to create audit job" },
+        { ok: false, error: "Failed to create assessment job" },
         { status: 500 },
       );
     }

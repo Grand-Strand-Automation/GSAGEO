@@ -58,7 +58,7 @@ export function JobActions({
         disabled={!!loading}
         className="text-sm border border-brand-border px-4 py-2 rounded-lg font-semibold text-brand-navy disabled:opacity-60"
       >
-        {loading === "rerun" ? "Queuing…" : "Re-run audit"}
+        {loading === "rerun" ? "Queuing…" : "Re-run assessment"}
       </button>
       {message && <span className="text-sm text-red-600">{message}</span>}
       <span className="text-xs text-brand-subtle">Submission {submissionId.slice(0, 8)}…</span>

@@ -155,7 +155,7 @@ export default async function AdminSubmissionsPage({
                   <th className="px-5 py-3 text-xs font-bold uppercase text-brand-subtle">Email</th>
                   <th className="px-5 py-3 text-xs font-bold uppercase text-brand-subtle">Website</th>
                   <th className="px-5 py-3 text-xs font-bold uppercase text-brand-subtle">Status</th>
-                  <th className="px-5 py-3 text-xs font-bold uppercase text-brand-subtle">Audit</th>
+                  <th className="px-5 py-3 text-xs font-bold uppercase text-brand-subtle">Assessment</th>
                   <th className="px-5 py-3" />
                 </tr>
               </thead>

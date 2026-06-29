@@ -68,7 +68,7 @@ export function ResultsPendingView({
           <div className="p-8 md:p-12 text-center">
             <StateIcon state={state} />
             <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-brand-blue mb-3">
-              GEO Audit Report
+              GEO Assessment Report
             </p>
             <h1 className="text-2xl md:text-3xl font-heading font-extrabold text-brand-navy mb-4">
               {copy.title}

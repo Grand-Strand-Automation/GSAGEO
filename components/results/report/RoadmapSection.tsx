@@ -30,7 +30,7 @@ export function RoadmapSection({ roadmap }: { roadmap: RoadmapBucket[] }) {
           </div>
           <ul className="p-5 space-y-4 flex-1">
             {bucket.items.length === 0 ? (
-              <li className="text-sm text-brand-muted">No major items in this tier for this audit.</li>
+              <li className="text-sm text-brand-muted">No major items in this tier for this assessment.</li>
             ) : (
               bucket.items.map((item) => (
                 <li key={item.title} className="rounded-xl border border-brand-border bg-brand-cream/40 p-4">
