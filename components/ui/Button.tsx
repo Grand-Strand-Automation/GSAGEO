@@ -6,6 +6,7 @@ const base =
 
 const variants = {
   primary: "bg-brand-blue hover:bg-brand-blue-hover text-white border-0 shadow-sm",
+  gold: "bg-brand-gold hover:bg-brand-gold-hover text-brand-navy border-0 shadow-md shadow-brand-gold/30",
   secondary:
     "bg-transparent border border-white/25 text-white hover:bg-white/[0.08]",
   secondaryLight:

@@ -134,7 +134,7 @@ export function AuditForm({ initialPlan = "" }: { initialPlan?: string }) {
       <section className="bg-brand-hero text-white pt-28 pb-14 md:pt-36 relative overflow-hidden">
         <HeroOverlay />
         <div className="container px-4 md:px-6 text-center max-w-2xl relative z-10">
-          <div className="eyebrow-pill mb-6 mx-auto w-fit">Assessment request</div>
+          <div className="eyebrow-pill-gold mb-6 mx-auto w-fit">Assessment request</div>
           <h1 className="text-4xl sm:text-5xl font-heading font-extrabold mb-5">
             You&apos;re in the right place
           </h1>

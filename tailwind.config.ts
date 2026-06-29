@@ -25,6 +25,9 @@ const config: Config = {
           cream: "#f7f5f1",
           "cream-dark": "#eae8e4",
           "blue-light": "#e8eff6",
+          gold: "#c4a35a",
+          "gold-hover": "#b08f45",
+          "gold-light": "#f3e8cf",
         },
       },
       boxShadow: {

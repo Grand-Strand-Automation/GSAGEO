@@ -39,7 +39,7 @@ export function SiteHeader() {
           >
             Main site
           </a>
-          <ButtonLink href="/audit" size="sm" className="ml-1 whitespace-nowrap">
+          <ButtonLink href="/audit" size="sm" variant="gold" className="ml-1 whitespace-nowrap">
             Request Audit
           </ButtonLink>
         </nav>
@@ -76,7 +76,7 @@ export function SiteHeader() {
             Main site
           </a>
           <div className="pt-3 mt-2 border-t border-white/10">
-            <ButtonLink href="/audit" className="w-full" onClick={() => setMobileOpen(false)}>
+            <ButtonLink href="/audit" variant="gold" className="w-full" onClick={() => setMobileOpen(false)}>
               Request Audit
             </ButtonLink>
           </div>
