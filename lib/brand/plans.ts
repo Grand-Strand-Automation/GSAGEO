@@ -23,7 +23,7 @@ export function normalizeAuditTier(raw: string | null | undefined): PlanTierId |
 
 /** Human-readable labels for admin and intake (includes legacy tiers) */
 export const PLAN_LABELS: Record<string, string> = {
-  monitor: "AI Visibility Monitor — $99/mo",
+  monitor: "AI Visibility Monitor — $199/mo",
   growth: "AI Visibility Growth — starting at $499/mo",
   managed: "Managed GEO / AI Visibility — starting at $1,250/mo",
   custom: "Custom GEO engagement",

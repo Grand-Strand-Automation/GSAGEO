@@ -133,7 +133,7 @@ export const TIERS = [
   {
     name: "AI Visibility Monitor",
     badge: "Best place to start",
-    price: "$99/month",
+    price: "$199/month",
     period: "Month-to-month · cancel anytime",
     tier: "monitor",
     desc: "A simple monthly starting point for businesses that want a clearer picture of how prepared they are for AI-driven search visibility — without committing to a larger engagement yet.",
@@ -218,7 +218,7 @@ export const FAQ_ITEMS = [
     a: "Yes. AI Visibility Monitor is a low-friction monthly starting point. AI Visibility Growth and Managed GEO are designed for businesses that want continued guidance and stronger visibility over time.",
   },
   {
-    q: "What is the $99/month plan?",
+    q: "What is the $199/month plan?",
     a: "AI Visibility Monitor is a monitoring and diagnostic tier — not full optimization or hands-on implementation. You receive a monthly snapshot, basic technical checks, a refreshed scorecard, and a short list of priority recommendations so you know what to work on next.",
   },
 ];

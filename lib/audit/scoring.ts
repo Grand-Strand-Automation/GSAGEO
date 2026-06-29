@@ -272,7 +272,7 @@ export function generateRecommendations(
   const { overall } = scorecard;
   const suggestedTier =
     overall < 40
-      ? "AI Visibility Monitor — $99/mo"
+      ? "AI Visibility Monitor — $199/mo"
       : overall < 65
         ? "AI Visibility Growth — starting at $499/mo"
         : "Managed GEO / AI Visibility — starting at $1,250/mo";
