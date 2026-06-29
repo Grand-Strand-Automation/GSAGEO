@@ -18,31 +18,33 @@ export const HOME_HERO = {
   ],
 } as const;
 
-export type AssessmentPreviewStatus = "Limited" | "Moderate" | "Weak" | "Strong";
+export type AssessmentPreviewStatus = "Needs work" | "Moderate" | "Weak" | "Strong";
 
 export const ASSESSMENT_PREVIEW = {
   label: "Sample output",
-  title: "What a GEO Assessment Might Highlight",
+  title: "What a GEO Audit Might Highlight",
   description:
-    "Here's a simplified example of the type of issues and recommendations a GEO / AI Visibility assessment can surface. The goal is to give you a clearer sense of how the review is structured and what practical next steps might look like.",
-  demoLabel: "Sample assessment snapshot · Illustrative preview only",
+    "Here's a simplified example of the kind of issues and recommendations a GEO / AI Visibility audit can surface. The goal is to give you a clearer sense of how the review is structured and what practical next steps might look like.",
+  demoLabel: "Illustrative preview only",
+  demoNote:
+    "Your actual audit will reflect your business, site structure, and plan selection.",
   categoriesReviewed: [
     "Service page clarity",
     "FAQ & answer coverage",
     "Trust & proof signals",
-    "Entity & local relevance",
+    "Business clarity",
   ],
   reviewCards: [
     {
       title: "FAQ Coverage",
-      status: "Limited" as AssessmentPreviewStatus,
-      summary: "Key customer questions are not consistently answered across the site.",
+      status: "Needs work" as AssessmentPreviewStatus,
+      summary: "Important customer questions are not clearly answered across the site.",
     },
     {
       title: "Service Page Clarity",
       status: "Moderate" as AssessmentPreviewStatus,
       summary:
-        "Core services are present, but some pages need clearer structure and more useful detail.",
+        "Core services are visible, but some pages need clearer explanations and stronger structure.",
     },
     {
       title: "Trust Signals",
@@ -51,7 +53,7 @@ export const ASSESSMENT_PREVIEW = {
         "The site would benefit from stronger proof, process clarity, and visible credibility indicators.",
     },
     {
-      title: "Entity Clarity",
+      title: "Business Clarity",
       status: "Moderate" as AssessmentPreviewStatus,
       summary:
         "The business is visible, but its specialization, service fit, and local relevance could be communicated more clearly.",
@@ -59,17 +61,19 @@ export const ASSESSMENT_PREVIEW = {
   ],
   nextAction: {
     title: "Example Next Best Action",
-    copy: "Strengthen one core service page, add a relevant FAQ section, improve internal links between supporting pages, and clarify the primary call to action.",
+    copy: "Strengthen one core service page, add a relevant FAQ section, improve internal links between supporting pages, and make the main call to action clearer.",
   },
   insight: {
     title: "What this tells you",
-    copy: "A result like this helps identify where your site is clear, where it is underdeveloped, and what changes are most likely to improve visibility first.",
+    copy: "A result like this helps identify what is already clear, what is underdeveloped, and what changes are most likely to improve visibility first.",
   },
   cta: {
-    label: "Start Your Assessment",
+    heading: "Ready to see how your own site compares?",
+    body: "Request a full GEO / AI Visibility audit and get a clearer picture of what your website is doing well, where it is underperforming, and what to improve first.",
+    label: "Request Your Full Audit",
     href: "/audit?tier=monitor",
-    support:
-      "Get a clearer picture of how your website is structured for AI-driven discovery and what to improve first.",
+    secondaryLabel: "See pricing and plan options",
+    secondaryHref: "/#pricing",
   },
 } as const;
 

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { SectionHeading } from "@/components/SectionHeading";
 import { ButtonLink } from "@/components/ui/Button";
 import {
@@ -7,7 +8,7 @@ import {
 import { cn } from "@/lib/utils";
 
 const STATUS_STYLES: Record<AssessmentPreviewStatus, string> = {
-  Limited: "bg-amber-50 text-amber-800 border-amber-200",
+  "Needs work": "bg-amber-50 text-amber-800 border-amber-200",
   Moderate: "bg-brand-blue-light text-brand-blue border-brand-blue/20",
   Weak: "bg-red-50 text-red-700 border-red-200",
   Strong: "bg-emerald-50 text-emerald-800 border-emerald-200",
@@ -25,23 +26,27 @@ export function SampleOutputPreview() {
         />
 
         <div className="rounded-2xl border border-brand-border bg-white shadow-card-md overflow-hidden">
-          <div className="h-1.5 bg-gradient-to-r from-brand-blue via-brand-sky to-brand-blue" />
+          <div className="h-1.5 bg-gradient-to-r from-brand-gold via-brand-sky to-brand-blue" />
 
           <div className="p-6 md:p-8">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between mb-6">
               <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-brand-subtle">
                 {ASSESSMENT_PREVIEW.demoLabel}
               </p>
-              <div className="flex flex-wrap gap-2">
-                {ASSESSMENT_PREVIEW.categoriesReviewed.map((cat) => (
-                  <span
-                    key={cat}
-                    className="inline-flex text-[10px] font-semibold uppercase tracking-wide text-brand-muted bg-brand-cream border border-brand-border rounded-full px-2.5 py-1"
-                  >
-                    {cat}
-                  </span>
-                ))}
-              </div>
+              <p className="text-xs text-brand-muted sm:text-right max-w-md">
+                {ASSESSMENT_PREVIEW.demoNote}
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-2 mb-6">
+              {ASSESSMENT_PREVIEW.categoriesReviewed.map((cat) => (
+                <span
+                  key={cat}
+                  className="inline-flex text-[10px] font-semibold uppercase tracking-wide text-brand-muted bg-brand-cream border border-brand-border rounded-full px-2.5 py-1"
+                >
+                  {cat}
+                </span>
+              ))}
             </div>
 
             <div className="grid sm:grid-cols-2 gap-4 mb-6">
@@ -89,13 +94,24 @@ export function SampleOutputPreview() {
           </div>
         </div>
 
-        <div className="mt-10 text-center max-w-lg mx-auto">
-          <ButtonLink href={ASSESSMENT_PREVIEW.cta.href} size="md">
-            {ASSESSMENT_PREVIEW.cta.label} →
-          </ButtonLink>
-          <p className="text-sm text-brand-muted mt-4 leading-relaxed">
-            {ASSESSMENT_PREVIEW.cta.support}
+        <div className="mt-10 rounded-2xl border border-brand-border bg-white p-6 md:p-8 shadow-card text-center max-w-2xl mx-auto">
+          <h3 className="text-xl md:text-2xl font-heading font-extrabold text-brand-navy">
+            {ASSESSMENT_PREVIEW.cta.heading}
+          </h3>
+          <p className="mt-3 text-sm md:text-[15px] text-brand-muted leading-relaxed">
+            {ASSESSMENT_PREVIEW.cta.body}
           </p>
+          <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center items-center">
+            <ButtonLink href={ASSESSMENT_PREVIEW.cta.href} variant="gold" size="md">
+              {ASSESSMENT_PREVIEW.cta.label} →
+            </ButtonLink>
+            <Link
+              href={ASSESSMENT_PREVIEW.cta.secondaryHref}
+              className="text-sm font-semibold text-brand-blue hover:underline underline-offset-4"
+            >
+              {ASSESSMENT_PREVIEW.cta.secondaryLabel}
+            </Link>
+          </div>
         </div>
       </div>
     </section>
