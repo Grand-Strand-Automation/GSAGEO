@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CheckCircle2, XCircle } from "lucide-react";
+import { AssessmentPreview } from "@/components/AssessmentPreview";
 import { CTABand } from "@/components/CTABand";
 import { FaqItem } from "@/components/FaqItem";
 import { HeroOverlay } from "@/components/HeroOverlay";
@@ -7,7 +8,6 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { TrustBar } from "@/components/TrustBar";
 import { ButtonLink } from "@/components/ui/Button";
 import {
-  ASSESSMENT_PREVIEW,
   DELIVERABLES,
   FAQ_ITEMS,
   GOOD_FIT,
@@ -73,48 +73,6 @@ export function LandingPage() {
           "Based in the Grand Strand since 2015",
         ]}
       />
-
-      <section id="assessment-preview" className="section-pad bg-white scroll-mt-20">
-        <div className="container px-4 md:px-6 max-w-5xl">
-          <SectionHeading
-            label={ASSESSMENT_PREVIEW.label}
-            title={ASSESSMENT_PREVIEW.title}
-            description={ASSESSMENT_PREVIEW.description}
-            centered
-          />
-          <div className="grid md:grid-cols-2 gap-5 mb-8">
-            {ASSESSMENT_PREVIEW.categories.map((cat) => (
-              <div key={cat.name} className="card-brand p-6 shadow-card flex gap-4 items-start">
-                <div className="shrink-0 w-12 h-12 rounded-xl bg-brand-blue-light flex items-center justify-center">
-                  <span className="font-heading font-extrabold text-brand-blue text-sm">{cat.grade}</span>
-                </div>
-                <div>
-                  <h3 className="font-heading font-bold text-[15px] text-brand-navy mb-1">{cat.name}</h3>
-                  <p className="text-sm text-brand-muted leading-relaxed">{cat.note}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="rounded-2xl border border-brand-border bg-brand-cream/60 p-6 md:p-8">
-            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-brand-blue mb-4">
-              Example priority issues
-            </p>
-            <ul className="space-y-2.5">
-              {ASSESSMENT_PREVIEW.issueExamples.map((issue) => (
-                <li key={issue} className="flex gap-3 text-sm text-brand-muted leading-relaxed">
-                  <span className="w-1.5 h-1.5 rounded-full bg-brand-blue shrink-0 mt-2" />
-                  {issue}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="mt-8 text-center">
-            <ButtonLink href="/audit?tier=monitor" size="md">
-              Start Your Assessment →
-            </ButtonLink>
-          </div>
-        </div>
-      </section>
 
       <section id="understanding-geo" className="section-pad bg-brand-cream scroll-mt-20">
         <div className="container px-4 md:px-6 max-w-3xl">
@@ -215,6 +173,8 @@ export function LandingPage() {
           </div>
         </div>
       </section>
+
+      <AssessmentPreview />
 
       <section id="pricing" className="section-pad bg-brand-cream scroll-mt-20">
         <div className="container px-4 md:px-6">
