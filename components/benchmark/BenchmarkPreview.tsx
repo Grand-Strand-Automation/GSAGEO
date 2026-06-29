@@ -5,13 +5,8 @@ import {
   BENCHMARK_PREVIEW_SAMPLES,
   BENCHMARK_SAMPLE_ACTION,
 } from "@/lib/content/benchmark";
+import { PREVIEW_STATUS_STYLES } from "@/lib/brand/preview-status";
 import { cn } from "@/lib/utils";
-
-const STATUS_STYLES = {
-  Limited: "bg-amber-50 text-amber-800 border-amber-200",
-  Moderate: "bg-brand-blue-light text-brand-blue border-brand-blue/20",
-  Weak: "bg-red-50 text-red-700 border-red-200",
-} as const;
 
 export function BenchmarkPreview() {
   return (
@@ -40,7 +35,7 @@ export function BenchmarkPreview() {
                     <span
                       className={cn(
                         "shrink-0 text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full border",
-                        STATUS_STYLES[item.status],
+                        PREVIEW_STATUS_STYLES[item.status],
                       )}
                     >
                       {item.status}

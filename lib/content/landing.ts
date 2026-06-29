@@ -18,22 +18,56 @@ export const HOME_HERO = {
   ],
 } as const;
 
-export const ASSESSMENT_PREVIEW = {
+export const SAMPLE_OUTPUT_PREVIEW = {
   label: "Sample output",
-  title: "What you receive from the assessment",
+  title: "What a GEO Assessment Might Highlight",
   description:
-    "Illustrative examples of the categories, issues, and recommendations the assessment surfaces — not fabricated scores for your site.",
-  categories: [
-    { name: "Service page depth", grade: "C+", note: "Services mentioned but thin on fit and proof" },
-    { name: "FAQ & answer coverage", grade: "D", note: "Key buyer questions not addressed on-site" },
-    { name: "Entity clarity", grade: "B-", note: "Business visible but specialization could be clearer" },
-    { name: "Trust & proof content", grade: "C", note: "Limited case-study or outcome signals" },
+    "Here's a simplified example of the type of issues and recommendations a GEO / AI Visibility assessment can surface. The goal is to give you a clearer sense of how the review is structured and what practical next steps might look like.",
+  categoriesReviewed: [
+    "Service page clarity",
+    "FAQ coverage",
+    "Trust signals",
+    "Entity recognition",
   ],
-  issueExamples: [
-    "Thin service pages without clear “who this is for”",
-    "Missing FAQ coverage for common buyer questions",
-    "Weak internal linking between services and proof pages",
+  samples: [
+    {
+      title: "FAQ Coverage",
+      status: "Limited" as const,
+      summary: "Key customer questions are not consistently answered across the site.",
+    },
+    {
+      title: "Service Page Clarity",
+      status: "Moderate" as const,
+      summary:
+        "Core services are present, but some pages need clearer structure and more useful detail.",
+    },
+    {
+      title: "Trust Signals",
+      status: "Weak" as const,
+      summary:
+        "The site would benefit from stronger proof, process clarity, and visible credibility indicators.",
+    },
+    {
+      title: "Entity Clarity",
+      status: "Moderate" as const,
+      summary:
+        "The business is visible, but its specialization, service fit, and local relevance could be communicated more clearly.",
+    },
   ],
+  nextBestAction: {
+    title: "Example Next Best Action",
+    copy: "Strengthen one core service page, add a relevant FAQ section, improve internal links between supporting pages, and clarify the primary call to action.",
+  },
+  insight: {
+    title: "What this tells you",
+    copy: "A result like this helps identify where your site is clear, where it is underdeveloped, and what changes are most likely to improve visibility first.",
+  },
+  cta: {
+    label: "Start Your Assessment",
+    href: "/audit?tier=monitor",
+    support:
+      "Get a clearer picture of how your website is structured for AI-driven discovery and what to improve first.",
+  },
 } as const;
 
 export const GOOD_FIT = [
