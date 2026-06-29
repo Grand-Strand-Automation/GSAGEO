@@ -1,5 +1,5 @@
 import type { ResultsBundle } from "@/lib/types/database";
-import { AuditReportView } from "./AuditReportView";
+import { CustomerAuditReportView } from "./CustomerAuditReportView";
 
 export function CustomerResultsView({
   bundle,
@@ -8,5 +8,5 @@ export function CustomerResultsView({
   bundle: ResultsBundle;
   token?: string;
 }) {
-  return <AuditReportView bundle={bundle} shareToken={token} />;
+  return <CustomerAuditReportView bundle={bundle} shareToken={token} />;
 }

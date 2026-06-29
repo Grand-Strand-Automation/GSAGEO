@@ -28,7 +28,7 @@ export function ReportHero({
       <div className="relative px-6 py-8 md:px-10 md:py-12">
         {showAdminBanner ? (
           <div className="mb-6 inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-white/80">
-            Admin preview — customer-facing layout
+            Admin preview — full technical report
           </div>
         ) : null}
 

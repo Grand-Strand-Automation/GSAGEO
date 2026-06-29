@@ -20,26 +20,26 @@ export function ResultsCTA({
           Recommended next step
         </p>
         <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-white max-w-2xl">
-          Ready to turn these findings into practical improvements?
+          Want help making these improvements?
         </h2>
         <p className="mt-4 text-sm md:text-[15px] text-white/75 leading-relaxed max-w-2xl">
           {planLabel
-            ? `Based on this review, ${planLabel} may be a practical fit — or we can scope a focused implementation sprint for your highest-priority fixes.`
-            : "We can help implement these improvements, monitor progress month to month, or scope a focused sprint for your highest-priority fixes."}
+            ? `We can help you tackle the priorities in this report — starting with ${planLabel.toLowerCase()} if that fits your goals.`
+            : "We can help you improve the pages flagged in this report, one practical step at a time."}
         </p>
         <div className="mt-8 flex flex-col sm:flex-row gap-3">
           <Link
             href={`mailto:shawn@gsally.com?subject=GEO implementation help — ${encodeURIComponent(companyName)}`}
             className="inline-flex items-center justify-center gap-2 rounded-xl bg-white text-brand-navy font-heading font-semibold px-6 py-3.5 text-sm hover:bg-brand-cream transition-colors"
           >
-            Get this fixed for me
+            Get help with this
             <ArrowRight size={16} />
           </Link>
           <Link
             href="/audit"
             className="inline-flex items-center justify-center rounded-xl border border-white/25 text-white font-heading font-semibold px-6 py-3.5 text-sm hover:bg-white/10 transition-colors"
           >
-            Explore Growth and Managed plans
+            View service options
           </Link>
         </div>
       </div>

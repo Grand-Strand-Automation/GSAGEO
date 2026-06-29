@@ -97,11 +97,15 @@ export function ReportDistributionPanel({
     }
   }
 
-  async function downloadPdf() {
-    setAction("pdf");
+  async function downloadPdf(variant: "customer" | "technical" = "customer") {
+    setAction(variant === "technical" ? "pdf-technical" : "pdf");
     setMessage("");
     try {
-      const resp = await fetch(`/api/admin/submissions/${submissionId}/pdf`);
+      const pdfUrl =
+        variant === "technical"
+          ? `/api/admin/submissions/${submissionId}/pdf?variant=technical`
+          : `/api/admin/submissions/${submissionId}/pdf`;
+      const resp = await fetch(pdfUrl);
       if (!resp.ok) {
         const data = await resp.json().catch(() => ({}));
         throw new Error(data.error ?? "PDF export failed");
@@ -110,12 +114,12 @@ export function ReportDistributionPanel({
       const disposition = resp.headers.get("Content-Disposition");
       const match = disposition?.match(/filename="([^"]+)"/);
       const filename = match?.[1] ?? "geo-report.pdf";
-      const url = URL.createObjectURL(blob);
+      const objectUrl = URL.createObjectURL(blob);
       const a = document.createElement("a");
-      a.href = url;
+      a.href = objectUrl;
       a.download = filename;
       a.click();
-      URL.revokeObjectURL(url);
+      URL.revokeObjectURL(objectUrl);
     } catch (err) {
       setMessage(err instanceof Error ? err.message : "Could not download PDF.");
     } finally {
@@ -205,12 +209,25 @@ export function ReportDistributionPanel({
         ) : null}
         <button
           type="button"
-          onClick={downloadPdf}
+          onClick={() => downloadPdf("customer")}
           disabled={!shareable || action === "pdf"}
           className="inline-flex items-center gap-2 text-sm border border-brand-border px-4 py-2 rounded-lg font-semibold text-brand-navy disabled:opacity-50"
         >
           {action === "pdf" ? <Loader2 size={14} className="animate-spin" /> : <Download size={14} />}
-          Download PDF
+          Download customer PDF
+        </button>
+        <button
+          type="button"
+          onClick={() => downloadPdf("technical")}
+          disabled={!shareable || action === "pdf-technical"}
+          className="inline-flex items-center gap-2 text-sm border border-brand-border px-4 py-2 rounded-lg font-semibold text-brand-navy disabled:opacity-50"
+        >
+          {action === "pdf-technical" ? (
+            <Loader2 size={14} className="animate-spin" />
+          ) : (
+            <Download size={14} />
+          )}
+          Download technical PDF
         </button>
         <button
           type="button"

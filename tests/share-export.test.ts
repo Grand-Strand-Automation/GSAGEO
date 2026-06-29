@@ -98,5 +98,9 @@ describe("share and export rules", () => {
 
   it("builds sensible pdf filenames", () => {
     assert.equal(buildPdfFilename("Acme.com", "2026-03-18T12:00:00Z"), "geo-report-acme.com-2026-03-18.pdf");
+    assert.equal(
+      buildPdfFilename("Acme.com", "2026-03-18T12:00:00Z", "technical"),
+      "geo-report-technical-acme.com-2026-03-18.pdf",
+    );
   });
 });

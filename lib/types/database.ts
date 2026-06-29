@@ -44,6 +44,8 @@ export type GeoAuditResult = {
   updated_at?: string;
   summary: string | null;
   executive_summary?: string | null;
+  customer_headline?: string | null;
+  customer_executive_summary?: string | null;
   strengths_json?: unknown;
   scorecard_json: Record<string, unknown> | null;
   findings_json: Record<string, unknown> | null;

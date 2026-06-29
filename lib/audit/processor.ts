@@ -19,10 +19,13 @@ import { AUDIT_VERSION } from "./types";
 import {
   generateAndPersistInternalFixesForJob,
 } from "@/lib/internal-fixes/persist";
+import { buildCustomerExecutiveContent } from "./customer-summary";
 
 export type AuditRunResult = {
   summary: string;
   executiveSummary: string;
+  customerHeadline: string;
+  customerExecutiveSummary: string;
   scorecard: ReturnType<typeof generateScorecard>;
   findings: Record<string, unknown>;
   recommendations: ReturnType<typeof generateRecommendations>;
@@ -48,6 +51,12 @@ export async function runAuditChecks(
     scorecard,
     recommendations,
   );
+  const { customerHeadline, customerExecutiveSummary } = buildCustomerExecutiveContent({
+    companyName,
+    scorecard,
+    strengths,
+    structuredFindings,
+  });
 
   const previews = generateFixPreviews(
     {
@@ -91,6 +100,8 @@ export async function runAuditChecks(
   return {
     summary,
     executiveSummary,
+    customerHeadline,
+    customerExecutiveSummary,
     scorecard,
     findings,
     recommendations,
@@ -178,6 +189,8 @@ export async function processAuditJob(jobId: string): Promise<void> {
         audit_job_id: jobId,
         summary: result.summary,
         executive_summary: result.executiveSummary,
+        customer_headline: result.customerHeadline,
+        customer_executive_summary: result.customerExecutiveSummary,
         strengths_json: result.strengths,
         scorecard_json: result.scorecard,
         findings_json: result.findings,

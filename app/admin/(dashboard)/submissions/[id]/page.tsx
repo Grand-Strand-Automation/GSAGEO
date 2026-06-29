@@ -230,7 +230,7 @@ export default async function SubmissionDetailPage({
             embedded
             footerNote={
               <p className="text-center text-xs text-brand-subtle pt-2">
-                Admin preview of the customer-facing report layout.
+                Admin preview of the full technical report. Customers see a simplified, plain-language version.
               </p>
             }
           />

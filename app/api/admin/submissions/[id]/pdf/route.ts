@@ -2,7 +2,10 @@ import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { isAdminAuthorized } from "@/lib/auth/admin";
 import { loadPublishedReportBySubmissionId } from "@/lib/results/published-report";
-import { generatePublishedReportPdf } from "@/lib/results/pdf/generate-pdf";
+import {
+  generatePublishedReportPdf,
+  generateTechnicalReportPdf,
+} from "@/lib/results/pdf/generate-pdf";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -17,7 +20,7 @@ async function requireAdmin() {
 }
 
 export async function GET(
-  _request: Request,
+  request: Request,
   { params }: { params: Promise<{ id: string }> },
 ) {
   if (!(await requireAdmin())) {
@@ -25,6 +28,7 @@ export async function GET(
   }
 
   const { id } = await params;
+  const variant = new URL(request.url).searchParams.get("variant");
 
   try {
     const published = await loadPublishedReportBySubmissionId(id);
@@ -38,7 +42,10 @@ export async function GET(
       );
     }
 
-    const { buffer, filename } = await generatePublishedReportPdf(published.bundle);
+    const { buffer, filename } =
+      variant === "technical"
+        ? await generateTechnicalReportPdf(published.bundle)
+        : await generatePublishedReportPdf(published.bundle);
 
     return new NextResponse(new Uint8Array(buffer), {
       status: 200,
