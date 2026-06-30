@@ -215,8 +215,22 @@ export function AuditForm({ initialPlan = "" }: { initialPlan?: string }) {
                   {errors.company_name && <p className="text-red-600 text-xs mt-1">{errors.company_name.message}</p>}
                 </div>
                 <div>
-                  <label className={labelClass}>Website URL *</label>
-                  <input className={`${inputClass} mt-1`} placeholder="https://yourcompany.com" {...register("website_url")} />
+                  <label className={labelClass} htmlFor="website_url">
+                    Company website URL *
+                  </label>
+                  <input
+                    id="website_url"
+                    className={`${inputClass} mt-1`}
+                    placeholder="https://yourcompany.com"
+                    inputMode="url"
+                    autoCapitalize="none"
+                    autoCorrect="off"
+                    aria-describedby="website_url_help"
+                    {...register("website_url")}
+                  />
+                  <p id="website_url_help" className="text-xs text-brand-subtle mt-1">
+                    We will confirm the site is reachable before starting the assessment.
+                  </p>
                   {errors.website_url && <p className="text-red-600 text-xs mt-1">{errors.website_url.message}</p>}
                 </div>
               </div>
@@ -329,7 +343,7 @@ export function AuditForm({ initialPlan = "" }: { initialPlan?: string }) {
               >
                 {isSubmitting ? (
                   <>
-                    <Loader2 className="mr-2 h-5 w-5 animate-spin" /> Submitting…
+                    <Loader2 className="mr-2 h-5 w-5 animate-spin" /> Checking site…
                   </>
                 ) : (
                   "Submit my free assessment →"

@@ -3,6 +3,14 @@ import { describe, it } from "node:test";
 import { DEFAULT_SITE_URL, getSiteUrl, absoluteUrl, PUBLIC_INDEX_ROUTES } from "../lib/seo/site-url";
 import { HOME_METADATA, AUDIT_METADATA, THANK_YOU_METADATA } from "../lib/seo/metadata";
 
+function metadataRobotsIndex(metadata: typeof AUDIT_METADATA): boolean | undefined {
+  const robots = metadata.robots;
+  if (typeof robots === "object" && robots && "index" in robots) {
+    return robots.index;
+  }
+  return undefined;
+}
+
 describe("SEO site configuration", () => {
   it("defaults canonical URL to geo.vercel.app", () => {
     assert.equal(DEFAULT_SITE_URL, "https://geo.vercel.app");
@@ -16,7 +24,7 @@ describe("SEO site configuration", () => {
   });
 
   it("includes indexable public routes for sitemap", () => {
-    const paths = PUBLIC_INDEX_ROUTES.map((r) => r.path);
+    const paths: string[] = PUBLIC_INDEX_ROUTES.map((r) => r.path);
     assert.ok(paths.includes("/"));
     assert.ok(paths.includes("/audit"));
     assert.ok(!paths.includes("/thank-you"));
@@ -33,7 +41,7 @@ describe("SEO site configuration", () => {
   });
 
   it("indexes audit page and noindexes thank-you", () => {
-    assert.equal(AUDIT_METADATA.robots?.index, true);
-    assert.equal(THANK_YOU_METADATA.robots?.index, false);
+    assert.equal(metadataRobotsIndex(AUDIT_METADATA), true);
+    assert.equal(metadataRobotsIndex(THANK_YOU_METADATA), false);
   });
 });
