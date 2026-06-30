@@ -7,6 +7,7 @@ import {
 import { createResultsAccessToken, processAuditJob } from "@/lib/audit/processor";
 import { AUDIT_VERSION } from "@/lib/audit/crawl-checks";
 import { isAuditReviewRequired } from "@/lib/results/tokens";
+import { verifyWebsiteReachable } from "@/lib/validation/website-reachability";
 import { handlePostSubmissionFollowUp } from "@/lib/follow-up/service";
 
 export async function POST(request: Request) {
@@ -25,8 +26,19 @@ export async function POST(request: Request) {
       );
     }
 
+    const websiteCheck = await verifyWebsiteReachable(parsed.data.website_url);
+    if (!websiteCheck.ok) {
+      return NextResponse.json(
+        { ok: false, error: websiteCheck.error },
+        { status: 400 },
+      );
+    }
+
     const supabase = createAdminClient();
-    const row = mapSubmissionToRow(parsed.data);
+    const row = mapSubmissionToRow({
+      ...parsed.data,
+      website_url: websiteCheck.url,
+    });
 
     const { data: submission, error: subError } = await supabase
       .from("geo_submissions")
