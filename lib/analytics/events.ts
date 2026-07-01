@@ -11,7 +11,23 @@ export type ConversionEventName =
   | "followup_email_sent_day_3"
   | "followup_email_sent_day_5"
   | "followup_email_sent_day_7"
-  | "converted_to_paid";
+  | "converted_to_paid"
+  | "subscription_started"
+  | "plan_viewed"
+  | "comparison_table_viewed"
+  | "downgrade_flow_started"
+  | "downgrade_completed"
+  | "pause_selected"
+  | "cancel_flow_started"
+  | "cancellation_reason_selected"
+  | "save_offer_shown"
+  | "save_offer_accepted"
+  | "cancellation_completed"
+  | "payment_failed"
+  | "payment_recovered"
+  | "plan_reactivated"
+  | "winback_email_sent"
+  | "subscription_restarted";
 
 export function trackConversionEvent(
   name: ConversionEventName,

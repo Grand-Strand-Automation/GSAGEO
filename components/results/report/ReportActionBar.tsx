@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Check, Copy, Download, Link2, Loader2, Share2 } from "lucide-react";
+import { Check, Copy, CreditCard, Download, Link2, Loader2, Share2 } from "lucide-react";
 
 export function ReportActionBar({
   token,
@@ -124,6 +124,13 @@ export function ReportActionBar({
         >
           <Link2 size={16} />
           Open in new tab
+        </a>
+        <a
+          href="#subscription"
+          className="inline-flex items-center gap-2 rounded-xl border border-brand-border bg-brand-cream px-4 py-2.5 text-sm font-semibold text-brand-muted hover:text-brand-blue transition-colors"
+        >
+          <CreditCard size={16} />
+          Subscription settings
         </a>
       </div>
       <p className="text-xs text-brand-subtle mt-3">

@@ -19,6 +19,30 @@ export type GeoSubmission = {
   selected_plan: string | null;
   notes: string | null;
   status: string;
+  current_plan?: string | null;
+  previous_plan?: string | null;
+  next_plan?: string | null;
+  subscription_status?: string | null;
+  billing_provider?: string | null;
+  billing_customer_id?: string | null;
+  billing_subscription_id?: string | null;
+  next_billing_at?: string | null;
+  cancel_at_period_end?: boolean | null;
+  canceled_at?: string | null;
+  cancellation_reason?: string | null;
+  cancellation_reason_detail?: string | null;
+  downgrade_reason?: string | null;
+  pause_until?: string | null;
+  save_offer_shown?: string | null;
+  save_offer_accepted?: boolean | null;
+  health_status?: string | null;
+  churn_risk_level?: string | null;
+  payment_issue_status?: string | null;
+  last_report_viewed_at?: string | null;
+  last_summary_viewed_at?: string | null;
+  last_engagement_at?: string | null;
+  retention_last_event_at?: string | null;
+  winback_eligible?: boolean | null;
   follow_up_status?: string | null;
   recommended_offer?: string | null;
   confirmation_email_sent_at?: string | null;
@@ -132,6 +156,20 @@ export type GeoAdminNote = {
   author_email: string;
   created_at: string;
   note: string;
+};
+
+export type GeoSubscriptionEvent = {
+  id: string;
+  submission_id: string;
+  event_name: string;
+  old_plan: string | null;
+  new_plan: string | null;
+  cancellation_reason: string | null;
+  save_offer_type: string | null;
+  initiated_by: string;
+  effective_at: string | null;
+  metadata_json: Record<string, unknown>;
+  created_at: string;
 };
 
 export type ResultsBundle = {

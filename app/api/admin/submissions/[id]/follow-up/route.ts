@@ -9,6 +9,7 @@ import {
 } from "@/lib/follow-up/service";
 import { deliverReportEmailForJob } from "@/lib/follow-up/report-delivery";
 import { trackConversionEvent } from "@/lib/analytics/events";
+import { isSubscriptionPlanKey } from "@/lib/subscriptions/config";
 
 async function requireAdmin() {
   const supabase = await createClient();
@@ -62,7 +63,24 @@ export async function POST(
         await markFollowUpStatus(submissionId, "converted", {
           converted_at: new Date().toISOString(),
           follow_up_stopped_at: new Date().toISOString(),
+          current_plan: isSubscriptionPlanKey(submission.selected_plan)
+            ? submission.selected_plan
+            : "growth",
+          subscription_status: "active",
+          health_status: "green",
+          churn_risk_level: "low",
+          retention_last_event_at: new Date().toISOString(),
         });
+        await supabase.from("geo_subscription_events").insert({
+          submission_id: submissionId,
+          event_name: "subscription_started",
+          new_plan: isSubscriptionPlanKey(submission.selected_plan)
+            ? submission.selected_plan
+            : "growth",
+          initiated_by: "admin",
+          metadata_json: { source: "admin_mark_converted" },
+        });
+        trackConversionEvent("subscription_started", { submissionId });
         trackConversionEvent("converted_to_paid", { submissionId });
         return NextResponse.json({ ok: true, message: "Marked as converted." });
 

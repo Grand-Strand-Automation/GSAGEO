@@ -7,6 +7,7 @@ import { HeroOverlay } from "@/components/HeroOverlay";
 import { SectionHeading } from "@/components/SectionHeading";
 import { TrustBar } from "@/components/TrustBar";
 import { ButtonLink } from "@/components/ui/Button";
+import { PlanComparisonTable } from "@/components/subscriptions/PlanComparisonTable";
 import {
   DELIVERABLES,
   DELIVERABLES_HEADING,
@@ -316,6 +317,14 @@ export function LandingPage() {
                 </ButtonLink>
               </div>
             ))}
+          </div>
+
+          <div className="mt-8">
+            <PlanComparisonTable
+              title="Which monthly plan fits best?"
+              description="Growth is the practical default for steady monthly progress. Monitor is the lighter save plan, and Managed is for deeper hands-on support."
+              compact
+            />
           </div>
 
           <div className="mt-10 flex flex-col sm:flex-row items-stretch justify-center divide-y sm:divide-y-0 sm:divide-x divide-brand-border bg-white rounded-xl border border-brand-border shadow-sm">
