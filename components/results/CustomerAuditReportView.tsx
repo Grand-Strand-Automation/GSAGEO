@@ -9,6 +9,7 @@ import { CustomerFixExampleCard } from "./report/CustomerFixExampleCard";
 import { ReportActionBar } from "./report/ReportActionBar";
 import { RecommendedNextStep } from "./report/RecommendedNextStep";
 import { ResultsCTA } from "./report/ResultsCTA";
+import { SubscriptionSettingsPanel } from "@/components/subscriptions/SubscriptionSettingsPanel";
 import { CheckCircle2, AlertTriangle } from "lucide-react";
 
 export function CustomerAuditReportView({
@@ -117,6 +118,8 @@ export function CustomerAuditReportView({
           <RecommendedNextStep offerId={report.recommendedOfferId} companyName={report.companyName} />
 
           <ResultsCTA companyName={report.companyName} />
+
+          {shareToken ? <SubscriptionSettingsPanel token={shareToken} /> : null}
 
           <p className="text-center text-xs text-brand-subtle pt-2">
             Private report — do not share publicly.{" "}

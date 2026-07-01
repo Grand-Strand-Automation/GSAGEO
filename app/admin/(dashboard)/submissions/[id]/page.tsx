@@ -8,13 +8,15 @@ import { SignOutButton } from "@/components/admin/SignOutButton";
 import { JobActions } from "@/components/admin/JobActions";
 import { ReportDistributionPanel } from "@/components/admin/ReportDistributionPanel";
 import { FollowUpActions } from "@/components/admin/FollowUpActions";
+import { SubscriptionRetentionPanel } from "@/components/admin/SubscriptionRetentionPanel";
 import { InternalFixWorkspace } from "@/components/admin/InternalFixWorkspace";
 import { loadInternalFixesForJob } from "@/lib/internal-fixes/persist";
+import { getSubscriptionEventsForSubmission } from "@/lib/subscriptions/retention-service";
 import { formatPlanLabel } from "@/lib/brand/plans";
 import { AuditReportView } from "@/components/results/AuditReportView";
 import { isResultsVisible } from "@/lib/results/access";
 import { loadPublishedReportBySubmissionId } from "@/lib/results/published-report";
-import type { GeoAuditJob, GeoAuditResult, GeoFixPreview, GeoSubmission, GeoAdminNote, GeoInternalFix, ResultsBundle } from "@/lib/types/database";
+import type { GeoAuditJob, GeoAuditResult, GeoFixPreview, GeoSubmission, GeoAdminNote, GeoInternalFix, GeoSubscriptionEvent, ResultsBundle } from "@/lib/types/database";
 
 export const dynamic = "force-dynamic";
 
@@ -69,6 +71,7 @@ export default async function SubmissionDetailPage({
   let previews: GeoFixPreview[] = [];
   let internalFixes: GeoInternalFix[] = [];
   let notes: GeoAdminNote[] = [];
+  let subscriptionEvents: GeoSubscriptionEvent[] = [];
 
   try {
     const supabase = createAdminClient();
@@ -115,6 +118,7 @@ export default async function SubmissionDetailPage({
       .order("created_at", { ascending: false });
 
     notes = (noteRows ?? []) as GeoAdminNote[];
+    subscriptionEvents = await getSubscriptionEventsForSubmission(id);
   } catch {
     return (
       <ConfigError message="Could not load this submission. Verify Supabase migrations and service role access." />
@@ -187,6 +191,8 @@ export default async function SubmissionDetailPage({
             ) : null}
 
             <FollowUpActions submissionId={id} submission={sub} auditJobId={job?.id ?? null} />
+
+            <SubscriptionRetentionPanel submission={sub} events={subscriptionEvents} />
 
             {job ? (
               <InternalFixWorkspace

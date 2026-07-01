@@ -8,6 +8,7 @@ import { SubmissionsFilters } from "@/components/admin/SubmissionsFilters";
 import type { GeoSubmission } from "@/lib/types/database";
 import { formatPlanLabel, planBadgeClass } from "@/lib/brand/plans";
 import { FOLLOW_UP_STATUS_LABELS } from "@/lib/content/follow-up";
+import { getSubscriptionPlan } from "@/lib/subscriptions/config";
 
 export const dynamic = "force-dynamic";
 
@@ -147,12 +148,14 @@ export default async function AdminSubmissionsPage({
           </div>
         ) : (
           <div className="bg-white rounded-xl border border-brand-border overflow-x-auto">
-            <table className="w-full text-sm min-w-[760px]">
+            <table className="w-full text-sm min-w-[980px]">
               <thead>
                 <tr className="border-b border-brand-border bg-brand-cream text-left">
                   <th className="px-5 py-3 text-xs font-bold uppercase text-brand-subtle">Date</th>
                   <th className="px-5 py-3 text-xs font-bold uppercase text-brand-subtle">Company</th>
                   <th className="px-5 py-3 text-xs font-bold uppercase text-brand-subtle">Plan</th>
+                  <th className="px-5 py-3 text-xs font-bold uppercase text-brand-subtle">Subscription</th>
+                  <th className="px-5 py-3 text-xs font-bold uppercase text-brand-subtle">Risk</th>
                   <th className="px-5 py-3 text-xs font-bold uppercase text-brand-subtle">Email</th>
                   <th className="px-5 py-3 text-xs font-bold uppercase text-brand-subtle">Website</th>
                   <th className="px-5 py-3 text-xs font-bold uppercase text-brand-subtle">Status</th>
@@ -164,6 +167,7 @@ export default async function AdminSubmissionsPage({
               <tbody>
                 {submissions.map((sub) => {
                   const job = jobsBySubmission[sub.id];
+                  const subscriptionPlan = getSubscriptionPlan(sub.current_plan ?? sub.selected_plan);
                   return (
                     <tr key={sub.id} className="border-b border-brand-border hover:bg-brand-cream/60">
                       <td className="px-5 py-4 text-brand-muted whitespace-nowrap">
@@ -180,6 +184,22 @@ export default async function AdminSubmissionsPage({
                         ) : (
                           "—"
                         )}
+                      </td>
+                      <td className="px-5 py-4">
+                        <div className="space-y-1">
+                          <p className="text-xs font-semibold text-brand-navy whitespace-nowrap">
+                            {subscriptionPlan.displayName}
+                          </p>
+                          <p className="text-xs text-brand-subtle whitespace-nowrap">
+                            {sub.subscription_status ?? "lead"}
+                            {sub.next_plan ? ` → ${getSubscriptionPlan(sub.next_plan).displayName}` : ""}
+                          </p>
+                        </div>
+                      </td>
+                      <td className="px-5 py-4">
+                        <span className="text-xs font-semibold rounded-full bg-brand-cream px-2 py-0.5 text-brand-muted whitespace-nowrap">
+                          {sub.health_status ?? "green"} / {sub.churn_risk_level ?? "low"}
+                        </span>
                       </td>
                       <td className="px-5 py-4 text-brand-muted">{sub.work_email}</td>
                       <td className="px-5 py-4 text-brand-muted max-w-[180px] truncate">

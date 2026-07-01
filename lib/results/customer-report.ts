@@ -111,6 +111,15 @@ export async function getCustomerReportByToken(rawToken: string): Promise<{
     .update({ last_accessed_at: new Date().toISOString() })
     .eq("id", tokenRow.id);
 
+  await supabase
+    .from("geo_submissions")
+    .update({
+      last_report_viewed_at: new Date().toISOString(),
+      last_summary_viewed_at: new Date().toISOString(),
+      last_engagement_at: new Date().toISOString(),
+    })
+    .eq("id", tokenRow.submission_id);
+
   const { data: jobs } = await supabase
     .from("geo_audit_jobs")
     .select("*")

@@ -105,6 +105,7 @@ describe("audit-time customer executive summary", () => {
           },
         },
         findings_json: { structuredFindings: [] },
+        recommendations_json: {},
         next_step_json: {},
       },
       previews: [],
