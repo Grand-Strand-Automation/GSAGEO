@@ -12,14 +12,14 @@ function metadataRobotsIndex(metadata: typeof AUDIT_METADATA): boolean | undefin
 }
 
 describe("SEO site configuration", () => {
-  it("defaults canonical URL to geo.vercel.app", () => {
-    assert.equal(DEFAULT_SITE_URL, "https://geo.vercel.app");
+  it("defaults canonical URL to geo.gsally.com", () => {
+    assert.equal(DEFAULT_SITE_URL, "https://geo.gsally.com");
   });
 
   it("builds absolute URLs from paths", () => {
-    process.env.NEXT_PUBLIC_APP_URL = "https://geo.vercel.app";
-    assert.equal(absoluteUrl("/audit"), "https://geo.vercel.app/audit");
-    assert.equal(getSiteUrl(), "https://geo.vercel.app");
+    process.env.NEXT_PUBLIC_APP_URL = "https://geo.gsally.com";
+    assert.equal(absoluteUrl("/audit"), "https://geo.gsally.com/audit");
+    assert.equal(getSiteUrl(), "https://geo.gsally.com");
     delete process.env.NEXT_PUBLIC_APP_URL;
   });
 

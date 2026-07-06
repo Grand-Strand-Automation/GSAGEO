@@ -1,13 +1,10 @@
 import { NextResponse } from "next/server";
+import { verifyCronRequest } from "@/lib/cron/auth";
 import { processFollowUpCadence } from "@/lib/follow-up/processor";
 
 export async function GET(request: Request) {
-  const authHeader = request.headers.get("authorization");
-  const cronSecret = process.env.CRON_SECRET;
-
-  if (cronSecret && authHeader !== `Bearer ${cronSecret}`) {
-    return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
-  }
+  const authError = verifyCronRequest(request);
+  if (authError) return authError;
 
   try {
     const sent = await processFollowUpCadence(25);
