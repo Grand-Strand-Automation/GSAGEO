@@ -27,10 +27,10 @@ describe("subscription plan config", () => {
   });
 
   it("compares the expected plan capabilities", () => {
-    const guidance = PLAN_COMPARISON_ROWS.find((row) => row.key === "improvement_guidance");
+    const updates = PLAN_COMPARISON_ROWS.find((row) => row.key === "monthly_updates");
     const support = PLAN_COMPARISON_ROWS.find((row) => row.key === "hands_on_support");
-    assert.equal(guidance?.values.monitor, "No");
-    assert.equal(guidance?.values.growth, "Yes");
+    assert.equal(updates?.values.monitor, "Light");
+    assert.equal(updates?.values.growth, "Yes");
     assert.equal(support?.values.growth, "Light");
     assert.equal(support?.values.managed, "Higher-touch");
   });

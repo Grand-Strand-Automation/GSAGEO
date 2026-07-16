@@ -1,0 +1,77 @@
+import { NextResponse } from "next/server";
+import { createAdminClient } from "@/lib/supabase/admin";
+import { mockupRequestSchema } from "@/lib/validation/mockup";
+import {
+  createMockupAccessToken,
+  generateMockupConcept,
+} from "@/lib/mockup/generator";
+
+export async function POST(request: Request) {
+  try {
+    const body = await request.json();
+
+    if (body.website) {
+      return NextResponse.json({ ok: true });
+    }
+
+    const parsed = mockupRequestSchema.safeParse(body);
+    if (!parsed.success) {
+      return NextResponse.json(
+        { ok: false, error: parsed.error.flatten().fieldErrors },
+        { status: 400 },
+      );
+    }
+
+    const input = parsed.data;
+    const { concept, signals } = await generateMockupConcept(input);
+    const { token, tokenHash } = createMockupAccessToken();
+
+    const supabase = createAdminClient();
+    const { data, error } = await supabase
+      .from("geo_mockup_leads")
+      .insert({
+        website_url: input.website_url,
+        business_name: input.business_name.trim(),
+        business_category: input.business_category,
+        preferred_style: input.preferred_style,
+        homepage_goal: input.homepage_goal,
+        notes: input.notes?.trim() || null,
+        email: input.email?.trim() || null,
+        lead_source: "homepage_mockup",
+        concept_json: concept,
+        signals_json: signals,
+        access_token_hash: tokenHash,
+        status: "previewed",
+      })
+      .select("id")
+      .single();
+
+    if (error || !data) {
+      console.error("[mockups] Insert failed:", error);
+      // Graceful fallback: still return concept even if DB insert fails
+      // (e.g. migration not applied yet). Client can render via sessionStorage.
+      return NextResponse.json({
+        ok: true,
+        mockupId: null,
+        token,
+        concept,
+        persisted: false,
+        warning: "Preview generated but could not be saved for follow-up yet.",
+      });
+    }
+
+    return NextResponse.json({
+      ok: true,
+      mockupId: data.id,
+      token,
+      concept,
+      persisted: true,
+    });
+  } catch (err) {
+    console.error("[mockups] Unexpected error:", err);
+    return NextResponse.json(
+      { ok: false, error: "An unexpected error occurred" },
+      { status: 500 },
+    );
+  }
+}

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CheckCircle2, XCircle } from "lucide-react";
 import { SampleOutputPreview } from "@/components/landing/SampleOutputPreview";
+import { MockupRequestForm } from "@/components/mockup/MockupRequestForm";
 import { CTABand } from "@/components/CTABand";
 import { FaqItem } from "@/components/FaqItem";
 import { HeroOverlay } from "@/components/HeroOverlay";
@@ -14,9 +15,11 @@ import {
   DELIVERABLES_INTRO,
   DELIVERABLES_SUPPORT,
   FAQ_ITEMS,
+  GEO_SECONDARY,
   GOOD_FIT,
   HOME_HERO,
-  MONTHLY_RHYTHM,
+  HOW_MOCKUP_WORKS,
+  MOCKUP_EXPECTATION,
   NOT_FIT,
   PRICING_CUSTOM_NOTE,
   PRICING_DOWNGRADE_NOTE,
@@ -37,7 +40,7 @@ export function LandingPage() {
       <section className="bg-brand-hero text-white pt-28 pb-16 md:pt-36 md:pb-24 relative overflow-hidden">
         <HeroOverlay />
         <div className="container px-4 md:px-6 relative z-10">
-          <div className="grid lg:grid-cols-[1fr_340px] gap-10 lg:gap-12 items-start max-w-6xl">
+          <div className="grid lg:grid-cols-[1fr_400px] gap-10 lg:gap-12 items-start max-w-6xl">
             <div className="max-w-3xl">
               <div className="eyebrow-pill mb-7">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-sky inline-block" />
@@ -49,27 +52,39 @@ export function LandingPage() {
               <p className="text-lg md:text-xl text-white/70 leading-relaxed max-w-2xl mb-8">
                 {HOME_HERO.subheadline}
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 mb-6">
+              <div className="flex flex-col sm:flex-row gap-3 mb-4">
                 <ButtonLink href={HOME_HERO.primaryHref}>{HOME_HERO.primaryCta} →</ButtonLink>
                 <ButtonLink href={HOME_HERO.secondaryHref} variant="secondary">
                   {HOME_HERO.secondaryCta}
                 </ButtonLink>
               </div>
+              <p className="mb-6">
+                <Link
+                  href={HOME_HERO.tertiaryHref}
+                  className="text-sm text-white/55 hover:text-white/85 transition-colors underline-offset-4 hover:underline"
+                >
+                  {HOME_HERO.tertiaryCta}
+                </Link>
+              </p>
               <p className="text-sm text-white/50 font-medium">{HOME_HERO.supportLine}</p>
+
+              <div className="mt-8 rounded-2xl border border-white/15 bg-white/[0.06] backdrop-blur-sm p-6 md:p-7 shadow-card-md">
+                <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-brand-sky mb-4">
+                  {HOME_HERO.reviewCardTitle}
+                </p>
+                <ul className="space-y-3">
+                  {HOME_HERO.reviewCardBullets.map((item) => (
+                    <li key={item} className="flex gap-3 text-sm text-white/80 leading-relaxed">
+                      <CheckCircle2 size={16} className="text-brand-sky shrink-0 mt-0.5" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
 
-            <div className="rounded-2xl border border-white/15 bg-white/[0.06] backdrop-blur-sm p-6 md:p-7 shadow-card-md lg:mt-4">
-              <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-brand-sky mb-4">
-                {HOME_HERO.reviewCardTitle}
-              </p>
-              <ul className="space-y-3">
-                {HOME_HERO.reviewCardBullets.map((item) => (
-                  <li key={item} className="flex gap-3 text-sm text-white/80 leading-relaxed">
-                    <CheckCircle2 size={16} className="text-brand-sky shrink-0 mt-0.5" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
+            <div id="mockup" className="scroll-mt-24 lg:mt-2">
+              <MockupRequestForm compact />
             </div>
           </div>
         </div>
@@ -77,35 +92,37 @@ export function LandingPage() {
 
       <TrustBar
         items={[
-          "Free assessment to start",
+          "Instant homepage preview",
+          "Monthly redesign + hosting",
           "Month-to-month · cancel anytime",
-          "Based in the Grand Strand since 2015",
         ]}
       />
 
-      <section id="understanding-geo" className="section-pad bg-brand-cream scroll-mt-20">
-        <div className="container px-4 md:px-6 max-w-3xl">
+      <section id="how-it-works" className="section-pad bg-brand-cream scroll-mt-20">
+        <div className="container px-4 md:px-6 max-w-4xl">
           <SectionHeading
-            label="Understanding GEO"
-            title="What is AI Visibility support?"
+            label={HOW_MOCKUP_WORKS.label}
+            title={HOW_MOCKUP_WORKS.title}
+            description={HOW_MOCKUP_WORKS.intro}
+            className="mb-10"
           />
-          <div className="space-y-5 text-brand-muted text-base md:text-lg leading-relaxed -mt-4">
-            <p>
-              When someone asks ChatGPT, Perplexity, or Google&apos;s AI Overview to recommend a service
-              provider, the answer is built from content those systems have indexed. Businesses that show up
-              clearly tend to have websites that are easy to understand, well-organized, and trustworthy.
-            </p>
-            <p>
-              GEO — Generative Engine Optimization — is about improving how clearly your business appears
-              in those AI-driven answers. It is not a one-time report. It is ongoing work on clarity, trust,
-              content, and structure so customers and search tools can understand what you do.
-            </p>
-            <p>
-              We start with a free assessment so you know where you stand. If you want help improving over
-              time, monthly support gives you practical next steps each month — without long contracts or
-              technical overwhelm.
-            </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {HOW_MOCKUP_WORKS.steps.map((step, index) => (
+              <div
+                key={step.title}
+                className="rounded-xl border border-brand-border bg-white p-5 shadow-card"
+              >
+                <p className="text-[11px] font-bold uppercase tracking-wide text-brand-blue mb-2">
+                  Step {index + 1}
+                </p>
+                <h3 className="font-heading font-bold text-brand-navy mb-2">{step.title}</h3>
+                <p className="text-sm text-brand-muted leading-relaxed">{step.desc}</p>
+              </div>
+            ))}
           </div>
+          <p className="mt-8 text-center text-sm text-brand-muted max-w-2xl mx-auto leading-relaxed">
+            {MOCKUP_EXPECTATION}
+          </p>
         </div>
       </section>
 
@@ -193,40 +210,15 @@ export function LandingPage() {
               {DELIVERABLES_SUPPORT}
             </p>
             <div className="mt-8 text-center">
-              <ButtonLink href={HOME_HERO.primaryHref} size="md">
-                {HOME_HERO.primaryCta} →
+              <ButtonLink href="#mockup" size="md">
+                Preview My New Homepage →
               </ButtonLink>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="how-it-works" className="section-pad bg-brand-cream scroll-mt-20">
-        <div className="container px-4 md:px-6 max-w-4xl">
-          <SectionHeading
-            label={MONTHLY_RHYTHM.label}
-            title={MONTHLY_RHYTHM.title}
-            description={MONTHLY_RHYTHM.intro}
-            className="mb-10"
-          />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {MONTHLY_RHYTHM.steps.map((step, index) => (
-              <div
-                key={step.title}
-                className="rounded-xl border border-brand-border bg-white p-5 shadow-card"
-              >
-                <p className="text-[11px] font-bold uppercase tracking-wide text-brand-blue mb-2">
-                  Step {index + 1}
-                </p>
-                <h3 className="font-heading font-bold text-brand-navy mb-2">{step.title}</h3>
-                <p className="text-sm text-brand-muted leading-relaxed">{step.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-pad bg-white">
+      <section className="section-pad bg-brand-cream">
         <div className="container px-4 md:px-6 max-w-3xl text-center">
           <SectionHeading
             label={WHY_ONGOING.label}
@@ -242,9 +234,7 @@ export function LandingPage() {
         </div>
       </section>
 
-      <SampleOutputPreview />
-
-      <section id="pricing" className="section-pad bg-brand-cream scroll-mt-20">
+      <section id="pricing" className="section-pad bg-white scroll-mt-20">
         <div className="container px-4 md:px-6">
           <SectionHeading
             label="Monthly plans"
@@ -308,7 +298,7 @@ export function LandingPage() {
                   ))}
                 </ul>
                 <ButtonLink
-                  href={`/audit?tier=${tier.tier}`}
+                  href={`/start?tier=${tier.tier}`}
                   variant={tier.primary ? "primary" : "secondaryLight"}
                   size="md"
                   className="w-full mt-auto"
@@ -322,12 +312,12 @@ export function LandingPage() {
           <div className="mt-8">
             <PlanComparisonTable
               title="Which monthly plan fits best?"
-              description="Growth is the practical default for steady monthly progress. Monitor is the lighter save plan, and Managed is for deeper hands-on support."
+              description="Website Growth + Hosting is the practical default. Refresh is the lighter option, and Managed is for deeper hands-on support."
               compact
             />
           </div>
 
-          <div className="mt-10 flex flex-col sm:flex-row items-stretch justify-center divide-y sm:divide-y-0 sm:divide-x divide-brand-border bg-white rounded-xl border border-brand-border shadow-sm">
+          <div className="mt-10 flex flex-col sm:flex-row items-stretch justify-center divide-y sm:divide-y-0 sm:divide-x divide-brand-border bg-brand-cream rounded-xl border border-brand-border shadow-sm">
             {PRICING_REASSURANCE.map((label) => (
               <div
                 key={label}
@@ -344,7 +334,7 @@ export function LandingPage() {
             <p className="text-sm text-brand-muted leading-relaxed">{PRICING_DOWNGRADE_NOTE}</p>
             <p className="text-sm text-brand-muted">
               {PRICING_CUSTOM_NOTE}{" "}
-              <Link href="/audit?tier=custom" className="text-brand-blue hover:underline font-medium">
+              <Link href="/start?tier=custom" className="text-brand-blue hover:underline font-medium">
                 Request a custom engagement.
               </Link>
             </p>
@@ -352,9 +342,55 @@ export function LandingPage() {
         </div>
       </section>
 
+      <section id="geo" className="section-pad bg-brand-cream scroll-mt-20">
+        <div className="container px-4 md:px-6 max-w-3xl text-center">
+          <SectionHeading
+            label={GEO_SECONDARY.label}
+            title={GEO_SECONDARY.title}
+            className="mb-6"
+          />
+          <p className="text-brand-muted leading-relaxed mb-8 -mt-2">{GEO_SECONDARY.body}</p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <ButtonLink href={GEO_SECONDARY.primaryHref} size="md">
+              {GEO_SECONDARY.primaryCta} →
+            </ButtonLink>
+            <ButtonLink href={GEO_SECONDARY.secondaryHref} variant="secondaryLight" size="md">
+              {GEO_SECONDARY.secondaryCta}
+            </ButtonLink>
+          </div>
+        </div>
+      </section>
+
+      <section id="understanding-geo" className="section-pad bg-white scroll-mt-20">
+        <div className="container px-4 md:px-6 max-w-3xl">
+          <SectionHeading
+            label="Understanding GEO"
+            title="What is AI Visibility support?"
+          />
+          <div className="space-y-5 text-brand-muted text-base md:text-lg leading-relaxed -mt-4">
+            <p>
+              When someone asks ChatGPT, Perplexity, or Google&apos;s AI Overview to recommend a service
+              provider, the answer is built from content those systems have indexed. Businesses that show up
+              clearly tend to have websites that are easy to understand, well-organized, and trustworthy.
+            </p>
+            <p>
+              GEO — Generative Engine Optimization — is about improving how clearly your business appears
+              in those AI-driven answers. It remains available as an additional service alongside monthly
+              website redesign + hosting.
+            </p>
+            <p>
+              Start with a free assessment if AI visibility is a priority. Or begin with a homepage mockup
+              if you want a stronger website first — many businesses benefit from both over time.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <SampleOutputPreview />
+
       <section id="faq" className="section-pad bg-white scroll-mt-20">
         <div className="container px-4 md:px-6 max-w-3xl">
-          <SectionHeading label="FAQ" title="Common questions about monthly GEO support." />
+          <SectionHeading label="FAQ" title="Common questions about redesign + hosting." />
           <div className="card-brand px-6 md:px-8 shadow-card">
             {FAQ_ITEMS.map((item) => (
               <FaqItem key={item.q} q={item.q} a={item.a} />
@@ -364,10 +400,10 @@ export function LandingPage() {
       </section>
 
       <CTABand
-        title="Start with a free assessment — continue month-to-month if it makes sense"
-        subtitle="See how clearly your business appears in AI search, get practical priorities, and choose ongoing support only when you are ready."
+        title="See a fresh homepage concept for your business"
+        subtitle="Enter your website, review a sample mockup, then choose monthly redesign + hosting if you want help launching and maintaining it."
         buttons={[
-          { label: "Start Your Free Assessment", href: "/audit", primary: true },
+          { label: "Preview My New Homepage", href: "/#mockup", primary: true },
           { label: "See Monthly Plans", href: "/#pricing", primary: false },
         ]}
       />

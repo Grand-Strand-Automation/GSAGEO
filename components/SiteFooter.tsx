@@ -10,8 +10,8 @@ export function SiteFooter() {
           <div className="md:col-span-5 space-y-4">
             <BrandLogo variant="geo" />
             <p className="text-sm text-white/55 max-w-md leading-relaxed pt-1">
-              Monthly AI visibility support for service businesses — start with a free assessment,
-              then continue month-to-month with practical guidance and clear next steps.
+              Monthly website redesign + hosting for service businesses — start with a free homepage
+              mockup, then continue month-to-month with hosting and ongoing support.
             </p>
             <div className="space-y-2 pt-2 text-sm">
               <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/35">
@@ -28,13 +28,14 @@ export function SiteFooter() {
 
           <div className="md:col-span-3">
             <h3 className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/35 mb-5">
-              GEO
+              Services
             </h3>
             <ul className="space-y-3">
               {[
-                { label: "Overview", href: "/" },
-                { label: "Free Assessment", href: "/audit" },
-                { label: "Monthly Plans", href: "/#pricing" },
+                { label: "Homepage mockup", href: "/#mockup" },
+                { label: "Monthly plans", href: "/#pricing" },
+                { label: "Start redesign", href: "/start" },
+                { label: "GEO assessment", href: "/audit" },
                 { label: "FAQ", href: "/#faq" },
               ].map(({ label, href }) => (
                 <li key={label}>
@@ -69,10 +70,10 @@ export function SiteFooter() {
             </ul>
             <div className="mt-8 pt-6 border-t border-white/10">
               <Link
-                href="/audit"
+                href="/#mockup"
                 className="inline-block text-sm font-semibold text-brand-sky hover:text-white transition-colors"
               >
-                Request your free assessment →
+                Preview your new homepage →
               </Link>
             </div>
           </div>
@@ -83,7 +84,7 @@ export function SiteFooter() {
             © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
           </p>
           <p className="text-sm text-white/30 text-center sm:text-right">
-            Practical monthly support · Cancel anytime · Grand Strand-based
+            Monthly redesign + hosting · Cancel anytime · Grand Strand-based
           </p>
         </div>
       </div>

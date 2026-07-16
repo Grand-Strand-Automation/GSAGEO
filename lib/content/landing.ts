@@ -1,28 +1,231 @@
 export const HOME_HERO = {
-  eyebrow: "GEO / AI Visibility for service businesses",
-  headline: "See How Clear Your Business Looks in AI Search",
+  eyebrow: "Website Redesign + Hosting for service businesses",
+  headline: "See What Your Website Could Look Like After a Redesign",
   subheadline:
-    "We assess how clearly your business can be understood in AI-driven search — what looks strong, what needs work, and what to improve first. Start with a free assessment, then continue with simple month-to-month support if you want help making improvements over time.",
-  primaryCta: "Start Your Free Assessment",
-  primaryHref: "/audit",
+    "Enter your current website, tell us a little about your business, and see a preview of what a clearer, more modern homepage could look like — with hosting and ongoing support available on a simple monthly plan.",
+  primaryCta: "Preview My New Homepage",
+  primaryHref: "#mockup",
   secondaryCta: "See Monthly Plans",
   secondaryHref: "#pricing",
-  supportLine: "Free assessment first · Month-to-month support available · Cancel anytime",
-  reviewCardTitle: "What the free assessment covers",
+  tertiaryCta: "Still interested in GEO?",
+  tertiaryHref: "#geo",
+  supportLine: "Instant homepage preview · Monthly redesign + hosting · Cancel anytime",
+  reviewCardTitle: "What you get in the preview",
   reviewCardBullets: [
-    "How clearly your business appears in AI search",
-    "Website clarity and trust signals",
-    "What looks strong and what needs work",
-    "Practical priorities to improve first",
-    "A clear path to ongoing monthly support",
+    "A sample homepage concept for your business",
+    "Clearer headline and CTA direction",
+    "A more modern first-impression layout",
+    "Notes on what improved in the concept",
+    "A simple path into monthly redesign + hosting",
   ],
 } as const;
 
+export const MOCKUP_EXPECTATION =
+  "This is a sample homepage concept based on your site and preferences — not a finished website. Final design and launch details are refined during onboarding.";
+
+export const HOW_MOCKUP_WORKS = {
+  label: "How it works",
+  title: "From preview to a better website",
+  intro:
+    "A simple path: see a sample homepage direction first, then choose monthly redesign + hosting if you want help launching and maintaining it.",
+  steps: [
+    {
+      title: "Enter your website",
+      desc: "Share your current site URL and business name so we can pull useful signals where possible.",
+    },
+    {
+      title: "Tell us what you want",
+      desc: "Pick a style and homepage goal — plus any must-include notes — in under a minute.",
+    },
+    {
+      title: "Review a sample concept",
+      desc: "See a polished homepage mockup direction tailored to your business and preferences.",
+    },
+    {
+      title: "Choose a monthly plan",
+      desc: "If you like the direction, launch with redesign, hosting, and ongoing support — month to month.",
+    },
+  ],
+} as const;
+
+export const WHATS_INCLUDED_INTRO =
+  "Monthly redesign + hosting is built for service businesses that want a stronger website without a giant one-time project. We redesign, launch, host, and keep improving over time.";
+
+export const WHATS_INCLUDED = [
+  {
+    title: "Homepage Redesign Direction",
+    desc: "A clearer first impression with stronger messaging, layout, and calls to action.",
+  },
+  {
+    title: "Reliable Hosting",
+    desc: "Your site is hosted and kept online — no juggling separate hosting accounts.",
+  },
+  {
+    title: "Ongoing Updates",
+    desc: "Iterate on pages, content, and structure as your business needs change.",
+  },
+  {
+    title: "Practical Support",
+    desc: "Simple requests and improvements without waiting on a huge agency timeline.",
+  },
+  {
+    title: "Clear Monthly Rhythm",
+    desc: "You always know what improved and what we are working on next.",
+  },
+  {
+    title: "Optional GEO Add-On",
+    desc: "Want better AI visibility too? GEO support can be added when it makes sense.",
+  },
+];
+
+export const DELIVERABLES_HEADING = "What You Get Each Month";
+
+export const DELIVERABLES_INTRO =
+  "This is ongoing website support — not a report and disappear engagement.";
+
+export const DELIVERABLES_SUPPORT =
+  "Designed to keep your website clear, credible, modern, and easier to maintain.";
+
+export const DELIVERABLES = [
+  {
+    title: "Hosting Included",
+    desc: "Your live site stays online with reliable monthly hosting support.",
+  },
+  {
+    title: "Design & Content Iterations",
+    desc: "Steady improvements to layout, messaging, and key pages.",
+  },
+  {
+    title: "Priority Updates",
+    desc: "Practical changes that strengthen calls, quotes, and credibility.",
+  },
+  {
+    title: "Simple Progress Summary",
+    desc: "A short monthly update on what changed and what is next.",
+  },
+];
+
+export const GOOD_FIT = [
+  "Service businesses that want a clearer, more modern website",
+  "Owners tired of an outdated homepage that does not convert well",
+  "Teams that prefer monthly redesign + hosting over a huge rebuild project",
+  "Businesses that need stronger calls to action and clearer service explanations",
+  "Companies that want ongoing updates without hiring a full-time web team",
+  "Local and B2B service brands that need to look more credible online",
+];
+
+export const NOT_FIT = [
+  "Businesses looking for a free finished website with no ongoing plan",
+  "Companies that need a massive custom app or complex software platform",
+  "Teams unwilling to review or approve simple monthly updates",
+  "Anyone expecting guaranteed rankings or overnight lead spikes",
+];
+
+export const WHY_ONGOING = {
+  label: "Why monthly",
+  title: "Why Redesign + Hosting Works Better Month to Month",
+  body: [
+    "A one-time website project often goes stale. Services change, offers shift, and competitors update how they present themselves online.",
+    "Monthly redesign + hosting keeps your site current — with hosting handled and improvements continuing as your business evolves.",
+  ],
+  support: "Continue only if it makes sense. Cancel anytime.",
+} as const;
+
+export const PRICING_HEADLINE = "Monthly Website Redesign + Hosting";
+
+export const PRICING_INTRO =
+  "Simple month-to-month plans to redesign, launch, host, and keep improving your website — without a big upfront project or long contract.";
+
+export const PRICING_SUBLINE = "Month-to-month plans · Hosting included · Cancel anytime";
+
+export const PRICING_REASSURANCE = [
+  "Cancel anytime",
+  "Month-to-month billing",
+  "Hosting included",
+  "No long contracts",
+];
+
+export const PRICING_HELPER =
+  "Start with a free homepage mockup. Then choose the monthly plan that matches how hands-on you want the support to be.";
+
+export const PRICING_DOWNGRADE_NOTE =
+  "Need a lighter option? Website Refresh + Hosting keeps your site live with simpler monthly support — without the fuller growth cadence.";
+
+export const PRICING_CUSTOM_NOTE =
+  "Need support across multiple locations, a larger service footprint, or a custom scope?";
+
+export const TIERS = [
+  {
+    name: "Website Refresh + Hosting",
+    badge: "Lighter monthly support",
+    price: "$199/month",
+    period: "Month-to-month · cancel anytime",
+    tier: "monitor",
+    desc: "A lower-friction monthly option for businesses that want a clearer website, reliable hosting, and practical updates — without full hands-on growth work every month.",
+    includes: [
+      "Hosting included",
+      "Homepage refresh direction",
+      "Light monthly updates",
+      "Priority support requests",
+      "Simple monthly summary",
+      "Cancel anytime",
+    ],
+    cta: "Start With Refresh",
+    primary: false,
+  },
+  {
+    name: "Website Growth + Hosting",
+    badge: "Recommended · best overall fit",
+    price: "Starting at $499/month",
+    period: "Month-to-month · cancel anytime",
+    tier: "growth",
+    desc: "The clearest path for most service businesses. We redesign, launch, host, and continue improving your site with steady monthly progress.",
+    includes: [
+      "Everything in Refresh",
+      "Fuller redesign support",
+      "Ongoing page & content iterations",
+      "Stronger CTA and conversion focus",
+      "Monthly improvement cadence",
+      "Optional GEO guidance when useful",
+    ],
+    cta: "Start Website Growth",
+    primary: true,
+  },
+  {
+    name: "Managed Website + Growth",
+    badge: "Higher-touch monthly support",
+    price: "Starting at $1,250/month",
+    period: "Month-to-month · cancel anytime",
+    tier: "managed",
+    desc: "A higher-touch plan for businesses that want more done-with-you and done-for-you website support — deeper redesign work and ongoing optimization each month.",
+    includes: [
+      "Everything in Growth",
+      "Higher-touch redesign support",
+      "Deeper page and content work",
+      "Priority roadmap reviews",
+      "More hands-on monthly updates",
+      "GEO / AI visibility support available",
+    ],
+    cta: "Request Managed Support",
+    primary: false,
+  },
+];
+
+export const GEO_SECONDARY = {
+  label: "Also available",
+  title: "Want to improve how your business appears in AI search too?",
+  body: "GEO / AI visibility assessments are still available as a secondary service. If you want to understand how clearly your business shows up in AI-driven answers — and what to improve — you can start with a free assessment anytime.",
+  primaryCta: "Start Free GEO Assessment",
+  primaryHref: "/audit",
+  secondaryCta: "Learn what GEO covers",
+  secondaryHref: "/#understanding-geo",
+} as const;
+
 export const ASSESSMENT_PREVIEW = {
-  eyebrow: "SAMPLE REPORT PREVIEW",
-  title: "What Your Free Assessment Can Show You",
+  eyebrow: "SAMPLE GEO REPORT",
+  title: "Also available: GEO / AI Visibility Assessments",
   description:
-    "This is a sample preview of the kind of easy-to-read assessment you receive after submitting your free request — a starting point, not the final product.",
+    "If AI search visibility matters for your business, our free assessment still shows what looks strong, what needs work, and what to improve first.",
   disclaimer:
     "Illustrative example — actual findings and recommendations will vary based on your business, website, and goals.",
   screenshots: [
@@ -38,243 +241,46 @@ export const ASSESSMENT_PREVIEW = {
     },
   ],
   cta: {
-    heading: "Ready to see where your business stands?",
-    body: "Request your free assessment to get a clearer picture of what your website is doing well, what may be limiting visibility, and what to improve first.",
-    label: "Start Your Free Assessment",
+    heading: "Curious about AI visibility too?",
+    body: "Request a free GEO assessment after you explore your homepage mockup — or jump straight in if that is your main focus.",
+    label: "Start Free GEO Assessment",
     href: "/audit",
-    secondaryLabel: "See monthly plans",
+    secondaryLabel: "Back to redesign plans",
     secondaryHref: "/#pricing",
   },
 } as const;
 
-export const GOOD_FIT = [
-  "Service businesses that want a clearer picture of how they appear in AI search",
-  "Local B2B companies not showing up well in AI-generated answers",
-  "Teams with service pages, trust content, or messaging that feels unclear or thin",
-  "Businesses that want practical monthly guidance — not a vague marketing retainer",
-  "Companies in trust-dependent or compliance-aware industries",
-  "Owners who want ongoing help improving clarity and visibility over time",
-  "Teams ready to make steady improvements month to month",
-];
-
-export const NOT_FIT = [
-  "Businesses looking for guaranteed rankings or overnight results",
-  "Companies still early in defining their product or service offering",
-  "Organizations with a brand-new site and very little content to work with",
-  "Teams unwilling to review or update content over time",
-];
-
-export const WHATS_INCLUDED_INTRO =
-  "Your free assessment is the starting point. Ongoing monthly support helps you keep improving clarity, trust, and visibility — with practical next steps each month.";
-
-export const WHATS_INCLUDED = [
-  {
-    title: "Monthly Visibility Review",
-    desc: "We check how your business and website are showing up — and what has changed since last month.",
-  },
-  {
-    title: "Website Clarity",
-    desc: "We help you improve whether your services, pages, and messaging are easy to understand.",
-  },
-  {
-    title: "Trust & Credibility",
-    desc: "We guide improvements that help your business feel more complete and trustworthy online.",
-  },
-  {
-    title: "Content & Page Improvements",
-    desc: "We recommend practical updates to key pages, FAQs, and content that support visibility.",
-  },
-  {
-    title: "Clear Next Steps",
-    desc: "Each month you get a simple summary of priorities — what to improve first and why.",
-  },
-  {
-    title: "Ongoing Monthly Guidance",
-    desc: "You are not left on your own after the assessment. Support continues as long as it makes sense for your business.",
-  },
-];
-
-export const DELIVERABLES_HEADING = "What You Get Each Month";
-
-export const DELIVERABLES_INTRO =
-  "Monthly support is designed to keep progress moving — not hand you a report and disappear.";
-
-export const DELIVERABLES_SUPPORT =
-  "Designed to keep your business clear, credible, and easier to understand over time.";
-
-export const DELIVERABLES = [
-  {
-    title: "Simple Score Refresh",
-    desc: "A plain-English snapshot of how your business currently looks online.",
-  },
-  {
-    title: "Clear Top Priorities",
-    desc: "The most important issues and opportunities to focus on right now.",
-  },
-  {
-    title: "Practical Recommendations",
-    desc: "Straightforward suggestions for pages, content, trust, and structure.",
-  },
-  {
-    title: "Monthly Progress Summary",
-    desc: "A short update on what changed, what improved, and what to tackle next.",
-  },
-];
-
-export const MONTHLY_RHYTHM = {
-  label: "How it works",
-  title: "How Monthly GEO Support Works",
-  intro:
-    "A simple rhythm that keeps your business clear and current — without turning this into a long, overwhelming project.",
-  steps: [
-    {
-      title: "Review",
-      desc: "We check how your site and business information are showing up and what has changed.",
-    },
-    {
-      title: "Prioritize",
-      desc: "We identify the most important issues and opportunities right now.",
-    },
-    {
-      title: "Improve",
-      desc: "We guide or support the updates that can make the biggest difference.",
-    },
-    {
-      title: "Refresh",
-      desc: "You receive a simple monthly summary with progress, priorities, and next steps.",
-    },
-  ],
-} as const;
-
-export const WHY_ONGOING = {
-  label: "Why stay subscribed",
-  title: "Why Ongoing Support Matters",
-  body: [
-    "The first assessment gives you a starting point. But AI visibility and website clarity are not static — your services change, competitors shift, and trust signals need regular attention.",
-    "Monthly support helps you keep improving the areas that affect how clearly your business is understood over time — without guessing what to fix next.",
-  ],
-  support: "Continue only if it makes sense. Cancel anytime.",
-} as const;
-
-export const PRICING_HEADLINE = "Monthly AI Visibility Support";
-
-export const PRICING_INTRO =
-  "Simple month-to-month plans for businesses that want ongoing clarity and improvement — without long contracts. Start with a free assessment, then choose the level of support that fits.";
-
-export const PRICING_SUBLINE = "Month-to-month plans · Cancel anytime · No long contracts";
-
-export const PRICING_REASSURANCE = [
-  "Cancel anytime",
-  "Month-to-month billing",
-  "No long contracts",
-  "Flexible plan options",
-];
-
-export const PRICING_HELPER =
-  "Not sure where to start? Begin with your free assessment — we'll help you choose the right monthly plan based on what we find.";
-
-export const PRICING_DOWNGRADE_NOTE =
-  "Need lighter support? AI Visibility Monitor keeps you covered with a simpler monthly snapshot and priority recommendations — without full hands-on support every month.";
-
-export const PRICING_CUSTOM_NOTE =
-  "Need support across multiple locations, a larger service footprint, or a custom scope?";
-
-export const TIERS = [
-  {
-    name: "AI Visibility Monitor",
-    badge: "Lighter monthly oversight",
-    price: "$199/month",
-    period: "Month-to-month · cancel anytime",
-    tier: "monitor",
-    desc: "A lower-friction monthly option for businesses that want visibility oversight, a simple monthly snapshot, and clear recommendations — without hands-on implementation every month.",
-    includes: [
-      "Monthly visibility snapshot",
-      "Plain-English score refresh",
-      "Top priority recommendations",
-      "Email summary each month",
-      "Clear guidance on what to improve next",
-      "Cancel anytime",
-    ],
-    cta: "Start With Monitor",
-    primary: false,
-  },
-  {
-    name: "AI Visibility Growth",
-    badge: "Recommended · best monthly value",
-    price: "Starting at $499/month",
-    period: "Month-to-month · cancel anytime",
-    tier: "growth",
-    desc: "The clearest path to ongoing improvement. For businesses that want steady monthly progress — practical guidance, content direction, and support turning findings into action.",
-    includes: [
-      "Everything in Monitor",
-      "Monthly visibility review",
-      "Content and page improvement guidance",
-      "Priority refresh recommendations each month",
-      "Practical action summaries you can act on",
-      "Steady progress on clarity, trust, and visibility",
-    ],
-    cta: "Start AI Visibility Growth",
-    primary: true,
-  },
-  {
-    name: "Managed GEO / AI Visibility",
-    badge: "More hands-on monthly support",
-    price: "Starting at $1,250/month",
-    period: "Month-to-month · cancel anytime",
-    tier: "managed",
-    desc: "A higher-touch monthly option for businesses that want more done-with-you and done-for-you support — deeper implementation help and ongoing optimization each month.",
-    includes: [
-      "Everything in Growth",
-      "Hands-on optimization support",
-      "Implementation guidance and prioritization",
-      "Content planning and structure recommendations",
-      "Deeper monthly support on key pages",
-      "Priority roadmap reviews",
-    ],
-    cta: "Request Managed Support",
-    primary: false,
-  },
-];
-
 export const FAQ_ITEMS = [
   {
-    q: "What is Generative Engine Optimization?",
-    a: "GEO is about improving how clearly your business is understood in AI-powered search — so tools like ChatGPT and Google AI Overviews can represent your services accurately. In plain terms: we help your website communicate who you are, what you do, and why customers can trust you.",
+    q: "Is the homepage mockup my finished website?",
+    a: "No. The mockup is a sample homepage concept based on your current site and preferences. It shows a clearer direction — final design, content, and launch details are refined during onboarding.",
   },
   {
-    q: "Is this a contract?",
-    a: "No long-term contract is required. Monthly plans are designed to be flexible. You can continue, downgrade, or cancel based on what makes sense for your business.",
+    q: "What is included in monthly redesign + hosting?",
+    a: "Hosting, redesign direction, ongoing updates, and practical support so your site stays clearer and more modern over time. Higher plans include more hands-on iteration each month.",
+  },
+  {
+    q: "Is this a long contract?",
+    a: "No. Plans are month-to-month. You can continue, change plans, or cancel based on what makes sense for your business.",
   },
   {
     q: "Can I cancel anytime?",
-    a: "Yes. All monthly plans are month-to-month. You can cancel when ongoing support no longer fits your needs — no long-term commitment required.",
+    a: "Yes. All monthly plans are month-to-month with no long-term contract required.",
   },
   {
-    q: "What happens after the free assessment?",
-    a: "You receive a clear, easy-to-read summary of what looks strong, what needs work, and what to improve first. If you want help making those improvements over time, you can choose a monthly support plan — or book a short review call to walk through the findings together.",
+    q: "How is this different from a one-time website project?",
+    a: "A one-time rebuild often goes stale. Monthly redesign + hosting launches a stronger site and keeps improving it — with hosting handled for you.",
   },
   {
-    q: "What does monthly support actually include?",
-    a: "Each month we review how your business is showing up, identify top priorities, and give you practical recommendations for clarity, trust, content, and structure. Growth and Managed plans include more active guidance and support turning those recommendations into action.",
+    q: "Do I still offer GEO / AI visibility?",
+    a: "Yes. GEO assessments and AI visibility support remain available as a secondary offer. They can also be paired with website growth plans when useful.",
   },
   {
-    q: "Do I need the monthly plan if I only want the assessment?",
-    a: "No. The free assessment stands on its own. Monthly support is optional — for businesses that want ongoing help improving clarity and visibility over time.",
+    q: "What happens after I like the mockup?",
+    a: "Choose a monthly plan and we turn the direction into a real website — then host and continue improving it over time.",
   },
   {
-    q: "What if I want a lighter option?",
-    a: "AI Visibility Monitor is designed for that. You get a monthly snapshot, score refresh, and priority recommendations — without the deeper hands-on support included in Growth or Managed.",
-  },
-  {
-    q: "How hands-on is the support?",
-    a: "It depends on the plan. Monitor gives you oversight and clear recommendations. Growth adds recurring guidance and monthly action summaries. Managed includes more hands-on support for structure, content, and implementation.",
-  },
-  {
-    q: "How is this different from traditional SEO?",
-    a: "Traditional SEO focuses on ranking in a list of links. GEO focuses on whether AI systems can understand and represent your business clearly — through content, structure, trust signals, and page clarity. Both matter, but the signals are different.",
-  },
-  {
-    q: "How long does the free assessment take?",
-    a: "The automated review runs within minutes of form submission. Your full written assessment is typically delivered within two to three business days.",
+    q: "How fast is the preview?",
+    a: "The homepage concept is generated right after you submit your URL and preferences — so you can review a sample direction immediately.",
   },
 ];

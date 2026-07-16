@@ -23,12 +23,12 @@ export function normalizeAuditTier(raw: string | null | undefined): PlanTierId |
 
 /** Human-readable labels for admin and intake (includes legacy tiers) */
 export const PLAN_LABELS: Record<string, string> = {
-  monitor: "AI Visibility Monitor — $199/mo · cancel anytime",
-  growth: "AI Visibility Growth — starting at $499/mo · cancel anytime",
-  managed: "Managed GEO / AI Visibility — starting at $1,250/mo · cancel anytime",
-  custom: "Custom GEO engagement",
-  audit: "AI Visibility Monitor — legacy assessment alias",
-  foundation: "Managed GEO / AI Visibility — legacy foundation alias",
+  monitor: "Website Refresh + Hosting — $199/mo · cancel anytime",
+  growth: "Website Growth + Hosting — starting at $499/mo · cancel anytime",
+  managed: "Managed Website + Growth — starting at $1,250/mo · cancel anytime",
+  custom: "Custom website / GEO engagement",
+  audit: "Website Refresh + Hosting — legacy assessment alias",
+  foundation: "Managed Website + Growth — legacy foundation alias",
 };
 
 export function formatPlanLabel(plan: string | null | undefined): string {

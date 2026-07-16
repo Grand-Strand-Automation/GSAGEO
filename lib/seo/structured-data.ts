@@ -14,7 +14,7 @@ export function organizationJsonLd() {
       name: siteConfig.serviceArea,
     },
     description:
-      "GEO and AI visibility assessments for service businesses in Myrtle Beach and the Grand Strand.",
+      "Monthly website redesign and hosting for service businesses, with optional GEO / AI visibility support.",
     sameAs: [siteConfig.mainSiteUrl],
   };
 }
@@ -23,10 +23,10 @@ export function websiteJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "GEO — AI Visibility Assessments",
+    name: "Website Redesign + Hosting — Grand Strand Ally",
     url: getSiteUrl(),
     description:
-      "Practical GEO / AI visibility assessments for service businesses with clear deliverables and next steps.",
+      "See a sample homepage mockup for your business, then launch with monthly redesign + hosting support.",
     publisher: {
       "@type": "Organization",
       name: siteConfig.name,
@@ -39,7 +39,7 @@ export function serviceJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "GEO / AI Visibility Assessment",
+    name: "Monthly Website Redesign + Hosting",
     provider: {
       "@type": "Organization",
       name: siteConfig.name,
@@ -47,8 +47,8 @@ export function serviceJsonLd() {
     },
     areaServed: siteConfig.serviceArea,
     description:
-      "Structured assessment of service page clarity, trust content, internal linking, schema readiness, and AI search visibility gaps.",
-    url: absoluteUrl("/audit"),
+      "Instant homepage mockup preview plus month-to-month website redesign, hosting, and ongoing support for service businesses.",
+    url: absoluteUrl("/"),
   };
 }
 

@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "Grand Strand Ally",
-  tagline: "GEO / AI Visibility",
-  descriptor: "Generative Engine Optimization",
+  tagline: "Website Redesign + Hosting",
+  descriptor: "Monthly website redesign, hosting, and optional GEO support",
   serviceArea: "Grand Strand · Myrtle Beach, SC",
   email: "shawn@gsally.com",
   phone: "843-555-0100",

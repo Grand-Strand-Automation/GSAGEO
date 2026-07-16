@@ -178,3 +178,24 @@ export type ResultsBundle = {
   result: GeoAuditResult | null;
   previews: GeoFixPreview[];
 };
+
+export type GeoMockupLead = {
+  id: string;
+  created_at: string;
+  updated_at: string;
+  website_url: string;
+  business_name: string;
+  business_category: string;
+  preferred_style: string;
+  homepage_goal: string;
+  notes: string | null;
+  email: string | null;
+  lead_source: string;
+  concept_json: Record<string, unknown>;
+  signals_json: Record<string, unknown> | null;
+  access_token_hash: string;
+  result_viewed_at: string | null;
+  subscription_cta_clicked_at: string | null;
+  selected_plan_intent: string | null;
+  status: string;
+};

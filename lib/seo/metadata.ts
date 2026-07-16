@@ -46,9 +46,9 @@ export function buildPageMetadata({
 }
 
 export const HOME_METADATA = buildPageMetadata({
-  title: "Monthly AI Visibility Support for Service Businesses | GEO",
+  title: "Monthly Website Redesign + Hosting | Grand Strand Ally",
   description:
-    "See how clearly your business appears in AI search. Start with a free assessment, then continue with simple month-to-month support for clarity, trust, and visibility — cancel anytime.",
+    "See a sample homepage mockup for your business, then launch with monthly redesign + hosting support — month-to-month, cancel anytime.",
   path: "/",
 });
 
