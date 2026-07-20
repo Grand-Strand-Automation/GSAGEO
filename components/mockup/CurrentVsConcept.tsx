@@ -118,7 +118,11 @@ function CurrentHomepagePane({
   websiteUrl?: string;
 }) {
   const [imgFailed, setImgFailed] = useState(false);
-  const showImage = Boolean(snapshot.screenshotUrl) && !imgFailed;
+  const showImage =
+    Boolean(snapshot.screenshotUrl) &&
+    !imgFailed &&
+    !snapshot.blockedReason &&
+    snapshot.screenshotStatus !== "unavailable";
 
   return (
     <div className="flex flex-col h-full">

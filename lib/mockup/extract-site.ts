@@ -48,6 +48,34 @@ export function isChallengePage(html: string): boolean {
   );
 }
 
+const BLOCKED_REASON =
+  "Site blocked automated access (security / bot protection). Concept will use your business details instead.";
+
+export function hasUsableSiteContent(signals: SiteSignals): boolean {
+  if (signals.blockedReason) return false;
+  if (!signals.fetched) return false;
+  return Boolean(
+    (signals.h1 && signals.h1.length >= 8) ||
+      signals.services.length > 0 ||
+      (signals.metaDesc && signals.metaDesc.length > 40) ||
+      (signals.heroParagraph && signals.heroParagraph.length > 40),
+  );
+}
+
+export function withBlockedReason(
+  signals: SiteSignals,
+  reason: string = BLOCKED_REASON,
+): SiteSignals {
+  return {
+    ...emptySiteSignals(),
+    blockedReason: reason,
+    phone: signals.phone,
+    email: signals.email,
+    locationHint: signals.locationHint,
+    brandCandidates: signals.brandCandidates,
+  };
+}
+
 function stripTags(value: string): string {
   return value
     .replace(/<script[\s\S]*?<\/script>/gi, " ")
@@ -340,8 +368,7 @@ export function parseHomepageHtml(html: string, baseUrl: string): SiteSignals {
       ...emptySiteSignals(),
       fetched: false,
       fetchQuality: "failed",
-      blockedReason:
-        "Site blocked automated access (security / bot protection). Concept will use your business details instead.",
+      blockedReason: BLOCKED_REASON,
     };
   }
 
@@ -411,8 +438,7 @@ export async function extractSiteSignals(websiteUrl: string): Promise<SiteSignal
   if (isChallengePage(result.html)) {
     return {
       ...emptySiteSignals(),
-      blockedReason:
-        "Site blocked automated access (security / bot protection). Concept will use your business details instead.",
+      blockedReason: BLOCKED_REASON,
     };
   }
 

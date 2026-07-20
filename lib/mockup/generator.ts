@@ -515,6 +515,35 @@ export function attachScreenshotToConcept(
   };
 }
 
+/** Mark concept as site-blocked and clear any challenge screenshot */
+export function markConceptSiteBlocked(
+  concept: MockupConcept,
+  reason: string,
+): MockupConcept {
+  return {
+    ...concept,
+    currentSnapshot: {
+      ...concept.currentSnapshot,
+      screenshotUrl: null,
+      screenshotStatus: "unavailable",
+      headline: null,
+      subheadline: null,
+      primaryCta: null,
+      services: [],
+      navItems: [],
+      blockedReason: reason,
+      fetchQuality: "failed",
+    },
+    sourceSignals: {
+      ...concept.sourceSignals,
+      usedLiveSite: false,
+      fetchQuality: "failed",
+      siteBlocked: true,
+      detectedHeadline: null,
+    },
+  };
+}
+
 export function createMockupAccessToken(): { token: string; tokenHash: string } {
   const token = randomBytes(24).toString("hex");
   const tokenHash = hashMockupToken(token);

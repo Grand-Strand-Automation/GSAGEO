@@ -40,19 +40,50 @@ export function getOpenAiModel(): string {
   return process.env.OPENAI_MODEL?.trim() || "gpt-4o-mini";
 }
 
-const SYSTEM_PROMPT = `You are a senior web designer writing homepage copy for local and service businesses.
+const SYSTEM_PROMPT = `You are a senior conversion copywriter for local service-business websites.
 
 Return ONLY valid JSON matching the requested schema. No markdown fences.
 
-Rules:
-- This is a sample homepage concept / preview — not a finished website.
-- Write customer-facing copy only. Do NOT use words like "mockup", "redesign", "AI", "concept", or "sample" in headline, subheadline, CTAs, services, or trustLine.
-- Prefer the business's real language when site content is provided.
-- If site content is missing or blocked, invent credible, specific copy from the business name, category, goal, style, and notes — not generic filler.
-- Headline should be clear and conversion-oriented for the stated homepage goal.
-- Services should feel specific to this business type (e.g. marina / marine services if that fits the name).
-- improvementNotes are for the business owner reviewing the preview: plain English about what is clearer vs a typical outdated site.
-- Keep tone premium, practical, and plain-English.`;
+Hard rules:
+- Customer-facing fields only. Never use: mockup, redesign, AI, concept, sample, preview, template.
+- Sound like a real local business website — specific, concrete, trustworthy.
+- FORBIDDEN vague slogans: "Elevate your…", "Experience the…", "Unlock…", "Discover excellence", "Your trusted partner for…", "Welcome to the future of…".
+- Include the business name in the headline OR subheadline.
+- Services must be concrete offerings (what someone would buy/book), each with a practical 1-sentence description — not fluff categories.
+- Match the homepage goal: more calls → phone-forward CTA; more quotes → quote CTA; credibility → trust/proof; explain services → clear service framing; modernize → clearer modern messaging without buzzwords.
+- If live site content is provided, reuse and clarify THAT language.
+- If site content is blocked/missing, infer from business name + URL + category + notes + any location hints. Example: "coastalmarinemb.com" / "Coastal Marine" → Myrtle Beach area marine / boat / marina services.
+- improvementNotes speak to the owner: what is clearer about this homepage direction vs a typical outdated site.
+- Tone: premium, plain English, practical.`;
+
+/** Light domain/name hints so blocked sites still get specific copy */
+export function inferBusinessHints(input: MockupRequestInput): string[] {
+  const hints: string[] = [];
+  const blob = `${input.business_name} ${input.website_url} ${input.notes ?? ""}`.toLowerCase();
+
+  if (/marine|marina|boat|yacht|dock|haul/.test(blob)) {
+    hints.push("Likely marine / boat / marina services");
+  }
+  if (/\bmb\b|myrtle|grand strand|conway|surfside|murrells|pawleys|marinemb|mb\.com/.test(blob)) {
+    hints.push("Likely Myrtle Beach / Grand Strand local market");
+  }
+  if (/plumb/.test(blob)) hints.push("Likely plumbing services");
+  if (/hvac|heat|air cond|furnace/.test(blob)) hints.push("Likely HVAC services");
+  if (/law|legal|attorney|lawyer/.test(blob)) hints.push("Likely legal services");
+  if (/dental|dentist|ortho/.test(blob)) hints.push("Likely dental / healthcare");
+  if (/roof/.test(blob)) hints.push("Likely roofing");
+
+  try {
+    const host = new URL(
+      /^https?:\/\//i.test(input.website_url) ? input.website_url : `https://${input.website_url}`,
+    ).hostname.replace(/^www\./, "");
+    hints.push(`Domain: ${host}`);
+  } catch {
+    /* ignore */
+  }
+
+  return hints;
+}
 
 export function buildOpenAiBrief(
   input: MockupRequestInput,
@@ -67,8 +98,10 @@ export function buildOpenAiBrief(
       Boolean(signals.metaDesc) ||
       Boolean(signals.heroParagraph));
 
+  const hints = inferBusinessHints(input);
+
   const lines: string[] = [
-    "Create a homepage redesign concept for this business.",
+    "Write homepage copy for this business as if briefing a designer who will build a clearer first impression.",
     "",
     `Website URL: ${input.website_url}`,
     `Business name: ${input.business_name.trim()}`,
@@ -79,12 +112,18 @@ export function buildOpenAiBrief(
     "",
   ];
 
+  if (hints.length) {
+    lines.push("Inferred hints from name/URL/notes:");
+    for (const h of hints) lines.push(`- ${h}`);
+    lines.push("");
+  }
+
   if (blocked) {
-    lines.push(`Site extraction status: blocked`);
+    lines.push(`Site extraction status: BLOCKED (bot / Cloudflare protection)`);
     lines.push(`Block reason: ${signals.blockedReason}`);
-    lines.push(`Extracted content: none available`);
+    lines.push(`Extracted homepage content: NONE`);
     lines.push(
-      "Write a strong concept from the business details above as if briefing a designer who cannot see the live site.",
+      "IMPORTANT: Do not write generic corporate slogans. Invent credible, specific services and messaging this exact business would put on a homepage in their market.",
     );
   } else if (hasContent) {
     lines.push(`Site extraction status: ${signals.fetchQuality}`);
@@ -104,27 +143,29 @@ export function buildOpenAiBrief(
       lines.push("Detected services: (none)");
     }
     lines.push(
-      "Reuse and clarify this business's real language where it is strong; improve clarity and CTA strength.",
+      "Reuse and clarify this business's real language; strengthen CTA and scanability.",
     );
   } else {
     lines.push(`Site extraction status: limited / empty`);
     lines.push(`Extracted content: little or none`);
-    lines.push("Write a strong concept from the business details above.");
+    lines.push(
+      "Write specific copy from business name, URL hints, category, goal, and notes — not generic filler.",
+    );
   }
 
   lines.push("");
   lines.push("Return JSON with exactly these keys:");
   lines.push(
     JSON.stringify({
-      headline: "string",
-      subheadline: "string",
-      primaryCta: "string",
+      headline: "string — specific, includes or clearly names the business offer",
+      subheadline: "string — practical supporting sentence",
+      primaryCta: "string — action label",
       secondaryCta: "string",
-      navItems: ["string"],
-      services: [{ title: "string", desc: "string" }],
-      trustLine: "string",
-      proofPoints: ["string"],
-      improvementNotes: ["string"],
+      navItems: ["3-5 short labels"],
+      services: [{ title: "concrete offering", desc: "one practical sentence" }],
+      trustLine: "string — location/phone/trust cue",
+      proofPoints: ["short chips"],
+      improvementNotes: ["owner-facing notes about clarity improvements"],
     }),
   );
 
@@ -191,7 +232,7 @@ export async function generateConceptFieldsWithOpenAi(
       },
       body: JSON.stringify({
         model,
-        temperature: 0.7,
+        temperature: 0.55,
         response_format: { type: "json_object" },
         messages: [
           { role: "system", content: SYSTEM_PROMPT },

@@ -4,10 +4,23 @@ export type ScreenshotResult = {
   ok: boolean;
   imageUrl: string | null;
   provider: "microlink";
+  /** True when Microlink captured a bot/Cloudflare challenge interstitial */
+  isChallengePage: boolean;
+  pageTitle: string | null;
   error?: string;
 };
 
 const SCREENSHOT_TIMEOUT_MS = 12_000;
+
+export function looksLikeChallengeMeta(title: string | null | undefined, description?: string | null): boolean {
+  const blob = `${title ?? ""} ${description ?? ""}`.toLowerCase();
+  if (!blob.trim()) return false;
+  return (
+    /security verification|just a moment|attention required|checking your browser|cloudflare|enable javascript and cookies|verify you are (a )?human|bot protection|performing security/i.test(
+      blob,
+    )
+  );
+}
 
 /**
  * Capture a homepage screenshot via Microlink.
@@ -21,7 +34,7 @@ export async function captureHomepageScreenshot(
   const endpoint = new URL("https://api.microlink.io");
   endpoint.searchParams.set("url", url);
   endpoint.searchParams.set("screenshot", "true");
-  endpoint.searchParams.set("meta", "false");
+  endpoint.searchParams.set("meta", "true");
 
   const apiKey = process.env.MICROLINK_API_KEY?.trim();
   const headers: HeadersInit = {
@@ -46,15 +59,25 @@ export async function captureHomepageScreenshot(
         ok: false,
         imageUrl: null,
         provider: "microlink",
+        isChallengePage: false,
+        pageTitle: null,
         error: `Microlink HTTP ${resp.status}`,
       };
     }
 
     const json = (await resp.json()) as {
       status?: string;
-      data?: { screenshot?: { url?: string } | string };
+      data?: {
+        title?: string;
+        description?: string;
+        screenshot?: { url?: string } | string;
+      };
       message?: string;
     };
+
+    const pageTitle = json.data?.title?.trim() || null;
+    const description = json.data?.description?.trim() || null;
+    const isChallengePage = looksLikeChallengeMeta(pageTitle, description);
 
     const shot = json.data?.screenshot;
     const imageUrl =
@@ -64,14 +87,33 @@ export async function captureHomepageScreenshot(
           ? shot.url
           : null;
 
-    if (imageUrl) {
-      return { ok: true, imageUrl, provider: "microlink" };
+    if (imageUrl && !isChallengePage) {
+      return {
+        ok: true,
+        imageUrl,
+        provider: "microlink",
+        isChallengePage: false,
+        pageTitle,
+      };
+    }
+
+    if (isChallengePage) {
+      return {
+        ok: false,
+        imageUrl: null,
+        provider: "microlink",
+        isChallengePage: true,
+        pageTitle,
+        error: "Screenshot is a security challenge page, not the real homepage",
+      };
     }
 
     return {
       ok: false,
       imageUrl: null,
       provider: "microlink",
+      isChallengePage: false,
+      pageTitle,
       error: json.message || "No screenshot URL in Microlink response",
     };
   } catch (err) {
@@ -80,6 +122,8 @@ export async function captureHomepageScreenshot(
       ok: false,
       imageUrl: null,
       provider: "microlink",
+      isChallengePage: false,
+      pageTitle: null,
       error: message,
     };
   } finally {

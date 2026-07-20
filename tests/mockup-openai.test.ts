@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { afterEach, describe, it, mock } from "node:test";
 import {
   buildOpenAiBrief,
+  inferBusinessHints,
   mergeLlmFieldsIntoConcept,
   generateConceptFieldsWithOpenAi,
 } from "../lib/mockup/openai-concept";
@@ -54,9 +55,23 @@ describe("OpenAI brief builder", () => {
     };
     const brief = buildOpenAiBrief(input, signals);
     assert.match(brief, /Coastal Marine/);
-    assert.match(brief, /blocked/i);
+    assert.match(brief, /BLOCKED/i);
     assert.match(brief, /Boat service/);
+    assert.match(brief, /marine|marina|Myrtle/i);
     assert.match(brief, /Modernize/i);
+  });
+
+  it("infers marine + Myrtle Beach hints from coastalmarinemb.com", () => {
+    const input = mockupRequestSchema.parse({
+      website_url: "https://coastalmarinemb.com",
+      business_name: "Coastal Marine",
+      business_category: "professional_services",
+      preferred_style: "clean_modern",
+      homepage_goal: "modernize",
+    });
+    const hints = inferBusinessHints(input).join(" ");
+    assert.match(hints, /marine|marina|boat/i);
+    assert.match(hints, /Myrtle|Grand Strand/i);
   });
 
   it("includes extracted services when available", () => {
