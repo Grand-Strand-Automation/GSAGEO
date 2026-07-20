@@ -34,9 +34,12 @@ Optional:
 ```env
 RESEND_API_KEY=
 RESEND_FROM_EMAIL=Grand Strand Ally <notifications@gsally.com>
+MICROLINK_API_KEY=
 SENTRY_DSN=
 POSTHOG_KEY=
 ```
+
+`MICROLINK_API_KEY` raises screenshot capture limits for the mockup “current vs concept” side-by-side. Without it, Microlink free tier is used and failures fall back to a text summary of the current site.
 
 ## 4. Production branch
 

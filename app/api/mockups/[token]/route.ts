@@ -17,7 +17,7 @@ export async function GET(_request: Request, { params }: Params) {
     const { data, error } = await supabase
       .from("geo_mockup_leads")
       .select(
-        "id, website_url, business_name, business_category, preferred_style, homepage_goal, notes, concept_json, created_at, result_viewed_at",
+        "id, website_url, business_name, business_category, preferred_style, homepage_goal, notes, concept_json, signals_json, screenshot_url, screenshot_status, created_at, result_viewed_at",
       )
       .eq("access_token_hash", tokenHash)
       .maybeSingle();
@@ -33,6 +33,16 @@ export async function GET(_request: Request, { params }: Params) {
         .eq("id", data.id);
     }
 
+    const concept = data.concept_json as MockupConcept;
+    // Prefer DB screenshot columns if concept snapshot is missing (older rows / partial saves)
+    if (data.screenshot_url && concept?.currentSnapshot) {
+      concept.currentSnapshot = {
+        ...concept.currentSnapshot,
+        screenshotUrl: data.screenshot_url,
+        screenshotStatus: (data.screenshot_status as "ready" | "unavailable" | "pending") || "ready",
+      };
+    }
+
     return NextResponse.json({
       ok: true,
       mockup: {
@@ -44,7 +54,10 @@ export async function GET(_request: Request, { params }: Params) {
         homepage_goal: data.homepage_goal,
         notes: data.notes,
         created_at: data.created_at,
-        concept: data.concept_json as MockupConcept,
+        screenshot_url: data.screenshot_url ?? concept?.currentSnapshot?.screenshotUrl ?? null,
+        screenshot_status: data.screenshot_status ?? concept?.currentSnapshot?.screenshotStatus ?? null,
+        signals: data.signals_json,
+        concept,
       },
     });
   } catch (err) {

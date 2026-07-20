@@ -1,23 +1,18 @@
 import { createHash, randomBytes } from "crypto";
-import { extractHtmlData } from "@/lib/audit/content-extraction";
-import { fetchWithTimeout, normalizeAuditUrl } from "@/lib/audit/crawl-checks";
 import {
   categoryLabel,
   goalLabel,
   styleLabel,
   type MockupRequestInput,
 } from "@/lib/validation/mockup";
+import {
+  extractSiteSignals,
+  type FetchQuality,
+  type SiteSignals,
+} from "@/lib/mockup/extract-site";
 
-export type SiteSignals = {
-  fetched: boolean;
-  title: string;
-  h1: string;
-  metaDesc: string;
-  ogTitle: string;
-  phone: string | null;
-  serviceHints: string[];
-  ctaHints: string[];
-};
+export type { SiteSignals, FetchQuality } from "@/lib/mockup/extract-site";
+export { extractSiteSignals, parseHomepageHtml, emptySiteSignals } from "@/lib/mockup/extract-site";
 
 export type MockupTheme = {
   key: string;
@@ -29,6 +24,18 @@ export type MockupTheme = {
   accentSoft: string;
   heroGradient: string;
   buttonText: string;
+};
+
+export type CurrentSnapshot = {
+  screenshotUrl: string | null;
+  screenshotStatus: "ready" | "unavailable" | "pending";
+  headline: string | null;
+  subheadline: string | null;
+  primaryCta: string | null;
+  services: { title: string; desc: string }[];
+  phone: string | null;
+  navItems: string[];
+  fetchQuality: FetchQuality;
 };
 
 export type MockupConcept = {
@@ -49,10 +56,16 @@ export type MockupConcept = {
   footerNote: string;
   improvementNotes: string[];
   theme: MockupTheme;
+  logoUrl: string | null;
+  phone: string | null;
+  currentSnapshot: CurrentSnapshot;
   sourceSignals: {
     usedLiveSite: boolean;
+    fetchQuality: FetchQuality;
     detectedHeadline: string | null;
     detectedTitle: string | null;
+    usedRealServices: boolean;
+    usedRealCta: boolean;
   };
   disclaimer: string;
 };
@@ -152,91 +165,70 @@ const THEMES: Record<string, MockupTheme> = {
   },
 };
 
-function stripTags(value: string): string {
-  return value.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
-}
-
-function extractPhones(html: string): string | null {
-  const match = html.match(/(\+?1[-.\s]?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4})/);
-  return match?.[1]?.trim() ?? null;
-}
-
-function extractServiceHints(html: string): string[] {
-  const headings = [...html.matchAll(/<h[2-3][^>]*>([\s\S]{2,80}?)<\/h[2-3]>/gi)]
-    .map((m) => stripTags(m[1] ?? ""))
-    .filter((t) => t.length >= 3 && t.length <= 48)
-    .filter((t) => !/welcome|home|about|contact|blog|menu/i.test(t));
-
-  const unique = [...new Set(headings)];
-  return unique.slice(0, 4);
-}
-
-function extractCtaHints(html: string): string[] {
-  const texts = [...html.matchAll(/<(?:a|button)[^>]*>([\s\S]{2,60}?)<\/(?:a|button)>/gi)]
-    .map((m) => stripTags(m[1] ?? ""))
-    .filter((t) =>
-      /call|quote|contact|book|schedule|get started|request|free|learn more|get a/i.test(t),
-    )
-    .filter((t) => t.length <= 40);
-  return [...new Set(texts)].slice(0, 4);
-}
-
-export async function extractSiteSignals(websiteUrl: string): Promise<SiteSignals> {
-  const url = normalizeAuditUrl(websiteUrl);
-  const result = await fetchWithTimeout(url);
-  if (!result.ok || !result.html) {
-    return {
-      fetched: false,
-      title: "",
-      h1: "",
-      metaDesc: "",
-      ogTitle: "",
-      phone: null,
-      serviceHints: [],
-      ctaHints: [],
-    };
-  }
-
-  const data = extractHtmlData(result.html);
+function softAccentOverride(theme: MockupTheme, themeColor: string | null): MockupTheme {
+  if (!themeColor || !/^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(themeColor)) return theme;
+  // Keep style family but borrow site accent for CTAs/chips
   return {
-    fetched: true,
-    title: stripTags(data.title),
-    h1: stripTags(data.h1),
-    metaDesc: stripTags(data.metaDesc),
-    ogTitle: stripTags(data.ogTitle),
-    phone: extractPhones(result.html),
-    serviceHints: extractServiceHints(result.html),
-    ctaHints: extractCtaHints(result.html),
+    ...theme,
+    accent: themeColor,
+    accentSoft: `${themeColor}18`,
   };
 }
 
-function buildHeadline(
-  input: MockupRequestInput,
-  signals: SiteSignals,
-): string {
+function polishHeadline(raw: string, businessName: string, goal: string): string {
+  const cleaned = raw.replace(/\s+/g, " ").trim();
+  if (!cleaned) return "";
+
+  // If already clear and reasonably short, keep close to original
+  if (cleaned.length >= 18 && cleaned.length <= 90 && !/lorem|untitled|home$/i.test(cleaned)) {
+    if (goal === "more_calls" && !/call|phone|reach|contact/i.test(cleaned)) {
+      return `${cleaned} — call ${businessName} today.`;
+    }
+    if (goal === "more_quotes" && !/quote|estimate|pricing/i.test(cleaned)) {
+      return `${cleaned} Get a clear quote from ${businessName}.`;
+    }
+    return cleaned;
+  }
+
+  if (cleaned.length > 90) {
+    return `${cleaned.slice(0, 87)}…`;
+  }
+  return cleaned;
+}
+
+function buildHeadline(input: MockupRequestInput, signals: SiteSignals): string {
   const name = input.business_name.trim();
+  const siteHeadline = signals.h1 || signals.ogTitle || "";
+  const polished = polishHeadline(siteHeadline, name, input.homepage_goal);
+  if (polished && polished.length >= 12) return polished;
+
   switch (input.homepage_goal) {
     case "more_calls":
       return `Need ${categoryLabel(input.business_category).toLowerCase()} you can trust? ${name} is ready to help.`;
     case "more_quotes":
       return `Get a clear quote from ${name} — without the runaround.`;
     case "look_credible":
-      return `${name}: professional ${categoryLabel(input.business_category).toLowerCase()} with a clearer first impression.`;
+      return `${name}: clearer messaging and a more professional first impression.`;
     case "explain_services":
       return `Clear services. Straightforward next steps. That's ${name}.`;
     case "modernize":
     default:
-      if (signals.h1 && signals.h1.length > 12 && signals.h1.length < 90) {
-        return `A clearer take on “${signals.h1}” — redesigned for today's customers.`;
-      }
       return `A clearer, more modern homepage for ${name}.`;
   }
 }
 
 function buildSubheadline(input: MockupRequestInput, signals: SiteSignals): string {
-  if (signals.metaDesc && signals.metaDesc.length > 40) {
-    return `${signals.metaDesc.slice(0, 160)}${signals.metaDesc.length > 160 ? "…" : ""}`;
+  const fromSite =
+    (signals.heroParagraph && signals.heroParagraph.length > 40
+      ? signals.heroParagraph
+      : null) ||
+    (signals.metaDesc && signals.metaDesc.length > 40 ? signals.metaDesc : null);
+
+  if (fromSite) {
+    const trimmed = fromSite.length > 180 ? `${fromSite.slice(0, 177)}…` : fromSite;
+    return trimmed;
   }
+
   switch (input.homepage_goal) {
     case "more_calls":
       return "Make it easy for visitors to understand what you do and call with confidence.";
@@ -251,49 +243,133 @@ function buildSubheadline(input: MockupRequestInput, signals: SiteSignals): stri
   }
 }
 
-function buildPrimaryCta(input: MockupRequestInput, signals: SiteSignals): string {
-  if (signals.ctaHints[0]) return signals.ctaHints[0];
+function buildPrimaryCta(input: MockupRequestInput, signals: SiteSignals): {
+  cta: string;
+  usedReal: boolean;
+} {
+  if (signals.ctaHints[0]) {
+    return { cta: signals.ctaHints[0], usedReal: true };
+  }
   switch (input.homepage_goal) {
     case "more_calls":
-      return "Call Us Today";
+      return { cta: signals.phone ? `Call ${signals.phone}` : "Call Us Today", usedReal: false };
     case "more_quotes":
-      return "Request a Quote";
+      return { cta: "Request a Quote", usedReal: false };
     case "look_credible":
-      return "Talk With Our Team";
+      return { cta: "Talk With Our Team", usedReal: false };
     case "explain_services":
-      return "Explore Our Services";
+      return { cta: "Explore Our Services", usedReal: false };
     default:
-      return "Get Started";
+      return { cta: "Get Started", usedReal: false };
   }
+}
+
+function buildSecondaryCta(signals: SiteSignals): string {
+  const second = signals.ctaHints[1];
+  if (second && second.toLowerCase() !== signals.ctaHints[0]?.toLowerCase()) {
+    return second;
+  }
+  if (signals.navItems.some((n) => /service/i.test(n))) return "View Services";
+  if (signals.navItems.some((n) => /about/i.test(n))) return "About Us";
+  return "See How It Works";
 }
 
 function buildServices(
   input: MockupRequestInput,
   signals: SiteSignals,
-): { title: string; desc: string }[] {
-  if (signals.serviceHints.length >= 3) {
-    return signals.serviceHints.slice(0, 3).map((title) => ({
-      title,
-      desc: "Presented more clearly so visitors understand the value right away.",
-    }));
+): { services: { title: string; desc: string }[]; usedReal: boolean } {
+  if (signals.services.length >= 1) {
+    const list = signals.services.slice(0, 3);
+    // Pad with remaining category items if only 1–2 found, but keep real ones first
+    if (list.length < 3) {
+      const fallbacks = SERVICE_FALLBACKS[input.business_category] ?? SERVICE_FALLBACKS.other;
+      for (const fb of fallbacks) {
+        if (list.length >= 3) break;
+        if (!list.some((s) => s.title.toLowerCase() === fb.title.toLowerCase())) {
+          list.push(fb);
+        }
+      }
+    }
+    return { services: list.slice(0, 3), usedReal: true };
   }
-  return SERVICE_FALLBACKS[input.business_category] ?? SERVICE_FALLBACKS.other;
+
+  // Legacy serviceHints only
+  if (signals.serviceHints.length >= 2) {
+    return {
+      services: signals.serviceHints.slice(0, 3).map((title) => ({
+        title,
+        desc: "Presented more clearly so visitors understand the value right away.",
+      })),
+      usedReal: true,
+    };
+  }
+
+  return {
+    services: SERVICE_FALLBACKS[input.business_category] ?? SERVICE_FALLBACKS.other,
+    usedReal: false,
+  };
+}
+
+function buildNavItems(signals: SiteSignals): string[] {
+  if (signals.navItems.length >= 3) {
+    return signals.navItems.slice(0, 5);
+  }
+  const defaults = ["Services", "About", "Reviews", "Contact"];
+  if (signals.navItems.length === 0) return defaults;
+  const merged = [...signals.navItems];
+  for (const d of defaults) {
+    if (merged.length >= 4) break;
+    if (!merged.some((n) => n.toLowerCase() === d.toLowerCase())) merged.push(d);
+  }
+  return merged.slice(0, 5);
+}
+
+function buildTrustLine(signals: SiteSignals, businessName: string): string {
+  const parts: string[] = [];
+  if (signals.locationHint) parts.push(`Serving ${signals.locationHint}`);
+  if (signals.phone) parts.push(`Call ${signals.phone}`);
+  if (!parts.length && signals.email) parts.push(signals.email);
+  if (!parts.length) {
+    return `${businessName} · Clear communication · Easy next steps`;
+  }
+  return parts.join(" · ");
 }
 
 function buildImprovementNotes(input: MockupRequestInput, signals: SiteSignals): string[] {
-  const notes = [
-    "Clearer headline that states what you do and who you help",
-    "Stronger primary CTA placement above the fold",
-    "Cleaner service layout that is easier to scan",
-    "More trustworthy visual structure and spacing",
-    "A more modern first impression without clutter",
-  ];
+  const notes: string[] = [];
 
-  if (!signals.fetched) {
-    notes.unshift("Concept built from your preferences — live site signals were limited");
-  } else if (!signals.h1) {
-    notes.unshift("Stronger homepage headline than the current page structure suggested");
+  if (!signals.fetched || signals.fetchQuality === "failed") {
+    notes.push("Concept built from your preferences — live site signals were limited");
+  } else if (signals.fetchQuality === "limited") {
+    notes.push("Some live-site details were limited, so preferences filled the gaps");
   }
+
+  if (signals.fetched) {
+    if (!signals.h1 || signals.h1.length < 12) {
+      notes.push("Stronger homepage headline than the current page suggested");
+    } else {
+      notes.push(`Clearer presentation of your current message: “${signals.h1.slice(0, 48)}${signals.h1.length > 48 ? "…" : ""}”`);
+    }
+
+    if (signals.ctaHints.length === 0) {
+      notes.push("Added a clearer primary call to action above the fold");
+    } else {
+      notes.push("Stronger CTA placement while keeping language close to your site");
+    }
+
+    if (signals.services.length === 0) {
+      notes.push("Cleaner service layout so visitors can scan what you offer");
+    } else {
+      notes.push("Your real services reorganized into a cleaner, easier-to-scan layout");
+    }
+  } else {
+    notes.push("Clearer headline that states what you do and who you help");
+    notes.push("Stronger primary CTA placement above the fold");
+    notes.push("Cleaner service layout that is easier to scan");
+  }
+
+  notes.push("More trustworthy visual structure and spacing");
+  notes.push("A more modern first impression without clutter");
 
   if (input.homepage_goal === "more_calls") {
     notes.push("Call-focused CTA language to reduce hesitation");
@@ -305,44 +381,70 @@ function buildImprovementNotes(input: MockupRequestInput, signals: SiteSignals):
     notes.push("Your notes were factored into the sample direction");
   }
 
-  return notes.slice(0, 6);
+  return [...new Set(notes)].slice(0, 6);
+}
+
+function buildCurrentSnapshot(
+  signals: SiteSignals,
+  screenshotUrl: string | null = null,
+): CurrentSnapshot {
+  return {
+    screenshotUrl,
+    screenshotStatus: screenshotUrl ? "ready" : "unavailable",
+    headline: signals.h1 || signals.ogTitle || signals.title || null,
+    subheadline: signals.heroParagraph || signals.metaDesc || null,
+    primaryCta: signals.ctaHints[0] ?? null,
+    services: signals.services.slice(0, 4),
+    phone: signals.phone,
+    navItems: signals.navItems.slice(0, 6),
+    fetchQuality: signals.fetchQuality,
+  };
 }
 
 export function buildMockupConcept(
   input: MockupRequestInput,
   signals: SiteSignals,
+  options?: { screenshotUrl?: string | null },
 ): MockupConcept {
-  const theme = THEMES[input.preferred_style] ?? THEMES.clean_modern;
-  const services = buildServices(input, signals);
+  const baseTheme = THEMES[input.preferred_style] ?? THEMES.clean_modern;
+  const theme = softAccentOverride(baseTheme, signals.themeColor);
+  const { services, usedReal: usedRealServices } = buildServices(input, signals);
+  const { cta: primaryCta, usedReal: usedRealCta } = buildPrimaryCta(input, signals);
+  const businessName = input.business_name.trim();
+  const screenshotUrl = options?.screenshotUrl ?? null;
 
   return {
-    version: "1.0",
+    version: "2.0",
     label: "Sample homepage concept",
-    businessName: input.business_name.trim(),
+    businessName,
     categoryLabel: categoryLabel(input.business_category),
     styleLabel: styleLabel(input.preferred_style),
     goalLabel: goalLabel(input.homepage_goal),
     headline: buildHeadline(input, signals),
     subheadline: buildSubheadline(input, signals),
-    primaryCta: buildPrimaryCta(input, signals),
-    secondaryCta: "See How It Works",
-    navItems: ["Services", "About", "Reviews", "Contact"],
+    primaryCta,
+    secondaryCta: buildSecondaryCta(signals),
+    navItems: buildNavItems(signals),
     services,
-    trustLine: signals.phone
-      ? `Trusted local service · Call ${signals.phone}`
-      : "Trusted service · Clear communication · Easy next steps",
+    trustLine: buildTrustLine(signals, businessName),
     proofPoints: [
-      "Clearer first impression",
-      "Stronger call to action",
-      "Easier-to-scan services",
+      usedRealServices ? "Built from your real services" : "Clearer first impression",
+      usedRealCta ? "Your CTA language, stronger placement" : "Stronger call to action",
+      "Easier-to-scan layout",
     ],
-    footerNote: `${input.business_name.trim()} · Sample redesign direction`,
+    footerNote: `${businessName} · Sample redesign direction`,
     improvementNotes: buildImprovementNotes(input, signals),
     theme,
+    logoUrl: signals.logoUrl,
+    phone: signals.phone,
+    currentSnapshot: buildCurrentSnapshot(signals, screenshotUrl),
     sourceSignals: {
       usedLiveSite: signals.fetched,
+      fetchQuality: signals.fetchQuality,
       detectedHeadline: signals.h1 || null,
       detectedTitle: signals.title || null,
+      usedRealServices,
+      usedRealCta,
     },
     disclaimer:
       "Preview only — sample direction based on your site and preferences. Final design and launch details are refined during onboarding.",
@@ -356,6 +458,20 @@ export async function generateMockupConcept(input: MockupRequestInput): Promise<
   const signals = await extractSiteSignals(input.website_url);
   const concept = buildMockupConcept(input, signals);
   return { concept, signals };
+}
+
+export function attachScreenshotToConcept(
+  concept: MockupConcept,
+  screenshotUrl: string | null,
+): MockupConcept {
+  return {
+    ...concept,
+    currentSnapshot: {
+      ...concept.currentSnapshot,
+      screenshotUrl,
+      screenshotStatus: screenshotUrl ? "ready" : "unavailable",
+    },
+  };
 }
 
 export function createMockupAccessToken(): { token: string; tokenHash: string } {

@@ -2,9 +2,11 @@ import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { mockupRequestSchema } from "@/lib/validation/mockup";
 import {
+  attachScreenshotToConcept,
   createMockupAccessToken,
   generateMockupConcept,
 } from "@/lib/mockup/generator";
+import { captureHomepageScreenshot } from "@/lib/mockup/screenshot";
 
 export async function POST(request: Request) {
   try {
@@ -23,7 +25,15 @@ export async function POST(request: Request) {
     }
 
     const input = parsed.data;
-    const { concept, signals } = await generateMockupConcept(input);
+
+    const [{ concept: baseConcept, signals }, shot] = await Promise.all([
+      generateMockupConcept(input),
+      captureHomepageScreenshot(input.website_url),
+    ]);
+
+    const screenshotUrl = shot.ok ? shot.imageUrl : null;
+    const screenshotStatus = screenshotUrl ? "ready" : "unavailable";
+    const concept = attachScreenshotToConcept(baseConcept, screenshotUrl);
     const { token, tokenHash } = createMockupAccessToken();
 
     const supabase = createAdminClient();
@@ -42,19 +52,20 @@ export async function POST(request: Request) {
         signals_json: signals,
         access_token_hash: tokenHash,
         status: "previewed",
+        screenshot_url: screenshotUrl,
+        screenshot_status: screenshotStatus,
       })
       .select("id")
       .single();
 
     if (error || !data) {
       console.error("[mockups] Insert failed:", error);
-      // Graceful fallback: still return concept even if DB insert fails
-      // (e.g. migration not applied yet). Client can render via sessionStorage.
       return NextResponse.json({
         ok: true,
         mockupId: null,
         token,
         concept,
+        screenshotUrl,
         persisted: false,
         warning: "Preview generated but could not be saved for follow-up yet.",
       });
@@ -65,6 +76,7 @@ export async function POST(request: Request) {
       mockupId: data.id,
       token,
       concept,
+      screenshotUrl,
       persisted: true,
     });
   } catch (err) {

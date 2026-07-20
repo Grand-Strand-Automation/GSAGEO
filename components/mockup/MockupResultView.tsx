@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { CheckCircle2, Loader2 } from "lucide-react";
-import { HomepageMockupPreview } from "@/components/mockup/HomepageMockupPreview";
+import { CurrentVsConcept } from "@/components/mockup/CurrentVsConcept";
 import { HeroOverlay } from "@/components/HeroOverlay";
 import { ButtonLink } from "@/components/ui/Button";
 import type { MockupConcept } from "@/lib/mockup/generator";
@@ -13,6 +13,7 @@ type MockupPayload = {
   concept: MockupConcept;
   website_url?: string;
   business_name?: string;
+  screenshot_url?: string | null;
 };
 
 export function MockupResultView({ token }: { token: string }) {
@@ -43,6 +44,7 @@ export function MockupResultView({ token }: { token: string }) {
             concept: json.mockup.concept,
             website_url: json.mockup.website_url,
             business_name: json.mockup.business_name,
+            screenshot_url: json.mockup.screenshot_url ?? null,
           });
           setError("");
         } else if (!cached) {
@@ -102,6 +104,7 @@ export function MockupResultView({ token }: { token: string }) {
   }
 
   const { concept } = payload;
+  const usedLive = concept.sourceSignals?.usedLiveSite;
 
   return (
     <div className="flex flex-col">
@@ -116,8 +119,9 @@ export function MockupResultView({ token }: { token: string }) {
             Here&apos;s a sample homepage direction for {concept.businessName}
           </h1>
           <p className="text-lg text-white/70 leading-relaxed max-w-2xl mb-4">
-            Based on your current site and preferences, here is a concept for a clearer, more modern
-            homepage. This is a preview mockup — not a finished website.
+            {usedLive
+              ? "Built from your current site content and preferences — a clearer, more modern homepage concept you can compare side by side."
+              : "Based on your preferences, here is a concept for a clearer, more modern homepage. This is a preview mockup — not a finished website."}
           </p>
           <p className="text-sm text-white/50 leading-relaxed max-w-2xl">{MOCKUP_EXPECTATION}</p>
         </div>
@@ -125,24 +129,31 @@ export function MockupResultView({ token }: { token: string }) {
 
       <section className="section-pad bg-brand-cream">
         <div className="container px-4 md:px-6 max-w-6xl">
-          <div className="grid lg:grid-cols-[1fr_320px] gap-8 items-start">
-            <HomepageMockupPreview concept={concept} />
+          <CurrentVsConcept concept={concept} websiteUrl={payload.website_url} />
+
+          <div className="mt-10 grid lg:grid-cols-[1fr_320px] gap-8 items-start">
+            <div className="card-brand p-6 md:p-7 shadow-card">
+              <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-brand-blue mb-3">
+                What improved in this concept
+              </p>
+              <ul className="grid sm:grid-cols-2 gap-3">
+                {concept.improvementNotes.map((note) => (
+                  <li key={note} className="flex gap-2.5 text-sm text-brand-muted leading-relaxed">
+                    <CheckCircle2 size={15} className="text-brand-blue shrink-0 mt-0.5" />
+                    {note}
+                  </li>
+                ))}
+              </ul>
+              {(concept.sourceSignals?.usedRealServices ||
+                concept.sourceSignals?.usedRealCta) && (
+                <p className="mt-4 text-xs text-brand-muted leading-relaxed border-t border-brand-border pt-4">
+                  This sample reuses language and services detected on your current site where
+                  possible — so it feels like your business, not a generic template.
+                </p>
+              )}
+            </div>
 
             <aside className="space-y-5 lg:sticky lg:top-24">
-              <div className="card-brand p-6 shadow-card">
-                <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-brand-blue mb-3">
-                  What improved in this concept
-                </p>
-                <ul className="space-y-3">
-                  {concept.improvementNotes.map((note) => (
-                    <li key={note} className="flex gap-2.5 text-sm text-brand-muted leading-relaxed">
-                      <CheckCircle2 size={15} className="text-brand-blue shrink-0 mt-0.5" />
-                      {note}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
               <div className="card-brand p-6 shadow-card">
                 <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-brand-blue mb-2">
                   Your preferences
@@ -158,7 +169,15 @@ export function MockupResultView({ token }: { token: string }) {
                   </div>
                   <div className="flex justify-between gap-3">
                     <dt className="text-brand-muted">Category</dt>
-                    <dd className="font-medium text-brand-navy text-right">{concept.categoryLabel}</dd>
+                    <dd className="font-medium text-brand-navy text-right">
+                      {concept.categoryLabel}
+                    </dd>
+                  </div>
+                  <div className="flex justify-between gap-3">
+                    <dt className="text-brand-muted">Site signals</dt>
+                    <dd className="font-medium text-brand-navy text-right capitalize">
+                      {concept.sourceSignals?.fetchQuality ?? "n/a"}
+                    </dd>
                   </div>
                 </dl>
                 {payload.website_url && (

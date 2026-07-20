@@ -198,4 +198,6 @@ export type GeoMockupLead = {
   subscription_cta_clicked_at: string | null;
   selected_plan_intent: string | null;
   status: string;
+  screenshot_url?: string | null;
+  screenshot_status?: string | null;
 };

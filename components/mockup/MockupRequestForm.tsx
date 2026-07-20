@@ -60,6 +60,7 @@ export function MockupRequestForm({ compact = false, className = "" }: Props) {
         ok: boolean;
         token?: string;
         concept?: MockupConcept;
+        screenshotUrl?: string | null;
         error?: unknown;
       };
 
@@ -78,6 +79,7 @@ export function MockupRequestForm({ compact = false, className = "" }: Props) {
             preferred_style: data.preferred_style,
             homepage_goal: data.homepage_goal,
             notes: data.notes ?? "",
+            screenshot_url: json.screenshotUrl ?? json.concept.currentSnapshot?.screenshotUrl ?? null,
           }),
         );
       } catch {
