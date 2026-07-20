@@ -123,30 +123,48 @@ export async function POST(request: Request) {
     });
 
     const supabase = createAdminClient();
-    const { data, error } = await supabase
+
+    const baseRow = {
+      website_url: input.website_url,
+      business_name: input.business_name.trim(),
+      business_category: input.business_category,
+      preferred_style: input.preferred_style,
+      homepage_goal: input.homepage_goal,
+      notes: input.notes?.trim() || null,
+      email: input.email?.trim() || null,
+      lead_source: "homepage_mockup",
+      concept_json: concept,
+      signals_json: {
+        ...signals,
+        generation: generationMeta,
+        screenshotChallenge: shot.isChallengePage,
+      },
+      access_token_hash: tokenHash,
+      status: "previewed" as const,
+    };
+
+    let { data, error } = await supabase
       .from("geo_mockup_leads")
       .insert({
-        website_url: input.website_url,
-        business_name: input.business_name.trim(),
-        business_category: input.business_category,
-        preferred_style: input.preferred_style,
-        homepage_goal: input.homepage_goal,
-        notes: input.notes?.trim() || null,
-        email: input.email?.trim() || null,
-        lead_source: "homepage_mockup",
-        concept_json: concept,
-        signals_json: {
-          ...signals,
-          generation: generationMeta,
-          screenshotChallenge: shot.isChallengePage,
-        },
-        access_token_hash: tokenHash,
-        status: "previewed",
+        ...baseRow,
         screenshot_url: screenshotUrl,
         screenshot_status: screenshotStatus,
       })
       .select("id")
       .single();
+
+    // PGRST204 = column missing from schema cache (migration 009 not applied)
+    if (error?.code === "PGRST204") {
+      console.warn(
+        "[mockups] Insert hit schema mismatch (likely missing screenshot columns). Retrying without screenshot fields. Apply supabase/migrations/009_mockup_screenshot.sql.",
+        { code: error.code, message: error.message, details: error.details },
+      );
+      ({ data, error } = await supabase
+        .from("geo_mockup_leads")
+        .insert(baseRow)
+        .select("id")
+        .single());
+    }
 
     // Safe client-facing generation summary (no raw API errors with payloads)
     const clientGeneration = {
@@ -162,7 +180,17 @@ export async function POST(request: Request) {
     };
 
     if (error || !data) {
-      console.error("[mockups] Insert failed:", error);
+      console.error("[mockups] Insert failed:", {
+        code: error?.code,
+        message: error?.message,
+        details: error?.details,
+        hint: error?.hint,
+      });
+      if (error?.code === "PGRST205" || /geo_mockup_leads/i.test(error?.message ?? "")) {
+        console.error(
+          "[mockups] Table may be missing. Apply supabase/migrations/008_geo_mockup_leads.sql in the Supabase SQL editor.",
+        );
+      }
       return NextResponse.json({
         ok: true,
         mockupId: null,
