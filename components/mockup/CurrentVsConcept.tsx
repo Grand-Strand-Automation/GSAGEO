@@ -26,6 +26,8 @@ function BrowserChrome({
 }
 
 function CurrentSiteSummary({ snapshot }: { snapshot: CurrentSnapshot }) {
+  const blocked = Boolean(snapshot.blockedReason);
+
   return (
     <div className="rounded-xl border border-brand-border bg-white p-5 md:p-6 h-full">
       <div className="flex items-start gap-3 mb-4">
@@ -34,62 +36,75 @@ function CurrentSiteSummary({ snapshot }: { snapshot: CurrentSnapshot }) {
         </div>
         <div>
           <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-brand-blue mb-1">
-            Current site summary
+            {blocked ? "Live site unavailable" : "Current site summary"}
           </p>
           <p className="text-xs text-brand-muted leading-relaxed">
-            A live screenshot wasn&apos;t available, so here&apos;s what we could read from your
-            homepage.
+            {blocked
+              ? snapshot.blockedReason ||
+                "This website blocked automated access. The sample concept on the right uses your business details instead."
+              : "A live screenshot wasn&apos;t available, so here&apos;s what we could read from your homepage."}
           </p>
         </div>
       </div>
 
-      {snapshot.headline ? (
-        <div className="mb-4">
-          <p className="text-[10px] font-bold uppercase tracking-wide text-brand-muted mb-1">
-            Detected headline
-          </p>
-          <p className="font-heading font-bold text-brand-navy text-base leading-snug">
-            {snapshot.headline}
-          </p>
-        </div>
-      ) : (
-        <p className="text-sm text-brand-muted mb-4">No clear homepage headline was detected.</p>
-      )}
-
-      {snapshot.subheadline && (
-        <p className="text-sm text-brand-muted leading-relaxed mb-4">{snapshot.subheadline}</p>
-      )}
-
-      {snapshot.primaryCta && (
-        <p className="text-sm mb-4">
-          <span className="text-brand-muted">Current CTA: </span>
-          <span className="font-semibold text-brand-navy">{snapshot.primaryCta}</span>
+      {blocked ? (
+        <p className="text-sm text-brand-muted leading-relaxed">
+          Your redesign concept still runs — based on the business name, category, style, and goals
+          you entered.
         </p>
-      )}
+      ) : (
+        <>
+          {snapshot.headline ? (
+            <div className="mb-4">
+              <p className="text-[10px] font-bold uppercase tracking-wide text-brand-muted mb-1">
+                Detected headline
+              </p>
+              <p className="font-heading font-bold text-brand-navy text-base leading-snug">
+                {snapshot.headline}
+              </p>
+            </div>
+          ) : (
+            <p className="text-sm text-brand-muted mb-4">
+              No clear homepage headline was detected.
+            </p>
+          )}
 
-      {snapshot.services.length > 0 && (
-        <div className="mb-4">
-          <p className="text-[10px] font-bold uppercase tracking-wide text-brand-muted mb-2">
-            Services found
-          </p>
-          <ul className="space-y-2">
-            {snapshot.services.slice(0, 4).map((service) => (
-              <li key={service.title} className="flex gap-2 text-sm text-brand-muted">
-                <CheckCircle2 size={14} className="text-brand-blue shrink-0 mt-0.5" />
-                <span>
-                  <span className="font-medium text-brand-navy">{service.title}</span>
-                  {service.desc && !service.desc.startsWith("Presented more") ? (
-                    <span className="block text-xs mt-0.5 line-clamp-2">{service.desc}</span>
-                  ) : null}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+          {snapshot.subheadline && (
+            <p className="text-sm text-brand-muted leading-relaxed mb-4">{snapshot.subheadline}</p>
+          )}
 
-      {snapshot.phone && (
-        <p className="text-xs text-brand-muted">Phone detected: {snapshot.phone}</p>
+          {snapshot.primaryCta && (
+            <p className="text-sm mb-4">
+              <span className="text-brand-muted">Current CTA: </span>
+              <span className="font-semibold text-brand-navy">{snapshot.primaryCta}</span>
+            </p>
+          )}
+
+          {snapshot.services.length > 0 && (
+            <div className="mb-4">
+              <p className="text-[10px] font-bold uppercase tracking-wide text-brand-muted mb-2">
+                Services found
+              </p>
+              <ul className="space-y-2">
+                {snapshot.services.slice(0, 4).map((service) => (
+                  <li key={service.title} className="flex gap-2 text-sm text-brand-muted">
+                    <CheckCircle2 size={14} className="text-brand-blue shrink-0 mt-0.5" />
+                    <span>
+                      <span className="font-medium text-brand-navy">{service.title}</span>
+                      {service.desc && !service.desc.startsWith("Presented more") ? (
+                        <span className="block text-xs mt-0.5 line-clamp-2">{service.desc}</span>
+                      ) : null}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {snapshot.phone && (
+            <p className="text-xs text-brand-muted">Phone detected: {snapshot.phone}</p>
+          )}
+        </>
       )}
     </div>
   );
@@ -162,6 +177,9 @@ export function CurrentVsConcept({
     phone: concept.phone,
     navItems: [],
     fetchQuality: concept.sourceSignals.fetchQuality ?? "failed",
+    blockedReason: concept.sourceSignals.siteBlocked
+      ? "Site blocked automated access."
+      : null,
   };
 
   return (

@@ -26,12 +26,14 @@ export async function POST(request: Request) {
 
     const input = parsed.data;
 
-    const [{ concept: baseConcept, signals }, shot] = await Promise.all([
+    const [{ concept: baseConcept, signals, generation }, shot] = await Promise.all([
       generateMockupConcept(input),
       captureHomepageScreenshot(input.website_url),
     ]);
 
-    const screenshotUrl = shot.ok ? shot.imageUrl : null;
+    // Drop challenge-page screenshots when the site was blocked
+    const screenshotUrl =
+      signals.blockedReason || !shot.ok ? null : shot.imageUrl;
     const screenshotStatus = screenshotUrl ? "ready" : "unavailable";
     const concept = attachScreenshotToConcept(baseConcept, screenshotUrl);
     const { token, tokenHash } = createMockupAccessToken();
@@ -49,7 +51,7 @@ export async function POST(request: Request) {
         email: input.email?.trim() || null,
         lead_source: "homepage_mockup",
         concept_json: concept,
-        signals_json: signals,
+        signals_json: { ...signals, generation },
         access_token_hash: tokenHash,
         status: "previewed",
         screenshot_url: screenshotUrl,
@@ -66,6 +68,7 @@ export async function POST(request: Request) {
         token,
         concept,
         screenshotUrl,
+        generation,
         persisted: false,
         warning: "Preview generated but could not be saved for follow-up yet.",
       });
@@ -77,6 +80,7 @@ export async function POST(request: Request) {
       token,
       concept,
       screenshotUrl,
+      generation,
       persisted: true,
     });
   } catch (err) {

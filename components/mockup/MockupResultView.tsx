@@ -119,9 +119,11 @@ export function MockupResultView({ token }: { token: string }) {
             Here&apos;s a sample homepage direction for {concept.businessName}
           </h1>
           <p className="text-lg text-white/70 leading-relaxed max-w-2xl mb-4">
-            {usedLive
-              ? "Built from your current site content and preferences — a clearer, more modern homepage concept you can compare side by side."
-              : "Based on your preferences, here is a concept for a clearer, more modern homepage. This is a preview mockup — not a finished website."}
+            {concept.sourceSignals?.siteBlocked
+              ? "We couldn&apos;t load the live site (security protection), so this concept was written from your business details — still a sample preview, not a finished website."
+              : usedLive
+                ? "Built from your current site content and preferences — a clearer, more modern homepage concept you can compare side by side."
+                : "Based on your preferences, here is a concept for a clearer, more modern homepage. This is a preview mockup — not a finished website."}
           </p>
           <p className="text-sm text-white/50 leading-relaxed max-w-2xl">{MOCKUP_EXPECTATION}</p>
         </div>

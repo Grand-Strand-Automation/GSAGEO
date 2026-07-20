@@ -34,12 +34,14 @@ Optional:
 ```env
 RESEND_API_KEY=
 RESEND_FROM_EMAIL=Grand Strand Ally <notifications@gsally.com>
+OPENAI_API_KEY=
+OPENAI_MODEL=
 MICROLINK_API_KEY=
 SENTRY_DSN=
 POSTHOG_KEY=
 ```
 
-`MICROLINK_API_KEY` raises screenshot capture limits for the mockup “current vs concept” side-by-side. Without it, Microlink free tier is used and failures fall back to a text summary of the current site.
+`OPENAI_API_KEY` powers AI homepage concepts in the mockup funnel (falls back to rules if unset or the call fails). `MICROLINK_API_KEY` raises screenshot capture limits for the mockup “current vs concept” side-by-side. Without Microlink key, free tier is used and failures fall back to a text summary of the current site.
 
 ## 4. Production branch
 

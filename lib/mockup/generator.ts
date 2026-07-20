@@ -10,9 +10,14 @@ import {
   type FetchQuality,
   type SiteSignals,
 } from "@/lib/mockup/extract-site";
+import {
+  generateConceptFieldsWithOpenAi,
+  isOpenAiConfigured,
+  mergeLlmFieldsIntoConcept,
+} from "@/lib/mockup/openai-concept";
 
 export type { SiteSignals, FetchQuality } from "@/lib/mockup/extract-site";
-export { extractSiteSignals, parseHomepageHtml, emptySiteSignals } from "@/lib/mockup/extract-site";
+export { extractSiteSignals, parseHomepageHtml, emptySiteSignals, isChallengePage } from "@/lib/mockup/extract-site";
 
 export type MockupTheme = {
   key: string;
@@ -36,6 +41,7 @@ export type CurrentSnapshot = {
   phone: string | null;
   navItems: string[];
   fetchQuality: FetchQuality;
+  blockedReason: string | null;
 };
 
 export type MockupConcept = {
@@ -66,6 +72,8 @@ export type MockupConcept = {
     detectedTitle: string | null;
     usedRealServices: boolean;
     usedRealCta: boolean;
+    generatedBy?: "openai" | "rules";
+    siteBlocked?: boolean;
   };
   disclaimer: string;
 };
@@ -338,13 +346,17 @@ function buildTrustLine(signals: SiteSignals, businessName: string): string {
 function buildImprovementNotes(input: MockupRequestInput, signals: SiteSignals): string[] {
   const notes: string[] = [];
 
-  if (!signals.fetched || signals.fetchQuality === "failed") {
+  if (signals.blockedReason) {
+    notes.push(
+      "Live site was protected by bot security, so this concept was built from your business details",
+    );
+  } else if (!signals.fetched || signals.fetchQuality === "failed") {
     notes.push("Concept built from your preferences — live site signals were limited");
   } else if (signals.fetchQuality === "limited") {
     notes.push("Some live-site details were limited, so preferences filled the gaps");
   }
 
-  if (signals.fetched) {
+  if (signals.fetched && !signals.blockedReason) {
     if (!signals.h1 || signals.h1.length < 12) {
       notes.push("Stronger homepage headline than the current page suggested");
     } else {
@@ -388,16 +400,21 @@ function buildCurrentSnapshot(
   signals: SiteSignals,
   screenshotUrl: string | null = null,
 ): CurrentSnapshot {
+  const blocked = Boolean(signals.blockedReason);
+  // Never show a Cloudflare challenge capture as "current homepage"
+  const usableShot = blocked ? null : screenshotUrl;
+
   return {
-    screenshotUrl,
-    screenshotStatus: screenshotUrl ? "ready" : "unavailable",
-    headline: signals.h1 || signals.ogTitle || signals.title || null,
-    subheadline: signals.heroParagraph || signals.metaDesc || null,
-    primaryCta: signals.ctaHints[0] ?? null,
-    services: signals.services.slice(0, 4),
+    screenshotUrl: usableShot,
+    screenshotStatus: usableShot ? "ready" : "unavailable",
+    headline: blocked ? null : signals.h1 || signals.ogTitle || signals.title || null,
+    subheadline: blocked ? null : signals.heroParagraph || signals.metaDesc || null,
+    primaryCta: blocked ? null : signals.ctaHints[0] ?? null,
+    services: blocked ? [] : signals.services.slice(0, 4),
     phone: signals.phone,
-    navItems: signals.navItems.slice(0, 6),
+    navItems: blocked ? [] : signals.navItems.slice(0, 6),
     fetchQuality: signals.fetchQuality,
+    blockedReason: signals.blockedReason,
   };
 }
 
@@ -439,12 +456,14 @@ export function buildMockupConcept(
     phone: signals.phone,
     currentSnapshot: buildCurrentSnapshot(signals, screenshotUrl),
     sourceSignals: {
-      usedLiveSite: signals.fetched,
+      usedLiveSite: signals.fetched && !signals.blockedReason,
       fetchQuality: signals.fetchQuality,
       detectedHeadline: signals.h1 || null,
       detectedTitle: signals.title || null,
       usedRealServices,
       usedRealCta,
+      generatedBy: "rules",
+      siteBlocked: Boolean(signals.blockedReason),
     },
     disclaimer:
       "Preview only — sample direction based on your site and preferences. Final design and launch details are refined during onboarding.",
@@ -454,22 +473,44 @@ export function buildMockupConcept(
 export async function generateMockupConcept(input: MockupRequestInput): Promise<{
   concept: MockupConcept;
   signals: SiteSignals;
+  generation: { source: "openai" | "rules"; openAiError?: string; model?: string };
 }> {
   const signals = await extractSiteSignals(input.website_url);
-  const concept = buildMockupConcept(input, signals);
-  return { concept, signals };
+  let concept = buildMockupConcept(input, signals);
+
+  if (isOpenAiConfigured()) {
+    const llm = await generateConceptFieldsWithOpenAi(input, signals);
+    if (llm.ok) {
+      concept = mergeLlmFieldsIntoConcept(concept, llm.fields, { usedOpenAi: true });
+      return {
+        concept,
+        signals,
+        generation: { source: "openai", model: llm.model },
+      };
+    }
+    console.warn("[mockup] OpenAI concept failed, using rules fallback:", llm.error);
+    return {
+      concept,
+      signals,
+      generation: { source: "rules", openAiError: llm.error },
+    };
+  }
+
+  return { concept, signals, generation: { source: "rules" } };
 }
 
 export function attachScreenshotToConcept(
   concept: MockupConcept,
   screenshotUrl: string | null,
 ): MockupConcept {
+  const blocked = Boolean(concept.currentSnapshot?.blockedReason || concept.sourceSignals?.siteBlocked);
+  const usable = blocked ? null : screenshotUrl;
   return {
     ...concept,
     currentSnapshot: {
       ...concept.currentSnapshot,
-      screenshotUrl,
-      screenshotStatus: screenshotUrl ? "ready" : "unavailable",
+      screenshotUrl: usable,
+      screenshotStatus: usable ? "ready" : "unavailable",
     },
   };
 }

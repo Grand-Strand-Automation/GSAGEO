@@ -12,6 +12,8 @@ export type ExtractedService = {
 export type SiteSignals = {
   fetched: boolean;
   fetchQuality: FetchQuality;
+  /** Set when the page is a bot/Cloudflare challenge instead of real content */
+  blockedReason: string | null;
   title: string;
   h1: string;
   heroParagraph: string;
@@ -29,6 +31,22 @@ export type SiteSignals = {
   themeColor: string | null;
   brandCandidates: string[];
 };
+
+/** Detect Cloudflare / bot-challenge interstitial HTML */
+export function isChallengePage(html: string): boolean {
+  const sample = html.slice(0, 50_000).toLowerCase();
+  return (
+    /performing security verification/i.test(sample) ||
+    /checking your browser before accessing/i.test(sample) ||
+    /just a moment\.\.\./i.test(sample) ||
+    /cf-browser-verification/i.test(sample) ||
+    /cf-challenge/i.test(sample) ||
+    /challenge-platform/i.test(sample) ||
+    /cdn-cgi\/challenge/i.test(sample) ||
+    (/attention required/i.test(sample) && /cloudflare/i.test(sample)) ||
+    (/enable javascript and cookies/i.test(sample) && /cloudflare/i.test(sample))
+  );
+}
 
 function stripTags(value: string): string {
   return value
@@ -303,7 +321,7 @@ function extractBrandCandidates(
   return candidates.slice(0, 4);
 }
 
-function scoreFetchQuality(signals: Omit<SiteSignals, "fetchQuality" | "fetched">): FetchQuality {
+function scoreFetchQuality(signals: Omit<SiteSignals, "fetchQuality" | "fetched" | "blockedReason">): FetchQuality {
   let score = 0;
   if (signals.h1) score += 2;
   if (signals.metaDesc.length > 40 || signals.heroParagraph.length > 40) score += 2;
@@ -317,13 +335,23 @@ function scoreFetchQuality(signals: Omit<SiteSignals, "fetchQuality" | "fetched"
 }
 
 export function parseHomepageHtml(html: string, baseUrl: string): SiteSignals {
+  if (isChallengePage(html)) {
+    return {
+      ...emptySiteSignals(),
+      fetched: false,
+      fetchQuality: "failed",
+      blockedReason:
+        "Site blocked automated access (security / bot protection). Concept will use your business details instead.",
+    };
+  }
+
   const data = extractHtmlData(html);
   const title = stripTags(data.title);
   const h1 = stripTags(data.h1);
   const metaDesc = stripTags(data.metaDesc);
   const ogTitle = stripTags(data.ogTitle);
   const services = extractServices(html);
-  const base: Omit<SiteSignals, "fetchQuality" | "fetched"> = {
+  const base: Omit<SiteSignals, "fetchQuality" | "fetched" | "blockedReason"> = {
     title,
     h1,
     heroParagraph: extractHeroParagraph(html, h1),
@@ -345,6 +373,7 @@ export function parseHomepageHtml(html: string, baseUrl: string): SiteSignals {
   return {
     fetched: true,
     fetchQuality: fetchQuality === "failed" ? "limited" : fetchQuality,
+    blockedReason: null,
     ...base,
   };
 }
@@ -353,6 +382,7 @@ export function emptySiteSignals(): SiteSignals {
   return {
     fetched: false,
     fetchQuality: "failed",
+    blockedReason: null,
     title: "",
     h1: "",
     heroParagraph: "",
@@ -376,6 +406,14 @@ export async function extractSiteSignals(websiteUrl: string): Promise<SiteSignal
   const result = await fetchWithTimeout(url);
   if (!result.ok || !result.html || result.html.length < 80) {
     return emptySiteSignals();
+  }
+
+  if (isChallengePage(result.html)) {
+    return {
+      ...emptySiteSignals(),
+      blockedReason:
+        "Site blocked automated access (security / bot protection). Concept will use your business details instead.",
+    };
   }
 
   // JS shells with almost no text content → limited
