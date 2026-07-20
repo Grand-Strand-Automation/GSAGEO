@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { CheckCircle2, Loader2 } from "lucide-react";
 import {
   CurrentVsConcept,
@@ -17,6 +18,8 @@ type MockupPayload = {
   website_url?: string;
   business_name?: string;
   screenshot_url?: string | null;
+  emailSent?: boolean;
+  persisted?: boolean;
   generation?: {
     source?: string;
     openAiConfigured?: boolean;
@@ -26,6 +29,8 @@ type MockupPayload = {
 };
 
 export function MockupResultView({ token }: { token: string }) {
+  const searchParams = useSearchParams();
+  const delivery = searchParams.get("delivery");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [payload, setPayload] = useState<MockupPayload | null>(null);
@@ -55,15 +60,23 @@ export function MockupResultView({ token }: { token: string }) {
             business_name: json.mockup.business_name,
             screenshot_url: json.mockup.screenshot_url ?? null,
             generation: prev?.generation ?? null,
+            emailSent: prev?.emailSent,
+            persisted: true,
           }));
           setError("");
         } else if (!cached) {
-          setError("This preview could not be found or has expired.");
+          setError(
+            "This preview could not be found or has expired. Check your email for the preview link, or create a new mockup.",
+          );
         }
       } catch {
         if (!cancelled) {
           const cached = sessionStorage.getItem(`mockup:${token}`);
-          if (!cached) setError("Unable to load your preview right now.");
+          if (!cached) {
+            setError(
+              "Unable to load your preview right now. Check your email for the link, or try creating a new mockup.",
+            );
+          }
         }
       } finally {
         if (!cancelled) setLoading(false);
@@ -106,7 +119,9 @@ export function MockupResultView({ token }: { token: string }) {
           <h1 className="font-heading font-bold text-2xl text-brand-navy mb-3">
             Preview unavailable
           </h1>
-          <p className="text-brand-muted mb-6">{error || "We could not load this mockup."}</p>
+          <p className="text-brand-muted mb-6">
+            {error || "We could not load this mockup. Check your email for the preview link."}
+          </p>
           <ButtonLink href="/#mockup">Create a new homepage mockup</ButtonLink>
         </div>
       </div>
@@ -119,6 +134,9 @@ export function MockupResultView({ token }: { token: string }) {
     snapshot != null
       ? shouldShowSideBySide(snapshot, concept.sourceSignals?.siteBlocked)
       : false;
+
+  const showEmailBanner = delivery === "emailed" || Boolean(payload.emailSent);
+  const showSessionBanner = delivery === "session" || payload.persisted === false;
 
   return (
     <div className="flex flex-col">
@@ -147,6 +165,23 @@ export function MockupResultView({ token }: { token: string }) {
           <p className="text-sm text-white/50 leading-relaxed max-w-2xl">{MOCKUP_EXPECTATION}</p>
         </div>
       </section>
+
+      {(showEmailBanner || showSessionBanner) && (
+        <div className="bg-brand-cream border-b border-brand-border">
+          <div className="container px-4 md:px-6 max-w-4xl py-3">
+            {showEmailBanner ? (
+              <p className="text-sm text-brand-navy leading-relaxed">
+                We also emailed this preview link to you so you can reopen it later.
+              </p>
+            ) : (
+              <p className="text-sm text-amber-900/90 leading-relaxed">
+                This preview is available in this browser session. If refresh fails, create a new
+                mockup — and make sure your email is correct so we can send a lasting link.
+              </p>
+            )}
+          </div>
+        </div>
+      )}
 
       <section className="section-pad bg-brand-cream">
         <div className="container px-4 md:px-6 max-w-6xl">

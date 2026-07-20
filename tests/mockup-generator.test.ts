@@ -19,9 +19,23 @@ describe("mockup request validation", () => {
       preferred_style: "clean_modern",
       homepage_goal: "more_calls",
       notes: "",
-      email: "",
+      email: "owner@example.com",
     });
     assert.equal(parsed.website_url, "https://example.com");
+    assert.equal(parsed.email, "owner@example.com");
+  });
+
+  it("requires a valid email", () => {
+    assert.throws(() =>
+      mockupRequestSchema.parse({
+        website_url: "example.com",
+        business_name: "Example Co",
+        business_category: "home_services",
+        preferred_style: "clean_modern",
+        homepage_goal: "more_calls",
+        email: "",
+      }),
+    );
   });
 });
 
@@ -72,6 +86,7 @@ describe("mockup concept generator", () => {
       business_category: "home_services",
       preferred_style: "simple_trustworthy",
       homepage_goal: "more_calls",
+      email: "owner@example.com",
       notes: "Show emergency service",
     });
 
@@ -102,6 +117,7 @@ describe("mockup concept generator", () => {
       business_category: "professional_services",
       preferred_style: "clean_modern",
       homepage_goal: "modernize",
+      email: "owner@example.com",
       notes: "Boat service and marina",
     });
     const concept = buildMockupConcept(input, emptySignals);
@@ -120,6 +136,7 @@ describe("mockup concept generator", () => {
       business_category: "legal",
       preferred_style: "premium_professional",
       homepage_goal: "modernize",
+      email: "owner@example.com",
     });
 
     const concept = buildMockupConcept(input, {
@@ -165,6 +182,7 @@ describe("mockup concept generator", () => {
       business_category: "other",
       preferred_style: "clean_modern",
       homepage_goal: "modernize",
+      email: "owner@example.com",
     });
     const concept = buildMockupConcept(input, emptySignals, {
       screenshotUrl: "https://cdn.example.com/shot.png",

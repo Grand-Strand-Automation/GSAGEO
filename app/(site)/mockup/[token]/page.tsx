@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { MockupResultView } from "@/components/mockup/MockupResultView";
 import { buildPageMetadata } from "@/lib/seo/metadata";
@@ -14,5 +15,15 @@ type Props = { params: Promise<{ token: string }> };
 
 export default async function MockupResultPage({ params }: Props) {
   const { token } = await params;
-  return <MockupResultView token={token} />;
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-[60vh] flex items-center justify-center text-brand-muted">
+          Loading your homepage concept…
+        </div>
+      }
+    >
+      <MockupResultView token={token} />
+    </Suspense>
+  );
 }

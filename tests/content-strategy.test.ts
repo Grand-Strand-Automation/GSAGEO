@@ -26,6 +26,7 @@ describe("content strategy", () => {
           business_category: "other",
           preferred_style: "clean_modern",
           homepage_goal: "modernize",
+      email: "owner@example.com",
         }),
       ),
       "marine",
@@ -38,6 +39,7 @@ describe("content strategy", () => {
           business_category: "home_services",
           preferred_style: "bold_conversion",
           homepage_goal: "more_quotes",
+      email: "owner@example.com",
         }),
       ),
       "hvac",
@@ -50,6 +52,7 @@ describe("content strategy", () => {
           business_category: "legal",
           preferred_style: "premium_professional",
           homepage_goal: "look_credible",
+      email: "owner@example.com",
         }),
       ),
       "legal",
@@ -63,6 +66,7 @@ describe("content strategy", () => {
       business_category: "professional_services",
       preferred_style: "clean_modern",
       homepage_goal: "modernize",
+      email: "owner@example.com",
     });
     assert.equal(pickPrimaryCta(marine, emptySiteSignals(), "marine").cta, "Schedule Service");
 
@@ -72,6 +76,7 @@ describe("content strategy", () => {
       business_category: "home_services",
       preferred_style: "simple_trustworthy",
       homepage_goal: "more_quotes",
+      email: "owner@example.com",
     });
     assert.equal(pickPrimaryCta(quotes, emptySiteSignals(), "plumbing").cta, "Request a Quote");
 
@@ -81,6 +86,7 @@ describe("content strategy", () => {
       business_category: "legal",
       preferred_style: "premium_professional",
       homepage_goal: "look_credible",
+      email: "owner@example.com",
     });
     assert.equal(pickPrimaryCta(legal, emptySiteSignals(), "legal").cta, "Book a Consultation");
   });
@@ -93,6 +99,7 @@ describe("content strategy", () => {
         business_category: "home_services",
         preferred_style: "bold_conversion",
         homepage_goal: "more_quotes",
+      email: "owner@example.com",
       }),
       emptySiteSignals(),
     );
@@ -105,6 +112,7 @@ describe("content strategy", () => {
         business_category: "legal",
         preferred_style: "premium_professional",
         homepage_goal: "look_credible",
+      email: "owner@example.com",
       }),
       emptySiteSignals(),
     );
@@ -120,6 +128,7 @@ describe("content strategy", () => {
         business_category: "b2b" as const,
         preferred_style: "clean_modern" as const,
         homepage_goal: "modernize" as const,
+        email: "owner@example.com",
         notes: "Managed IT support",
       },
       {
@@ -128,6 +137,7 @@ describe("content strategy", () => {
         business_category: "healthcare" as const,
         preferred_style: "premium_professional" as const,
         homepage_goal: "look_credible" as const,
+        email: "owner@example.com",
       },
       {
         website_url: "https://example.com",
@@ -135,6 +145,7 @@ describe("content strategy", () => {
         business_category: "home_services" as const,
         preferred_style: "simple_trustworthy" as const,
         homepage_goal: "more_calls" as const,
+        email: "owner@example.com",
       },
     ];
 

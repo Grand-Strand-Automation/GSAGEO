@@ -64,9 +64,10 @@ export const mockupRequestSchema = z.object({
   notes: z.string().max(1000).optional().or(z.literal("")),
   email: z
     .string()
+    .min(1, "Email is required")
     .email("Enter a valid email")
-    .optional()
-    .or(z.literal("")),
+    .max(200)
+    .transform((v) => v.trim().toLowerCase()),
   // Honeypot
   website: z.string().optional(),
 });

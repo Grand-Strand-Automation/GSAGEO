@@ -47,6 +47,7 @@ describe("OpenAI brief builder", () => {
       business_category: "professional_services",
       preferred_style: "clean_modern",
       homepage_goal: "modernize",
+      email: "owner@example.com",
       notes: "Boat service and marina",
     });
     const signals = {
@@ -68,6 +69,7 @@ describe("OpenAI brief builder", () => {
       business_category: "professional_services",
       preferred_style: "clean_modern",
       homepage_goal: "modernize",
+      email: "owner@example.com",
     });
     const hints = inferBusinessHints(input).join(" ");
     assert.match(hints, /marine|marina|boat/i);
@@ -81,6 +83,7 @@ describe("OpenAI brief builder", () => {
       business_category: "legal",
       preferred_style: "premium_professional",
       homepage_goal: "more_calls",
+      email: "owner@example.com",
     });
     const signals = {
       ...emptySiteSignals(),
@@ -104,6 +107,7 @@ describe("merge LLM fields", () => {
       business_category: "professional_services",
       preferred_style: "clean_modern",
       homepage_goal: "modernize",
+      email: "owner@example.com",
     });
     const base = buildMockupConcept(input, emptySiteSignals());
     const merged = mergeLlmFieldsIntoConcept(
@@ -146,6 +150,7 @@ describe("merge LLM fields", () => {
       business_category: "professional_services",
       preferred_style: "clean_modern",
       homepage_goal: "modernize",
+      email: "owner@example.com",
     });
     const base = buildMockupConcept(input, emptySiteSignals());
     const merged = mergeLlmFieldsIntoConcept(
@@ -265,6 +270,7 @@ describe("OpenAI API call", () => {
       business_category: "professional_services",
       preferred_style: "clean_modern",
       homepage_goal: "modernize",
+      email: "owner@example.com",
     });
 
     const result = await generateConceptFieldsWithOpenAi(input, emptySiteSignals());
@@ -284,6 +290,7 @@ describe("OpenAI API call", () => {
       business_category: "other",
       preferred_style: "clean_modern",
       homepage_goal: "modernize",
+      email: "owner@example.com",
     });
     const result = await generateConceptFieldsWithOpenAi(input, emptySiteSignals());
     assert.equal(result.ok, false);

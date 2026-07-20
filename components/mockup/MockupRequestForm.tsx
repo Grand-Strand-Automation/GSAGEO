@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -19,15 +19,43 @@ const inputClass =
   "w-full border border-brand-border rounded-lg h-11 px-4 text-sm text-brand-navy bg-white focus:outline-none focus:ring-2 focus:ring-brand-blue/30";
 const selectClass = `${inputClass} appearance-none`;
 
+/** Client-side abort before typical Vercel/proxy hard kill. */
+const CLIENT_TIMEOUT_MS = 55_000;
+
+const WAIT_MESSAGES = [
+  "Reviewing your website…",
+  "Drafting a homepage concept for your business…",
+  "Almost ready — polishing the preview…",
+] as const;
+
 type Props = {
   compact?: boolean;
   className?: string;
+};
+
+type MockupApiResponse = {
+  ok: boolean;
+  token?: string;
+  concept?: MockupConcept;
+  screenshotUrl?: string | null;
+  persisted?: boolean;
+  emailSent?: boolean;
+  emailSkippedReason?: string | null;
+  warning?: string;
+  generation?: {
+    source?: string;
+    openAiConfigured?: boolean;
+    usedFallback?: boolean;
+    fallbackReason?: string | null;
+  };
+  error?: unknown;
 };
 
 export function MockupRequestForm({ compact = false, className = "" }: Props) {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const [waitIndex, setWaitIndex] = useState(0);
 
   const {
     register,
@@ -47,34 +75,57 @@ export function MockupRequestForm({ compact = false, className = "" }: Props) {
     },
   });
 
+  useEffect(() => {
+    if (!isSubmitting) {
+      setWaitIndex(0);
+      return;
+    }
+    const id = window.setInterval(() => {
+      setWaitIndex((i) => (i + 1) % WAIT_MESSAGES.length);
+    }, 4500);
+    return () => window.clearInterval(id);
+  }, [isSubmitting]);
+
   const onSubmit = async (data: MockupRequestInput) => {
     setIsSubmitting(true);
     setSubmitError("");
+
+    const controller = new AbortController();
+    const timeoutId = window.setTimeout(() => controller.abort(), CLIENT_TIMEOUT_MS);
+
     try {
       const res = await fetch("/api/mockups", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
+        signal: controller.signal,
       });
-      const json = (await res.json()) as {
-        ok: boolean;
-        token?: string;
-        concept?: MockupConcept;
-        screenshotUrl?: string | null;
-        generation?: {
-          source?: string;
-          openAiConfigured?: boolean;
-          usedFallback?: boolean;
-          fallbackReason?: string | null;
-        };
-        error?: unknown;
-      };
 
-      if (!res.ok || !json.ok || !json.token || !json.concept) {
-        setSubmitError("Something went wrong generating your preview. Please try again.");
+      let json: MockupApiResponse;
+      try {
+        json = (await res.json()) as MockupApiResponse;
+      } catch {
+        setSubmitError(
+          "The preview took too long or returned an incomplete response. Please try again — we will also email the link when generation succeeds.",
+        );
         return;
       }
 
+      if (!res.ok || !json.ok || !json.token || !json.concept) {
+        const fieldErrors =
+          json.error && typeof json.error === "object"
+            ? Object.values(json.error as Record<string, string[]>)
+                .flat()
+                .filter(Boolean)
+            : [];
+        setSubmitError(
+          fieldErrors[0] ||
+            "Something went wrong generating your preview. Please try again in a moment.",
+        );
+        return;
+      }
+
+      let cached = false;
       try {
         sessionStorage.setItem(
           `mockup:${json.token}`,
@@ -85,18 +136,44 @@ export function MockupRequestForm({ compact = false, className = "" }: Props) {
             preferred_style: data.preferred_style,
             homepage_goal: data.homepage_goal,
             notes: data.notes ?? "",
-            screenshot_url: json.screenshotUrl ?? json.concept.currentSnapshot?.screenshotUrl ?? null,
+            email: data.email,
+            screenshot_url:
+              json.screenshotUrl ?? json.concept.currentSnapshot?.screenshotUrl ?? null,
             generation: json.generation ?? null,
+            emailSent: json.emailSent ?? false,
+            persisted: json.persisted ?? false,
           }),
         );
+        cached = true;
       } catch {
-        /* sessionStorage may be unavailable */
+        cached = false;
       }
 
-      router.push(`/mockup/${json.token}`);
-    } catch {
-      setSubmitError("Unable to reach the server. Please try again.");
+      // Need at least one durable delivery path before navigating away
+      if (!json.persisted && !cached) {
+        setSubmitError(
+          "Your preview was generated, but we could not save it for this browser or email a permanent link. Please try again.",
+        );
+        return;
+      }
+
+      if (!json.persisted && cached) {
+        // Still show preview from this session — warn via query flag
+        router.push(`/mockup/${json.token}?delivery=session`);
+        return;
+      }
+
+      const delivery = json.emailSent ? "emailed" : "saved";
+      router.push(`/mockup/${json.token}?delivery=${delivery}`);
+    } catch (err) {
+      const aborted = err instanceof Error && err.name === "AbortError";
+      setSubmitError(
+        aborted
+          ? "This is taking longer than expected. Please try again — when it succeeds, we email you a lasting preview link."
+          : "Unable to reach the server. Please check your connection and try again.",
+      );
     } finally {
+      window.clearTimeout(timeoutId);
       setIsSubmitting(false);
     }
   };
@@ -115,7 +192,7 @@ export function MockupRequestForm({ compact = false, className = "" }: Props) {
           Create your homepage mockup
         </h2>
         <p className="text-sm text-brand-muted mt-1.5 leading-relaxed">
-          A quick generator — not a long intake form. Preview only; final design is refined later.
+          Preview on this page, and we&apos;ll email you the link so you can reopen it later.
         </p>
       </div>
 
@@ -150,6 +227,26 @@ export function MockupRequestForm({ compact = false, className = "" }: Props) {
           {errors.business_name && (
             <p className="text-xs text-red-600 mt-1">{errors.business_name.message}</p>
           )}
+        </div>
+
+        <div>
+          <label className={labelClass} htmlFor="email">
+            Work email
+          </label>
+          <input
+            id="email"
+            type="email"
+            placeholder="you@business.com"
+            autoComplete="email"
+            className={`${inputClass} mt-1.5`}
+            {...register("email")}
+          />
+          {errors.email && (
+            <p className="text-xs text-red-600 mt-1">{errors.email.message}</p>
+          )}
+          <p className="text-[11px] text-brand-muted mt-1">
+            Required — we send your preview link here.
+          </p>
         </div>
 
         <div>
@@ -215,22 +312,6 @@ export function MockupRequestForm({ compact = false, className = "" }: Props) {
             {...register("notes")}
           />
         </div>
-
-        <div className={compact ? "" : "sm:col-span-2"}>
-          <label className={labelClass} htmlFor="email">
-            Email <span className="font-normal text-brand-muted">(optional — for follow-up)</span>
-          </label>
-          <input
-            id="email"
-            type="email"
-            placeholder="you@business.com"
-            className={`${inputClass} mt-1.5`}
-            {...register("email")}
-          />
-          {errors.email && (
-            <p className="text-xs text-red-600 mt-1">{errors.email.message}</p>
-          )}
-        </div>
       </div>
 
       {/* Honeypot */}
@@ -244,7 +325,7 @@ export function MockupRequestForm({ compact = false, className = "" }: Props) {
       />
 
       {submitError && (
-        <p className="text-sm text-red-600 mt-4">{submitError}</p>
+        <p className="text-sm text-red-600 mt-4 leading-relaxed">{submitError}</p>
       )}
 
       <button
@@ -255,7 +336,7 @@ export function MockupRequestForm({ compact = false, className = "" }: Props) {
         {isSubmitting ? (
           <>
             <Loader2 size={16} className="animate-spin" />
-            Building a tailored homepage concept…
+            {WAIT_MESSAGES[waitIndex]}
           </>
         ) : (
           "Create My Homepage Mockup →"
@@ -264,8 +345,8 @@ export function MockupRequestForm({ compact = false, className = "" }: Props) {
 
       <p className="text-xs text-brand-muted text-center mt-3 leading-relaxed">
         {isSubmitting
-          ? "This usually takes a few seconds while we review your site and draft the concept."
-          : "Sample concept only — not a finished website."}
+          ? "Usually under a minute. Keep this tab open — we also email the preview link."
+          : "Sample concept only — not a finished website. You’ll get the link by email too."}
       </p>
     </form>
   );

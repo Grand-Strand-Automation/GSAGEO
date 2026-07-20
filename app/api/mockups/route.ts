@@ -15,6 +15,7 @@ import {
   logOpenAiEnvDiagnostics,
   mergeLlmFieldsIntoConcept,
 } from "@/lib/mockup/openai-concept";
+import { sendMockupPreviewEmail } from "@/lib/mockup/preview-email";
 
 export const runtime = "nodejs";
 /** Allow enough time for site extract + OpenAI (+ optional retry) + screenshot on Vercel. */
@@ -131,7 +132,7 @@ export async function POST(request: Request) {
       preferred_style: input.preferred_style,
       homepage_goal: input.homepage_goal,
       notes: input.notes?.trim() || null,
-      email: input.email?.trim() || null,
+      email: input.email,
       lead_source: "homepage_mockup",
       concept_json: concept,
       signals_json: {
@@ -199,8 +200,30 @@ export async function POST(request: Request) {
         screenshotUrl,
         generation: clientGeneration,
         persisted: false,
-        warning: "Preview generated but could not be saved for follow-up yet.",
+        emailSent: false,
+        emailSkippedReason: "not_persisted",
+        warning:
+          "Preview generated but could not be saved — open it now on this device. We could not email a permanent link.",
       });
+    }
+
+    const emailResult = await sendMockupPreviewEmail({
+      to: input.email,
+      businessName: input.business_name.trim(),
+      token,
+      headline: concept.headline,
+    });
+
+    const emailSent = emailResult.ok && emailResult.skipped === false;
+    const emailSkippedReason =
+      emailResult.ok && emailResult.skipped
+        ? emailResult.reason
+        : !emailResult.ok
+          ? "send_failed"
+          : null;
+
+    if (!emailResult.ok) {
+      console.error("[mockups] Preview email failed:", emailResult.error);
     }
 
     return NextResponse.json({
@@ -211,6 +234,9 @@ export async function POST(request: Request) {
       screenshotUrl,
       generation: clientGeneration,
       persisted: true,
+      emailSent,
+      emailSkippedReason,
+      previewUrl: `/mockup/${token}`,
     });
   } catch (err) {
     console.error("[mockups] Unexpected error:", err);
