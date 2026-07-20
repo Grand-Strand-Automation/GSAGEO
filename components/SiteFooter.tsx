@@ -10,8 +10,8 @@ export function SiteFooter() {
           <div className="md:col-span-5 space-y-4">
             <BrandLogo variant="geo" />
             <p className="text-sm text-white/55 max-w-md leading-relaxed pt-1">
-              Monthly website redesign + hosting for service businesses — start with a free homepage
-              mockup, then continue month-to-month with hosting and ongoing support.
+              $99 Website Refresh for service businesses — start with a free homepage mockup, then
+              refresh your homepage and 2–3 key sub pages.
             </p>
             <div className="space-y-2 pt-2 text-sm">
               <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/35">
@@ -33,8 +33,8 @@ export function SiteFooter() {
             <ul className="space-y-3">
               {[
                 { label: "Homepage mockup", href: "/#mockup" },
-                { label: "Monthly plans", href: "/#pricing" },
-                { label: "Start redesign", href: "/start" },
+                { label: "$99 Website Refresh", href: "/#pricing" },
+                { label: "Start refresh", href: "/start" },
                 { label: "GEO assessment", href: "/audit" },
                 { label: "FAQ", href: "/#faq" },
               ].map(({ label, href }) => (
@@ -84,7 +84,7 @@ export function SiteFooter() {
             © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
           </p>
           <p className="text-sm text-white/30 text-center sm:text-right">
-            Monthly redesign + hosting · Cancel anytime · Grand Strand-based
+            $99 Website Refresh · Homepage + 2–3 pages · Grand Strand-based
           </p>
         </div>
       </div>

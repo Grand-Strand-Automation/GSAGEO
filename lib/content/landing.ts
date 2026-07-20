@@ -1,22 +1,22 @@
 export const HOME_HERO = {
-  eyebrow: "Website Redesign + Hosting for service businesses",
-  headline: "See What Your Website Could Look Like After a Redesign",
+  eyebrow: "$99 Website Refresh for service businesses",
+  headline: "See What Your Homepage Could Look Like After a Refresh",
   subheadline:
-    "Enter your current website, tell us a little about your business, and see a preview of what a clearer, more modern homepage could look like — with hosting and ongoing support available on a simple monthly plan.",
+    "Enter your current website, tell us a little about your business, and preview a clearer homepage direction — then refresh your homepage and 2–3 key sub pages for a flat $99.",
   primaryCta: "Preview My New Homepage",
   primaryHref: "#mockup",
-  secondaryCta: "See Monthly Plans",
+  secondaryCta: "See the $99 Refresh",
   secondaryHref: "#pricing",
   tertiaryCta: "Still interested in GEO?",
   tertiaryHref: "#geo",
-  supportLine: "Instant homepage preview · Monthly redesign + hosting · Cancel anytime",
+  supportLine: "Instant homepage preview · Homepage + 2–3 sub pages · Flat $99",
   reviewCardTitle: "What you get in the preview",
   reviewCardBullets: [
     "A sample homepage concept for your business",
     "Clearer headline and CTA direction",
     "A more modern first-impression layout",
     "Notes on what improved in the concept",
-    "A simple path into monthly redesign + hosting",
+    "A simple path into the $99 website refresh",
   ],
 } as const;
 
@@ -25,9 +25,9 @@ export const MOCKUP_EXPECTATION =
 
 export const HOW_MOCKUP_WORKS = {
   label: "How it works",
-  title: "From preview to a better website",
+  title: "From preview to a refreshed website",
   intro:
-    "A simple path: see a sample homepage direction first, then choose monthly redesign + hosting if you want help launching and maintaining it.",
+    "A simple path: see a sample homepage direction first, then refresh your homepage and a few key pages for a flat $99.",
   steps: [
     {
       title: "Enter your website",
@@ -42,35 +42,35 @@ export const HOW_MOCKUP_WORKS = {
       desc: "See a polished homepage mockup direction tailored to your business and preferences.",
     },
     {
-      title: "Choose a monthly plan",
-      desc: "If you like the direction, launch with redesign, hosting, and ongoing support — month to month.",
+      title: "Start your $99 refresh",
+      desc: "If you like the direction, we refresh your homepage and 2–3 important sub pages.",
     },
   ],
 } as const;
 
 export const WHATS_INCLUDED_INTRO =
-  "Monthly redesign + hosting is built for service businesses that want a stronger website without a giant one-time project. We redesign, launch, host, and keep improving over time.";
+  "The $99 Website Refresh is built for service businesses that want a stronger first impression without a giant rebuild. We refresh the pages visitors actually use to decide and contact you.";
 
 export const WHATS_INCLUDED = [
   {
-    title: "Homepage Redesign Direction",
+    title: "Homepage Refresh",
     desc: "A clearer first impression with stronger messaging, layout, and calls to action.",
   },
   {
-    title: "Reliable Hosting",
-    desc: "Your site is hosted and kept online — no juggling separate hosting accounts.",
+    title: "2–3 Key Sub Pages",
+    desc: "Refresh important supporting pages like Services, About, or Contact so the site feels consistent.",
   },
   {
-    title: "Ongoing Updates",
-    desc: "Iterate on pages, content, and structure as your business needs change.",
+    title: "Clearer CTAs",
+    desc: "Make it easier for visitors to call, request a quote, or take the next step.",
   },
   {
-    title: "Practical Support",
-    desc: "Simple requests and improvements without waiting on a huge agency timeline.",
+    title: "Modern Layout Direction",
+    desc: "Cleaner structure and spacing so your business looks more credible online.",
   },
   {
-    title: "Clear Monthly Rhythm",
-    desc: "You always know what improved and what we are working on next.",
+    title: "Business-Specific Copy",
+    desc: "Messaging tailored to what you do — not a generic template speech.",
   },
   {
     title: "Optional GEO Add-On",
@@ -78,136 +78,101 @@ export const WHATS_INCLUDED = [
   },
 ];
 
-export const DELIVERABLES_HEADING = "What You Get Each Month";
+export const DELIVERABLES_HEADING = "What You Get";
 
 export const DELIVERABLES_INTRO =
-  "This is ongoing website support — not a report and disappear engagement.";
+  "A focused website refresh — not a long monthly retainer and not a free finished site.";
 
 export const DELIVERABLES_SUPPORT =
-  "Designed to keep your website clear, credible, modern, and easier to maintain.";
+  "Designed to make your homepage and key pages clearer, more credible, and easier to act on.";
 
 export const DELIVERABLES = [
   {
-    title: "Hosting Included",
-    desc: "Your live site stays online with reliable monthly hosting support.",
+    title: "Homepage Concept → Live Refresh",
+    desc: "Turn the sample direction into a refreshed homepage that matches your business.",
   },
   {
-    title: "Design & Content Iterations",
-    desc: "Steady improvements to layout, messaging, and key pages.",
+    title: "2–3 Supporting Pages",
+    desc: "Update the pages that matter most for trust and conversion.",
   },
   {
-    title: "Priority Updates",
-    desc: "Practical changes that strengthen calls, quotes, and credibility.",
+    title: "Stronger Calls to Action",
+    desc: "Practical changes that make next steps obvious.",
   },
   {
-    title: "Simple Progress Summary",
-    desc: "A short monthly update on what changed and what is next.",
+    title: "Simple Onboarding",
+    desc: "Share a few details, approve the direction, and we get to work.",
   },
 ];
 
 export const GOOD_FIT = [
-  "Service businesses that want a clearer, more modern website",
-  "Owners tired of an outdated homepage that does not convert well",
-  "Teams that prefer monthly redesign + hosting over a huge rebuild project",
+  "Service businesses that want a clearer, more modern homepage",
+  "Owners tired of an outdated site that does not convert well",
+  "Teams that want a focused refresh — homepage plus a few key pages",
   "Businesses that need stronger calls to action and clearer service explanations",
-  "Companies that want ongoing updates without hiring a full-time web team",
   "Local and B2B service brands that need to look more credible online",
+  "Companies that want a practical next step without a huge rebuild project",
 ];
 
 export const NOT_FIT = [
-  "Businesses looking for a free finished website with no ongoing plan",
+  "Businesses looking for a free finished website with no engagement",
   "Companies that need a massive custom app or complex software platform",
-  "Teams unwilling to review or approve simple monthly updates",
+  "Teams needing a full multi-site rebuild across dozens of pages",
   "Anyone expecting guaranteed rankings or overnight lead spikes",
 ];
 
 export const WHY_ONGOING = {
-  label: "Why monthly",
-  title: "Why Redesign + Hosting Works Better Month to Month",
+  label: "Why this works",
+  title: "Why a Focused Website Refresh Beats a Vague Rebuild",
   body: [
-    "A one-time website project often goes stale. Services change, offers shift, and competitors update how they present themselves online.",
-    "Monthly redesign + hosting keeps your site current — with hosting handled and improvements continuing as your business evolves.",
+    "Most service businesses do not need a giant website project to improve results. They need a clearer homepage, stronger calls to action, and a few supporting pages that explain the offer with confidence.",
+    "The $99 Website Refresh keeps the scope practical: homepage plus 2–3 key sub pages — enough to improve the first impression without months of agency work.",
   ],
-  support: "Continue only if it makes sense. Cancel anytime.",
+  support: "Flat $99 · Homepage + 2–3 sub pages · Clear next step after your mockup.",
 } as const;
 
-export const PRICING_HEADLINE = "Monthly Website Redesign + Hosting";
+export const PRICING_HEADLINE = "$99 Website Refresh";
 
 export const PRICING_INTRO =
-  "Simple month-to-month plans to redesign, launch, host, and keep improving your website — without a big upfront project or long contract.";
+  "A focused refresh of your homepage and 2–3 key sub pages — clearer messaging, stronger CTAs, and a more modern first impression.";
 
-export const PRICING_SUBLINE = "Month-to-month plans · Hosting included · Cancel anytime";
+export const PRICING_SUBLINE = "Flat $99 · Homepage + 2–3 sub pages · No monthly plan required";
 
 export const PRICING_REASSURANCE = [
-  "Cancel anytime",
-  "Month-to-month billing",
-  "Hosting included",
-  "No long contracts",
+  "Flat $99 pricing",
+  "Homepage included",
+  "2–3 sub pages included",
+  "Clear scope",
 ];
 
 export const PRICING_HELPER =
-  "Start with a free homepage mockup. Then choose the monthly plan that matches how hands-on you want the support to be.";
+  "Start with a free homepage mockup. If you like the direction, start the $99 Website Refresh.";
 
 export const PRICING_DOWNGRADE_NOTE =
-  "Need a lighter option? Website Refresh + Hosting keeps your site live with simpler monthly support — without the fuller growth cadence.";
+  "Need more than a few pages later? We can discuss additional page work after the refresh.";
 
 export const PRICING_CUSTOM_NOTE =
   "Need support across multiple locations, a larger service footprint, or a custom scope?";
 
+/** Single public offer — keep `tier: "monitor"` for intake/API compatibility. */
 export const TIERS = [
   {
-    name: "Website Refresh + Hosting",
-    badge: "Lighter monthly support",
-    price: "$199/month",
-    period: "Month-to-month · cancel anytime",
+    name: "$99 Website Refresh",
+    badge: "Homepage + 2–3 sub pages",
+    price: "$99",
+    period: "One-time refresh · clear scope",
     tier: "monitor",
-    desc: "A lower-friction monthly option for businesses that want a clearer website, reliable hosting, and practical updates — without full hands-on growth work every month.",
+    desc: "Refresh your homepage and 2–3 important sub pages with clearer messaging, stronger calls to action, and a more modern layout direction.",
     includes: [
-      "Hosting included",
-      "Homepage refresh direction",
-      "Light monthly updates",
-      "Priority support requests",
-      "Simple monthly summary",
-      "Cancel anytime",
+      "Homepage refresh",
+      "2–3 key sub pages",
+      "Clearer headline and CTAs",
+      "Modern layout direction",
+      "Business-specific messaging",
+      "Simple onboarding after your mockup",
     ],
-    cta: "Start With Refresh",
-    primary: false,
-  },
-  {
-    name: "Website Growth + Hosting",
-    badge: "Recommended · best overall fit",
-    price: "Starting at $499/month",
-    period: "Month-to-month · cancel anytime",
-    tier: "growth",
-    desc: "The clearest path for most service businesses. We redesign, launch, host, and continue improving your site with steady monthly progress.",
-    includes: [
-      "Everything in Refresh",
-      "Fuller redesign support",
-      "Ongoing page & content iterations",
-      "Stronger CTA and conversion focus",
-      "Monthly improvement cadence",
-      "Optional GEO guidance when useful",
-    ],
-    cta: "Start Website Growth",
+    cta: "Start My $99 Website Refresh",
     primary: true,
-  },
-  {
-    name: "Managed Website + Growth",
-    badge: "Higher-touch monthly support",
-    price: "Starting at $1,250/month",
-    period: "Month-to-month · cancel anytime",
-    tier: "managed",
-    desc: "A higher-touch plan for businesses that want more done-with-you and done-for-you website support — deeper redesign work and ongoing optimization each month.",
-    includes: [
-      "Everything in Growth",
-      "Higher-touch redesign support",
-      "Deeper page and content work",
-      "Priority roadmap reviews",
-      "More hands-on monthly updates",
-      "GEO / AI visibility support available",
-    ],
-    cta: "Request Managed Support",
-    primary: false,
   },
 ];
 
@@ -245,7 +210,7 @@ export const ASSESSMENT_PREVIEW = {
     body: "Request a free GEO assessment after you explore your homepage mockup — or jump straight in if that is your main focus.",
     label: "Start Free GEO Assessment",
     href: "/audit",
-    secondaryLabel: "Back to redesign plans",
+    secondaryLabel: "Back to the $99 refresh",
     secondaryHref: "/#pricing",
   },
 } as const;
@@ -256,28 +221,28 @@ export const FAQ_ITEMS = [
     a: "No. The mockup is a sample homepage concept based on your current site and preferences. It shows a clearer direction — final design, content, and launch details are refined during onboarding.",
   },
   {
-    q: "What is included in monthly redesign + hosting?",
-    a: "Hosting, redesign direction, ongoing updates, and practical support so your site stays clearer and more modern over time. Higher plans include more hands-on iteration each month.",
+    q: "What is included in the $99 Website Refresh?",
+    a: "A refresh of your homepage plus 2–3 key sub pages — clearer messaging, stronger calls to action, and a more modern layout direction for the pages visitors use most.",
   },
   {
-    q: "Is this a long contract?",
-    a: "No. Plans are month-to-month. You can continue, change plans, or cancel based on what makes sense for your business.",
+    q: "Is this a monthly subscription?",
+    a: "No. The current offer is a flat $99 website refresh. There is no monthly plan required to get started.",
   },
   {
-    q: "Can I cancel anytime?",
-    a: "Yes. All monthly plans are month-to-month with no long-term contract required.",
+    q: "Which sub pages are included?",
+    a: "Typically the pages that matter most for trust and conversion — for example Services, About, and Contact. We confirm the exact 2–3 pages during onboarding.",
   },
   {
-    q: "How is this different from a one-time website project?",
-    a: "A one-time rebuild often goes stale. Monthly redesign + hosting launches a stronger site and keeps improving it — with hosting handled for you.",
+    q: "How is this different from a full website rebuild?",
+    a: "A full rebuild can touch every page and take much longer. This refresh focuses on the homepage and a few high-impact supporting pages so you can improve the first impression quickly.",
   },
   {
-    q: "Do I still offer GEO / AI visibility?",
-    a: "Yes. GEO assessments and AI visibility support remain available as a secondary offer. They can also be paired with website growth plans when useful.",
+    q: "Do you still offer GEO / AI visibility?",
+    a: "Yes. GEO assessments and AI visibility support remain available as a secondary offer and can be paired with the website refresh when useful.",
   },
   {
     q: "What happens after I like the mockup?",
-    a: "Choose a monthly plan and we turn the direction into a real website — then host and continue improving it over time.",
+    a: "Start the $99 Website Refresh and we turn the sample direction into a refreshed homepage and 2–3 key sub pages.",
   },
   {
     q: "How fast is the preview?",

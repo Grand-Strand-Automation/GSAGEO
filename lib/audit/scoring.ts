@@ -269,13 +269,7 @@ export function generateRecommendations(
     });
   }
 
-  const { overall } = scorecard;
-  const suggestedTier =
-    overall < 40
-      ? "Website Refresh + Hosting — $199/mo"
-      : overall < 65
-        ? "Website Growth + Hosting — starting at $499/mo"
-        : "Managed Website + Growth — starting at $1,250/mo";
+  const suggestedTier = "$99 Website Refresh — homepage + 2–3 sub pages";
 
   return {
     topFixes: fixes.slice(0, 5),

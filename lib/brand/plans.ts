@@ -23,11 +23,11 @@ export function normalizeAuditTier(raw: string | null | undefined): PlanTierId |
 
 /** Human-readable labels for admin and intake (includes legacy tiers) */
 export const PLAN_LABELS: Record<string, string> = {
-  monitor: "Website Refresh + Hosting — $199/mo · cancel anytime",
-  growth: "Website Growth + Hosting — starting at $499/mo · cancel anytime",
-  managed: "Managed Website + Growth — starting at $1,250/mo · cancel anytime",
+  monitor: "$99 Website Refresh — homepage + 2–3 sub pages",
+  growth: "Website Growth + Hosting — legacy monthly plan",
+  managed: "Managed Website + Growth — legacy monthly plan",
   custom: "Custom website / GEO engagement",
-  audit: "Website Refresh + Hosting — legacy assessment alias",
+  audit: "$99 Website Refresh — legacy assessment alias",
   foundation: "Managed Website + Growth — legacy foundation alias",
 };
 
@@ -39,8 +39,6 @@ export function formatPlanLabel(plan: string | null | undefined): string {
 /** Options for the assessment intake form select */
 export const INTAKE_PLAN_OPTIONS = [
   { value: "monitor", label: PLAN_LABELS.monitor },
-  { value: "growth", label: PLAN_LABELS.growth },
-  { value: "managed", label: PLAN_LABELS.managed },
   { value: "custom", label: PLAN_LABELS.custom },
 ] as const;
 

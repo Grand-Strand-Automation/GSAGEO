@@ -30,7 +30,7 @@ const inputClass =
 export function StartRedesignForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const initialTier = normalizeAuditTier(searchParams.get("tier")) || "growth";
+  const initialTier = normalizeAuditTier(searchParams.get("tier")) || "monitor";
   const mockupToken = searchParams.get("mockup") ?? "";
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -88,9 +88,9 @@ export function StartRedesignForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...data,
-          primary_service: "Website redesign + hosting",
-          main_goal: "Launch redesigned website with monthly hosting support",
-          industry: "Website redesign",
+          primary_service: "Website refresh",
+          main_goal: "Refresh homepage and 2-3 key sub pages",
+          industry: "Website refresh",
           current_challenges: [],
           access_available: [],
           selected_plan: data.selected_plan || initialTier,
@@ -116,22 +116,22 @@ export function StartRedesignForm() {
         <div className="container px-4 md:px-6 relative z-10 max-w-2xl">
           <div className="eyebrow-pill mb-5">
             <span className="w-1.5 h-1.5 rounded-full bg-brand-sky inline-block" />
-            Monthly redesign + hosting
+            $99 Website Refresh
           </div>
           <h1 className="text-3xl md:text-4xl font-heading font-extrabold mb-4 leading-tight">
-            Launch a better website without a big upfront project
+            Start your homepage + key pages refresh
           </h1>
           <p className="text-white/70 leading-relaxed">
-            Share a few details and we&apos;ll follow up to turn your homepage direction into a live
-            site with hosting and ongoing support.
+            Share a few details and we&apos;ll follow up to turn your homepage direction into a
+            refreshed homepage and 2–3 important sub pages for a flat $99.
           </p>
         </div>
       </section>
 
       <TrustBar
         items={[
-          "Month-to-month · cancel anytime",
-          "Hosting included",
+          "Flat $99",
+          "Homepage + 2–3 sub pages",
           "Final design refined during onboarding",
         ]}
       />
@@ -233,11 +233,11 @@ export function StartRedesignForm() {
                   Submitting…
                 </>
               ) : (
-                "Request Redesign + Hosting →"
+                "Start My $99 Website Refresh →"
               )}
             </button>
             <p className="text-xs text-brand-muted text-center">
-              Month-to-month · Cancel anytime · We&apos;ll confirm details before anything launches.
+              Flat $99 · Homepage + 2–3 sub pages · We&apos;ll confirm details before work begins.
             </p>
           </form>
         </div>

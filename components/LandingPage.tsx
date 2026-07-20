@@ -8,7 +8,6 @@ import { HeroOverlay } from "@/components/HeroOverlay";
 import { SectionHeading } from "@/components/SectionHeading";
 import { TrustBar } from "@/components/TrustBar";
 import { ButtonLink } from "@/components/ui/Button";
-import { PlanComparisonTable } from "@/components/subscriptions/PlanComparisonTable";
 import {
   DELIVERABLES,
   DELIVERABLES_HEADING,
@@ -35,6 +34,8 @@ import {
 } from "@/lib/content/landing";
 
 export function LandingPage() {
+  const offer = TIERS[0];
+
   return (
     <div className="flex flex-col">
       <section className="bg-brand-hero text-white pt-28 pb-16 md:pt-36 md:pb-24 relative overflow-hidden">
@@ -93,8 +94,8 @@ export function LandingPage() {
       <TrustBar
         items={[
           "Instant homepage preview",
-          "Monthly redesign + hosting",
-          "Month-to-month · cancel anytime",
+          "Homepage + 2–3 sub pages",
+          "Flat $99 website refresh",
         ]}
       />
 
@@ -235,87 +236,43 @@ export function LandingPage() {
       </section>
 
       <section id="pricing" className="section-pad bg-white scroll-mt-20">
-        <div className="container px-4 md:px-6">
+        <div className="container px-4 md:px-6 max-w-3xl">
           <SectionHeading
-            label="Monthly plans"
+            label="Simple pricing"
             title={PRICING_HEADLINE}
             description={PRICING_INTRO}
           />
           <p className="text-center text-sm font-semibold text-brand-navy -mt-4 mb-10">
             {PRICING_SUBLINE}
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-            {TIERS.map((tier) => (
-              <div
-                key={tier.name}
-                className={
-                  tier.primary
-                    ? "rounded-xl border border-brand-blue/30 bg-brand-navy text-white p-7 md:p-8 flex flex-col shadow-card-md ring-1 ring-brand-sky/20"
-                    : "card-brand p-7 md:p-8 flex flex-col shadow-card"
-                }
-              >
-                <span
-                  className={
-                    tier.primary
-                      ? "inline-block text-[10px] font-bold uppercase tracking-[0.12em] px-2.5 py-1 rounded-full mb-3 w-fit bg-brand-sky/15 text-brand-sky"
-                      : "inline-block text-[10px] font-bold uppercase tracking-[0.12em] px-2.5 py-1 rounded-full mb-3 w-fit bg-brand-blue-light text-brand-blue"
-                  }
-                >
-                  {tier.badge}
-                </span>
-                <h3
-                  className={`font-heading font-bold text-lg mb-1 ${tier.primary ? "text-white" : "text-brand-navy"}`}
-                >
-                  {tier.name}
-                </h3>
-                <div
-                  className={`text-2xl font-heading font-extrabold mb-1 ${tier.primary ? "text-white" : "text-brand-navy"}`}
-                >
-                  {tier.price}
-                </div>
-                <p
-                  className={`text-xs font-medium mb-4 ${tier.primary ? "text-white/55" : "text-brand-subtle"}`}
-                >
-                  {tier.period}
-                </p>
-                <p
-                  className={`text-sm leading-relaxed mb-6 flex-grow ${tier.primary ? "text-white/65" : "text-brand-muted"}`}
-                >
-                  {tier.desc}
-                </p>
-                <ul className="space-y-2.5 mb-8">
-                  {tier.includes.map((item) => (
-                    <li
-                      key={item}
-                      className={`flex gap-2 text-sm leading-relaxed ${tier.primary ? "text-white/80" : "text-brand-muted"}`}
-                    >
-                      <CheckCircle2
-                        size={14}
-                        className={`flex-shrink-0 mt-0.5 ${tier.primary ? "text-brand-sky" : "text-brand-blue"}`}
-                      />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <ButtonLink
-                  href={`/start?tier=${tier.tier}`}
-                  variant={tier.primary ? "primary" : "secondaryLight"}
-                  size="md"
-                  className="w-full mt-auto"
-                >
-                  {tier.cta} →
-                </ButtonLink>
-              </div>
-            ))}
-          </div>
 
-          <div className="mt-8">
-            <PlanComparisonTable
-              title="Which monthly plan fits best?"
-              description="Website Growth + Hosting is the practical default. Refresh is the lighter option, and Managed is for deeper hands-on support."
-              compact
-            />
-          </div>
+          {offer ? (
+            <div className="rounded-xl border border-brand-blue/30 bg-brand-navy text-white p-7 md:p-10 flex flex-col shadow-card-md ring-1 ring-brand-sky/20 max-w-xl mx-auto">
+              <span className="inline-block text-[10px] font-bold uppercase tracking-[0.12em] px-2.5 py-1 rounded-full mb-3 w-fit bg-brand-sky/15 text-brand-sky">
+                {offer.badge}
+              </span>
+              <h3 className="font-heading font-bold text-lg mb-1 text-white">{offer.name}</h3>
+              <div className="text-3xl font-heading font-extrabold mb-1 text-white">{offer.price}</div>
+              <p className="text-xs font-medium mb-4 text-white/55">{offer.period}</p>
+              <p className="text-sm leading-relaxed mb-6 text-white/65">{offer.desc}</p>
+              <ul className="space-y-2.5 mb-8">
+                {offer.includes.map((item) => (
+                  <li key={item} className="flex gap-2 text-sm leading-relaxed text-white/80">
+                    <CheckCircle2 size={14} className="flex-shrink-0 mt-0.5 text-brand-sky" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <ButtonLink
+                href={`/start?tier=${offer.tier}`}
+                variant="primary"
+                size="md"
+                className="w-full mt-auto"
+              >
+                {offer.cta} →
+              </ButtonLink>
+            </div>
+          ) : null}
 
           <div className="mt-10 flex flex-col sm:flex-row items-stretch justify-center divide-y sm:divide-y-0 sm:divide-x divide-brand-border bg-brand-cream rounded-xl border border-brand-border shadow-sm">
             {PRICING_REASSURANCE.map((label) => (
@@ -375,8 +332,8 @@ export function LandingPage() {
             </p>
             <p>
               GEO — Generative Engine Optimization — is about improving how clearly your business appears
-              in those AI-driven answers. It remains available as an additional service alongside monthly
-              website redesign + hosting.
+              in those AI-driven answers. It remains available as an additional service alongside the
+              $99 Website Refresh.
             </p>
             <p>
               Start with a free assessment if AI visibility is a priority. Or begin with a homepage mockup
@@ -390,7 +347,7 @@ export function LandingPage() {
 
       <section id="faq" className="section-pad bg-white scroll-mt-20">
         <div className="container px-4 md:px-6 max-w-3xl">
-          <SectionHeading label="FAQ" title="Common questions about redesign + hosting." />
+          <SectionHeading label="FAQ" title="Common questions about the $99 Website Refresh." />
           <div className="card-brand px-6 md:px-8 shadow-card">
             {FAQ_ITEMS.map((item) => (
               <FaqItem key={item.q} q={item.q} a={item.a} />
@@ -401,10 +358,10 @@ export function LandingPage() {
 
       <CTABand
         title="See a fresh homepage concept for your business"
-        subtitle="Enter your website, review a sample mockup, then choose monthly redesign + hosting if you want help launching and maintaining it."
+        subtitle="Enter your website, review a sample mockup, then start the $99 Website Refresh for your homepage and 2–3 key sub pages."
         buttons={[
           { label: "Preview My New Homepage", href: "/#mockup", primary: true },
-          { label: "See Monthly Plans", href: "/#pricing", primary: false },
+          { label: "Start My $99 Refresh", href: "/#pricing", primary: false },
         ]}
       />
     </div>

@@ -14,7 +14,7 @@ export function organizationJsonLd() {
       name: siteConfig.serviceArea,
     },
     description:
-      "Monthly website redesign and hosting for service businesses, with optional GEO / AI visibility support.",
+      "$99 Website Refresh for service businesses — homepage plus 2–3 key sub pages, with optional GEO / AI visibility support.",
     sameAs: [siteConfig.mainSiteUrl],
   };
 }
@@ -23,10 +23,10 @@ export function websiteJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Website Redesign + Hosting — Grand Strand Ally",
+    name: "$99 Website Refresh — Grand Strand Ally",
     url: getSiteUrl(),
     description:
-      "See a sample homepage mockup for your business, then launch with monthly redesign + hosting support.",
+      "See a sample homepage mockup for your business, then refresh your homepage and 2–3 key sub pages for a flat $99.",
     publisher: {
       "@type": "Organization",
       name: siteConfig.name,
@@ -39,7 +39,7 @@ export function serviceJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "Monthly Website Redesign + Hosting",
+    name: "$99 Website Refresh",
     provider: {
       "@type": "Organization",
       name: siteConfig.name,
@@ -47,7 +47,7 @@ export function serviceJsonLd() {
     },
     areaServed: siteConfig.serviceArea,
     description:
-      "Instant homepage mockup preview plus month-to-month website redesign, hosting, and ongoing support for service businesses.",
+      "Instant homepage mockup preview plus a flat $99 refresh of your homepage and 2–3 key sub pages for service businesses.",
     url: absoluteUrl("/"),
   };
 }

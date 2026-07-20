@@ -46,16 +46,16 @@ export function buildPageMetadata({
 }
 
 export const HOME_METADATA = buildPageMetadata({
-  title: "Monthly Website Redesign + Hosting | Grand Strand Ally",
+  title: "$99 Website Refresh | Homepage + Key Pages | Grand Strand Ally",
   description:
-    "See a sample homepage mockup for your business, then launch with monthly redesign + hosting support — month-to-month, cancel anytime.",
+    "See a sample homepage mockup for your business, then refresh your homepage and 2–3 key sub pages for a flat $99.",
   path: "/",
 });
 
 export const AUDIT_METADATA = buildPageMetadata({
   title: "Start Your Free GEO Assessment | GEO",
   description:
-    "Request your free GEO / AI Visibility assessment. Get clear findings and practical next steps — with optional month-to-month support when you are ready.",
+    "Request your free GEO / AI Visibility assessment. Get clear findings and practical next steps — with an optional $99 website refresh when you are ready.",
   path: "/audit",
 });
 

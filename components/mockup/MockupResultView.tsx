@@ -205,11 +205,11 @@ export function MockupResultView({ token }: { token: string }) {
 
               <div className="rounded-xl border border-brand-blue/20 bg-brand-navy text-white p-6 shadow-card-md">
                 <h2 className="font-heading font-bold text-lg mb-2">
-                  Turn this into your new homepage
+                  Turn this into your $99 Website Refresh
                 </h2>
                 <p className="text-sm text-white/70 leading-relaxed mb-5">
-                  Start with Website Refresh + Hosting, or choose a fuller monthly redesign plan —
-                  we host and keep improving without a big upfront project.
+                  Refresh your homepage and 2–3 key sub pages with clearer messaging, stronger CTAs,
+                  and a more modern first impression — flat $99.
                 </p>
                 <div className="space-y-2.5">
                   <ButtonLink
@@ -219,23 +219,14 @@ export function MockupResultView({ token }: { token: string }) {
                     className="w-full"
                     onClick={() => trackCta("monitor")}
                   >
-                    Start My Homepage Refresh →
-                  </ButtonLink>
-                  <ButtonLink
-                    href={`/start?tier=growth&mockup=${token}`}
-                    variant="secondary"
-                    size="md"
-                    className="w-full"
-                    onClick={() => trackCta("growth")}
-                  >
-                    Start Monthly Growth Plan
+                    Start My $99 Website Refresh →
                   </ButtonLink>
                   <Link
                     href="/#pricing"
                     className="block text-center text-sm text-white/60 hover:text-white transition-colors pt-1"
                     onClick={() => trackCta("compare")}
                   >
-                    Compare plans
+                    See what&apos;s included
                   </Link>
                 </div>
               </div>

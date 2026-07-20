@@ -10,7 +10,7 @@ import { siteConfig } from "@/lib/brand/site";
 const NAV_LINKS = [
   { label: "How It Works", href: "/#how-it-works" },
   { label: "What's Included", href: "/#whats-included" },
-  { label: "Monthly Plans", href: "/#pricing" },
+  { label: "$99 Refresh", href: "/#pricing" },
   { label: "FAQ", href: "/#faq" },
 ];
 
