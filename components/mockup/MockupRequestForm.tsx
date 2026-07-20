@@ -24,7 +24,7 @@ const CLIENT_TIMEOUT_MS = 55_000;
 
 const WAIT_MESSAGES = [
   "Reviewing your website…",
-  "Drafting a homepage concept for your business…",
+  "Writing a homepage concept with AI…",
   "Almost ready — polishing the preview…",
 ] as const;
 
@@ -43,10 +43,13 @@ type MockupApiResponse = {
   emailSkippedReason?: string | null;
   warning?: string;
   generation?: {
+    generationMode?: "openai" | "fallback";
     source?: string;
     openAiConfigured?: boolean;
     usedFallback?: boolean;
     fallbackReason?: string | null;
+    extractionSucceeded?: boolean;
+    extractionBlocked?: boolean;
   };
   error?: unknown;
 };

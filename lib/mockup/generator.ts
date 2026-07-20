@@ -105,8 +105,28 @@ export type MockupConcept = {
     generatedBy?: "openai" | "rules";
     siteBlocked?: boolean;
     niche?: string;
+    businessType?: string;
+    audienceType?: string;
+    tone?: string;
+    /** Owner-facing design note — never render inside the mockup frame. */
+    designDirection?: string;
   };
   disclaimer: string;
+};
+
+export type GenerationMode = "openai" | "fallback";
+
+export type MockupGenerationMeta = {
+  /** Explicit mode for operators / UI honesty. */
+  generationMode: GenerationMode;
+  source: "openai" | "rules";
+  openAiConfigured: boolean;
+  openAiError?: string;
+  openAiErrorCode?: string;
+  model?: string;
+  attempts?: number;
+  extractionSucceeded: boolean;
+  extractionBlocked: boolean;
 };
 
 const THEMES: Record<string, MockupTheme> = {
@@ -340,18 +360,27 @@ export function buildMockupConcept(
   };
 }
 
+function extractionFlags(signals: SiteSignals): {
+  extractionSucceeded: boolean;
+  extractionBlocked: boolean;
+} {
+  const extractionBlocked = Boolean(signals.blockedReason);
+  const extractionSucceeded =
+    signals.fetched &&
+    !extractionBlocked &&
+    (Boolean(signals.h1) ||
+      signals.services.length > 0 ||
+      Boolean(signals.metaDesc) ||
+      Boolean(signals.heroParagraph));
+  return { extractionSucceeded, extractionBlocked };
+}
+
 export async function generateMockupConcept(input: MockupRequestInput): Promise<{
   concept: MockupConcept;
   signals: SiteSignals;
-  generation: {
-    source: "openai" | "rules";
-    openAiConfigured: boolean;
-    openAiError?: string;
-    openAiErrorCode?: string;
-    model?: string;
-    attempts?: number;
-  };
+  generation: MockupGenerationMeta;
 }> {
+  const started = Date.now();
   const openAiConfigured = isOpenAiConfigured();
   console.info("[mockup:generate]", "start", {
     business: input.business_name.trim(),
@@ -367,10 +396,12 @@ export async function generateMockupConcept(input: MockupRequestInput): Promise<
   });
 
   const signals = await extractSiteSignals(input.website_url);
+  const { extractionSucceeded, extractionBlocked } = extractionFlags(signals);
   console.info("[mockup:generate]", "site extract", {
     fetched: signals.fetched,
     fetchQuality: signals.fetchQuality,
-    blocked: Boolean(signals.blockedReason),
+    extractionSucceeded,
+    extractionBlocked,
     services: signals.services.length,
     hasH1: Boolean(signals.h1),
   });
@@ -378,53 +409,69 @@ export async function generateMockupConcept(input: MockupRequestInput): Promise<
   let concept = buildMockupConcept(input, signals);
 
   if (!openAiConfigured) {
-    console.warn("[mockup:generate]", "OpenAI not configured — using rules fallback");
-    return {
-      concept,
-      signals,
-      generation: {
-        source: "rules",
-        openAiConfigured: false,
-        openAiError: "OPENAI_API_KEY not configured",
-        openAiErrorCode: "missing_key",
-      },
-    };
-  }
-
-  const llm = await generateConceptFieldsWithOpenAi(input, signals);
-  if (llm.ok) {
-    concept = mergeLlmFieldsIntoConcept(concept, llm.fields, { usedOpenAi: true });
-    console.info("[mockup:generate]", "OpenAI concept applied", {
-      model: llm.model,
-      attempts: llm.attempts,
-      headlinePreview: concept.headline.slice(0, 60),
+    console.warn("[mockup:generate]", "OpenAI not configured — using rules fallback", {
+      elapsedMs: Date.now() - started,
     });
     return {
       concept,
       signals,
       generation: {
+        generationMode: "fallback",
+        source: "rules",
+        openAiConfigured: false,
+        openAiError: "OPENAI_API_KEY not configured",
+        openAiErrorCode: "missing_key",
+        extractionSucceeded,
+        extractionBlocked,
+      },
+    };
+  }
+
+  console.info("[mockup:generate]", "OpenAI request started");
+  const llm = await generateConceptFieldsWithOpenAi(input, signals);
+  if (llm.ok) {
+    concept = mergeLlmFieldsIntoConcept(concept, llm.fields, { usedOpenAi: true });
+    console.info("[mockup:generate]", "OpenAI concept applied", {
+      generationMode: "openai",
+      model: llm.model,
+      attempts: llm.attempts,
+      headlinePreview: concept.headline.slice(0, 60),
+      elapsedMs: Date.now() - started,
+    });
+    return {
+      concept,
+      signals,
+      generation: {
+        generationMode: "openai",
         source: "openai",
         openAiConfigured: true,
         model: llm.model,
         attempts: llm.attempts,
+        extractionSucceeded,
+        extractionBlocked,
       },
     };
   }
 
   console.error("[mockup:generate]", "OpenAI failed — controlled rules fallback", {
+    generationMode: "fallback",
     error: llm.error,
     errorCode: llm.errorCode,
     attempts: llm.attempts,
+    elapsedMs: Date.now() - started,
   });
   return {
     concept,
     signals,
     generation: {
+      generationMode: "fallback",
       source: "rules",
       openAiConfigured: true,
       openAiError: llm.error,
       openAiErrorCode: llm.errorCode,
       attempts: llm.attempts,
+      extractionSucceeded,
+      extractionBlocked,
     },
   };
 }

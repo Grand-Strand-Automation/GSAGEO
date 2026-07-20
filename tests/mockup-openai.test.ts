@@ -13,6 +13,7 @@ import {
   parseHomepageHtml,
 } from "../lib/mockup/generator";
 import { mockupRequestSchema } from "../lib/validation/mockup";
+import { resetOpenAiClientForTests, setOpenAiFetchForTests } from "@/lib/openai/client";
 
 const originalFetch = globalThis.fetch;
 const originalKey = process.env.OPENAI_API_KEY;
@@ -21,6 +22,7 @@ afterEach(() => {
   globalThis.fetch = originalFetch;
   if (originalKey === undefined) delete process.env.OPENAI_API_KEY;
   else process.env.OPENAI_API_KEY = originalKey;
+  resetOpenAiClientForTests();
 });
 
 describe("challenge page detection", () => {
@@ -207,10 +209,62 @@ describe("normalize LLM payload", () => {
   });
 });
 
+describe("normalize nested structured payload", () => {
+  it("flattens hero + sections into renderable fields", async () => {
+    const { parseAndValidateLlmContent } = await import("@/lib/mockup/llm-schema");
+    const result = parseAndValidateLlmContent(
+      JSON.stringify({
+        businessType: "Marine services",
+        audienceType: "Boat owners",
+        tone: "Practical and trustworthy",
+        hero: {
+          eyebrow: "Myrtle Beach marine service",
+          headline: "Reliable marine care for Grand Strand boaters",
+          subheadline: "Coastal Marine helps boat owners with service and yard support.",
+          primaryCta: "Schedule Service",
+          secondaryCta: "Call Us",
+          trustLine: "Serving coastal boaters",
+        },
+        navItems: ["Services", "About", "Contact"],
+        proofPoints: ["Local marine expertise", "Haul-out ready", "Owner communication"],
+        sections: [
+          {
+            type: "services",
+            heading: "Marine services",
+            items: [
+              { title: "Boat Service", desc: "Mechanical and systems work from a local crew." },
+              { title: "Yard Support", desc: "Haul-out help when projects need space." },
+              { title: "Owner Support", desc: "Clear communication from quote to pickup." },
+            ],
+          },
+          {
+            type: "cta",
+            heading: "Ready to get your boat back on the water?",
+            body: "Tell us what you need and we will outline next steps.",
+          },
+        ],
+        improvementSummary: [
+          "Clearer first impression for marine service customers",
+          "Stronger call-to-action placement",
+          "Services presented in a scannable layout",
+        ],
+        designDirection: "Clean coastal blues with strong service cards",
+      }),
+    );
+    assert.equal(result.ok, true);
+    if (result.ok) {
+      assert.match(result.fields.headline, /marine/i);
+      assert.equal(result.fields.primaryCta, "Schedule Service");
+      assert.equal(result.fields.services.length, 3);
+      assert.equal(result.fields.designDirection, "Clean coastal blues with strong service cards");
+    }
+  });
+});
+
 describe("OpenAI env status", () => {
   it("reports missing key clearly", async () => {
     delete process.env.OPENAI_API_KEY;
-    const { getOpenAiEnvStatus } = await import("../lib/mockup/openai-concept");
+    const { getOpenAiEnvStatus } = await import("@/lib/openai/client");
     const status = getOpenAiEnvStatus();
     assert.equal(status.configured, false);
     assert.match(status.reason ?? "", /OPENAI_API_KEY/);
@@ -218,9 +272,10 @@ describe("OpenAI env status", () => {
 
   it("strips wrapping quotes from key values", async () => {
     process.env.OPENAI_API_KEY = '"sk-test-key-with-enough-length"';
-    const { getOpenAiEnvStatus, getOpenAiApiKey } = await import(
-      "../lib/mockup/openai-concept"
+    const { getOpenAiEnvStatus, getOpenAiApiKey, resetOpenAiClientForTests } = await import(
+      "@/lib/openai/client"
     );
+    resetOpenAiClientForTests();
     const status = getOpenAiEnvStatus();
     assert.equal(status.configured, true);
     assert.equal(getOpenAiApiKey(), "sk-test-key-with-enough-length");
@@ -230,39 +285,66 @@ describe("OpenAI env status", () => {
 describe("OpenAI API call", () => {
   it("returns validated fields from a successful Chat Completions response", async () => {
     process.env.OPENAI_API_KEY = "test-key-with-enough-length-here";
-    globalThis.fetch = mock.fn(async () =>
+
+    const mockFetch = mock.fn(async () =>
       new Response(
         JSON.stringify({
+          id: "chatcmpl-test",
+          object: "chat.completion",
           choices: [
             {
+              index: 0,
               message: {
+                role: "assistant",
                 content: JSON.stringify({
-                  headline: "Reliable marine care for Grand Strand boaters",
-                  subheadline:
-                    "Coastal Marine helps boat owners with service, storage, and yard support they can count on.",
-                  primaryCta: "Request Service",
-                  secondaryCta: "Call Us",
+                  businessType: "Marine services",
+                  audienceType: "Boat owners",
+                  tone: "Practical",
+                  hero: {
+                    eyebrow: "Grand Strand marine care",
+                    headline: "Reliable marine care for Grand Strand boaters",
+                    subheadline:
+                      "Coastal Marine helps boat owners with service, storage, and yard support they can count on.",
+                    primaryCta: "Request Service",
+                    secondaryCta: "Call Us",
+                    trustLine: "Serving coastal boaters · Straightforward next steps",
+                  },
                   navItems: ["Services", "About", "Reviews", "Contact"],
-                  services: [
-                    { title: "Boat Service", desc: "Mechanical and systems work from a local crew." },
-                    { title: "Yard Support", desc: "Haul-out and yard help when projects need space." },
-                    { title: "Owner Support", desc: "Clear communication from quote to pickup." },
-                  ],
-                  trustLine: "Serving coastal boaters · Straightforward next steps",
                   proofPoints: ["Local marine expertise", "Haul-out ready", "Owner communication"],
-                  improvementNotes: [
+                  sections: [
+                    {
+                      type: "services",
+                      heading: "Our services",
+                      items: [
+                        { title: "Boat Service", desc: "Mechanical and systems work from a local crew." },
+                        { title: "Yard Support", desc: "Haul-out and yard help when projects need space." },
+                        { title: "Owner Support", desc: "Clear communication from quote to pickup." },
+                      ],
+                    },
+                    {
+                      type: "cta",
+                      heading: "Ready for service?",
+                      body: "Request a slot and we will confirm next steps.",
+                    },
+                  ],
+                  improvementSummary: [
                     "Clearer first impression for marine service customers",
                     "Stronger call-to-action placement",
                     "Services presented in a scannable layout",
                   ],
+                  designDirection: "Clean coastal layout with strong CTAs",
                 }),
               },
+              finish_reason: "stop",
             },
           ],
+          usage: { prompt_tokens: 10, completion_tokens: 20, total_tokens: 30 },
         }),
         { status: 200, headers: { "content-type": "application/json" } },
       ),
     ) as unknown as typeof fetch;
+
+    setOpenAiFetchForTests(mockFetch);
 
     const input = mockupRequestSchema.parse({
       website_url: "https://coastalmarinemb.com",
@@ -284,6 +366,7 @@ describe("OpenAI API call", () => {
 
   it("fails gracefully when API key is missing", async () => {
     delete process.env.OPENAI_API_KEY;
+    resetOpenAiClientForTests();
     const input = mockupRequestSchema.parse({
       website_url: "https://example.com",
       business_name: "Test",

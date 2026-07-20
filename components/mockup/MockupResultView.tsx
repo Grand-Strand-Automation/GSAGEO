@@ -21,10 +21,13 @@ type MockupPayload = {
   emailSent?: boolean;
   persisted?: boolean;
   generation?: {
+    generationMode?: "openai" | "fallback";
     source?: string;
     openAiConfigured?: boolean;
     usedFallback?: boolean;
     fallbackReason?: string | null;
+    extractionSucceeded?: boolean;
+    extractionBlocked?: boolean;
   } | null;
 };
 
@@ -234,12 +237,22 @@ export function MockupResultView({ token }: { token: string }) {
                   <div className="flex justify-between gap-3">
                     <dt className="text-brand-muted">Copy source</dt>
                     <dd className="font-medium text-brand-navy text-right">
-                      {concept.sourceSignals?.generatedBy === "openai" ||
+                      {payload.generation?.generationMode === "openai" ||
+                      concept.sourceSignals?.generatedBy === "openai" ||
                       payload.generation?.source === "openai"
                         ? "AI-tailored"
                         : payload.generation?.openAiConfigured
                           ? "Rules fallback"
                           : "Rules-based"}
+                    </dd>
+                  </div>
+                  <div className="flex justify-between gap-3">
+                    <dt className="text-brand-muted">Generation</dt>
+                    <dd className="font-medium text-brand-navy text-right capitalize">
+                      {payload.generation?.generationMode ??
+                        (concept.sourceSignals?.generatedBy === "openai"
+                          ? "openai"
+                          : "fallback")}
                     </dd>
                   </div>
                   <div className="flex justify-between gap-3">
@@ -249,11 +262,17 @@ export function MockupResultView({ token }: { token: string }) {
                     </dd>
                   </div>
                 </dl>
-                {payload.generation?.usedFallback &&
+                {concept.sourceSignals?.designDirection ? (
+                  <p className="mt-4 text-xs text-brand-muted leading-relaxed border-t border-brand-border pt-4">
+                    Design direction: {concept.sourceSignals.designDirection}
+                  </p>
+                ) : null}
+                {(payload.generation?.usedFallback ||
+                  payload.generation?.generationMode === "fallback") &&
                 payload.generation.openAiConfigured ? (
                   <p className="mt-4 text-xs text-amber-800/80 leading-relaxed border-t border-brand-border pt-4">
-                    AI drafting was unavailable for this preview, so a rules-based concept was used.
-                    Try again in a moment for a fuller AI-tailored draft.
+                    AI drafting was unavailable for this preview, so a rules-based concept was used
+                    (generationMode: fallback). Try again in a moment for a fuller AI-tailored draft.
                   </p>
                 ) : null}
                 {payload.website_url && (

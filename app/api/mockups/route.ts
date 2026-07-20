@@ -71,10 +71,14 @@ export async function POST(request: Request) {
         if (llm.ok) {
           concept = mergeLlmFieldsIntoConcept(concept, llm.fields, { usedOpenAi: true });
           generation = {
+            ...generation,
+            generationMode: "openai",
             source: "openai",
             openAiConfigured: true,
             model: llm.model,
             attempts: llm.attempts,
+            openAiError: undefined,
+            openAiErrorCode: undefined,
           };
         } else {
           console.error("[mockups]", "blocked-site OpenAI regenerate failed", {
@@ -82,6 +86,8 @@ export async function POST(request: Request) {
             errorCode: llm.errorCode,
           });
           generation = {
+            ...generation,
+            generationMode: "fallback",
             source: generation.source,
             openAiConfigured: true,
             openAiError: llm.error,
@@ -114,10 +120,13 @@ export async function POST(request: Request) {
     };
 
     console.info("[mockups]", "complete", {
+      generationMode: generationMeta.generationMode,
       source: generationMeta.source,
       openAiConfigured: generationMeta.openAiConfigured,
       openAiErrorCode: generationMeta.openAiErrorCode ?? null,
       model: generationMeta.model ?? null,
+      extractionSucceeded: generationMeta.extractionSucceeded,
+      extractionBlocked: generationMeta.extractionBlocked,
       screenshot: screenshotStatus,
       elapsedMs: generationMeta.elapsedMs,
       blocked: Boolean(signals.blockedReason),
@@ -169,15 +178,18 @@ export async function POST(request: Request) {
 
     // Safe client-facing generation summary (no raw API errors with payloads)
     const clientGeneration = {
+      generationMode: generationMeta.generationMode,
       source: generationMeta.source,
       openAiConfigured: generationMeta.openAiConfigured,
       model: generationMeta.model ?? null,
-      usedFallback: generationMeta.source === "rules",
+      usedFallback: generationMeta.generationMode === "fallback",
       fallbackReason:
-        generationMeta.source === "rules"
+        generationMeta.generationMode === "fallback"
           ? generationMeta.openAiErrorCode ??
             (generationMeta.openAiConfigured ? "openai_failed" : "missing_key")
           : null,
+      extractionSucceeded: generationMeta.extractionSucceeded,
+      extractionBlocked: generationMeta.extractionBlocked,
     };
 
     if (error || !data) {
