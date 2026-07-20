@@ -65,7 +65,7 @@ describe("mockup site extraction", () => {
 });
 
 describe("mockup concept generator", () => {
-  it("builds a labeled sample concept from preferences when site fetch fails", () => {
+  it("builds customer-facing homepage copy — not redesign commentary", () => {
     const input = mockupRequestSchema.parse({
       website_url: "https://example.com",
       business_name: "Coastal Plumbing",
@@ -77,15 +77,40 @@ describe("mockup concept generator", () => {
 
     const concept = buildMockupConcept(input, emptySignals);
     assert.equal(concept.label, "Sample homepage concept");
-    assert.match(concept.headline, /Coastal Plumbing/i);
+    assert.match(concept.headline, /Coastal Plumbing|plumbing/i);
+    assert.doesNotMatch(concept.headline, /clearer|fresher|modern homepage|redesign|mockup/i);
+    assert.doesNotMatch(concept.subheadline, /fresher homepage direction|clearer first impression/i);
+    assert.match(concept.primaryCta, /Call/i);
     assert.equal(concept.styleLabel, "Simple and trustworthy");
     assert.equal(concept.theme.key, "simple_trustworthy");
     assert.ok(concept.services.length >= 3);
     assert.ok(concept.improvementNotes.length >= 3);
+    assert.ok(concept.heroEyebrow);
+    assert.ok(concept.sectionPlan.includes("hero"));
+    assert.ok(concept.proofPoints.every((p) => !/clearer first|stronger call|easier-to-scan/i.test(p)));
     assert.match(concept.disclaimer, /Preview only/i);
     assert.equal(concept.sourceSignals.usedLiveSite, false);
     assert.equal(concept.sourceSignals.usedRealServices, false);
     assert.ok(concept.currentSnapshot);
+    assert.ok(concept.personalizationLine);
+  });
+
+  it("uses marine-specific copy and CTA when niche is inferred from the name", () => {
+    const input = mockupRequestSchema.parse({
+      website_url: "https://coastalmarinemb.com",
+      business_name: "Coastal Marine",
+      business_category: "professional_services",
+      preferred_style: "clean_modern",
+      homepage_goal: "modernize",
+      notes: "Boat service and marina",
+    });
+    const concept = buildMockupConcept(input, emptySignals);
+    assert.equal(concept.sourceSignals.niche, "marine");
+    assert.match(concept.headline, /marine|boat/i);
+    assert.doesNotMatch(concept.headline, /clearer, more modern homepage/i);
+    assert.match(concept.primaryCta, /Schedule Service|Request a Quote|Call/i);
+    assert.ok(concept.services.some((s) => /haul|mechanical|storage|marine/i.test(s.title)));
+    assert.ok(concept.sectionPlan.includes("process"));
   });
 
   it("prefers real site headline, CTA, and service copy over canned fallbacks", () => {
@@ -130,7 +155,7 @@ describe("mockup concept generator", () => {
       "Contact",
     ]);
     assert.match(concept.trustLine, /843-555-0100/);
-    assert.match(concept.improvementNotes.join(" "), /Family|services|CTA|headline/i);
+    assert.match(concept.improvementNotes.join(" "), /services|CTA|headline|Customer-facing/i);
   });
 
   it("attaches screenshot url into currentSnapshot when provided", () => {

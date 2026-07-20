@@ -127,11 +127,16 @@ export function MockupResultView({ token }: { token: string }) {
           </h1>
           <p className="text-lg text-white/70 leading-relaxed max-w-2xl mb-4">
             {concept.sourceSignals?.siteBlocked
-              ? "We couldn&apos;t load a live preview of your current site, so this concept is based on your business details — still a sample preview, not a finished website."
+              ? "We couldn&apos;t load a live preview of your current site, so this sample homepage was written from your business details — still a preview, not a finished website."
               : compare
-                ? "Built from your current site content and preferences — a clearer, more modern homepage concept you can compare side by side."
-                : "Based on your preferences, here is a concept for a clearer, more modern homepage. This is a preview mockup — not a finished website."}
+                ? "A sample homepage tailored to your business — compare it with your current site side by side."
+                : "A sample homepage tailored to your business name, style, and goal. This is a preview concept — not a finished website."}
           </p>
+          {concept.personalizationLine ? (
+            <p className="text-sm text-white/55 leading-relaxed max-w-2xl mb-3">
+              {concept.personalizationLine}
+            </p>
+          ) : null}
           <p className="text-sm text-white/50 leading-relaxed max-w-2xl">{MOCKUP_EXPECTATION}</p>
         </div>
       </section>
@@ -142,8 +147,12 @@ export function MockupResultView({ token }: { token: string }) {
 
           <div className="mt-10 grid lg:grid-cols-[1fr_320px] gap-8 items-start">
             <div className="card-brand p-6 md:p-7 shadow-card">
-              <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-brand-blue mb-3">
-                What improved in this concept
+              <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-brand-blue mb-2">
+                What improved in this direction
+              </p>
+              <p className="text-sm text-brand-muted mb-4 leading-relaxed">
+                These notes explain why this sample is stronger — they are not part of the homepage
+                itself.
               </p>
               <ul className="grid sm:grid-cols-2 gap-3">
                 {concept.improvementNotes.map((note) => (
@@ -153,13 +162,11 @@ export function MockupResultView({ token }: { token: string }) {
                   </li>
                 ))}
               </ul>
-              {(concept.sourceSignals?.usedRealServices ||
-                concept.sourceSignals?.usedRealCta) && (
-                <p className="mt-4 text-xs text-brand-muted leading-relaxed border-t border-brand-border pt-4">
-                  This sample reuses language and services detected on your current site where
-                  possible — so it feels like your business, not a generic template.
-                </p>
-              )}
+              <p className="mt-4 text-xs text-brand-muted leading-relaxed border-t border-brand-border pt-4">
+                {(concept.sourceSignals?.usedRealServices || concept.sourceSignals?.usedRealCta)
+                  ? "Structured around language and services detected on your current site where possible — so it feels like your business, not a generic template."
+                  : "Structured around your business name, category, style preference, and homepage goal so visitors understand what you do first."}
+              </p>
             </div>
 
             <aside className="space-y-5 lg:sticky lg:top-24">
@@ -198,21 +205,21 @@ export function MockupResultView({ token }: { token: string }) {
 
               <div className="rounded-xl border border-brand-blue/20 bg-brand-navy text-white p-6 shadow-card-md">
                 <h2 className="font-heading font-bold text-lg mb-2">
-                  Turn this mockup into your new website
+                  Turn this into your new homepage
                 </h2>
                 <p className="text-sm text-white/70 leading-relaxed mb-5">
-                  We redesign, launch, host, and continue improving your site on a simple monthly
-                  plan — without a big upfront project.
+                  Start with Website Refresh + Hosting, or choose a fuller monthly redesign plan —
+                  we host and keep improving without a big upfront project.
                 </p>
                 <div className="space-y-2.5">
                   <ButtonLink
-                    href={`/start?tier=growth&mockup=${token}`}
+                    href={`/start?tier=monitor&mockup=${token}`}
                     variant="primary"
                     size="md"
                     className="w-full"
-                    onClick={() => trackCta("growth")}
+                    onClick={() => trackCta("monitor")}
                   >
-                    Start My Monthly Redesign Plan →
+                    Start My Homepage Refresh →
                   </ButtonLink>
                   <ButtonLink
                     href={`/start?tier=growth&mockup=${token}`}
@@ -221,7 +228,7 @@ export function MockupResultView({ token }: { token: string }) {
                     className="w-full"
                     onClick={() => trackCta("growth")}
                   >
-                    Launch This Direction
+                    Start Monthly Growth Plan
                   </ButtonLink>
                   <Link
                     href="/#pricing"

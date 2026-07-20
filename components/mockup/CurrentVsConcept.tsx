@@ -165,7 +165,7 @@ function ConceptOnlyLayout({
           Sample homepage concept
         </p>
         <h2 className="font-heading font-bold text-xl md:text-2xl text-brand-navy">
-          A clearer homepage direction for {concept.businessName}
+          Sample homepage for {concept.businessName}
         </h2>
         <p className="text-sm text-brand-muted mt-2 leading-relaxed">{note}</p>
         {websiteUrl && (
@@ -259,7 +259,7 @@ export function CurrentVsConcept({
               Sample redesign concept
             </p>
             <p className="text-sm font-heading font-bold text-brand-navy mt-0.5">
-              A clearer homepage direction
+              Sample redesign concept
             </p>
           </div>
           <HomepageMockupPreview concept={concept} framed={false} />

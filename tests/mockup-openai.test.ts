@@ -121,7 +121,7 @@ describe("merge LLM fields", () => {
           { title: "Seasonal Storage", desc: "Protected storage options between seasons." },
         ],
         trustLine: "Coastal Marine · Myrtle Beach area · Call for availability",
-        proofPoints: ["Clearer first impression", "Stronger call to action", "Easier service layout"],
+        proofPoints: ["Local marine expertise", "Haul-out ready", "Owner communication"],
         improvementNotes: [
           "Stronger homepage headline for marina and boat service",
           "Clearer primary CTA above the fold",
@@ -136,6 +136,43 @@ describe("merge LLM fields", () => {
     assert.equal(merged.services[0]?.title, "Haul-Out & Yard");
     assert.equal(merged.sourceSignals.generatedBy, "openai");
     assert.doesNotMatch(merged.headline, /mockup|redesign|concept/i);
+    assert.ok(merged.proofPoints.every((p) => !/clearer first|stronger call/i.test(p)));
+  });
+
+  it("rejects meta proofPoints from the LLM and keeps trust chips", () => {
+    const input = mockupRequestSchema.parse({
+      website_url: "https://coastalmarinemb.com",
+      business_name: "Coastal Marine",
+      business_category: "professional_services",
+      preferred_style: "clean_modern",
+      homepage_goal: "modernize",
+    });
+    const base = buildMockupConcept(input, emptySiteSignals());
+    const merged = mergeLlmFieldsIntoConcept(
+      base,
+      {
+        headline: "Marine service you can trust on the Grand Strand",
+        subheadline: "From haul-outs to routine care, Coastal Marine keeps boats ready.",
+        primaryCta: "Schedule Service",
+        secondaryCta: "View Services",
+        navItems: ["Services", "About", "Contact"],
+        services: [
+          { title: "Haul-Out", desc: "Safe haul-outs when you need yard work done." },
+          { title: "Mechanical", desc: "Engine and systems care from a local team." },
+          { title: "Storage", desc: "Protected storage between seasons." },
+        ],
+        trustLine: "Myrtle Beach area marine service",
+        proofPoints: ["Clearer first impression", "Stronger call to action", "Easier service layout"],
+        improvementNotes: [
+          "Customer-facing headline for marine service",
+          "Stronger CTA above the fold",
+          "Cleaner service layout",
+        ],
+      },
+      { usedOpenAi: true },
+    );
+    assert.ok(merged.proofPoints.every((p) => !/clearer first|stronger call|easier service/i.test(p)));
+    assert.ok(merged.proofPoints.length >= 2);
   });
 });
 
