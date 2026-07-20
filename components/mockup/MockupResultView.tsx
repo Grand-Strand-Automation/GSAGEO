@@ -3,7 +3,10 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { CheckCircle2, Loader2 } from "lucide-react";
-import { CurrentVsConcept } from "@/components/mockup/CurrentVsConcept";
+import {
+  CurrentVsConcept,
+  shouldShowSideBySide,
+} from "@/components/mockup/CurrentVsConcept";
 import { HeroOverlay } from "@/components/HeroOverlay";
 import { ButtonLink } from "@/components/ui/Button";
 import type { MockupConcept } from "@/lib/mockup/generator";
@@ -104,7 +107,11 @@ export function MockupResultView({ token }: { token: string }) {
   }
 
   const { concept } = payload;
-  const usedLive = concept.sourceSignals?.usedLiveSite;
+  const snapshot = concept.currentSnapshot;
+  const compare =
+    snapshot != null
+      ? shouldShowSideBySide(snapshot, concept.sourceSignals?.siteBlocked)
+      : false;
 
   return (
     <div className="flex flex-col">
@@ -120,8 +127,8 @@ export function MockupResultView({ token }: { token: string }) {
           </h1>
           <p className="text-lg text-white/70 leading-relaxed max-w-2xl mb-4">
             {concept.sourceSignals?.siteBlocked
-              ? "We couldn&apos;t load the live site (security protection), so this concept was written from your business details — still a sample preview, not a finished website."
-              : usedLive
+              ? "We couldn&apos;t load a live preview of your current site, so this concept is based on your business details — still a sample preview, not a finished website."
+              : compare
                 ? "Built from your current site content and preferences — a clearer, more modern homepage concept you can compare side by side."
                 : "Based on your preferences, here is a concept for a clearer, more modern homepage. This is a preview mockup — not a finished website."}
           </p>
