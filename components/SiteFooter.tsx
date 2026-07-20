@@ -10,8 +10,8 @@ export function SiteFooter() {
           <div className="md:col-span-5 space-y-4">
             <BrandLogo variant="geo" />
             <p className="text-sm text-white/55 max-w-md leading-relaxed pt-1">
-              $99 Website Refresh for service businesses — start with a free homepage mockup, then
-              refresh your homepage and 2–3 key sub pages.
+              Website design and redesign for businesses that need a clearer, more modern online
+              presence — from a $99 homepage refresh to full-site projects, with GEO as a next step.
             </p>
             <div className="space-y-2 pt-2 text-sm">
               <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/35">
@@ -32,9 +32,10 @@ export function SiteFooter() {
             </h3>
             <ul className="space-y-3">
               {[
-                { label: "Homepage mockup", href: "/#mockup" },
-                { label: "$99 Website Refresh", href: "/#pricing" },
-                { label: "Start refresh", href: "/start" },
+                { label: "Request a mockup", href: "/#mockup" },
+                { label: "Before & after examples", href: "/#examples" },
+                { label: "Design options", href: "/#pricing" },
+                { label: "$99 Homepage Refresh", href: "/start" },
                 { label: "GEO assessment", href: "/audit" },
                 { label: "FAQ", href: "/#faq" },
               ].map(({ label, href }) => (
@@ -73,7 +74,7 @@ export function SiteFooter() {
                 href="/#mockup"
                 className="inline-block text-sm font-semibold text-brand-sky hover:text-white transition-colors"
               >
-                Preview your new homepage →
+                Request a homepage mockup →
               </Link>
             </div>
           </div>
@@ -84,7 +85,7 @@ export function SiteFooter() {
             © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
           </p>
           <p className="text-sm text-white/30 text-center sm:text-right">
-            $99 Website Refresh · Homepage + 2–3 pages · Grand Strand-based
+            Website design · $99 refresh · Full redesign · Grand Strand-based
           </p>
         </div>
       </div>

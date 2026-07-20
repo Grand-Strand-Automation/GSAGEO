@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+/** Legacy style/goal enums still used by rules/OpenAI generator modules. */
 export const STYLE_OPTIONS = [
   { value: "clean_modern", label: "Clean and modern" },
   { value: "premium_professional", label: "Premium and professional" },
@@ -40,6 +41,7 @@ const categoryValues = CATEGORY_OPTIONS.map((o) => o.value) as [
   ...(typeof CATEGORY_OPTIONS)[number]["value"][],
 ];
 
+/** Legacy schema for internal generator modules (not the public request form). */
 export const mockupRequestSchema = z.object({
   website_url: z
     .string()
@@ -68,7 +70,6 @@ export const mockupRequestSchema = z.object({
     .email("Enter a valid email")
     .max(200)
     .transform((v) => v.trim().toLowerCase()),
-  // Honeypot
   website: z.string().optional(),
 });
 

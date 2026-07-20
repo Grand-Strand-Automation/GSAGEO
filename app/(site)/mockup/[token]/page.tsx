@@ -1,29 +1,61 @@
-import { Suspense } from "react";
 import type { Metadata } from "next";
-import { MockupResultView } from "@/components/mockup/MockupResultView";
-import { buildPageMetadata } from "@/lib/seo/metadata";
+import Link from "next/link";
+import { ButtonLink } from "@/components/ui/Button";
+import { HeroOverlay } from "@/components/HeroOverlay";
 
-export const metadata: Metadata = buildPageMetadata({
-  title: "Your Homepage Mockup Preview | Grand Strand Ally",
-  description:
-    "Review your sample homepage concept, then start the $99 Website Refresh for your homepage and 2–3 key sub pages.",
-  path: "/mockup",
-  index: false,
-});
+export const metadata: Metadata = {
+  title: { absolute: "Instant Preview Unavailable | Grand Strand Ally" },
+  robots: { index: false, follow: false },
+};
 
-type Props = { params: Promise<{ token: string }> };
+export default async function MockupResultPage({
+  params,
+}: {
+  params: Promise<{ token: string }>;
+}) {
+  await params;
 
-export default async function MockupResultPage({ params }: Props) {
-  const { token } = await params;
   return (
-    <Suspense
-      fallback={
-        <div className="min-h-[60vh] flex items-center justify-center text-brand-muted">
-          Loading your homepage concept…
+    <div className="flex flex-col min-h-[70vh]">
+      <section className="bg-brand-hero text-white pt-28 pb-12 md:pt-32 md:pb-16 relative overflow-hidden">
+        <HeroOverlay />
+        <div className="container px-4 md:px-6 relative z-10 max-w-2xl">
+          <div className="eyebrow-pill mb-5">
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-sky inline-block" />
+            Preview update
+          </div>
+          <h1 className="text-3xl sm:text-4xl font-heading font-extrabold mb-4 leading-[1.1]">
+            Instant previews are no longer available
+          </h1>
+          <p className="text-lg text-white/70 leading-relaxed">
+            We now prepare custom homepage concepts after reviewing your business details — a
+            higher-trust process without automated on-page generation.
+          </p>
         </div>
-      }
-    >
-      <MockupResultView token={token} />
-    </Suspense>
+      </section>
+
+      <section className="section-pad bg-brand-cream flex-1">
+        <div className="container px-4 md:px-6 max-w-xl text-center">
+          <p className="text-brand-muted leading-relaxed mb-8">
+            Request a homepage mockup with your company name, website, and email. We&apos;ll follow
+            up directly and help you choose between a $99 homepage refresh and a full website
+            redesign.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <ButtonLink href="/#mockup">Request a Homepage Mockup →</ButtonLink>
+            <ButtonLink href="/#examples" variant="secondaryLight">
+              See Before &amp; After Examples
+            </ButtonLink>
+          </div>
+          <p className="mt-8 text-sm text-brand-muted">
+            Looking for GEO next?{" "}
+            <Link href="/audit" className="text-brand-blue hover:underline font-medium">
+              Start a free GEO assessment
+            </Link>
+            .
+          </p>
+        </div>
+      </section>
+    </div>
   );
 }

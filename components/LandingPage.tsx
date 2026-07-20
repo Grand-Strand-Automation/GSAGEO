@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CheckCircle2, XCircle } from "lucide-react";
+import { BeforeAfterExamples } from "@/components/landing/BeforeAfterExamples";
 import { SampleOutputPreview } from "@/components/landing/SampleOutputPreview";
 import { MockupRequestForm } from "@/components/mockup/MockupRequestForm";
 import { CTABand } from "@/components/CTABand";
@@ -8,11 +9,14 @@ import { HeroOverlay } from "@/components/HeroOverlay";
 import { SectionHeading } from "@/components/SectionHeading";
 import { TrustBar } from "@/components/TrustBar";
 import { ButtonLink } from "@/components/ui/Button";
+import { siteConfig } from "@/lib/brand/site";
 import {
+  BROADER_SUPPORT,
   DELIVERABLES,
   DELIVERABLES_HEADING,
   DELIVERABLES_INTRO,
   DELIVERABLES_SUPPORT,
+  DESIGN_OFFERS,
   FAQ_ITEMS,
   GEO_SECONDARY,
   GOOD_FIT,
@@ -22,20 +26,14 @@ import {
   NOT_FIT,
   PRICING_CUSTOM_NOTE,
   PRICING_DOWNGRADE_NOTE,
-  PRICING_HEADLINE,
   PRICING_HELPER,
-  PRICING_INTRO,
   PRICING_REASSURANCE,
-  PRICING_SUBLINE,
-  TIERS,
   WHATS_INCLUDED,
   WHATS_INCLUDED_INTRO,
   WHY_ONGOING,
 } from "@/lib/content/landing";
 
 export function LandingPage() {
-  const offer = TIERS[0];
-
   return (
     <div className="flex flex-col">
       <section className="bg-brand-hero text-white pt-28 pb-16 md:pt-36 md:pb-24 relative overflow-hidden">
@@ -93,11 +91,13 @@ export function LandingPage() {
 
       <TrustBar
         items={[
-          "Instant homepage preview",
-          "Homepage + 2–3 sub pages",
-          "Flat $99 website refresh",
+          "Custom mockup by request",
+          "$99 homepage refresh",
+          "Full website redesign",
         ]}
       />
+
+      <BeforeAfterExamples />
 
       <section id="how-it-works" className="section-pad bg-brand-cream scroll-mt-20">
         <div className="container px-4 md:px-6 max-w-4xl">
@@ -212,7 +212,7 @@ export function LandingPage() {
             </p>
             <div className="mt-8 text-center">
               <ButtonLink href="#mockup" size="md">
-                Preview My New Homepage →
+                Request a Homepage Mockup →
               </ButtonLink>
             </div>
           </div>
@@ -236,45 +236,82 @@ export function LandingPage() {
       </section>
 
       <section id="pricing" className="section-pad bg-white scroll-mt-20">
-        <div className="container px-4 md:px-6 max-w-3xl">
+        <div className="container px-4 md:px-6 max-w-5xl">
           <SectionHeading
-            label="Simple pricing"
-            title={PRICING_HEADLINE}
-            description={PRICING_INTRO}
+            label={DESIGN_OFFERS.label}
+            title={DESIGN_OFFERS.title}
+            description={DESIGN_OFFERS.intro}
           />
           <p className="text-center text-sm font-semibold text-brand-navy -mt-4 mb-10">
-            {PRICING_SUBLINE}
+            {DESIGN_OFFERS.helper}
           </p>
 
-          {offer ? (
-            <div className="rounded-xl border border-brand-blue/30 bg-brand-navy text-white p-7 md:p-10 flex flex-col shadow-card-md ring-1 ring-brand-sky/20 max-w-xl mx-auto">
-              <span className="inline-block text-[10px] font-bold uppercase tracking-[0.12em] px-2.5 py-1 rounded-full mb-3 w-fit bg-brand-sky/15 text-brand-sky">
-                {offer.badge}
-              </span>
-              <h3 className="font-heading font-bold text-lg mb-1 text-white">{offer.name}</h3>
-              <div className="text-3xl font-heading font-extrabold mb-1 text-white">{offer.price}</div>
-              <p className="text-xs font-medium mb-4 text-white/55">{offer.period}</p>
-              <p className="text-sm leading-relaxed mb-6 text-white/65">{offer.desc}</p>
-              <ul className="space-y-2.5 mb-8">
-                {offer.includes.map((item) => (
-                  <li key={item} className="flex gap-2 text-sm leading-relaxed text-white/80">
-                    <CheckCircle2 size={14} className="flex-shrink-0 mt-0.5 text-brand-sky" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <ButtonLink
-                href={`/start?tier=${offer.tier}`}
-                variant="primary"
-                size="md"
-                className="w-full mt-auto"
+          <div className="grid md:grid-cols-2 gap-5 md:gap-6 max-w-4xl mx-auto">
+            {DESIGN_OFFERS.offers.map((offer) => (
+              <div
+                key={offer.id}
+                className={
+                  offer.primary
+                    ? "rounded-xl border border-brand-blue/30 bg-brand-navy text-white p-7 md:p-8 flex flex-col shadow-card-md ring-1 ring-brand-sky/20"
+                    : "rounded-xl border border-brand-border bg-white p-7 md:p-8 flex flex-col shadow-card"
+                }
               >
-                {offer.cta} →
-              </ButtonLink>
-            </div>
-          ) : null}
+                <span
+                  className={
+                    offer.primary
+                      ? "inline-block text-[10px] font-bold uppercase tracking-[0.12em] px-2.5 py-1 rounded-full mb-3 w-fit bg-brand-sky/15 text-brand-sky"
+                      : "inline-block text-[10px] font-bold uppercase tracking-[0.12em] px-2.5 py-1 rounded-full mb-3 w-fit bg-brand-cream text-brand-blue"
+                  }
+                >
+                  {offer.badge}
+                </span>
+                <h3
+                  className={`font-heading font-bold text-lg mb-1 ${offer.primary ? "text-white" : "text-brand-navy"}`}
+                >
+                  {offer.name}
+                </h3>
+                <div
+                  className={`text-3xl font-heading font-extrabold mb-1 ${offer.primary ? "text-white" : "text-brand-navy"}`}
+                >
+                  {offer.price}
+                </div>
+                <p
+                  className={`text-xs font-medium mb-4 ${offer.primary ? "text-white/55" : "text-brand-muted"}`}
+                >
+                  {offer.period}
+                </p>
+                <p
+                  className={`text-sm leading-relaxed mb-6 ${offer.primary ? "text-white/65" : "text-brand-muted"}`}
+                >
+                  {offer.desc}
+                </p>
+                <ul className="space-y-2.5 mb-8">
+                  {offer.includes.map((item) => (
+                    <li
+                      key={item}
+                      className={`flex gap-2 text-sm leading-relaxed ${offer.primary ? "text-white/80" : "text-brand-muted"}`}
+                    >
+                      <CheckCircle2
+                        size={14}
+                        className={`flex-shrink-0 mt-0.5 ${offer.primary ? "text-brand-sky" : "text-brand-blue"}`}
+                      />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <ButtonLink
+                  href={offer.href}
+                  variant={offer.primary ? "primary" : "secondaryLight"}
+                  size="md"
+                  className="w-full mt-auto"
+                >
+                  {offer.cta} →
+                </ButtonLink>
+              </div>
+            ))}
+          </div>
 
-          <div className="mt-10 flex flex-col sm:flex-row items-stretch justify-center divide-y sm:divide-y-0 sm:divide-x divide-brand-border bg-brand-cream rounded-xl border border-brand-border shadow-sm">
+          <div className="mt-10 flex flex-col sm:flex-row items-stretch justify-center divide-y sm:divide-y-0 sm:divide-x divide-brand-border bg-brand-cream rounded-xl border border-brand-border shadow-sm max-w-4xl mx-auto">
             {PRICING_REASSURANCE.map((label) => (
               <div
                 key={label}
@@ -326,18 +363,19 @@ export function LandingPage() {
           />
           <div className="space-y-5 text-brand-muted text-base md:text-lg leading-relaxed -mt-4">
             <p>
-              When someone asks ChatGPT, Perplexity, or Google&apos;s AI Overview to recommend a service
-              provider, the answer is built from content those systems have indexed. Businesses that show up
-              clearly tend to have websites that are easy to understand, well-organized, and trustworthy.
+              When someone asks ChatGPT, Perplexity, or Google&apos;s AI Overview to recommend a
+              business, the answer is built from content those systems have indexed. Companies that
+              show up clearly tend to have websites that are easy to understand, well-organized, and
+              trustworthy.
             </p>
             <p>
-              GEO — Generative Engine Optimization — is about improving how clearly your business appears
-              in those AI-driven answers. It remains available as an additional service alongside the
-              $99 Website Refresh.
+              GEO — Generative Engine Optimization — improves how clearly your business appears in
+              those AI-driven answers. It is best as a next step after your website messaging and
+              structure are stronger.
             </p>
             <p>
-              Start with a free assessment if AI visibility is a priority. Or begin with a homepage mockup
-              if you want a stronger website first — many businesses benefit from both over time.
+              Start with a homepage mockup request or redesign first if your site needs clarity. Add
+              a free GEO assessment when AI visibility becomes the priority.
             </p>
           </div>
         </div>
@@ -345,9 +383,26 @@ export function LandingPage() {
 
       <SampleOutputPreview />
 
+      <section className="section-pad bg-brand-cream">
+        <div className="container px-4 md:px-6 max-w-3xl text-center">
+          <SectionHeading
+            label={BROADER_SUPPORT.label}
+            title={BROADER_SUPPORT.title}
+            className="mb-4"
+          />
+          <p className="text-brand-muted leading-relaxed mb-6">{BROADER_SUPPORT.body}</p>
+          <ButtonLink href={siteConfig.mainSiteUrl} variant="secondaryLight" size="md">
+            {BROADER_SUPPORT.cta} →
+          </ButtonLink>
+        </div>
+      </section>
+
       <section id="faq" className="section-pad bg-white scroll-mt-20">
         <div className="container px-4 md:px-6 max-w-3xl">
-          <SectionHeading label="FAQ" title="Common questions about the $99 Website Refresh." />
+          <SectionHeading
+            label="FAQ"
+            title="Common questions about website design, refresh, and mockups."
+          />
           <div className="card-brand px-6 md:px-8 shadow-card">
             {FAQ_ITEMS.map((item) => (
               <FaqItem key={item.q} q={item.q} a={item.a} />
@@ -357,11 +412,11 @@ export function LandingPage() {
       </section>
 
       <CTABand
-        title="See a fresh homepage concept for your business"
-        subtitle="Enter your website, review a sample mockup, then start the $99 Website Refresh for your homepage and 2–3 key sub pages."
+        title="Request a homepage mockup for your business"
+        subtitle="Share your website and goals. We’ll review the fit, follow up by email, and help you choose between a $99 homepage refresh and a full website redesign."
         buttons={[
-          { label: "Preview My New Homepage", href: "/#mockup", primary: true },
-          { label: "Start My $99 Refresh", href: "/#pricing", primary: false },
+          { label: "Request a Homepage Mockup", href: "/#mockup", primary: true },
+          { label: "See Before & After Examples", href: "/#examples", primary: false },
         ]}
       />
     </div>

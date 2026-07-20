@@ -7,11 +7,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
   icons: { icon: "/favicon.svg" },
   title: {
-    default: "$99 Website Refresh for Service Businesses | Grand Strand Ally",
+    default: "Website Design & Redesign | Grand Strand Ally",
     template: "%s | GEO",
   },
   description:
-    "See a sample homepage mockup for your business, then refresh your homepage and 2–3 key sub pages for a flat $99.",
+    "Request a custom homepage mockup, then choose a $99 homepage refresh or full website redesign. GEO support available after launch.",
   openGraph: {
     siteName: "GEO",
     locale: "en_US",

@@ -14,7 +14,7 @@ export function organizationJsonLd() {
       name: siteConfig.serviceArea,
     },
     description:
-      "$99 Website Refresh for service businesses — homepage plus 2–3 key sub pages, with optional GEO / AI visibility support.",
+      "Website design and redesign for businesses — custom homepage mockup requests, $99 homepage refresh, full-site redesign, and optional GEO / AI visibility support.",
     sameAs: [siteConfig.mainSiteUrl],
   };
 }
@@ -23,10 +23,10 @@ export function websiteJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "$99 Website Refresh — Grand Strand Ally",
+    name: "Website Design & Redesign — Grand Strand Ally",
     url: getSiteUrl(),
     description:
-      "See a sample homepage mockup for your business, then refresh your homepage and 2–3 key sub pages for a flat $99.",
+      "Request a custom homepage mockup, then choose a $99 homepage refresh or full website redesign. GEO support available as a next step.",
     publisher: {
       "@type": "Organization",
       name: siteConfig.name,
@@ -39,7 +39,7 @@ export function serviceJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "$99 Website Refresh",
+    name: "Website Design and Redesign",
     provider: {
       "@type": "Organization",
       name: siteConfig.name,
@@ -47,7 +47,7 @@ export function serviceJsonLd() {
     },
     areaServed: siteConfig.serviceArea,
     description:
-      "Instant homepage mockup preview plus a flat $99 refresh of your homepage and 2–3 key sub pages for service businesses.",
+      "Custom homepage mockup requests, $99 homepage refresh, and full website design / redesign for businesses of all types, with GEO as a next-stage offer.",
     url: absoluteUrl("/"),
   };
 }

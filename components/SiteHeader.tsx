@@ -8,9 +8,9 @@ import { ButtonLink } from "@/components/ui/Button";
 import { siteConfig } from "@/lib/brand/site";
 
 const NAV_LINKS = [
+  { label: "Examples", href: "/#examples" },
   { label: "How It Works", href: "/#how-it-works" },
-  { label: "What's Included", href: "/#whats-included" },
-  { label: "$99 Refresh", href: "/#pricing" },
+  { label: "Design Options", href: "/#pricing" },
   { label: "FAQ", href: "/#faq" },
 ];
 
@@ -41,7 +41,7 @@ export function SiteHeader() {
             Main site
           </a>
           <ButtonLink href="/#mockup" size="sm" variant="gold" className="ml-1 whitespace-nowrap">
-            Preview My Homepage
+            Request a Mockup
           </ButtonLink>
         </nav>
 
@@ -78,7 +78,7 @@ export function SiteHeader() {
           </a>
           <div className="pt-3 mt-2 border-t border-white/10">
             <ButtonLink href="/#mockup" variant="gold" className="w-full" onClick={() => setMobileOpen(false)}>
-              Preview My Homepage
+              Request a Mockup
             </ButtonLink>
           </div>
         </div>

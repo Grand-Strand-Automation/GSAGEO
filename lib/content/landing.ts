@@ -1,64 +1,180 @@
 export const HOME_HERO = {
-  eyebrow: "$99 Website Refresh for service businesses",
-  headline: "See What Your Homepage Could Look Like After a Refresh",
+  eyebrow: "Website Design + Redesign",
+  headline: "Get a Better Website — Starting With a Custom Homepage Concept",
   subheadline:
-    "Enter your current website, tell us a little about your business, and preview a clearer homepage direction — then refresh your homepage and 2–3 key sub pages for a flat $99.",
-  primaryCta: "Preview My New Homepage",
+    "Share your website, company details, and goals, and we’ll review whether a homepage refresh or a full redesign makes the most sense. Request a custom homepage mockup and we’ll follow up by email.",
+  primaryCta: "Request a Homepage Mockup",
   primaryHref: "#mockup",
-  secondaryCta: "See the $99 Refresh",
-  secondaryHref: "#pricing",
-  tertiaryCta: "Still interested in GEO?",
+  secondaryCta: "See Before & After Examples",
+  secondaryHref: "#examples",
+  tertiaryCta: "Learn about GEO next",
   tertiaryHref: "#geo",
-  supportLine: "Instant homepage preview · Homepage + 2–3 sub pages · Flat $99",
-  reviewCardTitle: "What you get in the preview",
+  supportLine:
+    "Homepage refreshes available · Full website redesigns available · GEO support after launch",
+  reviewCardTitle: "What you’ll get when you request a mockup",
   reviewCardBullets: [
-    "A sample homepage concept for your business",
-    "Clearer headline and CTA direction",
-    "A more modern first-impression layout",
-    "Notes on what improved in the concept",
-    "A simple path into the $99 website refresh",
+    "A tailored homepage concept reviewed by our team",
+    "Clear guidance on refresh vs full redesign",
+    "Stronger messaging and CTA direction for your business",
+    "A simple path into the $99 homepage refresh or a full redesign",
+    "Follow-up by email — no instant automated output on the page",
   ],
 } as const;
 
 export const MOCKUP_EXPECTATION =
-  "This is a sample homepage concept based on your site and preferences — not a finished website. Final design and launch details are refined during onboarding.";
+  "Custom mockups are prepared after we review your business details — not generated instantly on this page. Final design, content, and launch details are refined during onboarding.";
+
+export const BEFORE_AFTER = {
+  label: "Examples",
+  title: "See the difference a clearer website can make",
+  intro:
+    "A stronger homepage can improve first impressions, clarify what you do, and make it easier for visitors to take the next step.",
+  disclaimer:
+    "Illustrative before/after examples — sample redesign directions, not claims about a specific client.",
+  examples: [
+    {
+      id: "messaging",
+      label: "Sample redesign direction",
+      title: "Clearer messaging above the fold",
+      beforeLabel: "Before",
+      afterLabel: "After",
+      beforePoints: [
+        "Vague headline that does not say what the business does",
+        "Weak or buried call to action",
+        "Crowded, hard-to-scan first screen",
+      ],
+      afterPoints: [
+        "Headline that states the offer and who it serves",
+        "Primary CTA placed where visitors expect it",
+        "Cleaner hierarchy so the first impression feels confident",
+      ],
+      changed: ["Clearer messaging", "Stronger CTA placement", "More modern layout"],
+    },
+    {
+      id: "trust",
+      label: "Example homepage improvement",
+      title: "Improved trust and next steps",
+      beforeLabel: "Before",
+      afterLabel: "After",
+      beforePoints: [
+        "Little proof or credibility near the hero",
+        "Services listed without clear structure",
+        "Visitors unsure what to do next",
+      ],
+      afterPoints: [
+        "Trust cues placed near the primary action",
+        "Service overview that is easy to scan",
+        "Obvious path to call, book, or request a quote",
+      ],
+      changed: ["Improved trust structure", "Easier-to-scan service overview", "Stronger CTA placement"],
+    },
+    {
+      id: "structure",
+      label: "Illustrative before/after",
+      title: "A layout visitors can actually use",
+      beforeLabel: "Before",
+      afterLabel: "After",
+      beforePoints: [
+        "Long walls of text with little visual rhythm",
+        "Inconsistent sections that feel outdated",
+        "Mobile experience that feels cramped",
+      ],
+      afterPoints: [
+        "Sectioned layout with clear breathing room",
+        "Modern structure that still feels on-brand",
+        "Mobile-first spacing and readable type",
+      ],
+      changed: ["More modern layout", "Clearer messaging", "Improved trust structure"],
+    },
+  ],
+} as const;
 
 export const HOW_MOCKUP_WORKS = {
   label: "How it works",
-  title: "From preview to a refreshed website",
+  title: "From request to the right design path",
   intro:
-    "A simple path: see a sample homepage direction first, then refresh your homepage and a few key pages for a flat $99.",
+    "A simple, high-trust process: share your site, we review the fit, prepare a custom mockup when requested, then move into refresh, redesign, or GEO when it makes sense.",
   steps: [
     {
-      title: "Enter your website",
-      desc: "Share your current site URL and business name so we can pull useful signals where possible.",
+      title: "Share your website",
+      desc: "Submit your company name, website URL, and what you want to improve.",
     },
     {
-      title: "Tell us what you want",
-      desc: "Pick a style and homepage goal — plus any must-include notes — in under a minute.",
+      title: "We review the fit",
+      desc: "We assess whether a homepage refresh or full redesign makes more sense.",
     },
     {
-      title: "Review a sample concept",
-      desc: "See a polished homepage mockup direction tailored to your business and preferences.",
+      title: "Request a custom mockup",
+      desc: "If you want a homepage concept, we’ll follow up by email with next steps.",
     },
     {
-      title: "Start your $99 refresh",
-      desc: "If you like the direction, we refresh your homepage and 2–3 important sub pages.",
+      title: "Design, GEO, and beyond",
+      desc: "Once your site is stronger, GEO support and broader digital help can follow if useful.",
+    },
+  ],
+} as const;
+
+export const DESIGN_OFFERS = {
+  label: "Design options",
+  title: "Choose the right starting point",
+  intro:
+    "Whether you need a focused first step or a broader overhaul, we offer both a quick homepage refresh and full website design / redesign.",
+  helper: "Not sure which fits best? Request a mockup and we’ll help you choose the right path.",
+  offers: [
+    {
+      id: "refresh",
+      name: "Homepage Refresh",
+      price: "$99",
+      badge: "Fast entry offer",
+      period: "One-time · clear scope",
+      desc: "A focused first step for businesses that want a cleaner, clearer homepage without committing to a full redesign right away.",
+      includes: [
+        "Homepage refresh",
+        "2–3 key sub pages",
+        "Clearer headline and CTAs",
+        "Modern layout direction",
+        "Business-specific messaging",
+      ],
+      cta: "Start My $99 Homepage Refresh",
+      href: "/start?tier=monitor",
+      primary: false,
+    },
+    {
+      id: "full",
+      name: "Full Website Design / Redesign",
+      price: "Custom scope",
+      badge: "Complete project",
+      period: "Broader visual, structural, and messaging overhaul",
+      desc: "A more complete website project for businesses that need a broader redesign — not just a homepage refresh.",
+      includes: [
+        "Full site design or redesign",
+        "Information architecture & page structure",
+        "Messaging and conversion-focused layout",
+        "Multi-page visual system",
+        "Guided discovery and project scoping",
+      ],
+      cta: "Request Full Redesign Guidance",
+      href: "/#mockup",
+      primary: true,
     },
   ],
 } as const;
 
 export const WHATS_INCLUDED_INTRO =
-  "The $99 Website Refresh is built for service businesses that want a stronger first impression without a giant rebuild. We refresh the pages visitors actually use to decide and contact you.";
+  "Built for businesses that need a clearer, more modern website — whether you start with a focused homepage refresh or a full redesign.";
 
 export const WHATS_INCLUDED = [
   {
-    title: "Homepage Refresh",
-    desc: "A clearer first impression with stronger messaging, layout, and calls to action.",
+    title: "Homepage Concept / Mockup",
+    desc: "A tailored homepage direction prepared after we review your business and goals.",
   },
   {
-    title: "2–3 Key Sub Pages",
-    desc: "Refresh important supporting pages like Services, About, or Contact so the site feels consistent.",
+    title: "$99 Homepage Refresh",
+    desc: "A practical refresh of your homepage and 2–3 key sub pages when a focused start is enough.",
+  },
+  {
+    title: "Full Website Redesign",
+    desc: "Broader visual, structural, and messaging work when the whole site needs an overhaul.",
   },
   {
     title: "Clearer CTAs",
@@ -69,95 +185,101 @@ export const WHATS_INCLUDED = [
     desc: "Cleaner structure and spacing so your business looks more credible online.",
   },
   {
-    title: "Business-Specific Copy",
-    desc: "Messaging tailored to what you do — not a generic template speech.",
-  },
-  {
-    title: "Optional GEO Add-On",
-    desc: "Want better AI visibility too? GEO support can be added when it makes sense.",
+    title: "GEO After Launch",
+    desc: "Once the site is stronger, GEO / AI visibility support can be the natural next step.",
   },
 ];
 
 export const DELIVERABLES_HEADING = "What You Get";
 
 export const DELIVERABLES_INTRO =
-  "A focused website refresh — not a long monthly retainer and not a free finished site.";
+  "Professional website design support — from a focused refresh to a full redesign — with a clear request-led mockup path.";
 
 export const DELIVERABLES_SUPPORT =
-  "Designed to make your homepage and key pages clearer, more credible, and easier to act on.";
+  "Designed to make your website clearer, more credible, and easier to act on — for any type of business.";
 
 export const DELIVERABLES = [
   {
-    title: "Homepage Concept → Live Refresh",
-    desc: "Turn the sample direction into a refreshed homepage that matches your business.",
+    title: "Custom Mockup Request",
+    desc: "Tell us about your site and goals; we follow up with a tailored homepage concept.",
   },
   {
-    title: "2–3 Supporting Pages",
-    desc: "Update the pages that matter most for trust and conversion.",
+    title: "Homepage Refresh Path",
+    desc: "Turn the approved direction into a refreshed homepage and a few key pages for $99.",
   },
   {
-    title: "Stronger Calls to Action",
-    desc: "Practical changes that make next steps obvious.",
+    title: "Full Redesign Path",
+    desc: "Expand into a broader website project when structure, brand, and messaging need more work.",
   },
   {
-    title: "Simple Onboarding",
-    desc: "Share a few details, approve the direction, and we get to work.",
+    title: "Clear Next Steps",
+    desc: "Practical guidance so you know whether refresh, redesign, or GEO comes next.",
   },
 ];
 
 export const GOOD_FIT = [
-  "Service businesses that want a clearer, more modern homepage",
+  "Businesses that need a clearer, more modern website",
+  "Companies that want a stronger first impression online",
   "Owners tired of an outdated site that does not convert well",
-  "Teams that want a focused refresh — homepage plus a few key pages",
-  "Businesses that need stronger calls to action and clearer service explanations",
-  "Local and B2B service brands that need to look more credible online",
-  "Companies that want a practical next step without a huge rebuild project",
+  "Teams that want clearer messaging, better structure, and stronger calls to action",
+  "Organizations open to either a focused refresh or a full redesign",
+  "Companies that want a practical next step without vague marketing fluff",
 ];
 
 export const NOT_FIT = [
   "Businesses looking for a free finished website with no engagement",
   "Companies that need a massive custom app or complex software platform",
-  "Teams needing a full multi-site rebuild across dozens of pages",
+  "Anyone expecting instant automated mockups generated on this page",
   "Anyone expecting guaranteed rankings or overnight lead spikes",
 ];
 
 export const WHY_ONGOING = {
   label: "Why this works",
-  title: "Why a Focused Website Refresh Beats a Vague Rebuild",
+  title: "Why a Clearer Website Beats a Vague Rebuild Promise",
   body: [
-    "Most service businesses do not need a giant website project to improve results. They need a clearer homepage, stronger calls to action, and a few supporting pages that explain the offer with confidence.",
-    "The $99 Website Refresh keeps the scope practical: homepage plus 2–3 key sub pages — enough to improve the first impression without months of agency work.",
+    "Most businesses do not need endless agency theater to improve results. They need clearer messaging, stronger calls to action, and a site structure visitors can trust.",
+    "That is why we offer two honest paths: a focused $99 homepage refresh when a fast first step is enough, and full website design / redesign when the whole experience needs more work.",
   ],
-  support: "Flat $99 · Homepage + 2–3 sub pages · Clear next step after your mockup.",
+  support: "Request a mockup · Choose refresh or redesign · Add GEO when the foundation is ready.",
 } as const;
 
-export const PRICING_HEADLINE = "$99 Website Refresh";
+export const BROADER_SUPPORT = {
+  label: "Beyond the website",
+  title: "Need broader support too?",
+  body: "If your business also needs help beyond the website — such as visibility, systems, support structure, or operational clarity — we can help there too.",
+  cta: "Visit the main Grand Strand Ally site",
+  href: "https://gsally.com",
+} as const;
+
+/** Kept for pricing section compatibility; dual offers live in DESIGN_OFFERS. */
+export const PRICING_HEADLINE = "Website design options";
 
 export const PRICING_INTRO =
-  "A focused refresh of your homepage and 2–3 key sub pages — clearer messaging, stronger CTAs, and a more modern first impression.";
+  "Start with a custom homepage mockup request, then choose the path that fits — a focused $99 refresh or a full website redesign.";
 
-export const PRICING_SUBLINE = "Flat $99 · Homepage + 2–3 sub pages · No monthly plan required";
+export const PRICING_SUBLINE =
+  "Homepage refreshes · Full redesigns · GEO as a next-stage offer";
 
 export const PRICING_REASSURANCE = [
-  "Flat $99 pricing",
-  "Homepage included",
-  "2–3 sub pages included",
-  "Clear scope",
+  "Request-led mockups",
+  "Clear refresh scope",
+  "Full redesign available",
+  "GEO after launch",
 ];
 
 export const PRICING_HELPER =
-  "Start with a free homepage mockup. If you like the direction, start the $99 Website Refresh.";
+  "Request a homepage mockup first. We’ll help you decide whether the $99 refresh or a full redesign is the better fit.";
 
 export const PRICING_DOWNGRADE_NOTE =
-  "Need more than a few pages later? We can discuss additional page work after the refresh.";
+  "Need more pages later? We can expand from a refresh into broader redesign work when it makes sense.";
 
 export const PRICING_CUSTOM_NOTE =
-  "Need support across multiple locations, a larger service footprint, or a custom scope?";
+  "Need support across multiple locations, a larger footprint, or a custom scope?";
 
-/** Single public offer — keep `tier: "monitor"` for intake/API compatibility. */
+/** Single intake-compatible tier for /start — full redesign uses mockup request. */
 export const TIERS = [
   {
-    name: "$99 Website Refresh",
+    name: "$99 Homepage Refresh",
     badge: "Homepage + 2–3 sub pages",
     price: "$99",
     period: "One-time refresh · clear scope",
@@ -169,17 +291,17 @@ export const TIERS = [
       "Clearer headline and CTAs",
       "Modern layout direction",
       "Business-specific messaging",
-      "Simple onboarding after your mockup",
+      "Simple onboarding after mockup review",
     ],
-    cta: "Start My $99 Website Refresh",
+    cta: "Start My $99 Homepage Refresh",
     primary: true,
   },
 ];
 
 export const GEO_SECONDARY = {
-  label: "Also available",
-  title: "Want to improve how your business appears in AI search too?",
-  body: "GEO / AI visibility assessments are still available as a secondary service. If you want to understand how clearly your business shows up in AI-driven answers — and what to improve — you can start with a free assessment anytime.",
+  label: "What comes after the redesign?",
+  title: "Once your website is clearer, GEO is the natural next step",
+  body: "A stronger website is the foundation. GEO helps improve how clearly your business appears in AI-driven search and answer engines — after the design work makes your offer easier to understand.",
   primaryCta: "Start Free GEO Assessment",
   primaryHref: "/audit",
   secondaryCta: "Learn what GEO covers",
@@ -188,9 +310,9 @@ export const GEO_SECONDARY = {
 
 export const ASSESSMENT_PREVIEW = {
   eyebrow: "SAMPLE GEO REPORT",
-  title: "Also available: GEO / AI Visibility Assessments",
+  title: "GEO / AI Visibility — available after your site is stronger",
   description:
-    "If AI search visibility matters for your business, our free assessment still shows what looks strong, what needs work, and what to improve first.",
+    "If AI search visibility matters for your business, our free assessment shows what looks strong, what needs work, and what to improve first.",
   disclaimer:
     "Illustrative example — actual findings and recommendations will vary based on your business, website, and goals.",
   screenshots: [
@@ -206,46 +328,46 @@ export const ASSESSMENT_PREVIEW = {
     },
   ],
   cta: {
-    heading: "Curious about AI visibility too?",
-    body: "Request a free GEO assessment after you explore your homepage mockup — or jump straight in if that is your main focus.",
+    heading: "Ready for AI visibility after the redesign?",
+    body: "Request a free GEO assessment once your website foundation is clearer — or explore it anytime if that is already a priority.",
     label: "Start Free GEO Assessment",
     href: "/audit",
-    secondaryLabel: "Back to the $99 refresh",
-    secondaryHref: "/#pricing",
+    secondaryLabel: "Request a homepage mockup",
+    secondaryHref: "/#mockup",
   },
 } as const;
 
 export const FAQ_ITEMS = [
   {
-    q: "Is the homepage mockup my finished website?",
-    a: "No. The mockup is a sample homepage concept based on your current site and preferences. It shows a clearer direction — final design, content, and launch details are refined during onboarding.",
+    q: "Do I get a live mockup instantly?",
+    a: "No. We no longer generate instant automated mockups on this page. Request a homepage mockup through the form, and we’ll review your details and follow up by email.",
   },
   {
-    q: "What is included in the $99 Website Refresh?",
+    q: "How do I request a homepage mockup?",
+    a: "Share your company name, website URL, email, and a few details about what you want to improve. We’ll review the fit and follow up with next steps for a custom homepage concept.",
+  },
+  {
+    q: "What is included in the $99 homepage refresh?",
     a: "A refresh of your homepage plus 2–3 key sub pages — clearer messaging, stronger calls to action, and a more modern layout direction for the pages visitors use most.",
   },
   {
-    q: "Is this a monthly subscription?",
-    a: "No. The current offer is a flat $99 website refresh. There is no monthly plan required to get started.",
+    q: "When should I choose full website redesign instead?",
+    a: "Choose a full redesign when the whole site needs a broader visual, structural, and messaging overhaul — not just a clearer homepage. Request a mockup and we’ll help you decide.",
   },
   {
-    q: "Which sub pages are included?",
-    a: "Typically the pages that matter most for trust and conversion — for example Services, About, and Contact. We confirm the exact 2–3 pages during onboarding.",
+    q: "Do you only work with service businesses?",
+    a: "No. The offer is for all types of businesses that need a clearer, more modern website — not only service businesses.",
   },
   {
-    q: "How is this different from a full website rebuild?",
-    a: "A full rebuild can touch every page and take much longer. This refresh focuses on the homepage and a few high-impact supporting pages so you can improve the first impression quickly.",
+    q: "Can you redesign the full site, not just the homepage?",
+    a: "Yes. Full website design and redesign are a core offer alongside the focused $99 homepage refresh.",
   },
   {
-    q: "Do you still offer GEO / AI visibility?",
-    a: "Yes. GEO assessments and AI visibility support remain available as a secondary offer and can be paired with the website refresh when useful.",
+    q: "What happens after the redesign?",
+    a: "Once your site is clearer and stronger, GEO / AI visibility support is available as the natural next step — plus broader Grand Strand Ally support if you need it.",
   },
   {
-    q: "What happens after I like the mockup?",
-    a: "Start the $99 Website Refresh and we turn the sample direction into a refreshed homepage and 2–3 key sub pages.",
-  },
-  {
-    q: "How fast is the preview?",
-    a: "The homepage concept is generated right after you submit your URL and preferences — so you can review a sample direction immediately.",
+    q: "Is GEO still available?",
+    a: "Yes. GEO assessments and AI visibility support remain available as a next-stage offer after website design or redesign work.",
   },
 ];
