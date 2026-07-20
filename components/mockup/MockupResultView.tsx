@@ -17,6 +17,12 @@ type MockupPayload = {
   website_url?: string;
   business_name?: string;
   screenshot_url?: string | null;
+  generation?: {
+    source?: string;
+    openAiConfigured?: boolean;
+    usedFallback?: boolean;
+    fallbackReason?: string | null;
+  } | null;
 };
 
 export function MockupResultView({ token }: { token: string }) {
@@ -43,12 +49,13 @@ export function MockupResultView({ token }: { token: string }) {
         if (cancelled) return;
 
         if (res.ok && json.ok && json.mockup?.concept) {
-          setPayload({
+          setPayload((prev) => ({
             concept: json.mockup.concept,
             website_url: json.mockup.website_url,
             business_name: json.mockup.business_name,
             screenshot_url: json.mockup.screenshot_url ?? null,
-          });
+            generation: prev?.generation ?? null,
+          }));
           setError("");
         } else if (!cached) {
           setError("This preview could not be found or has expired.");
@@ -190,12 +197,30 @@ export function MockupResultView({ token }: { token: string }) {
                     </dd>
                   </div>
                   <div className="flex justify-between gap-3">
+                    <dt className="text-brand-muted">Copy source</dt>
+                    <dd className="font-medium text-brand-navy text-right">
+                      {concept.sourceSignals?.generatedBy === "openai" ||
+                      payload.generation?.source === "openai"
+                        ? "AI-tailored"
+                        : payload.generation?.openAiConfigured
+                          ? "Rules fallback"
+                          : "Rules-based"}
+                    </dd>
+                  </div>
+                  <div className="flex justify-between gap-3">
                     <dt className="text-brand-muted">Site signals</dt>
                     <dd className="font-medium text-brand-navy text-right capitalize">
                       {concept.sourceSignals?.fetchQuality ?? "n/a"}
                     </dd>
                   </div>
                 </dl>
+                {payload.generation?.usedFallback &&
+                payload.generation.openAiConfigured ? (
+                  <p className="mt-4 text-xs text-amber-800/80 leading-relaxed border-t border-brand-border pt-4">
+                    AI drafting was unavailable for this preview, so a rules-based concept was used.
+                    Try again in a moment for a fuller AI-tailored draft.
+                  </p>
+                ) : null}
                 {payload.website_url && (
                   <p className="mt-4 text-xs text-brand-muted break-all">
                     Source site: {payload.website_url}

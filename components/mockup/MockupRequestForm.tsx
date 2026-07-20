@@ -61,6 +61,12 @@ export function MockupRequestForm({ compact = false, className = "" }: Props) {
         token?: string;
         concept?: MockupConcept;
         screenshotUrl?: string | null;
+        generation?: {
+          source?: string;
+          openAiConfigured?: boolean;
+          usedFallback?: boolean;
+          fallbackReason?: string | null;
+        };
         error?: unknown;
       };
 
@@ -80,6 +86,7 @@ export function MockupRequestForm({ compact = false, className = "" }: Props) {
             homepage_goal: data.homepage_goal,
             notes: data.notes ?? "",
             screenshot_url: json.screenshotUrl ?? json.concept.currentSnapshot?.screenshotUrl ?? null,
+            generation: json.generation ?? null,
           }),
         );
       } catch {
@@ -248,7 +255,7 @@ export function MockupRequestForm({ compact = false, className = "" }: Props) {
         {isSubmitting ? (
           <>
             <Loader2 size={16} className="animate-spin" />
-            Creating your preview…
+            Building a tailored homepage concept…
           </>
         ) : (
           "Create My Homepage Mockup →"
@@ -256,7 +263,9 @@ export function MockupRequestForm({ compact = false, className = "" }: Props) {
       </button>
 
       <p className="text-xs text-brand-muted text-center mt-3 leading-relaxed">
-        Sample concept only — not a finished website.
+        {isSubmitting
+          ? "This usually takes a few seconds while we review your site and draft the concept."
+          : "Sample concept only — not a finished website."}
       </p>
     </form>
   );

@@ -343,30 +343,90 @@ export function buildMockupConcept(
 export async function generateMockupConcept(input: MockupRequestInput): Promise<{
   concept: MockupConcept;
   signals: SiteSignals;
-  generation: { source: "openai" | "rules"; openAiError?: string; model?: string };
+  generation: {
+    source: "openai" | "rules";
+    openAiConfigured: boolean;
+    openAiError?: string;
+    openAiErrorCode?: string;
+    model?: string;
+    attempts?: number;
+  };
 }> {
+  const openAiConfigured = isOpenAiConfigured();
+  console.info("[mockup:generate]", "start", {
+    business: input.business_name.trim(),
+    category: input.business_category,
+    openAiConfigured,
+    urlHost: (() => {
+      try {
+        return new URL(input.website_url).hostname;
+      } catch {
+        return "invalid";
+      }
+    })(),
+  });
+
   const signals = await extractSiteSignals(input.website_url);
+  console.info("[mockup:generate]", "site extract", {
+    fetched: signals.fetched,
+    fetchQuality: signals.fetchQuality,
+    blocked: Boolean(signals.blockedReason),
+    services: signals.services.length,
+    hasH1: Boolean(signals.h1),
+  });
+
   let concept = buildMockupConcept(input, signals);
 
-  if (isOpenAiConfigured()) {
-    const llm = await generateConceptFieldsWithOpenAi(input, signals);
-    if (llm.ok) {
-      concept = mergeLlmFieldsIntoConcept(concept, llm.fields, { usedOpenAi: true });
-      return {
-        concept,
-        signals,
-        generation: { source: "openai", model: llm.model },
-      };
-    }
-    console.warn("[mockup] OpenAI concept failed, using rules fallback:", llm.error);
+  if (!openAiConfigured) {
+    console.warn("[mockup:generate]", "OpenAI not configured — using rules fallback");
     return {
       concept,
       signals,
-      generation: { source: "rules", openAiError: llm.error },
+      generation: {
+        source: "rules",
+        openAiConfigured: false,
+        openAiError: "OPENAI_API_KEY not configured",
+        openAiErrorCode: "missing_key",
+      },
     };
   }
 
-  return { concept, signals, generation: { source: "rules" } };
+  const llm = await generateConceptFieldsWithOpenAi(input, signals);
+  if (llm.ok) {
+    concept = mergeLlmFieldsIntoConcept(concept, llm.fields, { usedOpenAi: true });
+    console.info("[mockup:generate]", "OpenAI concept applied", {
+      model: llm.model,
+      attempts: llm.attempts,
+      headlinePreview: concept.headline.slice(0, 60),
+    });
+    return {
+      concept,
+      signals,
+      generation: {
+        source: "openai",
+        openAiConfigured: true,
+        model: llm.model,
+        attempts: llm.attempts,
+      },
+    };
+  }
+
+  console.error("[mockup:generate]", "OpenAI failed — controlled rules fallback", {
+    error: llm.error,
+    errorCode: llm.errorCode,
+    attempts: llm.attempts,
+  });
+  return {
+    concept,
+    signals,
+    generation: {
+      source: "rules",
+      openAiConfigured: true,
+      openAiError: llm.error,
+      openAiErrorCode: llm.errorCode,
+      attempts: llm.attempts,
+    },
+  };
 }
 
 export function attachScreenshotToConcept(

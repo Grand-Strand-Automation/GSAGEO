@@ -176,9 +176,55 @@ describe("merge LLM fields", () => {
   });
 });
 
+describe("normalize LLM payload", () => {
+  it("maps primaryCTA aliases and pads missing improvement notes", async () => {
+    const { normalizeLlmPayload } = await import("../lib/mockup/openai-concept");
+    const normalized = normalizeLlmPayload({
+      headline: "Reliable marine care for Grand Strand boaters",
+      subheadline: "Coastal Marine helps boat owners with service and yard support.",
+      primaryCTA: "Schedule Service",
+      secondaryCTA: "Call Us",
+      navItems: ["Services", "About", "Contact"],
+      services: [
+        { name: "Boat Service", description: "Mechanical and systems work from a local crew." },
+        { title: "Yard Support", desc: "Haul-out help when projects need space." },
+        { title: "Owner Support", desc: "Clear communication from quote to pickup." },
+      ],
+      trustLine: "Serving coastal boaters",
+      proof_points: ["Local marine expertise", "Haul-out ready"],
+    }) as Record<string, unknown>;
+
+    assert.equal(normalized.primaryCta, "Schedule Service");
+    assert.equal(normalized.secondaryCta, "Call Us");
+    assert.ok(Array.isArray(normalized.improvementNotes));
+    assert.ok((normalized.improvementNotes as string[]).length >= 2);
+    assert.equal((normalized.services as { title: string }[])[0]?.title, "Boat Service");
+  });
+});
+
+describe("OpenAI env status", () => {
+  it("reports missing key clearly", async () => {
+    delete process.env.OPENAI_API_KEY;
+    const { getOpenAiEnvStatus } = await import("../lib/mockup/openai-concept");
+    const status = getOpenAiEnvStatus();
+    assert.equal(status.configured, false);
+    assert.match(status.reason ?? "", /OPENAI_API_KEY/);
+  });
+
+  it("strips wrapping quotes from key values", async () => {
+    process.env.OPENAI_API_KEY = '"sk-test-key-with-enough-length"';
+    const { getOpenAiEnvStatus, getOpenAiApiKey } = await import(
+      "../lib/mockup/openai-concept"
+    );
+    const status = getOpenAiEnvStatus();
+    assert.equal(status.configured, true);
+    assert.equal(getOpenAiApiKey(), "sk-test-key-with-enough-length");
+  });
+});
+
 describe("OpenAI API call", () => {
   it("returns validated fields from a successful Chat Completions response", async () => {
-    process.env.OPENAI_API_KEY = "test-key";
+    process.env.OPENAI_API_KEY = "test-key-with-enough-length-here";
     globalThis.fetch = mock.fn(async () =>
       new Response(
         JSON.stringify({
@@ -198,7 +244,7 @@ describe("OpenAI API call", () => {
                     { title: "Owner Support", desc: "Clear communication from quote to pickup." },
                   ],
                   trustLine: "Serving coastal boaters · Straightforward next steps",
-                  proofPoints: ["Clearer headline", "Stronger CTA", "Easier services"],
+                  proofPoints: ["Local marine expertise", "Haul-out ready", "Owner communication"],
                   improvementNotes: [
                     "Clearer first impression for marine service customers",
                     "Stronger call-to-action placement",
@@ -226,6 +272,7 @@ describe("OpenAI API call", () => {
     if (result.ok) {
       assert.match(result.fields.headline, /marine/i);
       assert.equal(result.fields.services.length, 3);
+      assert.ok(result.attempts >= 1);
     }
   });
 
@@ -240,5 +287,8 @@ describe("OpenAI API call", () => {
     });
     const result = await generateConceptFieldsWithOpenAi(input, emptySiteSignals());
     assert.equal(result.ok, false);
+    if (!result.ok) {
+      assert.equal(result.errorCode, "missing_key");
+    }
   });
 });
