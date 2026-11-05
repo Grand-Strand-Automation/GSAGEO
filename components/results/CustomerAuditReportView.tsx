@@ -3,6 +3,7 @@ import type { ResultsBundle } from "@/lib/types/database";
 import { buildCustomerReportViewModel } from "@/lib/results/customer-report-view-model";
 import { SectionShell } from "./report/SectionShell";
 import { CustomerReportHero } from "./report/CustomerReportHero";
+import { CustomerVisualSummary } from "./report/CustomerVisualSummary";
 import { CustomerSimpleScorecard } from "./report/CustomerSimpleScorecard";
 import { CustomerPriorityCard } from "./report/CustomerPriorityCard";
 import { CustomerFixExampleCard } from "./report/CustomerFixExampleCard";
@@ -23,11 +24,13 @@ export function CustomerAuditReportView({
 
   return (
     <div className="report-page bg-brand-cream min-h-screen pt-24 pb-20">
-      <div className="container px-4 md:px-6 max-w-3xl">
+      <div className="container px-4 md:px-6 max-w-5xl">
         <div className="space-y-10 md:space-y-14">
           {shareToken ? <ReportActionBar token={shareToken} companyName={report.companyName} /> : null}
 
           <CustomerReportHero report={report} />
+
+          <CustomerVisualSummary report={report} />
 
           <SectionShell
             eyebrow="Strengths"

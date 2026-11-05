@@ -161,6 +161,10 @@ describe("customer-facing simplified report", () => {
     assert.equal(customer.scorecard.length, 8);
     assert.ok(customer.overallScore > 0);
     assert.ok(customer.overallGrade.length >= 1);
+    assert.equal(customer.quickStats.length, 4);
+    assert.ok(customer.quickStats[0]?.label.toLowerCase().includes("readiness"));
+    assert.ok(typeof customer.strengthCount === "number");
+    assert.ok(typeof customer.sitemapUrlCount === "number");
     assert.ok(customer.topPriorities.length <= 4);
     assert.ok(customer.fixExamples.length <= 2);
     assert.ok(customer.nextBestStep.length > 10);
