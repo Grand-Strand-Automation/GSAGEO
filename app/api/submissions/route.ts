@@ -1,6 +1,10 @@
 import { after, NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import {
+  classifySupabaseError,
+  submissionSaveErrorMessage,
+} from "@/lib/supabase/errors";
+import {
   mapSubmissionToRow,
   submissionSchema,
 } from "@/lib/validation/submission";
@@ -25,6 +29,17 @@ export async function POST(request: Request) {
       );
     }
 
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error: submissionSaveErrorMessage("not_configured"),
+          code: "not_configured",
+        },
+        { status: 503 },
+      );
+    }
+
     const supabase = createAdminClient();
     const row = mapSubmissionToRow(parsed.data);
 
@@ -35,10 +50,21 @@ export async function POST(request: Request) {
       .single();
 
     if (subError || !submission) {
-      console.error("[submissions] Insert failed:", subError);
+      const kind = classifySupabaseError(subError);
+      console.error("[submissions] Insert failed:", {
+        kind,
+        code: subError?.code,
+        message: subError?.message,
+        details: subError?.details,
+        hint: subError?.hint,
+      });
       return NextResponse.json(
-        { ok: false, error: "Failed to save submission" },
-        { status: 500 },
+        {
+          ok: false,
+          error: submissionSaveErrorMessage(kind),
+          code: kind,
+        },
+        { status: kind === "schema_missing" || kind === "not_configured" ? 503 : 500 },
       );
     }
 
@@ -54,10 +80,24 @@ export async function POST(request: Request) {
       .single();
 
     if (jobError || !job) {
-      console.error("[submissions] Job insert failed:", jobError);
+      const kind = classifySupabaseError(jobError);
+      console.error("[submissions] Job insert failed:", {
+        kind,
+        code: jobError?.code,
+        message: jobError?.message,
+        details: jobError?.details,
+        hint: jobError?.hint,
+      });
       return NextResponse.json(
-        { ok: false, error: "Failed to create assessment job" },
-        { status: 500 },
+        {
+          ok: false,
+          error:
+            kind === "schema_missing"
+              ? "Assessment job tables are missing. Run supabase/migrations 001–007 in Supabase, then try again."
+              : "Failed to create assessment job",
+          code: kind,
+        },
+        { status: kind === "schema_missing" ? 503 : 500 },
       );
     }
 

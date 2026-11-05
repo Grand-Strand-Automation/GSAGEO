@@ -5,11 +5,15 @@ These items cannot be completed from code alone. Do them in order after reviewin
 ## Supabase (requires dashboard access)
 
 - [ ] Create Supabase project for production
-- [ ] Run migrations:
+- [ ] Run migrations (all, in order):
   - [ ] `supabase/migrations/001_geo_schema.sql`
   - [ ] `supabase/migrations/002_geo_admin_users.sql`
   - [ ] `supabase/migrations/003_results_flow.sql`
   - [ ] `supabase/migrations/004_geo_internal_fixes.sql`
+  - [ ] `supabase/migrations/005_customer_executive_summary.sql`
+  - [ ] `supabase/migrations/006_geo_follow_up.sql`
+  - [ ] `supabase/migrations/007_subscription_retention.sql`
+- [ ] Confirm `/api/health/db` returns `{ "ok": true, "database": "ready" }`
 - [ ] Copy project URL, anon key, and **service role key** into Vercel env vars (see [ENV_SETUP.md](./ENV_SETUP.md))
 - [ ] Disable public signups: Authentication → Providers → Email → disable **Enable sign ups**
 - [ ] Create first admin user(s) manually: Authentication → Users → Add user
