@@ -134,7 +134,7 @@ export function CustomerAuditReportPdfDocument({ report }: { report: CustomerRep
     >
       <Page size="LETTER" style={styles.page}>
         <View style={styles.coverBand}>
-          <Text style={styles.coverEyebrow}>Website clarity report</Text>
+          <Text style={styles.coverEyebrow}>GEO Assessment Report</Text>
           <Text style={styles.coverTitle}>{report.companyName}</Text>
           <Text style={styles.coverMeta}>{report.websiteUrl}</Text>
           <Text style={styles.coverMeta}>Prepared for {report.preparedFor}</Text>
@@ -142,7 +142,7 @@ export function CustomerAuditReportPdfDocument({ report }: { report: CustomerRep
           <Text style={styles.headline}>{report.headline}</Text>
           <Text style={[styles.body, { color: "#d7e1ea" }]}>{report.summary}</Text>
           <Text style={[styles.body, { color: "#9aaeb8", marginTop: 8 }]}>
-            Overall: {report.overallStatus}
+            GEO Score: {report.overallScore}/100 · {report.overallGrade} · {report.overallStatus}
           </Text>
         </View>
 
@@ -167,11 +167,13 @@ export function CustomerAuditReportPdfDocument({ report }: { report: CustomerRep
       </Page>
 
       <Page size="LETTER" style={styles.page}>
-        <Text style={styles.sectionEyebrow}>How your site stacks up</Text>
+        <Text style={styles.sectionEyebrow}>GEO scorecard</Text>
         {report.scorecard.map((row) => (
           <View key={row.key} style={styles.row}>
             <Text style={styles.rowLabel}>{row.label}</Text>
-            <Text style={styles.rowScore}>{row.statusLabel}</Text>
+            <Text style={styles.rowScore}>
+              {row.score}/100 · {row.grade}
+            </Text>
           </View>
         ))}
 
@@ -188,6 +190,23 @@ export function CustomerAuditReportPdfDocument({ report }: { report: CustomerRep
             </Text>
           </View>
         ))}
+
+        {report.searchIndexingActions.length > 0 ? (
+          <>
+            <Text style={styles.sectionTitle}>Search Console checklist</Text>
+            {report.searchIndexingActions.map((priority, index) => (
+              <View key={`gsc-${priority.title}`} style={styles.card}>
+                <Text style={styles.cardTitle}>
+                  {index + 1}. {priority.title}
+                </Text>
+                <Text style={styles.body}>{priority.summary}</Text>
+                <Text style={[styles.body, { color: "#0e2f54", marginTop: 4 }]}>
+                  What to do next: {priority.whatToDoNext}
+                </Text>
+              </View>
+            ))}
+          </>
+        ) : null}
 
         {report.fixExamples.length > 0 ? (
           <>

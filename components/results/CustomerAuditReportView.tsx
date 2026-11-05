@@ -71,9 +71,9 @@ export function CustomerAuditReportView({
 
           <div id="scorecard">
             <SectionShell
-              eyebrow="At a glance"
-              title="How your site stacks up"
-              description="A simple view of the main areas we reviewed — no technical scoring."
+              eyebrow="GEO scorecard"
+              title="How your site scored"
+              description="Category scores out of 100 — the same readiness model used in your GEO assessment."
             >
               <CustomerSimpleScorecard rows={report.scorecard} />
             </SectionShell>
@@ -83,7 +83,7 @@ export function CustomerAuditReportView({
             <SectionShell
               eyebrow="Focus here first"
               title="Top priorities"
-              description="The three most important improvements to consider first."
+              description="The most important improvements to consider first — including Search Console-style indexing and crawl fixes when they apply."
             >
               <div className="space-y-4">
                 {report.topPriorities.length > 0 ? (
@@ -98,6 +98,26 @@ export function CustomerAuditReportView({
               </div>
             </SectionShell>
           </div>
+
+          {report.searchIndexingActions.length > 0 ? (
+            <div id="search-console">
+              <SectionShell
+                eyebrow="Search Console checklist"
+                title="Indexing & crawl actions"
+                description="Practical next steps similar to what you’d work through in Google Search Console — sitemap, robots.txt, titles, and indexing."
+              >
+                <div className="space-y-4">
+                  {report.searchIndexingActions.map((priority, index) => (
+                    <CustomerPriorityCard
+                      key={`gsc-${priority.title}`}
+                      priority={priority}
+                      rank={index + 1}
+                    />
+                  ))}
+                </div>
+              </SectionShell>
+            </div>
+          ) : null}
 
           {report.fixExamples.length > 0 ? (
             <div id="examples">

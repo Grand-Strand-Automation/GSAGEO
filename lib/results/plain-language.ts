@@ -4,36 +4,17 @@ import type { ScoreCategory } from "./report-view-model";
 import { scoreTone } from "./score-utils";
 
 const JARGON_REPLACEMENTS: [RegExp, string][] = [
-  [/\bGEO\b/gi, "online visibility"],
-  [/\bAI visibility\b/gi, "how clearly your business shows up online"],
-  [/\bAI systems?\b/gi, "search tools"],
-  [/\banswer[- ]engine\b/gi, "search and question tools"],
-  [/\bentity clarity\b/gi, "clear business information"],
-  [/\bentity schema\b/gi, "structured business details"],
-  [/\bstructured data\b/gi, "clear business information"],
-  [/\bschema markup\b/gi, "clear business details on the site"],
-  [/\bJSON-LD\b/gi, "business details"],
-  [/\bcrawlability\b/gi, "how easy your site is to read"],
-  [/\bcrawl(er|ing)?\b/gi, "review"],
-  [/\bsitemap\b/gi, "site page list"],
-  [/\brobots\.txt\b/gi, "site access instructions"],
+  [/\banswer[- ]engine\b/gi, "AI answer engines"],
+  [/\bentity clarity\b/gi, "business entity clarity"],
   [/\binternal linking\b/gi, "links between your pages"],
   [/\binternal structure\b/gi, "how your pages connect"],
   [/\bsemantic\b/gi, "clear"],
-  [/\bindexing signals?\b/gi, "how search tools understand your site"],
   [/\bcontent architecture\b/gi, "how your pages are organized"],
   [/\bconversion readiness\b/gi, "how easy it is for visitors to take the next step"],
   [/\bNAP data\b/gi, "name, address, and phone details"],
   [/\bserver-rendered\b/gi, "visible on first load"],
   [/\bclient-rendered\b/gi, "loaded after the page opens"],
-  [/\bmeta description\b/gi, "short page summary"],
-  [/\btitle tag\b/gi, "page title"],
-  [/\bFAQ schema\b/gi, "FAQ details on the page"],
-  [/\bOrganization schema\b/gi, "business details on the page"],
-  [/\bService schema\b/gi, "service details on the page"],
   [/\bvanity metrics?\b/gi, "surface-level scores"],
-  [/\bvisibility readiness score\b/gi, "overall website clarity"],
-  [/\breadiness score\b/gi, "overall clarity"],
 ];
 
 const FINDING_LABELS: Record<string, string> = {
@@ -46,11 +27,11 @@ const FINDING_LABELS: Record<string, string> = {
   "Dedicated service pages": "Individual pages for your main services",
   "Conversion / offer page": "A clear next step for visitors",
   "Educational resources": "Helpful guides or tips for customers",
-  "robots.txt": "Basic site setup for search tools",
-  "sitemap.xml": "A complete list of your important pages",
-  "Organization / entity schema": "Clear business details on the site",
-  "Service / offer schema": "Clear service details on the site",
-  "Server-rendered content signals": "Key information shows up right away",
+  "robots.txt": "robots.txt setup for Google crawling",
+  "sitemap.xml": "XML sitemap coverage (Search Console)",
+  "Organization / entity schema": "Organization / LocalBusiness schema",
+  "Service / offer schema": "Service schema markup",
+  "Server-rendered content signals": "Content visible without waiting on JavaScript",
 };
 
 const STRENGTH_TITLES: Record<string, string> = {
@@ -62,48 +43,69 @@ const STRENGTH_TITLES: Record<string, string> = {
   "Dedicated service pages detected": "Your main services have their own pages",
   "Educational content detected": "You offer helpful supporting content",
   "Conversion or offer page detected": "You guide visitors toward a next step",
-  "robots.txt is accessible": "Your site is set up for search tools to review it",
-  "XML sitemap discovered": "Your important pages are listed for review",
-  "Entity schema detected": "Your business details are clearly presented",
-  "Homepage title tag present": "Your homepage introduces itself clearly",
+  "robots.txt is accessible": "robots.txt is in place for crawlers",
+  "XML sitemap discovered": "An XML sitemap was found for indexing",
+  "Entity schema detected": "Organization schema was detected",
+  "Homepage title tag present": "Your homepage title tag is in place",
 };
 
+/** Customer-facing scorecard mirrors the technical GEO categories with clearer labels. */
 const CUSTOMER_SCORE_GROUPS: {
   key: string;
   label: string;
   sourceKeys: string[];
 }[] = [
   {
-    key: "website_clarity",
-    label: "Website clarity",
-    sourceKeys: ["crawlability", "technicalReadiness", "internalStructure"],
+    key: "crawlability",
+    label: "Crawlability & indexing",
+    sourceKeys: ["crawlability"],
   },
   {
-    key: "service_pages",
-    label: "Service page quality",
-    sourceKeys: ["servicePageDepth"],
+    key: "technicalReadiness",
+    label: "Technical readiness",
+    sourceKeys: ["technicalReadiness"],
   },
   {
-    key: "trust",
-    label: "Trust and credibility",
-    sourceKeys: ["trustContent"],
-  },
-  {
-    key: "cta",
-    label: "Calls to action",
-    sourceKeys: ["conversionReadiness"],
-  },
-  {
-    key: "business_info",
-    label: "Business information",
+    key: "entityClarity",
+    label: "Business entity clarity",
     sourceKeys: ["entityClarity"],
   },
   {
-    key: "questions",
-    label: "Questions and supporting content",
+    key: "servicePageDepth",
+    label: "Service page depth",
+    sourceKeys: ["servicePageDepth"],
+  },
+  {
+    key: "trustContent",
+    label: "Trust & proof content",
+    sourceKeys: ["trustContent"],
+  },
+  {
+    key: "answerEngineCoverage",
+    label: "AI answer coverage",
     sourceKeys: ["answerEngineCoverage"],
   },
+  {
+    key: "internalStructure",
+    label: "Site structure",
+    sourceKeys: ["internalStructure"],
+  },
+  {
+    key: "conversionReadiness",
+    label: "Conversion readiness",
+    sourceKeys: ["conversionReadiness"],
+  },
 ];
+
+function gradeFromScore(score: number): string {
+  return score >= 90 ? "A" : score >= 75 ? "B" : score >= 55 ? "C" : score >= 35 ? "D" : "F";
+}
+
+export type RecommendationFix = {
+  priority?: string;
+  title: string;
+  description: string;
+};
 
 export type CustomerSimpleStatus = "good" | "needs_attention" | "weak";
 
@@ -160,8 +162,41 @@ export function buildCustomerScorecard(categories: ScoreCategory[]) {
     return {
       key: group.key,
       label: group.label,
+      score: avg,
+      grade: gradeFromScore(avg),
       status,
       statusLabel: customerStatusLabel(status),
+    };
+  });
+}
+
+/** Turn technical audit fixes into customer action items (Search Console-style). */
+export function buildSearchIndexingActions(
+  fixes: RecommendationFix[],
+): { title: string; summary: string; whyItMatters: string; whatToDoNext: string }[] {
+  const gscHints: Record<string, string> = {
+    sitemap: "In Google Search Console, submit/verify your XML sitemap and watch Coverage/Pages for errors.",
+    robots: "Confirm robots.txt allows Googlebot, then use URL Inspection in Search Console to test key pages.",
+    title: "Update title tags, then use URL Inspection → Request indexing for priority pages.",
+    meta: "Improve meta descriptions, then monitor Impressions/CTR in Search Console Performance.",
+    canonical: "Fix canonical tags to avoid duplicate indexing issues shown in Search Console.",
+    contact: "Make NAP/contact details consistent so local and organic signals stay aligned.",
+    homepage: "Fix crawl blocks first — Search Console cannot score pages Google cannot fetch.",
+  };
+
+  return fixes.slice(0, 5).map((fix) => {
+    const blob = `${fix.title} ${fix.description}`.toLowerCase();
+    const hintKey = Object.keys(gscHints).find((key) => blob.includes(key));
+    const gscHint = hintKey ? gscHints[hintKey] : "Track this in Google Search Console after you publish the change.";
+
+    return {
+      title: fix.title,
+      summary: simplifyText(fix.description),
+      whyItMatters:
+        fix.priority === "critical" || fix.priority === "high"
+          ? "This affects whether Google and AI systems can find, trust, and represent your pages."
+          : "This strengthens how search tools discover and understand your site over time.",
+      whatToDoNext: `${simplifyText(fix.description)} ${gscHint}`,
     };
   });
 }

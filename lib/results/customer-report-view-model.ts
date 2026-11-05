@@ -5,6 +5,7 @@ import {
   buildCustomerScorecard,
   buildCustomerSummary,
   buildNextBestStep,
+  buildSearchIndexingActions,
   buildWhatThisMayAffect,
   overallStatusLabel,
   simplifyFindingBullet,
@@ -12,14 +13,17 @@ import {
   simplifyPriority,
   simplifyStrengthTitle,
   type CustomerSimpleStatus,
+  type RecommendationFix,
 } from "./plain-language";
-import { scoreTone, type ScoreTone } from "./score-utils";
+import { scoreInterpretation, scoreTone, type ScoreTone } from "./score-utils";
 import { getRecommendedOffer } from "@/lib/follow-up/recommend";
 import type { BridgeOfferId } from "@/lib/content/follow-up";
 
 export type CustomerScoreRow = {
   key: string;
   label: string;
+  score: number;
+  grade: string;
   status: CustomerSimpleStatus;
   statusLabel: string;
 };
@@ -46,6 +50,9 @@ export type CustomerReportViewModel = {
   auditedAt: string | null;
   headline: string;
   summary: string;
+  overallScore: number;
+  overallGrade: string;
+  overallInterpretation: string;
   overallStatus: string;
   overallStatusTone: ScoreTone;
   whatLooksGood: string[];
@@ -53,6 +60,7 @@ export type CustomerReportViewModel = {
   whatThisMayAffect: string;
   scorecard: CustomerScoreRow[];
   topPriorities: CustomerPriority[];
+  searchIndexingActions: CustomerPriority[];
   nextBestStep: string;
   fixExamples: CustomerFixExample[];
   suggestedTier: string | null;
@@ -70,6 +78,31 @@ function uniqueNonEmpty(items: string[], limit: number): string[] {
     if (out.length >= limit) break;
   }
   return out;
+}
+
+function extractTopFixes(bundle: ResultsBundle): RecommendationFix[] {
+  const recommendations = (bundle.result?.recommendations_json ?? {}) as {
+    topFixes?: RecommendationFix[];
+    allFixes?: RecommendationFix[];
+  };
+  const nextStep = (bundle.result?.next_step_json ?? {}) as {
+    topFixes?: RecommendationFix[];
+  };
+
+  const fixes = [
+    ...(Array.isArray(nextStep.topFixes) ? nextStep.topFixes : []),
+    ...(Array.isArray(recommendations.topFixes) ? recommendations.topFixes : []),
+    ...(Array.isArray(recommendations.allFixes) ? recommendations.allFixes : []),
+  ];
+
+  const seen = new Set<string>();
+  const unique: RecommendationFix[] = [];
+  for (const fix of fixes) {
+    if (!fix?.title || seen.has(fix.title)) continue;
+    seen.add(fix.title);
+    unique.push(fix);
+  }
+  return unique;
 }
 
 export function buildCustomerReportViewModel(bundle: ResultsBundle): CustomerReportViewModel {
@@ -118,7 +151,15 @@ export function buildCustomerReportViewModel(bundle: ResultsBundle): CustomerRep
     .filter((row) => row.status !== "good")
     .map((row) => row.label);
 
-  const topPriorities = report.opportunities.slice(0, 3).map(simplifyPriority);
+  const contentPriorities = report.opportunities.slice(0, 3).map(simplifyPriority);
+  const searchIndexingActions = buildSearchIndexingActions(extractTopFixes(bundle));
+
+  // Prefer Search Console / technical fixes first when present, then content priorities.
+  const topPriorities = uniquePriorities(
+    [...searchIndexingActions.slice(0, 2), ...contentPriorities],
+    4,
+  );
+
   const fixExamples = report.previews.slice(0, 2).map(simplifyFixPreview);
 
   const storedHeadline = bundle.result?.customer_headline?.trim();
@@ -149,6 +190,9 @@ export function buildCustomerReportViewModel(bundle: ResultsBundle): CustomerRep
         report.strengths.length + report.strengthFindings.length,
         whatNeedsImprovement.length,
       ),
+    overallScore: report.overallScore,
+    overallGrade: report.overallGrade,
+    overallInterpretation: scoreInterpretation(report.overallScore),
     overallStatus: overallStatusLabel(report.overallScore),
     overallStatusTone: scoreTone(report.overallScore),
     whatLooksGood,
@@ -156,6 +200,7 @@ export function buildCustomerReportViewModel(bundle: ResultsBundle): CustomerRep
     whatThisMayAffect: buildWhatThisMayAffect(weakLabels),
     scorecard,
     topPriorities,
+    searchIndexingActions,
     nextBestStep: buildNextBestStep(
       topPriorities[0]?.title ?? null,
       report.suggestedTier,
@@ -164,4 +209,17 @@ export function buildCustomerReportViewModel(bundle: ResultsBundle): CustomerRep
     suggestedTier: report.suggestedTier,
     recommendedOfferId: recommended.id,
   };
+}
+
+function uniquePriorities(items: CustomerPriority[], limit: number): CustomerPriority[] {
+  const seen = new Set<string>();
+  const out: CustomerPriority[] = [];
+  for (const item of items) {
+    const key = item.title.trim().toLowerCase();
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    out.push(item);
+    if (out.length >= limit) break;
+  }
+  return out;
 }
