@@ -41,6 +41,12 @@ export type CustomerFixExample = {
   explanation: string;
 };
 
+export type CustomerQuickStat = {
+  label: string;
+  value: string;
+  hint?: string;
+};
+
 export type CustomerReportViewModel = {
   companyName: string;
   domain: string;
@@ -58,6 +64,11 @@ export type CustomerReportViewModel = {
   whatLooksGood: string[];
   whatNeedsImprovement: string[];
   whatThisMayAffect: string;
+  quickStats: CustomerQuickStat[];
+  strengthCount: number;
+  opportunityCount: number;
+  cautionCount: number;
+  sitemapUrlCount: number;
   scorecard: CustomerScoreRow[];
   topPriorities: CustomerPriority[];
   searchIndexingActions: CustomerPriority[];
@@ -198,6 +209,11 @@ export function buildCustomerReportViewModel(bundle: ResultsBundle): CustomerRep
     whatLooksGood,
     whatNeedsImprovement,
     whatThisMayAffect: buildWhatThisMayAffect(weakLabels),
+    quickStats: report.quickStats,
+    strengthCount: report.strengths.length,
+    opportunityCount: report.opportunities.length,
+    cautionCount: report.cautionFindings.length,
+    sitemapUrlCount: report.sitemapUrlCount,
     scorecard,
     topPriorities,
     searchIndexingActions,

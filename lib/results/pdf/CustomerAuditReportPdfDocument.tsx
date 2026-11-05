@@ -146,6 +146,26 @@ export function CustomerAuditReportPdfDocument({ report }: { report: CustomerRep
           </Text>
         </View>
 
+        <Text style={styles.sectionEyebrow}>At a glance</Text>
+        <Text style={styles.sectionTitle}>Quick visual summary</Text>
+        {report.quickStats.map((stat) => (
+          <View key={stat.label} style={styles.row}>
+            <Text style={styles.rowLabel}>{stat.label}</Text>
+            <Text style={styles.rowScore}>
+              {stat.value}
+              {stat.hint ? ` · ${stat.hint}` : ""}
+            </Text>
+          </View>
+        ))}
+        <Text style={[styles.body, { marginTop: 8 }]}>
+          Strengths {report.strengthCount} · Opportunities {report.opportunityCount} · Needs review{" "}
+          {report.cautionCount}
+        </Text>
+        <Text style={styles.body}>
+          Prepared for {report.preparedFor} · {report.domain} · {report.sitemapUrlCount} sitemap URLs ·{" "}
+          {report.overallInterpretation}
+        </Text>
+
         <Text style={styles.sectionEyebrow}>What looks good</Text>
         {report.whatLooksGood.map((item) => (
           <Text key={item} style={styles.bullet}>
