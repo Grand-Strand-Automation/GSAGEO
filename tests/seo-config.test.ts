@@ -26,7 +26,6 @@ describe("SEO site configuration", () => {
   it("includes indexable public routes for sitemap", () => {
     const paths: string[] = PUBLIC_INDEX_ROUTES.map((r) => r.path);
     assert.ok(paths.includes("/"));
-    assert.ok(paths.includes("/start"));
     assert.ok(paths.includes("/audit"));
     assert.ok(!paths.includes("/thank-you"));
   });
@@ -36,7 +35,7 @@ describe("SEO site configuration", () => {
       typeof HOME_METADATA.title === "object" && HOME_METADATA.title && "absolute" in HOME_METADATA.title
         ? String(HOME_METADATA.title.absolute)
         : String(HOME_METADATA.title);
-    assert.match(title, /\$99 Website Refresh/);
+    assert.match(title, /Monthly AI Visibility Support/);
     assert.ok(String(HOME_METADATA.description).length > 50);
     assert.doesNotMatch(String(HOME_METADATA.description), /create-react-app/i);
   });

@@ -14,7 +14,7 @@ export function organizationJsonLd() {
       name: siteConfig.serviceArea,
     },
     description:
-      "Website design and redesign for businesses — custom homepage mockup requests, $99 homepage refresh, full-site redesign, and optional GEO / AI visibility support.",
+      "GEO and AI visibility assessments for service businesses in Myrtle Beach and the Grand Strand.",
     sameAs: [siteConfig.mainSiteUrl],
   };
 }
@@ -23,10 +23,10 @@ export function websiteJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Website Design & Redesign — Grand Strand Ally",
+    name: "GEO — AI Visibility Assessments",
     url: getSiteUrl(),
     description:
-      "Request a custom homepage mockup, then choose a $99 homepage refresh or full website redesign. GEO support available as a next step.",
+      "Practical GEO / AI visibility assessments for service businesses with clear deliverables and next steps.",
     publisher: {
       "@type": "Organization",
       name: siteConfig.name,
@@ -39,7 +39,7 @@ export function serviceJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "Website Design and Redesign",
+    name: "GEO / AI Visibility Assessment",
     provider: {
       "@type": "Organization",
       name: siteConfig.name,
@@ -47,8 +47,8 @@ export function serviceJsonLd() {
     },
     areaServed: siteConfig.serviceArea,
     description:
-      "Custom homepage mockup requests, $99 homepage refresh, and full website design / redesign for businesses of all types, with GEO as a next-stage offer.",
-    url: absoluteUrl("/"),
+      "Structured assessment of service page clarity, trust content, internal linking, schema readiness, and AI search visibility gaps.",
+    url: absoluteUrl("/audit"),
   };
 }
 

@@ -15,11 +15,10 @@ export function absoluteUrl(path: string): string {
 /** Public routes included in sitemap.xml */
 export const PUBLIC_INDEX_ROUTES = [
   { path: "/", changeFrequency: "weekly" as const, priority: 1 },
-  { path: "/start", changeFrequency: "monthly" as const, priority: 0.9 },
-  { path: "/audit", changeFrequency: "monthly" as const, priority: 0.75 },
+  { path: "/audit", changeFrequency: "monthly" as const, priority: 0.9 },
   {
     path: "/myrtle-beach-ai-visibility-benchmark",
     changeFrequency: "monthly" as const,
-    priority: 0.7,
+    priority: 0.85,
   },
 ] as const;

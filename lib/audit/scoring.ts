@@ -269,7 +269,13 @@ export function generateRecommendations(
     });
   }
 
-  const suggestedTier = "$99 Website Refresh — homepage + 2–3 sub pages";
+  const { overall } = scorecard;
+  const suggestedTier =
+    overall < 40
+      ? "AI Visibility Monitor — $199/mo"
+      : overall < 65
+        ? "AI Visibility Growth — starting at $499/mo"
+        : "Managed GEO / AI Visibility — starting at $1,250/mo";
 
   return {
     topFixes: fixes.slice(0, 5),

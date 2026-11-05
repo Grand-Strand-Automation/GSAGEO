@@ -12,23 +12,9 @@ export default function AdminDashboardLayout({ children }: { children: React.Rea
               Admin
             </span>
           </div>
-          <div className="flex items-center gap-4">
-            <Link
-              href="/admin/submissions"
-              className="text-xs font-medium text-brand-muted hover:text-brand-navy"
-            >
-              GEO leads
-            </Link>
-            <Link
-              href="/admin/mockups"
-              className="text-xs font-medium text-brand-muted hover:text-brand-navy"
-            >
-              Mockup leads
-            </Link>
-            <Link href="/" className="text-xs text-brand-muted hover:text-brand-navy">
-              Public site →
-            </Link>
-          </div>
+          <Link href="/" className="text-xs text-brand-muted hover:text-brand-navy">
+            Public site →
+          </Link>
         </div>
       </header>
       {children}

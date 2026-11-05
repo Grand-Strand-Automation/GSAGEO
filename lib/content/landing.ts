@@ -1,318 +1,28 @@
 export const HOME_HERO = {
-  eyebrow: "Website Design + Redesign",
-  headline: "Get a Better Website — Starting With a Custom Homepage Concept",
+  eyebrow: "GEO / AI Visibility for service businesses",
+  headline: "See How Clear Your Business Looks in AI Search",
   subheadline:
-    "Share your website, company details, and goals, and we’ll review whether a homepage refresh or a full redesign makes the most sense. Request a custom homepage mockup and we’ll follow up by email.",
-  primaryCta: "Request a Homepage Mockup",
-  primaryHref: "#mockup",
-  secondaryCta: "See Before & After Examples",
-  secondaryHref: "#examples",
-  tertiaryCta: "Learn about GEO next",
-  tertiaryHref: "#geo",
-  supportLine:
-    "Homepage refreshes available · Full website redesigns available · GEO support after launch",
-  reviewCardTitle: "What you’ll get when you request a mockup",
-  reviewCardBullets: [
-    "A tailored homepage concept reviewed by our team",
-    "Clear guidance on refresh vs full redesign",
-    "Stronger messaging and CTA direction for your business",
-    "A simple path into the $99 homepage refresh or a full redesign",
-    "Follow-up by email — no instant automated output on the page",
-  ],
-} as const;
-
-export const MOCKUP_EXPECTATION =
-  "Custom mockups are prepared after we review your business details — not generated instantly on this page. Final design, content, and launch details are refined during onboarding.";
-
-export const BEFORE_AFTER = {
-  label: "Examples",
-  title: "See the difference a clearer website can make",
-  intro:
-    "A stronger homepage can improve first impressions, clarify what you do, and make it easier for visitors to take the next step.",
-  disclaimer:
-    "Illustrative before/after examples — sample redesign directions, not claims about a specific client.",
-  examples: [
-    {
-      id: "messaging",
-      label: "Sample redesign direction",
-      title: "Clearer messaging above the fold",
-      beforeLabel: "Before",
-      afterLabel: "After",
-      beforePoints: [
-        "Vague headline that does not say what the business does",
-        "Weak or buried call to action",
-        "Crowded, hard-to-scan first screen",
-      ],
-      afterPoints: [
-        "Headline that states the offer and who it serves",
-        "Primary CTA placed where visitors expect it",
-        "Cleaner hierarchy so the first impression feels confident",
-      ],
-      changed: ["Clearer messaging", "Stronger CTA placement", "More modern layout"],
-    },
-    {
-      id: "trust",
-      label: "Example homepage improvement",
-      title: "Improved trust and next steps",
-      beforeLabel: "Before",
-      afterLabel: "After",
-      beforePoints: [
-        "Little proof or credibility near the hero",
-        "Services listed without clear structure",
-        "Visitors unsure what to do next",
-      ],
-      afterPoints: [
-        "Trust cues placed near the primary action",
-        "Service overview that is easy to scan",
-        "Obvious path to call, book, or request a quote",
-      ],
-      changed: ["Improved trust structure", "Easier-to-scan service overview", "Stronger CTA placement"],
-    },
-    {
-      id: "structure",
-      label: "Illustrative before/after",
-      title: "A layout visitors can actually use",
-      beforeLabel: "Before",
-      afterLabel: "After",
-      beforePoints: [
-        "Long walls of text with little visual rhythm",
-        "Inconsistent sections that feel outdated",
-        "Mobile experience that feels cramped",
-      ],
-      afterPoints: [
-        "Sectioned layout with clear breathing room",
-        "Modern structure that still feels on-brand",
-        "Mobile-first spacing and readable type",
-      ],
-      changed: ["More modern layout", "Clearer messaging", "Improved trust structure"],
-    },
-  ],
-} as const;
-
-export const HOW_MOCKUP_WORKS = {
-  label: "How it works",
-  title: "From request to the right design path",
-  intro:
-    "A simple, high-trust process: share your site, we review the fit, prepare a custom mockup when requested, then move into refresh, redesign, or GEO when it makes sense.",
-  steps: [
-    {
-      title: "Share your website",
-      desc: "Submit your company name, website URL, and what you want to improve.",
-    },
-    {
-      title: "We review the fit",
-      desc: "We assess whether a homepage refresh or full redesign makes more sense.",
-    },
-    {
-      title: "Request a custom mockup",
-      desc: "If you want a homepage concept, we’ll follow up by email with next steps.",
-    },
-    {
-      title: "Design, GEO, and beyond",
-      desc: "Once your site is stronger, GEO support and broader digital help can follow if useful.",
-    },
-  ],
-} as const;
-
-export const DESIGN_OFFERS = {
-  label: "Design options",
-  title: "Choose the right starting point",
-  intro:
-    "Whether you need a focused first step or a broader overhaul, we offer both a quick homepage refresh and full website design / redesign.",
-  helper: "Not sure which fits best? Request a mockup and we’ll help you choose the right path.",
-  offers: [
-    {
-      id: "refresh",
-      name: "Homepage Refresh",
-      price: "$99",
-      badge: "Fast entry offer",
-      period: "One-time · clear scope",
-      desc: "A focused first step for businesses that want a cleaner, clearer homepage without committing to a full redesign right away.",
-      includes: [
-        "Homepage refresh",
-        "2–3 key sub pages",
-        "Clearer headline and CTAs",
-        "Modern layout direction",
-        "Business-specific messaging",
-      ],
-      cta: "Start My $99 Homepage Refresh",
-      href: "/start?tier=monitor",
-      primary: false,
-    },
-    {
-      id: "full",
-      name: "Full Website Design / Redesign",
-      price: "Custom scope",
-      badge: "Complete project",
-      period: "Broader visual, structural, and messaging overhaul",
-      desc: "A more complete website project for businesses that need a broader redesign — not just a homepage refresh.",
-      includes: [
-        "Full site design or redesign",
-        "Information architecture & page structure",
-        "Messaging and conversion-focused layout",
-        "Multi-page visual system",
-        "Guided discovery and project scoping",
-      ],
-      cta: "Request Full Redesign Guidance",
-      href: "/#mockup",
-      primary: true,
-    },
-  ],
-} as const;
-
-export const WHATS_INCLUDED_INTRO =
-  "Built for businesses that need a clearer, more modern website — whether you start with a focused homepage refresh or a full redesign.";
-
-export const WHATS_INCLUDED = [
-  {
-    title: "Homepage Concept / Mockup",
-    desc: "A tailored homepage direction prepared after we review your business and goals.",
-  },
-  {
-    title: "$99 Homepage Refresh",
-    desc: "A practical refresh of your homepage and 2–3 key sub pages when a focused start is enough.",
-  },
-  {
-    title: "Full Website Redesign",
-    desc: "Broader visual, structural, and messaging work when the whole site needs an overhaul.",
-  },
-  {
-    title: "Clearer CTAs",
-    desc: "Make it easier for visitors to call, request a quote, or take the next step.",
-  },
-  {
-    title: "Modern Layout Direction",
-    desc: "Cleaner structure and spacing so your business looks more credible online.",
-  },
-  {
-    title: "GEO After Launch",
-    desc: "Once the site is stronger, GEO / AI visibility support can be the natural next step.",
-  },
-];
-
-export const DELIVERABLES_HEADING = "What You Get";
-
-export const DELIVERABLES_INTRO =
-  "Professional website design support — from a focused refresh to a full redesign — with a clear request-led mockup path.";
-
-export const DELIVERABLES_SUPPORT =
-  "Designed to make your website clearer, more credible, and easier to act on — for any type of business.";
-
-export const DELIVERABLES = [
-  {
-    title: "Custom Mockup Request",
-    desc: "Tell us about your site and goals; we follow up with a tailored homepage concept.",
-  },
-  {
-    title: "Homepage Refresh Path",
-    desc: "Turn the approved direction into a refreshed homepage and a few key pages for $99.",
-  },
-  {
-    title: "Full Redesign Path",
-    desc: "Expand into a broader website project when structure, brand, and messaging need more work.",
-  },
-  {
-    title: "Clear Next Steps",
-    desc: "Practical guidance so you know whether refresh, redesign, or GEO comes next.",
-  },
-];
-
-export const GOOD_FIT = [
-  "Businesses that need a clearer, more modern website",
-  "Companies that want a stronger first impression online",
-  "Owners tired of an outdated site that does not convert well",
-  "Teams that want clearer messaging, better structure, and stronger calls to action",
-  "Organizations open to either a focused refresh or a full redesign",
-  "Companies that want a practical next step without vague marketing fluff",
-];
-
-export const NOT_FIT = [
-  "Businesses looking for a free finished website with no engagement",
-  "Companies that need a massive custom app or complex software platform",
-  "Anyone expecting instant automated mockups generated on this page",
-  "Anyone expecting guaranteed rankings or overnight lead spikes",
-];
-
-export const WHY_ONGOING = {
-  label: "Why this works",
-  title: "Why a Clearer Website Beats a Vague Rebuild Promise",
-  body: [
-    "Most businesses do not need endless agency theater to improve results. They need clearer messaging, stronger calls to action, and a site structure visitors can trust.",
-    "That is why we offer two honest paths: a focused $99 homepage refresh when a fast first step is enough, and full website design / redesign when the whole experience needs more work.",
-  ],
-  support: "Request a mockup · Choose refresh or redesign · Add GEO when the foundation is ready.",
-} as const;
-
-export const BROADER_SUPPORT = {
-  label: "Beyond the website",
-  title: "Need broader support too?",
-  body: "If your business also needs help beyond the website — such as visibility, systems, support structure, or operational clarity — we can help there too.",
-  cta: "Visit the main Grand Strand Ally site",
-  href: "https://gsally.com",
-} as const;
-
-/** Kept for pricing section compatibility; dual offers live in DESIGN_OFFERS. */
-export const PRICING_HEADLINE = "Website design options";
-
-export const PRICING_INTRO =
-  "Start with a custom homepage mockup request, then choose the path that fits — a focused $99 refresh or a full website redesign.";
-
-export const PRICING_SUBLINE =
-  "Homepage refreshes · Full redesigns · GEO as a next-stage offer";
-
-export const PRICING_REASSURANCE = [
-  "Request-led mockups",
-  "Clear refresh scope",
-  "Full redesign available",
-  "GEO after launch",
-];
-
-export const PRICING_HELPER =
-  "Request a homepage mockup first. We’ll help you decide whether the $99 refresh or a full redesign is the better fit.";
-
-export const PRICING_DOWNGRADE_NOTE =
-  "Need more pages later? We can expand from a refresh into broader redesign work when it makes sense.";
-
-export const PRICING_CUSTOM_NOTE =
-  "Need support across multiple locations, a larger footprint, or a custom scope?";
-
-/** Single intake-compatible tier for /start — full redesign uses mockup request. */
-export const TIERS = [
-  {
-    name: "$99 Homepage Refresh",
-    badge: "Homepage + 2–3 sub pages",
-    price: "$99",
-    period: "One-time refresh · clear scope",
-    tier: "monitor",
-    desc: "Refresh your homepage and 2–3 important sub pages with clearer messaging, stronger calls to action, and a more modern layout direction.",
-    includes: [
-      "Homepage refresh",
-      "2–3 key sub pages",
-      "Clearer headline and CTAs",
-      "Modern layout direction",
-      "Business-specific messaging",
-      "Simple onboarding after mockup review",
-    ],
-    cta: "Start My $99 Homepage Refresh",
-    primary: true,
-  },
-];
-
-export const GEO_SECONDARY = {
-  label: "What comes after the redesign?",
-  title: "Once your website is clearer, GEO is the natural next step",
-  body: "A stronger website is the foundation. GEO helps improve how clearly your business appears in AI-driven search and answer engines — after the design work makes your offer easier to understand.",
-  primaryCta: "Start Free GEO Assessment",
+    "We assess how clearly your business can be understood in AI-driven search — what looks strong, what needs work, and what to improve first. Start with a free assessment, then continue with simple month-to-month support if you want help making improvements over time.",
+  primaryCta: "Start Your Free Assessment",
   primaryHref: "/audit",
-  secondaryCta: "Learn what GEO covers",
-  secondaryHref: "/#understanding-geo",
+  secondaryCta: "See Monthly Plans",
+  secondaryHref: "#pricing",
+  supportLine: "Free assessment first · Month-to-month support available · Cancel anytime",
+  reviewCardTitle: "What the free assessment covers",
+  reviewCardBullets: [
+    "How clearly your business appears in AI search",
+    "Website clarity and trust signals",
+    "What looks strong and what needs work",
+    "Practical priorities to improve first",
+    "A clear path to ongoing monthly support",
+  ],
 } as const;
 
 export const ASSESSMENT_PREVIEW = {
-  eyebrow: "SAMPLE GEO REPORT",
-  title: "GEO / AI Visibility — available after your site is stronger",
+  eyebrow: "SAMPLE REPORT PREVIEW",
+  title: "What Your Free Assessment Can Show You",
   description:
-    "If AI search visibility matters for your business, our free assessment shows what looks strong, what needs work, and what to improve first.",
+    "This is a sample preview of the kind of easy-to-read assessment you receive after submitting your free request — a starting point, not the final product.",
   disclaimer:
     "Illustrative example — actual findings and recommendations will vary based on your business, website, and goals.",
   screenshots: [
@@ -328,46 +38,243 @@ export const ASSESSMENT_PREVIEW = {
     },
   ],
   cta: {
-    heading: "Ready for AI visibility after the redesign?",
-    body: "Request a free GEO assessment once your website foundation is clearer — or explore it anytime if that is already a priority.",
-    label: "Start Free GEO Assessment",
+    heading: "Ready to see where your business stands?",
+    body: "Request your free assessment to get a clearer picture of what your website is doing well, what may be limiting visibility, and what to improve first.",
+    label: "Start Your Free Assessment",
     href: "/audit",
-    secondaryLabel: "Request a homepage mockup",
-    secondaryHref: "/#mockup",
+    secondaryLabel: "See monthly plans",
+    secondaryHref: "/#pricing",
   },
 } as const;
 
+export const GOOD_FIT = [
+  "Service businesses that want a clearer picture of how they appear in AI search",
+  "Local B2B companies not showing up well in AI-generated answers",
+  "Teams with service pages, trust content, or messaging that feels unclear or thin",
+  "Businesses that want practical monthly guidance — not a vague marketing retainer",
+  "Companies in trust-dependent or compliance-aware industries",
+  "Owners who want ongoing help improving clarity and visibility over time",
+  "Teams ready to make steady improvements month to month",
+];
+
+export const NOT_FIT = [
+  "Businesses looking for guaranteed rankings or overnight results",
+  "Companies still early in defining their product or service offering",
+  "Organizations with a brand-new site and very little content to work with",
+  "Teams unwilling to review or update content over time",
+];
+
+export const WHATS_INCLUDED_INTRO =
+  "Your free assessment is the starting point. Ongoing monthly support helps you keep improving clarity, trust, and visibility — with practical next steps each month.";
+
+export const WHATS_INCLUDED = [
+  {
+    title: "Monthly Visibility Review",
+    desc: "We check how your business and website are showing up — and what has changed since last month.",
+  },
+  {
+    title: "Website Clarity",
+    desc: "We help you improve whether your services, pages, and messaging are easy to understand.",
+  },
+  {
+    title: "Trust & Credibility",
+    desc: "We guide improvements that help your business feel more complete and trustworthy online.",
+  },
+  {
+    title: "Content & Page Improvements",
+    desc: "We recommend practical updates to key pages, FAQs, and content that support visibility.",
+  },
+  {
+    title: "Clear Next Steps",
+    desc: "Each month you get a simple summary of priorities — what to improve first and why.",
+  },
+  {
+    title: "Ongoing Monthly Guidance",
+    desc: "You are not left on your own after the assessment. Support continues as long as it makes sense for your business.",
+  },
+];
+
+export const DELIVERABLES_HEADING = "What You Get Each Month";
+
+export const DELIVERABLES_INTRO =
+  "Monthly support is designed to keep progress moving — not hand you a report and disappear.";
+
+export const DELIVERABLES_SUPPORT =
+  "Designed to keep your business clear, credible, and easier to understand over time.";
+
+export const DELIVERABLES = [
+  {
+    title: "Simple Score Refresh",
+    desc: "A plain-English snapshot of how your business currently looks online.",
+  },
+  {
+    title: "Clear Top Priorities",
+    desc: "The most important issues and opportunities to focus on right now.",
+  },
+  {
+    title: "Practical Recommendations",
+    desc: "Straightforward suggestions for pages, content, trust, and structure.",
+  },
+  {
+    title: "Monthly Progress Summary",
+    desc: "A short update on what changed, what improved, and what to tackle next.",
+  },
+];
+
+export const MONTHLY_RHYTHM = {
+  label: "How it works",
+  title: "How Monthly GEO Support Works",
+  intro:
+    "A simple rhythm that keeps your business clear and current — without turning this into a long, overwhelming project.",
+  steps: [
+    {
+      title: "Review",
+      desc: "We check how your site and business information are showing up and what has changed.",
+    },
+    {
+      title: "Prioritize",
+      desc: "We identify the most important issues and opportunities right now.",
+    },
+    {
+      title: "Improve",
+      desc: "We guide or support the updates that can make the biggest difference.",
+    },
+    {
+      title: "Refresh",
+      desc: "You receive a simple monthly summary with progress, priorities, and next steps.",
+    },
+  ],
+} as const;
+
+export const WHY_ONGOING = {
+  label: "Why stay subscribed",
+  title: "Why Ongoing Support Matters",
+  body: [
+    "The first assessment gives you a starting point. But AI visibility and website clarity are not static — your services change, competitors shift, and trust signals need regular attention.",
+    "Monthly support helps you keep improving the areas that affect how clearly your business is understood over time — without guessing what to fix next.",
+  ],
+  support: "Continue only if it makes sense. Cancel anytime.",
+} as const;
+
+export const PRICING_HEADLINE = "Monthly AI Visibility Support";
+
+export const PRICING_INTRO =
+  "Simple month-to-month plans for businesses that want ongoing clarity and improvement — without long contracts. Start with a free assessment, then choose the level of support that fits.";
+
+export const PRICING_SUBLINE = "Month-to-month plans · Cancel anytime · No long contracts";
+
+export const PRICING_REASSURANCE = [
+  "Cancel anytime",
+  "Month-to-month billing",
+  "No long contracts",
+  "Flexible plan options",
+];
+
+export const PRICING_HELPER =
+  "Not sure where to start? Begin with your free assessment — we'll help you choose the right monthly plan based on what we find.";
+
+export const PRICING_DOWNGRADE_NOTE =
+  "Need lighter support? AI Visibility Monitor keeps you covered with a simpler monthly snapshot and priority recommendations — without full hands-on support every month.";
+
+export const PRICING_CUSTOM_NOTE =
+  "Need support across multiple locations, a larger service footprint, or a custom scope?";
+
+export const TIERS = [
+  {
+    name: "AI Visibility Monitor",
+    badge: "Lighter monthly oversight",
+    price: "$199/month",
+    period: "Month-to-month · cancel anytime",
+    tier: "monitor",
+    desc: "A lower-friction monthly option for businesses that want visibility oversight, a simple monthly snapshot, and clear recommendations — without hands-on implementation every month.",
+    includes: [
+      "Monthly visibility snapshot",
+      "Plain-English score refresh",
+      "Top priority recommendations",
+      "Email summary each month",
+      "Clear guidance on what to improve next",
+      "Cancel anytime",
+    ],
+    cta: "Start With Monitor",
+    primary: false,
+  },
+  {
+    name: "AI Visibility Growth",
+    badge: "Recommended · best monthly value",
+    price: "Starting at $499/month",
+    period: "Month-to-month · cancel anytime",
+    tier: "growth",
+    desc: "The clearest path to ongoing improvement. For businesses that want steady monthly progress — practical guidance, content direction, and support turning findings into action.",
+    includes: [
+      "Everything in Monitor",
+      "Monthly visibility review",
+      "Content and page improvement guidance",
+      "Priority refresh recommendations each month",
+      "Practical action summaries you can act on",
+      "Steady progress on clarity, trust, and visibility",
+    ],
+    cta: "Start AI Visibility Growth",
+    primary: true,
+  },
+  {
+    name: "Managed GEO / AI Visibility",
+    badge: "More hands-on monthly support",
+    price: "Starting at $1,250/month",
+    period: "Month-to-month · cancel anytime",
+    tier: "managed",
+    desc: "A higher-touch monthly option for businesses that want more done-with-you and done-for-you support — deeper implementation help and ongoing optimization each month.",
+    includes: [
+      "Everything in Growth",
+      "Hands-on optimization support",
+      "Implementation guidance and prioritization",
+      "Content planning and structure recommendations",
+      "Deeper monthly support on key pages",
+      "Priority roadmap reviews",
+    ],
+    cta: "Request Managed Support",
+    primary: false,
+  },
+];
+
 export const FAQ_ITEMS = [
   {
-    q: "Do I get a live mockup instantly?",
-    a: "No. We no longer generate instant automated mockups on this page. Request a homepage mockup through the form, and we’ll review your details and follow up by email.",
+    q: "What is Generative Engine Optimization?",
+    a: "GEO is about improving how clearly your business is understood in AI-powered search — so tools like ChatGPT and Google AI Overviews can represent your services accurately. In plain terms: we help your website communicate who you are, what you do, and why customers can trust you.",
   },
   {
-    q: "How do I request a homepage mockup?",
-    a: "Share your company name, website URL, email, and a few details about what you want to improve. We’ll review the fit and follow up with next steps for a custom homepage concept.",
+    q: "Is this a contract?",
+    a: "No long-term contract is required. Monthly plans are designed to be flexible. You can continue, downgrade, or cancel based on what makes sense for your business.",
   },
   {
-    q: "What is included in the $99 homepage refresh?",
-    a: "A refresh of your homepage plus 2–3 key sub pages — clearer messaging, stronger calls to action, and a more modern layout direction for the pages visitors use most.",
+    q: "Can I cancel anytime?",
+    a: "Yes. All monthly plans are month-to-month. You can cancel when ongoing support no longer fits your needs — no long-term commitment required.",
   },
   {
-    q: "When should I choose full website redesign instead?",
-    a: "Choose a full redesign when the whole site needs a broader visual, structural, and messaging overhaul — not just a clearer homepage. Request a mockup and we’ll help you decide.",
+    q: "What happens after the free assessment?",
+    a: "You receive a clear, easy-to-read summary of what looks strong, what needs work, and what to improve first. If you want help making those improvements over time, you can choose a monthly support plan — or book a short review call to walk through the findings together.",
   },
   {
-    q: "Do you only work with service businesses?",
-    a: "No. The offer is for all types of businesses that need a clearer, more modern website — not only service businesses.",
+    q: "What does monthly support actually include?",
+    a: "Each month we review how your business is showing up, identify top priorities, and give you practical recommendations for clarity, trust, content, and structure. Growth and Managed plans include more active guidance and support turning those recommendations into action.",
   },
   {
-    q: "Can you redesign the full site, not just the homepage?",
-    a: "Yes. Full website design and redesign are a core offer alongside the focused $99 homepage refresh.",
+    q: "Do I need the monthly plan if I only want the assessment?",
+    a: "No. The free assessment stands on its own. Monthly support is optional — for businesses that want ongoing help improving clarity and visibility over time.",
   },
   {
-    q: "What happens after the redesign?",
-    a: "Once your site is clearer and stronger, GEO / AI visibility support is available as the natural next step — plus broader Grand Strand Ally support if you need it.",
+    q: "What if I want a lighter option?",
+    a: "AI Visibility Monitor is designed for that. You get a monthly snapshot, score refresh, and priority recommendations — without the deeper hands-on support included in Growth or Managed.",
   },
   {
-    q: "Is GEO still available?",
-    a: "Yes. GEO assessments and AI visibility support remain available as a next-stage offer after website design or redesign work.",
+    q: "How hands-on is the support?",
+    a: "It depends on the plan. Monitor gives you oversight and clear recommendations. Growth adds recurring guidance and monthly action summaries. Managed includes more hands-on support for structure, content, and implementation.",
+  },
+  {
+    q: "How is this different from traditional SEO?",
+    a: "Traditional SEO focuses on ranking in a list of links. GEO focuses on whether AI systems can understand and represent your business clearly — through content, structure, trust signals, and page clarity. Both matter, but the signals are different.",
+  },
+  {
+    q: "How long does the free assessment take?",
+    a: "The automated review runs within minutes of form submission. Your full written assessment is typically delivered within two to three business days.",
   },
 ];
