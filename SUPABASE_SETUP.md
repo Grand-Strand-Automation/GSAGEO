@@ -11,10 +11,17 @@
 **Option A — SQL Editor (simplest)**
 
 1. Open SQL Editor
-2. Paste and run `supabase/migrations/001_geo_schema.sql`
-3. Paste and run `supabase/migrations/002_geo_admin_users.sql`
-4. Paste and run `supabase/migrations/003_results_flow.sql`
-5. Paste and run `supabase/migrations/004_geo_internal_fixes.sql`
+2. Easiest: paste and run `supabase/APPLY_ALL.sql` once  
+   Or run each file in order (do not skip):
+   - `supabase/migrations/001_geo_schema.sql`
+   - `supabase/migrations/002_geo_admin_users.sql`
+   - `supabase/migrations/003_results_flow.sql`
+   - `supabase/migrations/004_geo_internal_fixes.sql`
+   - `supabase/migrations/005_customer_executive_summary.sql`
+   - `supabase/migrations/006_geo_follow_up.sql`
+   - `supabase/migrations/007_subscription_retention.sql`
+3. Confirm `geo_submissions` exists under Table Editor before testing `/audit`
+4. After deploy, open `/api/health/db` — it should return `"database":"ready"`
 
 **Option B — Supabase CLI**
 
