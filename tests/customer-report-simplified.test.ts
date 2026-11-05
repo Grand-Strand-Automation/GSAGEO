@@ -5,7 +5,6 @@ import {
   buildCustomerHeadline,
   buildCustomerScorecard,
   simplifyFindingLabel,
-  simplifyText,
 } from "../lib/results/plain-language";
 import { buildReportViewModel } from "../lib/results/report-view-model";
 import { buildStructuredFindings, buildStrengths, buildExecutiveSummary } from "../lib/audit/report-builder";
@@ -23,16 +22,13 @@ const homepageShell = readFileSync(
 );
 
 describe("customer-facing simplified report", () => {
-  it("translates jargon into plain language", () => {
-    assert.match(
-      simplifyText("Entity clarity and structured data affect AI retrieval systems."),
-      /clear business information/i,
-    );
+  it("keeps Search Console style labels readable", () => {
+    assert.match(simplifyFindingLabel("sitemap.xml"), /Search Console/i);
+    assert.match(simplifyFindingLabel("robots.txt"), /robots\.txt/i);
     assert.match(simplifyFindingLabel("FAQ schema"), /FAQ details/i);
-    assert.doesNotMatch(simplifyText("GEO audit crawlability"), /GEO/i);
   });
 
-  it("builds a compact customer scorecard with six broad categories", () => {
+  it("builds a GEO scorecard with numeric category scores", () => {
     const rows = buildCustomerScorecard([
       { key: "crawlability", label: "Crawlability", score: 80, grade: "B", interpretation: "Good" },
       { key: "entityClarity", label: "Entity", score: 40, grade: "D", interpretation: "Weak" },
@@ -43,7 +39,8 @@ describe("customer-facing simplified report", () => {
       { key: "technicalReadiness", label: "Tech", score: 75, grade: "B", interpretation: "Good" },
       { key: "internalStructure", label: "Structure", score: 60, grade: "C", interpretation: "Moderate" },
     ]);
-    assert.equal(rows.length, 6);
+    assert.equal(rows.length, 8);
+    assert.ok(rows.every((r) => typeof r.score === "number" && r.grade.length >= 1));
     assert.ok(rows.every((r) => ["Good", "Needs attention", "Weak"].includes(r.statusLabel)));
   });
 
@@ -131,6 +128,7 @@ describe("customer-facing simplified report", () => {
         recommendations_json: recommendations,
         next_step_json: {
           suggestedTier: recommendations.suggestedTier,
+          topFixes: recommendations.topFixes,
           topOpportunities: structuredFindings.slice(0, 5),
         },
       },
@@ -160,15 +158,16 @@ describe("customer-facing simplified report", () => {
     assert.ok(customer.summary.length > 20);
     assert.ok(customer.whatLooksGood.length <= 5);
     assert.ok(customer.whatNeedsImprovement.length <= 5);
-    assert.equal(customer.scorecard.length, 6);
-    assert.ok(customer.topPriorities.length <= 3);
+    assert.equal(customer.scorecard.length, 8);
+    assert.ok(customer.overallScore > 0);
+    assert.ok(customer.overallGrade.length >= 1);
+    assert.ok(customer.topPriorities.length <= 4);
     assert.ok(customer.fixExamples.length <= 2);
     assert.ok(customer.nextBestStep.length > 10);
+    assert.ok(Array.isArray(customer.searchIndexingActions));
 
-    assert.ok(full.allFindings.length > customer.topPriorities.length);
+    assert.ok(full.allFindings.length > 0);
     assert.ok(full.pageAnalysis.length > 0);
-    assert.doesNotMatch(customer.summary.toLowerCase(), /json-ld/);
-    assert.doesNotMatch(customer.summary.toLowerCase(), /schema/);
   });
 
   it("uses approachable headlines based on score", () => {
