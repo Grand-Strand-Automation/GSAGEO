@@ -10,8 +10,8 @@ export function SiteFooter() {
           <div className="md:col-span-5 space-y-4">
             <BrandLogo variant="geo" />
             <p className="text-sm text-white/55 max-w-md leading-relaxed pt-1">
-              Website design and redesign for businesses that need a clearer, more modern online
-              presence — from a $99 homepage refresh to full-site projects, with GEO as a next step.
+              Monthly AI visibility support for service businesses — start with a free assessment,
+              then continue month-to-month with practical guidance and clear next steps.
             </p>
             <div className="space-y-2 pt-2 text-sm">
               <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/35">
@@ -28,15 +28,13 @@ export function SiteFooter() {
 
           <div className="md:col-span-3">
             <h3 className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/35 mb-5">
-              Services
+              GEO
             </h3>
             <ul className="space-y-3">
               {[
-                { label: "Request a mockup", href: "/#mockup" },
-                { label: "Before & after examples", href: "/#examples" },
-                { label: "Design options", href: "/#pricing" },
-                { label: "$99 Homepage Refresh", href: "/start" },
-                { label: "GEO assessment", href: "/audit" },
+                { label: "Overview", href: "/" },
+                { label: "Free Assessment", href: "/audit" },
+                { label: "Monthly Plans", href: "/#pricing" },
                 { label: "FAQ", href: "/#faq" },
               ].map(({ label, href }) => (
                 <li key={label}>
@@ -71,10 +69,10 @@ export function SiteFooter() {
             </ul>
             <div className="mt-8 pt-6 border-t border-white/10">
               <Link
-                href="/#mockup"
+                href="/audit"
                 className="inline-block text-sm font-semibold text-brand-sky hover:text-white transition-colors"
               >
-                Request a homepage mockup →
+                Request your free assessment →
               </Link>
             </div>
           </div>
@@ -85,7 +83,7 @@ export function SiteFooter() {
             © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
           </p>
           <p className="text-sm text-white/30 text-center sm:text-right">
-            Website design · $99 refresh · Full redesign · Grand Strand-based
+            Practical monthly support · Cancel anytime · Grand Strand-based
           </p>
         </div>
       </div>
