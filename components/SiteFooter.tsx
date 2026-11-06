@@ -48,24 +48,27 @@ export function SiteFooter() {
 
           <div className="md:col-span-4">
             <h3 className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/35 mb-5">
-              Grand Strand Ally
+              Contact
             </h3>
             <ul className="space-y-3">
-              {[
-                { label: "Main website", href: siteConfig.mainSiteUrl, external: true },
-                { label: "All services", href: `${siteConfig.mainSiteUrl}/services`, external: true },
-                { label: "Contact", href: `${siteConfig.mainSiteUrl}/contact`, external: true },
-              ].map(({ label, href, external }) => (
-                <li key={label}>
-                  <a
-                    href={href}
-                    className="text-sm text-white/55 hover:text-white transition-colors"
-                    {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                  >
-                    {label}
-                  </a>
-                </li>
-              ))}
+              <li>
+                <a
+                  href={`mailto:${siteConfig.email}`}
+                  className="text-sm text-white/55 hover:text-white transition-colors"
+                >
+                  {siteConfig.email}
+                </a>
+              </li>
+              <li>
+                <Link href="/audit" className="text-sm text-white/55 hover:text-white transition-colors">
+                  Free Assessment
+                </Link>
+              </li>
+              <li>
+                <Link href="/#pricing" className="text-sm text-white/55 hover:text-white transition-colors">
+                  Monthly Plans
+                </Link>
+              </li>
             </ul>
             <div className="mt-8 pt-6 border-t border-white/10">
               <Link
