@@ -5,7 +5,6 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { BrandLogo } from "@/components/BrandLogo";
 import { ButtonLink } from "@/components/ui/Button";
-import { siteConfig } from "@/lib/brand/site";
 
 const NAV_LINKS = [
   { label: "What's Included", href: "/#whats-included" },
@@ -32,14 +31,6 @@ export function SiteHeader() {
               {link.label}
             </Link>
           ))}
-          <a
-            href={siteConfig.mainSiteUrl}
-            className="text-sm font-medium text-white/55 hover:text-white transition-colors whitespace-nowrap"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Main site
-          </a>
           <ButtonLink href="/audit" size="sm" variant="gold" className="ml-1 whitespace-nowrap">
             Start Free Assessment
           </ButtonLink>
@@ -68,14 +59,6 @@ export function SiteHeader() {
               {link.label}
             </Link>
           ))}
-          <a
-            href={siteConfig.mainSiteUrl}
-            className="text-sm font-medium text-white/55 hover:text-white py-3 px-3 rounded-lg hover:bg-white/5 transition-colors"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Main site
-          </a>
           <div className="pt-3 mt-2 border-t border-white/10">
             <ButtonLink href="/audit" variant="gold" className="w-full" onClick={() => setMobileOpen(false)}>
               Start Free Assessment
