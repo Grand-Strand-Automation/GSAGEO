@@ -14,6 +14,10 @@ These items cannot be completed from code alone. Do them in order after reviewin
   - [ ] `supabase/migrations/006_geo_follow_up.sql`
   - [ ] `supabase/migrations/007_subscription_retention.sql`
 - [ ] Confirm `/api/health/db` returns `{ "ok": true, "database": "ready" }`
+- [ ] Confirm `/api/health` shows `email.ok: true` and `cron.ok: true`
+- [ ] Set `RESEND_API_KEY` + verified `RESEND_FROM_EMAIL` in Vercel, then redeploy
+- [ ] Set `NEXT_PUBLIC_APP_URL=https://gsageo.vercel.app` (or your custom domain)
+- [ ] Submit a test `/audit` and confirm both confirmation + report-ready emails arrive
 - [ ] Copy project URL, anon key, and **service role key** into Vercel env vars (see [ENV_SETUP.md](./ENV_SETUP.md))
 - [ ] Disable public signups: Authentication → Providers → Email → disable **Enable sign ups**
 - [ ] Create first admin user(s) manually: Authentication → Users → Add user

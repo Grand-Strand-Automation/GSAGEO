@@ -79,6 +79,17 @@ export function ThankYouContent() {
           </div>
 
           <p className="mt-5 text-xs text-brand-subtle">{THANK_YOU.reassurance}</p>
+
+          <div className="mt-6 rounded-xl border border-brand-blue/20 bg-brand-blue-light/40 px-4 py-3 text-left">
+            <p className="text-sm font-semibold text-brand-navy inline-flex items-center gap-2">
+              <Mail size={15} className="text-brand-blue shrink-0" />
+              Watch your inbox
+            </p>
+            <p className="mt-1 text-sm text-brand-muted leading-relaxed">
+              We email your GEO score and private report link as soon as the assessment finishes
+              (usually within a few minutes). Check spam/promotions if you do not see it.
+            </p>
+          </div>
         </div>
 
         <div className="mt-8 grid sm:grid-cols-3 gap-4">

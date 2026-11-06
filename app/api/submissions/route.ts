@@ -12,6 +12,7 @@ import { createResultsAccessToken, processAuditJob } from "@/lib/audit/processor
 import { AUDIT_VERSION } from "@/lib/audit/crawl-checks";
 import { isAuditReviewRequired } from "@/lib/results/tokens";
 import { handlePostSubmissionFollowUp } from "@/lib/follow-up/service";
+import { persistSubmissionResultsToken } from "@/lib/follow-up/tokens";
 
 export async function POST(request: Request) {
   try {
@@ -102,6 +103,14 @@ export async function POST(request: Request) {
     }
 
     const resultsToken = await createResultsAccessToken(submission.id, job.id);
+
+    // Persist the raw results token immediately so report emails always have a link,
+    // even if the background follow-up task is delayed or fails.
+    try {
+      await persistSubmissionResultsToken(submission.id, resultsToken);
+    } catch (err) {
+      console.error("[submissions] Failed to persist results token:", err);
+    }
 
     after(async () => {
       try {

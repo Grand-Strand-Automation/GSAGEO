@@ -29,13 +29,26 @@ ADMIN_EMAIL_ALLOWLIST=shawn@gsally.com
 CRON_SECRET=<generate-random-string>
 ```
 
+Required for customer emails (confirmation + results):
+
+```env
+RESEND_API_KEY=re_...
+RESEND_FROM_EMAIL=Grand Strand Ally <notifications@gsally.com>
+RESEND_REPLY_TO=shawn@gsally.com
+NEXT_PUBLIC_APP_URL=https://gsageo.vercel.app
+CRON_SECRET=<generate-random-string>
+```
+
+Verify the `from` domain in Resend. Without `RESEND_API_KEY`, assessments still work but emails are skipped.
+
 Optional:
 
 ```env
-RESEND_API_KEY=
-RESEND_FROM_EMAIL=Grand Strand Ally <notifications@gsally.com>
 SENTRY_DSN=
 POSTHOG_KEY=
+REVIEW_BOOKING_URL=
+NEXT_PUBLIC_REVIEW_BOOKING_URL=
+ADMIN_NOTIFICATION_EMAIL=shawn@gsally.com
 ```
 
 ## 4. Production branch
