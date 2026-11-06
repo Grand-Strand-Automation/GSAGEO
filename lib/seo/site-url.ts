@@ -1,8 +1,15 @@
-/** Canonical production URL — override with NEXT_PUBLIC_APP_URL in Vercel. */
+/** Canonical production URL — override with APP_URL in Vercel (private Config/env). */
 export const DEFAULT_SITE_URL = "https://geo.gsally.com";
 
+/**
+ * Prefer private `APP_URL` (safe for Vercel Config / non-public secrets).
+ * Falls back to legacy `NEXT_PUBLIC_APP_URL` if already set.
+ */
 export function getSiteUrl(): string {
-  const raw = process.env.NEXT_PUBLIC_APP_URL ?? DEFAULT_SITE_URL;
+  const raw =
+    process.env.APP_URL?.trim() ||
+    process.env.NEXT_PUBLIC_APP_URL?.trim() ||
+    DEFAULT_SITE_URL;
   return raw.replace(/\/$/, "");
 }
 

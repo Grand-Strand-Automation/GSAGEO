@@ -91,7 +91,8 @@ describe("share and export rules", () => {
   });
 
   it("builds share and pdf urls", () => {
-    process.env.NEXT_PUBLIC_APP_URL = "https://gsageo.vercel.app";
+    process.env.APP_URL = "https://gsageo.vercel.app";
+    delete process.env.NEXT_PUBLIC_APP_URL;
     assert.match(buildResultsUrl("abc"), /\/results\/abc$/);
     assert.match(buildPdfUrl("abc"), /\/api\/results\/abc\/pdf$/);
   });

@@ -3,7 +3,7 @@
 ## Prerequisites
 
 - Supabase project created and migrations `001`, `002`, and `003` applied
-- `.env.local` filled with Supabase keys, `ADMIN_EMAIL_ALLOWLIST`, and `NEXT_PUBLIC_APP_URL`
+- `.env.local` filled with Supabase keys, `ADMIN_EMAIL_ALLOWLIST`, and `APP_URL`
 - Admin user created in Supabase Auth (signups disabled)
 
 ## Production blocker checklist

@@ -17,10 +17,28 @@ describe("SEO site configuration", () => {
   });
 
   it("builds absolute URLs from paths", () => {
-    process.env.NEXT_PUBLIC_APP_URL = "https://geo.gsally.com";
-    assert.equal(absoluteUrl("/audit"), "https://geo.gsally.com/audit");
-    assert.equal(getSiteUrl(), "https://geo.gsally.com");
+    const previousAppUrl = process.env.APP_URL;
+    const previousPublicAppUrl = process.env.NEXT_PUBLIC_APP_URL;
+    process.env.APP_URL = "https://gsageo.vercel.app";
     delete process.env.NEXT_PUBLIC_APP_URL;
+    assert.equal(absoluteUrl("/audit"), "https://gsageo.vercel.app/audit");
+    assert.equal(getSiteUrl(), "https://gsageo.vercel.app");
+    if (previousAppUrl === undefined) delete process.env.APP_URL;
+    else process.env.APP_URL = previousAppUrl;
+    if (previousPublicAppUrl === undefined) delete process.env.NEXT_PUBLIC_APP_URL;
+    else process.env.NEXT_PUBLIC_APP_URL = previousPublicAppUrl;
+  });
+
+  it("falls back to legacy NEXT_PUBLIC_APP_URL when APP_URL is unset", () => {
+    const previousAppUrl = process.env.APP_URL;
+    const previousPublicAppUrl = process.env.NEXT_PUBLIC_APP_URL;
+    delete process.env.APP_URL;
+    process.env.NEXT_PUBLIC_APP_URL = "https://geo.gsally.com";
+    assert.equal(getSiteUrl(), "https://geo.gsally.com");
+    if (previousAppUrl === undefined) delete process.env.APP_URL;
+    else process.env.APP_URL = previousAppUrl;
+    if (previousPublicAppUrl === undefined) delete process.env.NEXT_PUBLIC_APP_URL;
+    else process.env.NEXT_PUBLIC_APP_URL = previousPublicAppUrl;
   });
 
   it("includes indexable public routes for sitemap", () => {
