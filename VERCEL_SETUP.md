@@ -24,10 +24,12 @@ Add in Project → Settings → Environment Variables (Production + Preview):
 NEXT_PUBLIC_SUPABASE_URL=https://xxxx.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJ...
 SUPABASE_SERVICE_ROLE_KEY=eyJ...
-NEXT_PUBLIC_APP_URL=https://geo.vercel.app
+APP_URL=https://gsageo.vercel.app
 ADMIN_EMAIL_ALLOWLIST=shawn@gsally.com
 CRON_SECRET=<generate-random-string>
 ```
+
+Set `APP_URL` as a **Config** / regular env var (not a Sensitive secret with a `NEXT_PUBLIC_` name). The public framework prefix is not needed — this value is only read on the server.
 
 Optional:
 
@@ -56,7 +58,7 @@ Settings → Domains → Add `geo.gsally.com` (production) and ensure **`geo.ver
 
 If `geo.vercel.app` shows title **React App** or CRA meta descriptions, the domain is pointed at the wrong Vercel project. Remove it from the old project and attach it to the GSAGEO Next.js deployment (`pnpm build`).
 
-Set `NEXT_PUBLIC_APP_URL=https://geo.vercel.app` in Production env vars so sitemap, robots, canonicals, and share links match.
+Set `APP_URL=https://gsageo.vercel.app` in Production env vars so sitemap, robots, canonicals, email links, and share links match.
 
 See [DNS_SETUP.md](./DNS_SETUP.md).
 
@@ -75,4 +77,4 @@ Manual checklist: [tests/SMOKE_TEST.md](./tests/SMOKE_TEST.md)
 
 ## 8. Preview deployments
 
-Preview URLs use the same env vars if you enable them for Preview environment. Set `NEXT_PUBLIC_APP_URL` to the preview URL for accurate canonicals during QA, or keep production URL.
+Preview URLs use the same env vars if you enable them for Preview environment. Set `APP_URL` to the preview URL for accurate canonicals during QA, or keep the production URL.

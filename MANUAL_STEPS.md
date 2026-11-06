@@ -26,7 +26,7 @@ These items cannot be completed from code alone. Do them in order after reviewin
 - [ ] Set all env vars from `.env.example` / [ENV_SETUP.md](./ENV_SETUP.md)
 - [ ] Generate and set `CRON_SECRET` (random string) — backs up audit job processing
 - [ ] Set `AUDIT_AUTO_PUBLISH=true` (default) or `AUDIT_REVIEW_REQUIRED=true` for admin review gate
-- [ ] Set `NEXT_PUBLIC_APP_URL` to production URL (used in results links)
+- [ ] Set `APP_URL` to production URL as a private Config/env var (e.g. `https://gsageo.vercel.app`) — do **not** use `NEXT_PUBLIC_APP_URL`
 - [ ] Confirm cron job appears after deploy (Hobby plan: cron may require Pro — see Vercel docs)
 - [ ] Add custom domain `geo.gsally.com` (preview: `gsageo.vercel.app`)
 
