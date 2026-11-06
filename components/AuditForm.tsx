@@ -131,17 +131,16 @@ export function AuditForm({ initialPlan = "" }: { initialPlan?: string }) {
 
   return (
     <div className="flex flex-col">
-      <section className="bg-brand-hero text-white pt-28 pb-14 md:pt-36 relative overflow-hidden">
+      <section className="bg-brand-hero text-white pt-24 pb-10 md:pt-28 md:pb-12 relative overflow-hidden">
         <HeroOverlay />
         <div className="container px-4 md:px-6 text-center max-w-2xl relative z-10">
-          <div className="eyebrow-pill-gold mb-6 mx-auto w-fit">Free assessment</div>
-          <h1 className="text-4xl sm:text-5xl font-heading font-extrabold mb-5">
+          <div className="eyebrow-pill-gold mb-5 mx-auto w-fit">Free assessment</div>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-heading font-extrabold mb-4">
             Start with your free assessment
           </h1>
-          <p className="text-base md:text-lg text-white/70 leading-relaxed">
-            This free assessment gives you a starting point — what looks strong, what needs work, and
-            what to improve first. If you want help improving over time, month-to-month support is
-            available with simple cancel-anytime plans.
+          <p className="text-base md:text-[17px] text-white/70 leading-relaxed">
+            Share your website details below. We’ll review your site, email your GEO score and
+            priorities, and show practical next steps — including month-to-month support if you want it.
           </p>
         </div>
       </section>

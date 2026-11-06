@@ -73,7 +73,12 @@ function emailForKey(
           headline: copy.headline,
           preview: copy.preview,
           bodyParagraphs: copy.body,
-          primaryCta: { label: copy.cta, href: booking },
+          primaryCta: ctx.reportUrl
+            ? { label: copy.statusCta, href: ctx.reportUrl }
+            : { label: copy.cta, href: booking },
+          secondaryCta: ctx.reportUrl
+            ? { label: copy.cta, href: booking }
+            : undefined,
           support: copy.support,
         }),
       };
@@ -87,15 +92,19 @@ function emailForKey(
           : copy.insideBlock,
         copy.closing,
       ];
+      const reportHref = ctx.reportUrl || booking;
       return {
         subject: copy.subject,
         html: renderBrandedEmail({
           headline: copy.headline,
           preview: copy.preview,
           bodyParagraphs: paragraphs,
-          primaryCta: { label: copy.cta, href: booking },
+          primaryCta: {
+            label: ctx.reportUrl ? copy.viewReportCta : copy.cta,
+            href: reportHref,
+          },
           secondaryCta: ctx.reportUrl
-            ? { label: copy.viewReportCta, href: ctx.reportUrl }
+            ? { label: copy.cta, href: booking }
             : undefined,
         }),
       };
@@ -146,9 +155,11 @@ export async function sendSubmissionConfirmation(input: {
   if (!input.force && input.submission.confirmation_email_sent_at) return;
 
   const bookingUrl = getReviewBookingUrl();
+  const statusUrl = buildThankYouUrl(input.resultsToken);
   const { subject, html } = emailForKey("confirmation", {
     companyName: input.submission.company_name,
     bookingUrl,
+    reportUrl: statusUrl,
   });
 
   const result = await sendTrackedEmail({
@@ -166,6 +177,13 @@ export async function sendSubmissionConfirmation(input: {
       confirmation_email_sent_at: new Date().toISOString(),
     });
     trackConversionEvent("confirmation_email_sent", { submissionId: input.submissionId });
+  } else if (result.ok && result.skipped) {
+    console.warn(
+      "[follow-up] Confirmation email skipped (email provider not configured) for",
+      input.submissionId,
+    );
+  } else if (!result.ok) {
+    console.error("[follow-up] Confirmation email failed:", input.submissionId, result.error);
   }
 }
 
@@ -219,7 +237,10 @@ export async function sendReportDeliveryEmail(input: {
     selectedPlan: submission.selected_plan,
   });
 
-  const reportUrl = await getSubmissionResultsUrl(input.submissionId);
+  const reportUrl =
+    (await getSubmissionResultsUrl(input.submissionId)) ||
+    (submission.results_token ? buildResultsUrlFromToken(submission.results_token) : null);
+
   const { subject, html } = emailForKey("reportReady", {
     companyName: submission.company_name,
     bookingUrl: getReviewBookingUrl(),
@@ -244,7 +265,18 @@ export async function sendReportDeliveryEmail(input: {
       recommended_offer: offer.id,
     });
     trackConversionEvent("report_email_sent", { submissionId: input.submissionId });
+  } else if (result.ok && result.skipped) {
+    console.warn(
+      "[follow-up] Report email skipped (email provider not configured) for",
+      input.submissionId,
+    );
+  } else if (!result.ok) {
+    console.error("[follow-up] Report email failed:", input.submissionId, result.error);
   }
+}
+
+function buildResultsUrlFromToken(rawToken: string): string {
+  return appUrl(`/results/${encodeURIComponent(rawToken)}`);
 }
 
 export async function sendCadenceFollowUpEmail(input: {

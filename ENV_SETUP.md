@@ -16,7 +16,7 @@ Copy `.env.example` to `.env.local` for local development. Set the same values i
 
 | Variable | Purpose |
 |----------|---------|
-| `CRON_SECRET` | Protects `/api/cron/process-audit-jobs` (backup job processor) |
+| `CRON_SECRET` | Protects `/api/cron/*` (audit + follow-up email backup processors) |
 
 ## Audit / results automation
 
@@ -26,14 +26,25 @@ Copy `.env.example` to `.env.local` for local development. Set the same values i
 | `AUDIT_REVIEW_REQUIRED` | `false` | When `true`, jobs finish as `awaiting_review`; admin must publish |
 | `RESULTS_TOKEN_EXPIRY_DAYS` | `90` | Optional expiry for customer results tokens |
 
+## Required for customer emails
+
+| Variable | Purpose |
+|----------|---------|
+| `RESEND_API_KEY` | Sends confirmation + “assessment ready” emails after `/audit` |
+| `RESEND_FROM_EMAIL` | Verified Resend from address, e.g. `Grand Strand Ally <notifications@gsally.com>` |
+| `RESEND_REPLY_TO` | Reply-to address (defaults to `shawn@gsally.com`) |
+| `NEXT_PUBLIC_APP_URL` | Must match the live site (`https://gsageo.vercel.app`) so email links work |
+
+Without `RESEND_API_KEY`, assessments still run and results pages work, but **no emails are sent**.
+
 ## Optional
 
 | Variable | Purpose |
 |----------|---------|
-| `RESEND_API_KEY` | Transactional email (not wired for v1) |
-| `RESEND_FROM_EMAIL` | From address for Resend |
 | `SENTRY_DSN` | Error monitoring placeholder |
 | `POSTHOG_KEY` | Analytics placeholder |
+| `REVIEW_BOOKING_URL` / `NEXT_PUBLIC_REVIEW_BOOKING_URL` | Booking CTA destination |
+| `ADMIN_NOTIFICATION_EMAIL` | Admin alert recipient for new submissions |
 
 ## Local setup
 

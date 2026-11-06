@@ -92,29 +92,30 @@ export type BridgeOfferId = keyof typeof BRIDGE_OFFERS;
 export const EMAIL_COPY = {
   confirmation: {
     subject: "Your GEO assessment request is in",
-    preview: "We received your request and will send a clear summary soon.",
+    preview: "We received your request and will email your assessment when it is ready.",
     headline: "Thanks — we received your assessment request",
     body: [
       "We received your submission and started reviewing your website.",
-      "You'll receive a clear, easy-to-read assessment summary with practical recommendations.",
-      "If you'd like to walk through the findings live, you can book a short review call now.",
+      "We'll email you as soon as your GEO assessment is ready — usually within a few minutes.",
+      "You can also track progress from your private status page using the button below.",
     ],
+    statusCta: "Track My Assessment",
     cta: "Book My Review",
     support:
-      "This review call is the easiest way to understand what stood out and what to fix first.",
+      "Watch for an email with your GEO score and recommended next steps. Check spam/promotions if you do not see it soon.",
   },
   reportReady: {
-    subject: "Your assessment is ready — here's what stood out",
+    subject: "Your GEO assessment is ready — view your score",
     preview: "Your website visibility assessment is ready to review.",
     headline: "Your assessment is ready",
     intro:
-      "Your website visibility assessment is ready. Inside, you'll see what looks strong, what may be hurting clarity or trust, and what to improve first.",
+      "Your GEO / AI visibility assessment is ready. Inside, you'll see your score, what looks strong, what may be hurting clarity or trust, and what to improve first.",
     insideBlock:
-      "Inside your assessment, you'll see what looks strong, what may be hurting clarity or trust, and what to improve first.",
+      "Inside your assessment, you'll see your GEO score, what looks strong, what may be hurting clarity or trust, and what to improve first.",
     cta: "Book My Assessment Review",
     viewReportCta: "View Your Assessment",
     closing:
-      "The easiest next step is a short review call — or choose month-to-month support when you are ready to keep improving over time.",
+      "Open your private report first. If you want help prioritizing fixes, book a short review call anytime.",
   },
   followUpDay1: {
     subject: "Two things that stood out in your assessment",
