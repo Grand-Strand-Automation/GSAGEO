@@ -1,26 +1,38 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { IconChevron } from "@/components/icons/StrokeIcons";
+import { cn } from "@/lib/utils";
 
-export function FaqItem({ q, a }: { q: string; a: string }) {
-  const [open, setOpen] = useState(false);
+export function FaqItem({
+  q,
+  a,
+  defaultOpen = false,
+}: {
+  q: string;
+  a: string;
+  defaultOpen?: boolean;
+}) {
+  const [open, setOpen] = useState(defaultOpen);
+
   return (
-    <div className="border-b border-brand-border last:border-0 py-1">
+    <div className="border-b border-border last:border-0">
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
-        className="flex items-start justify-between w-full text-left font-heading font-bold text-[15px] text-brand-navy hover:text-brand-blue py-4 gap-4 transition-colors"
+        className="flex w-full items-start justify-between gap-4 py-5 text-left font-heading text-[15px] font-semibold text-ink transition-colors hover:text-accent"
         aria-expanded={open}
       >
         <span>{q}</span>
-        <ChevronDown
-          size={18}
-          className={`flex-shrink-0 mt-0.5 text-brand-blue transition-transform duration-150 ${open ? "rotate-180" : ""}`}
+        <IconChevron
+          className={cn(
+            "mt-0.5 flex-shrink-0 text-accent transition-transform duration-150",
+            open && "rotate-180",
+          )}
         />
       </button>
       {open && (
-        <div className="text-brand-muted text-base leading-relaxed pb-5 pr-8">{a}</div>
+        <div className="pb-5 pr-8 text-base leading-relaxed text-body">{a}</div>
       )}
     </div>
   );

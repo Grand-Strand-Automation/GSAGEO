@@ -1,23 +1,20 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-const base =
-  "inline-flex items-center justify-center gap-2 font-heading font-semibold text-sm rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-sky/40 focus-visible:ring-offset-2 disabled:opacity-60 disabled:pointer-events-none";
-
 const variants = {
-  primary: "bg-brand-blue hover:bg-brand-blue-hover text-white border-0 shadow-sm",
-  gold: "bg-brand-gold hover:bg-brand-gold-hover text-brand-navy border-0 shadow-md shadow-brand-gold/30",
-  secondary:
-    "bg-transparent border border-white/25 text-white hover:bg-white/[0.08]",
-  secondaryLight:
-    "bg-brand-cream hover:bg-brand-cream-dark text-brand-navy border border-brand-border",
-  ghost: "bg-transparent text-brand-blue hover:text-brand-navy hover:underline underline-offset-4",
+  primary: "btn-primary",
+  ink: "btn-ink",
+  gold: "bg-highlight text-ink hover:bg-[#F59E0B] btn-base min-h-[52px] px-6 text-[15px]",
+  secondary: "btn-outline-on-dark",
+  secondaryLight: "btn-outline",
+  white: "btn-white",
+  ghost: "btn-base text-accent hover:text-accent-hover hover:underline underline-offset-4 min-h-11 px-2",
 } as const;
 
 const sizes = {
-  sm: "h-9 px-4 text-xs",
-  md: "h-11 px-6",
-  lg: "h-12 px-7",
+  sm: "min-h-10 px-4 text-sm",
+  md: "min-h-11 px-5 text-sm",
+  lg: "min-h-[52px] px-6 text-[15px]",
 } as const;
 
 type ButtonLinkProps = {
@@ -38,7 +35,7 @@ export function ButtonLink({
   onClick,
 }: ButtonLinkProps) {
   return (
-    <Link href={href} onClick={onClick} className={cn(base, variants[variant], sizes[size], className)}>
+    <Link href={href} onClick={onClick} className={cn(variants[variant], sizes[size], className)}>
       {children}
     </Link>
   );
@@ -57,7 +54,7 @@ export function Button({
   ...props
 }: NativeButtonProps) {
   return (
-    <button type="button" className={cn(base, variants[variant], sizes[size], className)} {...props}>
+    <button type="button" className={cn(variants[variant], sizes[size], className)} {...props}>
       {children}
     </button>
   );

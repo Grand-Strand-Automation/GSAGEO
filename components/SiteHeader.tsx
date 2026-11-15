@@ -2,67 +2,86 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
 import { BrandLogo } from "@/components/BrandLogo";
 import { ButtonLink } from "@/components/ui/Button";
 
 const NAV_LINKS = [
-  { label: "What's Included", href: "/#whats-included" },
-  { label: "How It Works", href: "/#how-it-works" },
-  { label: "Monthly Plans", href: "/#pricing" },
+  { label: "How it works", href: "/#how" },
+  { label: "What's included", href: "/#included" },
+  { label: "Sample report", href: "/sample-report" },
+  { label: "Pricing", href: "/#pricing" },
   { label: "FAQ", href: "/#faq" },
 ];
+
+function MenuIcon({ open }: { open: boolean }) {
+  return open ? (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    </svg>
+  ) : (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    </svg>
+  );
+}
 
 export function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-brand-navy border-b border-white/10">
-      <div className="container mx-auto px-4 md:px-6 flex items-center h-16 gap-4">
-        <BrandLogo />
+    <header className="sticky top-0 z-50 border-b border-border bg-surface/95 backdrop-blur-sm">
+      <div className="container-site flex h-16 items-center gap-4">
+        <BrandLogo onDark={false} />
 
-        <nav className="hidden md:flex items-center gap-5 ml-auto">
+        <nav className="ml-auto hidden items-center gap-6 lg:flex">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-white/70 hover:text-white transition-colors whitespace-nowrap"
+              className="whitespace-nowrap text-sm font-medium text-body transition-colors hover:text-ink"
             >
               {link.label}
             </Link>
           ))}
-          <ButtonLink href="/audit" size="sm" variant="gold" className="ml-1 whitespace-nowrap">
-            Start Free Assessment
+          <ButtonLink href="/audit" size="sm" variant="primary" className="ml-1 whitespace-nowrap min-h-11">
+            Free assessment
           </ButtonLink>
         </nav>
 
         <button
           type="button"
-          className="md:hidden p-2 -mr-1 text-white/80 hover:text-white rounded-md transition-colors ml-auto"
+          className="ml-auto rounded-control p-2 text-ink lg:hidden"
           onClick={() => setMobileOpen((o) => !o)}
           aria-label="Toggle menu"
           aria-expanded={mobileOpen}
         >
-          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          <MenuIcon open={mobileOpen} />
         </button>
       </div>
 
       {mobileOpen && (
-        <div className="md:hidden bg-brand-dark border-t border-white/10 px-4 pt-3 pb-5 flex flex-col gap-1">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setMobileOpen(false)}
-              className="text-sm font-medium text-white/80 hover:text-white py-3 px-3 rounded-lg hover:bg-white/5 transition-colors"
-            >
-              {link.label}
-            </Link>
-          ))}
-          <div className="pt-3 mt-2 border-t border-white/10">
-            <ButtonLink href="/audit" variant="gold" className="w-full" onClick={() => setMobileOpen(false)}>
-              Start Free Assessment
-            </ButtonLink>
+        <div className="border-t border-border bg-surface px-5 pb-5 pt-3 lg:hidden">
+          <div className="flex flex-col gap-1">
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setMobileOpen(false)}
+                className="rounded-control px-3 py-3 text-sm font-medium text-body hover:bg-surface-alt hover:text-ink"
+              >
+                {link.label}
+              </Link>
+            ))}
+            <div className="mt-2 border-t border-border pt-3">
+              <ButtonLink
+                href="/audit"
+                variant="primary"
+                className="w-full"
+                onClick={() => setMobileOpen(false)}
+              >
+                Free assessment
+              </ButtonLink>
+            </div>
           </div>
         </div>
       )}

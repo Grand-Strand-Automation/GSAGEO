@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "Grand Strand Ally",
-  tagline: "GEO / AI Visibility",
+  tagline: "AI Visibility · GEO",
   descriptor: "Generative Engine Optimization",
   serviceArea: "Grand Strand · Myrtle Beach, SC",
   email: "shawn@gsally.com",
