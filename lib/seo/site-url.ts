@@ -23,6 +23,7 @@ export function absoluteUrl(path: string): string {
 export const PUBLIC_INDEX_ROUTES = [
   { path: "/", changeFrequency: "weekly" as const, priority: 1 },
   { path: "/audit", changeFrequency: "monthly" as const, priority: 0.9 },
+  { path: "/sample-report", changeFrequency: "monthly" as const, priority: 0.85 },
   {
     path: "/myrtle-beach-ai-visibility-benchmark",
     changeFrequency: "monthly" as const,
