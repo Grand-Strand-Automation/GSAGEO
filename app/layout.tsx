@@ -23,6 +23,8 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ["500", "600"],
   variable: "--font-jetbrains-mono",
   display: "swap",
+  fallback: ["ui-monospace", "monospace"],
+  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {

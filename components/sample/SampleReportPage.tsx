@@ -14,7 +14,7 @@ import {
 import { cn } from "@/lib/utils";
 
 export function SampleReportPage() {
-  const [selectedId, setSelectedId] = useState(SAMPLE_REPORT.defaultSignalId);
+  const [selectedId, setSelectedId] = useState<string>(SAMPLE_REPORT.defaultSignalId);
   const selected =
     SAMPLE_REPORT.signals.find((s) => s.id === selectedId) ?? SAMPLE_REPORT.signals[0];
   const selectedTone = scoreTone(selected.score);
