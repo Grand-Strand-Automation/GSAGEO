@@ -1,11 +1,7 @@
-import { siteConfig } from "@/lib/brand/site";
-
-const DEFAULT_BOOKING_MAILTO = `mailto:${siteConfig.email}?subject=${encodeURIComponent("Book my GEO assessment review")}`;
-
 /** Public booking link for thank-you page (set NEXT_PUBLIC_REVIEW_BOOKING_URL in production). */
 export const REVIEW_BOOKING_URL =
   (typeof process !== "undefined" && process.env.NEXT_PUBLIC_REVIEW_BOOKING_URL?.trim()) ||
-  DEFAULT_BOOKING_MAILTO;
+  "/audit";
 
 export const THANK_YOU = {
   eyebrow: "Assessment request received",

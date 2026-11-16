@@ -25,7 +25,7 @@ NEXT_PUBLIC_SUPABASE_URL=https://xxxx.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJ...
 SUPABASE_SERVICE_ROLE_KEY=eyJ...
 APP_URL=https://gsageo.vercel.app
-ADMIN_EMAIL_ALLOWLIST=shawn@gsally.com
+ADMIN_EMAIL_ALLOWLIST=shawnjl@outlook.com
 CRON_SECRET=<generate-random-string>
 ```
 

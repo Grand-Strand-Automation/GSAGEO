@@ -136,9 +136,9 @@ export function ThankYouContent() {
         <p className="mt-8 text-xs text-brand-subtle text-center inline-flex items-center gap-1.5 justify-center w-full">
           <Mail size={13} />
           Questions?{" "}
-          <a href="mailto:shawn@gsally.com" className="text-brand-blue hover:underline">
-            shawn@gsally.com
-          </a>
+          <Link href="/audit" className="text-brand-blue hover:underline">
+            Start a free assessment
+          </Link>
         </p>
       </div>
     </div>

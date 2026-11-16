@@ -54,7 +54,7 @@ These items cannot be completed from code alone. Do them in order after reviewin
 ## Business decisions
 
 - [ ] Confirm pricing copy on landing page is current
-- [ ] Confirm admin notification email recipient (default: shawn@gsally.com)
+- [ ] Confirm admin notification email recipient (default: private ops inbox via `ADMIN_NOTIFICATION_EMAIL`)
 - [ ] Decide whether automated audit emails go to client or admin only
 
 ## Customer-facing QA (after env + Supabase are configured)

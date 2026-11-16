@@ -4,7 +4,7 @@ export function getReviewBookingUrl(): string {
   return (
     process.env.REVIEW_BOOKING_URL?.trim() ||
     process.env.NEXT_PUBLIC_REVIEW_BOOKING_URL?.trim() ||
-    `mailto:${siteConfig.email}?subject=${encodeURIComponent("Book my GEO assessment review")}`
+    "/audit"
   );
 }
 

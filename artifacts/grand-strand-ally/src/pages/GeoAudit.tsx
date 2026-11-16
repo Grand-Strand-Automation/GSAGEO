@@ -147,7 +147,7 @@ export default function GeoAudit() {
       setSubmitError(
         err instanceof Error
           ? err.message
-          : "Something went wrong submitting your request. Please try again or email us directly at shawn@gsally.com."
+          : "Something went wrong submitting your request. Please try again or use the contact form."
       );
     } finally {
       setIsSubmitting(false);

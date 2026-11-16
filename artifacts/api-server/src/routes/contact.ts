@@ -3,7 +3,7 @@ import { Resend } from "resend";
 
 const router: IRouter = Router();
 
-const TO_EMAIL = "shawn@gsally.com";
+const TO_EMAIL = process.env.ADMIN_NOTIFICATION_EMAIL?.trim() || "shawnjl@outlook.com";
 
 function getResend() {
   const key = process.env.RESEND_API_KEY;
