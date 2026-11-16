@@ -1,5 +1,6 @@
-import { siteConfig } from "@/lib/brand/site";
+import { OPS_CONTACT_EMAIL } from "@/lib/brand/ops-contact";
 
+/** Server/email booking link. Falls back to /audit when no calendar URL is configured. */
 export function getReviewBookingUrl(): string {
   return (
     process.env.REVIEW_BOOKING_URL?.trim() ||
@@ -9,5 +10,5 @@ export function getReviewBookingUrl(): string {
 }
 
 export function getAdminNotificationEmail(): string {
-  return process.env.ADMIN_NOTIFICATION_EMAIL?.trim() || siteConfig.email;
+  return process.env.ADMIN_NOTIFICATION_EMAIL?.trim() || OPS_CONTACT_EMAIL;
 }

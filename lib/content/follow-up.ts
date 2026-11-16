@@ -1,7 +1,10 @@
-/** Public booking link for thank-you page (set NEXT_PUBLIC_REVIEW_BOOKING_URL in production). */
+/**
+ * Public booking link (set NEXT_PUBLIC_REVIEW_BOOKING_URL in production).
+ * Empty when unset so UI does not mislabel /audit as “Book a review”.
+ */
 export const REVIEW_BOOKING_URL =
   (typeof process !== "undefined" && process.env.NEXT_PUBLIC_REVIEW_BOOKING_URL?.trim()) ||
-  "/audit";
+  "";
 
 export const THANK_YOU = {
   eyebrow: "Assessment request received",

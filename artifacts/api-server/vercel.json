@@ -1,0 +1,4 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "ignoreCommand": "echo 'Skipping gsageo-api-server: legacy Replit Express artifact. Production APIs are served by the Next.js gsageo project.' && exit 0"
+}

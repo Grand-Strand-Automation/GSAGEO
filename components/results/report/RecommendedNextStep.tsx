@@ -11,8 +11,10 @@ export function RecommendedNextStep({
   companyName: string;
 }) {
   const offer = BRIDGE_OFFERS[offerId] ?? BRIDGE_OFFERS["visibility-growth"];
-  const primaryHref =
-    "ctaHref" in offer && offer.ctaHref ? offer.ctaHref : REVIEW_BOOKING_URL;
+  const offerCta =
+    "ctaHref" in offer && offer.ctaHref ? offer.ctaHref : "";
+  const primaryHref = offerCta || REVIEW_BOOKING_URL || "/#pricing";
+  const primaryLabel = offerCta || REVIEW_BOOKING_URL ? offer.ctaLabel : "See monthly plans";
 
   return (
     <section className="rounded-3xl border border-brand-border bg-white p-6 md:p-8 shadow-card-md">
@@ -52,17 +54,21 @@ export function RecommendedNextStep({
             <Link
               href={primaryHref}
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-blue text-white font-heading font-semibold px-5 py-3 text-sm hover:bg-brand-blue-hover transition-colors"
-              {...conversionDataAttribute("review_book_clicked")}
+              {...(offerCta || REVIEW_BOOKING_URL
+                ? conversionDataAttribute("review_book_clicked")
+                : {})}
             >
-              {offer.ctaLabel}
+              {primaryLabel}
               <ArrowRight size={16} />
             </Link>
-            <Link
-              href="/#pricing"
-              className="inline-flex items-center justify-center rounded-xl border border-brand-border text-brand-navy font-heading font-semibold px-5 py-3 text-sm hover:bg-brand-cream transition-colors"
-            >
-              See monthly plans
-            </Link>
+            {primaryHref !== "/#pricing" ? (
+              <Link
+                href="/#pricing"
+                className="inline-flex items-center justify-center rounded-xl border border-brand-border text-brand-navy font-heading font-semibold px-5 py-3 text-sm hover:bg-brand-cream transition-colors"
+              >
+                See monthly plans
+              </Link>
+            ) : null}
           </div>
         </div>
       </div>

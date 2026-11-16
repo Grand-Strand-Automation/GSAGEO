@@ -24,14 +24,16 @@ export function ResultsCTA({
           month-to-month plan for {companyName} — or continue with lighter monitoring if that fits better.
         </p>
         <div className="mt-8 flex flex-col sm:flex-row gap-3">
-          <Link
-            href={REVIEW_BOOKING_URL}
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-white text-brand-navy font-heading font-semibold px-6 py-3.5 text-sm hover:bg-brand-cream transition-colors"
-            {...conversionDataAttribute("review_book_clicked")}
-          >
-            Book My Review
-            <ArrowRight size={16} />
-          </Link>
+          {REVIEW_BOOKING_URL ? (
+            <Link
+              href={REVIEW_BOOKING_URL}
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-white text-brand-navy font-heading font-semibold px-6 py-3.5 text-sm hover:bg-brand-cream transition-colors"
+              {...conversionDataAttribute("review_book_clicked")}
+            >
+              Book My Review
+              <ArrowRight size={16} />
+            </Link>
+          ) : null}
           <Link
             href="/#pricing"
             className="inline-flex items-center justify-center rounded-xl border border-white/25 text-white font-heading font-semibold px-6 py-3.5 text-sm hover:bg-white/10 transition-colors"

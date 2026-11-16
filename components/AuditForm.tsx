@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { ScoreRing } from "@/components/ui/ScoreRing";
 import { ButtonLink } from "@/components/ui/Button";
 import { IconCheck } from "@/components/icons/StrokeIcons";
@@ -211,6 +211,28 @@ export function AuditForm({
     if (!hydrated.current || phase !== "form") return;
     writeStorage(form);
   }, [form, phase]);
+
+  // Form is tall; after submit the browser keeps scrollY near the bottom, so
+  // scanning / results appear "below the fold" until the user scrolls up.
+  const skipInitialStepScroll = useRef(true);
+  useLayoutEffect(() => {
+    if (typeof window === "undefined") return;
+    if (phase === "form" && skipInitialStepScroll.current) {
+      skipInitialStepScroll.current = false;
+      return;
+    }
+    const jump = () => {
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      document.getElementById("audit-flow-top")?.scrollIntoView({
+        behavior: "auto",
+        block: "start",
+      });
+    };
+    jump();
+    // Second pass after paint in case layout shifts (score ring, fonts).
+    const t = window.setTimeout(jump, 50);
+    return () => window.clearTimeout(t);
+  }, [phase, step]);
 
   const update = useCallback(<K extends keyof FormState>(key: K, value: FormState[K]) => {
     setForm((prev) => ({ ...prev, [key]: value }));
@@ -436,7 +458,7 @@ export function AuditForm({
   if (phase === "scanning" || phase === "scoring") {
     const scoring = phase === "scoring";
     return (
-      <section className="section-pad bg-surface-alt">
+      <section id="audit-flow-top" className="section-pad bg-surface-alt scroll-mt-24">
         <div className="container-site max-w-xl">
           <div className="card-surface p-8 shadow-card-md" aria-live="polite">
             <p className="eyebrow mb-3">{scoring ? "Scoring" : "Scanning"}</p>
@@ -519,18 +541,20 @@ export function AuditForm({
       ? `/results/${encodeURIComponent(submitResult.resultsToken)}`
       : "";
     return (
-      <section className="section-pad bg-surface-alt">
+      <section id="audit-flow-top" className="section-pad bg-surface-alt scroll-mt-24">
         <div className="container-site">
           <p className="eyebrow mb-3">
             Assessment ready · {form.website_url}
           </p>
           <h1 className="heading-1 mb-4 max-w-3xl">
-            Here&apos;s your starting point, {firstNameFrom(form.full_name)}.
+            {score != null
+              ? `Here's your starting point, ${firstNameFrom(form.full_name)}.`
+              : `We're still finishing your score, ${firstNameFrom(form.full_name)}.`}
           </h1>
           <p className="body-lg mb-10 max-w-2xl">
             {score != null
               ? "Your AI Visibility Score is ready below. Open the full report for what's helping, what's hurting, and what to fix first."
-              : `We're still finalizing the scored report. A copy will also go to ${form.work_email}.`}
+              : `Your assessment was submitted. Open the report link below for live status — we'll also email ${form.work_email} when the full write-up is ready.`}
           </p>
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             <div className="card-surface flex flex-col items-center justify-center p-8">
@@ -599,7 +623,7 @@ export function AuditForm({
 
   if (phase === "error") {
     return (
-      <section className="section-pad bg-surface-alt">
+      <section id="audit-flow-top" className="section-pad bg-surface-alt scroll-mt-24">
         <div className="container-site max-w-xl">
           <div className="card-surface p-8" role="alert">
             <p className="eyebrow mb-3 text-bad">Something went wrong</p>
@@ -624,7 +648,7 @@ export function AuditForm({
   }
 
   return (
-    <div className="flex flex-col">
+    <div id="audit-flow-top" className="flex flex-col scroll-mt-24">
       <section className="bg-surface-alt pb-8 pt-12 md:pb-10 md:pt-16">
         <div className="container-site">
           <p className="eyebrow mb-3">Free assessment</p>

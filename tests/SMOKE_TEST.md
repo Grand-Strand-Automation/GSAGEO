@@ -60,7 +60,7 @@
 
 ## Token security
 
-- [ ] Invalid token `/results/bad-token` shows safe pending/unavailable state (not other customers’ data)
+- [ ] Invalid token `/results/bad-token` shows not-found / start-assessment CTA (not other customers’ data)
 - [ ] Results page is read-only (no admin notes, draft findings, or internal previews)
 - [ ] Share and PDF buttons only appear when job is **published**
 - [ ] Revoked token (admin revoke) shows “link no longer valid” copy
