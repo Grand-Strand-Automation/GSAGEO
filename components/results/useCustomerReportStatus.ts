@@ -45,10 +45,11 @@ export function useCustomerReportStatus(token: string, enabled = true) {
     const run = async () => {
       const next = await refresh();
       if (cancelled || !next) return;
-      if (!next.ready && next.state !== "failed" && next.state !== "revoked" && next.state !== "expired") {
+      const stopStates = new Set(["failed", "revoked", "expired", "not_found", "ready"]);
+      if (!next.ready && !stopStates.has(next.state)) {
         timer = setInterval(async () => {
           const polled = await refresh();
-          if (polled?.ready) {
+          if (polled?.ready || (polled && stopStates.has(polled.state))) {
             if (timer) clearInterval(timer);
           }
         }, POLL_MS);

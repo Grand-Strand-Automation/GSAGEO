@@ -40,7 +40,7 @@ async function resolveTokenContext(rawToken: string): Promise<
     .eq("token_hash", tokenHash)
     .maybeSingle();
 
-  if (!tokenRow) return { ok: false, state: "pending" };
+  if (!tokenRow) return { ok: false, state: "not_found" };
   if (tokenRow.revoked_at) return { ok: false, state: "revoked" };
   if (tokenRow.expires_at && new Date(tokenRow.expires_at) < new Date()) {
     return { ok: false, state: "expired" };
@@ -85,35 +85,48 @@ async function loadOverallScoreForSubmission(
   return extractOverallScore(scorecard);
 }
 
+const EMPTY_STATUS: CustomerReportStatus = {
+  state: "not_found",
+  ready: false,
+  companyName: null,
+  websiteUrl: null,
+  updatedAt: null,
+  overallScore: null,
+};
+
 /** Lightweight status for thank-you polling and status API. */
 export async function getCustomerReportStatusByToken(
   rawToken: string,
 ): Promise<CustomerReportStatus> {
-  const ctx = await resolveTokenContext(rawToken);
-  if (!ctx.ok) {
+  try {
+    const ctx = await resolveTokenContext(rawToken);
+    if (!ctx.ok) {
+      return {
+        state: ctx.state,
+        ready: false,
+        companyName: null,
+        websiteUrl: null,
+        updatedAt: null,
+        overallScore: null,
+      };
+    }
+
+    const ready = ctx.state === "ready";
+    const overallScore = ready
+      ? await loadOverallScoreForSubmission(ctx.submissionId)
+      : null;
+
     return {
       state: ctx.state,
-      ready: false,
-      companyName: null,
-      websiteUrl: null,
-      updatedAt: null,
-      overallScore: null,
+      ready,
+      companyName: ctx.companyName,
+      websiteUrl: ctx.websiteUrl,
+      updatedAt: ctx.updatedAt,
+      overallScore,
     };
+  } catch {
+    return EMPTY_STATUS;
   }
-
-  const ready = ctx.state === "ready";
-  const overallScore = ready
-    ? await loadOverallScoreForSubmission(ctx.submissionId)
-    : null;
-
-  return {
-    state: ctx.state,
-    ready,
-    companyName: ctx.companyName,
-    websiteUrl: ctx.websiteUrl,
-    updatedAt: ctx.updatedAt,
-    overallScore,
-  };
 }
 
 /** Full customer-safe published report payload by token. */
@@ -121,53 +134,57 @@ export async function getCustomerReportByToken(rawToken: string): Promise<{
   state: CustomerResultsState;
   bundle: ResultsBundle | null;
 }> {
-  const supabase = createAdminClient();
-  const tokenHash = hashResultsToken(rawToken);
+  try {
+    const supabase = createAdminClient();
+    const tokenHash = hashResultsToken(rawToken);
 
-  const { data: tokenRow } = await supabase
-    .from("geo_result_access_tokens")
-    .select("*")
-    .eq("token_hash", tokenHash)
-    .maybeSingle();
+    const { data: tokenRow } = await supabase
+      .from("geo_result_access_tokens")
+      .select("*")
+      .eq("token_hash", tokenHash)
+      .maybeSingle();
 
-  if (!tokenRow) return { state: "pending", bundle: null };
-  if (tokenRow.revoked_at) return { state: "revoked", bundle: null };
-  if (tokenRow.expires_at && new Date(tokenRow.expires_at) < new Date()) {
-    return { state: "expired", bundle: null };
+    if (!tokenRow) return { state: "not_found", bundle: null };
+    if (tokenRow.revoked_at) return { state: "revoked", bundle: null };
+    if (tokenRow.expires_at && new Date(tokenRow.expires_at) < new Date()) {
+      return { state: "expired", bundle: null };
+    }
+
+    await supabase
+      .from("geo_result_access_tokens")
+      .update({ last_accessed_at: new Date().toISOString() })
+      .eq("id", tokenRow.id);
+
+    await supabase
+      .from("geo_submissions")
+      .update({
+        last_report_viewed_at: new Date().toISOString(),
+        last_summary_viewed_at: new Date().toISOString(),
+        last_engagement_at: new Date().toISOString(),
+      })
+      .eq("id", tokenRow.submission_id);
+
+    const { data: jobs } = await supabase
+      .from("geo_audit_jobs")
+      .select("*")
+      .eq("submission_id", tokenRow.submission_id)
+      .order("created_at", { ascending: false })
+      .limit(1);
+
+    const job = jobs?.[0] ?? null;
+    const state = resolveCustomerState(job);
+
+    if (!isResultsVisible(job)) {
+      return { state, bundle: null };
+    }
+
+    const published = await loadPublishedReportBySubmissionId(tokenRow.submission_id);
+    if (!published.ok) {
+      return { state, bundle: null };
+    }
+
+    return { state: "ready", bundle: published.bundle };
+  } catch {
+    return { state: "not_found", bundle: null };
   }
-
-  await supabase
-    .from("geo_result_access_tokens")
-    .update({ last_accessed_at: new Date().toISOString() })
-    .eq("id", tokenRow.id);
-
-  await supabase
-    .from("geo_submissions")
-    .update({
-      last_report_viewed_at: new Date().toISOString(),
-      last_summary_viewed_at: new Date().toISOString(),
-      last_engagement_at: new Date().toISOString(),
-    })
-    .eq("id", tokenRow.submission_id);
-
-  const { data: jobs } = await supabase
-    .from("geo_audit_jobs")
-    .select("*")
-    .eq("submission_id", tokenRow.submission_id)
-    .order("created_at", { ascending: false })
-    .limit(1);
-
-  const job = jobs?.[0] ?? null;
-  const state = resolveCustomerState(job);
-
-  if (!isResultsVisible(job)) {
-    return { state, bundle: null };
-  }
-
-  const published = await loadPublishedReportBySubmissionId(tokenRow.submission_id);
-  if (!published.ok) {
-    return { state, bundle: null };
-  }
-
-  return { state: "ready", bundle: published.bundle };
 }

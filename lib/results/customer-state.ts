@@ -7,7 +7,8 @@ export type CustomerResultsState =
   | "ready"
   | "failed"
   | "expired"
-  | "revoked";
+  | "revoked"
+  | "not_found";
 
 export function resolveCustomerState(job: GeoAuditJob | null): CustomerResultsState {
   if (!job) return "pending";
@@ -81,6 +82,12 @@ export const CUSTOMER_STATUS_COPY: Record<CustomerResultsState, CustomerStatusCo
   revoked: {
     title: "This results link is no longer valid",
     body: "Please submit a new free assessment if you need access to your report.",
+    tone: "error",
+    ctaLabel: "Start free assessment",
+  },
+  not_found: {
+    title: "We could not find this results link",
+    body: "This link may be mistyped or outdated. Submit a free assessment to get a fresh results link.",
     tone: "error",
     ctaLabel: "Start free assessment",
   },

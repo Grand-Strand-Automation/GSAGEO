@@ -1,5 +1,5 @@
 import { Resend } from "resend";
-import { siteConfig } from "@/lib/brand/site";
+import { OPS_CONTACT_EMAIL } from "@/lib/brand/ops-contact";
 
 let resendClient: Resend | null = null;
 
@@ -23,5 +23,5 @@ export function getFromAddress(): string {
 }
 
 export function getReplyToAddress(): string {
-  return process.env.RESEND_REPLY_TO?.trim() || siteConfig.email;
+  return process.env.RESEND_REPLY_TO?.trim() || OPS_CONTACT_EMAIL;
 }

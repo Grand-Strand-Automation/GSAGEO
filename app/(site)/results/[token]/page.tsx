@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { loadResultsByToken } from "@/lib/results/access";
 import { CustomerResultsView } from "@/components/results/CustomerResultsView";
 import { ResultsPendingView } from "@/components/results/ResultsPendingView";
@@ -17,7 +16,19 @@ export default async function CustomerResultsPage({
   params: Promise<{ token: string }>;
 }) {
   const { token } = await params;
-  const { state, bundle } = await loadResultsByToken(token);
+
+  let state: Awaited<ReturnType<typeof loadResultsByToken>>["state"] = "not_found";
+  let bundle: Awaited<ReturnType<typeof loadResultsByToken>>["bundle"] = null;
+
+  try {
+    const loaded = await loadResultsByToken(token);
+    state = loaded.state;
+    bundle = loaded.bundle;
+  } catch {
+    // Missing Supabase env or transient DB errors — show a safe empty state.
+    state = "not_found";
+    bundle = null;
+  }
 
   if (state === "ready" && bundle) {
     return <CustomerResultsView bundle={bundle} token={token} />;

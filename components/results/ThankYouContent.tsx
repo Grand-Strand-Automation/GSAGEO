@@ -62,15 +62,26 @@ export function ThankYouContent() {
           ) : null}
 
           <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-            <ButtonLink
-              href={REVIEW_BOOKING_URL}
-              variant="gold"
-              size="md"
-              className="w-full sm:w-auto"
-              onClick={() => trackConversionEvent("thank_you_book_review_clicked")}
-            >
-              {THANK_YOU.primaryCta} →
-            </ButtonLink>
+            {REVIEW_BOOKING_URL ? (
+              <ButtonLink
+                href={REVIEW_BOOKING_URL}
+                variant="gold"
+                size="md"
+                className="w-full sm:w-auto"
+                onClick={() => trackConversionEvent("thank_you_book_review_clicked")}
+              >
+                {THANK_YOU.primaryCta} →
+              </ButtonLink>
+            ) : (
+              <ButtonLink
+                href="/#pricing"
+                variant="gold"
+                size="md"
+                className="w-full sm:w-auto"
+              >
+                {THANK_YOU.secondaryCta} →
+              </ButtonLink>
+            )}
             {resultsHref ? (
               <ButtonLink href={resultsHref} variant="secondaryLight" size="md" className="w-full sm:w-auto">
                 {status?.ready ? "View your report →" : `${copy.ctaLabel} →`}

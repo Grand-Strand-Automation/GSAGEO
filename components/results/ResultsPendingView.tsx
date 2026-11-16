@@ -17,7 +17,12 @@ import {
 import { useCustomerReportStatus } from "./useCustomerReportStatus";
 
 function StateIcon({ state }: { state: CustomerResultsState }) {
-  if (state === "failed" || state === "expired" || state === "revoked") {
+  if (
+    state === "failed" ||
+    state === "expired" ||
+    state === "revoked" ||
+    state === "not_found"
+  ) {
     return (
       <div className="w-16 h-16 rounded-2xl bg-red-50 text-red-600 flex items-center justify-center mx-auto mb-6">
         <AlertCircle size={28} />
@@ -41,6 +46,13 @@ function StateIcon({ state }: { state: CustomerResultsState }) {
   return null;
 }
 
+const TERMINAL_ERROR_STATES: CustomerResultsState[] = [
+  "failed",
+  "expired",
+  "revoked",
+  "not_found",
+];
+
 export function ResultsPendingView({
   state: initialState,
   token,
@@ -49,10 +61,14 @@ export function ResultsPendingView({
   token: string;
 }) {
   const router = useRouter();
-  const { status } = useCustomerReportStatus(token, true);
+  const { status, error } = useCustomerReportStatus(token, true);
   const state = status?.state ?? initialState;
   const copy = CUSTOMER_STATUS_COPY[state] ?? CUSTOMER_STATUS_COPY.pending;
-  const isWaiting = state === "pending" || state === "processing" || state === "awaiting_review";
+  const isWaiting =
+    state === "pending" || state === "processing" || state === "awaiting_review";
+  const isErrorState = TERMINAL_ERROR_STATES.includes(state);
+  const ctaHref = isErrorState ? "/audit" : "/";
+  const ctaLabel = isErrorState ? copy.ctaLabel : "← Back to GEO home";
 
   useEffect(() => {
     if (status?.ready) {
@@ -81,6 +97,12 @@ export function ResultsPendingView({
               {copy.body}
             </p>
 
+            {error && isWaiting ? (
+              <p className="mt-4 text-sm text-red-700" role="status">
+                We couldn&apos;t refresh status just now. Retrying automatically…
+              </p>
+            ) : null}
+
             {isWaiting ? (
               <div className="mt-8 rounded-2xl border border-brand-border bg-brand-cream/70 p-5 text-left max-w-md mx-auto">
                 <p className="text-xs font-bold uppercase tracking-wide text-brand-subtle mb-3">
@@ -107,8 +129,11 @@ export function ResultsPendingView({
             ) : null}
 
             <div className="mt-8">
-              <Link href="/" className="text-sm text-brand-blue hover:underline">
-                ← Back to GEO home
+              <Link
+                href={ctaHref}
+                className="inline-flex items-center justify-center rounded-xl bg-brand-blue px-5 py-3 text-sm font-heading font-semibold text-white hover:bg-brand-blue-hover transition-colors"
+              >
+                {ctaLabel}
               </Link>
             </div>
           </div>
