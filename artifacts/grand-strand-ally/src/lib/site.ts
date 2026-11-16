@@ -1,7 +1,8 @@
 export const siteConfig = {
   name: "Grand Strand Ally",
   description: "Information technology cost clarity, practical support, and compliance-minded systems for small and medium businesses in the Grand Strand and Myrtle Beach area.",
-  email: "shawn@gsally.com",
+  /** Private ops contact — do not render on public pages. */
+  email: "shawnjl@outlook.com",
   phone: "973-202-1455",
   serviceArea: "Grand Strand / Myrtle Beach, SC",
   links: {

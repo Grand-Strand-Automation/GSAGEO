@@ -68,20 +68,20 @@ export const CUSTOMER_STATUS_COPY: Record<CustomerResultsState, CustomerStatusCo
   },
   failed: {
     title: "We could not complete your assessment",
-    body: "Something went wrong during the automated review. Please email shawn@gsally.com and we will follow up manually.",
+    body: "Something went wrong during the automated review. Please try submitting again from the free assessment page and we will follow up.",
     tone: "error",
-    ctaLabel: "Contact support",
+    ctaLabel: "Try again",
   },
   expired: {
     title: "This results link has expired",
-    body: "Please contact shawn@gsally.com for a refreshed link.",
+    body: "Please submit a new free assessment to get a refreshed results link.",
     tone: "error",
-    ctaLabel: "Contact support",
+    ctaLabel: "Start free assessment",
   },
   revoked: {
     title: "This results link is no longer valid",
-    body: "Please contact shawn@gsally.com if you need access to your report.",
+    body: "Please submit a new free assessment if you need access to your report.",
     tone: "error",
-    ctaLabel: "Contact support",
+    ctaLabel: "Start free assessment",
   },
 };

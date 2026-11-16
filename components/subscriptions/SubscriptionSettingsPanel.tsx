@@ -311,7 +311,7 @@ export function SubscriptionSettingsPanel({ token }: { token: string }) {
             </div>
           </dl>
           <a
-            href={`mailto:shawn@gsally.com?subject=${encodeURIComponent("Billing help for GEO subscription")}`}
+            href="/audit"
             className="mt-5 inline-flex rounded-xl border border-brand-border bg-brand-cream px-4 py-2.5 text-sm font-semibold text-brand-navy hover:border-brand-blue/40"
           >
             Update payment details / get billing help

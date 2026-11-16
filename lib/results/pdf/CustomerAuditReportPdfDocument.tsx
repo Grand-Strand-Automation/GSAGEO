@@ -247,7 +247,7 @@ export function CustomerAuditReportPdfDocument({ report }: { report: CustomerRep
         </View>
 
         <Text style={[styles.body, { marginTop: 12, fontSize: 8, color: "#9aaeb8" }]}>
-          Confidential client report prepared by GSAGEO. Contact shawn@gsally.com to discuss next steps.
+          Confidential client report prepared by GSAGEO. Contact Grand Strand Ally to discuss next steps.
         </Text>
 
         <PageFooter domain={report.domain} />

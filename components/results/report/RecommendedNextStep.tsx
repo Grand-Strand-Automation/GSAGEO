@@ -58,10 +58,10 @@ export function RecommendedNextStep({
               <ArrowRight size={16} />
             </Link>
             <Link
-              href={`mailto:shawn@gsally.com?subject=${encodeURIComponent(`${offer.name} — ${companyName}`)}`}
+              href="/#pricing"
               className="inline-flex items-center justify-center rounded-xl border border-brand-border text-brand-navy font-heading font-semibold px-5 py-3 text-sm hover:bg-brand-cream transition-colors"
             >
-              Email us about this
+              See monthly plans
             </Link>
           </div>
         </div>

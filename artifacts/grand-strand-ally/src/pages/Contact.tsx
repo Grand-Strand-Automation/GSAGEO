@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { ContactForm } from "@/components/ContactForm";
 import { siteConfig } from "@/lib/site";
-import { Mail, Phone, MapPin, Clock, CheckCircle2, ArrowRight } from "lucide-react";
+import { Phone, MapPin, Clock, CheckCircle2, ArrowRight } from "lucide-react";
 import { GEO_ASSESSMENT_URL } from "@/components/GeoCTABlock";
 
 export default function Contact() {
@@ -143,7 +143,6 @@ export default function Contact() {
               <div className="bg-white rounded-xl border border-[#D7E1EA] p-5 space-y-4 shadow-sm">
                 {[
                   { Icon: Phone, label: "Phone", value: siteConfig.phone, href: `tel:${siteConfig.phone.replace(/-/g, "")}` },
-                  { Icon: Mail, label: "Email", value: siteConfig.email, href: `mailto:${siteConfig.email}` },
                   { Icon: MapPin, label: "Service Area", value: siteConfig.serviceArea, href: null },
                   { Icon: Clock, label: "Response Time", value: "Within 1 business day", href: null },
                 ].map(({ Icon, label, value, href }) => (
@@ -218,10 +217,7 @@ export default function Contact() {
             <a href={`tel:${siteConfig.phone.replace(/-/g, "")}`} className="text-[#60B8F0] hover:text-white transition-colors font-medium">
               {siteConfig.phone}
             </a>
-            {" "}or{" "}
-            <a href={`mailto:${siteConfig.email}`} className="text-[#60B8F0] hover:text-white transition-colors font-medium">
-              email us directly
-            </a>
+            {" "}or use the contact form on this page.
           </p>
         </div>
       </section>

@@ -41,8 +41,8 @@ export default function ThankYou() {
         <div className="mt-10 pt-8 border-t border-[#D7E1EA]">
           <p className="text-xs text-[#4B5B6B]">
             Have a quick follow-up question?{" "}
-            <a href="mailto:shawn@gsally.com" className="text-[#1F5E95] hover:text-[#0E2F54] font-medium transition-colors">
-              Email us directly
+            <a href="/contact" className="text-[#1F5E95] hover:text-[#0E2F54] font-medium transition-colors">
+              Use the contact form
             </a>
           </p>
         </div>

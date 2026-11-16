@@ -261,8 +261,8 @@ export function AuditReportPdfDocument({ report }: { report: ReportViewModel }) 
           <Text style={[styles.cardTitle, { color: "#ffffff" }]}>Recommended next step</Text>
           <Text style={[styles.body, { color: "#d7e1ea" }]}>
             {report.suggestedTier
-              ? `Based on this review, ${report.suggestedTier} may be a practical fit. Contact shawn@gsally.com to discuss implementation.`
-              : "Contact shawn@gsally.com to discuss implementing these improvements or ongoing GEO support."}
+              ? `Based on this review, ${report.suggestedTier} may be a practical fit. Contact Grand Strand Ally to discuss implementation.`
+              : "Contact Grand Strand Ally to discuss implementing these improvements or ongoing GEO support."}
           </Text>
         </View>
 

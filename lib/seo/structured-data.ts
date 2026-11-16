@@ -8,7 +8,6 @@ export function organizationJsonLd() {
     "@type": ["Organization", "LocalBusiness", "ProfessionalService"],
     name: siteConfig.name,
     url: getSiteUrl(),
-    email: siteConfig.email,
     areaServed: [
       {
         "@type": "Place",

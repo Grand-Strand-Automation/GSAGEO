@@ -66,7 +66,7 @@ export function ReportHero({
 
             <div className="mt-8 flex flex-col sm:flex-row gap-3">
               <Link
-                href={`mailto:shawn@gsally.com?subject=GEO assessment follow-up — ${encodeURIComponent(report.companyName)}`}
+                href="/#pricing"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-white text-brand-navy font-heading font-semibold px-5 py-3.5 text-sm hover:bg-brand-cream transition-colors"
               >
                 Request implementation help

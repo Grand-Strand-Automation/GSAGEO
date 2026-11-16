@@ -7,7 +7,7 @@ import { randomBytes } from "crypto";
 
 const router: IRouter = Router();
 
-const ADMIN_EMAIL = "shawn@gsally.com";
+const ADMIN_EMAIL = process.env.ADMIN_NOTIFICATION_EMAIL?.trim() || "shawnjl@outlook.com";
 const AUDIT_TIMEOUT_MS = 10_000;
 
 function getResend() {

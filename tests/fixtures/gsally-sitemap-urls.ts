@@ -27,7 +27,7 @@ export const GSALLY_PAGE_SAMPLES: Record<string, string> = {
   "https://gsally.com/faq": "<html><head><title>FAQ | Grand Strand Ally</title></head><body><h1>Frequently Asked Questions</h1></body></html>",
   "https://gsally.com/process": "<html><head><title>Our Process</title></head><body><h1>How It Works</h1></body></html>",
   "https://gsally.com/case-studies": "<html><head><title>Case Studies</title></head><body><h1>Client Results</h1></body></html>",
-  "https://gsally.com/contact": "<html><head><title>Contact</title></head><body><h1>Contact Us</h1><a href=\"mailto:shawn@gsally.com\">Email</a></body></html>",
+  "https://gsally.com/contact": "<html><head><title>Contact</title></head><body><h1>Contact Us</h1><a href=\"/contact\">Contact form</a></body></html>",
   "https://gsally.com/about": "<html><head><title>About Grand Strand Ally</title></head><body><h1>About Our Company</h1></body></html>",
   "https://gsally.com/free-it-cost-analysis": "<html><head><title>Free IT Cost Analysis</title></head><body><h1>Free Cost Analysis</h1><form><input /></form></body></html>",
 };

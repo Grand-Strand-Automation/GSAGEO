@@ -17,7 +17,6 @@ import {
   SCAN_CHECKLIST,
   STEP_LABELS,
 } from "@/lib/content/audit-form";
-import { siteConfig } from "@/lib/brand/site";
 import type { SubmissionInput } from "@/lib/validation/submission";
 import { cn } from "@/lib/utils";
 
@@ -271,12 +270,12 @@ export function AuditForm({
         }
         if (data.state === "failed") {
           throw new Error(
-            "We could not finish scoring this site. Please try again or email shawn@gsally.com.",
+            "We could not finish scoring this site. Please try again from the free assessment page.",
           );
         }
         if (data.state === "revoked" || data.state === "expired") {
           throw new Error(
-            "Your results link is no longer valid. Please try again or email shawn@gsally.com.",
+            "Your results link is no longer valid. Please submit a new free assessment.",
           );
         }
         if (typeof data.overallScore === "number") {
@@ -350,7 +349,7 @@ export function AuditForm({
         requestError.current =
           err instanceof Error
             ? err.message
-            : "Something went wrong. Please try again or email shawn@gsally.com.";
+            : "Something went wrong. Please try again.";
       } finally {
         requestDone.current = true;
       }
@@ -610,12 +609,6 @@ export function AuditForm({
               <button type="button" className="btn-primary" onClick={() => void submitAssessment()}>
                 Try again
               </button>
-              <a
-                href={`mailto:${siteConfig.email}?subject=${encodeURIComponent("Free assessment request")}&body=${encodeURIComponent(`Website: ${form.website_url}\nName: ${form.full_name}\nEmail: ${form.work_email}\nCompany: ${form.company_name}`)}`}
-                className="btn-outline"
-              >
-                Email us instead
-              </a>
             </div>
             <button
               type="button"

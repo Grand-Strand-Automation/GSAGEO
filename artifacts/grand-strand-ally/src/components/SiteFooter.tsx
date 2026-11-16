@@ -51,8 +51,8 @@ export function SiteFooter() {
               <a href={`tel:${siteConfig.phone.replace(/-/g, "")}`} className="block text-white/60 hover:text-white transition-colors font-medium">
                 {siteConfig.phone}
               </a>
-              <a href={`mailto:${siteConfig.email}`} className="block text-white/55 hover:text-white transition-colors">
-                {siteConfig.email}
+              <a href={siteConfig.links.contact} className="block text-white/55 hover:text-white transition-colors">
+                Contact form
               </a>
             </div>
           </div>

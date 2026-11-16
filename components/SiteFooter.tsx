@@ -42,16 +42,13 @@ export function SiteFooter() {
             </h3>
             <ul className="space-y-3">
               <li>
-                <a
-                  href={`mailto:${siteConfig.email}`}
-                  className="text-sm text-on-dark transition-colors hover:text-white"
-                >
-                  {siteConfig.email}
-                </a>
-              </li>
-              <li>
                 <Link href="/audit" className="text-sm font-semibold text-accent-on-dark transition-colors hover:text-white">
                   Free assessment →
+                </Link>
+              </li>
+              <li>
+                <Link href="/#faq" className="text-sm text-on-dark transition-colors hover:text-white">
+                  FAQ
                 </Link>
               </li>
             </ul>

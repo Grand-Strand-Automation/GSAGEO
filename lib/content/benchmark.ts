@@ -1,9 +1,7 @@
-import { siteConfig } from "@/lib/brand/site";
-
 export const BENCHMARK_CTAS = {
   primaryAudit: "/audit?tier=monitor",
-  bookReview: `mailto:${siteConfig.email}?subject=${encodeURIComponent("Myrtle Beach AI Visibility Benchmark — review request")}`,
-  requestSummary: `mailto:${siteConfig.email}?subject=${encodeURIComponent("Myrtle Beach AI Visibility Benchmark — summary request")}`,
+  bookReview: "/audit",
+  requestSummary: "/audit",
 } as const;
 
 export const BENCHMARK_HERO = {

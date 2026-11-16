@@ -10,7 +10,7 @@ Copy `.env.example` to `.env.local` for local development. Set the same values i
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | `eyJ...` | Browser + server auth (public) |
 | `SUPABASE_SERVICE_ROLE_KEY` | `eyJ...` | Server-only DB access — **never expose to client** |
 | `APP_URL` | `https://gsageo.vercel.app` | Canonical app URL for metadata, sitemap, robots, email links, and results URLs (private Config — **no** `NEXT_PUBLIC_` prefix) |
-| `ADMIN_EMAIL_ALLOWLIST` | `shawn@gsally.com,ops@gsally.com` | Comma-separated admin emails (required for login authorization) |
+| `ADMIN_EMAIL_ALLOWLIST` | `shawnjl@outlook.com` | Comma-separated admin emails (required for login authorization; private — not shown on site) |
 
 ## Recommended
 

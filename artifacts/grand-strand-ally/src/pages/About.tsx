@@ -60,7 +60,6 @@ export default function About() {
               "url": "https://gsally.com",
               "logo": "https://gsally.com/brand/logo-icon.png",
               "telephone": "+19732021455",
-              "email": "shawn@gsally.com",
               "description": "Information technology cost clarity, vendor simplification, Microsoft 365 administration, and compliance-minded support for small and medium businesses in the Grand Strand and Myrtle Beach area.",
               "address": { "@type": "PostalAddress", "addressLocality": "Myrtle Beach", "addressRegion": "SC", "addressCountry": "US" },
               "areaServed": { "@type": "Place", "name": "Grand Strand, Myrtle Beach, SC" },
