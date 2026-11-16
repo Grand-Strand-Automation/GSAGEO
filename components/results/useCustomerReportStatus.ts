@@ -24,6 +24,7 @@ export function useCustomerReportStatus(token: string, enabled = true) {
         companyName: data.companyName,
         websiteUrl: data.websiteUrl,
         updatedAt: data.updatedAt,
+        overallScore: typeof data.overallScore === "number" ? data.overallScore : null,
       };
       setStatus(next);
       setError(null);

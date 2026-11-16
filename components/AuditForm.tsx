@@ -1,341 +1,1003 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader2 } from "lucide-react";
-import { HeroOverlay } from "@/components/HeroOverlay";
-import { TrustBar } from "@/components/TrustBar";
-import { submissionSchema, type SubmissionInput } from "@/lib/validation/submission";
+import Link from "next/link";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { ScoreRing } from "@/components/ui/ScoreRing";
+import { ButtonLink } from "@/components/ui/Button";
+import { IconCheck } from "@/components/icons/StrokeIcons";
+import {
+  ACCESS_OPTIONS,
+  AUDIT_STORAGE_KEY,
+  BOOKING_URL,
+  BUSINESS_SIZE_OPTIONS,
+  CHALLENGE_OPTIONS,
+  CMS_OPTIONS,
+  GOAL_OPTIONS,
+  PLAN_CHIP_LABELS,
+  SCAN_CHECKLIST,
+  STEP_LABELS,
+} from "@/lib/content/audit-form";
+import { siteConfig } from "@/lib/brand/site";
+import type { SubmissionInput } from "@/lib/validation/submission";
+import { cn } from "@/lib/utils";
 
-const labelClass = "text-sm font-semibold text-brand-navy";
-const inputClass =
-  "w-full border border-brand-border rounded-lg h-11 px-4 text-sm text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-blue/30";
-const sectionHeading =
-  "text-xs font-bold uppercase tracking-[0.15em] text-brand-blue mb-5 pt-2 border-t border-brand-border";
+type FormState = {
+  website_url: string;
+  full_name: string;
+  work_email: string;
+  company_name: string;
+  phone: string;
+  primary_service: string;
+  service_area: string;
+  industry: string;
+  business_size: string;
+  competitors: string;
+  main_goal: string;
+  current_challenges: string[];
+  cms_platform: string;
+  access_available: string[];
+  notes: string;
+  selected_plan: string;
+  website: string; // honeypot
+};
 
-const CHALLENGE_OPTIONS = [
-  { value: "weak-rankings", label: "Weak rankings in traditional search" },
-  { value: "poor-content", label: "Poor or thin content structure" },
-  { value: "limited-service-pages", label: "Limited or underdeveloped service pages" },
-  { value: "no-internal-linking", label: "No clear internal linking structure" },
-  { value: "weak-local", label: "Weak local or geographic visibility" },
-  { value: "no-analytics", label: "No analytics or reporting in place" },
-  { value: "not-sure", label: "Not sure where the gaps are" },
-];
+type Phase = "form" | "scanning" | "scoring" | "results" | "error";
 
-const ACCESS_OPTIONS = [
-  { value: "no-access", label: "No access to analytics yet" },
-  { value: "search-console", label: "Google Search Console" },
-  { value: "analytics", label: "Google Analytics" },
-  { value: "cms-access", label: "CMS / website backend" },
-  { value: "bing-webmaster", label: "Bing Webmaster Tools" },
-];
+type SubmitResult = {
+  score?: number | null;
+  resultsToken?: string;
+};
 
-function CheckboxGroup({
-  options,
-  value,
-  onChange,
+const SCORE_POLL_MS = 2000;
+const SCORE_POLL_MAX_ATTEMPTS = 90; // ~3 minutes
+
+const EMPTY_FORM: FormState = {
+  website_url: "",
+  full_name: "",
+  work_email: "",
+  company_name: "",
+  phone: "",
+  primary_service: "",
+  service_area: "",
+  industry: "",
+  business_size: "",
+  competitors: "",
+  main_goal: "",
+  current_challenges: [],
+  cms_platform: "",
+  access_available: [],
+  notes: "",
+  selected_plan: "",
+  website: "",
+};
+
+function isValidEmail(email: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+}
+
+function firstNameFrom(fullName: string) {
+  const part = fullName.trim().split(/\s+/)[0];
+  return part || "there";
+}
+
+function readStorage(): Partial<FormState> | null {
+  try {
+    const raw = sessionStorage.getItem(AUDIT_STORAGE_KEY);
+    if (!raw) return null;
+    return JSON.parse(raw) as Partial<FormState>;
+  } catch {
+    return null;
+  }
+}
+
+function writeStorage(state: FormState) {
+  try {
+    sessionStorage.setItem(AUDIT_STORAGE_KEY, JSON.stringify(state));
+  } catch {
+    /* ignore quota / private mode */
+  }
+}
+
+function clearStorage() {
+  try {
+    sessionStorage.removeItem(AUDIT_STORAGE_KEY);
+  } catch {
+    /* ignore */
+  }
+}
+
+function ToggleChip({
+  label,
+  pressed,
+  onToggle,
 }: {
-  options: { value: string; label: string }[];
-  value: string[];
-  onChange: (val: string[]) => void;
+  label: string;
+  pressed: boolean;
+  onToggle: () => void;
 }) {
-  const toggle = (v: string, checked: boolean) => {
-    onChange(checked ? [...value, v] : value.filter((x) => x !== v));
-  };
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-1">
-      {options.map((opt) => (
-        <label key={opt.value} className="flex items-start gap-3 cursor-pointer">
-          <input
-            type="checkbox"
-            checked={value.includes(opt.value)}
-            onChange={(e) => toggle(opt.value, e.target.checked)}
-            className="mt-1"
-          />
-          <span className="text-sm text-brand-muted leading-snug">{opt.label}</span>
-        </label>
-      ))}
-    </div>
+    <button
+      type="button"
+      aria-pressed={pressed}
+      onClick={onToggle}
+      className={cn(
+        "rounded-control border px-3.5 py-2.5 text-left text-sm font-medium transition-colors",
+        pressed
+          ? "border-accent bg-accent-tint text-ink"
+          : "border-border bg-surface text-body hover:border-input-border",
+      )}
+    >
+      {label}
+    </button>
   );
 }
 
-export function AuditForm({ initialPlan = "" }: { initialPlan?: string }) {
-  const router = useRouter();
+function GoalCard({
+  label,
+  pressed,
+  onSelect,
+}: {
+  label: string;
+  pressed: boolean;
+  onSelect: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      aria-pressed={pressed}
+      onClick={onSelect}
+      className={cn(
+        "rounded-card border p-4 text-left text-sm font-semibold transition-colors",
+        pressed
+          ? "border-accent bg-accent-tint text-ink"
+          : "border-border bg-surface text-body hover:border-input-border",
+      )}
+    >
+      {label}
+    </button>
+  );
+}
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
+export function AuditForm({
+  initialPlan = "",
+  initialUrl = "",
+}: {
+  initialPlan?: string;
+  initialUrl?: string;
+}) {
+  const [step, setStep] = useState(1);
+  const [phase, setPhase] = useState<Phase>("form");
+  const [form, setForm] = useState<FormState>(() => ({
+    ...EMPTY_FORM,
+    website_url: initialUrl,
+    selected_plan: initialPlan,
+  }));
+  const [stepError, setStepError] = useState("");
   const [submitError, setSubmitError] = useState("");
+  const [scanIndex, setScanIndex] = useState(0);
+  const [submitResult, setSubmitResult] = useState<SubmitResult | null>(null);
+  const hydrated = useRef(false);
+  const requestDone = useRef(false);
+  const requestOk = useRef(false);
+  const requestPayload = useRef<SubmitResult | null>(null);
+  const requestError = useRef("");
 
-  const {
-    register,
-    handleSubmit,
-    watch,
-    setValue,
-    formState: { errors },
-  } = useForm<SubmissionInput>({
-    resolver: zodResolver(submissionSchema),
-    defaultValues: {
-      full_name: "",
-      work_email: "",
-      company_name: "",
-      website_url: "",
-      phone: "",
-      primary_service: "",
-      service_area: "",
-      industry: "",
-      business_size: "",
-      main_goal: "",
-      competitors: "",
-      cms_platform: "",
-      current_challenges: [],
-      access_available: [],
-      notes: "",
-      website: "",
-      selected_plan: initialPlan,
-    },
-  });
-
-  const challenges = watch("current_challenges") ?? [];
-  const access = watch("access_available") ?? [];
-
-  async function onSubmit(values: SubmissionInput) {
-    setIsSubmitting(true);
-    setSubmitError("");
-    try {
-      const resp = await fetch("/api/submissions", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
-      });
-      const data = await resp.json();
-      if (!resp.ok) {
-        throw new Error(
-          typeof data.error === "string"
-            ? data.error
-            : "Something went wrong submitting your request.",
-        );
-      }
-      router.push(`/thank-you?t=${encodeURIComponent(data.resultsToken ?? "")}`);
-    } catch (err) {
-      setSubmitError(
-        err instanceof Error
-          ? err.message
-          : "Something went wrong. Please try again or email shawn@gsally.com.",
-      );
-    } finally {
-      setIsSubmitting(false);
+  useEffect(() => {
+    const stored = readStorage();
+    if (stored) {
+      setForm((prev) => ({
+        ...prev,
+        ...stored,
+        website_url: initialUrl || stored.website_url || prev.website_url,
+        selected_plan: initialPlan || stored.selected_plan || prev.selected_plan,
+        current_challenges: Array.isArray(stored.current_challenges)
+          ? stored.current_challenges
+          : prev.current_challenges,
+        access_available: Array.isArray(stored.access_available)
+          ? stored.access_available
+          : prev.access_available,
+        website: "",
+      }));
+    } else if (initialUrl || initialPlan) {
+      setForm((prev) => ({
+        ...prev,
+        website_url: initialUrl || prev.website_url,
+        selected_plan: initialPlan || prev.selected_plan,
+      }));
     }
+    hydrated.current = true;
+  }, [initialPlan, initialUrl]);
+
+  useEffect(() => {
+    if (!hydrated.current || phase !== "form") return;
+    writeStorage(form);
+  }, [form, phase]);
+
+  const update = useCallback(<K extends keyof FormState>(key: K, value: FormState[K]) => {
+    setForm((prev) => ({ ...prev, [key]: value }));
+  }, []);
+
+  const toggleArray = useCallback((key: "current_challenges" | "access_available", value: string) => {
+    setForm((prev) => {
+      const list = prev[key];
+      return {
+        ...prev,
+        [key]: list.includes(value) ? list.filter((v) => v !== value) : [...list, value],
+      };
+    });
+  }, []);
+
+  function validateStep1(): string | null {
+    if (!form.website_url.trim() || !form.website_url.includes(".")) {
+      return "Please enter a valid website address (it should include a dot, like yourbusiness.com).";
+    }
+    if (form.full_name.trim().length < 2) {
+      return "Please enter your full name.";
+    }
+    if (!isValidEmail(form.work_email)) {
+      return "Please enter a valid work email.";
+    }
+    if (!form.company_name.trim()) {
+      return "Please enter your company name.";
+    }
+    return null;
+  }
+
+  function goNext() {
+    if (step === 1) {
+      const err = validateStep1();
+      if (err) {
+        setStepError(err);
+        return;
+      }
+    }
+    setStepError("");
+    setStep((s) => Math.min(4, s + 1));
+  }
+
+  function goBack() {
+    setStepError("");
+    setStep((s) => Math.max(1, s - 1));
+  }
+
+  async function waitForScore(token: string): Promise<number | null> {
+    for (let attempt = 0; attempt < SCORE_POLL_MAX_ATTEMPTS; attempt += 1) {
+      try {
+        const resp = await fetch(`/api/results/${encodeURIComponent(token)}/status`);
+        const data = await resp.json();
+        if (!resp.ok || !data.ok) {
+          await new Promise((r) => window.setTimeout(r, SCORE_POLL_MS));
+          continue;
+        }
+        if (data.state === "failed") {
+          throw new Error(
+            "We could not finish scoring this site. Please try again or email shawn@gsally.com.",
+          );
+        }
+        if (data.state === "revoked" || data.state === "expired") {
+          throw new Error(
+            "Your results link is no longer valid. Please try again or email shawn@gsally.com.",
+          );
+        }
+        if (typeof data.overallScore === "number") {
+          return data.overallScore;
+        }
+        if (data.ready) {
+          // Published but score missing from payload — stop waiting.
+          return null;
+        }
+      } catch (err) {
+        if (err instanceof Error && /could not finish|no longer valid/i.test(err.message)) {
+          throw err;
+        }
+      }
+      await new Promise((r) => window.setTimeout(r, SCORE_POLL_MS));
+    }
+    return null;
+  }
+
+  async function submitAssessment() {
+    setSubmitError("");
+    setPhase("scanning");
+    setScanIndex(0);
+    requestDone.current = false;
+    requestOk.current = false;
+    requestPayload.current = null;
+    requestError.current = "";
+
+    const payload: SubmissionInput = {
+      full_name: form.full_name.trim(),
+      work_email: form.work_email.trim(),
+      company_name: form.company_name.trim(),
+      website_url: form.website_url.trim(),
+      phone: form.phone.trim() || undefined,
+      primary_service: form.primary_service.trim() || undefined,
+      service_area: form.service_area.trim() || undefined,
+      industry: form.industry.trim() || undefined,
+      business_size: form.business_size || undefined,
+      main_goal: form.main_goal || undefined,
+      competitors: form.competitors.trim() || undefined,
+      cms_platform: form.cms_platform || undefined,
+      current_challenges: form.current_challenges,
+      access_available: form.access_available,
+      selected_plan: form.selected_plan || undefined,
+      notes: form.notes.trim() || undefined,
+      website: form.website || "",
+    };
+
+    const requestPromise = (async () => {
+      try {
+        const resp = await fetch("/api/submissions", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        const data = await resp.json();
+        if (!resp.ok) {
+          throw new Error(
+            typeof data.error === "string"
+              ? data.error
+              : "Something went wrong submitting your request.",
+          );
+        }
+        requestOk.current = true;
+        requestPayload.current = {
+          resultsToken: data.resultsToken,
+          score: typeof data.score === "number" ? data.score : null,
+        };
+      } catch (err) {
+        requestOk.current = false;
+        requestError.current =
+          err instanceof Error
+            ? err.message
+            : "Something went wrong. Please try again or email shawn@gsally.com.";
+      } finally {
+        requestDone.current = true;
+      }
+    })();
+
+    let i = 0;
+    const tick = () => {
+      i += 1;
+      setScanIndex(i);
+      if (i < SCAN_CHECKLIST.length) {
+        window.setTimeout(tick, 650);
+        return;
+      }
+      const finish = () => {
+        if (!requestDone.current) {
+          window.setTimeout(finish, 150);
+          return;
+        }
+        void requestPromise.then(async () => {
+          if (!requestOk.current) {
+            setSubmitError(requestError.current);
+            setPhase("error");
+            return;
+          }
+
+          const base = requestPayload.current ?? {};
+          clearStorage();
+
+          // Prefer an immediate score if the API ever returns one; otherwise poll status.
+          if (typeof base.score === "number") {
+            setSubmitResult(base);
+            setPhase("results");
+            return;
+          }
+
+          const token = typeof base.resultsToken === "string" ? base.resultsToken : "";
+          if (!token) {
+            setSubmitResult(base);
+            setPhase("results");
+            return;
+          }
+
+          setSubmitResult(base);
+          setPhase("scoring");
+          try {
+            const score = await waitForScore(token);
+            setSubmitResult({ ...base, score });
+            setPhase("results");
+          } catch (err) {
+            setSubmitError(
+              err instanceof Error
+                ? err.message
+                : "Something went wrong finishing your score.",
+            );
+            setPhase("error");
+          }
+        });
+      };
+      finish();
+    };
+    window.setTimeout(tick, 650);
+  }
+
+  function resetFlow() {
+    clearStorage();
+    setForm({
+      ...EMPTY_FORM,
+      selected_plan: form.selected_plan,
+    });
+    setStep(1);
+    setPhase("form");
+    setStepError("");
+    setSubmitError("");
+    setSubmitResult(null);
+    setScanIndex(0);
+  }
+
+  const planLabel = form.selected_plan
+    ? PLAN_CHIP_LABELS[form.selected_plan] || form.selected_plan
+    : "";
+
+  const progressPct = useMemo(() => (step / 4) * 100, [step]);
+
+  if (phase === "scanning" || phase === "scoring") {
+    const scoring = phase === "scoring";
+    return (
+      <section className="section-pad bg-surface-alt">
+        <div className="container-site max-w-xl">
+          <div className="card-surface p-8 shadow-card-md" aria-live="polite">
+            <p className="eyebrow mb-3">{scoring ? "Scoring" : "Scanning"}</p>
+            <h1 className="heading-3 mb-2">
+              {scoring
+                ? "Calculating your AI Visibility Score…"
+                : `Reviewing ${form.website_url || "your site"}…`}
+            </h1>
+            <p className="mb-6 text-sm text-muted">
+              {scoring
+                ? "Your assessment is running now. Your score will appear on this page as soon as it's ready — no need to wait for email."
+                : "This usually takes just a moment."}
+            </p>
+            <div className="mb-6 h-2 overflow-hidden rounded-full bg-border">
+              <div
+                className={cn(
+                  "h-full rounded-full bg-accent transition-all duration-500",
+                  scoring && "animate-pulse",
+                )}
+                style={{
+                  width: scoring
+                    ? "100%"
+                    : `${Math.min(100, (scanIndex / SCAN_CHECKLIST.length) * 100)}%`,
+                }}
+              />
+            </div>
+            <ul className="space-y-3">
+              {SCAN_CHECKLIST.map((item, idx) => {
+                const done = scoring || idx < scanIndex;
+                const active = !scoring && idx === scanIndex;
+                return (
+                  <li
+                    key={item}
+                    className={cn(
+                      "flex items-center gap-3 text-sm",
+                      done ? "text-ink" : active ? "text-accent" : "text-muted",
+                    )}
+                  >
+                    <span
+                      className={cn(
+                        "flex h-5 w-5 items-center justify-center rounded-full border",
+                        done
+                          ? "border-accent bg-accent text-white"
+                          : active
+                            ? "border-accent"
+                            : "border-border",
+                      )}
+                    >
+                      {done ? <IconCheck className="h-3 w-3" /> : null}
+                    </span>
+                    {item}
+                  </li>
+                );
+              })}
+              <li
+                className={cn(
+                  "flex items-center gap-3 text-sm",
+                  scoring ? "text-accent" : "text-muted",
+                )}
+              >
+                <span
+                  className={cn(
+                    "flex h-5 w-5 items-center justify-center rounded-full border",
+                    scoring ? "border-accent" : "border-border",
+                  )}
+                />
+                Calculating your AI Visibility Score
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (phase === "results") {
+    const score =
+      submitResult && typeof submitResult.score === "number" ? submitResult.score : null;
+    const resultsHref = submitResult?.resultsToken
+      ? `/results/${encodeURIComponent(submitResult.resultsToken)}`
+      : "";
+    return (
+      <section className="section-pad bg-surface-alt">
+        <div className="container-site">
+          <p className="eyebrow mb-3">
+            Assessment ready · {form.website_url}
+          </p>
+          <h1 className="heading-1 mb-4 max-w-3xl">
+            Here&apos;s your starting point, {firstNameFrom(form.full_name)}.
+          </h1>
+          <p className="body-lg mb-10 max-w-2xl">
+            {score != null
+              ? "Your AI Visibility Score is ready below. Open the full report for what's helping, what's hurting, and what to fix first."
+              : `We're still finalizing the scored report. A copy will also go to ${form.work_email}.`}
+          </p>
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+            <div className="card-surface flex flex-col items-center justify-center p-8">
+              {score != null ? (
+                <ScoreRing score={score} size={140} label="AI Visibility Score" />
+              ) : (
+                <>
+                  <ScoreRing score={null} size={140} placeholder="Score pending" />
+                  <p className="mt-4 max-w-xs text-center text-sm text-muted">
+                    {resultsHref
+                      ? "Your report link is ready — open it to see the score as soon as publishing finishes."
+                      : "We're finishing your score. Check your inbox shortly, or try again."}
+                  </p>
+                </>
+              )}
+              {resultsHref ? (
+                <ButtonLink href={resultsHref} variant="primary" size="md" className="mt-6">
+                  {score != null ? "Open full report →" : "Open report status →"}
+                </ButtonLink>
+              ) : null}
+            </div>
+            <div className="card-surface p-8">
+              <h2 className="heading-3 mb-5">What happens next</h2>
+              <ol className="mb-8 space-y-4">
+                {[
+                  score != null
+                    ? "Review your score and full report"
+                    : "Open your report link for live status",
+                  "Fix your top priority",
+                  "Want help with the rest?",
+                ].map((item, i) => (
+                  <li key={item} className="flex gap-3 text-sm text-body">
+                    <span className="font-mono text-sm font-semibold text-accent">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ol>
+              <p className="mb-6 text-sm text-muted">
+                A copy of the full write-up is also sent to {form.work_email}.
+              </p>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <ButtonLink href="/#pricing" variant="primary" size="md">
+                  See monthly plans
+                </ButtonLink>
+                {BOOKING_URL ? (
+                  <ButtonLink href={BOOKING_URL} variant="secondaryLight" size="md">
+                    Book a 15-min walkthrough
+                  </ButtonLink>
+                ) : null}
+              </div>
+              <button
+                type="button"
+                onClick={resetFlow}
+                className="mt-6 text-sm font-semibold text-accent hover:text-accent-hover"
+              >
+                Check another site
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (phase === "error") {
+    return (
+      <section className="section-pad bg-surface-alt">
+        <div className="container-site max-w-xl">
+          <div className="card-surface p-8" role="alert">
+            <p className="eyebrow mb-3 text-bad">Something went wrong</p>
+            <h1 className="heading-3 mb-3">We couldn&apos;t submit your assessment</h1>
+            <p className="mb-6 text-sm text-body">{submitError}</p>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <button type="button" className="btn-primary" onClick={() => void submitAssessment()}>
+                Try again
+              </button>
+              <a
+                href={`mailto:${siteConfig.email}?subject=${encodeURIComponent("Free assessment request")}&body=${encodeURIComponent(`Website: ${form.website_url}\nName: ${form.full_name}\nEmail: ${form.work_email}\nCompany: ${form.company_name}`)}`}
+                className="btn-outline"
+              >
+                Email us instead
+              </a>
+            </div>
+            <button
+              type="button"
+              className="mt-6 text-sm font-semibold text-accent"
+              onClick={() => setPhase("form")}
+            >
+              ← Back to form
+            </button>
+          </div>
+        </div>
+      </section>
+    );
   }
 
   return (
     <div className="flex flex-col">
-      <section className="bg-brand-hero text-white pt-28 pb-14 md:pt-36 relative overflow-hidden">
-        <HeroOverlay />
-        <div className="container px-4 md:px-6 text-center max-w-2xl relative z-10">
-          <div className="eyebrow-pill-gold mb-6 mx-auto w-fit">Free assessment</div>
-          <h1 className="text-4xl sm:text-5xl font-heading font-extrabold mb-5">
-            Start with your free assessment
-          </h1>
-          <p className="text-base md:text-lg text-white/70 leading-relaxed">
-            This free assessment gives you a starting point — what looks strong, what needs work, and
-            what to improve first. If you want help improving over time, month-to-month support is
-            available with simple cancel-anytime plans.
+      <section className="bg-surface-alt pb-8 pt-12 md:pb-10 md:pt-16">
+        <div className="container-site">
+          <p className="eyebrow mb-3">Free assessment</p>
+          <div className="mb-3 flex flex-wrap items-center gap-3">
+            <h1 className="heading-1 max-w-3xl">See how AI tools see your business</h1>
+            {planLabel ? (
+              <span className="rounded-md bg-accent-tint px-2.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-[0.04em] text-accent">
+                Selected plan: {planLabel}
+              </span>
+            ) : null}
+          </div>
+          <p className="body-lg max-w-2xl">
+            Four short steps. Only the first is required. The more you share, the sharper your
+            priorities.
           </p>
+
+          <div className="mt-8">
+            <div className="mb-3 flex flex-wrap gap-2">
+              {STEP_LABELS.map((label, i) => {
+                const n = i + 1;
+                const active = n === step;
+                const done = n < step;
+                return (
+                  <div
+                    key={label}
+                    className={cn(
+                      "flex items-center gap-2 rounded-control px-3 py-1.5 text-xs font-semibold",
+                      active
+                        ? "bg-ink text-white"
+                        : done
+                          ? "bg-accent-tint text-accent"
+                          : "bg-surface text-muted",
+                    )}
+                  >
+                    <span className="font-mono">{n}</span>
+                    <span className="hidden sm:inline">{label}</span>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="h-1.5 overflow-hidden rounded-full bg-border">
+              <div
+                className="h-full rounded-full bg-accent transition-all duration-300"
+                style={{ width: `${progressPct}%` }}
+              />
+            </div>
+          </div>
         </div>
       </section>
 
-      <TrustBar
-        items={[
-          "Free assessment · no obligation",
-          "Month-to-month support available",
-          "Cancel anytime on monthly plans",
-        ]}
-      />
+      <section className="bg-surface-alt pb-16 md:pb-24">
+        <div className="container-site">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
+            <div className="card-surface p-6 shadow-card md:p-8">
+              {/* honeypot */}
+              <input
+                type="text"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                className="hidden"
+                value={form.website}
+                onChange={(e) => update("website", e.target.value)}
+                aria-hidden="true"
+              />
 
-      <section className="py-16 md:py-24 bg-brand-cream">
-        <div className="container px-4 md:px-6 max-w-2xl">
-          <div className="rounded-2xl border border-brand-border bg-white p-6 md:p-8 shadow-card mb-8">
-            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-brand-blue mb-4">
-              What happens after you submit
-            </p>
-            <p className="text-sm text-brand-muted leading-relaxed mb-5">
-              Once you send the form below, we save your request and begin reviewing your website
-              automatically. You&apos;ll receive clear findings and recommended next steps — including
-              monthly support options if you want ongoing help.
-            </p>
-            <div className="grid sm:grid-cols-3 gap-4 text-left">
-              <div className="rounded-xl bg-brand-cream p-4">
-                <p className="text-xs font-bold uppercase text-brand-subtle mb-1">What you receive</p>
-                <p className="text-sm text-brand-muted">A clear assessment of what looks good and what to improve first — plus a path to monthly support if you want it.</p>
-              </div>
-              <div className="rounded-xl bg-brand-cream p-4">
-                <p className="text-xs font-bold uppercase text-brand-subtle mb-1">What happens next</p>
-                <p className="text-sm text-brand-muted">Your review begins right after you hit submit on the form below.</p>
-              </div>
-              <div className="rounded-xl bg-brand-cream p-4">
-                <p className="text-xs font-bold uppercase text-brand-subtle mb-1">Turnaround</p>
-                <p className="text-sm text-brand-muted">Most reviews finish within minutes. We&apos;ll reach out within 2–3 business days only if we need more info.</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="card-brand rounded-2xl p-8 md:p-10 shadow-card-md">
-            <div className="mb-6">
-              <h2 className="text-xl md:text-2xl font-heading font-extrabold text-brand-navy">
-                Fill out the form below
-              </h2>
-              <p className="mt-2 text-sm text-brand-muted leading-relaxed">
-                Share your business details so we can review your site and prepare your assessment.
-                Fields marked with * are required.
-              </p>
-            </div>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-              <input type="text" className="hidden" tabIndex={-1} autoComplete="off" {...register("website")} />
-              <input type="hidden" {...register("selected_plan")} />
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div>
-                  <label className={labelClass}>Full Name *</label>
-                  <input className={`${inputClass} mt-1`} placeholder="Jane Doe" {...register("full_name")} />
-                  {errors.full_name && <p className="text-red-600 text-xs mt-1">{errors.full_name.message}</p>}
+              {stepError ? (
+                <div className="mb-5 rounded-control border border-bad/20 bg-bad-bg px-4 py-3 text-sm text-bad" role="alert">
+                  {stepError}
                 </div>
-                <div>
-                  <label className={labelClass}>Work Email *</label>
-                  <input className={`${inputClass} mt-1`} placeholder="jane@company.com" {...register("work_email")} />
-                  {errors.work_email && <p className="text-red-600 text-xs mt-1">{errors.work_email.message}</p>}
+              ) : null}
+
+              {step === 1 && (
+                <div className="space-y-5">
+                  <div>
+                    <label htmlFor="website_url" className="label-field">
+                      Website URL *
+                    </label>
+                    <input
+                      id="website_url"
+                      className="input-field"
+                      placeholder="yourbusiness.com"
+                      value={form.website_url}
+                      onChange={(e) => update("website_url", e.target.value)}
+                      autoComplete="url"
+                    />
+                  </div>
+                  <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                    <div>
+                      <label htmlFor="full_name" className="label-field">
+                        Full name *
+                      </label>
+                      <input
+                        id="full_name"
+                        className="input-field"
+                        value={form.full_name}
+                        onChange={(e) => update("full_name", e.target.value)}
+                        autoComplete="name"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="work_email" className="label-field">
+                        Work email *
+                      </label>
+                      <input
+                        id="work_email"
+                        type="email"
+                        className="input-field"
+                        value={form.work_email}
+                        onChange={(e) => update("work_email", e.target.value)}
+                        autoComplete="email"
+                      />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                    <div>
+                      <label htmlFor="company_name" className="label-field">
+                        Company name *
+                      </label>
+                      <input
+                        id="company_name"
+                        className="input-field"
+                        value={form.company_name}
+                        onChange={(e) => update("company_name", e.target.value)}
+                        autoComplete="organization"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="phone" className="label-field">
+                        Phone <span className="font-normal text-muted">(optional)</span>
+                      </label>
+                      <input
+                        id="phone"
+                        className="input-field"
+                        value={form.phone}
+                        onChange={(e) => update("phone", e.target.value)}
+                        autoComplete="tel"
+                      />
+                    </div>
+                  </div>
                 </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div>
-                  <label className={labelClass}>Company Name *</label>
-                  <input className={`${inputClass} mt-1`} {...register("company_name")} />
-                  {errors.company_name && <p className="text-red-600 text-xs mt-1">{errors.company_name.message}</p>}
-                </div>
-                <div>
-                  <label className={labelClass}>Website URL *</label>
-                  <input className={`${inputClass} mt-1`} placeholder="https://yourcompany.com" {...register("website_url")} />
-                  {errors.website_url && <p className="text-red-600 text-xs mt-1">{errors.website_url.message}</p>}
-                </div>
-              </div>
-
-              <div>
-                <label className={labelClass}>Phone (optional)</label>
-                <input className={`${inputClass} mt-1`} {...register("phone")} />
-              </div>
-
-              <p className={sectionHeading}>Business Context</p>
-
-              <div>
-                <label className={labelClass}>Primary service or offering</label>
-                <input className={`${inputClass} mt-1`} {...register("primary_service")} />
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div>
-                  <label className={labelClass}>Service area</label>
-                  <input className={`${inputClass} mt-1`} {...register("service_area")} />
-                </div>
-                <div>
-                  <label className={labelClass}>Industry</label>
-                  <input className={`${inputClass} mt-1`} {...register("industry")} />
-                </div>
-              </div>
-
-              <div>
-                <label className={labelClass}>Approximate business size</label>
-                <select className={`${inputClass} mt-1`} {...register("business_size")}>
-                  <option value="">Select employee count</option>
-                  <option value="1-5">1–5 employees</option>
-                  <option value="6-20">6–20 employees</option>
-                  <option value="21-50">21–50 employees</option>
-                  <option value="51-200">51–200 employees</option>
-                  <option value="200+">200+ employees</option>
-                </select>
-              </div>
-
-              <p className={sectionHeading}>Goals and Current Setup</p>
-
-              <div>
-                <label className={labelClass}>Main goal</label>
-                <select className={`${inputClass} mt-1`} {...register("main_goal")}>
-                  <option value="">Select your primary goal</option>
-                  <option value="more-qualified-leads">More qualified inbound leads</option>
-                  <option value="ai-search-visibility">Stronger visibility in AI search</option>
-                  <option value="service-page-performance">Better service-page performance</option>
-                  <option value="local-visibility">More local visibility</option>
-                  <option value="technical-cleanup">Technical cleanup and structure</option>
-                  <option value="monthly-optimization">Ongoing monthly optimization</option>
-                </select>
-              </div>
-
-              <div>
-                <label className={labelClass}>Top competitors (optional)</label>
-                <input className={`${inputClass} mt-1`} {...register("competitors")} />
-              </div>
-
-              <div>
-                <label className={labelClass}>CMS or website platform</label>
-                <select className={`${inputClass} mt-1`} {...register("cms_platform")}>
-                  <option value="">Select your platform</option>
-                  <option value="wordpress">WordPress</option>
-                  <option value="webflow">Webflow</option>
-                  <option value="shopify">Shopify</option>
-                  <option value="squarespace">Squarespace</option>
-                  <option value="wix">Wix</option>
-                  <option value="custom-react">Custom / React</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-
-              <p className={sectionHeading}>Current Challenges and Access</p>
-
-              <div>
-                <label className={labelClass}>Current challenges</label>
-                <CheckboxGroup
-                  options={CHALLENGE_OPTIONS}
-                  value={Array.isArray(challenges) ? challenges : []}
-                  onChange={(v) => setValue("current_challenges", v)}
-                />
-              </div>
-
-              <div>
-                <label className={labelClass}>Access currently available</label>
-                <CheckboxGroup
-                  options={ACCESS_OPTIONS}
-                  value={Array.isArray(access) ? access : []}
-                  onChange={(v) => setValue("access_available", v)}
-                />
-              </div>
-
-              <div>
-                <label className={labelClass}>Anything else we should know?</label>
-                <textarea
-                  className="w-full border border-brand-border rounded-lg min-h-[120px] p-4 text-sm mt-1 resize-y focus:outline-none focus:ring-2 focus:ring-brand-blue/30"
-                  {...register("notes")}
-                />
-              </div>
-
-              {submitError && (
-                <div className="bg-red-50 border border-red-200 rounded-xl p-4 text-sm text-red-700">{submitError}</div>
               )}
 
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-brand-blue hover:bg-brand-blue-hover disabled:opacity-60 text-white h-12 text-base font-heading font-semibold rounded-lg flex items-center justify-center"
-              >
-                {isSubmitting ? (
-                  <>
-                    <Loader2 className="mr-2 h-5 w-5 animate-spin" /> Submitting…
-                  </>
+              {step === 2 && (
+                <div className="space-y-5">
+                  <p className="text-sm text-muted">Optional — skip anytime.</p>
+                  <div>
+                    <label htmlFor="primary_service" className="label-field">
+                      Primary service
+                    </label>
+                    <input
+                      id="primary_service"
+                      className="input-field"
+                      value={form.primary_service}
+                      onChange={(e) => update("primary_service", e.target.value)}
+                    />
+                  </div>
+                  <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                    <div>
+                      <label htmlFor="service_area" className="label-field">
+                        Service area
+                      </label>
+                      <input
+                        id="service_area"
+                        className="input-field"
+                        value={form.service_area}
+                        onChange={(e) => update("service_area", e.target.value)}
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="industry" className="label-field">
+                        Industry
+                      </label>
+                      <input
+                        id="industry"
+                        className="input-field"
+                        value={form.industry}
+                        onChange={(e) => update("industry", e.target.value)}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label htmlFor="business_size" className="label-field">
+                      Team size
+                    </label>
+                    <select
+                      id="business_size"
+                      className="input-field"
+                      value={form.business_size}
+                      onChange={(e) => update("business_size", e.target.value)}
+                    >
+                      <option value="">Select team size</option>
+                      {BUSINESS_SIZE_OPTIONS.map((opt) => (
+                        <option key={opt.value} value={opt.value}>
+                          {opt.label}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label htmlFor="competitors" className="label-field">
+                      Top competitors
+                    </label>
+                    <input
+                      id="competitors"
+                      className="input-field"
+                      value={form.competitors}
+                      onChange={(e) => update("competitors", e.target.value)}
+                    />
+                  </div>
+                </div>
+              )}
+
+              {step === 3 && (
+                <div className="space-y-6">
+                  <p className="text-sm text-muted">Optional — skip anytime.</p>
+                  <div>
+                    <p className="label-field">Main goal</p>
+                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                      {GOAL_OPTIONS.map((opt) => (
+                        <GoalCard
+                          key={opt.value}
+                          label={opt.label}
+                          pressed={form.main_goal === opt.value}
+                          onSelect={() =>
+                            update("main_goal", form.main_goal === opt.value ? "" : opt.value)
+                          }
+                        />
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <p className="label-field">Current challenges</p>
+                    <div className="flex flex-wrap gap-2">
+                      {CHALLENGE_OPTIONS.map((opt) => (
+                        <ToggleChip
+                          key={opt.value}
+                          label={opt.label}
+                          pressed={form.current_challenges.includes(opt.value)}
+                          onToggle={() => toggleArray("current_challenges", opt.value)}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <label htmlFor="cms_platform" className="label-field">
+                      Website platform
+                    </label>
+                    <select
+                      id="cms_platform"
+                      className="input-field"
+                      value={form.cms_platform}
+                      onChange={(e) => update("cms_platform", e.target.value)}
+                    >
+                      <option value="">Select platform</option>
+                      {CMS_OPTIONS.map((opt) => (
+                        <option key={opt.value} value={opt.value}>
+                          {opt.label}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+              )}
+
+              {step === 4 && (
+                <div className="space-y-6">
+                  <p className="text-sm text-muted">Optional — submit whenever you&apos;re ready.</p>
+                  <div>
+                    <p className="label-field">Access available</p>
+                    <div className="flex flex-wrap gap-2">
+                      {ACCESS_OPTIONS.map((opt) => (
+                        <ToggleChip
+                          key={opt.value}
+                          label={opt.label}
+                          pressed={form.access_available.includes(opt.value)}
+                          onToggle={() => toggleArray("access_available", opt.value)}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <label htmlFor="notes" className="label-field">
+                      Anything else we should know?
+                    </label>
+                    <textarea
+                      id="notes"
+                      className="input-field min-h-[120px] py-3"
+                      value={form.notes}
+                      onChange={(e) => update("notes", e.target.value)}
+                    />
+                  </div>
+                  <div className="rounded-card border border-border bg-surface-alt p-4 text-sm text-body">
+                    We&apos;ll scan <span className="font-semibold text-ink">{form.website_url || "your site"}</span>.
+                    Results go to{" "}
+                    <span className="font-semibold text-ink">{form.work_email || "your email"}</span>.
+                    Most reviews finish within minutes.
+                  </div>
+                </div>
+              )}
+
+              <div className="mt-8 flex flex-col-reverse gap-3 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex gap-3">
+                  {step > 1 ? (
+                    <button type="button" className="btn-outline" onClick={goBack}>
+                      ← Back
+                    </button>
+                  ) : (
+                    <span />
+                  )}
+                  {step >= 2 && step <= 3 ? (
+                    <button
+                      type="button"
+                      className="text-sm font-semibold text-muted hover:text-ink"
+                      onClick={() => void submitAssessment()}
+                    >
+                      Skip &amp; submit now
+                    </button>
+                  ) : null}
+                </div>
+                {step < 4 ? (
+                  <button type="button" className="btn-primary" onClick={goNext}>
+                    {step === 1 ? "Continue →" : "Next →"}
+                  </button>
                 ) : (
-                  "Submit my free assessment →"
+                  <button
+                    type="button"
+                    className="btn-primary"
+                    onClick={() => void submitAssessment()}
+                  >
+                    Run my free assessment →
+                  </button>
                 )}
-              </button>
-            </form>
+              </div>
+            </div>
+
+            <aside className="space-y-4 lg:sticky lg:top-24 lg:self-start">
+              <div className="card-surface p-6">
+                <p className="eyebrow mb-4">What you&apos;ll get</p>
+                <ol className="space-y-4">
+                  {[
+                    "Your AI Visibility Score (1–100)",
+                    "How ChatGPT, Google AI, Perplexity and Copilot see you",
+                    "What's helping and what's hurting",
+                    "Your top priority to fix first",
+                  ].map((item, i) => (
+                    <li key={item} className="flex gap-3 text-sm leading-snug text-body">
+                      <span className="font-mono text-xs font-semibold text-accent">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      {item}
+                    </li>
+                  ))}
+                </ol>
+                <Link
+                  href="/sample-report"
+                  className="mt-5 inline-block text-sm font-semibold text-accent hover:text-accent-hover"
+                >
+                  Preview a sample report →
+                </Link>
+              </div>
+              <div className="rounded-card border border-accent/20 bg-accent-tint p-5 text-sm leading-relaxed text-body">
+                No sales pressure. The assessment is free and yours to keep. Monthly plans are
+                optional, month-to-month and cancel anytime.
+              </div>
+            </aside>
           </div>
         </div>
       </section>

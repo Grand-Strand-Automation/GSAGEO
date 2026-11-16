@@ -1,307 +1,364 @@
+"use client";
+
+import { FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { CheckCircle2, XCircle } from "lucide-react";
-import { SampleOutputPreview } from "@/components/landing/SampleOutputPreview";
-import { CTABand } from "@/components/CTABand";
 import { FaqItem } from "@/components/FaqItem";
-import { HeroOverlay } from "@/components/HeroOverlay";
-import { SectionHeading } from "@/components/SectionHeading";
-import { TrustBar } from "@/components/TrustBar";
+import { IncludedIcon, IconCheck } from "@/components/icons/StrokeIcons";
+import { ScoreRing } from "@/components/ui/ScoreRing";
 import { ButtonLink } from "@/components/ui/Button";
-import { PlanComparisonTable } from "@/components/subscriptions/PlanComparisonTable";
 import {
-  DELIVERABLES,
-  DELIVERABLES_HEADING,
-  DELIVERABLES_INTRO,
-  DELIVERABLES_SUPPORT,
+  ENGINES,
   FAQ_ITEMS,
   GOOD_FIT,
   HOME_HERO,
-  MONTHLY_RHYTHM,
+  HOW_IT_WORKS,
   NOT_FIT,
-  PRICING_CUSTOM_NOTE,
-  PRICING_DOWNGRADE_NOTE,
-  PRICING_HEADLINE,
-  PRICING_HELPER,
-  PRICING_INTRO,
-  PRICING_REASSURANCE,
-  PRICING_SUBLINE,
+  SAMPLE_ENGINE_ROWS,
+  SAMPLE_TEASER_SCORES,
+  TESTIMONIALS,
   TIERS,
   WHATS_INCLUDED,
-  WHATS_INCLUDED_INTRO,
-  WHY_ONGOING,
+  WHY_IT_MATTERS,
 } from "@/lib/content/landing";
+import { scoreBadgeClass, scoreBarClass, scoreTone } from "@/lib/ui/score-status";
+import { cn } from "@/lib/utils";
+
+function HeroUrlForm() {
+  const router = useRouter();
+  const [url, setUrl] = useState("");
+
+  function onSubmit(e: FormEvent) {
+    e.preventDefault();
+    const value = url.trim();
+    if (!value) return;
+    router.push(`/audit?url=${encodeURIComponent(value)}`);
+  }
+
+  return (
+    <form onSubmit={onSubmit} className="flex flex-col gap-3 sm:flex-row sm:items-stretch">
+      <div className="flex-1">
+        <label htmlFor="hero-website" className="sr-only">
+          Your website address
+        </label>
+        <input
+          id="hero-website"
+          type="text"
+          inputMode="url"
+          autoComplete="url"
+          placeholder="yourbusiness.com"
+          value={url}
+          onChange={(e) => setUrl(e.target.value)}
+          className="input-field h-[52px]"
+        />
+      </div>
+      <button type="submit" className="btn-ink whitespace-nowrap">
+        {HOME_HERO.primaryCta}
+      </button>
+    </form>
+  );
+}
+
+function ExampleOutputCard() {
+  return (
+    <div className="card-surface p-6 shadow-card-md md:p-7">
+      <p className="eyebrow mb-4">Example output</p>
+      <p className="mb-4 font-mono text-xs text-muted">{HOME_HERO.sampleDomain}</p>
+      <div className="mb-5 flex justify-center">
+        <ScoreRing score={HOME_HERO.sampleScore} label="AI Visibility Score" size={128} />
+      </div>
+      <p className="mb-5 text-sm leading-relaxed text-body">{HOME_HERO.sampleSummary}</p>
+      <ul className="mb-5 space-y-2.5">
+        {SAMPLE_ENGINE_ROWS.map((row) => (
+          <li
+            key={row.engine}
+            className="flex items-center justify-between gap-3 border-t border-border pt-2.5 text-sm"
+          >
+            <span className="font-medium text-ink">{row.engine}</span>
+            <span
+              className={cn(
+                "rounded-md px-2 py-0.5 text-xs font-semibold",
+                scoreBadgeClass(row.tone),
+              )}
+            >
+              {row.status}
+            </span>
+          </li>
+        ))}
+      </ul>
+      <Link
+        href="/sample-report"
+        className="text-sm font-semibold text-accent transition-colors hover:text-accent-hover"
+      >
+        Explore the full sample report →
+      </Link>
+    </div>
+  );
+}
+
+function ProofSection() {
+  if (TESTIMONIALS.length === 0) return null;
+
+  return (
+    <section className="section-pad bg-surface">
+      <div className="container-site">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          {TESTIMONIALS.map((item) => (
+            <div key={item.name} className="card-surface p-7">
+              <blockquote className="body-lg text-ink">&ldquo;{item.quote}&rdquo;</blockquote>
+              <p className="mt-4 text-sm font-semibold text-ink">{item.name}</p>
+              <p className="text-sm text-muted">{item.role}</p>
+              <div className="mt-6 border-t border-border pt-5">
+                <p className="font-heading text-lg font-semibold text-ink">{item.resultTitle}</p>
+                <p className="mt-2 text-sm text-body">{item.resultBody}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export function LandingPage() {
   return (
     <div className="flex flex-col">
-      <section className="bg-brand-hero text-white pt-28 pb-16 md:pt-36 md:pb-24 relative overflow-hidden">
-        <HeroOverlay />
-        <div className="container px-4 md:px-6 relative z-10">
-          <div className="grid lg:grid-cols-[1fr_340px] gap-10 lg:gap-12 items-start max-w-6xl">
-            <div className="max-w-3xl">
-              <div className="eyebrow-pill mb-7">
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-sky inline-block" />
-                {HOME_HERO.eyebrow}
-              </div>
-              <h1 className="text-4xl sm:text-5xl md:text-[3.25rem] font-heading font-extrabold mb-6 leading-[1.05]">
-                {HOME_HERO.headline}
-              </h1>
-              <p className="text-lg md:text-xl text-white/70 leading-relaxed max-w-2xl mb-8">
-                {HOME_HERO.subheadline}
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3 mb-6">
-                <ButtonLink href={HOME_HERO.primaryHref}>{HOME_HERO.primaryCta} →</ButtonLink>
-                <ButtonLink href={HOME_HERO.secondaryHref} variant="secondary">
-                  {HOME_HERO.secondaryCta}
-                </ButtonLink>
-              </div>
-              <p className="text-sm text-white/50 font-medium">{HOME_HERO.supportLine}</p>
-            </div>
-
-            <div className="rounded-2xl border border-white/15 bg-white/[0.06] backdrop-blur-sm p-6 md:p-7 shadow-card-md lg:mt-4">
-              <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-brand-sky mb-4">
-                {HOME_HERO.reviewCardTitle}
-              </p>
-              <ul className="space-y-3">
-                {HOME_HERO.reviewCardBullets.map((item) => (
-                  <li key={item} className="flex gap-3 text-sm text-white/80 leading-relaxed">
-                    <CheckCircle2 size={16} className="text-brand-sky shrink-0 mt-0.5" />
+      {/* 1. Hero */}
+      <section className="section-pad bg-surface-alt">
+        <div className="container-site">
+          <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
+            <div>
+              <p className="eyebrow mb-5">{HOME_HERO.eyebrow}</p>
+              <h1 className="heading-1 mb-5">{HOME_HERO.headline}</h1>
+              <p className="body-lg mb-8 max-w-xl">{HOME_HERO.subheadline}</p>
+              <HeroUrlForm />
+              <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted">
+                {HOME_HERO.checkRow.map((item) => (
+                  <li key={item} className="flex items-center gap-2">
+                    <IconCheck className="text-accent" />
                     {item}
                   </li>
                 ))}
               </ul>
             </div>
+            <ExampleOutputCard />
           </div>
         </div>
       </section>
 
-      <TrustBar
-        items={[
-          "Free assessment to start",
-          "Month-to-month · cancel anytime",
-          "Based in the Grand Strand since 2015",
-        ]}
-      />
-
-      <section id="understanding-geo" className="section-pad bg-brand-cream scroll-mt-20">
-        <div className="container px-4 md:px-6 max-w-3xl">
-          <SectionHeading
-            label="Understanding GEO"
-            title="What is AI Visibility support?"
-          />
-          <div className="space-y-5 text-brand-muted text-base md:text-lg leading-relaxed -mt-4">
-            <p>
-              When someone asks ChatGPT, Perplexity, or Google&apos;s AI Overview to recommend a service
-              provider, the answer is built from content those systems have indexed. Businesses that show up
-              clearly tend to have websites that are easy to understand, well-organized, and trustworthy.
-            </p>
-            <p>
-              GEO — Generative Engine Optimization — is about improving how clearly your business appears
-              in those AI-driven answers. It is not a one-time report. It is ongoing work on clarity, trust,
-              content, and structure so customers and search tools can understand what you do.
-            </p>
-            <p>
-              We start with a free assessment so you know where you stand. If you want help improving over
-              time, monthly support gives you practical next steps each month — without long contracts or
-              technical overwhelm.
-            </p>
+      {/* 2. Engines strip */}
+      <section className="border-y border-border bg-surface py-6">
+        <div className="container-site flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-6 sm:gap-y-2">
+          <p className="text-sm font-medium text-muted">We check how you show up in</p>
+          <div className="flex flex-wrap gap-x-5 gap-y-2">
+            {ENGINES.map((engine) => (
+              <span key={engine} className="font-mono text-sm font-semibold text-ink">
+                {engine}
+              </span>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="section-pad bg-white">
-        <div className="container px-4 md:px-6 max-w-4xl">
-          <SectionHeading title="A good fit — and not a good fit." />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            <div className="card-brand p-7 md:p-8 shadow-card">
-              <h3 className="text-sm font-bold text-brand-navy uppercase tracking-[0.12em] mb-5">
-                Good fit
-              </h3>
-              <ul className="space-y-3.5">
-                {GOOD_FIT.map((item) => (
-                  <li key={item} className="flex gap-3 text-sm text-brand-muted leading-relaxed">
-                    <CheckCircle2 size={16} className="text-emerald-600 flex-shrink-0 mt-0.5" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="card-brand p-7 md:p-8 shadow-card">
-              <h3 className="text-sm font-bold text-brand-muted uppercase tracking-[0.12em] mb-5">
-                Not a fit
-              </h3>
-              <ul className="space-y-3.5">
-                {NOT_FIT.map((item) => (
-                  <li key={item} className="flex gap-3 text-sm text-brand-muted leading-relaxed">
-                    <XCircle size={16} className="text-red-600 flex-shrink-0 mt-0.5" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="whats-included" className="section-pad bg-white scroll-mt-20">
-        <div className="container px-4 md:px-6 max-w-4xl">
-          <SectionHeading
-            title="What's Included"
-            description={WHATS_INCLUDED_INTRO}
-            className="mb-8 md:mb-10"
-          />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-            {WHATS_INCLUDED.map(({ title, desc }) => (
-              <div
-                key={title}
-                className="flex gap-3.5 rounded-xl border border-brand-border/80 bg-brand-cream/30 px-4 py-4 md:px-5 md:py-4"
-              >
-                <CheckCircle2 size={18} className="text-brand-blue shrink-0 mt-0.5" />
-                <div className="min-w-0">
-                  <h3 className="font-heading font-bold text-[15px] text-brand-navy leading-snug">
-                    {title}
-                  </h3>
-                  <p className="text-sm text-brand-muted leading-snug mt-1">{desc}</p>
-                </div>
+      {/* 3. Why it matters */}
+      <section className="section-pad bg-surface">
+        <div className="container-site">
+          <p className="eyebrow mb-4">{WHY_IT_MATTERS.eyebrow}</p>
+          <h2 className="heading-2 mb-12 max-w-3xl">{WHY_IT_MATTERS.title}</h2>
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+            {WHY_IT_MATTERS.items.map((item) => (
+              <div key={item.num} className="border-t-2 border-ink pt-6">
+                <p className="mb-3 font-mono text-sm font-semibold text-muted">{item.num}</p>
+                <h3 className="heading-3 mb-3">{item.title}</h3>
+                <p className="body-md">{item.body}</p>
               </div>
             ))}
           </div>
+        </div>
+      </section>
 
-          <div className="mt-12 md:mt-14 pt-12 md:pt-14 border-t border-brand-border">
-            <SectionHeading
-              title={DELIVERABLES_HEADING}
-              description={DELIVERABLES_INTRO}
-              className="mb-8 md:mb-10"
-            />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-              {DELIVERABLES.map(({ title, desc }) => (
-                <div
-                  key={title}
-                  className="flex gap-3.5 rounded-xl border border-brand-border/80 bg-white px-4 py-4 md:px-5 md:py-4"
-                >
-                  <CheckCircle2 size={18} className="text-emerald-600 shrink-0 mt-0.5" />
-                  <div className="min-w-0">
-                    <h3 className="font-heading font-bold text-[15px] text-brand-navy leading-snug">
-                      {title}
-                    </h3>
-                    <p className="text-sm text-brand-muted leading-snug mt-1">{desc}</p>
+      {/* 4. How it works */}
+      <section id="how" className="section-pad bg-ink text-white">
+        <div className="container-site">
+          <div className="mb-12 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-2xl">
+              <p className="eyebrow-on-dark mb-4">{HOW_IT_WORKS.eyebrow}</p>
+              <h2 className="heading-2 text-white">{HOW_IT_WORKS.title}</h2>
+            </div>
+            <p className="max-w-sm text-base leading-relaxed text-on-dark lg:text-right">
+              {HOW_IT_WORKS.side}
+            </p>
+          </div>
+          <div className="grid grid-cols-1 overflow-hidden rounded-card border border-dark-raised-border md:grid-cols-2 lg:grid-cols-4">
+            {HOW_IT_WORKS.steps.map((step, i) => (
+              <div
+                key={step.title}
+                className={cn(
+                  "bg-dark-raised p-6",
+                  i > 0 && "border-t border-dark-raised-border md:border-t-0 md:border-l",
+                  i === 2 && "md:border-t lg:border-t-0",
+                )}
+              >
+                <p className="mb-2 font-mono text-xs font-semibold uppercase tracking-[0.06em] text-accent-on-dark">
+                  {step.label}
+                </p>
+                <h3 className="mb-2 font-heading text-xl font-semibold text-white">{step.title}</h3>
+                <p className="text-sm leading-relaxed text-on-dark">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8 rounded-control border border-dark-raised-border px-5 py-4 text-sm text-on-dark">
+            <span className="font-semibold text-white">Every month you get: </span>
+            {HOW_IT_WORKS.monthlyBar.join(" · ")}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. What's included */}
+      <section id="included" className="section-pad bg-surface">
+        <div className="container-site">
+          <h2 className="heading-2 mb-12 max-w-3xl">
+            What we look at, and work on, every month
+          </h2>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {WHATS_INCLUDED.map((item) => (
+              <div key={item.title} className="card-surface p-6">
+                <div className="mb-4 text-accent">
+                  <IncludedIcon name={item.icon} />
+                </div>
+                <h3 className="heading-3 mb-2">{item.title}</h3>
+                <p className="text-sm leading-relaxed text-body">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 6. Sample report teaser */}
+      <section className="section-pad bg-surface-alt">
+        <div className="container-site">
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+            <div>
+              <h2 className="heading-2 mb-6">
+                See exactly what you&apos;ll get before you share a thing.
+              </h2>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <ButtonLink href="/sample-report" variant="ink">
+                  Open sample report
+                </ButtonLink>
+                <ButtonLink href="/audit" variant="secondaryLight">
+                  Get mine free
+                </ButtonLink>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+              {SAMPLE_TEASER_SCORES.map((item) => (
+                <div key={item.name} className="card-surface p-4">
+                  <p className="mb-2 text-xs font-medium text-muted">{item.name}</p>
+                  <p className="mb-2 font-mono text-xl font-semibold text-ink">{item.score}</p>
+                  <div className="h-1.5 overflow-hidden rounded-full bg-border">
+                    <div
+                      className={cn("h-full rounded-full", scoreBarClass(item.score))}
+                      style={{ width: `${item.score}%` }}
+                    />
                   </div>
                 </div>
               ))}
             </div>
-            <p className="mt-6 md:mt-8 text-sm text-brand-muted text-center leading-relaxed">
-              {DELIVERABLES_SUPPORT}
-            </p>
-            <div className="mt-8 text-center">
-              <ButtonLink href={HOME_HERO.primaryHref} size="md">
-                {HOME_HERO.primaryCta} →
-              </ButtonLink>
+          </div>
+        </div>
+      </section>
+
+      {/* 7. Fit */}
+      <section className="section-pad bg-surface">
+        <div className="container-site">
+          <h2 className="heading-2 mb-10">Honest about who this is for</h2>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div className="rounded-card border border-accent/20 bg-accent-tint p-7 md:p-8">
+              <h3 className="mb-5 font-heading text-lg font-semibold text-ink">
+                A good fit if you&apos;re…
+              </h3>
+              <ul className="space-y-3.5">
+                {GOOD_FIT.map((item) => (
+                  <li key={item} className="flex gap-3 text-sm leading-relaxed text-body">
+                    <IconCheck className="mt-0.5 flex-shrink-0 text-accent" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="rounded-card border border-border bg-surface-alt p-7 md:p-8">
+              <h3 className="mb-5 font-heading text-lg font-semibold text-ink">
+                Probably not a fit if you…
+              </h3>
+              <ul className="space-y-3.5">
+                {NOT_FIT.map((item) => (
+                  <li key={item} className="flex gap-3 text-sm leading-relaxed text-body">
+                    <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-muted" aria-hidden />
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="how-it-works" className="section-pad bg-brand-cream scroll-mt-20">
-        <div className="container px-4 md:px-6 max-w-4xl">
-          <SectionHeading
-            label={MONTHLY_RHYTHM.label}
-            title={MONTHLY_RHYTHM.title}
-            description={MONTHLY_RHYTHM.intro}
-            className="mb-10"
-          />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {MONTHLY_RHYTHM.steps.map((step, index) => (
-              <div
-                key={step.title}
-                className="rounded-xl border border-brand-border bg-white p-5 shadow-card"
-              >
-                <p className="text-[11px] font-bold uppercase tracking-wide text-brand-blue mb-2">
-                  Step {index + 1}
-                </p>
-                <h3 className="font-heading font-bold text-brand-navy mb-2">{step.title}</h3>
-                <p className="text-sm text-brand-muted leading-relaxed">{step.desc}</p>
-              </div>
-            ))}
+      {/* 8. Pricing */}
+      <section id="pricing" className="section-pad bg-surface-alt">
+        <div className="container-site">
+          <div className="mb-12 max-w-2xl">
+            <h2 className="heading-2 mb-4">Monthly plans. No long contracts.</h2>
+            <p className="body-lg">
+              Every plan starts with the free assessment. Month-to-month, cancel anytime.
+            </p>
           </div>
-        </div>
-      </section>
-
-      <section className="section-pad bg-white">
-        <div className="container px-4 md:px-6 max-w-3xl text-center">
-          <SectionHeading
-            label={WHY_ONGOING.label}
-            title={WHY_ONGOING.title}
-            className="mb-6"
-          />
-          <div className="space-y-4 text-brand-muted text-base leading-relaxed -mt-2">
-            {WHY_ONGOING.body.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
-          </div>
-          <p className="mt-6 text-sm font-semibold text-brand-navy">{WHY_ONGOING.support}</p>
-        </div>
-      </section>
-
-      <SampleOutputPreview />
-
-      <section id="pricing" className="section-pad bg-brand-cream scroll-mt-20">
-        <div className="container px-4 md:px-6">
-          <SectionHeading
-            label="Monthly plans"
-            title={PRICING_HEADLINE}
-            description={PRICING_INTRO}
-          />
-          <p className="text-center text-sm font-semibold text-brand-navy -mt-4 mb-10">
-            {PRICING_SUBLINE}
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+          <div className="grid grid-cols-1 items-stretch gap-5 md:grid-cols-3">
             {TIERS.map((tier) => (
               <div
-                key={tier.name}
-                className={
+                key={tier.tier}
+                className={cn(
+                  "relative flex flex-col rounded-card border p-7",
                   tier.primary
-                    ? "rounded-xl border border-brand-blue/30 bg-brand-navy text-white p-7 md:p-8 flex flex-col shadow-card-md ring-1 ring-brand-sky/20"
-                    : "card-brand p-7 md:p-8 flex flex-col shadow-card"
-                }
+                    ? "border-dark-raised-border bg-ink text-white"
+                    : "border-border bg-surface",
+                )}
               >
-                <span
-                  className={
-                    tier.primary
-                      ? "inline-block text-[10px] font-bold uppercase tracking-[0.12em] px-2.5 py-1 rounded-full mb-3 w-fit bg-brand-sky/15 text-brand-sky"
-                      : "inline-block text-[10px] font-bold uppercase tracking-[0.12em] px-2.5 py-1 rounded-full mb-3 w-fit bg-brand-blue-light text-brand-blue"
-                  }
-                >
-                  {tier.badge}
-                </span>
+                {tier.primary && (
+                  <span className="absolute -top-3 left-6 rounded-md bg-highlight px-2.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-[0.04em] text-ink">
+                    Recommended
+                  </span>
+                )}
                 <h3
-                  className={`font-heading font-bold text-lg mb-1 ${tier.primary ? "text-white" : "text-brand-navy"}`}
+                  className={cn(
+                    "mb-2 font-heading text-xl font-semibold",
+                    tier.primary ? "text-white" : "text-ink",
+                  )}
                 >
                   {tier.name}
                 </h3>
-                <div
-                  className={`text-2xl font-heading font-extrabold mb-1 ${tier.primary ? "text-white" : "text-brand-navy"}`}
+                <p
+                  className={cn(
+                    "mb-6 font-heading text-2xl font-semibold",
+                    tier.primary ? "text-white" : "text-ink",
+                  )}
                 >
                   {tier.price}
-                </div>
-                <p
-                  className={`text-xs font-medium mb-4 ${tier.primary ? "text-white/55" : "text-brand-subtle"}`}
-                >
-                  {tier.period}
                 </p>
-                <p
-                  className={`text-sm leading-relaxed mb-6 flex-grow ${tier.primary ? "text-white/65" : "text-brand-muted"}`}
-                >
-                  {tier.desc}
-                </p>
-                <ul className="space-y-2.5 mb-8">
+                <ul className="mb-8 flex-1 space-y-2.5">
                   {tier.includes.map((item) => (
                     <li
                       key={item}
-                      className={`flex gap-2 text-sm leading-relaxed ${tier.primary ? "text-white/80" : "text-brand-muted"}`}
+                      className={cn(
+                        "flex gap-2 text-sm leading-relaxed",
+                        tier.primary ? "text-on-dark" : "text-body",
+                      )}
                     >
-                      <CheckCircle2
-                        size={14}
-                        className={`flex-shrink-0 mt-0.5 ${tier.primary ? "text-brand-sky" : "text-brand-blue"}`}
+                      <IconCheck
+                        className={cn(
+                          "mt-0.5 flex-shrink-0",
+                          tier.primary ? "text-accent-on-dark" : "text-accent",
+                        )}
                       />
                       {item}
                     </li>
@@ -311,66 +368,56 @@ export function LandingPage() {
                   href={`/audit?tier=${tier.tier}`}
                   variant={tier.primary ? "primary" : "secondaryLight"}
                   size="md"
-                  className="w-full mt-auto"
+                  className="mt-auto w-full"
                 >
-                  {tier.cta} →
+                  {tier.cta}
                 </ButtonLink>
               </div>
             ))}
           </div>
-
-          <div className="mt-8">
-            <PlanComparisonTable
-              title="Which monthly plan fits best?"
-              description="Growth is the practical default for steady monthly progress. Monitor is the lighter save plan, and Managed is for deeper hands-on support."
-              compact
-            />
-          </div>
-
-          <div className="mt-10 flex flex-col sm:flex-row items-stretch justify-center divide-y sm:divide-y-0 sm:divide-x divide-brand-border bg-white rounded-xl border border-brand-border shadow-sm">
-            {PRICING_REASSURANCE.map((label) => (
-              <div
-                key={label}
-                className="flex items-center justify-center gap-2.5 py-4 sm:px-6 text-sm text-brand-muted font-medium text-center"
-              >
-                <CheckCircle2 size={14} className="text-brand-blue flex-shrink-0" />
-                {label}
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-10 text-center space-y-3 max-w-2xl mx-auto">
-            <p className="text-sm text-brand-muted leading-relaxed">{PRICING_HELPER}</p>
-            <p className="text-sm text-brand-muted leading-relaxed">{PRICING_DOWNGRADE_NOTE}</p>
-            <p className="text-sm text-brand-muted">
-              {PRICING_CUSTOM_NOTE}{" "}
-              <Link href="/audit?tier=custom" className="text-brand-blue hover:underline font-medium">
-                Request a custom engagement.
-              </Link>
+          <div className="mt-6 flex flex-col items-start justify-between gap-4 rounded-card border border-dashed border-border bg-surface px-6 py-5 sm:flex-row sm:items-center">
+            <p className="text-sm text-body">
+              Multiple locations or a bigger footprint? We&apos;ll scope a custom engagement.
             </p>
+            <Link
+              href="/audit?tier=custom"
+              className="whitespace-nowrap text-sm font-semibold text-accent hover:text-accent-hover"
+            >
+              Request a custom plan →
+            </Link>
           </div>
         </div>
       </section>
 
-      <section id="faq" className="section-pad bg-white scroll-mt-20">
-        <div className="container px-4 md:px-6 max-w-3xl">
-          <SectionHeading label="FAQ" title="Common questions about monthly GEO support." />
-          <div className="card-brand px-6 md:px-8 shadow-card">
-            {FAQ_ITEMS.map((item) => (
-              <FaqItem key={item.q} q={item.q} a={item.a} />
+      {/* 9. Proof (placeholder — empty by default) */}
+      <ProofSection />
+
+      {/* 10. FAQ */}
+      <section id="faq" className="section-pad bg-surface">
+        <div className="container-site max-w-3xl">
+          <h2 className="heading-2 mb-10">Questions, answered</h2>
+          <div className="card-surface px-6 md:px-8">
+            {FAQ_ITEMS.map((item, i) => (
+              <FaqItem key={item.q} q={item.q} a={item.a} defaultOpen={i === 0} />
             ))}
           </div>
         </div>
       </section>
 
-      <CTABand
-        title="Start with a free assessment — continue month-to-month if it makes sense"
-        subtitle="See how clearly your business appears in AI search, get practical priorities, and choose ongoing support only when you are ready."
-        buttons={[
-          { label: "Start Your Free Assessment", href: "/audit", primary: true },
-          { label: "See Monthly Plans", href: "/#pricing", primary: false },
-        ]}
-      />
+      {/* 11. Final CTA */}
+      <section className="section-pad bg-accent text-white">
+        <div className="container-site max-w-3xl text-center">
+          <h2 className="heading-2 mb-4 text-white">
+            Find out how AI sees your business, free.
+          </h2>
+          <p className="mb-8 text-base leading-relaxed text-white/85 md:text-lg">
+            Takes about two minutes to request. Results usually arrive within minutes.
+          </p>
+          <ButtonLink href="/audit" variant="white">
+            Start my free assessment
+          </ButtonLink>
+        </div>
+      </section>
     </div>
   );
 }

@@ -10,10 +10,11 @@ export const dynamic = "force-dynamic";
 export default async function AuditPage({
   searchParams,
 }: {
-  searchParams: Promise<{ tier?: string }>;
+  searchParams: Promise<{ tier?: string; url?: string }>;
 }) {
   const params = await searchParams;
   const initialPlan = normalizeAuditTier(params.tier);
+  const initialUrl = typeof params.url === "string" ? params.url : "";
 
-  return <AuditForm initialPlan={initialPlan} />;
+  return <AuditForm initialPlan={initialPlan} initialUrl={initialUrl} />;
 }

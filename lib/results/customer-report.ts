@@ -14,7 +14,18 @@ export type CustomerReportStatus = {
   companyName: string | null;
   websiteUrl: string | null;
   updatedAt: string | null;
+  /** Present when the published scorecard is available (customer can see score without email). */
+  overallScore: number | null;
 };
+
+export function extractOverallScore(
+  scorecard: Record<string, unknown> | null | undefined,
+): number | null {
+  if (!scorecard) return null;
+  const overall = scorecard.overall;
+  if (typeof overall !== "number" || !Number.isFinite(overall)) return null;
+  return Math.max(0, Math.min(100, Math.round(overall)));
+}
 
 async function resolveTokenContext(rawToken: string): Promise<
   | { ok: false; state: CustomerResultsState }
@@ -62,6 +73,18 @@ async function resolveTokenContext(rawToken: string): Promise<
   };
 }
 
+async function loadOverallScoreForSubmission(
+  submissionId: string,
+): Promise<number | null> {
+  const published = await loadPublishedReportBySubmissionId(submissionId);
+  if (!published.ok || !published.bundle.result) return null;
+  const scorecard = (published.bundle.result.scorecard_json ?? {}) as Record<
+    string,
+    unknown
+  >;
+  return extractOverallScore(scorecard);
+}
+
 /** Lightweight status for thank-you polling and status API. */
 export async function getCustomerReportStatusByToken(
   rawToken: string,
@@ -74,15 +97,22 @@ export async function getCustomerReportStatusByToken(
       companyName: null,
       websiteUrl: null,
       updatedAt: null,
+      overallScore: null,
     };
   }
 
+  const ready = ctx.state === "ready";
+  const overallScore = ready
+    ? await loadOverallScoreForSubmission(ctx.submissionId)
+    : null;
+
   return {
     state: ctx.state,
-    ready: ctx.state === "ready",
+    ready,
     companyName: ctx.companyName,
     websiteUrl: ctx.websiteUrl,
     updatedAt: ctx.updatedAt,
+    overallScore,
   };
 }
 
