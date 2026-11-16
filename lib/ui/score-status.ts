@@ -16,12 +16,12 @@ export function scoreStatusLabel(score: number): "Strength" | "Gap" | "Critical"
 export function scoreBarClass(score: number): string {
   const tone = scoreTone(score);
   if (tone === "good") return "bg-accent";
-  if (tone === "warn") return "bg-warn-bar";
+  if (tone === "warn") return "bg-caution-bar";
   return "bg-bad";
 }
 
 export function scoreBadgeClass(tone: ScoreTone): string {
-  if (tone === "good") return "status-good";
-  if (tone === "warn") return "status-warn";
-  return "status-bad";
+  if (tone === "good") return "text-accent bg-accent-tint";
+  if (tone === "warn") return "text-caution bg-caution-soft";
+  return "text-bad bg-bad-bg";
 }

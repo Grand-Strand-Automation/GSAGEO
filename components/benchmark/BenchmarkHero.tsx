@@ -7,7 +7,7 @@ const chipIcons = [MapPin, Target, Sparkles] as const;
 
 export function BenchmarkHero() {
   return (
-    <section className="bg-brand-hero text-white pt-28 pb-16 md:pt-36 md:pb-24 relative overflow-hidden">
+    <section className="bg-brand-hero text-white pt-16 pb-16 md:pt-24 md:pb-24 relative overflow-hidden">
       <HeroOverlay />
       <div className="container px-4 md:px-6 max-w-4xl relative z-10">
         <div className="eyebrow-pill mb-7">

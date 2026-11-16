@@ -127,18 +127,6 @@
     @apply bg-surface border border-border rounded-card;
   }
 
-  .status-warn {
-    @apply text-warn bg-warn-bg;
-  }
-
-  .status-bad {
-    @apply text-bad bg-bad-bg;
-  }
-
-  .status-good {
-    @apply text-accent bg-accent-tint;
-  }
-
   /* Legacy class aliases used by admin / results */
   .container {
     @apply mx-auto w-full max-w-site;

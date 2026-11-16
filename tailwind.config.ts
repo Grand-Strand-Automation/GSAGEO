@@ -4,6 +4,7 @@ const config: Config = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./lib/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
@@ -32,15 +33,20 @@ const config: Config = {
           border: "#22364B",
         },
         highlight: "#FBBF24",
-        warn: {
+        // Avoid nested key name `warn` (Tailwind can fail to emit utilities for it).
+        caution: {
           DEFAULT: "#7A4A00",
-          bg: "#FEF0C7",
+          soft: "#FEF0C7",
           bar: "#D97706",
         },
         bad: {
           DEFAULT: "#B42318",
           bg: "#FEF3F2",
         },
+        // Aliases used by redesign tokens / docs
+        warn: "#7A4A00",
+        "warn-bg": "#FEF0C7",
+        "warn-bar": "#D97706",
         // Legacy brand tokens (admin / results pages)
         brand: {
           hero: "#0F1E2E",

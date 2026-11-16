@@ -34,7 +34,7 @@ export function ThankYouContent() {
   const isWaiting = state === "pending" || state === "processing" || state === "awaiting_review";
 
   return (
-    <div className="flex flex-col min-h-[80vh] bg-brand-cream pt-20 pb-16 px-4">
+    <div className="flex flex-col min-h-[80vh] bg-brand-cream pt-10 pb-16 px-4">
       <div className="container max-w-2xl mx-auto">
         <div className="text-center card-brand p-8 md:p-10 shadow-card-md">
           <div className="w-16 h-16 bg-brand-blue-light text-brand-blue rounded-full flex items-center justify-center mx-auto mb-6">
