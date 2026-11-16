@@ -30,7 +30,8 @@
 8. Confirm results page shows: action bar (Share + Copy link + Download PDF), hero + score badge, stat cards, charts, scorecard, priorities, findings, page analysis, fix previews, roadmap, CTA
 9. **Share:** click Copy share link — clipboard contains `https://…/results/{token}`; on mobile, native Share may appear
 10. **PDF:** click Download PDF — file downloads from `/api/results/{token}/pdf` with branded layout (published content only)
-11. **Status API:** `GET /api/results/{token}/status` returns `{ ok, state, ready, companyName }`
+11. **Status API:** `GET /api/results/{token}/status` returns `{ ok, state, ready, companyName, overallScore }` (`overallScore` is set when the published scorecard is available)
+12. **Audit results UI:** After submit, `/audit` polls status and shows the score on-page (does not require waiting for email)
 12. In Supabase dashboard, verify:
    - `geo_submissions` row with `status = submitted`
    - `geo_audit_jobs` row: `queued` → `processing` → `published` (or `awaiting_review` if review gate on)

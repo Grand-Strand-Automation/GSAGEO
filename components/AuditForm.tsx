@@ -41,12 +41,15 @@ type FormState = {
   website: string; // honeypot
 };
 
-type Phase = "form" | "scanning" | "results" | "error";
+type Phase = "form" | "scanning" | "scoring" | "results" | "error";
 
 type SubmitResult = {
   score?: number | null;
   resultsToken?: string;
 };
+
+const SCORE_POLL_MS = 2000;
+const SCORE_POLL_MAX_ATTEMPTS = 90; // ~3 minutes
 
 const EMPTY_FORM: FormState = {
   website_url: "",
@@ -257,6 +260,42 @@ export function AuditForm({
     setStep((s) => Math.max(1, s - 1));
   }
 
+  async function waitForScore(token: string): Promise<number | null> {
+    for (let attempt = 0; attempt < SCORE_POLL_MAX_ATTEMPTS; attempt += 1) {
+      try {
+        const resp = await fetch(`/api/results/${encodeURIComponent(token)}/status`);
+        const data = await resp.json();
+        if (!resp.ok || !data.ok) {
+          await new Promise((r) => window.setTimeout(r, SCORE_POLL_MS));
+          continue;
+        }
+        if (data.state === "failed") {
+          throw new Error(
+            "We could not finish scoring this site. Please try again or email shawn@gsally.com.",
+          );
+        }
+        if (data.state === "revoked" || data.state === "expired") {
+          throw new Error(
+            "Your results link is no longer valid. Please try again or email shawn@gsally.com.",
+          );
+        }
+        if (typeof data.overallScore === "number") {
+          return data.overallScore;
+        }
+        if (data.ready) {
+          // Published but score missing from payload — stop waiting.
+          return null;
+        }
+      } catch (err) {
+        if (err instanceof Error && /could not finish|no longer valid/i.test(err.message)) {
+          throw err;
+        }
+      }
+      await new Promise((r) => window.setTimeout(r, SCORE_POLL_MS));
+    }
+    return null;
+  }
+
   async function submitAssessment() {
     setSubmitError("");
     setPhase("scanning");
@@ -330,13 +369,42 @@ export function AuditForm({
           window.setTimeout(finish, 150);
           return;
         }
-        void requestPromise.then(() => {
-          if (requestOk.current) {
-            setSubmitResult(requestPayload.current);
-            clearStorage();
-            setPhase("results");
-          } else {
+        void requestPromise.then(async () => {
+          if (!requestOk.current) {
             setSubmitError(requestError.current);
+            setPhase("error");
+            return;
+          }
+
+          const base = requestPayload.current ?? {};
+          clearStorage();
+
+          // Prefer an immediate score if the API ever returns one; otherwise poll status.
+          if (typeof base.score === "number") {
+            setSubmitResult(base);
+            setPhase("results");
+            return;
+          }
+
+          const token = typeof base.resultsToken === "string" ? base.resultsToken : "";
+          if (!token) {
+            setSubmitResult(base);
+            setPhase("results");
+            return;
+          }
+
+          setSubmitResult(base);
+          setPhase("scoring");
+          try {
+            const score = await waitForScore(token);
+            setSubmitResult({ ...base, score });
+            setPhase("results");
+          } catch (err) {
+            setSubmitError(
+              err instanceof Error
+                ? err.message
+                : "Something went wrong finishing your score.",
+            );
             setPhase("error");
           }
         });
@@ -366,26 +434,40 @@ export function AuditForm({
 
   const progressPct = useMemo(() => (step / 4) * 100, [step]);
 
-  if (phase === "scanning") {
+  if (phase === "scanning" || phase === "scoring") {
+    const scoring = phase === "scoring";
     return (
       <section className="section-pad bg-surface-alt">
         <div className="container-site max-w-xl">
           <div className="card-surface p-8 shadow-card-md" aria-live="polite">
-            <p className="eyebrow mb-3">Scanning</p>
-            <h1 className="heading-3 mb-2">Reviewing {form.website_url || "your site"}…</h1>
-            <p className="mb-6 text-sm text-muted">This usually takes just a moment.</p>
+            <p className="eyebrow mb-3">{scoring ? "Scoring" : "Scanning"}</p>
+            <h1 className="heading-3 mb-2">
+              {scoring
+                ? "Calculating your AI Visibility Score…"
+                : `Reviewing ${form.website_url || "your site"}…`}
+            </h1>
+            <p className="mb-6 text-sm text-muted">
+              {scoring
+                ? "Your assessment is running now. Your score will appear on this page as soon as it's ready — no need to wait for email."
+                : "This usually takes just a moment."}
+            </p>
             <div className="mb-6 h-2 overflow-hidden rounded-full bg-border">
               <div
-                className="h-full rounded-full bg-accent transition-all duration-500"
+                className={cn(
+                  "h-full rounded-full bg-accent transition-all duration-500",
+                  scoring && "animate-pulse",
+                )}
                 style={{
-                  width: `${Math.min(100, (scanIndex / SCAN_CHECKLIST.length) * 100)}%`,
+                  width: scoring
+                    ? "100%"
+                    : `${Math.min(100, (scanIndex / SCAN_CHECKLIST.length) * 100)}%`,
                 }}
               />
             </div>
             <ul className="space-y-3">
               {SCAN_CHECKLIST.map((item, idx) => {
-                const done = idx < scanIndex;
-                const active = idx === scanIndex;
+                const done = scoring || idx < scanIndex;
+                const active = !scoring && idx === scanIndex;
                 return (
                   <li
                     key={item}
@@ -410,6 +492,20 @@ export function AuditForm({
                   </li>
                 );
               })}
+              <li
+                className={cn(
+                  "flex items-center gap-3 text-sm",
+                  scoring ? "text-accent" : "text-muted",
+                )}
+              >
+                <span
+                  className={cn(
+                    "flex h-5 w-5 items-center justify-center rounded-full border",
+                    scoring ? "border-accent" : "border-border",
+                  )}
+                />
+                Calculating your AI Visibility Score
+              </li>
             </ul>
           </div>
         </div>
@@ -420,6 +516,9 @@ export function AuditForm({
   if (phase === "results") {
     const score =
       submitResult && typeof submitResult.score === "number" ? submitResult.score : null;
+    const resultsHref = submitResult?.resultsToken
+      ? `/results/${encodeURIComponent(submitResult.resultsToken)}`
+      : "";
     return (
       <section className="section-pad bg-surface-alt">
         <div className="container-site">
@@ -430,8 +529,9 @@ export function AuditForm({
             Here&apos;s your starting point, {firstNameFrom(form.full_name)}.
           </h1>
           <p className="body-lg mb-10 max-w-2xl">
-            Your full report, with what&apos;s helping, what&apos;s hurting and your top priority, is
-            on its way to {form.work_email}.
+            {score != null
+              ? "Your AI Visibility Score is ready below. Open the full report for what's helping, what's hurting, and what to fix first."
+              : `We're still finalizing the scored report. A copy will also go to ${form.work_email}.`}
           </p>
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             <div className="card-surface flex flex-col items-center justify-center p-8">
@@ -439,18 +539,27 @@ export function AuditForm({
                 <ScoreRing score={score} size={140} label="AI Visibility Score" />
               ) : (
                 <>
-                  <ScoreRing score={null} size={140} placeholder="Report on its way" />
+                  <ScoreRing score={null} size={140} placeholder="Score pending" />
                   <p className="mt-4 max-w-xs text-center text-sm text-muted">
-                    We&apos;re finishing your full write-up. Check your inbox shortly.
+                    {resultsHref
+                      ? "Your report link is ready — open it to see the score as soon as publishing finishes."
+                      : "We're finishing your score. Check your inbox shortly, or try again."}
                   </p>
                 </>
               )}
+              {resultsHref ? (
+                <ButtonLink href={resultsHref} variant="primary" size="md" className="mt-6">
+                  {score != null ? "Open full report →" : "Open report status →"}
+                </ButtonLink>
+              ) : null}
             </div>
             <div className="card-surface p-8">
               <h2 className="heading-3 mb-5">What happens next</h2>
               <ol className="mb-8 space-y-4">
                 {[
-                  "Check your inbox",
+                  score != null
+                    ? "Review your score and full report"
+                    : "Open your report link for live status",
                   "Fix your top priority",
                   "Want help with the rest?",
                 ].map((item, i) => (
@@ -462,6 +571,9 @@ export function AuditForm({
                   </li>
                 ))}
               </ol>
+              <p className="mb-6 text-sm text-muted">
+                A copy of the full write-up is also sent to {form.work_email}.
+              </p>
               <div className="flex flex-col gap-3 sm:flex-row">
                 <ButtonLink href="/#pricing" variant="primary" size="md">
                   See monthly plans
