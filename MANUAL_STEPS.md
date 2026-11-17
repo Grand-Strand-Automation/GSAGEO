@@ -13,7 +13,9 @@ These items cannot be completed from code alone. Do them in order after reviewin
   - [ ] `supabase/migrations/005_customer_executive_summary.sql`
   - [ ] `supabase/migrations/006_geo_follow_up.sql`
   - [ ] `supabase/migrations/007_subscription_retention.sql`
+  - [ ] `supabase/migrations/008_subscription_fulfillment.sql`
 - [ ] Confirm `/api/health/db` returns `{ "ok": true, "database": "ready" }`
+- [ ] Confirm `/api/health/fulfillment` returns ready (after env + migration 008)
 - [ ] Copy project URL, anon key, and **service role key** into Vercel env vars (see [ENV_SETUP.md](./ENV_SETUP.md))
 - [ ] Disable public signups: Authentication → Providers → Email → disable **Enable sign ups**
 - [ ] Create first admin user(s) manually: Authentication → Users → Add user
@@ -24,10 +26,14 @@ These items cannot be completed from code alone. Do them in order after reviewin
 
 - [ ] Import GitHub repo `Grand-Strand-Automation/GSAGEO`
 - [ ] Set all env vars from `.env.example` / [ENV_SETUP.md](./ENV_SETUP.md)
-- [ ] Generate and set `CRON_SECRET` (random string) — backs up audit job processing
+- [ ] Generate and set `CRON_SECRET` (random string) — required for all `/api/cron/*` routes
 - [ ] Set `AUDIT_AUTO_PUBLISH=true` (default) or `AUDIT_REVIEW_REQUIRED=true` for admin review gate
 - [ ] Set `APP_URL` to production URL as a private Config/env var (e.g. `https://gsageo.vercel.app`) — do **not** use `NEXT_PUBLIC_APP_URL`
-- [ ] Confirm cron job appears after deploy (Hobby plan: cron may require Pro — see Vercel docs)
+- [ ] Confirm cron jobs appear after deploy (Hobby plan: cron may require Pro — see Vercel docs):
+  - [ ] `/api/cron/process-audit-jobs` (every 15 min)
+  - [ ] `/api/cron/process-follow-up-emails` (daily 14:00 UTC)
+  - [ ] `/api/cron/apply-subscription-periods` (daily 13:00 UTC)
+  - [ ] `/api/cron/process-fulfillment-cycles` (daily 13:15 UTC)
 - [ ] Add custom domain `geo.gsally.com` (preview: `gsageo.vercel.app`)
 
 ## DNS (requires domain registrar / DNS host access)
@@ -35,12 +41,23 @@ These items cannot be completed from code alone. Do them in order after reviewin
 - [ ] Add CNAME `geo` → `cname.vercel-dns.com` (or values Vercel provides)
 - [ ] Wait for SSL certificate provisioning
 
-## Resend (optional)
+## Resend (required for customer emails)
 
 - [ ] Create Resend account and API key
 - [ ] Verify sending domain for production `from` address
 - [ ] Set `RESEND_API_KEY` and `RESEND_FROM_EMAIL` in Vercel
-- [ ] Wire email in `lib/audit/processor.ts` (TODO in code)
+- [ ] Redeploy after setting keys
+
+## Subscription automation
+
+Fully documented in [SUBSCRIPTION_FULFILLMENT.md](./SUBSCRIPTION_FULFILLMENT.md).
+
+- [ ] Run migration `008_subscription_fulfillment.sql` in Supabase
+- [ ] Confirm `/api/health/fulfillment` is healthy
+- [ ] Collect payment offline (Stripe not wired yet) before **Mark converted**
+- [ ] Convert a test customer → confirm fulfillment cycle appears and monthly email sends
+- [ ] For Growth/Managed: assign ops owner; use **Mark ops complete** after hands-on work
+- [ ] Optional later: wire Stripe into `BILLING_*` / `billing_*` columns so `next_billing_at` syncs from the provider
 
 ## Sentry / PostHog (optional)
 
