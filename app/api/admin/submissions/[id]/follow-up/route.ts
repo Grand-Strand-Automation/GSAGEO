@@ -10,6 +10,10 @@ import {
 import { deliverReportEmailForJob } from "@/lib/follow-up/report-delivery";
 import { trackConversionEvent } from "@/lib/analytics/events";
 import { isSubscriptionPlanKey } from "@/lib/subscriptions/config";
+import {
+  processQueuedFulfillmentCycles,
+  startSubscriptionFulfillment,
+} from "@/lib/subscriptions/fulfillment";
 
 async function requireAdmin() {
   const supabase = await createClient();
@@ -59,30 +63,41 @@ export async function POST(
         });
         return NextResponse.json({ ok: true, message: "Marked as review booked." });
 
-      case "mark_converted":
+      case "mark_converted": {
+        const plan = isSubscriptionPlanKey(submission.selected_plan)
+          ? submission.selected_plan
+          : "growth";
         await markFollowUpStatus(submissionId, "converted", {
           converted_at: new Date().toISOString(),
           follow_up_stopped_at: new Date().toISOString(),
-          current_plan: isSubscriptionPlanKey(submission.selected_plan)
-            ? submission.selected_plan
-            : "growth",
+          current_plan: plan,
           subscription_status: "active",
           health_status: "green",
           churn_risk_level: "low",
           retention_last_event_at: new Date().toISOString(),
         });
-        await supabase.from("geo_subscription_events").insert({
-          submission_id: submissionId,
-          event_name: "subscription_started",
-          new_plan: isSubscriptionPlanKey(submission.selected_plan)
-            ? submission.selected_plan
-            : "growth",
-          initiated_by: "admin",
-          metadata_json: { source: "admin_mark_converted" },
+        const { cycle, nextBillingAt } = await startSubscriptionFulfillment({
+          submissionId,
+          plan,
+          initiatedBy: "admin",
         });
+        // Run kickoff refresh immediately so production does not wait for the daily cron.
+        let processed = { claimed: 0, auditsStarted: 0 };
+        try {
+          processed = await processQueuedFulfillmentCycles(1);
+        } catch (fulfillErr) {
+          console.error("[follow-up] Kickoff fulfillment failed:", submissionId, fulfillErr);
+        }
         trackConversionEvent("subscription_started", { submissionId });
         trackConversionEvent("converted_to_paid", { submissionId });
-        return NextResponse.json({ ok: true, message: "Marked as converted." });
+        return NextResponse.json({
+          ok: true,
+          message: `Marked as converted. Kickoff cycle #${cycle.cycle_number} · audits started ${processed.auditsStarted} · next billing ${new Date(nextBillingAt).toLocaleDateString()}.`,
+          fulfillmentCycleId: cycle.id,
+          nextBillingAt,
+          processed,
+        });
+      }
 
       case "stop_follow_up":
         await stopFollowUp(submissionId, "closed_not_interested");

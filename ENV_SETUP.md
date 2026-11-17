@@ -16,7 +16,7 @@ Copy `.env.example` to `.env.local` for local development. Set the same values i
 
 | Variable | Purpose |
 |----------|---------|
-| `CRON_SECRET` | Protects `/api/cron/process-audit-jobs` (backup job processor) |
+| `CRON_SECRET` | Protects all `/api/cron/*` routes (audits, follow-up emails, billing periods, fulfillment) |
 
 ## Audit / results automation
 

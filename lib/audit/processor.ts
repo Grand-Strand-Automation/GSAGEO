@@ -21,6 +21,11 @@ import {
 } from "@/lib/internal-fixes/persist";
 import { buildCustomerExecutiveContent } from "./customer-summary";
 import { deliverReportEmailForJob } from "@/lib/follow-up/report-delivery";
+import {
+  findFulfillmentCycleByAuditJob,
+  finalizeFulfillmentCycleFromAudit,
+  markFulfillmentCycleFailed,
+} from "@/lib/subscriptions/fulfillment";
 
 export type AuditRunResult = {
   summary: string;
@@ -269,10 +274,26 @@ export async function processAuditJob(jobId: string): Promise<void> {
       .eq("id", submission.id);
 
     if (finalStatus === "published") {
-      try {
-        await deliverReportEmailForJob(jobId);
-      } catch (emailErr) {
-        console.error("[audit] Report delivery email failed:", jobId, emailErr);
+      const fulfillmentCycle = await findFulfillmentCycleByAuditJob(jobId);
+      if (fulfillmentCycle) {
+        try {
+          await finalizeFulfillmentCycleFromAudit({
+            auditJobId: jobId,
+            overallScore: result.scorecard.overall,
+          });
+        } catch (fulfillErr) {
+          console.error("[audit] Fulfillment finalize failed:", jobId, fulfillErr);
+          await markFulfillmentCycleFailed(
+            jobId,
+            fulfillErr instanceof Error ? fulfillErr.message : "Fulfillment finalize failed",
+          );
+        }
+      } else {
+        try {
+          await deliverReportEmailForJob(jobId);
+        } catch (emailErr) {
+          console.error("[audit] Report delivery email failed:", jobId, emailErr);
+        }
       }
     }
   } catch (err) {
@@ -287,6 +308,11 @@ export async function processAuditJob(jobId: string): Promise<void> {
         completed_at: new Date().toISOString(),
       })
       .eq("id", jobId);
+    try {
+      await markFulfillmentCycleFailed(jobId, message);
+    } catch (fulfillErr) {
+      console.error("[audit] Failed to mark fulfillment cycle failed:", jobId, fulfillErr);
+    }
   }
 }
 

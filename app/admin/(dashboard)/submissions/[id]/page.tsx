@@ -9,6 +9,7 @@ import { JobActions } from "@/components/admin/JobActions";
 import { ReportDistributionPanel } from "@/components/admin/ReportDistributionPanel";
 import { FollowUpActions } from "@/components/admin/FollowUpActions";
 import { SubscriptionRetentionPanel } from "@/components/admin/SubscriptionRetentionPanel";
+import { FulfillmentPanel } from "@/components/admin/FulfillmentPanel";
 import { InternalFixWorkspace } from "@/components/admin/InternalFixWorkspace";
 import { loadInternalFixesForJob } from "@/lib/internal-fixes/persist";
 import { getSubscriptionEventsForSubmission } from "@/lib/subscriptions/retention-service";
@@ -17,6 +18,7 @@ import { AuditReportView } from "@/components/results/AuditReportView";
 import { isResultsVisible } from "@/lib/results/access";
 import { loadPublishedReportBySubmissionId } from "@/lib/results/published-report";
 import type { GeoAuditJob, GeoAuditResult, GeoFixPreview, GeoSubmission, GeoAdminNote, GeoInternalFix, GeoSubscriptionEvent, ResultsBundle } from "@/lib/types/database";
+import type { GeoFulfillmentCycle } from "@/lib/subscriptions/fulfillment";
 
 export const dynamic = "force-dynamic";
 
@@ -72,6 +74,7 @@ export default async function SubmissionDetailPage({
   let internalFixes: GeoInternalFix[] = [];
   let notes: GeoAdminNote[] = [];
   let subscriptionEvents: GeoSubscriptionEvent[] = [];
+  let fulfillmentCycles: GeoFulfillmentCycle[] = [];
 
   try {
     const supabase = createAdminClient();
@@ -119,6 +122,17 @@ export default async function SubmissionDetailPage({
 
     notes = (noteRows ?? []) as GeoAdminNote[];
     subscriptionEvents = await getSubscriptionEventsForSubmission(id);
+
+    try {
+      const { data: cycleRows } = await supabase
+        .from("geo_fulfillment_cycles")
+        .select("*")
+        .eq("submission_id", id)
+        .order("cycle_number", { ascending: false });
+      fulfillmentCycles = (cycleRows ?? []) as GeoFulfillmentCycle[];
+    } catch {
+      fulfillmentCycles = [];
+    }
   } catch {
     return (
       <ConfigError message="Could not load this submission. Verify Supabase migrations and service role access." />
@@ -191,6 +205,8 @@ export default async function SubmissionDetailPage({
             ) : null}
 
             <FollowUpActions submissionId={id} submission={sub} auditJobId={job?.id ?? null} />
+
+            <FulfillmentPanel submissionId={id} cycles={fulfillmentCycles} />
 
             <SubscriptionRetentionPanel submission={sub} events={subscriptionEvents} />
 

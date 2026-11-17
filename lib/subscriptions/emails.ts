@@ -113,3 +113,53 @@ export async function sendRetentionHelpEmail({
     }),
   });
 }
+
+export async function sendMonthlyFulfillmentEmail({
+  submissionId,
+  auditJobId,
+  to,
+  companyName,
+  customerName,
+  plan,
+  overallScore,
+  token,
+  needsOpsFollowThrough,
+}: SubscriptionEmailInput & {
+  auditJobId?: string | null;
+  customerName?: string;
+  plan: SubscriptionPlanKey;
+  overallScore?: number | null;
+  needsOpsFollowThrough: boolean;
+}) {
+  const planConfig = getSubscriptionPlan(plan);
+  const scoreCopy =
+    typeof overallScore === "number"
+      ? `Your latest GEO visibility score is ${overallScore}/100.`
+      : "Your latest GEO visibility refresh is ready.";
+
+  const followThrough = needsOpsFollowThrough
+    ? `Your ${planConfig.displayName} plan includes hands-on guidance next — we will follow up with this month's priorities and recommended actions.`
+    : `Your ${planConfig.displayName} plan includes this monthly snapshot, top priorities, and practical recommendations you can act on.`;
+
+  return sendTrackedEmail({
+    submissionId,
+    auditJobId,
+    eventType: "subscription_monthly_summary",
+    to,
+    subject: `${companyName}: your monthly AI visibility update`,
+    html: renderBrandedEmail({
+      headline: "Your monthly AI visibility update",
+      preview: `${companyName} monthly GEO refresh is ready.`,
+      bodyParagraphs: [
+        customerName ? `Hi ${customerName.split(" ")[0]},` : `Hello,`,
+        scoreCopy,
+        followThrough,
+        "Open your private report for the refreshed scorecard, priorities, and next steps.",
+      ],
+      primaryCta: token
+        ? { label: "View your monthly report", href: appUrl(`/results/${token}`) }
+        : undefined,
+      support: `${planConfig.displayName} · Month-to-month · Cancel anytime`,
+    }),
+  });
+}

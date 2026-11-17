@@ -44,13 +44,21 @@ POSTHOG_KEY=
 
 Settings → Git → Production Branch: `main` (or your default branch)
 
-## 5. Cron job
+## 5. Cron jobs
 
-`vercel.json` defines a cron hitting `/api/cron/process-audit-jobs` every 15 minutes.
+`vercel.json` defines:
+
+| Path | Schedule |
+|------|----------|
+| `/api/cron/process-audit-jobs` | every 15 minutes |
+| `/api/cron/process-follow-up-emails` | daily 14:00 UTC |
+| `/api/cron/apply-subscription-periods` | daily 13:00 UTC |
+| `/api/cron/process-fulfillment-cycles` | daily 13:15 UTC |
 
 - Requires `CRON_SECRET` env var
-- Vercel sends `Authorization: Bearer <CRON_SECRET>` on cron invocations (configure in Vercel Cron settings if needed)
+- Vercel sends `Authorization: Bearer <CRON_SECRET>` on cron invocations
 - **Note:** Cron on Hobby plan may be limited; verify in Vercel dashboard
+- See [SUBSCRIPTION_FULFILLMENT.md](./SUBSCRIPTION_FULFILLMENT.md)
 
 ## 6. Custom domain
 

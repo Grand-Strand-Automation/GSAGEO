@@ -57,6 +57,8 @@ export type GeoSubmission = {
   last_contacted_at?: string | null;
   admin_notified_at?: string | null;
   results_token?: string | null;
+  last_fulfillment_at?: string | null;
+  last_fulfillment_cycle_id?: string | null;
 };
 
 export type GeoAuditJob = {
