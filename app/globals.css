@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+  Design tokens
+  - Primary brand: --accent (teal) — links, eyebrows, progress, secondary emphasis
+  - CTA accent: same --accent on .btn-primary (one primary button style)
+  - Neutrals: --ink / --body / --muted on --surface / --surface-alt
+  - Status: --accent (good), --warn-* (caution), --bad-* (critical)
+  Contrast targets (WCAG AA): body ≥4.5:1, large/UI ≥3:1
+  Fixed pairs vs prior audit:
+  - muted on white: #5B6B7D (was lighter gray failing AA) ≈ 5.2:1
+  - placeholder: uses full muted (was muted/70)
+  - on-dark text #C3CFDA on #0F1E2E ≈ 8:1
+  - accent-on-dark #5EEAD4 on #0F1E2E ≈ 9:1
+  - white on accent #0F766E ≈ 5.5:1
+  - caution text #7A4A00 on #FEF0C7 ≈ 6.5:1
+  - bad text #B42318 on #FEF3F2 ≈ 5.8:1
+*/
 :root {
   --ink: #0f1e2e;
   --body: #3a4a5c;
@@ -29,6 +45,20 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 
   body {
@@ -116,7 +146,8 @@
   }
 
   .input-field {
-    @apply w-full border border-input-border rounded-control h-11 px-4 text-base text-ink bg-surface placeholder:text-muted/70;
+    /* placeholder uses full --muted (#5B6B7D on white ≈ 5.2:1) for WCAG AA */
+    @apply w-full border border-input-border rounded-control h-11 min-h-11 px-4 text-base text-ink bg-surface placeholder:text-muted;
   }
 
   .label-field {

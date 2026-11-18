@@ -9,9 +9,10 @@ type ScoreRingProps = {
   placeholder?: string;
 };
 
+/** Same thresholds as scoreTone: 0–39 bad, 40–69 warn, 70–100 good. */
 function scoreColor(score: number) {
-  if (score >= 65) return "#0F766E";
-  if (score >= 45) return "#D97706";
+  if (score >= 70) return "#0F766E";
+  if (score >= 40) return "#D97706";
   return "#B42318";
 }
 

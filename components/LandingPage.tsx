@@ -4,10 +4,13 @@ import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { FaqItem } from "@/components/FaqItem";
+import { GeoAbbr } from "@/components/GeoAbbr";
 import { IncludedIcon, IconCheck } from "@/components/icons/StrokeIcons";
+import { StatusChip } from "@/components/ui/StatusChip";
 import { ScoreRing } from "@/components/ui/ScoreRing";
 import { ButtonLink } from "@/components/ui/Button";
 import {
+  ABOUT_BLOCK,
   ENGINES,
   FAQ_ITEMS,
   GOOD_FIT,
@@ -21,7 +24,8 @@ import {
   WHATS_INCLUDED,
   WHY_IT_MATTERS,
 } from "@/lib/content/landing";
-import { scoreBadgeClass, scoreBarClass, scoreTone } from "@/lib/ui/score-status";
+import { GEO_DEFINITION, GEO_EXAMPLE, SEO_VS_GEO } from "@/lib/content/geo-explain";
+import { scoreBarClass } from "@/lib/ui/score-status";
 import { cn } from "@/lib/utils";
 
 function HeroUrlForm() {
@@ -52,7 +56,7 @@ function HeroUrlForm() {
           className="input-field h-[52px]"
         />
       </div>
-      <button type="submit" className="btn-ink whitespace-nowrap">
+      <button type="submit" className="btn-primary whitespace-nowrap">
         {HOME_HERO.primaryCta}
       </button>
     </form>
@@ -62,7 +66,7 @@ function HeroUrlForm() {
 function ExampleOutputCard() {
   return (
     <div className="card-surface p-6 shadow-card-md md:p-7">
-      <p className="eyebrow mb-4">Example output</p>
+      <p className="eyebrow mb-2">{HOME_HERO.exampleLabel}</p>
       <p className="mb-4 font-mono text-xs text-muted">{HOME_HERO.sampleDomain}</p>
       <div className="mb-5 flex justify-center">
         <ScoreRing score={HOME_HERO.sampleScore} label="AI Visibility Score" size={128} />
@@ -75,14 +79,7 @@ function ExampleOutputCard() {
             className="flex items-center justify-between gap-3 border-t border-border pt-2.5 text-sm"
           >
             <span className="font-medium text-ink">{row.engine}</span>
-            <span
-              className={cn(
-                "rounded-md px-2 py-0.5 text-xs font-semibold",
-                scoreBadgeClass(row.tone),
-              )}
-            >
-              {row.status}
-            </span>
+            <StatusChip tone={row.tone} label={row.status} />
           </li>
         ))}
       </ul>
@@ -149,7 +146,7 @@ export function LandingPage() {
       {/* 2. Engines strip */}
       <section className="border-y border-border bg-surface py-6">
         <div className="container-site flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-6 sm:gap-y-2">
-          <p className="text-sm font-medium text-muted">We check how you show up in</p>
+          <p className="text-sm font-medium text-muted">Platforms monitored</p>
           <div className="flex flex-wrap gap-x-5 gap-y-2">
             {ENGINES.map((engine) => (
               <span key={engine} className="font-mono text-sm font-semibold text-ink">
@@ -160,8 +157,36 @@ export function LandingPage() {
         </div>
       </section>
 
-      {/* 3. Why it matters */}
-      <section className="section-pad bg-surface">
+      {/* 3. What is GEO */}
+      <section className="section-pad bg-surface" aria-labelledby="what-is-geo">
+        <div className="container-site">
+          <p className="eyebrow mb-4">Plain English</p>
+          <h2 id="what-is-geo" className="heading-2 mb-5 max-w-3xl">
+            What is <GeoAbbr />?
+          </h2>
+          <p className="body-lg mb-10 max-w-3xl">{GEO_DEFINITION}</p>
+          <div className="mb-10 grid grid-cols-1 gap-5 md:grid-cols-3">
+            {SEO_VS_GEO.map((col) => (
+              <div key={col.label} className="rounded-card border border-border bg-surface-alt p-6">
+                <p className="mb-2 font-mono text-xs font-semibold uppercase tracking-[0.06em] text-accent">
+                  {col.label}
+                </p>
+                <h3 className="heading-3 mb-2 text-lg">{col.title}</h3>
+                <p className="text-sm leading-relaxed text-body">{col.body}</p>
+              </div>
+            ))}
+          </div>
+          <div className="rounded-card border border-accent/20 bg-accent-tint p-6 md:p-7">
+            <p className="mb-2 font-mono text-xs font-semibold uppercase tracking-[0.06em] text-accent">
+              Example
+            </p>
+            <p className="text-base leading-relaxed text-ink md:text-lg">{GEO_EXAMPLE}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Why it matters */}
+      <section className="section-pad bg-surface-alt">
         <div className="container-site">
           <p className="eyebrow mb-4">{WHY_IT_MATTERS.eyebrow}</p>
           <h2 className="heading-2 mb-12 max-w-3xl">{WHY_IT_MATTERS.title}</h2>
@@ -177,7 +202,7 @@ export function LandingPage() {
         </div>
       </section>
 
-      {/* 4. How it works */}
+      {/* 5. How it works */}
       <section id="how" className="section-pad bg-ink text-white">
         <div className="container-site">
           <div className="mb-12 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
@@ -214,7 +239,7 @@ export function LandingPage() {
         </div>
       </section>
 
-      {/* 5. What's included */}
+      {/* 6. What's included */}
       <section id="included" className="section-pad bg-surface">
         <div className="container-site">
           <h2 className="heading-2 mb-12 max-w-3xl">
@@ -234,7 +259,7 @@ export function LandingPage() {
         </div>
       </section>
 
-      {/* 6. Sample report teaser */}
+      {/* 7. Sample report teaser */}
       <section className="section-pad bg-surface-alt">
         <div className="container-site">
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
@@ -269,7 +294,7 @@ export function LandingPage() {
         </div>
       </section>
 
-      {/* 7. Fit */}
+      {/* 8. Fit */}
       <section className="section-pad bg-surface">
         <div className="container-site">
           <h2 className="heading-2 mb-10">Honest about who this is for</h2>
@@ -304,7 +329,7 @@ export function LandingPage() {
         </div>
       </section>
 
-      {/* 8. Pricing */}
+      {/* 9. Pricing */}
       <section id="pricing" className="section-pad bg-surface-alt">
         <div className="container-site">
           <div className="mb-12 max-w-2xl">
@@ -320,7 +345,7 @@ export function LandingPage() {
                 className={cn(
                   "relative flex flex-col rounded-card border p-7",
                   tier.primary
-                    ? "border-dark-raised-border bg-ink text-white"
+                    ? "order-first border-dark-raised-border bg-ink text-white shadow-card-md md:order-none md:scale-[1.02]"
                     : "border-border bg-surface",
                 )}
               >
@@ -389,11 +414,58 @@ export function LandingPage() {
         </div>
       </section>
 
-      {/* 9. Proof (placeholder — empty by default) */}
+      {/* 10. Proof (placeholder — empty by default) */}
       <ProofSection />
 
-      {/* 10. FAQ */}
-      <section id="faq" className="section-pad bg-surface">
+      {/* 11. Who's behind this */}
+      <section className="section-pad bg-surface" aria-labelledby="about-heading">
+        <div className="container-site max-w-3xl">
+          <p className="eyebrow mb-4">Who&apos;s behind this</p>
+          <h2 id="about-heading" className="heading-2 mb-6">
+            Local help for Grand Strand service businesses
+          </h2>
+          <div className="card-surface flex flex-col gap-5 p-6 sm:flex-row sm:items-start md:p-8">
+            <div
+              className="flex h-20 w-20 flex-shrink-0 items-center justify-center rounded-card bg-surface-alt font-heading text-2xl font-semibold text-accent"
+              aria-hidden={!ABOUT_BLOCK.photoSrc}
+            >
+              {ABOUT_BLOCK.photoSrc ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={ABOUT_BLOCK.photoSrc}
+                  alt=""
+                  className="h-full w-full rounded-card object-cover"
+                />
+              ) : (
+                ABOUT_BLOCK.name
+                  .split(" ")
+                  .map((p) => p[0])
+                  .join("")
+              )}
+            </div>
+            <div>
+              <p className="font-heading text-lg font-semibold text-ink">{ABOUT_BLOCK.name}</p>
+              <p className="text-sm text-muted">
+                {ABOUT_BLOCK.role} · {ABOUT_BLOCK.since}
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-body md:text-base">{ABOUT_BLOCK.body}</p>
+              {ABOUT_BLOCK.linkedinUrl ? (
+                <a
+                  href={ABOUT_BLOCK.linkedinUrl}
+                  className="mt-4 inline-block text-sm font-semibold text-accent hover:text-accent-hover"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  LinkedIn →
+                </a>
+              ) : null}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 12. FAQ */}
+      <section id="faq" className="section-pad bg-surface-alt">
         <div className="container-site max-w-3xl">
           <h2 className="heading-2 mb-10">Questions, answered</h2>
           <div className="card-surface px-6 md:px-8">
@@ -404,13 +476,13 @@ export function LandingPage() {
         </div>
       </section>
 
-      {/* 11. Final CTA */}
+      {/* 13. Final CTA */}
       <section className="section-pad bg-accent text-white">
         <div className="container-site max-w-3xl text-center">
           <h2 className="heading-2 mb-4 text-white">
             Find out how AI sees your business, free.
           </h2>
-          <p className="mb-8 text-base leading-relaxed text-white/85 md:text-lg">
+          <p className="mb-8 text-base leading-relaxed text-white/90 md:text-lg">
             Takes about two minutes to request. Results usually arrive within minutes.
           </p>
           <ButtonLink href="/audit" variant="white">

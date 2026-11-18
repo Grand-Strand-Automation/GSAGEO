@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 const variants = {
   primary: "btn-primary",
   ink: "btn-ink",
-  gold: "bg-highlight text-ink hover:bg-[#F59E0B] btn-base min-h-[52px] px-6 text-[15px]",
+  gold: "bg-highlight text-ink hover:bg-brand-gold-hover btn-base min-h-[52px] px-6 text-[15px]",
   secondary: "btn-outline-on-dark",
   secondaryLight: "btn-outline",
   white: "btn-white",

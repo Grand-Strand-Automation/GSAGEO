@@ -1,8 +1,9 @@
 export type ScoreTone = "good" | "warn" | "bad";
 
+/** Site-wide thresholds: 0–39 bad, 40–69 warn, 70–100 good. */
 export function scoreTone(score: number): ScoreTone {
-  if (score >= 65) return "good";
-  if (score >= 45) return "warn";
+  if (score >= 70) return "good";
+  if (score >= 40) return "warn";
   return "bad";
 }
 

@@ -5,6 +5,7 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } fr
 import { ScoreRing } from "@/components/ui/ScoreRing";
 import { ButtonLink } from "@/components/ui/Button";
 import { IconCheck } from "@/components/icons/StrokeIcons";
+import { GEO_ONE_LINER } from "@/components/GeoAbbr";
 import {
   ACCESS_OPTIONS,
   AUDIT_STORAGE_KEY,
@@ -17,6 +18,7 @@ import {
   SCAN_CHECKLIST,
   STEP_LABELS,
 } from "@/lib/content/audit-form";
+import { normalizeUrl } from "@/lib/audit/url-utils";
 import type { SubmissionInput } from "@/lib/validation/submission";
 import { cn } from "@/lib/utils";
 
@@ -72,6 +74,17 @@ const EMPTY_FORM: FormState = {
 
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+}
+
+function looksLikeWebsite(raw: string) {
+  const value = raw.trim();
+  if (!value || !value.includes(".")) return false;
+  try {
+    const url = new URL(normalizeUrl(value));
+    return Boolean(url.hostname.includes("."));
+  } catch {
+    return false;
+  }
 }
 
 function firstNameFrom(fullName: string) {
@@ -164,7 +177,7 @@ export function AuditForm({
   initialPlan?: string;
   initialUrl?: string;
 }) {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(() => (initialUrl.trim() ? 2 : 1));
   const [phase, setPhase] = useState<Phase>("form");
   const [form, setForm] = useState<FormState>(() => ({
     ...EMPTY_FORM,
@@ -172,7 +185,9 @@ export function AuditForm({
     selected_plan: initialPlan,
   }));
   const [stepError, setStepError] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<Partial<Record<keyof FormState, string>>>({});
   const [submitError, setSubmitError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
   const [scanIndex, setScanIndex] = useState(0);
   const [submitResult, setSubmitResult] = useState<SubmitResult | null>(null);
   const hydrated = useRef(false);
@@ -248,31 +263,42 @@ export function AuditForm({
     });
   }, []);
 
-  function validateStep1(): string | null {
-    if (!form.website_url.trim() || !form.website_url.includes(".")) {
-      return "Please enter a valid website address (it should include a dot, like yourbusiness.com).";
+  function validateStep1(): boolean {
+    const errors: Partial<Record<keyof FormState, string>> = {};
+    if (!looksLikeWebsite(form.website_url)) {
+      errors.website_url =
+        "Enter a valid website (example.com is fine — we’ll add https automatically).";
     }
+    setFieldErrors(errors);
+    setStepError(errors.website_url ?? "");
+    return Object.keys(errors).length === 0;
+  }
+
+  function validateStep2(): boolean {
+    const errors: Partial<Record<keyof FormState, string>> = {};
     if (form.full_name.trim().length < 2) {
-      return "Please enter your full name.";
+      errors.full_name = "Please enter your full name.";
     }
     if (!isValidEmail(form.work_email)) {
-      return "Please enter a valid work email.";
+      errors.work_email = "Please enter a valid work email.";
     }
     if (!form.company_name.trim()) {
-      return "Please enter your company name.";
+      errors.company_name = "Please enter your company name.";
     }
-    return null;
+    setFieldErrors(errors);
+    const first = errors.full_name || errors.work_email || errors.company_name || "";
+    setStepError(first);
+    return Object.keys(errors).length === 0;
   }
 
   function goNext() {
-    if (step === 1) {
-      const err = validateStep1();
-      if (err) {
-        setStepError(err);
-        return;
-      }
-    }
+    if (step === 1 && !validateStep1()) return;
+    if (step === 2 && !validateStep2()) return;
     setStepError("");
+    setFieldErrors({});
+    if (step === 1 && form.website_url.trim()) {
+      update("website_url", normalizeUrl(form.website_url.trim()));
+    }
     setStep((s) => Math.min(4, s + 1));
   }
 
@@ -318,6 +344,13 @@ export function AuditForm({
   }
 
   async function submitAssessment() {
+    if (submitting) return;
+    if (!validateStep1() || !validateStep2()) {
+      setStep(looksLikeWebsite(form.website_url) ? 2 : 1);
+      return;
+    }
+
+    setSubmitting(true);
     setSubmitError("");
     setPhase("scanning");
     setScanIndex(0);
@@ -326,11 +359,14 @@ export function AuditForm({
     requestPayload.current = null;
     requestError.current = "";
 
+    const normalizedWebsite = normalizeUrl(form.website_url.trim());
+    update("website_url", normalizedWebsite);
+
     const payload: SubmissionInput = {
       full_name: form.full_name.trim(),
       work_email: form.work_email.trim(),
       company_name: form.company_name.trim(),
-      website_url: form.website_url.trim(),
+      website_url: normalizedWebsite,
       phone: form.phone.trim() || undefined,
       primary_service: form.primary_service.trim() || undefined,
       service_area: form.service_area.trim() || undefined,
@@ -392,6 +428,7 @@ export function AuditForm({
         }
         void requestPromise.then(async () => {
           if (!requestOk.current) {
+            setSubmitting(false);
             setSubmitError(requestError.current);
             setPhase("error");
             return;
@@ -402,6 +439,7 @@ export function AuditForm({
 
           // Prefer an immediate score if the API ever returns one; otherwise poll status.
           if (typeof base.score === "number") {
+            setSubmitting(false);
             setSubmitResult(base);
             setPhase("results");
             return;
@@ -409,6 +447,7 @@ export function AuditForm({
 
           const token = typeof base.resultsToken === "string" ? base.resultsToken : "";
           if (!token) {
+            setSubmitting(false);
             setSubmitResult(base);
             setPhase("results");
             return;
@@ -418,9 +457,11 @@ export function AuditForm({
           setPhase("scoring");
           try {
             const score = await waitForScore(token);
+            setSubmitting(false);
             setSubmitResult({ ...base, score });
             setPhase("results");
           } catch (err) {
+            setSubmitting(false);
             setSubmitError(
               err instanceof Error
                 ? err.message
@@ -444,7 +485,9 @@ export function AuditForm({
     setStep(1);
     setPhase("form");
     setStepError("");
+    setFieldErrors({});
     setSubmitError("");
+    setSubmitting(false);
     setSubmitResult(null);
     setScanIndex(0);
   }
@@ -549,12 +592,12 @@ export function AuditForm({
           <h1 className="heading-1 mb-4 max-w-3xl">
             {score != null
               ? `Here's your starting point, ${firstNameFrom(form.full_name)}.`
-              : `We're still finishing your score, ${firstNameFrom(form.full_name)}.`}
+              : `Your report is being generated, ${firstNameFrom(form.full_name)}.`}
           </h1>
           <p className="body-lg mb-10 max-w-2xl">
             {score != null
-              ? "Your AI Visibility Score is ready below. Open the full report for what's helping, what's hurting, and what to fix first."
-              : `Your assessment was submitted. Open the report link below for live status — we'll also email ${form.work_email} when the full write-up is ready.`}
+              ? `Your AI Visibility Score is ready below. We've emailed a copy to ${form.work_email}. Open the full report for what's helping, what's hurting, and what to fix first.`
+              : `Your report is being generated, usually within minutes. We've emailed a copy to ${form.work_email}. Open the report link below for live status.`}
           </p>
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             <div className="card-surface flex flex-col items-center justify-center p-8">
@@ -647,35 +690,61 @@ export function AuditForm({
     );
   }
 
+  const urlConfirmed = looksLikeWebsite(form.website_url);
+
   return (
     <div id="audit-flow-top" className="flex flex-col scroll-mt-24">
       <section className="bg-surface-alt pb-8 pt-12 md:pb-10 md:pt-16">
         <div className="container-site">
           <p className="eyebrow mb-3">Free assessment</p>
-          <div className="mb-3 flex flex-wrap items-center gap-3">
-            <h1 className="heading-1 max-w-3xl">See how AI tools see your business</h1>
+          <h1 className="heading-1 mb-3 max-w-3xl">See how AI tools see your business</h1>
+          <p className="mb-4 max-w-2xl text-sm text-body md:text-base">{GEO_ONE_LINER}</p>
+          <p className="body-lg max-w-2xl">
+            Four short steps. Step 1 is your website URL. Step 2 is how we send results. Steps 3–4
+            are optional — the more you share, the sharper your priorities.
+          </p>
+
+          <div className="mt-5 flex flex-wrap items-center gap-3">
+            <label htmlFor="selected_plan" className="sr-only">
+              Selected plan
+            </label>
+            <div className="inline-flex flex-wrap items-center gap-2 rounded-control border border-border bg-surface px-3 py-2">
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.04em] text-muted">
+                Selected plan
+              </span>
+              <select
+                id="selected_plan"
+                className="rounded-md border-0 bg-transparent py-1 font-heading text-sm font-semibold text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                value={form.selected_plan}
+                onChange={(e) => update("selected_plan", e.target.value)}
+              >
+                <option value="">None yet</option>
+                {Object.entries(PLAN_CHIP_LABELS).map(([value, label]) => (
+                  <option key={value} value={value}>
+                    {label}
+                  </option>
+                ))}
+              </select>
+            </div>
             {planLabel ? (
               <span className="rounded-md bg-accent-tint px-2.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-[0.04em] text-accent">
                 Selected plan: {planLabel}
               </span>
             ) : null}
           </div>
-          <p className="body-lg max-w-2xl">
-            Four short steps. Only the first is required. The more you share, the sharper your
-            priorities.
-          </p>
 
           <div className="mt-8">
-            <div className="mb-3 flex flex-wrap gap-2">
+            <ol className="mb-3 flex flex-wrap gap-2">
               {STEP_LABELS.map((label, i) => {
                 const n = i + 1;
                 const active = n === step;
                 const done = n < step;
                 return (
-                  <div
+                  <li
                     key={label}
+                    aria-current={active ? "step" : undefined}
                     className={cn(
-                      "flex items-center gap-2 rounded-control px-3 py-1.5 text-xs font-semibold",
+                      "flex items-center gap-2 rounded-control px-3 py-2 text-xs font-semibold",
                       active
                         ? "bg-ink text-white"
                         : done
@@ -683,12 +752,25 @@ export function AuditForm({
                           : "bg-surface text-muted",
                     )}
                   >
-                    <span className="font-mono">{n}</span>
+                    <span
+                      className={cn(
+                        "flex h-5 w-5 items-center justify-center rounded-full font-mono text-[10px]",
+                        active
+                          ? "bg-white/15 text-white"
+                          : done
+                            ? "bg-accent text-white"
+                            : "bg-border text-muted",
+                      )}
+                      aria-hidden="true"
+                    >
+                      {done ? <IconCheck className="h-3 w-3" /> : n}
+                    </span>
                     <span className="hidden sm:inline">{label}</span>
-                  </div>
+                    <span className="sm:hidden">{n}</span>
+                  </li>
                 );
               })}
-            </div>
+            </ol>
             <div className="h-1.5 overflow-hidden rounded-full bg-border">
               <div
                 className="h-full rounded-full bg-accent transition-all duration-300"
@@ -716,7 +798,10 @@ export function AuditForm({
               />
 
               {stepError ? (
-                <div className="mb-5 rounded-control border border-bad/20 bg-bad-bg px-4 py-3 text-sm text-bad" role="alert">
+                <div
+                  className="mb-5 rounded-control border border-bad/20 bg-bad-bg px-4 py-3 text-sm text-bad"
+                  role="alert"
+                >
                   {stepError}
                 </div>
               ) : null}
@@ -725,33 +810,79 @@ export function AuditForm({
                 <div className="space-y-5">
                   <div>
                     <label htmlFor="website_url" className="label-field">
-                      Website URL *
+                      Website URL <span className="text-bad">*</span>
                     </label>
                     <input
                       id="website_url"
+                      type="url"
+                      inputMode="url"
                       className="input-field"
                       placeholder="yourbusiness.com"
                       value={form.website_url}
-                      onChange={(e) => update("website_url", e.target.value)}
+                      onChange={(e) => {
+                        update("website_url", e.target.value);
+                        if (fieldErrors.website_url) {
+                          setFieldErrors((prev) => ({ ...prev, website_url: undefined }));
+                        }
+                      }}
                       autoComplete="url"
+                      aria-invalid={Boolean(fieldErrors.website_url)}
+                      aria-describedby={fieldErrors.website_url ? "website_url-error" : undefined}
+                      required
                     />
+                    {fieldErrors.website_url ? (
+                      <p id="website_url-error" className="mt-2 text-sm text-bad" role="alert">
+                        {fieldErrors.website_url}
+                      </p>
+                    ) : (
+                      <p className="mt-2 text-sm text-muted">
+                        example.com is fine — we&apos;ll add https automatically.
+                      </p>
+                    )}
                   </div>
+                </div>
+              )}
+
+              {step === 2 && (
+                <div className="space-y-5">
+                  {urlConfirmed ? (
+                    <div className="rounded-control border border-accent/20 bg-accent-tint px-4 py-3 text-sm text-body">
+                      Site confirmed:{" "}
+                      <span className="font-semibold text-ink">{form.website_url}</span>
+                      <button
+                        type="button"
+                        className="ml-2 font-semibold text-accent hover:text-accent-hover"
+                        onClick={() => setStep(1)}
+                      >
+                        Change
+                      </button>
+                    </div>
+                  ) : null}
                   <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                     <div>
                       <label htmlFor="full_name" className="label-field">
-                        Full name *
+                        Full name <span className="text-bad">*</span>
                       </label>
                       <input
                         id="full_name"
+                        type="text"
                         className="input-field"
                         value={form.full_name}
                         onChange={(e) => update("full_name", e.target.value)}
                         autoComplete="name"
+                        aria-invalid={Boolean(fieldErrors.full_name)}
+                        aria-describedby={fieldErrors.full_name ? "full_name-error" : undefined}
+                        required
                       />
+                      {fieldErrors.full_name ? (
+                        <p id="full_name-error" className="mt-2 text-sm text-bad" role="alert">
+                          {fieldErrors.full_name}
+                        </p>
+                      ) : null}
                     </div>
                     <div>
                       <label htmlFor="work_email" className="label-field">
-                        Work email *
+                        Work email <span className="text-bad">*</span>
                       </label>
                       <input
                         id="work_email"
@@ -760,21 +891,40 @@ export function AuditForm({
                         value={form.work_email}
                         onChange={(e) => update("work_email", e.target.value)}
                         autoComplete="email"
+                        aria-invalid={Boolean(fieldErrors.work_email)}
+                        aria-describedby={fieldErrors.work_email ? "work_email-error" : undefined}
+                        required
                       />
+                      {fieldErrors.work_email ? (
+                        <p id="work_email-error" className="mt-2 text-sm text-bad" role="alert">
+                          {fieldErrors.work_email}
+                        </p>
+                      ) : null}
                     </div>
                   </div>
                   <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                     <div>
                       <label htmlFor="company_name" className="label-field">
-                        Company name *
+                        Company name <span className="text-bad">*</span>
                       </label>
                       <input
                         id="company_name"
+                        type="text"
                         className="input-field"
                         value={form.company_name}
                         onChange={(e) => update("company_name", e.target.value)}
                         autoComplete="organization"
+                        aria-invalid={Boolean(fieldErrors.company_name)}
+                        aria-describedby={
+                          fieldErrors.company_name ? "company_name-error" : undefined
+                        }
+                        required
                       />
+                      {fieldErrors.company_name ? (
+                        <p id="company_name-error" className="mt-2 text-sm text-bad" role="alert">
+                          {fieldErrors.company_name}
+                        </p>
+                      ) : null}
                     </div>
                     <div>
                       <label htmlFor="phone" className="label-field">
@@ -782,82 +932,13 @@ export function AuditForm({
                       </label>
                       <input
                         id="phone"
+                        type="tel"
                         className="input-field"
                         value={form.phone}
                         onChange={(e) => update("phone", e.target.value)}
                         autoComplete="tel"
                       />
                     </div>
-                  </div>
-                </div>
-              )}
-
-              {step === 2 && (
-                <div className="space-y-5">
-                  <p className="text-sm text-muted">Optional — skip anytime.</p>
-                  <div>
-                    <label htmlFor="primary_service" className="label-field">
-                      Primary service
-                    </label>
-                    <input
-                      id="primary_service"
-                      className="input-field"
-                      value={form.primary_service}
-                      onChange={(e) => update("primary_service", e.target.value)}
-                    />
-                  </div>
-                  <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-                    <div>
-                      <label htmlFor="service_area" className="label-field">
-                        Service area
-                      </label>
-                      <input
-                        id="service_area"
-                        className="input-field"
-                        value={form.service_area}
-                        onChange={(e) => update("service_area", e.target.value)}
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="industry" className="label-field">
-                        Industry
-                      </label>
-                      <input
-                        id="industry"
-                        className="input-field"
-                        value={form.industry}
-                        onChange={(e) => update("industry", e.target.value)}
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <label htmlFor="business_size" className="label-field">
-                      Team size
-                    </label>
-                    <select
-                      id="business_size"
-                      className="input-field"
-                      value={form.business_size}
-                      onChange={(e) => update("business_size", e.target.value)}
-                    >
-                      <option value="">Select team size</option>
-                      {BUSINESS_SIZE_OPTIONS.map((opt) => (
-                        <option key={opt.value} value={opt.value}>
-                          {opt.label}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  <div>
-                    <label htmlFor="competitors" className="label-field">
-                      Top competitors
-                    </label>
-                    <input
-                      id="competitors"
-                      className="input-field"
-                      value={form.competitors}
-                      onChange={(e) => update("competitors", e.target.value)}
-                    />
                   </div>
                 </div>
               )}
@@ -892,6 +973,77 @@ export function AuditForm({
                         />
                       ))}
                     </div>
+                  </div>
+                  <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                    <div>
+                      <label htmlFor="primary_service" className="label-field">
+                        Primary service
+                      </label>
+                      <input
+                        id="primary_service"
+                        type="text"
+                        className="input-field"
+                        value={form.primary_service}
+                        onChange={(e) => update("primary_service", e.target.value)}
+                        autoComplete="organization-title"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="service_area" className="label-field">
+                        Service area
+                      </label>
+                      <input
+                        id="service_area"
+                        type="text"
+                        className="input-field"
+                        value={form.service_area}
+                        onChange={(e) => update("service_area", e.target.value)}
+                      />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                    <div>
+                      <label htmlFor="industry" className="label-field">
+                        Industry
+                      </label>
+                      <input
+                        id="industry"
+                        type="text"
+                        className="input-field"
+                        value={form.industry}
+                        onChange={(e) => update("industry", e.target.value)}
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="business_size" className="label-field">
+                        Team size
+                      </label>
+                      <select
+                        id="business_size"
+                        className="input-field"
+                        value={form.business_size}
+                        onChange={(e) => update("business_size", e.target.value)}
+                      >
+                        <option value="">Select team size</option>
+                        {BUSINESS_SIZE_OPTIONS.map((opt) => (
+                          <option key={opt.value} value={opt.value}>
+                            {opt.label}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                  <div>
+                    <label htmlFor="competitors" className="label-field">
+                      Top competitors
+                    </label>
+                    <input
+                      id="competitors"
+                      type="text"
+                      className="input-field"
+                      value={form.competitors}
+                      onChange={(e) => update("competitors", e.target.value)}
+                    />
                   </div>
                   <div>
                     <label htmlFor="cms_platform" className="label-field">
@@ -942,16 +1094,28 @@ export function AuditForm({
                     />
                   </div>
                   <div className="rounded-card border border-border bg-surface-alt p-4 text-sm text-body">
-                    We&apos;ll scan <span className="font-semibold text-ink">{form.website_url || "your site"}</span>.
-                    Results go to{" "}
-                    <span className="font-semibold text-ink">{form.work_email || "your email"}</span>.
+                    We&apos;ll scan{" "}
+                    <span className="font-semibold text-ink">
+                      {form.website_url || "your site"}
+                    </span>
+                    . Results go to{" "}
+                    <span className="font-semibold text-ink">
+                      {form.work_email || "your email"}
+                    </span>
+                    .
+                    {planLabel ? (
+                      <>
+                        {" "}
+                        Selected plan: <span className="font-semibold text-ink">{planLabel}</span>.
+                      </>
+                    ) : null}{" "}
                     Most reviews finish within minutes.
                   </div>
                 </div>
               )}
 
               <div className="mt-8 flex flex-col-reverse gap-3 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">
-                <div className="flex gap-3">
+                <div className="flex flex-wrap gap-3">
                   {step > 1 ? (
                     <button type="button" className="btn-outline" onClick={goBack}>
                       ← Back
@@ -959,13 +1123,19 @@ export function AuditForm({
                   ) : (
                     <span />
                   )}
-                  {step >= 2 && step <= 3 ? (
+                  {step >= 3 && step <= 3 ? (
                     <button
                       type="button"
-                      className="text-sm font-semibold text-muted hover:text-ink"
-                      onClick={() => void submitAssessment()}
+                      className="min-h-11 px-2 text-sm font-semibold text-muted hover:text-ink"
+                      onClick={() => {
+                        if (!validateStep1() || !validateStep2()) {
+                          setStep(looksLikeWebsite(form.website_url) ? 2 : 1);
+                          return;
+                        }
+                        setStep(4);
+                      }}
                     >
-                      Skip &amp; submit now
+                      Skip to review
                     </button>
                   ) : null}
                 </div>
@@ -977,9 +1147,10 @@ export function AuditForm({
                   <button
                     type="button"
                     className="btn-primary"
+                    disabled={submitting}
                     onClick={() => void submitAssessment()}
                   >
-                    Run my free assessment →
+                    {submitting ? "Submitting…" : "Run my free assessment →"}
                   </button>
                 )}
               </div>
@@ -991,7 +1162,7 @@ export function AuditForm({
                 <ol className="space-y-4">
                   {[
                     "Your AI Visibility Score (1–100)",
-                    "How ChatGPT, Google AI, Perplexity and Copilot see you",
+                    "How ChatGPT, Google AI, Perplexity, Copilot and Gemini see you",
                     "What's helping and what's hurting",
                     "Your top priority to fix first",
                   ].map((item, i) => (
