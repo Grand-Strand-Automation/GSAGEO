@@ -56,9 +56,9 @@ export const SCAN_CHECKLIST = [
 
 export const STEP_LABELS = [
   "Your site",
-  "Business",
+  "Contact",
   "Goals",
-  "Finish",
+  "Review",
 ] as const;
 
 export const AUDIT_STORAGE_KEY = "gsa-audit-draft-v2";

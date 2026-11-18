@@ -50,24 +50,29 @@ export function SiteHeader() {
 
         <button
           type="button"
-          className="ml-auto rounded-control p-2 text-ink lg:hidden"
+          className="ml-auto inline-flex min-h-11 min-w-11 items-center justify-center rounded-control p-2 text-ink lg:hidden"
           onClick={() => setMobileOpen((o) => !o)}
-          aria-label="Toggle menu"
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
+          aria-controls="mobile-nav"
         >
           <MenuIcon open={mobileOpen} />
         </button>
       </div>
 
-      {mobileOpen && (
-        <div className="border-t border-border bg-surface px-5 pb-5 pt-3 lg:hidden">
+      {mobileOpen ? (
+        <nav
+          id="mobile-nav"
+          className="border-t border-border bg-surface px-5 pb-5 pt-3 lg:hidden"
+          aria-label="Mobile"
+        >
           <div className="flex flex-col gap-1">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="rounded-control px-3 py-3 text-sm font-medium text-body hover:bg-surface-alt hover:text-ink"
+                className="rounded-control px-3 py-3 text-sm font-medium text-body hover:bg-surface-alt hover:text-ink min-h-11"
               >
                 {link.label}
               </Link>
@@ -76,15 +81,15 @@ export function SiteHeader() {
               <ButtonLink
                 href="/audit"
                 variant="primary"
-                className="w-full"
+                className="w-full min-h-11"
                 onClick={() => setMobileOpen(false)}
               >
                 Free assessment
               </ButtonLink>
             </div>
           </div>
-        </div>
-      )}
+        </nav>
+      ) : null}
     </header>
   );
 }

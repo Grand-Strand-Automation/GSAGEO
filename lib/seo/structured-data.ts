@@ -1,17 +1,31 @@
-import { FAQ_ITEMS } from "@/lib/content/landing";
+import { ABOUT_BLOCK, FAQ_ITEMS, TIERS } from "@/lib/content/landing";
 import { siteConfig } from "@/lib/brand/site";
 import { absoluteUrl, getSiteUrl } from "./site-url";
 
+function priceAmount(price: string): string | undefined {
+  const match = price.replace(/,/g, "").match(/(\d+(?:\.\d+)?)/);
+  return match?.[1];
+}
+
 export function organizationJsonLd() {
+  const sameAs = [siteConfig.mainSiteUrl, siteConfig.linkedinUrl].filter(
+    (v): v is string => Boolean(v),
+  );
+
   return {
     "@context": "https://schema.org",
     "@type": ["Organization", "LocalBusiness", "ProfessionalService"],
     name: siteConfig.name,
+    legalName: siteConfig.name,
     url: getSiteUrl(),
+    logo: absoluteUrl(siteConfig.logoIconSrc),
+    image: absoluteUrl(siteConfig.logoIconSrc),
+    email: siteConfig.contactEmail,
+    ...(siteConfig.contactPhone ? { telephone: siteConfig.contactPhone } : {}),
     areaServed: [
       {
         "@type": "Place",
-        name: "Grand Strand",
+        name: "Grand Strand, SC",
       },
       {
         "@type": "City",
@@ -23,8 +37,14 @@ export function organizationJsonLd() {
       },
     ],
     description:
-      "AI visibility support for service businesses. Free assessment first, then month-to-month GEO guidance.",
-    sameAs: [siteConfig.mainSiteUrl],
+      "AI visibility support for service businesses. Free assessment first, then month-to-month GEO (Generative Engine Optimization) guidance.",
+    sameAs,
+    founder: {
+      "@type": "Person",
+      name: ABOUT_BLOCK.name,
+      jobTitle: ABOUT_BLOCK.role,
+      ...(ABOUT_BLOCK.linkedinUrl ? { sameAs: [ABOUT_BLOCK.linkedinUrl] } : {}),
+    },
   };
 }
 
@@ -54,11 +74,37 @@ export function serviceJsonLd() {
       name: siteConfig.name,
       url: getSiteUrl(),
     },
-    areaServed: "Grand Strand / Myrtle Beach, SC",
+    areaServed: ["Grand Strand, SC", "Myrtle Beach, SC"],
     description:
-      "Free assessment of how ChatGPT, Google AI Overviews, Perplexity and Microsoft Copilot see your business — plus optional month-to-month support.",
+      "Free assessment of how ChatGPT, Google AI Overviews, Perplexity, Microsoft Copilot and Gemini see your business — plus optional month-to-month support.",
     url: absoluteUrl("/audit"),
   };
+}
+
+export function planOfferJsonLd() {
+  return TIERS.map((tier) => {
+    const amount = priceAmount(tier.price);
+    return {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: `${tier.name} GEO plan`,
+      description: tier.includes.join(". "),
+      provider: {
+        "@type": "Organization",
+        name: siteConfig.name,
+        url: getSiteUrl(),
+      },
+      areaServed: ["Grand Strand, SC", "Myrtle Beach, SC"],
+      url: absoluteUrl(`/audit?tier=${tier.tier}`),
+      offers: {
+        "@type": "Offer",
+        priceCurrency: "USD",
+        ...(amount ? { price: amount } : {}),
+        availability: "https://schema.org/InStock",
+        url: absoluteUrl(`/audit?tier=${tier.tier}`),
+      },
+    };
+  });
 }
 
 export function faqPageJsonLd() {
@@ -77,5 +123,11 @@ export function faqPageJsonLd() {
 }
 
 export function homeStructuredData() {
-  return [organizationJsonLd(), websiteJsonLd(), serviceJsonLd(), faqPageJsonLd()];
+  return [
+    organizationJsonLd(),
+    websiteJsonLd(),
+    serviceJsonLd(),
+    ...planOfferJsonLd(),
+    faqPageJsonLd(),
+  ];
 }

@@ -1,8 +1,8 @@
 export const HOME_HERO = {
-  eyebrow: "GEO for service businesses",
+  eyebrow: "GEO (Generative Engine Optimization) for service businesses",
   headline: "When customers ask AI who to hire, does your business come up?",
   subheadline:
-    "We check how ChatGPT, Google AI Overviews, Perplexity and Microsoft Copilot read your website, show you what's holding you back, and help you fix it month to month.",
+    "We check how ChatGPT, Google AI Overviews, Perplexity, Microsoft Copilot and Gemini read your website, show you what's holding you back, and help you fix it month to month.",
   primaryCta: "Check my site →",
   primaryHref: "/audit",
   checkRow: [
@@ -10,10 +10,11 @@ export const HOME_HERO = {
     "No obligation",
     "Grand Strand-based since 2015",
   ],
-  sampleDomain: "coastalcomfort-hvac.com",
+  sampleDomain: "coastalcomfort-hvac.example",
   sampleScore: 58,
   sampleSummary:
     "AI tools can find this business, but describe its services vaguely and rarely recommend it.",
+  exampleLabel: "Example report: fictional business",
 } as const;
 
 export const ENGINES = [
@@ -131,13 +132,14 @@ export const WHATS_INCLUDED = [
   },
 ];
 
+/** Same order, labels, and values as SAMPLE_REPORT.signals. */
 export const SAMPLE_TEASER_SCORES = [
-  { name: "Entity clarity", score: 72 },
-  { name: "Service pages", score: 48 },
-  { name: "Structured data", score: 30 },
-  { name: "Trust & proof", score: 55 },
-  { name: "Local signals", score: 66 },
-  { name: "AI mentions", score: 40 },
+  { name: "AI mentions", score: 58 },
+  { name: "Service pages", score: 50 },
+  { name: "Structured data", score: 32 },
+  { name: "Entity clarity", score: 80 },
+  { name: "Trust & proof", score: 70 },
+  { name: "Local signals", score: 65 },
 ] as const;
 
 export const TIERS = [
@@ -162,10 +164,10 @@ export const TIERS = [
     tier: "growth",
     includes: [
       "Everything in Monitor",
-      "Monthly review with you",
-      "Content & page guidance",
-      "Action summaries",
-      "Light hands-on support",
+      "Monthly live review call",
+      "Written briefs for 1–3 key pages",
+      "Action summary of what to ship",
+      "Up to 1 hour/month of draft review or page edits",
     ],
     cta: "Start with Growth",
     primary: true,
@@ -177,9 +179,9 @@ export const TIERS = [
     tier: "managed",
     includes: [
       "Everything in Growth",
-      "Implementation help",
-      "Content planning",
-      "Roadmap reviews",
+      "Hands-on implementation on priority pages",
+      "Content planning for the month ahead",
+      "Roadmap review each billing cycle",
     ],
     cta: "Request Managed",
     primary: false,
@@ -222,7 +224,7 @@ export const FAQ_ITEMS = [
   },
   {
     q: "How hands-on is the support?",
-    a: "Monitor is guidance only. Growth adds light hands-on support and monthly reviews. Managed includes implementation help, content planning and roadmap reviews.",
+    a: "Monitor is guidance only — snapshot, priorities, and recommendations. Growth adds a monthly review, page briefs, and up to about an hour of draft review or edits. Managed includes hands-on implementation on priority pages plus content planning and roadmap reviews.",
   },
   {
     q: "Can you guarantee I'll be recommended by AI?",
@@ -235,4 +237,16 @@ export const SAMPLE_ENGINE_ROWS = [
   { engine: "Google AI Overviews", status: "Not cited", tone: "bad" as const },
   { engine: "Perplexity", status: "Cited", tone: "good" as const },
   { engine: "Microsoft Copilot", status: "Not cited", tone: "bad" as const },
+  { engine: "Gemini", status: "Mentioned, vague", tone: "warn" as const },
 ] as const;
+
+/** Local trust block — photo/LinkedIn can be filled when assets are ready. */
+export const ABOUT_BLOCK = {
+  name: "Shawn Landau",
+  role: "Founder, Grand Strand Ally",
+  since: "Local since 2015",
+  body: "Grand Strand Ally helps service businesses show up clearly when customers ask AI who to hire — with plain-language assessments and month-to-month support, not agency jargon.",
+  /** Set when a public headshot is available under /public/brand/ */
+  photoSrc: null as string | null,
+  linkedinUrl: null as string | null,
+} as const;

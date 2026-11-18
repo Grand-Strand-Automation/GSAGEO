@@ -14,6 +14,8 @@ const config: Config = {
         mono: ["var(--font-jetbrains-mono)", "ui-monospace", "monospace"],
       },
       colors: {
+        // Keep hex values in sync with :root design tokens in app/globals.css
+        // (CSS vars alone break Tailwind opacity modifiers like accent/40).
         ink: "#0F1E2E",
         body: "#3A4A5C",
         muted: "#5B6B7D",
@@ -43,11 +45,9 @@ const config: Config = {
           DEFAULT: "#B42318",
           bg: "#FEF3F2",
         },
-        // Aliases used by redesign tokens / docs
         warn: "#7A4A00",
         "warn-bg": "#FEF0C7",
         "warn-bar": "#D97706",
-        // Legacy brand tokens (admin / results pages)
         brand: {
           hero: "#0F1E2E",
           navy: "#0F1E2E",

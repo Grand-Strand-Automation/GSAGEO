@@ -1,11 +1,12 @@
 import Link from "next/link";
+import { GeoAbbr } from "@/components/GeoAbbr";
 import { siteConfig } from "@/lib/brand/site";
 import { cn } from "@/lib/utils";
 
 type BrandLogoProps = {
   href?: string;
   className?: string;
-  /** Show “AI Visibility · GEO” under the brand name */
+  /** Show AI Visibility + GEO under the brand name */
   variant?: "geo" | "location";
   /** Invert for light backgrounds */
   onDark?: boolean;
@@ -46,31 +47,40 @@ export function BrandLogo({
   variant = "geo",
   onDark = false,
 }: BrandLogoProps) {
-  const subline = variant === "geo" ? "AI Visibility · GEO" : siteConfig.serviceArea;
-
   return (
     <Link
       href={href}
-      className={cn("group flex items-center gap-3 flex-shrink-0", className)}
+      className={cn("group flex min-w-0 flex-shrink-0 items-center gap-3", className)}
     >
       <LogoMark />
-      <div className="flex flex-col leading-none min-w-0">
+      <div className="flex min-w-0 flex-col leading-none">
         <span
           className={cn(
-            "font-heading font-semibold text-[15px] tracking-tight whitespace-nowrap transition-colors",
+            "whitespace-nowrap font-heading text-[15px] font-semibold tracking-tight transition-colors",
             onDark ? "text-white" : "text-ink",
           )}
         >
           {siteConfig.name}
         </span>
-        <span
-          className={cn(
-            "font-mono text-[10px] font-medium tracking-[0.04em] whitespace-nowrap mt-1",
-            onDark ? "text-on-dark" : "text-muted",
-          )}
-        >
-          {subline}
-        </span>
+        {variant === "geo" ? (
+          <span
+            className={cn(
+              "mt-1 whitespace-nowrap font-mono text-[10px] font-medium tracking-[0.04em]",
+              onDark ? "text-on-dark" : "text-muted",
+            )}
+          >
+            {siteConfig.tagline} · <GeoAbbr />
+          </span>
+        ) : (
+          <span
+            className={cn(
+              "mt-1 whitespace-nowrap font-mono text-[10px] font-medium tracking-[0.04em]",
+              onDark ? "text-on-dark" : "text-muted",
+            )}
+          >
+            {siteConfig.serviceArea}
+          </span>
+        )}
       </div>
     </Link>
   );

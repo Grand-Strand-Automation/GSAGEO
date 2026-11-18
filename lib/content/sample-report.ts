@@ -1,9 +1,11 @@
 export const SAMPLE_REPORT = {
-  domain: "coastalcomfort-hvac.com",
+  domain: "coastalcomfort-hvac.example",
   score: 58,
   headline: "Findable, but not yet recommended",
   summary:
     "AI tools know Coastal Comfort exists and roughly what it does. They rarely name it when someone asks for a recommendation, mainly because service pages are thin and there's no structured business data.",
+  scoreNote:
+    "Overall score is weighted — not a plain average of the six signals. AI mentions (25%), service pages (20%), structured data (15%), entity clarity (15%), trust & proof (15%), and local signals (10%).",
   pills: [
     { label: "2 strengths", tone: "good" as const },
     { label: "3 gaps", tone: "warn" as const },
@@ -35,22 +37,29 @@ export const SAMPLE_REPORT = {
       tone: "bad" as const,
       detail: "Pulled from Bing; business details there don't match the website.",
     },
+    {
+      name: "Gemini",
+      status: "Mentioned, vague",
+      tone: "warn" as const,
+      detail: "Recognized the trade and city, but skipped the commercial specialty.",
+    },
   ],
+  /** Same order and labels as the home preview and SCORE_WEIGHTS. */
   signals: [
     {
-      id: "entity-clarity",
-      name: "Entity clarity",
-      score: 72,
-      description: "Can AI tell who you are, what you do and where?",
+      id: "ai-mentions",
+      name: "AI mentions",
+      score: 58,
+      description: "How often AI tools name you for relevant questions.",
       findings: [
-        "Business name, city and core trade are clear on the homepage",
-        "No About page explaining history or credentials",
+        "Cited by 1 of 5 tools for the main query",
+        "Not named for maintenance-contract questions",
       ],
     },
     {
       id: "service-pages",
       name: "Service pages",
-      score: 48,
+      score: 50,
       description: "Does each service have enough specific content to be cited?",
       findings: [
         "One combined Services page for all offerings",
@@ -58,19 +67,9 @@ export const SAMPLE_REPORT = {
       ],
     },
     {
-      id: "trust-proof",
-      name: "Trust & proof",
-      score: 55,
-      description: "Reviews, credentials and examples AI can verify.",
-      findings: [
-        "Strong Google review count is visible",
-        "No licenses, certifications or project examples on site",
-      ],
-    },
-    {
       id: "structured-data",
       name: "Structured data",
-      score: 30,
+      score: 32,
       description: "Machine-readable business facts (schema markup).",
       findings: [
         "No LocalBusiness or Service schema found",
@@ -78,23 +77,33 @@ export const SAMPLE_REPORT = {
       ],
     },
     {
+      id: "entity-clarity",
+      name: "Entity clarity",
+      score: 80,
+      description: "Can AI tell who you are, what you do and where?",
+      findings: [
+        "Business name, city and core trade are clear on the homepage",
+        "No About page explaining history or credentials",
+      ],
+    },
+    {
+      id: "trust-proof",
+      name: "Trust & proof",
+      score: 70,
+      description: "Reviews, credentials and examples AI can verify.",
+      findings: [
+        "Strong Google review count is visible",
+        "No licenses, certifications or project examples on site",
+      ],
+    },
+    {
       id: "local-signals",
       name: "Local signals",
-      score: 66,
+      score: 65,
       description: "Consistent name, address and phone across the web.",
       findings: [
         "Google Business Profile matches the site",
         "Bing Places listing shows an old phone number",
-      ],
-    },
-    {
-      id: "ai-mentions",
-      name: "AI mentions",
-      score: 40,
-      description: "How often AI tools name you for relevant questions.",
-      findings: [
-        "Cited by 1 of 4 tools for the main query",
-        "Not named for maintenance-contract questions",
       ],
     },
   ],
